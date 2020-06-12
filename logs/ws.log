@@ -2741,3 +2741,4 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2020-06-12 18:11:22.930 10559 [-8080-exec-1] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
 2020-06-12 18:11:22.930 10559 [-8080-exec-1] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$lrru9Mf6JePuz5gAZ9Gx/ejUbZT9kQ1GEs1o3WLIJYQXmQdP.FXhS, administrator, Admin, 1, 2020-06-12 18:06:11.0, 2020-06-12 18:06:11.0
 2020-06-12 18:11:22.931 10559 [-8080-exec-1] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : <==      Total: 1
+2020-06-12 18:13:40.397 10559 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
