@@ -1,0 +1,117 @@
+{
+  "groups": [
+    {
+      "name": "kfashion.ws.application",
+      "type": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties"
+    },
+    {
+      "name": "kfashion.ws.mybatis",
+      "type": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat",
+      "type": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "kfashion.ws.application.network-conn-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "kfashion.ws.application.network-read-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "kfashion.ws.mybatis.config-location",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties"
+    },
+    {
+      "name": "kfashion.ws.mybatis.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties"
+    },
+    {
+      "name": "kfashion.ws.mybatis.max-pool-size",
+      "type": "java.lang.Integer",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "kfashion.ws.mybatis.min-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "kfashion.ws.mybatis.password",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties"
+    },
+    {
+      "name": "kfashion.ws.mybatis.url",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties"
+    },
+    {
+      "name": "kfashion.ws.mybatis.username",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat.allow-origins",
+      "type": "java.lang.Boolean",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "kfashion.ws.tomcat.connection-lingers",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat.connection-timeout",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat.keep-alive-timeout",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat.max-connections",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat.max-keep-alive-requests",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat.max-threads",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat.min-spare-threads",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    },
+    {
+      "name": "kfashion.ws.tomcat.server-info",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.TomcatProperties"
+    }
+  ],
+  "hints": []
+}
