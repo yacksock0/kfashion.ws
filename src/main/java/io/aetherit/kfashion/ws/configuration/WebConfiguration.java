@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("api/**").addResourceLocations("classpath:/static/");
     }
 }

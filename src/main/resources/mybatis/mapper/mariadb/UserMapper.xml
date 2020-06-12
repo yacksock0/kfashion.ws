@@ -35,7 +35,7 @@
         ORDER BY created_datetime DESC
     </select>
 
-    <insert id="insertUser" parameterType="BaseUser">
+    <insert id="insertUser" parameterType="KfashionUser">
         INSERT INTO kfashion_users (
             id,
             password,
