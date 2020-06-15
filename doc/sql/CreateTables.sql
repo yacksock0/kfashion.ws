@@ -2,7 +2,7 @@ USE kfashion;
 
 ##
 ## for Spring Session
-##
+#
 CREATE TABLE SPRING_SESSION (
     PRIMARY_ID CHAR(36) NOT NULL,
     SESSION_ID CHAR(36) NOT NULL,

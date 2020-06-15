@@ -19,5 +19,9 @@
 
     <mappers>
         <mapper resource="mybatis/mapper/mariadb/UserMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/FirstSettingMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/SecondSettingMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/ThirdSettingMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/FordSettingMapper.xml" />
     </mappers>
 </configuration>
