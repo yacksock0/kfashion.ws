@@ -1,0 +1,12 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionImageLabelingMapper">
+    <resultMap id="KfashionImageLabelingResultMap" type="KfashionImageLabeling">
+        <id property="labeling_num"                       column="labeling_num" />
+        <result property="labeling_img"             column="labeling_img" />
+        <result property="labeling_create_id"                 column="labeling_create_id" />
+        <result property="labeling_creat_date"                 column="labeling_creat_date" />
+        <result property="labeling_modify_id"            column="labeling_modify_id" />
+        <result property="labeling_modify_date"      column="labeling_modify_date" />
+    </resultMap>
+
+</mapper>
