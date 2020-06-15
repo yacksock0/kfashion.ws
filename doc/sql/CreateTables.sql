@@ -34,7 +34,7 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 ## for Application
 ##
 CREATE TABLE kfashion_users (
-    id                      NVARCHAR(64)        NOT NULL
+    id                      NVARCHAR(64)        NOT NULL,
     password                NVARCHAR(128)       NOT NULL,
     name                    NVARCHAR(64)        NOT NULL,
     type                    VARCHAR(32)         NOT NULL,
