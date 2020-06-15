@@ -4,6 +4,15 @@ import {Link} from "react-router-dom";
 import {Divider, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Toolbar} from "@material-ui/core";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import ComputerIcon from '@material-ui/icons/Computer';
+import WallpaperIcon from '@material-ui/icons/Wallpaper';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import AspectRatioIcon from '@material-ui/icons/AspectRatio';
+import FormatShapesIcon from '@material-ui/icons/FormatShapes';
+import CompareIcon from '@material-ui/icons/Compare';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
 
 const logoWidth = 129;
 const logoHeight = 22;
@@ -47,6 +56,8 @@ const useStyles = makeStyles((theme) => ({
     link: {
         textDecoration: 'none',
         color: 'inherit',
+    },nested: {
+        paddingLeft: theme.spacing(4),
     },
 }));
 
@@ -57,12 +68,17 @@ export default function SideMenu(props) {
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
-    };
 
+    };
+    const [open, setOpen] = React.useState(true);
+
+    const handleClick = () => {
+        setOpen(!open);
+    };
     const drawer = (
         <div className={classes.menu}>
             <List>
-                <ListSubheader inset>관리</ListSubheader>
+                <ListSubheader inset>Process</ListSubheader>
 
                 <Link to="/home" className={classes.link}>
                     <ListItem button>
@@ -70,6 +86,56 @@ export default function SideMenu(props) {
                         <ListItemText primary="홈"></ListItemText>
                     </ListItem>
                 </Link>
+                    <Link to="/Step" className={classes.link}>
+                    <ListItem button>
+                        <ListItemIcon><WallpaperIcon /></ListItemIcon>
+                        <ListItemText button onClick={handleClick} primary="1단계 레이블링"></ListItemText>
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                </Link>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                        <ListItem button className={classes.nested}>
+                            <ListItemIcon>
+                                <AspectRatioIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="BoundaryBox" />
+                        </ListItem>
+                    </List>
+                </Collapse>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                        <ListItem button className={classes.nested}>
+                            <ListItemIcon>
+                                <CompareIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Segmentation" />
+                        </ListItem>
+                    </List>
+                </Collapse>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                        <ListItem button className={classes.nested}>
+                            <ListItemIcon>
+                                <FormatShapesIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Polygon" />
+                        </ListItem>
+                    </List>
+                </Collapse>
+                <Link to="/step2" className={classes.link}>
+                    <ListItem button>
+                        <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>
+                        <ListItemText primary="2단계 기본값"></ListItemText>
+                    </ListItem>
+                </Link>
+                <Link to="/step3" className={classes.link}>
+                    <ListItem button>
+                        <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
+                        <ListItemText primary="3단계 검수"></ListItemText>
+                    </ListItem>
+                </Link>
+
             </List>
 
             <Divider />

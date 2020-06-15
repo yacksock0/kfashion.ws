@@ -1,4 +1,4 @@
-USE kfasion;
+USE kfashion;
 
 ##
 ## for Spring Session
@@ -33,7 +33,7 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 ##
 ## for Application
 ##
-CREATE TABLE kfasion_users (
+CREATE TABLE kfashion_users (
     id                      NVARCHAR(64)        NOT NULL,
     password                NVARCHAR(128)       NOT NULL,
     name                    NVARCHAR(64)        NOT NULL,

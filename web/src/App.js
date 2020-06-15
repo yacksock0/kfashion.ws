@@ -11,6 +11,9 @@ import TopBar from "./components/TopBar";
 import SideMenu from "./components/SideMenu";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./views/Home";
+import Step from "./views/Step";
+import Step2 from "./views/Step2";
+import Step3 from "./views/Step3";
 import SignIn from "./views/SignIn";
 import * as store from "./stores/AuthStore";
 
@@ -100,6 +103,9 @@ class App extends React.Component {
                               <Switch>
                                 <Route exact path="/" component={Home} />
                                 <Route exact path="/home" component={Home} />
+                                  <Route exact path="/step" component={Step} />
+                                  <Route exact path="/step2" component={Step2} />
+                                  <Route exact path="/step3" component={Step3} />
                               </Switch>
                             </React.Fragment>
                         ) : (
