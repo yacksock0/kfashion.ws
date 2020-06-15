@@ -1,0 +1,1402 @@
+2020-06-14 16:14:24.394 8751 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 8751 (/Users/ho/IdeaProjects/kfashion.ws/target/classes started by ho in /Users/ho/IdeaProjects/kfashion.ws)
+2020-06-14 16:14:24.399 8751 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-14 16:14:24.399 8751 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-14 16:14:24.996 8751 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$f854393f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-14 16:14:25.277 8751 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:14:25.278 8751 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:14:25.278 8751 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-14 16:14:25.290 8751 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-14 16:14:25.295 8751 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:14:25.295 8751 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-14 16:14:25.295 8751 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-14 16:14:25.336 8751 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-14 16:14:25.337 8751 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 905 ms
+2020-06-14 16:14:25.373 8751 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   46 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://localhost:3306/testdb, chanho
+2020-06-14 16:14:25.608 8751 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-14 16:14:25.619 8751 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-14 16:14:25.654 8751 [        main] - ERROR o.s.boot.web.embedded.tomcat.TomcatStarter   61 : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'sessionRepositoryFilterRegistration' defined in class path resource [org/springframework/boot/autoconfigure/session/SessionRepositoryFilterConfiguration.class]: Unsatisfied dependency expressed through method 'sessionRepositoryFilterRegistration' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+2020-06-14 16:14:25.665 8751 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-14 16:14:25.667 8751 [        main] - WARN   o.a.catalina.loader.WebappClassLoaderBase  173 : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-06-14 16:14:25.668 8751 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2020-06-14 16:14:25.676 8751 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-14 16:14:25.682 8751 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:156)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:88)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:438)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:191)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:153)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sessionRepositoryFilterRegistration' defined in class path resource [org/springframework/boot/autoconfigure/session/SessionRepositoryFilterConfiguration.class]: Unsatisfied dependency expressed through method 'sessionRepositoryFilterRegistration' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:539)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:202)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:96)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:85)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:253)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:227)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5135)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:459)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:107)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:723)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 53 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:715)
+	... 76 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 98 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:416)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 112 common frames omitted
+Caused by: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:235)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy81.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:144)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:77)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
+	at com.sun.proxy.$Proxy82.selectUsersWhereType(Unknown Source)
+	at io.aetherit.kfashion.ws.repository.UserRepository.selectUsers(UserRepository.java:25)
+	at io.aetherit.kfashion.ws.repository.UserRepository$$FastClassBySpringCGLIB$$8bab9612.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at io.aetherit.kfashion.ws.repository.UserRepository$$EnhancerBySpringCGLIB$$54d83b77.selectUsers(<generated>)
+	at io.aetherit.kfashion.ws.service.UserService.getUsers(UserService.java:70)
+	at io.aetherit.kfashion.ws.service.UserService.checkAdmin(UserService.java:48)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 125 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: (conn=49) Table 'testdb.kfashion_users' doesn't exist
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.get(ExceptionMapper.java:242)
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.getException(ExceptionMapper.java:171)
+	at org.mariadb.jdbc.MariaDbStatement.executeExceptionEpilogue(MariaDbStatement.java:248)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.executeInternal(ClientSidePreparedStatement.java:230)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.execute(ClientSidePreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy84.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.ReuseExecutor.doQuery(ReuseExecutor.java:60)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 151 common frames omitted
+Caused by: java.sql.SQLException: Table 'testdb.kfashion_users' doesn't exist
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.readErrorPacket(AbstractQueryProtocol.java:1594)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.readPacket(AbstractQueryProtocol.java:1453)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.getResult(AbstractQueryProtocol.java:1415)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.executeQuery(AbstractQueryProtocol.java:289)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.executeInternal(ClientSidePreparedStatement.java:221)
+	... 174 common frames omitted
+2020-06-14 16:17:35.187 8813 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 8813 (/Users/ho/IdeaProjects/kfashion.ws/target/classes started by ho in /Users/ho/IdeaProjects/kfashion.ws)
+2020-06-14 16:17:35.189 8813 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-14 16:17:35.189 8813 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-14 16:17:35.758 8813 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$b0afe325] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-14 16:17:36.011 8813 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:17:36.012 8813 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:17:36.012 8813 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-14 16:17:36.024 8813 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-14 16:17:36.029 8813 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:17:36.030 8813 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-14 16:17:36.030 8813 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-14 16:17:36.070 8813 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-14 16:17:36.070 8813 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 856 ms
+2020-06-14 16:17:36.106 8813 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   46 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://localhost:3306/testdb, chanho
+2020-06-14 16:17:36.326 8813 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-14 16:17:36.336 8813 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-14 16:17:36.370 8813 [        main] - ERROR o.s.boot.web.embedded.tomcat.TomcatStarter   61 : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'sessionRepositoryFilterRegistration' defined in class path resource [org/springframework/boot/autoconfigure/session/SessionRepositoryFilterConfiguration.class]: Unsatisfied dependency expressed through method 'sessionRepositoryFilterRegistration' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+2020-06-14 16:17:36.380 8813 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-14 16:17:36.382 8813 [        main] - WARN   o.a.catalina.loader.WebappClassLoaderBase  173 : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-06-14 16:17:36.384 8813 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2020-06-14 16:17:36.391 8813 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-14 16:17:36.397 8813 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:156)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:88)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:438)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:191)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:153)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sessionRepositoryFilterRegistration' defined in class path resource [org/springframework/boot/autoconfigure/session/SessionRepositoryFilterConfiguration.class]: Unsatisfied dependency expressed through method 'sessionRepositoryFilterRegistration' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:539)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:202)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:96)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:85)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:253)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:227)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5135)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:459)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:107)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:723)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 53 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:715)
+	... 76 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 98 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:416)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 112 common frames omitted
+Caused by: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:235)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy81.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:144)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:77)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
+	at com.sun.proxy.$Proxy82.selectUsersWhereType(Unknown Source)
+	at io.aetherit.kfashion.ws.repository.UserRepository.selectUsers(UserRepository.java:25)
+	at io.aetherit.kfashion.ws.repository.UserRepository$$FastClassBySpringCGLIB$$8bab9612.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at io.aetherit.kfashion.ws.repository.UserRepository$$EnhancerBySpringCGLIB$$866153a6.selectUsers(<generated>)
+	at io.aetherit.kfashion.ws.service.UserService.getUsers(UserService.java:70)
+	at io.aetherit.kfashion.ws.service.UserService.checkAdmin(UserService.java:48)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 125 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: (conn=53) Table 'testdb.kfashion_users' doesn't exist
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.get(ExceptionMapper.java:242)
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.getException(ExceptionMapper.java:171)
+	at org.mariadb.jdbc.MariaDbStatement.executeExceptionEpilogue(MariaDbStatement.java:248)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.executeInternal(ClientSidePreparedStatement.java:230)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.execute(ClientSidePreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy84.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.ReuseExecutor.doQuery(ReuseExecutor.java:60)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 151 common frames omitted
+Caused by: java.sql.SQLException: Table 'testdb.kfashion_users' doesn't exist
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.readErrorPacket(AbstractQueryProtocol.java:1594)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.readPacket(AbstractQueryProtocol.java:1453)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.getResult(AbstractQueryProtocol.java:1415)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.executeQuery(AbstractQueryProtocol.java:289)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.executeInternal(ClientSidePreparedStatement.java:221)
+	... 174 common frames omitted
+2020-06-14 16:19:45.870 8830 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 8830 (/Users/ho/IdeaProjects/kfashion.ws/target/classes started by ho in /Users/ho/IdeaProjects/kfashion.ws)
+2020-06-14 16:19:45.872 8830 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-14 16:19:45.872 8830 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-14 16:19:46.419 8830 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$8dfef66a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-14 16:19:46.687 8830 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:19:46.687 8830 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:19:46.687 8830 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-14 16:19:46.700 8830 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-14 16:19:46.705 8830 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:19:46.706 8830 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-14 16:19:46.706 8830 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-14 16:19:46.748 8830 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-14 16:19:46.748 8830 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 853 ms
+2020-06-14 16:19:46.784 8830 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   46 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://localhost:3306/testdb, chanho
+2020-06-14 16:19:47.009 8830 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-14 16:19:47.019 8830 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-14 16:19:47.052 8830 [        main] - ERROR o.s.boot.web.embedded.tomcat.TomcatStarter   61 : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'sessionRepositoryFilterRegistration' defined in class path resource [org/springframework/boot/autoconfigure/session/SessionRepositoryFilterConfiguration.class]: Unsatisfied dependency expressed through method 'sessionRepositoryFilterRegistration' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+2020-06-14 16:19:47.063 8830 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-14 16:19:47.065 8830 [        main] - WARN   o.a.catalina.loader.WebappClassLoaderBase  173 : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-06-14 16:19:47.066 8830 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2020-06-14 16:19:47.074 8830 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-14 16:19:47.079 8830 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:156)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:88)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:438)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:191)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:153)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sessionRepositoryFilterRegistration' defined in class path resource [org/springframework/boot/autoconfigure/session/SessionRepositoryFilterConfiguration.class]: Unsatisfied dependency expressed through method 'sessionRepositoryFilterRegistration' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:539)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:202)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:96)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:85)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:253)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:227)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5135)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:459)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:107)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:723)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 53 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:715)
+	... 76 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 98 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:416)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 112 common frames omitted
+Caused by: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:235)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy81.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:144)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:77)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
+	at com.sun.proxy.$Proxy82.selectUsersWhereType(Unknown Source)
+	at io.aetherit.kfashion.ws.repository.UserRepository.selectUsers(UserRepository.java:25)
+	at io.aetherit.kfashion.ws.repository.UserRepository$$FastClassBySpringCGLIB$$8bab9612.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at io.aetherit.kfashion.ws.repository.UserRepository$$EnhancerBySpringCGLIB$$3ad3e89c.selectUsers(<generated>)
+	at io.aetherit.kfashion.ws.service.UserService.getUsers(UserService.java:70)
+	at io.aetherit.kfashion.ws.service.UserService.checkAdmin(UserService.java:48)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 125 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: (conn=57) Table 'testdb.kfashion_users' doesn't exist
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.get(ExceptionMapper.java:242)
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.getException(ExceptionMapper.java:171)
+	at org.mariadb.jdbc.MariaDbStatement.executeExceptionEpilogue(MariaDbStatement.java:248)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.executeInternal(ClientSidePreparedStatement.java:230)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.execute(ClientSidePreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy84.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.ReuseExecutor.doQuery(ReuseExecutor.java:60)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 151 common frames omitted
+Caused by: java.sql.SQLException: Table 'testdb.kfashion_users' doesn't exist
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.readErrorPacket(AbstractQueryProtocol.java:1594)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.readPacket(AbstractQueryProtocol.java:1453)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.getResult(AbstractQueryProtocol.java:1415)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.executeQuery(AbstractQueryProtocol.java:289)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.executeInternal(ClientSidePreparedStatement.java:221)
+	... 174 common frames omitted
+2020-06-14 16:21:56.477 8837 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 8837 (/Users/ho/IdeaProjects/kfashion.ws/target/classes started by ho in /Users/ho/IdeaProjects/kfashion.ws)
+2020-06-14 16:21:56.479 8837 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-14 16:21:56.479 8837 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-14 16:21:57.038 8837 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$56b83c41] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-14 16:21:57.289 8837 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:21:57.289 8837 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:21:57.289 8837 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-14 16:21:57.301 8837 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-14 16:21:57.306 8837 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:21:57.306 8837 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-14 16:21:57.307 8837 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-14 16:21:57.346 8837 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-14 16:21:57.347 8837 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 840 ms
+2020-06-14 16:21:57.381 8837 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   46 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://localhost:3306/testdb, chanho
+2020-06-14 16:21:57.598 8837 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-14 16:21:57.609 8837 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-14 16:21:57.645 8837 [        main] - ERROR o.s.boot.web.embedded.tomcat.TomcatStarter   61 : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'sessionRepositoryFilterRegistration' defined in class path resource [org/springframework/boot/autoconfigure/session/SessionRepositoryFilterConfiguration.class]: Unsatisfied dependency expressed through method 'sessionRepositoryFilterRegistration' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+2020-06-14 16:21:57.656 8837 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-14 16:21:57.657 8837 [        main] - WARN   o.a.catalina.loader.WebappClassLoaderBase  173 : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-06-14 16:21:57.659 8837 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2020-06-14 16:21:57.666 8837 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-14 16:21:57.672 8837 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:156)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:88)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:438)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:191)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:153)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sessionRepositoryFilterRegistration' defined in class path resource [org/springframework/boot/autoconfigure/session/SessionRepositoryFilterConfiguration.class]: Unsatisfied dependency expressed through method 'sessionRepositoryFilterRegistration' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:539)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:202)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:96)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:85)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:253)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:227)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5135)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:459)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:107)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration': Unsatisfied dependency expressed through method 'setHttpSessionIdResolver' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:723)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 53 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfiguration' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/configuration/WebSecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:715)
+	... 76 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthenticationProvider' defined in file [/Users/ho/IdeaProjects/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 98 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:416)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 112 common frames omitted
+Caused by: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+### The error may exist in mybatis/mapper/mariadb/UserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.UserMapper.selectUsersWhereType-Inline
+### The error occurred while setting parameters
+### SQL: SELECT id,                password,                name,                type,                is_enabled,                created_datetime,                updated_datetime         FROM kfashion_users         WHERE type = ?         ORDER BY created_datetime DESC
+### Cause: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:235)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy81.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:144)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:77)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
+	at com.sun.proxy.$Proxy82.selectUsersWhereType(Unknown Source)
+	at io.aetherit.kfashion.ws.repository.UserRepository.selectUsers(UserRepository.java:25)
+	at io.aetherit.kfashion.ws.repository.UserRepository$$FastClassBySpringCGLIB$$8bab9612.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at io.aetherit.kfashion.ws.repository.UserRepository$$EnhancerBySpringCGLIB$$a9e4f2e.selectUsers(<generated>)
+	at io.aetherit.kfashion.ws.service.UserService.getUsers(UserService.java:70)
+	at io.aetherit.kfashion.ws.service.UserService.checkAdmin(UserService.java:48)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 125 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: (conn=58) Table 'testdb.kfashion_users' doesn't exist
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.get(ExceptionMapper.java:242)
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.getException(ExceptionMapper.java:171)
+	at org.mariadb.jdbc.MariaDbStatement.executeExceptionEpilogue(MariaDbStatement.java:248)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.executeInternal(ClientSidePreparedStatement.java:230)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.execute(ClientSidePreparedStatement.java:157)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy84.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.ReuseExecutor.doQuery(ReuseExecutor.java:60)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 151 common frames omitted
+Caused by: java.sql.SQLException: Table 'testdb.kfashion_users' doesn't exist
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.readErrorPacket(AbstractQueryProtocol.java:1594)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.readPacket(AbstractQueryProtocol.java:1453)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.getResult(AbstractQueryProtocol.java:1415)
+	at org.mariadb.jdbc.internal.protocol.AbstractQueryProtocol.executeQuery(AbstractQueryProtocol.java:289)
+	at org.mariadb.jdbc.ClientSidePreparedStatement.executeInternal(ClientSidePreparedStatement.java:221)
+	... 174 common frames omitted
+2020-06-14 16:22:29.154 8842 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 8842 (/Users/ho/IdeaProjects/kfashion.ws/target/classes started by ho in /Users/ho/IdeaProjects/kfashion.ws)
+2020-06-14 16:22:29.156 8842 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-14 16:22:29.157 8842 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-14 16:22:29.736 8842 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$786d3503] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-14 16:22:30.010 8842 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:22:30.010 8842 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:22:30.010 8842 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-14 16:22:30.023 8842 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-14 16:22:30.028 8842 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:22:30.028 8842 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-14 16:22:30.028 8842 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-14 16:22:30.069 8842 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-14 16:22:30.069 8842 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 886 ms
+2020-06-14 16:22:30.105 8842 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   46 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://localhost:3306/testdb, chanho
+2020-06-14 16:22:30.334 8842 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-14 16:22:30.344 8842 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-14 16:22:30.353 8842 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 0
+2020-06-14 16:22:30.356 8842 [        main] - INFO  i.aetherit.kfashion.ws.service.UserService   51 : Admin account not exists : create a default admin account
+2020-06-14 16:22:30.428 8842 [        main] - DEBUG     i.a.k.w.r.mapper.UserMapper.insertUser  159 : ==>  Preparing: INSERT INTO kfashion_users ( id, password, name, type, is_enabled, created_datetime, updated_datetime ) VALUES ( ?, ?, ?, ?, ?, NOW(), NOW() ) 
+2020-06-14 16:22:30.429 8842 [        main] - DEBUG     i.a.k.w.r.mapper.UserMapper.insertUser  159 : ==> Parameters: admin(String), {bcrypt}$2a$10$1IeJzxsb3vSSsgWOoAm48O3ZApjbB5I/f/aY/5Wv8K3BHWke6obdK(String), administrator(String), Admin(String), true(Boolean)
+2020-06-14 16:22:30.430 8842 [        main] - DEBUG     i.a.k.w.r.mapper.UserMapper.insertUser  159 : <==    Updates: 1
+2020-06-14 16:22:30.531 8842 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200612_1745 #0
+2020-06-14 16:22:30.619 8842 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a2ddf26, org.springframework.security.web.context.SecurityContextPersistenceFilter@42b6d0cc, org.springframework.security.web.header.HeaderWriterFilter@3e47a03, org.springframework.security.web.authentication.logout.LogoutFilter@6b4283c4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f4f5330, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3d37203b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65d57e4e, org.springframework.security.web.session.SessionManagementFilter@1a2909ae, org.springframework.security.web.access.ExceptionTranslationFilter@26221bad, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5cbe2654]
+2020-06-14 16:22:30.720 8842 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-14 16:22:30.872 8842 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-14 16:22:30.876 8842 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:22:30.921 8842 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-14 16:22:30.923 8842 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.029 seconds (JVM running for 2.436)
+2020-06-14 16:22:52.907 8842 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-14 16:22:52.907 8842 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-14 16:22:52.913 8842 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-14 16:22:52.944 8842 [-8080-exec-1] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /index.html
+2020-06-14 16:22:52.949 8842 [-8080-exec-1] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-14T16:22:52.949, code=Unknown, status=404, error=Not Found, message=No handler found for GET /index.html, path=/index.html)
+2020-06-14 16:22:53.034 8842 [-8080-exec-2] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /favicon.ico
+2020-06-14 16:22:53.034 8842 [-8080-exec-2] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-14T16:22:53.034, code=Unknown, status=404, error=Not Found, message=No handler found for GET /favicon.ico, path=/favicon.ico)
+2020-06-14 16:52:12.388 8842 [-8080-exec-3] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE id = ? 
+2020-06-14 16:52:12.388 8842 [-8080-exec-3] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==> Parameters: admin(String)
+2020-06-14 16:52:12.389 8842 [-8080-exec-3] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-14 16:52:12.389 8842 [-8080-exec-3] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$1IeJzxsb3vSSsgWOoAm48O3ZApjbB5I/f/aY/5Wv8K3BHWke6obdK, administrator, Admin, 1, 2020-06-14 16:22:30.0, 2020-06-14 16:22:30.0
+2020-06-14 16:52:12.390 8842 [-8080-exec-3] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : <==      Total: 1
+2020-06-14 16:52:33.393 8842 [-8080-exec-5] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE id = ? 
+2020-06-14 16:52:33.394 8842 [-8080-exec-5] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==> Parameters: admin(String)
+2020-06-14 16:52:33.395 8842 [-8080-exec-5] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-14 16:52:33.395 8842 [-8080-exec-5] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$1IeJzxsb3vSSsgWOoAm48O3ZApjbB5I/f/aY/5Wv8K3BHWke6obdK, administrator, Admin, 1, 2020-06-14 16:22:30.0, 2020-06-14 16:22:30.0
+2020-06-14 16:52:33.395 8842 [-8080-exec-5] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : <==      Total: 1
+2020-06-14 16:58:00.159 13614 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 13614 (/Users/ho/IdeaProjects/kfashion.ws/target/classes started by ho in /Users/ho/IdeaProjects/kfashion.ws)
+2020-06-14 16:58:00.161 13614 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-14 16:58:00.162 13614 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-14 16:58:00.759 13614 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$8fd5f21c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-14 16:58:01.023 13614 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:58:01.023 13614 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 16:58:01.024 13614 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-14 16:58:01.036 13614 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-14 16:58:01.041 13614 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:58:01.042 13614 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-14 16:58:01.042 13614 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-14 16:58:01.086 13614 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-14 16:58:01.087 13614 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 903 ms
+2020-06-14 16:58:01.122 13614 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   46 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://localhost:3306/testdb, chanho
+2020-06-14 16:58:01.350 13614 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-14 16:58:01.360 13614 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-14 16:58:01.369 13614 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-14 16:58:01.369 13614 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$1IeJzxsb3vSSsgWOoAm48O3ZApjbB5I/f/aY/5Wv8K3BHWke6obdK, administrator, Admin, 1, 2020-06-14 16:22:30.0, 2020-06-14 16:22:30.0
+2020-06-14 16:58:01.371 13614 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-14 16:58:01.474 13614 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200612_1745 #0
+2020-06-14 16:58:01.554 13614 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5cbe2654, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c6333cd, org.springframework.security.web.header.HeaderWriterFilter@6ec7bce0, org.springframework.security.web.authentication.logout.LogoutFilter@468dda3e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d9ba6c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a2909ae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6dbcf214, org.springframework.security.web.session.SessionManagementFilter@158f4cfe, org.springframework.security.web.access.ExceptionTranslationFilter@a0f53fc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@73d4066e]
+2020-06-14 16:58:01.655 13614 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-14 16:58:01.814 13614 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-14 16:58:01.818 13614 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:58:01.836 13614 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Pausing ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:58:01.836 13614 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-14 16:58:01.838 13614 [        main] - WARN   o.a.catalina.loader.WebappClassLoaderBase  173 : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-06-14 16:58:01.839 13614 [        main] - WARN   o.a.catalina.loader.WebappClassLoaderBase  173 : The web application [ROOT] appears to have started a thread named [HikariPool-1 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:467)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-06-14 16:58:01.840 13614 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Stopping ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:58:01.840 13614 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Destroying ProtocolHandler ["http-nio-8080"]
+2020-06-14 16:58:01.841 13614 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-14 16:58:01.844 13614 [        main] - ERROR     o.s.b.d.LoggingFailureAnalysisReporter   40 : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2020-06-14 16:58:01.845 13614 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-14 16:58:59.112 8842 [-8080-exec-8] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE id = ? 
+2020-06-14 16:58:59.113 8842 [-8080-exec-8] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==> Parameters: admin(String)
+2020-06-14 16:58:59.114 8842 [-8080-exec-8] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-14 16:58:59.114 8842 [-8080-exec-8] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$1IeJzxsb3vSSsgWOoAm48O3ZApjbB5I/f/aY/5Wv8K3BHWke6obdK, administrator, Admin, 1, 2020-06-14 16:22:30.0, 2020-06-14 16:22:30.0
+2020-06-14 16:58:59.115 8842 [-8080-exec-8] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : <==      Total: 1
+2020-06-14 17:01:34.239 13653 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 13653 (/Users/ho/IdeaProjects/kfashion.ws/target/classes started by ho in /Users/ho/IdeaProjects/kfashion.ws)
+2020-06-14 17:01:34.241 13653 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-14 17:01:34.242 13653 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-14 17:01:34.789 13653 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$cbefe130] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-14 17:01:35.041 13653 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 17:01:35.042 13653 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 17:01:35.042 13653 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-14 17:01:35.054 13653 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-14 17:01:35.059 13653 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-14 17:01:35.059 13653 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-14 17:01:35.060 13653 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-14 17:01:35.099 13653 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-14 17:01:35.100 13653 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 831 ms
+2020-06-14 17:01:35.135 13653 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   46 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://localhost:3306/testdb, chanho
+2020-06-14 17:01:35.353 13653 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-14 17:01:35.363 13653 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-14 17:01:35.372 13653 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-14 17:01:35.373 13653 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$1IeJzxsb3vSSsgWOoAm48O3ZApjbB5I/f/aY/5Wv8K3BHWke6obdK, administrator, Admin, 1, 2020-06-14 16:22:30.0, 2020-06-14 16:22:30.0
+2020-06-14 17:01:35.375 13653 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-14 17:01:35.475 13653 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200612_1745 #0
+2020-06-14 17:01:35.554 13653 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6cd5122d, org.springframework.security.web.context.SecurityContextPersistenceFilter@77ec6a3d, org.springframework.security.web.header.HeaderWriterFilter@69391e08, org.springframework.security.web.authentication.logout.LogoutFilter@5a2fa51f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71d9cb05, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@665522c2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2c7a8af2, org.springframework.security.web.session.SessionManagementFilter@64fe9da7, org.springframework.security.web.access.ExceptionTranslationFilter@4f668f29, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59ed3e6c]
+2020-06-14 17:01:35.650 13653 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-14 17:01:35.808 13653 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-14 17:01:35.812 13653 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-14 17:01:35.827 13653 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Pausing ProtocolHandler ["http-nio-8080"]
+2020-06-14 17:01:35.828 13653 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-14 17:01:35.830 13653 [        main] - WARN   o.a.catalina.loader.WebappClassLoaderBase  173 : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-06-14 17:01:35.830 13653 [        main] - WARN   o.a.catalina.loader.WebappClassLoaderBase  173 : The web application [ROOT] appears to have started a thread named [HikariPool-1 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:467)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-06-14 17:01:35.831 13653 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Stopping ProtocolHandler ["http-nio-8080"]
+2020-06-14 17:01:35.831 13653 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Destroying ProtocolHandler ["http-nio-8080"]
+2020-06-14 17:01:35.833 13653 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-14 17:01:35.835 13653 [        main] - ERROR     o.s.b.d.LoggingFailureAnalysisReporter   40 : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2020-06-14 17:01:35.836 13653 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-14 17:06:38.050 13864 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 13864 (/Users/ho/IdeaProjects/kfashion.ws/target/classes started by ho in /Users/ho/IdeaProjects/kfashion.ws)
+2020-06-14 17:06:38.052 13864 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-14 17:06:38.053 13864 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-14 17:06:38.608 13864 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$3a14dc27] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-14 17:06:38.864 13864 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 17:06:38.864 13864 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-14 17:06:38.865 13864 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-14 17:06:38.877 13864 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-14 17:06:38.883 13864 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-14 17:06:38.884 13864 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-14 17:06:38.884 13864 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-14 17:06:38.925 13864 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-14 17:06:38.925 13864 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 849 ms
+2020-06-14 17:06:38.960 13864 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   46 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://localhost:3306/testdb, chanho
+2020-06-14 17:06:39.177 13864 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-14 17:06:39.188 13864 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-14 17:06:39.196 13864 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-14 17:06:39.197 13864 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$1IeJzxsb3vSSsgWOoAm48O3ZApjbB5I/f/aY/5Wv8K3BHWke6obdK, administrator, Admin, 1, 2020-06-14 16:22:30.0, 2020-06-14 16:22:30.0
+2020-06-14 17:06:39.199 13864 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-14 17:06:39.299 13864 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200612_1745 #0
+2020-06-14 17:06:39.376 13864 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2dd2e270, org.springframework.security.web.context.SecurityContextPersistenceFilter@26b95b0b, org.springframework.security.web.header.HeaderWriterFilter@636bbbbb, org.springframework.security.web.authentication.logout.LogoutFilter@28cb3a25, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@103082dd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17c2d509, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4195105b, org.springframework.security.web.session.SessionManagementFilter@64b3b1ce, org.springframework.security.web.access.ExceptionTranslationFilter@52169758, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6c931d35]
+2020-06-14 17:06:39.474 13864 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-14 17:06:39.630 13864 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-14 17:06:39.634 13864 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-14 17:06:39.679 13864 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-14 17:06:39.683 13864 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 1.876 seconds (JVM running for 2.442)
+2020-06-14 17:06:53.334 13864 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-14 17:06:53.334 13864 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-14 17:06:53.340 13864 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 6 ms
+2020-06-14 17:06:53.373 13864 [-8080-exec-1] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /index.html
+2020-06-14 17:06:53.380 13864 [-8080-exec-1] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-14T17:06:53.380, code=Unknown, status=404, error=Not Found, message=No handler found for GET /index.html, path=/index.html)
+2020-06-14 17:54:11.773 13864 [-8080-exec-3] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /index.html
+2020-06-14 17:54:11.774 13864 [-8080-exec-3] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-14T17:54:11.774, code=Unknown, status=404, error=Not Found, message=No handler found for GET /index.html, path=/index.html)
+2020-06-14 17:54:11.834 13864 [-8080-exec-4] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /favicon.ico
+2020-06-14 17:54:11.835 13864 [-8080-exec-4] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-14T17:54:11.835, code=Unknown, status=404, error=Not Found, message=No handler found for GET /favicon.ico, path=/favicon.ico)
+2020-06-14 17:54:47.750 13864 [-8080-exec-5] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-14T17:54:47.750, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/authentications/signcheck)
+2020-06-14 17:55:15.169 13864 [-8080-exec-6] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE id = ? 
+2020-06-14 17:55:15.169 13864 [-8080-exec-6] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==> Parameters: admin(String)
+2020-06-14 17:55:15.170 13864 [-8080-exec-6] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-14 17:55:15.170 13864 [-8080-exec-6] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$1IeJzxsb3vSSsgWOoAm48O3ZApjbB5I/f/aY/5Wv8K3BHWke6obdK, administrator, Admin, 1, 2020-06-14 16:22:30.0, 2020-06-14 16:22:30.0
+2020-06-14 17:55:15.171 13864 [-8080-exec-6] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : <==      Total: 1
+2020-06-14 17:57:29.843 13864 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
