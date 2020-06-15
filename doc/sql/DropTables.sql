@@ -1,6 +1,6 @@
-USE base;
+USE kfashion;
 
 DROP TABLE SPRING_SESSION_ATTRIBUTES;
 DROP TABLE SPRING_SESSION;
 
-DROP TABLE kfasion_users;
+DROP TABLE kfashion_users;
