@@ -19,9 +19,11 @@
 
     <mappers>
         <mapper resource="mybatis/mapper/mariadb/UserMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/FirstSettingMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/SecondSettingMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/ThirdSettingMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/FordSettingMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionBasicMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionImageLabelingLocationMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionImageLabelingMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionInspectionStatusMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionInspectionStatusMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionStudiesMapper.xml" />
     </mappers>
 </configuration>
