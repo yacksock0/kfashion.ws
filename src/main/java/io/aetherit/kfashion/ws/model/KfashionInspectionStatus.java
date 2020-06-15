@@ -1,6 +1,5 @@
 package io.aetherit.kfashion.ws.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
