@@ -41,21 +41,8 @@ class Step extends React.Component {
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h4" component="h2">
                             Step1
-                            <div>
-                            <img src="https://placeimg.com/500/800/any"></img>
-                            </div>
                         </Typography>
                     </Toolbar>
-                    <div>
-                        <Button
-                            type="submit"
-                            className={classes.submit}
-                            color="primary"
-                            variant="contained"
-                            onClick={this.handleSubmitForm}
-                            fullWidth >Next
-                        </Button>
-                    </div>
                 </div>
             </Container>
         );
