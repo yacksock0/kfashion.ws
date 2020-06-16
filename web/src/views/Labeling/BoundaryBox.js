@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 
 import {Container, Toolbar, Typography, Button, CircularProgress} from "@material-ui/core";
-import * as store from "../stores/AuthStore";
+import * as store from "../../stores/AuthStore";
 
 
 const styles = theme => ({
@@ -24,9 +24,9 @@ const styles = theme => ({
     },
 });
 
-class Step extends React.Component {
+class BoundaryBox extends React.Component {
     componentDidMount() {
-        this.props.enqueueSnackbar("Labeling Work", {
+        this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
     }
@@ -40,13 +40,26 @@ class Step extends React.Component {
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h4" component="h2">
-                            Step1
+                            BoundaryBox Edit
+                            <div>
+                                <img src="https://placeimg.com/500/800/any"></img>
+                            </div>
                         </Typography>
                     </Toolbar>
+                    <div>
+                        <Button
+                            type="submit"
+                            className={classes.submit}
+                            color="primary"
+                            variant="contained"
+                            onClick={this.handleSubmitForm}
+                            fullWidth >Next
+                        </Button>
+                    </div>
                 </div>
             </Container>
         );
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (Step)));
+export default withSnackbar(withRouter(withStyles(styles) (BoundaryBox)));
