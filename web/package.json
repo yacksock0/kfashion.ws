@@ -39,5 +39,10 @@
       "last 1 safari version"
     ]
   },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.10.1",
+    "customize-cra": "^0.9.1",
+    "react-app-rewired": "^2.1.5"
+  },
   "proxy": "http://localhost:8080"
 }

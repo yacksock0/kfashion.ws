@@ -15,6 +15,28 @@
     </resultMap>
 
 
+    <insert id="kfashionProfessionalInsert" parameterType="KfashionProfessional">
+        insert into kfashion_professional (
+        professional_item,
+        professional_style,
+        professional_material,
+        professional_shape,
+        professional_color,
+        professional_pattern,
+        professional_create_id,
+        professional_create_date
+        )
+        values (
+        #{professional_item},
+        #{professional_style},
+        #{professional_material},
+        #{professional_shape},
+        #{professional_color},
+        #{professional_pattern},
+        #{professional_create_id},
+        NOW()
+        )
+    </insert>
 
 
 

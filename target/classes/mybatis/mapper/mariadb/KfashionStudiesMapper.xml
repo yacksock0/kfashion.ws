@@ -11,4 +11,23 @@
         <result property="studies_modify_date"      column="studies_modify_date" />
     </resultMap>
 
+    <insert id="kfashionStudiesInsert" parameterType="KfashionStudies">
+        insert into kfashion_studies (
+        studies_neckline,
+        studies_detail,
+        studies_sleeve_shape,
+        studies_create_id,
+        studies_create_date
+        )
+        values (
+        #{studies_neckline},
+        #{studies_detail},
+        #{studies_sleeve_shape},
+        #{studies_create_id},
+        NOW()
+        )
+
+
+    </insert>
+
 </mapper>
