@@ -752,3 +752,4 @@ Consider defining a bean of type 'io.aetherit.kfashion.ws.model.KfashionBasic' i
 2020-06-16 15:35:41.195 11551 [-8080-exec-1] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Magenta, #FF00FF, (255,0,255)
 2020-06-16 15:35:41.195 11551 [-8080-exec-1] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Purple, #800080, (128,0,128)
 2020-06-16 15:35:41.196 11551 [-8080-exec-1] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : <==      Total: 16
+2020-06-16 17:05:04.267 11551 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
