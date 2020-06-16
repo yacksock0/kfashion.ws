@@ -15,5 +15,28 @@
         <result property="basic_modify_date"      column="basic_modify_date" />
     </resultMap>
 
+    <insert id="kfashionBasicInsert" parameterType="KfashionBasic">
+        insert into kfashion_basic (
+         basic_category,
+         basic_color,
+         basic_sleeve_length,
+         basic_clothing_length,
+         basic_print,
+         basic_brand,
+         basic_gender,
+         basic_create_id,
+         basic_create_date
+        ) values (
+         #{basic_category},
+         #{basic_color},
+         #{basic_sleeve_length},
+         #{basic_clothing_length},
+         #{basic_print},
+         #{basic_brand},
+         #{basic_gender},
+         #{basic_create_id},
+         NOW()
+        )
+    </insert>
 
 </mapper>

@@ -16,6 +16,8 @@
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionProfessional" alias="KfashionProfessional" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionSimpleUser" alias="KfashionSimpleUser" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionStudies" alias="KfashionStudies" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionCategory" alias="KfashionCategory" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionColor" alias="KfashionColor" />
         <typeAlias type="io.aetherit.kfashion.ws.model.support.KfashionUserType" alias="KfashionUserType" />
     </typeAliases>
 
@@ -31,5 +33,7 @@
         <mapper resource="mybatis/mapper/mariadb/KfashionInspectionStatusMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionInspectionStatusMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionStudiesMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionCategoryMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionColorMapper.xml" />
     </mappers>
 </configuration>

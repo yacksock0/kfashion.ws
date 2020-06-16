@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.service;
 
+import io.aetherit.kfashion.ws.model.KfashionStudies;
 import io.aetherit.kfashion.ws.repository.KfashionStudiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,9 @@ public class KfashionStudiesService {
     @Autowired
     public KfashionStudiesService(KfashionStudiesRepository repository) {
         this.repository = repository;
+    }
+
+    public void kfashionStudiesInsert(KfashionStudies kfashionStudies) {
+        repository.kfashionStudiesInsert(kfashionStudies);
     }
 }
