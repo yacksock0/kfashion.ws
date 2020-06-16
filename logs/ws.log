@@ -860,3 +860,4 @@ Consider defining a bean of type 'io.aetherit.kfashion.ws.model.KfashionBasic' i
 2020-06-16 18:21:06.717 12316 [-8080-exec-6] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
 2020-06-16 18:21:06.717 12316 [-8080-exec-6] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
 2020-06-16 18:21:06.718 12316 [-8080-exec-6] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : <==      Total: 1
+2020-06-16 18:35:15.035 12316 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
