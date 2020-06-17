@@ -7,8 +7,8 @@ import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import Gender from "./Step2/Gender";
-import Item from "./Step2/Item";
-import Style from "./Step2/Style";
+import Item from "./step3/Item";
+import Style from "./step3/Style";
 import Color from "./Step2/Color";
 import Pattern from "./Step2/Pattern";
 
