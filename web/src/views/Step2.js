@@ -6,7 +6,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import {Button, Container, Grid, Typography} from "@material-ui/core";
+import {Button, colors, Container, Grid, Typography} from "@material-ui/core";
 import Table from '@material-ui/core/Table';
 import Checkbox from '@material-ui/core/Checkbox';
 import TableCell from '@material-ui/core/TableCell';
@@ -79,8 +79,8 @@ class Step2 extends React.Component {
                             기본정보 입력
                         </Typography>
                  <Grid container spacing={3}>
-                     <Grid item xs={6}>
-                         <img src="https://placeimg.com/500/800/any"></img>
+                     <Grid item xs={6} >
+                         <img src="https://placeimg.com/500/650/any"></img>
                      </Grid>
                      <Grid item xs={6}>
                          <div className={classes.content} >
