@@ -1,14 +1,13 @@
 import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import {Button, Container} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 
 
 
 class Customer extends React.Component {
 
     render() {
-        const { classes } = this.props;
         return (
             <TableRow>
                 <TableCell>{this.props.id}</TableCell>

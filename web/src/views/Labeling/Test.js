@@ -3,8 +3,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 
-import {Container, Toolbar, Typography, Button, CircularProgress} from "@material-ui/core";
-import * as store from "../../stores/AuthStore";
+import {Container, Toolbar, Typography, Button} from "@material-ui/core";
 
 
 const styles = theme => ({
@@ -42,7 +41,7 @@ class Test extends React.Component {
                         <Typography variant="h4" component="h2">
                             BoundaryBox Edit
                             <div>
-                                <img src="https://placeimg.com/500/800/any"></img>
+                                <img src="https://placeimg.com/500/800/any" alt={''}></img>
                             </div>
                         </Typography>
                     </Toolbar>

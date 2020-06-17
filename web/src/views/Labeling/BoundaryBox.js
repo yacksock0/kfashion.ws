@@ -1,10 +1,10 @@
-import React from "react";
+import
+    React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 
-import {Container, Toolbar, Typography, Button, CircularProgress, Grid} from "@material-ui/core";
-import * as store from "../../stores/AuthStore";
+import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
 
 
 const styles = theme => ({
@@ -123,7 +123,7 @@ class BoundaryBox extends React.Component {
                             </div>
                         </Grid>
                         <Grid item xs={8} className={classes.canvas}>
-                         <img src="https://placeimg.com/1400/900/any"></img>
+                         <img src="https://placeimg.com/1400/900/any" alt={''}></img>
                         </Grid>
                         <Grid item xs={3}>
                             <div className={classes.test}>

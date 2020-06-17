@@ -860,3 +860,245 @@ Consider defining a bean of type 'io.aetherit.kfashion.ws.model.KfashionBasic' i
 2020-06-16 18:21:06.717 12316 [-8080-exec-6] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
 2020-06-16 18:21:06.717 12316 [-8080-exec-6] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
 2020-06-16 18:21:06.718 12316 [-8080-exec-6] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : <==      Total: 1
+2020-06-17 18:12:14.123 53303 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on youngui-MacBookPro.local with PID 53303 (/Users/youngrackchoi/kfashion.ws/target/classes started by youngrackchoi in /Users/youngrackchoi/kfashion.ws)
+2020-06-17 18:12:14.125 53303 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-17 18:12:14.125 53303 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-17 18:12:14.787 53303 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$3a14dc27] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-17 18:12:15.076 53303 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-17 18:12:15.077 53303 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-17 18:12:15.077 53303 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-17 18:12:15.090 53303 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-17 18:12:15.095 53303 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-17 18:12:15.096 53303 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-17 18:12:15.096 53303 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-17 18:12:15.138 53303 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-17 18:12:15.138 53303 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 986 ms
+2020-06-17 18:12:15.176 53303 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-17 18:12:15.474 53303 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-17 18:12:15.486 53303 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-17 18:12:15.502 53303 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-17 18:12:15.503 53303 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-17 18:12:15.505 53303 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-17 18:12:15.612 53303 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1231 #0
+2020-06-17 18:12:15.733 53303 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@290d10ef, org.springframework.security.web.context.SecurityContextPersistenceFilter@360bc645, org.springframework.security.web.header.HeaderWriterFilter@68880c21, org.springframework.security.web.authentication.logout.LogoutFilter@49c675f0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d51e129, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2241f05b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1bc0d349, org.springframework.security.web.session.SessionManagementFilter@2c7a8af2, org.springframework.security.web.access.ExceptionTranslationFilter@59ed3e6c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46185a1b]
+2020-06-17 18:12:15.831 53303 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-17 18:12:15.995 53303 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-17 18:12:15.999 53303 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-17 18:12:16.048 53303 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-17 18:12:16.050 53303 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.193 seconds (JVM running for 2.745)
+2020-06-17 18:14:59.557 53303 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-17 18:14:59.558 53303 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-17 18:14:59.563 53303 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-17 18:14:59.649 53303 [-8080-exec-1] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-17T18:14:59.648, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/authentications/signcheck)
+2020-06-17 18:15:36.929 53303 [-8080-exec-2] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE id = ? 
+2020-06-17 18:15:36.930 53303 [-8080-exec-2] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : ==> Parameters: admin(String)
+2020-06-17 18:15:36.935 53303 [-8080-exec-2] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-17 18:15:36.936 53303 [-8080-exec-2] - TRACE     i.a.k.w.r.mapper.UserMapper.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-17 18:15:36.937 53303 [-8080-exec-2] - DEBUG     i.a.k.w.r.mapper.UserMapper.selectUser  159 : <==      Total: 1
+2020-06-17 18:15:56.663 53303 [-8080-exec-4] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : ==>  Preparing: select category_male from kfashion_category 
+2020-06-17 18:15:56.664 53303 [-8080-exec-4] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : ==> Parameters: 
+2020-06-17 18:15:56.668 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==    Columns: category_male
+2020-06-17 18:15:56.668 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 티셔츠
+2020-06-17 18:15:56.669 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 맨투티
+2020-06-17 18:15:56.670 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 후드티
+2020-06-17 18:15:56.670 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 셔츠
+2020-06-17 18:15:56.671 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 바지
+2020-06-17 18:15:56.671 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 청바지
+2020-06-17 18:15:56.672 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 트레이닝복
+2020-06-17 18:15:56.672 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 후드집업
+2020-06-17 18:15:56.672 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 집업류
+2020-06-17 18:15:56.673 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 스웨터
+2020-06-17 18:15:56.673 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 가디건
+2020-06-17 18:15:56.674 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 베스트
+2020-06-17 18:15:56.674 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 조끼
+2020-06-17 18:15:56.675 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 아우터
+2020-06-17 18:15:56.675 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 속옷
+2020-06-17 18:15:56.675 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 레쉬가드
+2020-06-17 18:15:56.676 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 한복
+2020-06-17 18:15:56.677 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 수의
+2020-06-17 18:15:56.677 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 신발
+2020-06-17 18:15:56.677 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 가방
+2020-06-17 18:15:56.678 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 잡화
+2020-06-17 18:15:56.678 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.678 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.679 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.679 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.679 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.680 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.680 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.680 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.680 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.681 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.681 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.681 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.681 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.682 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.682 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.682 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.682 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.682 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.683 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.683 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.683 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.683 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.684 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.684 53303 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:15:56.684 53303 [-8080-exec-4] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : <==      Total: 45
+2020-06-17 18:15:56.686 53303 [-8080-exec-4] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : ==>  Preparing: select color_name, color_hexcode, color_rgb from kfashion_color 
+2020-06-17 18:15:56.686 53303 [-8080-exec-4] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : ==> Parameters: 
+2020-06-17 18:15:56.691 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==    Columns: color_name, color_hexcode, color_rgb
+2020-06-17 18:15:56.692 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: block, #000000, (0,0,0)
+2020-06-17 18:15:56.692 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Gray, #808080, (128,128,128)
+2020-06-17 18:15:56.693 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Silver, #COCOCO, (192,192,192)
+2020-06-17 18:15:56.693 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: White, #FFFFFF, (255,255,255)
+2020-06-17 18:15:56.694 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Red, #FF0000, (255,0,0)
+2020-06-17 18:15:56.694 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Maroon, #800000, (128,0,0)
+2020-06-17 18:15:56.694 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Yellow, #FFFF00, (255,255,0)
+2020-06-17 18:15:56.695 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Olive, #808000, (128,128,0)
+2020-06-17 18:15:56.695 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Lime, #00FF00, (0,255,0)
+2020-06-17 18:15:56.695 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Green, #008000, (0,128,0)
+2020-06-17 18:15:56.696 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Cyan, #00FFFF, (0,255,255)
+2020-06-17 18:15:56.696 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Teal, #008080, (0,128,128)
+2020-06-17 18:15:56.696 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Blue, #0000FF, (0,0,255)
+2020-06-17 18:15:56.697 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Navy, #000080, (0,0,128)
+2020-06-17 18:15:56.697 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Magenta, #FF00FF, (255,0,255)
+2020-06-17 18:15:56.697 53303 [-8080-exec-4] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Purple, #800080, (128,0,128)
+2020-06-17 18:15:56.698 53303 [-8080-exec-4] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : <==      Total: 16
+2020-06-17 18:29:12.295 53303 [8080-exec-19] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : ==>  Preparing: select category_male from kfashion_category 
+2020-06-17 18:29:12.295 53303 [8080-exec-19] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : ==> Parameters: 
+2020-06-17 18:29:12.300 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==    Columns: category_male
+2020-06-17 18:29:12.301 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 티셔츠
+2020-06-17 18:29:12.302 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 맨투티
+2020-06-17 18:29:12.303 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 후드티
+2020-06-17 18:29:12.303 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 셔츠
+2020-06-17 18:29:12.303 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 바지
+2020-06-17 18:29:12.304 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 청바지
+2020-06-17 18:29:12.304 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 트레이닝복
+2020-06-17 18:29:12.304 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 후드집업
+2020-06-17 18:29:12.305 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 집업류
+2020-06-17 18:29:12.305 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 스웨터
+2020-06-17 18:29:12.306 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 가디건
+2020-06-17 18:29:12.306 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 베스트
+2020-06-17 18:29:12.306 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 조끼
+2020-06-17 18:29:12.307 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 아우터
+2020-06-17 18:29:12.307 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 속옷
+2020-06-17 18:29:12.307 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 레쉬가드
+2020-06-17 18:29:12.308 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 한복
+2020-06-17 18:29:12.308 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 수의
+2020-06-17 18:29:12.308 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 신발
+2020-06-17 18:29:12.309 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 가방
+2020-06-17 18:29:12.309 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 잡화
+2020-06-17 18:29:12.310 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.310 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.310 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.311 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.311 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.311 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.312 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.312 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.312 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.312 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.313 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.313 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.313 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.313 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.314 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.314 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.314 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.314 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.314 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.315 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.315 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.315 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.315 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.316 53303 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:12.316 53303 [8080-exec-19] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : <==      Total: 45
+2020-06-17 18:29:12.316 53303 [8080-exec-19] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : ==>  Preparing: select color_name, color_hexcode, color_rgb from kfashion_color 
+2020-06-17 18:29:12.316 53303 [8080-exec-19] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : ==> Parameters: 
+2020-06-17 18:29:12.321 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==    Columns: color_name, color_hexcode, color_rgb
+2020-06-17 18:29:12.322 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: block, #000000, (0,0,0)
+2020-06-17 18:29:12.322 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Gray, #808080, (128,128,128)
+2020-06-17 18:29:12.323 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Silver, #COCOCO, (192,192,192)
+2020-06-17 18:29:12.323 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: White, #FFFFFF, (255,255,255)
+2020-06-17 18:29:12.323 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Red, #FF0000, (255,0,0)
+2020-06-17 18:29:12.323 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Maroon, #800000, (128,0,0)
+2020-06-17 18:29:12.324 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Yellow, #FFFF00, (255,255,0)
+2020-06-17 18:29:12.324 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Olive, #808000, (128,128,0)
+2020-06-17 18:29:12.324 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Lime, #00FF00, (0,255,0)
+2020-06-17 18:29:12.324 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Green, #008000, (0,128,0)
+2020-06-17 18:29:12.325 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Cyan, #00FFFF, (0,255,255)
+2020-06-17 18:29:12.325 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Teal, #008080, (0,128,128)
+2020-06-17 18:29:12.325 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Blue, #0000FF, (0,0,255)
+2020-06-17 18:29:12.325 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Navy, #000080, (0,0,128)
+2020-06-17 18:29:12.326 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Magenta, #FF00FF, (255,0,255)
+2020-06-17 18:29:12.326 53303 [8080-exec-19] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Purple, #800080, (128,0,128)
+2020-06-17 18:29:12.326 53303 [8080-exec-19] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : <==      Total: 16
+2020-06-17 18:29:14.355 53303 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : ==>  Preparing: select category_male from kfashion_category 
+2020-06-17 18:29:14.356 53303 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : ==> Parameters: 
+2020-06-17 18:29:14.360 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==    Columns: category_male
+2020-06-17 18:29:14.361 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 티셔츠
+2020-06-17 18:29:14.361 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 맨투티
+2020-06-17 18:29:14.362 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 후드티
+2020-06-17 18:29:14.363 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 셔츠
+2020-06-17 18:29:14.363 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 바지
+2020-06-17 18:29:14.363 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 청바지
+2020-06-17 18:29:14.364 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 트레이닝복
+2020-06-17 18:29:14.364 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 후드집업
+2020-06-17 18:29:14.364 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 집업류
+2020-06-17 18:29:14.364 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 스웨터
+2020-06-17 18:29:14.365 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 가디건
+2020-06-17 18:29:14.365 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 베스트
+2020-06-17 18:29:14.365 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 조끼
+2020-06-17 18:29:14.366 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 아우터
+2020-06-17 18:29:14.366 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 속옷
+2020-06-17 18:29:14.366 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 레쉬가드
+2020-06-17 18:29:14.366 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 한복
+2020-06-17 18:29:14.367 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 수의
+2020-06-17 18:29:14.367 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 신발
+2020-06-17 18:29:14.367 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 가방
+2020-06-17 18:29:14.367 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: 잡화
+2020-06-17 18:29:14.368 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.368 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.368 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.368 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.369 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.369 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.369 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.369 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.369 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.370 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.370 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.370 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.370 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.371 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.371 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.371 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.371 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.371 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.372 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.372 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.372 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.372 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.372 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.373 53303 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.categoryList  165 : <==        Row: null
+2020-06-17 18:29:14.373 53303 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.categoryList  159 : <==      Total: 45
+2020-06-17 18:29:14.374 53303 [8080-exec-20] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : ==>  Preparing: select color_name, color_hexcode, color_rgb from kfashion_color 
+2020-06-17 18:29:14.374 53303 [8080-exec-20] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : ==> Parameters: 
+2020-06-17 18:29:14.379 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==    Columns: color_name, color_hexcode, color_rgb
+2020-06-17 18:29:14.379 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: block, #000000, (0,0,0)
+2020-06-17 18:29:14.379 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Gray, #808080, (128,128,128)
+2020-06-17 18:29:14.379 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Silver, #COCOCO, (192,192,192)
+2020-06-17 18:29:14.380 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: White, #FFFFFF, (255,255,255)
+2020-06-17 18:29:14.380 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Red, #FF0000, (255,0,0)
+2020-06-17 18:29:14.380 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Maroon, #800000, (128,0,0)
+2020-06-17 18:29:14.380 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Yellow, #FFFF00, (255,255,0)
+2020-06-17 18:29:14.381 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Olive, #808000, (128,128,0)
+2020-06-17 18:29:14.381 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Lime, #00FF00, (0,255,0)
+2020-06-17 18:29:14.381 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Green, #008000, (0,128,0)
+2020-06-17 18:29:14.381 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Cyan, #00FFFF, (0,255,255)
+2020-06-17 18:29:14.381 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Teal, #008080, (0,128,128)
+2020-06-17 18:29:14.382 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Blue, #0000FF, (0,0,255)
+2020-06-17 18:29:14.382 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Navy, #000080, (0,0,128)
+2020-06-17 18:29:14.382 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Magenta, #FF00FF, (255,0,255)
+2020-06-17 18:29:14.382 53303 [8080-exec-20] - TRACE  i.a.k.w.r.m.KfashionColorMapper.colorList  165 : <==        Row: Purple, #800080, (128,0,128)
+2020-06-17 18:29:14.382 53303 [8080-exec-20] - DEBUG  i.a.k.w.r.m.KfashionColorMapper.colorList  159 : <==      Total: 16

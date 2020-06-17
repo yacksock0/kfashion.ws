@@ -2,18 +2,12 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import {Button, Container, Grid, Typography} from "@material-ui/core";
-import Checkbox from '@material-ui/core/Checkbox';
+import {Button, Container, Typography} from "@material-ui/core";
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
-import FormGroup from '@material-ui/core/FormGroup';
 import Customer from './ListTable'
 import Paper from '@material-ui/core/Paper';
 
@@ -82,22 +76,6 @@ const styles = theme => ({
 
     },
 });
-function createData(label, main) {
-    return { label, main};
-}
-function createStyleData(label, main, sub) {
-    return { label, main, sub};
-}
-
-const ItemRows = [
-    createData('Frozen yoghurt', <FormControlLabel value="male" control={<Radio />}  />),
-    createData('Ice cream sandwich', <FormControlLabel value="male" control={<Radio />} />),
-];
-
-const styleRows = [
-    createStyleData('Frozen yoghurt', <FormControlLabel control={<Radio />} />, <FormControlLabel control={<Radio />} />),
-    createStyleData('Ice cream sandwich', <FormControlLabel control={<Radio />} />, <FormControlLabel control={<Radio />} />),
-];
 
 class Step1 extends React.Component {
     componentDidMount() {

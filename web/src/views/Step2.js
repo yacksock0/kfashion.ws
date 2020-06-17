@@ -61,7 +61,7 @@ class Step2 extends React.Component {
                         </Typography>
                  <Grid container spacing={3}>
                      <Grid item xs={6}>
-                         <img src="https://placeimg.com/500/800/any"></img>
+                         <img src="https://placeimg.com/500/800/any" alt={""}></img>
                      </Grid>
                      <Grid item xs={6}>
                          <div className={classes.content} >

@@ -14,6 +14,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import FormGroup from '@material-ui/core/FormGroup';
 
+
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
@@ -87,7 +88,7 @@ class Step3 extends React.Component {
 
                         <Grid container spacing={2} >
                             <Grid item xs={7} align-items-xs-center>
-                                <img src="https://placeimg.com/500/800/any"></img>
+                                <img src="https://placeimg.com/500/800/any" alt={''}></img>
                             </Grid>
                             <Grid item xs={5}>
                                 <div className={classes.content}>
