@@ -3,8 +3,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 
-import {Container, Toolbar, Typography, Button, CircularProgress} from "@material-ui/core";
-import * as store from "../stores/AuthStore";
+import {Container, Toolbar, Typography} from "@material-ui/core";
 
 
 const styles = theme => ({

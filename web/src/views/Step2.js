@@ -2,17 +2,15 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
 import {Button, Container, Grid, Typography} from "@material-ui/core";
-import Table from '@material-ui/core/Table';
 import Checkbox from '@material-ui/core/Checkbox';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import FormGroup from '@material-ui/core/FormGroup';
+import Gender from "./Step2/Gender";
+import Item from "./Step2/Item";
+import Style from "./Step2/Style";
+import Color from "./Step2/Color";
+import Pattern from "./Step2/Pattern";
 
 const styles = theme => ({
     mainContainer: {
@@ -44,22 +42,6 @@ const styles = theme => ({
 
     },
 });
-function createData(label, main) {
-    return { label, main};
-}
-function createStyleData(label, main, sub) {
-    return { label, main, sub};
-}
-
-const ItemRows = [
-    createData('Frozen yoghurt', <FormControlLabel value="male" control={<Radio />}  />),
-    createData('Ice cream sandwich', <FormControlLabel value="male" control={<Radio />} />),
-];
-
-const styleRows = [
-    createStyleData('Frozen yoghurt', <FormControlLabel control={<Radio />} />, <FormControlLabel control={<Radio />} />),
-    createStyleData('Ice cream sandwich', <FormControlLabel control={<Radio />} />, <FormControlLabel control={<Radio />} />),
-];
 
 class Step2 extends React.Component {
     componentDidMount() {
@@ -67,7 +49,6 @@ class Step2 extends React.Component {
             variant: 'info'
         });
     }
-
     render() {
         const { classes } = this.props;
 
@@ -89,14 +70,9 @@ class Step2 extends React.Component {
                          </Typography>
                              <div>
                                  <hr></hr>
+                                 <Gender />
                              </div>
-                         <FormControl component="fieldset">
-                             <RadioGroup row aria-label="gender" name="gender" >
-                                 <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                 <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                 <FormControlLabel value="unisex" control={<Radio />} label="Unisex" />
-                             </RadioGroup>
-                         </FormControl>
+
                          </div>
                          <div className={classes.content}>
                          <Typography variant="h4" component="h2">
@@ -104,21 +80,9 @@ class Step2 extends React.Component {
                          </Typography>
                              <div>
                          <hr></hr>
+                                 <Item />
                              </div>
-                             <Table className={classes.table} size="small" aria-label="a dense table">
-                                 <TableHead>
-                                     <TableRow>
-                                         <TableCell>Label</TableCell>
-                                         <TableCell>Main</TableCell>
-                                     </TableRow>
-                                 </TableHead>
-                                 {ItemRows.map((row) => (
-                                     <TableRow key={row.label}>
-                                         <TableCell>{row.label}</TableCell>
-                                         <TableCell>{row.main}</TableCell>
-                                     </TableRow>
-                                 ))}
-                             </Table>
+
                          </div>
                          <div className={classes.content}>
                              <Typography variant="h4" component="h2">
@@ -127,22 +91,7 @@ class Step2 extends React.Component {
                              <div>
                                  <hr></hr>
                              </div>
-                             <Table className={classes.table} size="small" aria-label="a dense table">
-                                 <TableHead>
-                                     <TableRow>
-                                         <TableCell>Label</TableCell>
-                                         <TableCell>Main</TableCell>
-                                         <TableCell>Sub</TableCell>
-                                     </TableRow>
-                                 </TableHead>
-                                 {styleRows.map((row) => (
-                                     <TableRow key={row.label}>
-                                         <TableCell>{row.label}</TableCell>
-                                         <TableCell>{row.main}</TableCell>
-                                         <TableCell>{row.sub}</TableCell>
-                                     </TableRow>
-                                 ))}
-                             </Table>
+                                <Style />
                          </div>
                          <Grid container spacing={3} row>
                          <Grid item xs={6}>
@@ -153,20 +102,7 @@ class Step2 extends React.Component {
                                  <div>
                                      <hr></hr>
                                  </div>
-                                 <Table className={classes.table} size="small" aria-label="a dense table">
-                                     <TableHead>
-                                         <TableRow>
-                                             <TableCell>Label</TableCell>
-                                             <TableCell>Main</TableCell>
-                                         </TableRow>
-                                     </TableHead>
-                                     {ItemRows.map((row) => (
-                                         <TableRow key={row.label}>
-                                             <TableCell>{row.label}</TableCell>
-                                             <TableCell>{row.main}</TableCell>
-                                         </TableRow>
-                                     ))}
-                                 </Table>
+                                 <Color />
                              </div>
                         </Grid>
                          <Grid item xs={6}>
@@ -177,20 +113,7 @@ class Step2 extends React.Component {
                                  <div>
                                      <hr></hr>
                                  </div>
-                                 <Table className={classes.table} size="small" aria-label="a dense table">
-                                     <TableHead>
-                                         <TableRow>
-                                             <TableCell>Label</TableCell>
-                                             <TableCell>Main</TableCell>
-                                         </TableRow>
-                                     </TableHead>
-                                     {ItemRows.map((row) => (
-                                         <TableRow key={row.label}>
-                                             <TableCell>{row.label}</TableCell>
-                                             <TableCell>{row.main}</TableCell>
-                                         </TableRow>
-                                     ))}
-                                 </Table>
+                                 <Pattern />
                              </div>
                          </Grid>
                          </Grid>
