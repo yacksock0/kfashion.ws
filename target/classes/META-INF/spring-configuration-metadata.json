@@ -6,9 +6,24 @@
       "sourceType": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties"
     },
     {
+      "name": "kfashion.ws.file",
+      "type": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
+    },
+    {
+      "name": "kfashion.ws.mail",
+      "type": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
       "name": "kfashion.ws.mybatis",
       "type": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties",
       "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties"
+    },
+    {
+      "name": "kfashion.ws.server",
+      "type": "io.aetherit.kfashion.ws.configuration.support.LiveServerProperties",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.LiveServerProperties"
     },
     {
       "name": "kfashion.ws.tomcat",
@@ -28,6 +43,76 @@
       "type": "java.lang.Integer",
       "sourceType": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties",
       "defaultValue": 0
+    },
+    {
+      "name": "kfashion.ws.file.channel-path",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
+    },
+    {
+      "name": "kfashion.ws.file.files-domain",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
+    },
+    {
+      "name": "kfashion.ws.file.upload-dir",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
+    },
+    {
+      "name": "kfashion.ws.file.user-board-path",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
+    },
+    {
+      "name": "kfashion.ws.file.user-profile-path",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.certification-image",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.image-path",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.invite-image",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.logo-image",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.mail-auth-path",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.order-image",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.password-auth-path",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.password-image",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
+    },
+    {
+      "name": "kfashion.ws.mail.signup-image",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.EmailSenderProperties"
     },
     {
       "name": "kfashion.ws.mybatis.config-location",
@@ -65,6 +150,21 @@
       "name": "kfashion.ws.mybatis.username",
       "type": "java.lang.String",
       "sourceType": "io.aetherit.kfashion.ws.configuration.support.DatabaseProperties"
+    },
+    {
+      "name": "kfashion.ws.server.domain",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.LiveServerProperties"
+    },
+    {
+      "name": "kfashion.ws.server.mode",
+      "type": "io.aetherit.kfashion.ws.model.support.KfashionServerMode",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.LiveServerProperties"
+    },
+    {
+      "name": "kfashion.ws.server.protocol",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.LiveServerProperties"
     },
     {
       "name": "kfashion.ws.tomcat.allow-origins",

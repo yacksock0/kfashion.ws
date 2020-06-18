@@ -1,0 +1,155 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionUserMapper">
+
+    <resultMap id="kfashionUserResultMap" type="KfashionUser">
+        <id property="userId"                       column="user_id" />
+        <result property="email"             		column="email" />
+        <result property="password"             	column="password" />
+        <result property="userName"                 column="user_name" />
+        <result property="nickName"                 column="nick_name" />
+        <result property="typeCode"                 column="type_code" />
+        <result property="statusCode"               column="status_code" />
+        <result property="availablePoint"           column="available_point" />
+        <result property="recordFlag"               column="record_flag"        typeHandler="BooleanYnTypeHandler" />
+        <result property="createdDatetime"      	column="created_datetime" />
+        <result property="modifiedDatetime"      	column="modified_datetime" />
+    </resultMap>
+
+    <resultMap id="kfashionUserProfileResultMap" type="KfashionUserProfile">
+        <id property="userId"               		column="user_id" />
+        <result property="profileImgDomain"         column="profile_img_domain" />
+        <result property="profileImgPath"           column="profile_img_path" />
+        <result property="classTime"           		column="class_time" />
+        <result property="workStartTime"           	column="work_start_time" />
+        <result property="workEndTime"           	column="work_end_time" />
+        <result property="createdDatetime"      	column="created_datetime" />
+    </resultMap>
+
+
+    <select id="selectUser" parameterType="long" resultMap="kfashionUserResultMap">
+        SELECT user_id,
+        	   email,
+               password,
+               user_name,
+               type_code,
+               status_code,
+               available_point,
+               record_flag,
+               created_datetime,
+               modified_datetime
+        FROM   kfashion_user_whole
+        WHERE  user_id = #{userId}
+        AND	   status_code = 'NORMAL'
+    </select>
+
+    <select id="selectUsersWhereType" parameterType="KfashionUserType" resultMap="kfashionUserResultMap">
+        SELECT user_id,
+        	   email,
+               password,
+               user_name,
+               type_code,
+               status_code,
+               available_point,
+               record_flag,
+               created_datetime,
+               modified_datetime
+        FROM   kfashion_user_whole
+        WHERE  type_code = #{type}
+        ORDER BY created_datetime DESC
+    </select>
+
+    <select id="selectUserProfile" resultMap="kfashionUserProfileResultMap">
+        SELECT user_id,
+        	   profile_img_domain,
+               profile_img_path,
+               class_time,
+               work_start_time,
+               work_end_time,
+               created_datetime
+        FROM   kfashion_user_profile
+        WHERE  user_id = #{userId}
+    </select>
+
+    <select id="selectUserNickName" parameterType="long" resultType="String">
+        SELECT nick_name
+        FROM   kfashion_user
+        WHERE  user_id = #{userId}
+        AND	   status_code = 'NORMAL'
+    </select>
+
+
+
+
+    <insert id="insertUser" parameterType="KfashionUser" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO kfashion_user
+        (
+        	user_id,
+       	    email,
+            password,
+            user_name,
+            nick_name,
+            type_code,
+            status_code,
+            available_point,
+            created_datetime,
+            modified_datetime
+        )
+        VALUES
+        (
+            #{userId},
+            #{email},
+            #{password},
+            #{userName},
+            #{nickName},
+            #{typeCode},
+            #{statusCode},
+            #{availablePoint},
+            NOW(),
+            NOW()
+        )
+    </insert>
+
+    <select id="selectUserByEmail" parameterType="String" resultMap="kfashionUserResultMap">
+        SELECT user_id,
+        	   email,
+               password,
+               user_name,
+               type_code,
+               status_code,
+               available_point,
+               record_flag,
+               created_datetime,
+               modified_datetime
+        FROM   kfashion_user_whole
+        WHERE  email = #{email}
+    </select>
+
+    <select id="selectUserByNickName" parameterType="String" resultMap="kfashionUserResultMap">
+        SELECT user_id,
+        	   email,
+               password,
+               user_name,
+               nick_name,
+               type_code,
+               status_code,
+               available_point,
+               record_flag,
+               created_datetime,
+               modified_datetime
+        FROM   kfashion_user
+        WHERE  nick_name = #{nickName}
+    </select>
+
+
+    <update id="updateUserStatus" parameterType="KfashionUserStatusChange" >
+        Update kfashion_user
+        SET	   status_code = #{statusCode},
+        	   modified_datetime = NOW()
+        WHERE  user_id = #{userId}
+    </update>
+
+
+
+
+
+</mapper>

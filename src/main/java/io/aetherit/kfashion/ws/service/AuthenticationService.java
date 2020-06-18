@@ -2,6 +2,8 @@ package io.aetherit.kfashion.ws.service;
 
 import io.aetherit.kfashion.ws.model.KfashionSimpleUser;
 import io.aetherit.kfashion.ws.model.KfashionUserToken;
+import io.aetherit.kfashion.ws.model.SimpleUser;
+import io.aetherit.kfashion.ws.model.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +22,7 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public KfashionUserToken getToken(String id, String rawPassword, HttpSession session) {
+    public UserToken getToken(String id, String rawPassword, HttpSession session) {
         final Authentication request = new UsernamePasswordAuthenticationToken(id, rawPassword);
         final Authentication result = authenticationManager.authenticate(request);
 
@@ -30,16 +32,16 @@ public class AuthenticationService {
             return null;
         }
 
-        return KfashionUserToken.builder()
+        return UserToken.builder()
                 .token(session.getId())
-                .user((KfashionSimpleUser) result.getDetails())
+                .user((SimpleUser) result.getDetails())
                 .build();
     }
 
-    public KfashionSimpleUser getUser() {
+    public SimpleUser getUser() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        return (KfashionSimpleUser) authentication.getDetails();
+        return (SimpleUser) authentication.getDetails();
     }
 
 

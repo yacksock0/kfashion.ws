@@ -1,12 +1,14 @@
 package io.aetherit.kfashion.ws.repository.mapper;
 
-import io.aetherit.kfashion.ws.model.KfashionUser;
-import io.aetherit.kfashion.ws.model.support.KfashionUserType;
+import io.aetherit.kfashion.ws.model.User;
+import io.aetherit.kfashion.ws.model.support.UserType;
 
 import java.util.List;
 
 public interface UserMapper {
-    KfashionUser selectUser(String id);
-    List<KfashionUser> selectUsersWhereType(KfashionUserType type);
-    int insertUser(KfashionUser account);
+
+    User selectUser(String id);
+    List<User> selectUsersWhereType(UserType type);
+    int insertUser(User account);
+
 }
