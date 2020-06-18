@@ -7,10 +7,11 @@ import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import Gender from "./Step2/Gender";
-import Item from "./step3/Item";
-import Style from "./step3/Style";
 import Color from "./Step2/Color";
-import Pattern from "./Step2/Pattern";
+import ClothLength from "./Step2/ClothLength";
+import Category from "./Step2/Category";
+import Print from "./Step2/Print";
+import SleeveLength from "./Step2/SleeveLength";
 
 const styles = theme => ({
     mainContainer: {
@@ -66,7 +67,7 @@ class Step2 extends React.Component {
                      <Grid item xs={6}>
                          <div className={classes.content} >
                          <Typography variant="h4" component="h2">
-                             Gender
+                             성별
                          </Typography>
                              <div>
                                  <hr></hr>
@@ -74,46 +75,61 @@ class Step2 extends React.Component {
                              </div>
 
                          </div>
-                         <div className={classes.content}>
-                         <Typography variant="h4" component="h2">
-                             Item
-                         </Typography>
+                         <div className={classes.content} >
+                             <Typography variant="h4" component="h2">
+                                 카테고리
+                             </Typography>
                              <div>
-                         <hr></hr>
-                                 <Item />
+                                 <hr></hr>
+                                 <Category />
                              </div>
 
                          </div>
+                         <Grid container spacing={3} row>
+                             <Grid item xs={6}>
                          <div className={classes.content}>
                              <Typography variant="h4" component="h2">
-                                 Style
+                                 색상
                              </Typography>
                              <div>
                                  <hr></hr>
                              </div>
-                                <Style />
+                             <Color />
                          </div>
+                             </Grid>
+                             <Grid item xs={6}>
+                                 <div className={classes.content}>
+                                     <Typography variant="h4" component="h2">
+                                         프린트
+                                     </Typography>
+                                     <div>
+                                         <hr></hr>
+                                     </div>
+                                     <Print />
+                                 </div>
+                             </Grid>
+                         </Grid>
                          <Grid container spacing={3} row>
                          <Grid item xs={6}>
                              <div className={classes.content}>
                                  <Typography variant="h4" component="h2">
-                                     Color
+                                     의상 길이
                                  </Typography>
                                  <div>
                                      <hr></hr>
                                  </div>
-                                 <Color />
+                                 <SleeveLength />
                              </div>
                         </Grid>
                          <Grid item xs={6}>
                              <div className={classes.content}>
                                  <Typography variant="h4" component="h2">
-                                     Pattern
+                                     소매 길이
                                  </Typography>
                                  <div>
                                      <hr></hr>
                                  </div>
-                                 <Pattern />
+                                 <ClothLength />
                              </div>
                          </Grid>
                          </Grid>

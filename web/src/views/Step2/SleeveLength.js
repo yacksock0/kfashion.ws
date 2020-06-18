@@ -10,13 +10,12 @@ function createData(label, main) {
     return { label, main};
 }
 
-export default class Category extends React.Component {
+export default class SleeveLength extends React.Component {
     render(){
-        const CategoryRows = [
-            createData('드레스', <FormControlLabel value="male" control={<Radio />}  />),
-            createData('치마', <FormControlLabel value="male" control={<Radio />} />),
-            createData('바지', <FormControlLabel value="male" control={<Radio />} />),
-            createData('티셔츠', <FormControlLabel value="male" control={<Radio />} />),
+        const Rows = [
+            createData('Long', <FormControlLabel value="male" control={<Radio />}  />),
+            createData('Middle', <FormControlLabel value="male" control={<Radio />} />),
+            createData('Short', <FormControlLabel value="male" control={<Radio />}  />),
         ];
         return(
             <Table size="small" aria-label="a dense table">
@@ -26,7 +25,7 @@ export default class Category extends React.Component {
                         <TableCell>Main</TableCell>
                     </TableRow>
                 </TableHead>
-                {CategoryRows.map((row) => (
+                {Rows.map((row) => (
                     <TableRow key={row.label}>
                         <TableCell>{row.label}</TableCell>
                         <TableCell>{row.main}</TableCell>

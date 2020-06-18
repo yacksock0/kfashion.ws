@@ -13,8 +13,9 @@ function createData(label, main) {
 export default class Color extends React.Component {
     render(){
         const ItemRows = [
-            createData('Frozen yoghurt', <FormControlLabel value="male" control={<Radio />}  />),
-            createData('Ice cream sandwich', <FormControlLabel value="male" control={<Radio />} />),
+            createData('빨강', <FormControlLabel value="male" control={<Radio />}  />),
+            createData('파랑', <FormControlLabel value="male" control={<Radio />} />),
+            createData('노랑', <FormControlLabel value="male" control={<Radio />} />),
         ];
         return(
             <Table size="small" aria-label="a dense table">
