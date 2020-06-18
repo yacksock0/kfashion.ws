@@ -15,8 +15,10 @@ import Step from "./views/Step";
 import Step2 from "./views/Step2";
 import Step3 from "./views/Step3";
 import BoundaryBox from "./views/Labeling/BoundaryBox";
+import BoundaryBoxList from "./views/Labeling/BoundaryBoxList";
 import Segmentation from "./views/Labeling/Segmentaion";
 import Polygon from "./views/Labeling/Polygon";
+import Test from "./views/Labeling/Test";
 import SignIn from "./views/SignIn";
 import * as store from "./stores/AuthStore";
 
@@ -110,8 +112,10 @@ class App extends React.Component {
                                   <Route exact path="/step2" component={Step2} />
                                   <Route exact path="/step3" component={Step3} />
                                   <Route exact path="/Step/BoundaryBox" component={BoundaryBox} />
+                                  <Route exact path="/Step/BoundaryBoxList" component={BoundaryBoxList} />
                                   <Route exact path="/Step/Segmentation" component={Segmentation} />
                                   <Route exact path="/Step/Polygon" component={Polygon} />
+                                  <Route exact path="/Test" component={Test} />
                               </Switch>
                             </React.Fragment>
                         ) : (

@@ -5,6 +5,7 @@ import {withStyles} from "@material-ui/core/styles";
 
 import {Container, Toolbar, Typography, Button} from "@material-ui/core";
 
+
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
@@ -22,9 +23,9 @@ const styles = theme => ({
     },
 });
 
-class Segmentation extends React.Component {
+class Test extends React.Component {
     componentDidMount() {
-        this.props.enqueueSnackbar("Segmentation Work", {
+        this.props.enqueueSnackbar("Test", {
             variant: 'info'
         });
     }
@@ -38,7 +39,7 @@ class Segmentation extends React.Component {
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h4" component="h2">
-                            Segmentation Edit
+                            BoundaryBox Edit
                             <div>
                                 <img src="https://placeimg.com/500/800/any" alt={''}></img>
                             </div>
@@ -60,4 +61,4 @@ class Segmentation extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (Segmentation)));
+export default withSnackbar(withRouter(withStyles(styles) (Test)));

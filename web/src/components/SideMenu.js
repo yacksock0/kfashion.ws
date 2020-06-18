@@ -105,6 +105,18 @@ export default function SideMenu(props) {
                     </List>
                 </Collapse>
                 </Link>
+                <Link to="/Step/BoundaryBoxList" className={classes.link}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <AspectRatioIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="BoundaryBoxList" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Link>
                 <Link to="/Step/Segmentation" className={classes.link}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
@@ -139,6 +151,13 @@ export default function SideMenu(props) {
                     <ListItem button>
                         <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
                         <ListItemText primary="3단계 검수"></ListItemText>
+                    </ListItem>
+                </Link>
+
+                <Link to="/test" className={classes.link}>
+                    <ListItem button>
+                        <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
+                        <ListItemText primary="test"></ListItemText>
                     </ListItem>
                 </Link>
 
