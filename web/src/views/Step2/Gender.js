@@ -9,9 +9,9 @@ class Gender extends React.Component{
         return (
         <FormControl component="fieldset">
             <RadioGroup row aria-label="gender" name="gender">
-                <FormControlLabel value="male" control={<Radio/>} label="Male"/>
-                <FormControlLabel value="female" control={<Radio/>} label="Female"/>
-                <FormControlLabel value="unisex" control={<Radio/>} label="Unisex"/>
+                <FormControlLabel value="male" control={<Radio/>} label="남성"/>
+                <FormControlLabel value="female" control={<Radio/>} label="여성"/>
+                <FormControlLabel value="unisex" control={<Radio/>} label="공용"/>
             </RadioGroup>
         </FormControl>
         );
