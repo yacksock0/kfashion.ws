@@ -1,3 +1,4 @@
+io/aetherit/kfashion/ws/repository/mapper/KfashionColorMapper.class
 io/aetherit/kfashion/ws/configuration/support/DatabaseProperties.class
 io/aetherit/kfashion/ws/configuration/support/ApplicationProperties.class
 io/aetherit/kfashion/ws/repository/KfashionImageLabelingLocationRepository.class
@@ -11,6 +12,7 @@ io/aetherit/kfashion/ws/service/KfashionStudiesService.class
 io/aetherit/kfashion/ws/controller/DefaultController.class
 io/aetherit/kfashion/ws/controller/KfashionProfessionalController.class
 io/aetherit/kfashion/ws/controller/support/ControllerExceptionHandler.class
+io/aetherit/kfashion/ws/model/KfashionCategory.class
 io/aetherit/kfashion/ws/model/support/KfashionUserType.class
 io/aetherit/kfashion/ws/controller/InformationController.class
 io/aetherit/kfashion/ws/model/KfashionInspectionStatus.class
@@ -24,6 +26,7 @@ io/aetherit/kfashion/ws/model/KfashionImageLabelingLocation.class
 io/aetherit/kfashion/ws/exception/KfashionException.class
 io/aetherit/kfashion/ws/repository/KfashionStudiesRepository.class
 io/aetherit/kfashion/ws/exception/NotAcceptableIdException.class
+io/aetherit/kfashion/ws/repository/KfashionColorRepository.class
 io/aetherit/kfashion/ws/repository/mapper/KfashionImageLabelingMapper.class
 io/aetherit/kfashion/ws/model/KfashionProfessional.class
 io/aetherit/kfashion/ws/model/KfashionColor.class
@@ -31,6 +34,7 @@ io/aetherit/kfashion/ws/service/UserAuthenticationProvider.class
 io/aetherit/kfashion/ws/configuration/WebConfiguration.class
 io/aetherit/kfashion/ws/repository/mapper/KfashionProfessionalMapper.class
 io/aetherit/kfashion/ws/model/KfashionStudies$KfashionStudiesBuilder.class
+io/aetherit/kfashion/ws/service/KfashionColorService.class
 io/aetherit/kfashion/ws/model/KfashionUserToken.class
 io/aetherit/kfashion/ws/controller/support/ControllerLogger.class
 io/aetherit/kfashion/ws/Application.class
@@ -43,9 +47,11 @@ io/aetherit/kfashion/ws/repository/mapper/KfashionStudiesMapper.class
 io/aetherit/kfashion/ws/model/KfashionBasic.class
 io/aetherit/kfashion/ws/exception/ErrorCode.class
 io/aetherit/kfashion/ws/repository/typehandler/BooleanYnTypeHandler.class
+io/aetherit/kfashion/ws/repository/mapper/KfashionCategoryMapper.class
 io/aetherit/kfashion/ws/configuration/DatabaseConfiguration.class
 io/aetherit/kfashion/ws/repository/mapper/KfashionBasicMapper.class
 io/aetherit/kfashion/ws/repository/KfashionProfessionalRepository.class
+io/aetherit/kfashion/ws/service/KfashionCategoryService.class
 io/aetherit/kfashion/ws/repository/KfashionInspectionStatusRepository.class
 io/aetherit/kfashion/ws/service/AuthenticationService.class
 io/aetherit/kfashion/ws/configuration/ApplicationConfiguration.class
@@ -60,6 +66,7 @@ io/aetherit/kfashion/ws/exception/CanNotFoundUserException.class
 META-INF/spring-configuration-metadata.json
 io/aetherit/kfashion/ws/service/KfashionInspectionStatusService.class
 io/aetherit/kfashion/ws/exception/ErrorResponse$ErrorResponseBuilder.class
+io/aetherit/kfashion/ws/repository/KfashionCategoryRepository.class
 io/aetherit/kfashion/ws/service/UserService.class
 io/aetherit/kfashion/ws/util/SystemEnvUtil.class
 io/aetherit/kfashion/ws/service/KfashionImageLabelingService.class

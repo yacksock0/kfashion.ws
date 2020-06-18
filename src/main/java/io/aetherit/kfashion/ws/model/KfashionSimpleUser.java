@@ -16,10 +16,13 @@ import java.time.LocalDateTime;
 public class KfashionSimpleUser implements Serializable {
     public static final long serialVersionUID = 1L;
 
-    private String id;
-    private String name;
-    private KfashionUserType type;
-    private boolean isEnabled;
+    private long userId;
+    private String email;
+    private String userName;
+    private String nickName;
+    private KfashionUserType typeCode;
+    private String profileUrl;
+    private boolean recordFlag;
     private LocalDateTime createdDatetime;
-    private LocalDateTime updatedDatetime;
+    private LocalDateTime modifiedDatetime;
 }

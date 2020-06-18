@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionProfessionalMapper">
-    <resultMap id="KfashionProfessionalResultMap" type="KfashionProfessional">
+    <resultMap id="kfashionProfessionalResultMap" type="KfashionProfessional">
         <id property="professional_labeling_num"                       column="professional_labeling_num" />
         <result property="professional_item"             column="professional_item" />
         <result property="professional_style"                 column="professional_style" />

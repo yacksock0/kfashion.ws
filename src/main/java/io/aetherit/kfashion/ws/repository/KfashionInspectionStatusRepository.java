@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class KfashionInspectionStatusRepository {
     private KfashionInspectionStatusMapper mapper;
+
 }

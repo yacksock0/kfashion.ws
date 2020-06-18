@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionInspectionStatusMapper">
-    <resultMap id="KfashionInspectionStatusResultMap" type="KfashionInspectionStatus">
+    <resultMap id="kfashionInspectionStatusResultMap" type="KfashionInspectionStatus">
         <id property="status_labeling_num"                       column="status_labeling_num" />
         <result property="labeling_status"             column="labeling_status" />
     </resultMap>

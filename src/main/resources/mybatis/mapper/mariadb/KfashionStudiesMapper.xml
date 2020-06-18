@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionStudiesMapper">
-    <resultMap id="KfashionStudiesResultMap" type="KfashionStudies">
+    <resultMap id="kfashionStudiesResultMap" type="KfashionStudies">
         <id property="studies_labeling_num"                       column="studies_labeling_num" />
         <result property="studies_neckline"             column="studies_neckline" />
         <result property="studies_detail"                 column="studies_detail" />

@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionCategoryMapper">
-    <resultMap id="KfashionCategoryResultMap" type="KfashionCategory">
+    <resultMap id="kfashionCategoryResultMap" type="KfashionCategory">
         <id property="category_no"                       column="category_no" />
         <result property="category_male"             column="category_male" />
         <result property="category_female"                 column="category_female" />

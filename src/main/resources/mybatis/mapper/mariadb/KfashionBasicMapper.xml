@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionBasicMapper">
-    <resultMap id="KfashionBasicResultMap" type="KfashionBasic">
+    <resultMap id="kfashionBasicResultMap" type="KfashionBasic">
         <id property="basic_labeling_num"                       column="basic_labeling_num" />
         <result property="basic_category"             column="basic_category" />
         <result property="basic_color"                 column="basic_color" />

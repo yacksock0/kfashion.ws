@@ -1,7 +1,7 @@
 package io.aetherit.kfashion.ws.service;
 
-import io.aetherit.kfashion.ws.model.KfashionSimpleUser;
-import io.aetherit.kfashion.ws.model.KfashionUser;
+import io.aetherit.kfashion.ws.model.SimpleUser;
+import io.aetherit.kfashion.ws.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -38,7 +38,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         final String userId = (String) request.getPrincipal();
         final String password = (String) request.getCredentials();
 
-        final KfashionUser user = userService.getUser(userId);
+        final User user = userService.getUser(userId);
         if(user == null) {
             throw new UsernameNotFoundException("Username not found : " + userId);
         }
@@ -65,8 +65,8 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(aClass);
     }
 
-    private KfashionSimpleUser getSimpleUser(KfashionUser user) {
-        return KfashionSimpleUser.builder()
+    private SimpleUser getSimpleUser(User user) {
+        return SimpleUser.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .type(user.getType())

@@ -9,6 +9,7 @@
 
     <typeAliases>
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUser" alias="KfashionUser" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.User" alias="User" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionBasic" alias="KfashionBasic" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionImageLabeling" alias="KfashionImageLabeling" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionImageLabelingLocation" alias="KfashionImageLabelingLocation" />
@@ -19,6 +20,10 @@
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionCategory" alias="KfashionCategory" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionColor" alias="KfashionColor" />
         <typeAlias type="io.aetherit.kfashion.ws.model.support.KfashionUserType" alias="KfashionUserType" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.support.UserType" alias="UserType" />
+        <typeAlias type="io.aetherit.kfashion.ws.repository.typehandler.BooleanYnTypeHandler" alias="BooleanYnTypeHandler" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserStatusChange" alias="KfashionUserStatusChange" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserProfile" alias="KfashionUserProfile" />
     </typeAliases>
 
     <typeHandlers>
@@ -27,6 +32,7 @@
 
     <mappers>
         <mapper resource="mybatis/mapper/mariadb/UserMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionUserMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionBasicMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionImageLabelingLocationMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionImageLabelingMapper.xml" />
@@ -35,5 +41,6 @@
         <mapper resource="mybatis/mapper/mariadb/KfashionStudiesMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionCategoryMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionColorMapper.xml" />
+
     </mappers>
 </configuration>

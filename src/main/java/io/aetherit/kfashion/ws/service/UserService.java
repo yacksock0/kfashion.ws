@@ -1,8 +1,8 @@
 package io.aetherit.kfashion.ws.service;
 
 import io.aetherit.kfashion.ws.exception.NotAcceptableIdException;
-import io.aetherit.kfashion.ws.model.KfashionUser;
-import io.aetherit.kfashion.ws.model.support.KfashionUserType;
+import io.aetherit.kfashion.ws.model.User;
+import io.aetherit.kfashion.ws.model.support.UserType;
 import io.aetherit.kfashion.ws.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,16 +45,16 @@ public class UserService {
 
     @PostConstruct
     public void checkAdmin() {
-        final List<KfashionUser> users = getUsers(KfashionUserType.Admin);
+        final List<User> users = getUsers(UserType.Admin);
 
         if((users == null) || (users.size() < 1)) {
             logger.info("Admin account not exists : create a default admin account");
 
-            final KfashionUser newAdmin = KfashionUser.builder()
+            final User newAdmin = User.builder()
                     .id(DEFAULT_ADMIN_ID)
                     .password(DEFAULT_ADMIN_PASSWORD)
                     .name(DEFAULT_ADMIN_NAME)
-                    .type(KfashionUserType.Admin)
+                    .type(UserType.Admin)
                     .isEnabled(true)
                     .build();
 
@@ -62,15 +62,15 @@ public class UserService {
         }
     }
 
-    public KfashionUser getUser(String id) {
+    public User getUser(String id) {
         return repository.selectUser(id);
     }
 
-    public List<KfashionUser> getUsers(KfashionUserType type) {
+    public List<User> getUsers(UserType type) {
         return repository.selectUsers(type);
     }
 
-    public KfashionUser createNewUser(KfashionUser user) {
+    public User createNewUser(User user) {
         if(isNotAcceptableId(user.getId())) {
             throw new NotAcceptableIdException(user.getId());
         }
