@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/users")
 public class KfashionUserController {
     private KfashionUserService kfashionUserService;
 
@@ -54,7 +54,6 @@ public class KfashionUserController {
     /**
      * 사용자 조회 : 기가입 여부 확인용
      * @param httpRequest
-     * @param userId
      * @return
      * @throws Exception
      */

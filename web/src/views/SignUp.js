@@ -129,7 +129,6 @@ class SignUp extends React.Component {
     componentDidMount() {
         const params = decodeURLParams(this.props.location.search);
 
-        this.props.signUpStore.initialize(params.email);
         this.props.signUpStore.getServerMode();
     }
 
@@ -150,9 +149,9 @@ class SignUp extends React.Component {
             this.props.signUpStore.clearState();
         }
     }
-    handleChangeId = (event) => {
+   /* handleChangeId = (event) => {
         this.props.signUpStore.changeNewMemberId(event.target.value);
-    }
+    }*/
 
     handleChangeEmail = (event) => {
         this.props.signUpStore.changeNewMemberEmail(event.target.value);
@@ -197,7 +196,7 @@ class SignUp extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { isEmailInputed,isValidId, isValidEmail, isValidPassword, isPasswordConfirmed, isValidUsername, isValidNickName, isPending, isSignUpSuccess, canSignUp, newMember, agreements, serverMode} = this.props.signUpStore;
+        const { isEmailInputed, isValidEmail, isValidPassword, isPasswordConfirmed, isValidUsername, isValidNickName, isPending, isSignUpSuccess, canSignUp, newMember, agreements, serverMode} = this.props.signUpStore;
 
         return (
             <React.Fragment>
@@ -216,7 +215,7 @@ class SignUp extends React.Component {
                                         <Typography variant="body2" className={classes.mainComment}>* 필수입력</Typography>
                                     </Grid>
                                 </Grid>
-                                <TextField id="id"
+                               {/* <TextField id="id"
                                            name="id"
                                            label="아이디"
                                            margin="dense"
@@ -225,7 +224,7 @@ class SignUp extends React.Component {
                                            className={classes.gutterMargin}
                                            InputLabelProps={{shrink: true}}
                                            helperText={isValidPassword ? '' : '최소 4 글자 이상을 입력해 주세요.'}
-                                           autoFocus={isValidId ? false : true} required fullWidth/>
+                                           autoFocus={isValidId ? false : true} required fullWidth/>*/}
                                 <TextField id="email"
                                            name="email"
                                            label="이메일 주소"
@@ -248,7 +247,7 @@ class SignUp extends React.Component {
                                            className={classes.gutterMargin}
                                            InputLabelProps={{shrink: true}}
                                            helperText={isValidPassword ? '' : '최소 4 글자 이상을 입력해 주세요.'}
-                                           autoFocus={isEmailInputed ? true : false} required fullWidth/>
+                                           autoFocus={isValidPassword ? true : false} required fullWidth/>
                                 <TextField id="passwordConfirm"
                                            type="password"
                                            name="passwordConfirm"

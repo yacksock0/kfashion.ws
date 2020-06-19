@@ -34,7 +34,7 @@ public class KfashionUserService {
 //    private static final String DEFAULT_ADMIN_EMAIL = "admin@onthe.live";
 //    private static final String DEFAULT_ADMIN_PASSWORD = "1234";
 //    private static final String DEFAULT_ADMIN_NAME = "administrator";
-    private static final String senderEmail = "jangseongyeol@aetherit.io";
+    private static final String senderEmail = "support@onthe.live";
     private static final Map<String, Boolean> notAcceptableIdMap = new HashMap<>();
     static {
         notAcceptableIdMap.put("check", false);
