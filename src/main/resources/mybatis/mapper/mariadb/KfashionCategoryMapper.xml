@@ -8,7 +8,7 @@
     </resultMap>
 
     <select id="categoryList" resultType="KfashionCategory">
-        select category_male from kfashion_category
+        select * from kfashion_category
     </select>
 
 </mapper>

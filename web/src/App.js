@@ -1,7 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {inject, observer} from "mobx-react";
-import SignUp from "./views/SignUp";
 import {withStyles} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
 
@@ -21,6 +20,7 @@ import Polygon from "./views/Labeling/Polygon";
 import Test from "./views/Labeling/Test";
 import SignIn from "./views/SignIn";
 import * as store from "./stores/AuthStore";
+import SignUp from "./views/SignUp";
 
 
 const style = () => ({
@@ -119,7 +119,10 @@ class App extends React.Component {
                               </Switch>
                             </React.Fragment>
                         ) : (
+                            <Switch>
+                            <Route path="/SignUp" component={SignUp} />
                             <Route path="/" component={SignIn} />
+                            </Switch>
                         )}
                   </Route>
                 </Router>

@@ -3,7 +3,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {Button, Container, Grid, Typography} from "@material-ui/core";
+import {Button, Container, Grid, ListItemIcon, Typography} from "@material-ui/core";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import Gender from "./Step2/Gender";
@@ -12,6 +12,8 @@ import ClothLength from "./Step2/ClothLength";
 import Category from "./Step2/Category";
 import Print from "./Step2/Print";
 import SleeveLength from "./Step2/SleeveLength";
+import AddIcon from '@material-ui/icons/Add';
+
 
 const styles = theme => ({
     mainContainer: {
@@ -42,6 +44,10 @@ const styles = theme => ({
         float:'right',
 
     },
+    insertButton:{
+        width:120,
+        float:'right',
+    },
 });
 
 class Step2 extends React.Component {
@@ -65,7 +71,7 @@ class Step2 extends React.Component {
                          <img src="https://placeimg.com/500/800/any" alt={""}></img>
                      </Grid>
                      <Grid item xs={6}>
-                         <div className={classes.content} >
+                         <div className={classes.content}>
                          <Typography variant="h4" component="h2">
                              성별
                          </Typography>
@@ -73,12 +79,23 @@ class Step2 extends React.Component {
                                  <hr></hr>
                                  <Gender />
                              </div>
-
                          </div>
                          <div className={classes.content} >
+                             <div className={classes.content}>
                              <Typography variant="h4" component="h2">
                                  카테고리
                              </Typography>
+                             <div style={{display:"inline-block"}}>
+                             <Button
+                                 variant="outlined"
+                                 color="primary"
+                                 className={classes.insertButton}
+                                 startIcon={<AddIcon />}
+                             >
+                                 항목추가
+                             </Button>
+                             </div>
+                             </div>
                              <div>
                                  <hr></hr>
                                  <Category />
@@ -91,6 +108,16 @@ class Step2 extends React.Component {
                              <Typography variant="h4" component="h2">
                                  색상
                              </Typography>
+                             <div style={{display:"inline-block"}}>
+                             <Button
+                                 variant="outlined"
+                                 color="primary"
+                                 className={classes.insertButton}
+                                 startIcon={<AddIcon />}
+                             >
+                                 항목추가
+                             </Button>
+                             </div>
                              <div>
                                  <hr></hr>
                              </div>
@@ -148,14 +175,14 @@ class Step2 extends React.Component {
                     type="submit"
                     className={classes.buttonType1}
                     variant="outlined"
-                    onClick={this.handleSubmitForm} >
+                    >
                     Previous
                 </Button>
                 <Button
                     type="submit"
                     className={classes.buttonType1}
                     variant="outlined"
-                    onClick={this.handleSubmitForm} >
+                     >
                     Next
                 </Button>
                 <Button
@@ -163,7 +190,7 @@ class Step2 extends React.Component {
                     className={classes.buttonType2}
                     color="primary"
                     variant="outlined"
-                    onClick={this.handleSubmitForm} >
+                    >
                     Save and Next
                 </Button>
             </Container>

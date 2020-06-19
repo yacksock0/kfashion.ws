@@ -22,8 +22,8 @@ import ErrorIcon from "@material-ui/icons/Error";
 const style = theme => ({
     appBarSpacer: theme.mixins.toolbar,
     paper: {
-        marginTop: theme.spacing(6),
-        marginBottom:'40px',
+        marginTop: theme.spacing(3),
+        marginBottom:'20px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -201,7 +201,7 @@ class SignUp extends React.Component {
                 <Container component="main" maxWidth="sm">
                     <div className={classes.appBarSpacer} />
                     <div className={classes.paper}>
-                        <img src={"/images/login-logo.png"} alt={""}/>
+                        <img src="https://placeimg.com/100/100/any" alt={""}/>
                         {!isSignUpSuccess ?
                             <div className={classes.mainContent}>
                                 <Typography className={classes.mainTitle} component="h1" variant="h3" >
@@ -272,6 +272,7 @@ class SignUp extends React.Component {
                                     <Typography variant="h5" component="h5">
                                         약관 동의
                                     </Typography>
+                                    <hr></hr>
                                     <FormControlLabel
                                         variant="body2"
                                         name="checkAgreeTotal"
@@ -364,27 +365,20 @@ class SignUp extends React.Component {
                             ''
                         }
                     </div>
-                </Container>
-
-                <Container component="div" maxWidth="sm" style={{paddingBottom: 32}}>
-                    <Grid container style={{ backgroundColor: '#fafafa', paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18}}>
-                        <Grid container item xs={12} style={{paddingTop: 16}}>
+                    <Grid container style={{ backgroundColor: '#fafafa', paddingBottom: 30}}>
+                        <Grid container item xs={12} style={{paddingTop: 16}} >
                             <Grid item xs={12} style={{display: 'flex', justifyContent: 'center', paddingBottom: 16}}>
                                 <ErrorIcon style={{width: 16, height: 16, paddingTop: 2, paddingRight: 2}} /><Typography variant="subtitle2">로그인 시스템 변경 안내</Typography>
                             </Grid>
                             <Grid item xs={12} style={{display: 'flex', justifyContent: 'center'}}>
                                 <Typography variant="body2" style={{textAlign: 'left'}}>
-                                    로그인 시스템이 변경되었습니다.<br/>
-                                    회원 가입을 통해 <b>생성되는 아이디는 교사 계정</b>입니다.<br/>
-                                    이전에 만들어진 계정은 모두 교사 계정으로 취급됩니다.<br/>
-                                    학생 계정은 로그인 후, 그룹 메뉴를 통해 직접 생성하시면 됩니다.
+                                    회원 가입을 통해 <b>생성되는 아이디는 그룹 관리자 계정</b>입니다.<br/>
+                                    일반 계정은 로그인 후, 그룹 메뉴를 통해 직접 생성하시면 됩니다.
                                 </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
                 </Container>
-
-
             </React.Fragment>
         );
     }
