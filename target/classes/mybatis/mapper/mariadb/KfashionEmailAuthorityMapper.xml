@@ -1,0 +1,11 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionEmailAuthorityMapper">
+    <resultMap id="kfashionEmailAuthorityResultMap" type="KfashionEmailAuthority">
+        <id property="userId"                       column="user_id" />
+        <result property="authKey"             column="authKey" />
+        <result property="expirationDatetime"                 column="expiration_datetime" />
+        <result property="createdDatetime"                 column="created_datetime" />
+        <result property="authorityDatetime"            column="authority_datetime" />
+    </resultMap>
+
+</mapper>

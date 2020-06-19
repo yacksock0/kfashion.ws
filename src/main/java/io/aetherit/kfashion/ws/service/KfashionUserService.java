@@ -34,7 +34,7 @@ public class KfashionUserService {
 //    private static final String DEFAULT_ADMIN_EMAIL = "admin@onthe.live";
 //    private static final String DEFAULT_ADMIN_PASSWORD = "1234";
 //    private static final String DEFAULT_ADMIN_NAME = "administrator";
-    private static final String senderEmail = "support@onthe.live";
+    private static final String senderEmail = "jangseongyeol@aetherit.io";
     private static final Map<String, Boolean> notAcceptableIdMap = new HashMap<>();
     static {
         notAcceptableIdMap.put("check", false);
@@ -186,7 +186,7 @@ public class KfashionUserService {
         }else {
             try{
                 AmazonSimpleEmailService sesClient = commonUtil.getAwsSesMailCredentials();
-                Content subjectContent = new Content("[ONTHELIVE]회원가입 인증"); // 메일 제목
+                Content subjectContent = new Content("[Kfashion]회원가입 인증"); // 메일 제목
                 Content bodyContent = new Content(mailTemplate.authMailTemplate(user.getEmail(), authKey)); // 메일 내용
                 Body body = new Body().withHtml(bodyContent);
                 Destination destination = new Destination(Arrays.asList(user.getEmail()));  // 받는 사람 이메일

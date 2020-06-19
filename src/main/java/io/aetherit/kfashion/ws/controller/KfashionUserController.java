@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/")
 public class KfashionUserController {
     private KfashionUserService kfashionUserService;
 
