@@ -72,7 +72,7 @@
 
     <select id="selectUserNickName" parameterType="long" resultType="String">
         SELECT nick_name
-        FROM   kfashion_user
+        FROM   kfashion_users
         WHERE  user_id = #{userId}
         AND	   status_code = 'NORMAL'
     </select>
@@ -136,7 +136,7 @@
                record_flag,
                created_datetime,
                modified_datetime
-        FROM   kfashion_user
+        FROM   kfashion_users
         WHERE  nick_name = #{nickName}
     </select>
 
