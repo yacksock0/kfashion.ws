@@ -150,6 +150,9 @@ class SignUp extends React.Component {
             this.props.signUpStore.clearState();
         }
     }
+    handleChangeId = (event) => {
+        this.props.signUpStore.changeNewMemberId(event.target.value);
+    }
 
     handleChangeEmail = (event) => {
         this.props.signUpStore.changeNewMemberEmail(event.target.value);
@@ -194,7 +197,7 @@ class SignUp extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { isEmailInputed, isValidEmail, isValidPassword, isPasswordConfirmed, isValidUsername, isValidNickName, isPending, isSignUpSuccess, canSignUp, newMember, agreements, serverMode} = this.props.signUpStore;
+        const { isEmailInputed,isValidId, isValidEmail, isValidPassword, isPasswordConfirmed, isValidUsername, isValidNickName, isPending, isSignUpSuccess, canSignUp, newMember, agreements, serverMode} = this.props.signUpStore;
 
         return (
             <React.Fragment>
@@ -213,6 +216,16 @@ class SignUp extends React.Component {
                                         <Typography variant="body2" className={classes.mainComment}>* 필수입력</Typography>
                                     </Grid>
                                 </Grid>
+                                <TextField id="id"
+                                           name="id"
+                                           label="아이디"
+                                           margin="dense"
+                                           value={newMember.id}
+                                           onChange={this.handleChangeId}
+                                           className={classes.gutterMargin}
+                                           InputLabelProps={{shrink: true}}
+                                           helperText={isValidPassword ? '' : '최소 4 글자 이상을 입력해 주세요.'}
+                                           autoFocus={isValidId ? false : true} required fullWidth/>
                                 <TextField id="email"
                                            name="email"
                                            label="이메일 주소"
@@ -368,7 +381,7 @@ class SignUp extends React.Component {
                     <Grid container style={{ backgroundColor: '#fafafa', paddingBottom: 30}}>
                         <Grid container item xs={12} style={{paddingTop: 16}} >
                             <Grid item xs={12} style={{display: 'flex', justifyContent: 'center', paddingBottom: 16}}>
-                                <ErrorIcon style={{width: 16, height: 16, paddingTop: 2, paddingRight: 2}} /><Typography variant="subtitle2">로그인 시스템 변경 안내</Typography>
+                                <ErrorIcon style={{width: 16, height: 16, paddingTop: 2, paddingRight: 2}} /><Typography variant="subtitle2">로그인 시스템</Typography>
                             </Grid>
                             <Grid item xs={12} style={{display: 'flex', justifyContent: 'center'}}>
                                 <Typography variant="body2" style={{textAlign: 'left'}}>
@@ -383,5 +396,4 @@ class SignUp extends React.Component {
         );
     }
 };
-
 export default withSnackbar(withRouter(withStyles(style) (SignUp)));

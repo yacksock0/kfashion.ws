@@ -2,6 +2,7 @@ import {action, computed, flow, observable, toJS} from "mobx";
 import axios from "axios";
 import * as validation from "../common/Validation";
 
+const MinUserId = 4;
 const MinUserName = 2;
 const MinPassword = 4;
 const MinNickName = 2;
@@ -15,6 +16,7 @@ const State = {
 }
 
 const EmptyNewMember = {
+    id: '',
     email: '',
     password: '',
     passwordConfirm: '',
@@ -47,7 +49,9 @@ export default class SignUpStore {
     @action clearState = () => {
         this.state = State.Ready;
     }
-
+    @action changeNewMemberId = (id) => {
+        this.newMember.id = id;
+    }
     @action changeNewMemberEmail = (email) => {
         this.newMember.email = email;
     }
@@ -103,6 +107,7 @@ export default class SignUpStore {
     }
 
     @computed get canSignUp() {
+        const id = this.newMember.id.length >= MinUserId;
         const emailVerification = validation.validateEmail(this.newMember.email);
         const agreements = this.agreements.service && this.agreements.privacy;
         const passwordConfirm = this.newMember.password === this.newMember.passwordConfirm;
@@ -110,10 +115,11 @@ export default class SignUpStore {
         const userName = this.newMember.userName.length >= MinUserName;
         const nickName = this.newMember.nickName.length >= MinNickName;
 
-        return emailVerification && agreements && passwordConfirm && password && userName && nickName;
+        return id && emailVerification && agreements && passwordConfirm && password && userName && nickName;
     }
 
     @computed get canAdminSignUp() {
+        const id = this.newMember.id.length >= MinUserId;
         const emailVerification = validation.validateEmail(this.newMember.email);
         const passwordConfirm = this.newMember.password === this.newMember.passwordConfirm;
         const password = this.newMember.password.length >= MinPassword;
@@ -123,6 +129,9 @@ export default class SignUpStore {
         return emailVerification && passwordConfirm && password && userName && nickName;
     }
 
+    @computed get isValidId() {
+        return this.newMember.id.length >= MinUserId;
+    }
     @computed get isValidEmail() {
         return validation.validateEmail(this.newMember.email);
     }
