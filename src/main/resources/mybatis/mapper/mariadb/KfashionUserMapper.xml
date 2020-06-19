@@ -81,7 +81,7 @@
 
 
     <insert id="insertUser" parameterType="KfashionUser" useGeneratedKeys="true" keyProperty="userId">
-        INSERT INTO kfashion_user
+        INSERT INTO kfashion_users
         (
         	user_id,
        	    email,

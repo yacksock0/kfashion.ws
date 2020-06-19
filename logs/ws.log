@@ -1393,3 +1393,352 @@ Caused by: java.lang.ClassNotFoundException: Cannot find class: KfashionImage
 2020-06-19 19:46:09.104 3410 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
 2020-06-19 19:46:09.147 3410 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
 2020-06-19 19:46:09.149 3410 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.54 seconds (JVM running for 2.904)
+2020-06-19 19:52:06.688 4575 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 4575 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 19:52:06.691 4575 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 19:52:06.691 4575 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 19:52:07.454 4575 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$c13c35ab] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 19:52:07.759 4575 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 19:52:07.759 4575 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 19:52:07.759 4575 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 19:52:07.772 4575 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 19:52:07.778 4575 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 19:52:07.779 4575 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 19:52:07.779 4575 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 19:52:07.830 4575 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 19:52:07.831 4575 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 1110 ms
+2020-06-19 19:52:07.873 4575 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 19:52:08.375 4575 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 19:52:08.390 4575 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 19:52:08.417 4575 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 19:52:08.417 4575 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-19 19:52:08.419 4575 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 19:52:08.560 4575 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 19:52:08.918 4575 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ed34ef5, org.springframework.security.web.context.SecurityContextPersistenceFilter@79c5460e, org.springframework.security.web.header.HeaderWriterFilter@6732726, org.springframework.security.web.authentication.logout.LogoutFilter@41853299, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f94e148, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22a10ac6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@553bc36c, org.springframework.security.web.session.SessionManagementFilter@6e6d4780, org.springframework.security.web.access.ExceptionTranslationFilter@7d0d91a1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7add838c]
+2020-06-19 19:52:09.030 4575 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 19:52:09.216 4575 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-19 19:52:09.221 4575 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-19 19:52:09.287 4575 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-19 19:52:09.291 4575 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.929 seconds (JVM running for 3.538)
+2020-06-19 20:18:43.763 4575 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:18:47.029 5532 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 5532 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 20:18:47.031 5532 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 20:18:47.031 5532 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 20:18:47.677 5532 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$ec8654b9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 20:18:47.941 5532 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:18:47.941 5532 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:18:47.942 5532 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 20:18:47.954 5532 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 20:18:47.959 5532 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 20:18:47.959 5532 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 20:18:47.960 5532 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 20:18:48.004 5532 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 20:18:48.005 5532 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 951 ms
+2020-06-19 20:18:48.044 5532 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 20:18:48.474 5532 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 20:18:48.485 5532 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 20:18:48.503 5532 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 20:18:48.503 5532 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-19 20:18:48.506 5532 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 20:18:48.627 5532 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 20:18:48.926 5532 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77114efe, org.springframework.security.web.context.SecurityContextPersistenceFilter@70211df5, org.springframework.security.web.header.HeaderWriterFilter@63d4f0a2, org.springframework.security.web.authentication.logout.LogoutFilter@58d6b7b9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@38e7ed69, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4784efd9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@79a7bfbc, org.springframework.security.web.session.SessionManagementFilter@7f6874f2, org.springframework.security.web.access.ExceptionTranslationFilter@d5af0a5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7d7cac8]
+2020-06-19 20:18:49.016 5532 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:18:49.057 5532 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(HttpServletRequest, KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+2020-06-19 20:18:49.057 5532 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:18:49.140 5532 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-19 20:18:49.150 5532 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-19 20:18:49.156 5532 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(HttpServletRequest, KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(HttpServletRequest, KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:632)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:599)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:318)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:350)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:67)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$1(AbstractHandlerMethodMapping.java:288)
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:684)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:286)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:258)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:217)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:205)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:171)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1855)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1792)
+	... 16 common frames omitted
+2020-06-19 20:19:54.265 5545 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 5545 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 20:19:54.267 5545 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 20:19:54.268 5545 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 20:19:54.870 5545 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$8c9f3b16] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 20:19:55.123 5545 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:19:55.124 5545 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:19:55.124 5545 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 20:19:55.136 5545 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 20:19:55.141 5545 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 20:19:55.141 5545 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 20:19:55.141 5545 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 20:19:55.183 5545 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 20:19:55.183 5545 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 892 ms
+2020-06-19 20:19:55.221 5545 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 20:19:55.563 5545 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 20:19:55.575 5545 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 20:19:55.594 5545 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 20:19:55.594 5545 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-19 20:19:55.597 5545 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 20:19:55.719 5545 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 20:19:56.015 5545 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ed34ef5, org.springframework.security.web.context.SecurityContextPersistenceFilter@79c5460e, org.springframework.security.web.header.HeaderWriterFilter@6732726, org.springframework.security.web.authentication.logout.LogoutFilter@41853299, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f94e148, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22a10ac6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@553bc36c, org.springframework.security.web.session.SessionManagementFilter@6e6d4780, org.springframework.security.web.access.ExceptionTranslationFilter@7d0d91a1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7add838c]
+2020-06-19 20:19:56.107 5545 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:19:56.150 5545 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(HttpServletRequest, KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+2020-06-19 20:19:56.150 5545 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:19:56.236 5545 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-19 20:19:56.245 5545 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-19 20:19:56.250 5545 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(HttpServletRequest, KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(HttpServletRequest, KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:632)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:599)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:318)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:350)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:67)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$1(AbstractHandlerMethodMapping.java:288)
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:684)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:286)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:258)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:217)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:205)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:171)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1855)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1792)
+	... 16 common frames omitted
+2020-06-19 20:26:09.383 5577 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 5577 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 20:26:09.384 5577 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 20:26:09.385 5577 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 20:26:10.034 5577 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$af21e93a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 20:26:10.308 5577 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:26:10.309 5577 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:26:10.309 5577 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 20:26:10.322 5577 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 20:26:10.327 5577 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 20:26:10.328 5577 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 20:26:10.328 5577 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 20:26:10.372 5577 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 20:26:10.372 5577 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 965 ms
+2020-06-19 20:26:10.411 5577 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 20:26:10.845 5577 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 20:26:10.856 5577 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 20:26:10.872 5577 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 20:26:10.872 5577 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-19 20:26:10.874 5577 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 20:26:10.991 5577 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 20:26:11.296 5577 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@313f8301, org.springframework.security.web.context.SecurityContextPersistenceFilter@3f1a4795, org.springframework.security.web.header.HeaderWriterFilter@3b48e183, org.springframework.security.web.authentication.logout.LogoutFilter@5e1dde44, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c5ddccd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@474821de, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5cc9d3d0, org.springframework.security.web.session.SessionManagementFilter@54402c04, org.springframework.security.web.access.ExceptionTranslationFilter@16a9eb2e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2503ec73]
+2020-06-19 20:26:11.402 5577 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:26:11.457 5577 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+2020-06-19 20:26:11.458 5577 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:26:11.542 5577 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-19 20:26:11.552 5577 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-19 20:26:11.557 5577 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'kfashionUserInfoController' method 
+io.aetherit.kfashion.ws.controller.KfashionUserInfoController#signUp(KfashionUserInfo)
+to {POST /api/v1/signup}: There is already 'kfashionUserController' bean method
+io.aetherit.kfashion.ws.controller.KfashionUserController#signup(HttpServletRequest, KfashionUser) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:632)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:599)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:318)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:350)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:67)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$1(AbstractHandlerMethodMapping.java:288)
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:684)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:286)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:258)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:217)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:205)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:171)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1855)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1792)
+	... 16 common frames omitted
+2020-06-19 20:26:53.925 5586 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 5586 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 20:26:53.928 5586 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 20:26:53.928 5586 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 20:26:54.532 5586 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$ccc7d7f3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 20:26:54.791 5586 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:26:54.791 5586 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:26:54.791 5586 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 20:26:54.803 5586 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 20:26:54.808 5586 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 20:26:54.809 5586 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 20:26:54.809 5586 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 20:26:54.853 5586 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 20:26:54.853 5586 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 892 ms
+2020-06-19 20:26:54.891 5586 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 20:26:55.374 5586 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 20:26:55.385 5586 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 20:26:55.402 5586 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 20:26:55.402 5586 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-19 20:26:55.405 5586 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 20:26:55.523 5586 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 20:26:55.826 5586 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@380e1909, org.springframework.security.web.context.SecurityContextPersistenceFilter@4f94e148, org.springframework.security.web.header.HeaderWriterFilter@3d64c581, org.springframework.security.web.authentication.logout.LogoutFilter@2e5b7fba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2cde651b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@503df2d0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d5ef498, org.springframework.security.web.session.SessionManagementFilter@2e73d5eb, org.springframework.security.web.access.ExceptionTranslationFilter@201c3cda, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1bb15351]
+2020-06-19 20:26:55.926 5586 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:26:56.097 5586 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-19 20:26:56.102 5586 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-19 20:26:56.155 5586 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-19 20:26:56.157 5586 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.549 seconds (JVM running for 3.115)
+2020-06-19 20:27:39.034 5586 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:27:42.370 5598 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 5598 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 20:27:42.372 5598 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 20:27:42.373 5598 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 20:27:43.038 5598 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$34440834] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 20:27:43.309 5598 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:27:43.309 5598 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 20:27:43.310 5598 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 20:27:43.323 5598 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 20:27:43.329 5598 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 20:27:43.329 5598 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 20:27:43.329 5598 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 20:27:43.374 5598 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 20:27:43.374 5598 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 971 ms
+2020-06-19 20:27:43.412 5598 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 20:27:43.941 5598 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 20:27:43.953 5598 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 20:27:44.006 5598 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 20:27:44.006 5598 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-19 20:27:44.009 5598 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 20:27:44.127 5598 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 20:27:44.439 5598 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6e6d4780, org.springframework.security.web.context.SecurityContextPersistenceFilter@9b9a327, org.springframework.security.web.header.HeaderWriterFilter@69923ac3, org.springframework.security.web.authentication.logout.LogoutFilter@5a75ec37, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@358ab600, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2abe9173, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@650ae78c, org.springframework.security.web.session.SessionManagementFilter@17dd671f, org.springframework.security.web.access.ExceptionTranslationFilter@68ac9ec5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7fb48179]
+2020-06-19 20:27:44.549 5598 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 20:27:44.722 5598 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-19 20:27:44.727 5598 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-19 20:27:44.783 5598 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-19 20:27:44.785 5598 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.742 seconds (JVM running for 3.127)
+2020-06-19 21:02:46.063 5598 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-19 21:02:46.064 5598 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-19 21:02:46.069 5598 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-19 21:06:03.676 5598 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-19 21:06:07.588 5743 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 5743 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 21:06:07.590 5743 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 21:06:07.591 5743 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 21:06:08.247 5743 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$2e070957] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 21:06:08.517 5743 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 21:06:08.517 5743 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 21:06:08.517 5743 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 21:06:08.530 5743 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 21:06:08.536 5743 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 21:06:08.536 5743 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 21:06:08.538 5743 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 21:06:08.584 5743 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 21:06:08.585 5743 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 971 ms
+2020-06-19 21:06:08.624 5743 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 21:06:09.078 5743 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 21:06:09.090 5743 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 21:06:09.120 5743 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 21:06:09.121 5743 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$AYladbn9V26tseFXJduxXOeCvTHLP7XSRnBjN72f6tLjmLQfm.rBS, administrator, Admin, 1, 2020-06-15 10:42:05.0, 2020-06-15 10:42:05.0
+2020-06-19 21:06:09.123 5743 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 21:06:09.249 5743 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 21:06:09.556 5743 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4288d98e, org.springframework.security.web.context.SecurityContextPersistenceFilter@17461db, org.springframework.security.web.header.HeaderWriterFilter@4784efd9, org.springframework.security.web.authentication.logout.LogoutFilter@79c5460e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e682398, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1dbd580, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@169268a7, org.springframework.security.web.session.SessionManagementFilter@30c1da48, org.springframework.security.web.access.ExceptionTranslationFilter@22752544, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@34b9eb03]
+2020-06-19 21:06:09.650 5743 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 21:06:09.833 5743 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-19 21:06:09.842 5743 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-19 21:06:09.905 5743 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-19 21:06:09.907 5743 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.588 seconds (JVM running for 3.113)
+2020-06-19 21:06:11.300 5743 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-19 21:06:11.300 5743 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-19 21:06:11.305 5743 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-19 21:06:11.426 5743 [-8080-exec-1] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 21:06:11.428 5743 [-8080-exec-1] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: 'jang6845@naver.com'(String)
+2020-06-19 21:06:11.437 5743 [-8080-exec-1] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 21:06:19.206 5743 [-8080-exec-3] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 21:06:19.208 5743 [-8080-exec-3] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: 'jang6845@naver.com'(String)
+2020-06-19 21:06:19.216 5743 [-8080-exec-3] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 21:06:39.886 5743 [-8080-exec-5] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 21:06:39.887 5743 [-8080-exec-5] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: 'jang6845@naver.com'(String)
+2020-06-19 21:06:39.898 5743 [-8080-exec-5] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 21:07:26.239 5743 [-8080-exec-7] - WARN  o.springframework.web.servlet.PageNotFound  209 : Request method 'GET' not supported
+2020-06-19 21:07:26.242 5743 [-8080-exec-7] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [405 METHOD_NOT_ALLOWED] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-19T21:07:26.242, code=Unknown, status=405, error=Method Not Allowed, message=Request method 'GET' not supported, path=/api/v1/kfashion/signup?a)
+2020-06-19 21:07:35.310 5743 [-8080-exec-9] - WARN  o.springframework.web.servlet.PageNotFound  209 : Request method 'GET' not supported
+2020-06-19 21:07:35.311 5743 [-8080-exec-9] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [405 METHOD_NOT_ALLOWED] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-19T21:07:35.311, code=Unknown, status=405, error=Method Not Allowed, message=Request method 'GET' not supported, path=/api/v1/kfashion/signup)
+2020-06-19 21:07:37.178 5743 [8080-exec-10] - WARN  o.springframework.web.servlet.PageNotFound  209 : Request method 'GET' not supported
+2020-06-19 21:07:37.178 5743 [8080-exec-10] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [405 METHOD_NOT_ALLOWED] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-19T21:07:37.178, code=Unknown, status=405, error=Method Not Allowed, message=Request method 'GET' not supported, path=/api/v1/kfashion/signup)
+2020-06-19 21:07:39.171 5743 [8080-exec-11] - WARN  o.springframework.web.servlet.PageNotFound  209 : Request method 'GET' not supported
+2020-06-19 21:07:39.171 5743 [8080-exec-11] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [405 METHOD_NOT_ALLOWED] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-19T21:07:39.171, code=Unknown, status=405, error=Method Not Allowed, message=Request method 'GET' not supported, path=/api/v1/kfashion/signup)
+2020-06-19 21:07:40.961 5743 [8080-exec-12] - WARN  o.springframework.web.servlet.PageNotFound  209 : Request method 'GET' not supported
+2020-06-19 21:07:40.962 5743 [8080-exec-12] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [405 METHOD_NOT_ALLOWED] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-19T21:07:40.962, code=Unknown, status=405, error=Method Not Allowed, message=Request method 'GET' not supported, path=/api/v1/kfashion/signup)
+2020-06-19 21:26:43.415 5743 [8080-exec-15] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-19T21:26:43.415, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.SimpleUser, path=/api/v1/authentications/signcheck)

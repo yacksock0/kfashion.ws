@@ -3,7 +3,7 @@ import
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import Stepper from '/Users/ho/kfashion.ws/web/src/components/Stepper';
+import Stepper from '/Users/jangseong-yeol/kfashion.ws/web/src/components/Stepper';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";

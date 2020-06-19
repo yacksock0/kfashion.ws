@@ -15,4 +15,33 @@
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
 
+    <insert id="createNewUser" parameterType="KfashionUserInfo">
+      INSERT INTO kfashion_user_info (
+            id,
+            password,
+            name,
+            birth,
+            gender,
+            email,
+            phone,
+            created_datetime,
+            updated_datetime
+        ) VALUES (
+            #{id},
+            #{password},
+            #{name},
+            #{birth},
+            #{gender},
+            #{email},
+            #{phone},
+            NOW(),
+            NOW()
+        )
+    </insert>
+
+    <select id="selectUser" resultType="int" parameterType="KfashionUserInfo">
+      select count(id) from kfashion_user_info
+      where id=#{id}
+    </select>
+
 </mapper>
