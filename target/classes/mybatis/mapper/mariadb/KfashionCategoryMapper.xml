@@ -1,14 +1,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionCategoryMapper">
     <resultMap id="kfashionCategoryResultMap" type="KfashionCategory">
-        <id property="category_no"                       column="category_no" />
-        <result property="category_male"             column="category_male" />
-        <result property="category_female"                 column="category_female" />
-        <result property="category_unisex"                 column="category_unisex" />
+        <id property="no"                       column="no" />
+        <result property="categoryName"             column="category_name" />
+        <result property="categoryStep"                 column="category_step" />
+        <result property="GroupNo"                 column="group_no" />
+        <result property="createdId"                 column="created_id" />
+        <result property="updatedId"                 column="updated_id" />
+        <result property="createdDatetime"                 column="created_datetime" />
+        <result property="updatedDatetime"                 column="updated_datetime" />
     </resultMap>
-
-    <select id="categoryList" resultType="KfashionCategory">
-        select * from kfashion_category
-    </select>
 
 </mapper>

@@ -1,9 +1,7 @@
 import { default as AuthStore } from "./AuthStore";
-import SecondStepStore from "./SecondStepStore";
-import SignUpStore from "./SignUpStore";
+import {default as CategoryStore} from "./CategoryStore";
 
 export const stores = {
     authStore:  new AuthStore(),
-    signUpStore: new SignUpStore(),
-    secondStepStore : new SecondStepStore(),
+    categoryStore : new CategoryStore(),
 };

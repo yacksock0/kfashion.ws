@@ -10,20 +10,34 @@
     <typeAliases>
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUser" alias="KfashionUser" />
         <typeAlias type="io.aetherit.kfashion.ws.model.User" alias="User" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionBasic" alias="KfashionBasic" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionImageLabeling" alias="KfashionImageLabeling" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionImageLabelingLocation" alias="KfashionImageLabelingLocation" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionInspectionStatus" alias="KfashionInspectionStatus" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionProfessional" alias="KfashionProfessional" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionSimpleUser" alias="KfashionSimpleUser" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionStudies" alias="KfashionStudies" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionCategory" alias="KfashionCategory" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionColor" alias="KfashionColor" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.support.KfashionUserType" alias="KfashionUserType" />
         <typeAlias type="io.aetherit.kfashion.ws.model.support.UserType" alias="UserType" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.support.KfashionUserType" alias="KfashionUserType" />
         <typeAlias type="io.aetherit.kfashion.ws.repository.typehandler.BooleanYnTypeHandler" alias="BooleanYnTypeHandler" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserStatusChange" alias="KfashionUserStatusChange" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserProfile" alias="KfashionUserProfile" />
+
+
+
+
+
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionCategoryItem" alias="KfashionCategoryItem" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserGroupAdmin" alias="KfashionUserGroupAdmin" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionCategory" alias="KfashionCategory" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionEmailAuthority" alias="KfashionEmailAuthority" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionImageLocationPolygon" alias="KfashionImageLocationPolygon" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionImageLocationRect" alias="KfashionImageLocationRect" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionImage" alias="KfashionImage" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionLabel" alias="KfashionLabel" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserAuthority" alias="KfashionUserAuthority" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserGroup" alias="KfashionUserGroup" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserGroupAuthority" alias="KfashionUserGroupAuthority" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserInfo" alias="KfashionUserInfo" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionWork" alias="KfashionWork" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionWorkHistory" alias="KfashionWorkHistory" />
+
     </typeAliases>
 
     <typeHandlers>
@@ -31,16 +45,22 @@
     </typeHandlers>
 
     <mappers>
-        <mapper resource="mybatis/mapper/mariadb/UserMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionUserMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionBasicMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionImageLabelingLocationMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionImageLabelingMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionInspectionStatusMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionInspectionStatusMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionStudiesMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionCategoryItemMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionCategoryMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionColorMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionEmailAuthorityMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionImageLocationPolygonMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionImageLocationRectMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionImageMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionInspectionStatusMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionLabelMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionUserAuthorityMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionUserGroupAuthorityMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionUserGroupMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionUserInfoMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionUserMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionWorkHistoryMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionWorkMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/UserMapper.xml" />
 
     </mappers>
 </configuration>
