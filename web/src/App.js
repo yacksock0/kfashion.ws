@@ -20,6 +20,7 @@ import Polygon from "./views/Labeling/Polygon";
 import Test from "./views/Labeling/Test";
 import SignIn from "./views/SignIn";
 import * as store from "./stores/AuthStore";
+import SignUp from "./views/SignUp";
 
 
 const style = () => ({
@@ -118,7 +119,10 @@ class App extends React.Component {
                               </Switch>
                             </React.Fragment>
                         ) : (
+                            <Switch>
+                            <Route path="/SignUp" component={SignUp} />
                             <Route path="/" component={SignIn} />
+                            </Switch>
                         )}
                   </Route>
                 </Router>

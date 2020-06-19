@@ -5,6 +5,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
 const logoWidth = 120;
 
@@ -63,7 +64,14 @@ export default function TopBar(props) {
                         <ExitToAppIcon />
                     </IconButton>
                 ) : (
-                    ''
+                    <Link to="/SignUp" className={classes.link}>
+                    <IconButton color="inherit">
+                        <AssignmentIndIcon />
+                        <Typography variant="h6" noWrap className={classes.title}>
+                             회원가입
+                        </Typography>
+                    </IconButton>
+                    </Link>
                 )}
             </Toolbar>
         </AppBar>

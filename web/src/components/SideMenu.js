@@ -97,7 +97,7 @@ export default function SideMenu(props) {
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                 </Link>
-                <Link to="/step/BoundaryBox" className={classes.link}>
+                <Link to="/step/boundaryBox" className={classes.link}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
@@ -109,7 +109,7 @@ export default function SideMenu(props) {
                     </List>
                 </Collapse>
                 </Link>
-                <Link to="/Step/BoundaryBoxList" className={classes.link}>
+                <Link to="/Step/boundaryBoxList" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
@@ -121,7 +121,7 @@ export default function SideMenu(props) {
                         </List>
                     </Collapse>
                 </Link>
-                <Link to="/step/Segmentation" className={classes.link}>
+                <Link to="/step/segmentation" className={classes.link}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
