@@ -23,11 +23,7 @@ export default class CategoryStore {
         try {
             let response = yield axios.get(`/api/v1/category/item/basic/category`)
             const categorys = response.data.categoryList;
-
-            console.log(response.data);
-
             this.categoryList = categorys;
-
             this.listState = ListState.Loaded;
         } catch(error) {
             this.listState = ListState.LoadFailed;

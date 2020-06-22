@@ -1,4 +1,4 @@
-USE kfashion;
+USE kfashionlocal;
 
 ##
 ## for Spring Session

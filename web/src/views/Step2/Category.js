@@ -12,19 +12,19 @@ function createData(label, main) {
     return { label, main};
 }
 
-@inject('categoryStore')
+@inject('secondStepStore')
 @observer
 export default class Category extends React.Component {
     componentDidMount() {
-        this.props.categoryStore.loadCategoryList();
+        this.props.secondStepStore.loadCategoryList();
     }
 
     handleChangeColor = (e) => {
-        this.props.categoryStore.changeCategory();
+        this.props.secondStepStore.changeCategory();
     }
 
     render(){
-        const {categoryList} = this.props.categoryStore;
+        const {categoryList} = this.props.secondStepStore;
         return(
             <Table size="small" aria-label="a dense table">
                 <TableHead>
@@ -37,9 +37,9 @@ export default class Category extends React.Component {
                 <TableBody>
                     {categoryList.length > 0 ?
                         categoryList.map((category) =>
-                            <TableRow key={category.categoryItemName}>
+                            <TableRow key={category.no}>
                                 <TableCell>
-                                    {category.categoryItemName}
+                                    {category.no}
                                 </TableCell>
                                 <TableCell>
                                     {category.categoryItemName}
@@ -51,7 +51,7 @@ export default class Category extends React.Component {
 
                         </TableRow>
                     }
-                    </TableBody>
+                </TableBody>
             </Table>
         );
 

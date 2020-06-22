@@ -9,6 +9,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Gender from "./Step2/Gender";
 import Color from "./Step2/Color";
 import ClothLength from "./Step2/ClothLength";
+import ColorTest from "./Step2/ColorTest";
 import Category from "./Step2/Category";
 import Print from "./Step2/Print";
 import SleeveLength from "./Step2/SleeveLength";
@@ -45,8 +46,8 @@ const styles = theme => ({
 
     },
     insertButton:{
-        width:120,
-        float:'right',
+        width:110,
+        marginLeft: 'auto',
     },
 });
 
@@ -68,47 +69,15 @@ class Step2 extends React.Component {
                         </Typography>
                  <Grid container spacing={3}>
                      <Grid item xs={6}>
-                         <img src="https://placeimg.com/500/800/any" alt={""}></img>
+                         <img src="https://placeimg.com/500/640/any" alt={""}></img>
                      </Grid>
                      <Grid item xs={6}>
-                         <div className={classes.content}>
-                         <Typography variant="h4" component="h2">
-                             성별
-                         </Typography>
-                             <div>
-                                 <hr></hr>
-                                 <Gender />
-                             </div>
-                         </div>
-                         <div className={classes.content} >
-                             <div className={classes.content}>
-                             <Typography variant="h4" component="h2">
-                                 카테고리
-                             </Typography>
-                             <div style={{display:"inline-block"}}>
-                             <Button
-                                 variant="outlined"
-                                 color="primary"
-                                 className={classes.insertButton}
-                                 startIcon={<AddIcon />}
-                             >
-                                 항목추가
-                             </Button>
-                             </div>
-                             </div>
-                             <div>
-                                 <hr></hr>
-                                 <Category />
-                             </div>
 
-                         </div>
-                         <Grid container spacing={3} row>
-                             <Grid item xs={6}>
                          <div className={classes.content}>
+                             <div style={{display:"inline-flex"}}>
                              <Typography variant="h4" component="h2">
                                  색상
                              </Typography>
-                             <div style={{display:"inline-block"}}>
                              <Button
                                  variant="outlined"
                                  color="primary"
@@ -123,50 +92,47 @@ class Step2 extends React.Component {
                              </div>
                              <Color />
                          </div>
-                             </Grid>
-                             <Grid item xs={6}>
-                                 <div className={classes.content}>
-                                     <Typography variant="h4" component="h2">
-                                         프린트
-                                     </Typography>
-                                     <div>
-                                         <hr></hr>
-                                     </div>
-                                     <Print />
-                                 </div>
-                             </Grid>
-                         </Grid>
-                         <Grid container spacing={3} row>
+                         <div className={classes.content}>
+                             <div style={{display:"inline-flex"}}>
+                                 <Typography variant="h4" component="h2">
+                                     소매 길이
+                                 </Typography>
+                                 <Button
+                                     variant="outlined"
+                                     color="primary"
+                                     className={classes.insertButton}
+                                     startIcon={<AddIcon />}
+                                 >
+                                     항목추가
+                                 </Button>
+                             </div>
+                             <div>
+                                 <hr></hr>
+                             </div>
+                             <SleeveLength />
+                         </div>
+                         {/*<Grid container spacing={3} row>
                          <Grid item xs={6}>
                              <div className={classes.content}>
+                                 <div style={{display:"inline-flex"}}>
                                  <Typography variant="h4" component="h2">
                                      의상 길이
                                  </Typography>
+                                 <Button
+                                     variant="outlined"
+                                     color="primary"
+                                     className={classes.insertButton}
+                                     startIcon={<AddIcon />}
+                                 >
+                                     항목추가
+                                 </Button>
+                             </div>
                                  <div>
                                      <hr></hr>
                                  </div>
                                  <SleeveLength />
                              </div>
-                        </Grid>
-                         <Grid item xs={6}>
-                             <div className={classes.content}>
-                                 <Typography variant="h4" component="h2">
-                                     소매 길이
-                                 </Typography>
-                                 <div>
-                                     <hr></hr>
-                                 </div>
-                                 <ClothLength />
-                             </div>
-                         </Grid>
-                         </Grid>
-                         <div className={classes.content}>
-                         <FormGroup row >
-                             <FormControlLabel
-                                 control={<Checkbox name="checkedA" />}
-                                 label="Not fashion Image"/>
-                         </FormGroup>
-                         </div>
+                        </Grid>*/}
                      </Grid>
                  </Grid>
                 </div>

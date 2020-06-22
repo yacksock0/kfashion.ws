@@ -21,6 +21,9 @@ const styles = theme => ({
     toolbar: {
         width: '100%',
     },
+    test:{
+        float: 'left'
+    },
 });
 
 class Home extends React.Component {
@@ -39,9 +42,25 @@ class Home extends React.Component {
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h4" component="h2">
-                            Home
+                            Home 1024 x 720
                         </Typography>
+
+
                     </Toolbar>
+                    <img src="https://placeimg.com/1024/720/any" alt={""}></img>
+                    <Typography variant="h4" component="h2">
+                        300 x 300
+                    </Typography>
+                    <div>
+                        <img src="https://placeimg.com/300/300/any" alt={""}></img>
+                    </div>
+                    <Typography variant="h4" component="h2">
+                        450x650
+                    </Typography>
+                    <div>
+
+                        <img src="https://placeimg.com/450/650/any" alt={""}></img>
+                    </div>
                 </div>
             </Container>
         );
