@@ -65,12 +65,12 @@ export default function TopBar(props) {
                     </IconButton>
                 ) : (
                     <Link to="/SignUp" className={classes.link}>
-                    <IconButton color="inherit">
-                        <AssignmentIndIcon />
-                        <Typography variant="h6" noWrap className={classes.title}>
-                             회원가입
-                        </Typography>
-                    </IconButton>
+                        <IconButton color="inherit">
+                            <AssignmentIndIcon />
+                            <Typography variant="h6" noWrap className={classes.title}>
+                                회원가입
+                            </Typography>
+                        </IconButton>
                     </Link>
                 )}
             </Toolbar>

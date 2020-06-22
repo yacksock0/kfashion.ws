@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.repository;
 
+import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.model.User;
 import io.aetherit.kfashion.ws.model.support.UserType;
 import io.aetherit.kfashion.ws.repository.mapper.UserMapper;
@@ -17,7 +18,7 @@ public class UserRepository {
         this.mapper = mapper;
     }
 
-    public User selectUser(String id) {
+    public KfashionUserInfo selectUser(String id) {
         return mapper.selectUser(id);
     }
 

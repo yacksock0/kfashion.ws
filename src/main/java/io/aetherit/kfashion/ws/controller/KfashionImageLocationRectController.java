@@ -17,4 +17,5 @@ public class KfashionImageLocationRectController {
         public KfashionImageLocationRectController(KfashionImageLocationRectService kfashionImageLocationRectService) {
             this.kfashionImageLocationRectService = kfashionImageLocationRectService;
         }
+
 }

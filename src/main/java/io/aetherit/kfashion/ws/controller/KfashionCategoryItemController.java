@@ -18,6 +18,7 @@ import java.util.List;
 public class KfashionCategoryItemController {
 
     private KfashionCategoryItemService kfashionCategoryItemService;
+
     @Autowired
     public KfashionCategoryItemController(KfashionCategoryItemService kfashionCategoryItemService) {
         this.kfashionCategoryItemService = kfashionCategoryItemService;
@@ -28,21 +29,23 @@ public class KfashionCategoryItemController {
         public ResponseEntity<Object> categoryList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> categoryList = kfashionCategoryItemService.selectCategoryItem();
-            resultMap.put("categoryList",categoryList);
-            System.out.println(categoryList);
+            resultMap.put("categoryList", categoryList);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
         @GetMapping (value = "/basic/color")
         public ResponseEntity<Object> colorList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
+            List<KfashionCategoryItem> colorList = kfashionCategoryItemService.selectColorList();
+            resultMap.put("colorList", colorList);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
         @GetMapping (value = "/basic/sleeve")
-        public ResponseEntity<Object> sleeveList(HttpServletRequest httpRequest) {
+        public ResponseEntity<Object> selectSleeveLengthList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
+            List<KfashionCategoryItem> sleeveList = kfashionCategoryItemService.selectSleeveLengthList();
+            resultMap.put("sleeveList", sleeveList);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 

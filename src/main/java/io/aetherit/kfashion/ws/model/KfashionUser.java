@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class KfashionUser {
 
-    private long userId;
+    private Long userId;
 
     @NotNull
     @NotBlank(message = "이메일을 입력하세요.")

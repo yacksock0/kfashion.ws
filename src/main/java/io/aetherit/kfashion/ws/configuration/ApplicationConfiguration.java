@@ -119,20 +119,20 @@ public class ApplicationConfiguration implements AsyncConfigurer {
         return new CommonUtil();
     }
 
-    @Bean
-    public MailTemplate mailTemplate() {
-        return new MailTemplate();
-    }
+//    @Bean
+//    public MailTemplate mailTemplate() {
+//        return new MailTemplate();
+//    }
 
     @Bean
     public AES256Util aesUtil() throws UnsupportedEncodingException {
         return new AES256Util();
     }
 
-    @Bean
-    public JwtTokenUtil jwtTokenUtil() {
-        return new JwtTokenUtil();
-    }
+//    @Bean
+//    public JwtTokenUtil jwtTokenUtil() {
+//        return new JwtTokenUtil();
+//    }
 
     @Bean
     public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {

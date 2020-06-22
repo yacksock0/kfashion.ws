@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.service;
 
 import io.aetherit.kfashion.ws.exception.NotAcceptableIdException;
+import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.model.User;
 import io.aetherit.kfashion.ws.model.support.UserType;
 import io.aetherit.kfashion.ws.repository.UserRepository;
@@ -62,7 +63,7 @@ public class UserService {
         }
     }
 
-    public User getUser(String id) {
+    public KfashionUserInfo getUser(String id) {
         return repository.selectUser(id);
     }
 

@@ -22,7 +22,7 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public UserToken getToken(String id, String rawPassword, HttpSession session) {
+    public KfashionUserToken getToken(String id, String rawPassword, HttpSession session) {
         final Authentication request = new UsernamePasswordAuthenticationToken(id, rawPassword);
         final Authentication result = authenticationManager.authenticate(request);
 
@@ -32,16 +32,16 @@ public class AuthenticationService {
             return null;
         }
 
-        return UserToken.builder()
+        return KfashionUserToken.builder()
                 .token(session.getId())
-                .user((SimpleUser) result.getDetails())
+                .user((KfashionSimpleUser) result.getDetails())
                 .build();
     }
 
-    public SimpleUser getUser() {
+    public KfashionSimpleUser getUser() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        return (SimpleUser) authentication.getDetails();
+        return (KfashionSimpleUser) authentication.getDetails();
     }
 
 

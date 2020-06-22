@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/kfashion/users")
 public class KfashionUserInfoController {
 
     private KfashionUserInfoService kfashionUserInfoService;
@@ -24,6 +24,12 @@ public class KfashionUserInfoController {
     @Autowired
     public KfashionUserInfoController(KfashionUserInfoService kfashionUserInfoService) {
         this.kfashionUserInfoService = kfashionUserInfoService;
+    }
+
+    @PostMapping(value = "/signup")
+    public ResponseEntity<String> signUp(HttpServletRequest httpServletRequest, @RequestBody @Valid KfashionUserInfo user)
+            throws Exception {
+        return new ResponseEntity<String>(kfashionUserInfoService.createNewUser(user), HttpStatus.OK);
     }
 
 

@@ -3208,3 +3208,160 @@ Caused by: java.sql.SQLException: Unknown column 'id' in 'field list'
 2020-06-19 22:13:48.636 6807 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
 2020-06-19 22:13:48.639 6807 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.456 seconds (JVM running for 3.088)
 2020-06-19 22:13:51.564 6807 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-19 22:16:28.590 6188 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 6188 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 22:16:28.591 6188 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 22:16:28.592 6188 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 22:16:29.272 6188 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$3b9f0e45] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 22:16:29.534 6188 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 22:16:29.534 6188 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 22:16:29.535 6188 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 22:16:29.547 6188 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 22:16:29.553 6188 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 22:16:29.553 6188 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 22:16:29.553 6188 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 22:16:29.597 6188 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 22:16:29.597 6188 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 982 ms
+2020-06-19 22:16:29.637 6188 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 22:16:30.128 6188 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 22:16:30.141 6188 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 22:16:30.174 6188 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 22:16:30.175 6188 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$kkoNykEId5EikKpQWlHXkOTGopR2BHLJoDFpgyFMUPod9qIiWVys6, administrator, Admin, 1, 2020-06-19 21:55:27.0, 2020-06-19 21:55:27.0
+2020-06-19 22:16:30.177 6188 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 22:16:30.301 6188 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 22:16:30.595 6188 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@78a0ff63, org.springframework.security.web.context.SecurityContextPersistenceFilter@670b3ca, org.springframework.security.web.header.HeaderWriterFilter@16a9eb2e, org.springframework.security.web.authentication.logout.LogoutFilter@7ff8a9dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54402c04, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7fb48179, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7c601d50, org.springframework.security.web.session.SessionManagementFilter@17461db, org.springframework.security.web.access.ExceptionTranslationFilter@3c3820bb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@53a7a60c]
+2020-06-19 22:16:30.686 6188 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 22:16:30.893 6188 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-19 22:16:30.898 6188 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-19 22:16:30.981 6188 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-19 22:16:30.986 6188 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.66 seconds (JVM running for 3.184)
+2020-06-19 22:16:40.398 6188 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-19 22:16:40.399 6188 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-19 22:16:40.404 6188 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-19 22:16:40.526 6188 [-8080-exec-1] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-19T22:16:40.526, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.SimpleUser, path=/api/v1/authentications/signcheck)
+2020-06-19 22:17:01.852 6188 [-8080-exec-3] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:01.852 6188 [-8080-exec-3] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:01.869 6188 [-8080-exec-3] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:02.019 6188 [-8080-exec-4] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:02.019 6188 [-8080-exec-4] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:02.038 6188 [-8080-exec-4] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:02.040 6188 [-8080-exec-4] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==>  Preparing: SELECT user_id, email, password, user_name, nick_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_users WHERE nick_name = ? 
+2020-06-19 22:17:02.041 6188 [-8080-exec-4] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==> Parameters: 렉구(String)
+2020-06-19 22:17:02.084 6188 [-8080-exec-4] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-19T22:17:02.084, code=Unknown, status=500, error=Internal Server Error, message=
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+### The error may exist in mybatis/mapper/mariadb/KfashionUserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionUserMapper.selectUserByNickName-Inline
+### The error occurred while setting parameters
+### SQL: SELECT user_id,             email,                password,                user_name,                nick_name,                type_code,                status_code,                available_point,                record_flag,                created_datetime,                modified_datetime         FROM   kfashion_users         WHERE  nick_name = ?
+### Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list', path=/api/v1/users/signup)
+2020-06-19 22:17:02.941 6188 [-8080-exec-5] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:02.942 6188 [-8080-exec-5] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:02.958 6188 [-8080-exec-5] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:03.020 6188 [-8080-exec-6] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:03.021 6188 [-8080-exec-6] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:03.028 6188 [-8080-exec-6] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:03.029 6188 [-8080-exec-6] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==>  Preparing: SELECT user_id, email, password, user_name, nick_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_users WHERE nick_name = ? 
+2020-06-19 22:17:03.030 6188 [-8080-exec-6] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==> Parameters: 렉구(String)
+2020-06-19 22:17:03.039 6188 [-8080-exec-6] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-19T22:17:03.039, code=Unknown, status=500, error=Internal Server Error, message=
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+### The error may exist in mybatis/mapper/mariadb/KfashionUserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionUserMapper.selectUserByNickName-Inline
+### The error occurred while setting parameters
+### SQL: SELECT user_id,             email,                password,                user_name,                nick_name,                type_code,                status_code,                available_point,                record_flag,                created_datetime,                modified_datetime         FROM   kfashion_users         WHERE  nick_name = ?
+### Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list', path=/api/v1/users/signup)
+2020-06-19 22:17:03.759 6188 [-8080-exec-7] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:03.760 6188 [-8080-exec-7] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:03.768 6188 [-8080-exec-7] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:03.830 6188 [-8080-exec-8] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:03.830 6188 [-8080-exec-8] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:03.838 6188 [-8080-exec-8] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:03.841 6188 [-8080-exec-8] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==>  Preparing: SELECT user_id, email, password, user_name, nick_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_users WHERE nick_name = ? 
+2020-06-19 22:17:03.842 6188 [-8080-exec-8] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==> Parameters: 렉구(String)
+2020-06-19 22:17:03.849 6188 [-8080-exec-8] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-19T22:17:03.849, code=Unknown, status=500, error=Internal Server Error, message=
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+### The error may exist in mybatis/mapper/mariadb/KfashionUserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionUserMapper.selectUserByNickName-Inline
+### The error occurred while setting parameters
+### SQL: SELECT user_id,             email,                password,                user_name,                nick_name,                type_code,                status_code,                available_point,                record_flag,                created_datetime,                modified_datetime         FROM   kfashion_users         WHERE  nick_name = ?
+### Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list', path=/api/v1/users/signup)
+2020-06-19 22:17:04.461 6188 [-8080-exec-9] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:04.462 6188 [-8080-exec-9] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:04.478 6188 [-8080-exec-9] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:04.551 6188 [8080-exec-10] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:04.552 6188 [8080-exec-10] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:04.558 6188 [8080-exec-10] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:04.559 6188 [8080-exec-10] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==>  Preparing: SELECT user_id, email, password, user_name, nick_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_users WHERE nick_name = ? 
+2020-06-19 22:17:04.560 6188 [8080-exec-10] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==> Parameters: 렉구(String)
+2020-06-19 22:17:04.569 6188 [8080-exec-10] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-19T22:17:04.569, code=Unknown, status=500, error=Internal Server Error, message=
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+### The error may exist in mybatis/mapper/mariadb/KfashionUserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionUserMapper.selectUserByNickName-Inline
+### The error occurred while setting parameters
+### SQL: SELECT user_id,             email,                password,                user_name,                nick_name,                type_code,                status_code,                available_point,                record_flag,                created_datetime,                modified_datetime         FROM   kfashion_users         WHERE  nick_name = ?
+### Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list', path=/api/v1/users/signup)
+2020-06-19 22:17:05.259 6188 [8080-exec-11] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:05.260 6188 [8080-exec-11] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:05.268 6188 [8080-exec-11] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:05.330 6188 [8080-exec-12] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:17:05.331 6188 [8080-exec-12] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:17:05.338 6188 [8080-exec-12] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:17:05.339 6188 [8080-exec-12] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==>  Preparing: SELECT user_id, email, password, user_name, nick_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_users WHERE nick_name = ? 
+2020-06-19 22:17:05.340 6188 [8080-exec-12] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==> Parameters: 렉구(String)
+2020-06-19 22:17:05.348 6188 [8080-exec-12] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-19T22:17:05.348, code=Unknown, status=500, error=Internal Server Error, message=
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+### The error may exist in mybatis/mapper/mariadb/KfashionUserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionUserMapper.selectUserByNickName-Inline
+### The error occurred while setting parameters
+### SQL: SELECT user_id,             email,                password,                user_name,                nick_name,                type_code,                status_code,                available_point,                record_flag,                created_datetime,                modified_datetime         FROM   kfashion_users         WHERE  nick_name = ?
+### Cause: java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=6528) Unknown column 'user_id' in 'field list', path=/api/v1/users/signup)
+2020-06-19 22:18:18.183 6188 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-19 22:18:22.005 6221 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 6221 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-06-19 22:18:22.007 6221 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-19 22:18:22.008 6221 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-19 22:18:22.616 6221 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$e1afe320] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-19 22:18:22.907 6221 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 22:18:22.908 6221 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-19 22:18:22.908 6221 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-19 22:18:22.921 6221 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-19 22:18:22.926 6221 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-19 22:18:22.926 6221 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-19 22:18:22.927 6221 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-19 22:18:22.971 6221 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-19 22:18:22.971 6221 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 939 ms
+2020-06-19 22:18:23.011 6221 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-19 22:18:23.478 6221 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, type, is_enabled, created_datetime, updated_datetime FROM kfashion_users WHERE type = ? ORDER BY created_datetime DESC 
+2020-06-19 22:18:23.491 6221 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : ==> Parameters: Admin(String)
+2020-06-19 22:18:23.521 6221 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==    Columns: id, password, name, type, is_enabled, created_datetime, updated_datetime
+2020-06-19 22:18:23.522 6221 [        main] - TRACE         i.a.k.w.r.m.U.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$kkoNykEId5EikKpQWlHXkOTGopR2BHLJoDFpgyFMUPod9qIiWVys6, administrator, Admin, 1, 2020-06-19 21:55:27.0, 2020-06-19 21:55:27.0
+2020-06-19 22:18:23.524 6221 [        main] - DEBUG         i.a.k.w.r.m.U.selectUsersWhereType  159 : <==      Total: 1
+2020-06-19 22:18:23.644 6221 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-19 22:18:23.935 6221 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1507c3c3, org.springframework.security.web.context.SecurityContextPersistenceFilter@58f437b0, org.springframework.security.web.header.HeaderWriterFilter@a96d56c, org.springframework.security.web.authentication.logout.LogoutFilter@75120e58, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4277127c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@33956d1a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@655a01d8, org.springframework.security.web.session.SessionManagementFilter@2a8a4e0c, org.springframework.security.web.access.ExceptionTranslationFilter@44065156, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@534e58b6]
+2020-06-19 22:18:24.027 6221 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-19 22:18:24.199 6221 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-19 22:18:24.212 6221 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-19 22:18:24.261 6221 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-19 22:18:24.264 6221 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.534 seconds (JVM running for 2.904)
+2020-06-19 22:18:27.024 6221 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-19 22:18:27.025 6221 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-19 22:18:27.030 6221 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-19 22:18:27.235 6221 [-8080-exec-1] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:18:27.235 6221 [-8080-exec-1] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:18:27.256 6221 [-8080-exec-1] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:18:27.431 6221 [-8080-exec-2] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==>  Preparing: SELECT user_id, email, password, user_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_user_whole WHERE email = ? 
+2020-06-19 22:18:27.432 6221 [-8080-exec-2] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: jang6845@naver.com(String)
+2020-06-19 22:18:27.446 6221 [-8080-exec-2] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
+2020-06-19 22:18:27.447 6221 [-8080-exec-2] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==>  Preparing: SELECT user_id, email, password, user_name, nick_name, type_code, status_code, available_point, record_flag, created_datetime, modified_datetime FROM kfashion_users WHERE nick_name = ? 
+2020-06-19 22:18:27.448 6221 [-8080-exec-2] - DEBUG         i.a.k.w.r.m.K.selectUserByNickName  159 : ==> Parameters: 렉구(String)
+2020-06-19 22:18:27.492 6221 [-8080-exec-2] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-19T22:18:27.491, code=Unknown, status=500, error=Internal Server Error, message=
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=6548) Unknown column 'user_id' in 'field list'
+### The error may exist in mybatis/mapper/mariadb/KfashionUserMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionUserMapper.selectUserByNickName-Inline
+### The error occurred while setting parameters
+### SQL: SELECT user_id,             email,                password,                user_name,                nick_name,                type_code,                status_code,                available_point,                record_flag,                created_datetime,                modified_datetime         FROM   kfashion_users         WHERE  nick_name = ?
+### Cause: java.sql.SQLSyntaxErrorException: (conn=6548) Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: (conn=6548) Unknown column 'user_id' in 'field list', path=/api/v1/users/signup)
+2020-06-19 22:20:15.539 6221 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'

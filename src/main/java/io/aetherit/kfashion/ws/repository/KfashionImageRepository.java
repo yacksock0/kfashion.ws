@@ -12,4 +12,8 @@ public class KfashionImageRepository {
     public KfashionImageRepository(KfashionImageMapper mapper) {
         this.mapper = mapper;
     }
+
+    public void insertImgUpload(byte[] imgData) {
+        mapper.insertImgUpload(imgData);
+    }
 }
