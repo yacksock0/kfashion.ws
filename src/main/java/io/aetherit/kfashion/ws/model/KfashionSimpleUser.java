@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.model;
 
 import io.aetherit.kfashion.ws.model.support.KfashionUserType;
+import io.aetherit.kfashion.ws.model.support.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,13 +17,13 @@ import java.time.LocalDateTime;
 public class KfashionSimpleUser implements Serializable {
     public static final long serialVersionUID = 1L;
 
-    private long userId;
+    private String id;
+    private String password;
+    private String name;
     private String email;
-    private String userName;
-    private String nickName;
-    private KfashionUserType typeCode;
-    private String profileUrl;
-    private boolean recordFlag;
+    private boolean isAdmin;
+    private boolean isApproved;
     private LocalDateTime createdDatetime;
-    private LocalDateTime modifiedDatetime;
+    private LocalDateTime updatedDatetime;
+
 }

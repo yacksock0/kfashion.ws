@@ -16,21 +16,15 @@ function createData(label, main) {
 @observer
 export default class Category extends React.Component {
     componentDidMount() {
-        this.props.categoryStore.loadColorList();
+        this.props.categoryStore.loadCategoryList();
     }
 
     handleChangeColor = (e) => {
-        this.props.categoryStore.changeColor();
+        this.props.categoryStore.changeCategory();
     }
 
     render(){
-        const {colorList} = this.props.categoryStore;
-        const CategoryRows = [
-            createData('드레스', <FormControlLabel value="male" control={<Radio />}  />),
-            createData('치마', <FormControlLabel value="male" control={<Radio />} />),
-            createData('바지', <FormControlLabel value="male" control={<Radio />} />),
-            createData('티셔츠', <FormControlLabel value="male" control={<Radio />} />),
-        ];
+        const {categoryList} = this.props.categoryStore;
         return(
             <Table size="small" aria-label="a dense table">
                 <TableHead>
@@ -41,17 +35,14 @@ export default class Category extends React.Component {
                 </TableHead>
 
                 <TableBody>
-                    {colorList.length > 0 ?
-                        colorList.map((color) =>
-                            <TableRow key={color.color_name}>
+                    {categoryList.length > 0 ?
+                        categoryList.map((category) =>
+                            <TableRow key={category.categoryItemName}>
                                 <TableCell>
-                                    {color.color_name}
+                                    {category.categoryItemName}
                                 </TableCell>
                                 <TableCell>
-                                    {color.color_hexcode}
-                                </TableCell>
-                                <TableCell>
-                                    {color.color_rgb}
+                                    {category.categoryItemName}
                                 </TableCell>
                             </TableRow>
                         )

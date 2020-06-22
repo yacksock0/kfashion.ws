@@ -11,22 +11,22 @@ const ListState = {
 export default class CategoryStore {
 
     @observable listState = ListState.Loaded;
-    @observable colorList = [];
+    @observable categoryList = [];
 
-    @action changeColor = () => {
-        this.loadColorList();
+    @action changeCategory = () => {
+        this.loadCategoryList();
     }
 
-    loadColorList = flow(function* loadColorList() {
+    loadCategoryList = flow(function* loadColorList() {
         this.listState = ListState.Loading;
 
         try {
-            let response = yield axios.get(`/api/v1/basic`)
-            const colors = response.data.colorList;
+            let response = yield axios.get(`/api/v1/category/item/basic/category`)
+            const categorys = response.data.categoryList;
 
             console.log(response.data);
 
-            this.colorList = colors;
+            this.categoryList = categorys;
 
             this.listState = ListState.Loaded;
         } catch(error) {

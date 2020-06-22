@@ -1,5 +1,7 @@
 package io.aetherit.kfashion.ws.service;
 
+import io.aetherit.kfashion.ws.model.KfashionSimpleUser;
+import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.model.SimpleUser;
 import io.aetherit.kfashion.ws.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,18 +40,17 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         final String userId = (String) request.getPrincipal();
         final String password = (String) request.getCredentials();
 
-        final User user = userService.getUser(userId);
+        final KfashionUserInfo user = userService.getUser(userId);
         if(user == null) {
             throw new UsernameNotFoundException("Username not found : " + userId);
         }
 
-        if(!user.isEnabled()) {
+        if(!user.isApproved()) {
             throw new DisabledException("User is not enabled : " + userId);
         }
 
         if ((password != null) && (password.length() > 0) && (passwordEncoder.matches(password, user.getPassword()))) {
             final List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(user.getType().name()));
 
             result = new UsernamePasswordAuthenticationToken(userId, password, authorities);
             result.setDetails(getSimpleUser(user));
@@ -65,12 +66,11 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(aClass);
     }
 
-    private SimpleUser getSimpleUser(User user) {
-        return SimpleUser.builder()
+    private KfashionSimpleUser getSimpleUser(KfashionUserInfo user) {
+        return KfashionSimpleUser.builder()
                 .id(user.getId())
                 .name(user.getName())
-                .type(user.getType())
-                .isEnabled(user.isEnabled())
+                .isApproved(user.isApproved())
                 .createdDatetime(user.getCreatedDatetime())
                 .updatedDatetime(user.getUpdatedDatetime())
                 .build();

@@ -2,7 +2,7 @@ import {action, computed, flow, observable, toJS} from "mobx";
 import axios from "axios";
 import * as validation from "../common/Validation";
 
-/*const MinUserId = 4;*/
+const MinUserId = 4;
 const MinUserName = 2;
 const MinPassword = 4;
 const MinNickName = 2;
@@ -16,11 +16,11 @@ const State = {
 }
 
 const EmptyNewMember = {
-   /* userId: '',*/
+    id: '',
     email: '',
     password: '',
     passwordConfirm: '',
-    userName: '',
+    name: '',
     nickName: '',
 }
 
@@ -49,9 +49,9 @@ export default class SignUpStore {
     @action clearState = () => {
         this.state = State.Ready;
     }
-    /*@action changeNewMemberId = (userId) => {
+    @action changeNewMemberId = (id) => {
         this.newMember.id = id;
-    }*/
+    }
     @action changeNewMemberEmail = (email) => {
         this.newMember.email = email;
     }
@@ -64,8 +64,8 @@ export default class SignUpStore {
         this.newMember.passwordConfirm = passwordConfirm;
     }
 
-    @action changeNewMemberUserName = (userName) => {
-        this.newMember.userName = userName;
+    @action changeNewMemberUserName = (name) => {
+        this.newMember.name = name;
     }
 
     @action changeNewMemberNickName = (nickName) => {
@@ -107,31 +107,31 @@ export default class SignUpStore {
     }
 
     @computed get canSignUp() {
-        /*const id = this.newMember.id.length >= MinUserId;*/
+        const id = this.newMember.id.length >= MinUserId;
         const emailVerification = validation.validateEmail(this.newMember.email);
         const agreements = this.agreements.service && this.agreements.privacy;
         const passwordConfirm = this.newMember.password === this.newMember.passwordConfirm;
         const password = this.newMember.password.length >= MinPassword;
-        const userName = this.newMember.userName.length >= MinUserName;
+        const userName = this.newMember.name.length >= MinUserName;
         const nickName = this.newMember.nickName.length >= MinNickName;
 
         return emailVerification && agreements && passwordConfirm && password && userName && nickName;
     }
 
     @computed get canAdminSignUp() {
-        /*const id = this.newMember.id.length >= MinUserId;*/
+        const id = this.newMember.id.length >= MinUserId;
         const emailVerification = validation.validateEmail(this.newMember.email);
         const passwordConfirm = this.newMember.password === this.newMember.passwordConfirm;
         const password = this.newMember.password.length >= MinPassword;
-        const userName = this.newMember.userName.length >= MinUserName;
+        const userName = this.newMember.name.length >= MinUserName;
         const nickName = this.newMember.nickName.length >= MinNickName;
 
         return emailVerification && passwordConfirm && password && userName && nickName;
     }
 
-    /*@computed get isValidId() {
+    @computed get isValidId() {
         return this.newMember.id.length >= MinUserId;
-    }*/
+    }
     @computed get isValidEmail() {
         return validation.validateEmail(this.newMember.email);
     }
@@ -145,7 +145,7 @@ export default class SignUpStore {
     }
 
     @computed get isValidUsername() {
-        return this.newMember.userName.length >= MinUserName;
+        return this.newMember.name.length >= MinUserName;
     }
 
     @computed get isValidNickName() {
@@ -171,35 +171,16 @@ export default class SignUpStore {
     doSignUp = flow(function* doSignUp(doAction) {
         this.state = State.Pending;
 
-        try {
-            const response = yield axios.get(`/api/v1/users/signupcheck?email=${this.newMember.email}`)
-            const isNotAvailEmail = response.data.result;
 
-            if(!isNotAvailEmail) {
                 const param = toJS(this.newMember);
                 delete param.passwordConfirm;
 
-                const resp = yield axios.post('/api/v1/users/signup', param);
+                const resp = yield axios.post('/api/v1/kfashion/users/signup', param);
                 if(resp.status === 200) {
                     this.state = State.Success;
                     if (doAction !== undefined) doAction();
-                }
-            } else {
-                this.state = State.NotAvailableEmail;
+
             }
-        } catch (e) {
-            this.state = State.Fail;
-        }
     });
 
-    getServerMode = flow(function* getServerMode() {
-        try {
-            const response = yield axios.get('/api/v1/informations/mode');
-            const serverMode = response.data;
-
-            this.serverMode = serverMode;
-        } catch(error) {
-            console.log("Can't get server mode");
-        }
-    })
 }

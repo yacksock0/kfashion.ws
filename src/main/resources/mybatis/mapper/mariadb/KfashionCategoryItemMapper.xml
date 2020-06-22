@@ -10,4 +10,25 @@
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
 
+    <select id="selectCategoryItem" resultMap="kfashionCategoryItemResultMap">
+        select *
+        from kfashion_category_item
+        where category_no=2;
+    </select>
+
+    <select id="selectColorList" resultMap="kfashionCategoryItemResultMap">
+        select *
+        from kfashion_category_item kci
+        where category_no=3;
+    </select>
+
+    <select id="selectSleeveLengthList" resultMap="kfashionCategoryItemResultMap">
+        select *
+        from kfashion_category_item kci
+        where category_no=9;
+    </select>
+
+
+
+
 </mapper>

@@ -20,20 +20,14 @@
             id,
             password,
             name,
-            birth,
-            gender,
             email,
-            phone,
             created_datetime,
             updated_datetime
         ) VALUES (
             #{id},
             #{password},
             #{name},
-            #{birth},
-            #{gender},
             #{email},
-            #{phone},
             NOW(),
             NOW()
         )
