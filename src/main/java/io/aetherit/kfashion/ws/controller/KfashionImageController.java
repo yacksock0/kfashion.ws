@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/img")
 public class KfashionImageController {
 
     private static final Logger logger = LoggerFactory.getLogger(KfashionImageController.class);
@@ -41,7 +41,6 @@ public class KfashionImageController {
 
     @PostMapping("/uploadImgFile")
     public void uploadImgFile(@RequestParam("file") MultipartFile file) throws IOException{
-        String fileName = kfashionImageService.storeFile(file);
         byte [] imgData = file.getBytes();
         kfashionImageService.insertImgUpload(imgData);
     }
@@ -60,7 +59,7 @@ public class KfashionImageController {
     }
 
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) throws IOException{
+    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))
