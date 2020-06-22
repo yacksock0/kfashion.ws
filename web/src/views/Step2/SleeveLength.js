@@ -15,7 +15,7 @@ export default class SleeveLength extends React.Component {
         this.props.secondStepStore.loadSleeveList();
     }
     render(){
-        const {sleeveLengthList} = this.props.secondStepStore;
+        const {sleeveList} = this.props.secondStepStore;
         return(
             <Table size="small" aria-label="a dense table">
                 <TableHead>
@@ -25,12 +25,9 @@ export default class SleeveLength extends React.Component {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {sleeveLengthList.length > 0 ?
-                        sleeveLengthList.map((sleeve) =>
+                    {sleeveList.length > 0 ?
+                        sleeveList.map((sleeve) =>
                             <TableRow key={sleeve.no}>
-                                <TableCell>
-                                    {sleeve.no}
-                                </TableCell>
                                 <TableCell>
                                     {sleeve.categoryItemName}
                                 </TableCell>

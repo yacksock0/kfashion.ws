@@ -109,7 +109,7 @@ class Step2 extends React.Component {
                              <div>
                                  <hr></hr>
                              </div>
-                             <ClothLength />
+                             <SleeveLength />
                          </div>
                          {/*<Grid container spacing={3} row>
                          <Grid item xs={6}>

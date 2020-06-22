@@ -6,6 +6,7 @@ import {withStyles} from "@material-ui/core/styles";
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import {Container, Toolbar, Typography, Button, Grid, TextField} from "@material-ui/core";
+import {inject, observer} from "mobx-react";
 
 
 const styles = theme => ({
@@ -53,7 +54,8 @@ const styles = theme => ({
 });
 
 
-
+@inject('fileUploadStore')
+@observer
 class BoundaryBox extends React.Component {
     componentDidMount() {
         this.props.enqueueSnackbar("BoundaryBox Work", {
@@ -78,7 +80,7 @@ class BoundaryBox extends React.Component {
                         <Grid container>
                             <Grid item xs={1} style={{marginRight:5}}>
                                 <div>
-                                    <input type="file" name="file" />
+                                    <input type="file" name="file"  onChange={this.fileUploadHandler}/>
                                 </div>
                             </Grid>
                             <Grid item xs={1} style={{marginRight:5}}>

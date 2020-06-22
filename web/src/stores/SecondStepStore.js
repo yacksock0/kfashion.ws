@@ -11,7 +11,7 @@ export default class SecondStepStore {
     @observable listState = ListState.Loaded;
     @observable categoryList = []
     @observable colorList = []
-    @observable sleeveLengthList = []
+    @observable sleeveList = []
 
     @computed
     get category() {
@@ -72,8 +72,8 @@ export default class SecondStepStore {
         try {
             const response = yield axios.get(`/api/v1/category/item/basic/sleeve`)
             if(response.status === 200) {
-                const sleeve =response.data.sleeveLengthList;
-                this.colorList=sleeve
+                const sleeve =response.data.sleeveList;
+                this.sleeveList=sleeve
                 this.listState = ListState.Loaded;
             }
         } catch(error) {

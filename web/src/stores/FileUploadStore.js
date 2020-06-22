@@ -7,25 +7,15 @@ export default class FileUploadStore {
 
     @action
 
-    fileUpload = flow(function* doLogin() {
+    fileUpload = flow(function* fileUpload(e) {
         this.uploadFile = State.Pending;
 
         try {
-            const param = this.uploadFile;
-            const response = yield axios.post('/api/v1/authentications/signin', param);
-            const token = response.data.token;
-            const user = response.data.user;
-
-            console.log('doLogin');
-            console.log(this);
-
-            this.loginState = State.Authenticated;
-            this.loginToken = token;
-            this.loginUser = user;
+            const formData = new FormData();
+            formData.append('file', e.target.file[0]);
+            const response = yield axios.post('/api/v1/img/uploadImgFile', formData);
         } catch (e) {
-            this.loginState = State.Failed;
-            this.loginToken = '';
-            this.loginUser = Object.assign({}, EmptyUser);
+            console.log('error다 이놈아');
         }
     });
 }

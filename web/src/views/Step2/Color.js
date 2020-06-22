@@ -31,9 +31,6 @@ export default class Color extends React.Component {
                         colorList.map((color) =>
                             <TableRow key={color.no}>
                                 <TableCell>
-                                    {color.no}
-                                </TableCell>
-                                <TableCell>
                                     {color.categoryItemName}
                                 </TableCell>
                             </TableRow>
