@@ -3,10 +3,9 @@ import
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import Stepper from '/Users/ho/kfashion.ws/web/src/components/Stepper';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
+import {Container, Toolbar, Typography, Button, Grid, TextField} from "@material-ui/core";
 
 
 const styles = theme => ({
@@ -53,11 +52,16 @@ const styles = theme => ({
     },
 });
 
+
+
 class BoundaryBox extends React.Component {
     componentDidMount() {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
+    }
+    fileUploadHandler = (event) => {
+        this.props.fileUploadStore.fileUpload();
     }
 
     render() {
@@ -67,20 +71,15 @@ class BoundaryBox extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 {/*Stepper*/}
                 <div style={{marginTop:70}}>
-                    <Stepper/>
                 </div>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
                         <Grid container>
                             <Grid item xs={1} style={{marginRight:5}}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.toolButton} >
-                                    Open Img
-                                </Button>
+                                <div>
+                                    <input type="file" name="file" />
+                                </div>
                             </Grid>
                             <Grid item xs={1} style={{marginRight:5}}>
                                 <Button

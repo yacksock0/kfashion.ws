@@ -1,36 +1,49 @@
 import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Table from "@material-ui/core/Table";
 import React from "react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControl from "@material-ui/core/FormControl";
+import {inject, observer} from "mobx-react";
 
-function createData(label, main) {
-    return { label, main};
-}
-
+@inject('secondStepStore')
+@observer
 export default class Color extends React.Component {
+    componentDidMount() {
+        this.props.secondStepStore.loadColorList();
+    }
     render(){
-        const ItemRows = [
-            createData('빨강', <FormControlLabel value="male" control={<Radio />}  />),
-            createData('파랑', <FormControlLabel value="male" control={<Radio />} />),
-            createData('노랑', <FormControlLabel value="male" control={<Radio />} />),
-        ];
+        const {colorList} = this.props.secondStepStore;
         return(
-            <Table size="small" aria-label="a dense table">
+            <Table stickyHeader size="small" aria-label="a dense table, sticky table" >
                 <TableHead>
                     <TableRow>
                         <TableCell>Label</TableCell>
                         <TableCell>Main</TableCell>
                     </TableRow>
                 </TableHead>
-                {ItemRows.map((row) => (
-                    <TableRow key={row.label}>
-                        <TableCell>{row.label}</TableCell>
-                        <TableCell>{row.main}</TableCell>
-                    </TableRow>
-                ))}
+                <TableBody>
+                    {colorList.length > 0 ?
+                        colorList.map((color) =>
+                            <TableRow key={color.no}>
+                                <TableCell>
+                                    {color.no}
+                                </TableCell>
+                                <TableCell>
+                                    {color.categoryItemName}
+                                </TableCell>
+                            </TableRow>
+                        )
+                        :
+                        <TableRow>
+
+                        </TableRow>
+                    }
+                </TableBody>
             </Table>
         );
     }

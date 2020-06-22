@@ -9,5 +9,9 @@
         <result property="createdDatetime"      column="created_datetime" />
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
-
+    <select id="selectCategoryItem" resultMap="kfashionCategoryItemResultMap">
+        SELECT *
+        FROM kfashion_category_item kci
+        WHERE category_no=2;
+    </select>
 </mapper>

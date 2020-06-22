@@ -5,6 +5,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import BoundaryBox from "../views/Labeling/BoundaryBox";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,7 +27,7 @@ function getSteps() {
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return '이미지 업로드';
+            return 'qkdnsejfl';
         case 1:
             return '영역지정';
         case 2:

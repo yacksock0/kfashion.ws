@@ -221,6 +221,27 @@ class Step3 extends React.Component {
                         </Grid>
                     </div>
                     <hr></hr>
+                    {/*<div className={classes.content} >
+                             <div style={{display:"inline-flex"}}>
+                             <Typography variant="h4" component="h2">
+                                 카테고리
+                             </Typography>
+                             <Button
+                                 variant="outlined"
+                                 color="primary"
+                                 className={classes.insertButton}
+                                 startIcon={<AddIcon />}
+                             >
+                                 항목추가
+                             </Button>
+                             </div>
+                             <div>
+                                 <hr></hr>
+                                 <Category />
+                                 <ColorTest />
+                             </div>
+
+                         </div>*/}
                     <Button
                         type="submit"
                         className={classes.buttonType1}

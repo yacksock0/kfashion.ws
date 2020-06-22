@@ -1,12 +1,17 @@
 import {action, computed, flow, observable} from "mobx";
 import axios from "axios";
 
+const ListState = {
+    Loading: 'Loading',
+    Loaded: 'Loaded',
+    LoadFailed: 'LoadFailed',
+};
+
 export default class SecondStepStore {
+    @observable listState = ListState.Loaded;
     @observable categoryList = []
     @observable colorList = []
     @observable sleeveLengthList = []
-    @observable clothLengthList = []
-    @observable printList = []
 
     @computed
     get category() {
@@ -20,7 +25,7 @@ export default class SecondStepStore {
     get sleeve() {
         return this.sleeveLengthList === undefined ? [] : this.sleeveLengthList;
     }
-    @computed
+    /*@computed
     get clothLength() {
         return this.clothLengthList === undefined ? [] : this.clothLengthList;
     }
@@ -28,12 +33,21 @@ export default class SecondStepStore {
     get print() {
         return this.printList === undefined ? [] : this.printList;
     }
+    @action changeCategory =() => {
+        this.loadCategoryList();
+    }
+    @action changeColor =() => {
+        this.loadColorList();
+    }*/
 
     loadCategoryList = flow(function* getCategoryList() {
+        this.listState = ListState.Loading;
         try {
             const response = yield axios.get(`/api/v1/category/item/basic/category`)
             if(response.status === 200) {
-                this.categoryList = response.data;
+                const category =response.data.categoryList;
+                this.categoryList=category
+                this.listState = ListState.Loaded;
             }
         } catch(error) {
             console.log("error getCategoryList", error);
@@ -41,10 +55,13 @@ export default class SecondStepStore {
     })
 
     loadColorList = flow(function* getColorList() {
+        this.listState = ListState.Loading;
         try {
             const response = yield axios.get(`/api/v1/category/item/basic/color`)
             if(response.status === 200) {
-                this.colorList = response.data;
+                const color =response.data.colorList;
+                this.colorList=color
+                this.listState = ListState.Loaded;
             }
         } catch(error) {
             console.log("error getColorList", error);
@@ -55,14 +72,16 @@ export default class SecondStepStore {
         try {
             const response = yield axios.get(`/api/v1/category/item/basic/sleeve`)
             if(response.status === 200) {
-                this.sleeveLengthList = response.data;
+                const sleeve =response.data.sleeveLengthList;
+                this.colorList=sleeve
+                this.listState = ListState.Loaded;
             }
         } catch(error) {
             console.log("error getSleeveList", error);
         }
     })
 
-    loadClothList = flow(function* getClothList() {
+   /* loadClothList = flow(function* getClothList() {
         try {
             const response = yield axios.get(`/api/v1/category/item/basic/cloth`)
             if(response.status === 200) {
@@ -82,7 +101,8 @@ export default class SecondStepStore {
         } catch(error) {
             console.log("error getPrintList", error);
         }
-    })
+    })*/
+
 
     /*changeCategoryStatus = flow(function* changeCategoryStatus(userId, statusCode) {
         try {
