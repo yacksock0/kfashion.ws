@@ -22,4 +22,5 @@ public class KfashionLabel {
     private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
+
 }

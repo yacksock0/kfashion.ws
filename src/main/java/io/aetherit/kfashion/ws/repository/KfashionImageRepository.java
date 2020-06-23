@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.repository;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.repository.mapper.KfashionImageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ public class KfashionImageRepository {
         this.mapper = mapper;
     }
 
-    public void insertImgUpload(byte[] imgData) {
-        mapper.insertImgUpload(imgData);
+    public void insertImgUpload(KfashionImage kfashionImage) {
+        mapper.insertImgUpload(kfashionImage);
     }
 }

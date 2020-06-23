@@ -7,12 +7,17 @@
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
 
-    <insert id="insertImgUpload" parameterType="Byte[]">
-     insert
-     into kfashion_image
-     (img_data)
-     values
-     (#{imgData})
+    <insert id="insertImgUpload" parameterType="KfashionImage">
+     INSERT
+     INTO kfashion_image (
+     img_data,
+     created_datetime,
+     updated_datetime
+     ) VALUES (
+     #{imgData},
+      NOW(),
+      NOW()
+      )
     </insert>
 
 

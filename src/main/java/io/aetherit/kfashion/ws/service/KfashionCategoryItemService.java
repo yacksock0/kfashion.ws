@@ -15,15 +15,55 @@ public class KfashionCategoryItemService {
         this.repository = repository;
     }
 
-    public List<KfashionCategoryItem> selectCategoryItem() {
-        return repository.selectCategoryItem();
-    }
-
     public List<KfashionCategoryItem> selectColorList() {
        return repository.selectColorList();
     }
+
     public List<KfashionCategoryItem> selectSleeveLengthList(){
        return repository.selectSleeveLengthList();
     }
 
+    public List<KfashionCategoryItem> selectStyleList() {
+        return repository.selectStyleList();
+    }
+
+    public List<KfashionCategoryItem> selectCategoryList() {
+        return repository.selectCategoryList();
+    }
+
+    public List<KfashionCategoryItem> selectDetailList() {
+        return repository.selectDetailList();
+    }
+
+    public List<KfashionCategoryItem> selectPrintList() {
+        return repository.selectPrintList();
+    }
+
+    public List<KfashionCategoryItem> selectTextureList() {
+        return repository.selectTextureList();
+    }
+
+    public List<KfashionCategoryItem> selectLengthList() {
+        return repository.selectLengthList();
+    }
+
+    public List<KfashionCategoryItem> selectNeckLineList() {
+        return repository.selectNeckLineList();
+    }
+
+    public List<KfashionCategoryItem> selectColorKaraList() {
+        return repository.selectColorKaraList();
+    }
+
+    public List<KfashionCategoryItem> selectFitList() {
+        return repository.selectFitList();
+    }
+
+    public List<KfashionCategoryItem> selectSafeList() {
+        return repository.selectSafeList();
+    }
+
+    public List<KfashionCategoryItem> selectSilhouetteList() {
+        return repository.selectSilhouetteList();
+    }
 }

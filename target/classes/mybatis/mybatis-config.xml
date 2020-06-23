@@ -8,13 +8,9 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUser" alias="KfashionUser" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.User" alias="User" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionInspectionStatus" alias="KfashionInspectionStatus" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionSimpleUser" alias="KfashionSimpleUser" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionCategory" alias="KfashionCategory" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.support.UserType" alias="UserType" />
-        <typeAlias type="io.aetherit.kfashion.ws.model.support.KfashionUserType" alias="KfashionUserType" />
         <typeAlias type="io.aetherit.kfashion.ws.repository.typehandler.BooleanYnTypeHandler" alias="BooleanYnTypeHandler" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserStatusChange" alias="KfashionUserStatusChange" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserProfile" alias="KfashionUserProfile" />
@@ -57,10 +53,8 @@
         <mapper resource="mybatis/mapper/mariadb/KfashionUserGroupAuthorityMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionUserGroupMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionUserInfoMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/KfashionUserMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionWorkHistoryMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionWorkMapper.xml" />
-        <mapper resource="mybatis/mapper/mariadb/UserMapper.xml" />
 
     </mappers>
 </configuration>

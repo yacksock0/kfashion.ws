@@ -9,7 +9,6 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Gender from "./Step2/Gender";
 import Color from "./Step2/Color";
 import ClothLength from "./Step2/ClothLength";
-import ColorTest from "./Step2/ColorTest";
 import Category from "./Step2/Category";
 import Print from "./Step2/Print";
 import SleeveLength from "./Step2/SleeveLength";
@@ -64,54 +63,54 @@ class Step2 extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
-                        <Typography variant="h4" component="h2">
-                            기본정보 입력
-                        </Typography>
-                 <Grid container spacing={3}>
-                     <Grid item xs={6}>
-                         <img src="https://placeimg.com/500/640/any" alt={""}></img>
-                     </Grid>
-                     <Grid item xs={6}>
+                    <Typography variant="h4" component="h2">
+                        기본정보 입력
+                    </Typography>
+                    <Grid container spacing={3}>
+                        <Grid item xs={6}>
+                            <img src="https://placeimg.com/450/650/any" alt={""}></img>
+                        </Grid>
+                        <Grid item xs={6}>
 
-                         <div className={classes.content}>
-                             <div style={{display:"inline-flex"}}>
-                             <Typography variant="h4" component="h2">
-                                 색상
-                             </Typography>
-                             <Button
-                                 variant="outlined"
-                                 color="primary"
-                                 className={classes.insertButton}
-                                 startIcon={<AddIcon />}
-                             >
-                                 항목추가
-                             </Button>
-                             </div>
-                             <div>
-                                 <hr></hr>
-                             </div>
-                             <Color />
-                         </div>
-                         <div className={classes.content}>
-                             <div style={{display:"inline-flex"}}>
-                                 <Typography variant="h4" component="h2">
-                                     소매 길이
-                                 </Typography>
-                                 <Button
-                                     variant="outlined"
-                                     color="primary"
-                                     className={classes.insertButton}
-                                     startIcon={<AddIcon />}
-                                 >
-                                     항목추가
-                                 </Button>
-                             </div>
-                             <div>
-                                 <hr></hr>
-                             </div>
-                             <SleeveLength />
-                         </div>
-                         {/*<Grid container spacing={3} row>
+                            <div className={classes.content}>
+                                <div style={{display:"inline-flex"}}>
+                                    <Typography variant="h4" component="h2">
+                                        색상
+                                    </Typography>
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        className={classes.insertButton}
+                                        startIcon={<AddIcon />}
+                                    >
+                                        항목추가
+                                    </Button>
+                                </div>
+                                <div>
+                                    <hr></hr>
+                                </div>
+                                <Color />
+                            </div>
+                            <div className={classes.content}>
+                                <div style={{display:"inline-flex"}}>
+                                    <Typography variant="h4" component="h2">
+                                        소매 길이
+                                    </Typography>
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        className={classes.insertButton}
+                                        startIcon={<AddIcon />}
+                                    >
+                                        항목추가
+                                    </Button>
+                                </div>
+                                <div>
+                                    <hr></hr>
+                                </div>
+                                <SleeveLength />
+                            </div>
+                            {/*<Grid container spacing={3} row>
                          <Grid item xs={6}>
                              <div className={classes.content}>
                                  <div style={{display:"inline-flex"}}>
@@ -133,22 +132,22 @@ class Step2 extends React.Component {
                                  <SleeveLength />
                              </div>
                         </Grid>*/}
-                     </Grid>
-                 </Grid>
+                        </Grid>
+                    </Grid>
                 </div>
                 <hr></hr>
                 <Button
                     type="submit"
                     className={classes.buttonType1}
                     variant="outlined"
-                    >
+                >
                     Previous
                 </Button>
                 <Button
                     type="submit"
                     className={classes.buttonType1}
                     variant="outlined"
-                     >
+                >
                     Next
                 </Button>
                 <Button
@@ -156,7 +155,7 @@ class Step2 extends React.Component {
                     className={classes.buttonType2}
                     color="primary"
                     variant="outlined"
-                    >
+                >
                     Save and Next
                 </Button>
             </Container>

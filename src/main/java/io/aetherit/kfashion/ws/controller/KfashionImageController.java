@@ -39,15 +39,15 @@ public class KfashionImageController {
         }
 
 
-    @PostMapping("/uploadImgFile")
-    public void uploadImgFile(@RequestParam("file") MultipartFile file) throws IOException{
-        byte [] imgData = file.getBytes();
-        kfashionImageService.insertImgUpload(imgData);
-    }
-
-
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file){
+            KfashionImage kfashionImage = new KfashionImage();
+        try {
+            kfashionImage.setImgData(file.getBytes());
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        kfashionImageService.insertImgUpload(kfashionImage);
         String fileName = kfashionImageService.storeFile(file);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")

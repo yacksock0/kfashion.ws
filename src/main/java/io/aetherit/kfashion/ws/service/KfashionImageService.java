@@ -71,7 +71,7 @@ public class KfashionImageService {
         }
     }
 
-    public void insertImgUpload(byte[] imgData) {
-        repository.insertImgUpload(imgData);
+    public void insertImgUpload(KfashionImage kfashionImage) {
+        repository.insertImgUpload(kfashionImage);
     }
 }
