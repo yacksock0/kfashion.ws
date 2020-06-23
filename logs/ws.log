@@ -379,3 +379,91 @@
 2020-06-23 16:17:30.186 5427 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 7 ms
 2020-06-23 16:17:37.217 5427 [-8080-exec-2] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [400 BAD_REQUEST] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-23T16:17:37.217, code=Unknown, status=400, error=Bad Request, message=Required request part 'file' is not present, path=/api/v1/img/uploadFile)
 2020-06-23 16:19:01.509 5427 [-8080-exec-5] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [400 BAD_REQUEST] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-23T16:19:01.509, code=Unknown, status=400, error=Bad Request, message=Required request part 'file' is not present, path=/api/v1/img/uploadFile)
+2020-06-23 16:24:01.948 5427 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-23 16:24:05.308 5547 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 5547 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
+2020-06-23 16:24:05.310 5547 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-23 16:24:05.311 5547 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-23 16:24:05.941 5547 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$1f949252] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-23 16:24:06.192 5547 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-23 16:24:06.192 5547 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-23 16:24:06.192 5547 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-23 16:24:06.205 5547 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-23 16:24:06.209 5547 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-23 16:24:06.210 5547 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-23 16:24:06.210 5547 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-23 16:24:06.253 5547 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-23 16:24:06.253 5547 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 914 ms
+2020-06-23 16:24:06.289 5547 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-23 16:24:06.619 5547 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-06-23 16:24:06.630 5547 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-06-23 16:24:06.645 5547 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-06-23 16:24:06.645 5547 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-06-23 16:24:06.647 5547 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-06-23 16:24:06.763 5547 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200616_1844 #0
+2020-06-23 16:24:07.055 5547 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@17dd671f, org.springframework.security.web.context.SecurityContextPersistenceFilter@4a7fd0c9, org.springframework.security.web.header.HeaderWriterFilter@7601bc96, org.springframework.security.web.authentication.logout.LogoutFilter@59bbe88a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3291b443, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@44032fde, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3bbf6abe, org.springframework.security.web.session.SessionManagementFilter@4bc33720, org.springframework.security.web.access.ExceptionTranslationFilter@512575e9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@a50d709]
+2020-06-23 16:24:07.146 5547 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-23 16:24:07.310 5547 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-23 16:24:07.314 5547 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-23 16:24:07.365 5547 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-23 16:24:07.368 5547 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.344 seconds (JVM running for 2.867)
+2020-06-23 16:24:14.553 5547 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-23 16:24:14.554 5547 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-23 16:24:14.560 5547 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 6 ms
+2020-06-23 16:49:42.083 5547 [8080-exec-25] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-23T16:49:42.083, code=Unknown, status=500, error=Internal Server Error, message=Current request is not a multipart request, path=/api/v1/img/uploadMultipleFiles)
+2020-06-23 16:53:31.447 5547 [8080-exec-34] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-23T16:53:31.447, code=Unknown, status=500, error=Internal Server Error, message=Current request is not a multipart request, path=/api/v1/img/uploadMultipleFiles)
+2020-06-23 17:01:52.909 5547 [8080-exec-51] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=8; 
+2020-06-23 17:01:52.909 5547 [8080-exec-50] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=3; 
+2020-06-23 17:01:52.909 5547 [8080-exec-51] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==> Parameters: 
+2020-06-23 17:01:52.909 5547 [8080-exec-50] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==> Parameters: 
+2020-06-23 17:01:52.914 5547 [8080-exec-51] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : <==      Total: 0
+2020-06-23 17:01:52.915 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-06-23 17:01:52.915 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 42, 3, 블랙, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.916 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 43, 3, 화이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.916 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 44, 3, 그레이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.917 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 45, 3, 레드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.918 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 46, 3, 핑크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.919 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 47, 3, 오렌지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.919 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 48, 3, 베이지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.920 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 49, 3, 브라운, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.921 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 50, 3, 옐로우, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.922 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 51, 3, 그린, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.922 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 52, 3, 카키, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.923 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 53, 3, 민트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.923 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 54, 3, 블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.924 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 55, 3, 네이비, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.924 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 56, 3, 스카이블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.925 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 57, 3, 퍼플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.926 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 58, 3, 라벤더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.926 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 59, 3, 와인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.927 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 60, 3, 네온, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.927 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 61, 3, 골드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.927 5547 [8080-exec-50] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 62, 3, 실버, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:01:52.928 5547 [8080-exec-50] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : <==      Total: 21
+2020-06-23 17:02:03.367 5547 [8080-exec-53] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=8; 
+2020-06-23 17:02:03.367 5547 [8080-exec-52] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=3; 
+2020-06-23 17:02:03.367 5547 [8080-exec-53] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==> Parameters: 
+2020-06-23 17:02:03.368 5547 [8080-exec-52] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==> Parameters: 
+2020-06-23 17:02:03.375 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-06-23 17:02:03.375 5547 [8080-exec-53] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : <==      Total: 0
+2020-06-23 17:02:03.375 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 42, 3, 블랙, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.376 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 43, 3, 화이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.377 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 44, 3, 그레이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.377 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 45, 3, 레드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.378 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 46, 3, 핑크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.378 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 47, 3, 오렌지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.379 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 48, 3, 베이지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.379 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 49, 3, 브라운, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.380 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 50, 3, 옐로우, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.380 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 51, 3, 그린, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.380 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 52, 3, 카키, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.381 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 53, 3, 민트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.381 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 54, 3, 블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.381 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 55, 3, 네이비, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.382 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 56, 3, 스카이블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.382 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 57, 3, 퍼플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.383 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 58, 3, 라벤더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.383 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 59, 3, 와인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.384 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 60, 3, 네온, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.384 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 61, 3, 골드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.384 5547 [8080-exec-52] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 62, 3, 실버, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-23 17:02:03.385 5547 [8080-exec-52] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : <==      Total: 21
