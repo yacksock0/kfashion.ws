@@ -2,8 +2,6 @@ package io.aetherit.kfashion.ws.service;
 
 import io.aetherit.kfashion.ws.model.KfashionSimpleUser;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
-import io.aetherit.kfashion.ws.model.SimpleUser;
-import io.aetherit.kfashion.ws.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -12,7 +10,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -23,12 +20,12 @@ import java.util.List;
 
 @Component
 public class UserAuthenticationProvider implements AuthenticationProvider {
-    private UserService userService;
+    private KfashionUserInfoService kfashionUserInfoService;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserAuthenticationProvider(UserService userService, PasswordEncoder passwordEncoder) {
-        this.userService = userService;
+    public UserAuthenticationProvider(KfashionUserInfoService kfashionUserInfoService, PasswordEncoder passwordEncoder) {
+        this.kfashionUserInfoService = kfashionUserInfoService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -40,7 +37,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         final String userId = (String) request.getPrincipal();
         final String password = (String) request.getCredentials();
 
-        final KfashionUserInfo user = userService.getUser(userId);
+        final KfashionUserInfo user = kfashionUserInfoService.getUser(userId);
         if(user == null) {
             throw new UsernameNotFoundException("Username not found : " + userId);
         }

@@ -16,9 +16,6 @@ public class KfashionCategoryItemRepository {
         this.mapper = mapper;
     }
 
-    public List<KfashionCategoryItem> selectCategoryItem() {
-        return mapper.selectCategoryItem();
-    }
 
     public List<KfashionCategoryItem> selectColorList() {
         return mapper.selectColorList();
@@ -26,5 +23,49 @@ public class KfashionCategoryItemRepository {
 
     public List<KfashionCategoryItem> selectSleeveLengthList() {
         return mapper.selectSleeveLengthList();
+    }
+
+    public List<KfashionCategoryItem> selectStyleList() {
+        return mapper.selectStyleList();
+    }
+
+    public List<KfashionCategoryItem> selectCategoryList() {
+        return mapper.selectCategoryList();
+    }
+
+    public List<KfashionCategoryItem> selectDetailList() {
+        return mapper.selectDetailList();
+    }
+
+    public List<KfashionCategoryItem> selectPrintList() {
+        return mapper.selectPrintList();
+    }
+
+    public List<KfashionCategoryItem> selectTextureList() {
+        return mapper.selectTextureList();
+    }
+
+    public List<KfashionCategoryItem> selectLengthList() {
+        return mapper.selectLengthList();
+    }
+
+    public List<KfashionCategoryItem> selectNeckLineList() {
+        return mapper.selectNeckLineList();
+    }
+
+    public List<KfashionCategoryItem> selectColorKaraList() {
+        return mapper.selectColorKaraList();
+    }
+
+    public List<KfashionCategoryItem> selectFitList() {
+        return mapper.selectFitList();
+    }
+
+    public List<KfashionCategoryItem> selectSafeList() {
+        return mapper.selectSafeList();
+    }
+
+    public List<KfashionCategoryItem> selectSilhouetteList() {
+        return mapper.selectSilhouetteList();
     }
 }

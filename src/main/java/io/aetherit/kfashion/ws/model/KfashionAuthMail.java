@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class KfashionAuthMail {
     private String email;
     private String authKey;
+    private String authCode;
 }

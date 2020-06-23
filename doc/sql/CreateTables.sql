@@ -33,14 +33,23 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 ##
 ## for Application
 ##
-CREATE TABLE kfashion_users (
-    id                      NVARCHAR(64)        NOT NULL,
-    password                NVARCHAR(128)       NOT NULL,
-    name                    NVARCHAR(64)        NOT NULL,
-    type                    VARCHAR(32)         NOT NULL,
-    is_enabled              CHAR(1)             NOT NULL,
-    created_datetime        DATETIME            NOT NULL,
-    updated_datetime        DATETIME            NOT NULL,
 
-    CONSTRAINT users_pk                      PRIMARY KEY (id)
-) ENGINE InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE TABLE kfashion_user_info (
+	id						NVARCHAR(64)	NOT NULL,
+	password				NVARCHAR(64)	NOT NULL,
+	name					NVARCHAR(64)	NOT NULL,
+	birth					DATETIME		NULL,
+	gender 					NVARCHAR(32)	NULL,
+	email					NVARCHAR(256)	NULL,
+	phone					NVARCHAR(64)	NULL,
+	group_no				INT				NULL,						-- null  DEFAULT 1
+	is_admin				CHAR(1)			NOT NULL 	DEFAULT 'N', 	-- boolean y/n DEFAULT n **************
+	is_approved				CHAR(1)			NOT NULL	DEFAULT 'N',	-- boolean y/n DEFAULT n
+    created_datetime		DATETIME		NOT NULL,
+	updated_datetime		DATETIME		NOT NULL,
+
+    PRIMARY KEY (id),
+    CONSTRAINT fk_kfashion_user_info_group_no 		FOREIGN KEY (group_no)
+													REFERENCES 	kfashion_user_group (no)
+);
+​

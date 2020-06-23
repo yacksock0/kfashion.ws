@@ -1,7 +1,5 @@
 package io.aetherit.kfashion.ws.model;
 
-import io.aetherit.kfashion.ws.model.support.KfashionUserType;
-import io.aetherit.kfashion.ws.model.support.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
