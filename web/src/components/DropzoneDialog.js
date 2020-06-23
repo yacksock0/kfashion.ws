@@ -5,7 +5,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import axios from "axios";
-import {flow} from "mobx";
+import {inject, observer} from "mobx-react";
 
 const styles = theme => ({
     toolButton:{
@@ -24,6 +24,9 @@ DropzoneDialog.defaultProps = {
     filesLimit: 20,
     initialFiles: [],
 };
+
+@inject('fileUploadStore')
+@observer
 class DropzoneDialogExample extends Component {
     constructor(props) {
         super(props);
@@ -38,19 +41,10 @@ class DropzoneDialogExample extends Component {
             open: false
         });
     }
-    fileupload = flow(function* handleSave(files) {
-        this.setState({
-            files: files,
-            open: false
-        });
-        try {
-            const fileParam = new FormData();
-            fileParam.append('file', this.state);
-            yield axios.post('/api/v1/img/uploadFile', fileParam);
-        } catch (error) {
-            console.log('error')
-        }
-    });
+    handleSave(file){
+        //Saving files to state for further use and closing Modal.
+        this.props.fileUploadStore.fileupload(file);
+    }
 
     handleOpen() {
         this.setState({
@@ -68,7 +62,7 @@ class DropzoneDialogExample extends Component {
                 </Button>
                 <DropzoneDialog
                     open={this.state.open}
-                    onSave={this.fileupload.bind(this)}
+                    onSave={this.handleSave.bind(this)}
                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
                     showPreviews={true}
                     maxFileSize={5000000}
