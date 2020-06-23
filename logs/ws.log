@@ -1727,3 +1727,4 @@ Caused by: java.sql.SQLException: Duplicate entry 'admin' for key 'PRIMARY'
 2020-06-23 14:44:16.606 2820 [-8080-exec-8] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : ==> Parameters: 'jang4046@naver.com'(String)
 2020-06-23 14:44:16.610 2820 [-8080-exec-8] - DEBUG            i.a.k.w.r.m.K.selectUserByEmail  159 : <==      Total: 0
 2020-06-23 14:44:43.737 2820 [8080-exec-10] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [400 BAD_REQUEST] to 0:0:0:0:0:0:0:1 : ErrorResponse(timestamp=2020-06-23T14:44:43.737, code=Unknown, status=400, error=Bad Request, message=Required String parameter 'email' is not present, path=/api/v1/kfashion/users/signupcheck/email?l=jang4046@naver.com&required=true)
+2020-06-23 15:08:30.616 2820 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
