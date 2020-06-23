@@ -65,10 +65,10 @@ export default class FileUploadStore {
             console.log('error다 이놈아');
         }
     });*/
-    fileupload = flow(function* handleSave(file) {
+    fileupload = flow(function* handleSave(files) {
         try {
             const fileParam = new FormData();
-            fileParam.append('file', file);
+            fileParam.append('file', files);
             yield axios.post('/api/v1/img/uploadFile', fileParam);
         } catch (error) {
             console.log('error')

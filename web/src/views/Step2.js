@@ -9,7 +9,6 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Gender from "./Step2/Gender";
 import Color from "./Step2/Color";
 import ClothLength from "./Step2/ClothLength";
-import ColorTest from "./Step2/ColorTest";
 import Category from "./Step2/Category";
 import Print from "./Step2/Print";
 import SleeveLength from "./Step2/SleeveLength";

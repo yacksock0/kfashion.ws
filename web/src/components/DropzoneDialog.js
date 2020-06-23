@@ -41,9 +41,9 @@ class DropzoneDialogExample extends Component {
             open: false
         });
     }
-    handleSave(file){
+    handleSave(files){
         //Saving files to state for further use and closing Modal.
-        this.props.fileUploadStore.fileupload(file);
+        this.props.fileUploadStore.fileupload(files);
     }
 
     handleOpen() {
