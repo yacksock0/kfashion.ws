@@ -5,7 +5,6 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import axios from "axios";
-import {flow} from "mobx";
 import {inject, observer} from "mobx-react";
 
 const styles = theme => ({
@@ -37,19 +36,14 @@ class DropzoneDialogExample extends Component {
         };
     }
 
-    componentDidMount() {
-        this.props.fileUploadStore.imgUpload();
-    }
-
     handleClose() {
         this.setState({
             open: false
         });
     }
-    handleChange(files){
-        this.setState({
-            files: files
-        });
+    handleSave(files){
+        //Saving files to state for further use and closing Modal.
+        this.props.fileUploadStore.fileupload(files);
     }
 
     handleOpen() {
@@ -58,9 +52,6 @@ class DropzoneDialogExample extends Component {
         });
     }
 
-    handleClickOK = () => {
-        this.props.fileUploadStore.imgUpload();
-    }
     render() {
         const { classes } = this.props;
         return (
@@ -71,8 +62,7 @@ class DropzoneDialogExample extends Component {
                 </Button>
                 <DropzoneDialog
                     open={this.state.open}
-                    onClick={this.handleClickOK}
-                    onChage={this.handleChange.bind(this)}
+                    onSave={this.handleSave.bind(this)}
                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
                     showPreviews={true}
                     maxFileSize={5000000}
