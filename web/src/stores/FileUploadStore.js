@@ -22,7 +22,7 @@ const UpdateState = {
     UploadFailed: 'UploadFailed',
 };
 export default class FileUploadStore {
-    @observable fileList = [];
+    @observable files = [];
     @observable uploadFile = '';
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
@@ -66,49 +66,14 @@ export default class FileUploadStore {
         }
     });*/
     fileupload = flow(function* handleSave(files) {
+        console.log(files)
         try {
             const fileParam = new FormData();
             fileParam.append('file', files);
-            yield axios.post('/api/v1/img/uploadFile', fileParam);
+            yield axios.post('/api/v1/img/uploadMultipleFiles', fileParam);
         } catch (error) {
             console.log('error')
         }
     });
-
-    uploadFile = flow(function* uploadFile(userId) {
-        this.updateState = UpdateState.Uploading;
-
-        try {
-            const fileParam = new FormData();
-            fileParam.append('boardAttach', JSON.stringify({
-            }));
-            fileParam.append('file', this.uploadFile);
-
-            yield axios.post('/api/v1/img/uploadFile', fileParam);
-
-            const fileResponse = yield axios.get(`/api/v1/img/uploadFile`);
-            const files = fileResponse.data;
-
-            this.uploadFile = '';
-            this.fileList = files;
-            this.updateState = UpdateState.Uploaded;
-        } catch (error) {
-            this.updateState = UpdateState.UploadFailed;
-        }
-    })
-    addNewImg = flow(function* addNewBoard() {
-        this.addState = AddState.Adding;
-
-        try {
-                const fileParam = new FormData();
-                fileParam.append('file', this.uploadFile);
-
-                yield axios.post('/api/v1/files/board-attach', fileParam);
-            this.file = '';
-            this.addState = AddState.Added;
-        } catch(error) {
-            this.addState = AddState.AddFailed;
-        }
-    })
 
 }
