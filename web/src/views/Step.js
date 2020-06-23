@@ -2,7 +2,6 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-
 import {Container, Toolbar, Typography} from "@material-ui/core";
 
 
@@ -39,7 +38,7 @@ class Step extends React.Component {
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h4" component="h2">
-                            Step1
+                            이미지 업로드
                         </Typography>
                     </Toolbar>
                 </div>

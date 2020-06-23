@@ -9,6 +9,7 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import {inject, observer} from "mobx-react";
+import {Checkbox} from "@material-ui/core";
 
 @inject('secondStepStore')
 @observer
@@ -33,12 +34,13 @@ export default class Color extends React.Component {
                                 <TableCell>
                                     {color.categoryItemName}
                                 </TableCell>
+                                <TableCell>
+                                    <Checkbox color="primary"/>
+                                </TableCell>
                             </TableRow>
                         )
                         :
-                        <TableRow>
-
-                        </TableRow>
+                        ''
                     }
                 </TableBody>
             </Table>

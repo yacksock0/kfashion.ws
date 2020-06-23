@@ -5,9 +5,11 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import {Container, Toolbar, Typography, Button, Grid, TextField} from "@material-ui/core";
+import FormControl from "@material-ui/core/FormControl/FormControl";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel"
+import {Container, Toolbar, Typography, Button, Grid, TextField, CircularProgress} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
-
+import DropzoneDialogExample from "../../components/DropzoneDialog";
 
 const styles = theme => ({
     mainContainer: {
@@ -51,6 +53,28 @@ const styles = theme => ({
     canvas:{
         backgroundColor:'black',
     },
+    fileText: {
+        paddingTop: 32,
+        paddingRight: theme.spacing(2),
+        textAlign: 'left'
+
+    },
+    filebox: {
+        paddingTop: 35,
+        marginRight: theme.spacing(1),
+        marginLeft: theme.spacing(1),
+    },
+    fileSelection: {
+        position: 'absolute',
+        width: 1,
+        height: 1,
+        padding: 0,
+        margin: -1,
+        overflow: 'hidden',
+        clip: 'rect(0,0,0,0)',
+        border: 0,
+        borderRadius: 12,
+    },
 });
 
 
@@ -62,13 +86,18 @@ class BoundaryBox extends React.Component {
             variant: 'info'
         });
     }
-    fileUploadHandler = (event) => {
-        this.props.fileUploadStore.fileUpload();
+    handleChangeUploadFile = (event) => {
+        const file = event.target.files[0];
+
+        this.props.fileUploadStore.changeUploadFile(file);
+    }
+    handleOk = () => {
+        this.props.fileUploadStore.addNewImg();
     }
 
     render() {
         const { classes } = this.props;
-
+        const { uploadFile} = this.props.fileUploadStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 {/*Stepper*/}
@@ -79,9 +108,7 @@ class BoundaryBox extends React.Component {
                     <Toolbar className={classes.toolbar}>
                         <Grid container>
                             <Grid item xs={1} style={{marginRight:5}}>
-                                <div>
-                                    <input type="file" name="file"  onChange={this.fileUploadHandler}/>
-                                </div>
+                                <DropzoneDialogExample />
                             </Grid>
                             <Grid item xs={1} style={{marginRight:5}}>
                                 <Button
