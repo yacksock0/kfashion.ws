@@ -7,6 +7,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import TableBody from "@material-ui/core/TableBody";
 import {inject, observer} from "mobx-react";
+import {Checkbox} from "@material-ui/core";
+import RadioGroup from "@material-ui/core/RadioGroup";
 
 @inject('secondStepStore')
 @observer
@@ -30,6 +32,9 @@ export default class SleeveLength extends React.Component {
                             <TableRow key={sleeve.no}>
                                 <TableCell>
                                     {sleeve.categoryItemName}
+                                </TableCell>
+                                <TableCell>
+                                    <Checkbox color="primary"/>
                                 </TableCell>
                             </TableRow>
                         )

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from 'react'
+import DropzoneDialogExample from "../components/DropzoneDialog";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
@@ -44,23 +45,8 @@ class Home extends React.Component {
                         <Typography variant="h4" component="h2">
                             Home 1024 x 720
                         </Typography>
-
-
                     </Toolbar>
-                    <img src="https://placeimg.com/1024/720/any" alt={""}></img>
-                    <Typography variant="h4" component="h2">
-                        300 x 300
-                    </Typography>
-                    <div>
-                        <img src="https://placeimg.com/300/300/any" alt={""}></img>
-                    </div>
-                    <Typography variant="h4" component="h2">
-                        450x650
-                    </Typography>
-                    <div>
 
-                        <img src="https://placeimg.com/450/650/any" alt={""}></img>
-                    </div>
                 </div>
             </Container>
         );
