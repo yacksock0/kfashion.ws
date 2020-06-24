@@ -12,17 +12,26 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Category from "./step3/Category";
 import FormGroup from '@material-ui/core/FormGroup';
-
+import Style from "./step3/Style";
+import Detail from "./step3/Detail";
+import Print from "./step3/Print";
+import Texture from "./step3/Texture";
+import ClothLength from "./step3/ClothLength";
+import NeckLine from "./step3/NeckLine";
+import ColorKara from "./step3/ColorKara";
+import Fit from "./step3/Fit";
+import Safe from "./step3/Safe";
+import Silhouette from "./step3/Silhouette";
 
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        padding: theme.spacing(3),
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
-        marginTop: theme.spacing(4),
+        marginTop: theme.spacing(1),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -31,10 +40,9 @@ const styles = theme => ({
         width: '100%',
     },
     content:{
-        marginTop: 20,
+        marginTop: 15,
         display: 'flex',
         flexDirection: 'column',
-
     },
     buttonType1:{
         width: 100,
@@ -79,18 +87,25 @@ class Step3 extends React.Component {
 
             return (
                 <Container component="main" className={classes.mainContainer}>
-                    <div className={classes.appBarSpacer}/>
+                    <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
-                        <Typography variant="h2" component="h2">
-                            전문정보 입력
-                        </Typography>
-
-
-                        <Grid container spacing={2} >
-                            <Grid item xs={7} align-items-xs-center>
-                                <img src="https://placeimg.com/500/800/any" alt={''}></img>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} lg={6} style={{margin:"auto"}}>
+                                <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block", margin:"auto"}}></img>
                             </Grid>
-                            <Grid item xs={5}>
+                            <Grid container item xs={12} lg={6} >
+                            <Grid item xs={12} lg={6}>
+                                <div className={classes.content} >
+                                    <Typography variant="h5" component="h5">
+                                        스타일
+                                    </Typography>
+                                    <div>
+                                        <hr></hr>
+                                    </div>
+                                    <Style />
+                                </div>
+                            </Grid>
+                                <Grid item xs={12} lg={6}>
                                 <div className={classes.content}>
                                     <Typography variant="h5" component="h5">
                                         카테고리
@@ -98,149 +113,112 @@ class Step3 extends React.Component {
                                     <div>
                                         <hr></hr>
                                     </div>
-                                    <FormControl component="fieldset">
-                                        <RadioGroup row aria-label="gender" name="gender">
-                                            <FormControlLabel value="male" control={<Radio/>} label="Male" checked={true}/>
-
-                                            <FormControlLabel value="female" control={<Radio/>} label="Female"/>
-                                            <FormControlLabel value="unisex" control={<Radio/>} label="Unisex"/>
-                                        </RadioGroup>
-                                    </FormControl>
+                                    <Category />
                                 </div>
-                                <div className={classes.content}>
-                                    <Typography variant="h5" component="h5">
-                                        색상
-                                    </Typography>
-                                    <div>
-                                        <hr></hr>
-                                    </div>
-                                    <Table className={classes.table} size="small" aria-label="a dense table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Label</TableCell>
-                                                <TableCell>Main</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        {ItemRows.map((row) => (
-                                            <TableRow key={row.label}>
-                                                <TableCell>{row.label}</TableCell>
-                                                <TableCell>{row.main}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </Table>
-                                </div>
-                                <div className={classes.content}>
-                                    <Typography variant="h5" component="h5">
-                                        clothes standard
-                                    </Typography>
-                                    <div>
-                                        <hr></hr>
-                                    </div>
-                                    <Table className={classes.table} size="small" aria-label="a dense table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Label</TableCell>
-                                                <TableCell>Main</TableCell>
-                                                <TableCell>Sub</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        {styleRows.map((row) => (
-                                            <TableRow key={row.label}>
-                                                <TableCell>{row.label}</TableCell>
-                                                <TableCell> <TextField id="length"
-                                                                       name="length"
-                                                                       label={row.label}
-                                                                       variant="outlined"
-                                                                       margin="normal"
-                                                                       // value={}
-                                                                       onChange={this.handleChangeId}
-                                                                       required fullWidth /></TableCell>
-                                                <TableCell>{row.sub}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </Table>
-                                </div>
-                                <Grid container spacing={3} row>
-                                    <Grid item xs={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
-                                                의상길이
-                                            </Typography>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            <Table className={classes.table} size="small" aria-label="a dense table">
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell>Label</TableCell>
-                                                        <TableCell>Main</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                {ItemRows.map((row) => (
-                                                    <TableRow key={row.label}>
-                                                        <TableCell>{row.label}</TableCell>
-                                                        <TableCell>{row.main}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </Table>
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
-                                              프린트
-                                            </Typography>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            <Table className={classes.table} size="small" aria-label="a dense table">
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell>Label</TableCell>
-                                                        <TableCell>Main</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                {ItemRows.map((row) => (
-                                                    <TableRow key={row.label}>
-                                                        <TableCell>{row.label}</TableCell>
-                                                        <TableCell>{row.main}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </Table>
-                                        </div>
-                                    </Grid>
                                 </Grid>
+                                <Grid item xs={12} lg={6}>
                                 <div className={classes.content}>
-                                    <FormGroup row>
-                                        <FormControlLabel
-                                            control={<Checkbox name="checkedA"/>}
-                                            label="Not fashion Image"/>
-                                    </FormGroup>
+                                    <Typography variant="h5" component="h5">
+                                        디테일
+                                    </Typography>
+                                    <div>
+                                        <hr></hr>
+                                    </div>
+                                    <Detail />
                                 </div>
+                                </Grid>
+                                <Grid item xs={12} lg={6}>
+                                        <div className={classes.content}>
+                                            <Typography variant="h5" component="h5">
+                                                프린트
+                                            </Typography>
+                                            <div>
+                                                <hr></hr>
+                                            </div>
+                                            <Print />
+                                        </div>
+                                    </Grid>
+                                <Grid item xs={12} lg={6}>
+                                        <div className={classes.content}>
+                                            <Typography variant="h5" component="h5">
+                                              소재감
+                                            </Typography>
+                                            <div>
+                                                <hr></hr>
+                                            </div>
+                                            <Texture />
+                                        </div>
+                                    </Grid>
+                                <Grid item xs={12} lg={6}>
+                                    <div className={classes.content}>
+                                        <Typography variant="h5" component="h5">
+                                            기장
+                                        </Typography>
+                                        <div>
+                                            <hr></hr>
+                                        </div>
+                                        <ClothLength />
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} lg={6}>
+                                    <div className={classes.content}>
+                                        <Typography variant="h5" component="h5">
+                                            넥라인
+                                        </Typography>
+                                        <div>
+                                            <hr></hr>
+                                        </div>
+                                        <NeckLine />
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} lg={6}>
+                                    <div className={classes.content}>
+                                        <Typography variant="h5" component="h5">
+                                            칼라(카라)
+                                        </Typography>
+                                        <div>
+                                            <hr></hr>
+                                        </div>
+                                        <ColorKara />
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} lg={6}>
+                                    <div className={classes.content}>
+                                        <Typography variant="h5" component="h5">
+                                            핏
+                                        </Typography>
+                                        <div>
+                                            <hr></hr>
+                                        </div>
+                                        <Fit />
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} lg={6}>
+                                    <div className={classes.content}>
+                                        <Typography variant="h5" component="h5">
+                                            세이프
+                                        </Typography>
+                                        <div>
+                                            <hr></hr>
+                                        </div>
+                                        <Safe />
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} lg={6}>
+                                    <div className={classes.content}>
+                                        <Typography variant="h5" component="h5">
+                                            실루엣
+                                        </Typography>
+                                        <div>
+                                            <hr></hr>
+                                        </div>
+                                        <Silhouette />
+                                    </div>
+                                </Grid>
+                                </Grid>
                             </Grid>
-                        </Grid>
                     </div>
                     <hr></hr>
-                    {/*<div className={classes.content} >
-                             <div style={{display:"inline-flex"}}>
-                             <Typography variant="h4" component="h2">
-                                 카테고리
-                             </Typography>
-                             <Button
-                                 variant="outlined"
-                                 color="primary"
-                                 className={classes.insertButton}
-                                 startIcon={<AddIcon />}
-                             >
-                                 항목추가
-                             </Button>
-                             </div>
-                             <div>
-                                 <hr></hr>
-                                 <Category />
-                             </div>
-
-                         </div>*/}
                     <Button
                         type="submit"
                         className={classes.buttonType1}

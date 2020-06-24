@@ -13,14 +13,15 @@ import Home from "./views/Home";
 import Step from "./views/Step";
 import Step2 from "./views/Step2";
 import Step3 from "./views/Step3";
-import BoundaryBox from "./views/Labeling/BoundaryBox";
-import BoundaryBoxList from "./views/Labeling/BoundaryBoxList";
-import Segmentation from "./views/Labeling/Segmentaion";
-import Polygon from "./views/Labeling/Polygon";
-import Test from "./views/Labeling/Test";
+import BoundaryBox from "./views/labeling/BoundaryBox";
+import BoundaryBoxList from "./views/labeling/BoundaryBoxList";
+import Segmentation from "./views/labeling/Segmentaion";
+import Polygon from "./views/labeling/Polygon";
 import SignIn from "./views/SignIn";
 import * as store from "./stores/AuthStore";
 import SignUp from "./views/SignUp";
+import AdminGroup from "./views/admin/AdminGroup";
+import Verify from "./views/verify";
 
 
 const style = () => ({
@@ -115,12 +116,13 @@ class App extends React.Component {
                                   <Route exact path="/Step/BoundaryBoxList" component={BoundaryBoxList} />
                                   <Route exact path="/Step/Segmentation" component={Segmentation} />
                                   <Route exact path="/Step/Polygon" component={Polygon} />
-                                  <Route exact path="/Test" component={Test} />
+                                  <Route exact path="/admin/createGroup" component={AdminGroup} />
                               </Switch>
                             </React.Fragment>
                         ) : (
                             <Switch>
                             <Route path="/SignUp" component={SignUp} />
+                            <Route path="/api/v1/verify" component={Verify} />
                             <Route path="/" component={SignIn} />
                             </Switch>
                         )}

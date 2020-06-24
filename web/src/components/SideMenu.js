@@ -93,7 +93,7 @@ export default function SideMenu(props) {
                     <Link to="/step" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
-                        <ListItemText button onClick={handleClick} primary="1단계 레이블링"></ListItemText>
+                        <ListItemText button onClick={handleClick} primary="1단계 영역지정"></ListItemText>
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                 </Link>
@@ -148,13 +148,13 @@ export default function SideMenu(props) {
                 <Link to="/step2" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>
-                        <ListItemText primary="2단계 기본값"></ListItemText>
+                        <ListItemText primary="2단계 기본 레이블링"></ListItemText>
                     </ListItem>
                 </Link>
                 <Link to="/step3" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
-                        <ListItemText primary="3단계 검수"></ListItemText>
+                        <ListItemText primary="3단계 전문 레이블링"></ListItemText>
                     </ListItem>
                 </Link>
             </List>
@@ -164,17 +164,17 @@ export default function SideMenu(props) {
                 <ListItem button>
                     <ListItemIcon><WallpaperIcon /></ListItemIcon>
                     <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
-                    {open ? <ExpandLess /> : <ExpandMore />}
+                    {open1 ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
             </Link>
-            <Link to="/admin/createGroupAdmin" className={classes.link}>
+            <Link to="/admin/createGroup" className={classes.link}>
                 <Collapse in={open1} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
                                 <AspectRatioIcon />
                             </ListItemIcon>
-                            <ListItemText primary="그룹 관리자 생성" />
+                            <ListItemText primary="가입승인 & 그룹생성" />
                         </ListItem>
                     </List>
                 </Collapse>

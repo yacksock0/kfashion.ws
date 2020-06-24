@@ -1,59 +1,48 @@
 import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
+import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
 import React from "react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
 import {inject, observer} from "mobx-react";
-
-function createData(label, main) {
-    return { label, main};
-}
+import {Checkbox} from "@material-ui/core";
 
 @inject('secondStepStore')
 @observer
-export default class Category extends React.Component {
+export default class Color extends React.Component {
     componentDidMount() {
-        this.props.secondStepStore.loadCategoryList();
+        this.props.secondStepStore.loadColorList();
     }
-
-    handleChangeColor = (e) => {
-        this.props.secondStepStore.changeCategory();
-    }
-
     render(){
-        const {categoryList} = this.props.secondStepStore;
+        const {colorList} = this.props.secondStepStore;
         return(
-            <Table size="small" aria-label="a dense table">
+            <TableContainer style={{maxHeight:250}}>
+            <Table stickyHeader size="small" aria-label="a dense table sticky table" >
                 <TableHead>
                     <TableRow>
                         <TableCell>Label</TableCell>
                         <TableCell>Main</TableCell>
                     </TableRow>
                 </TableHead>
-
                 <TableBody>
-                    {categoryList.length > 0 ?
-                        categoryList.map((category) =>
-                            <TableRow key={category.no}>
+                    {colorList.length > 0 ?
+                        colorList.map((color) =>
+                            <TableRow key={color.no}>
                                 <TableCell>
-                                    {category.no}
+                                    {color.categoryItemName}
                                 </TableCell>
                                 <TableCell>
-                                    {category.categoryItemName}
+                                    <Checkbox color="primary"/>
                                 </TableCell>
                             </TableRow>
                         )
                         :
-                        <TableRow>
-
-                        </TableRow>
+                        ''
                     }
                 </TableBody>
             </Table>
+            </TableContainer>
         );
-
     }
 };

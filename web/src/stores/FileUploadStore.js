@@ -32,8 +32,15 @@ export default class FileUploadStore {
         this.fileUpload();
     }
 */
-    @action changeUploadFile = (file) => {
-        this.uploadFile = file;
+    @action changeUploadFile = (files) => {
+        console.log('changeUploadFile 실행...:',files )
+        this.uploadFile = files;
+        const uploadFile = this.uploadFile;
+        console.log("this.uploadFile:", uploadFile);
+        const formData = new FormData();
+        formData.append('file', files);
+        console.log("fileParam:", formData);
+        axios.post('/api/v1/img/uploadFile', formData, {headers: {'Content-Type':'multipart/form-data'}});
     }
 /*    @computed get isAdding() {
         return this.addState === AddState.Adding;
@@ -46,7 +53,9 @@ export default class FileUploadStore {
     @computed get isAddFailed() {
         return this.addState === AddState.AddFailed;
     }*/
+    insertUploadFile(){
 
+    }
 
  /*   fileUpload = flow(function* fileUpload(e) {
         const formData = new FormData()
@@ -65,15 +74,13 @@ export default class FileUploadStore {
             console.log('error다 이놈아');
         }
     });*/
-    fileupload = flow(function* handleSave(files) {
-        console.log(files)
-        try {
-            const fileParam = new FormData();
-            fileParam.append('file', files);
-            yield axios.post('/api/v1/img/uploadMultipleFiles', fileParam);
-        } catch (error) {
-            console.log('error')
-        }
+    fileupload = flow(function* changeUploadFile() {
+        const uploadFile = this.uploadFile;
+        console.log("this.uploadFile:", uploadFile);
+            const formData = new FormData();
+            formData.append('file', uploadFile);
+            console.log("fileParam:", formData);
+            yield axios.post('/api/v1/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'}});
     });
 
 }

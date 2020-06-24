@@ -36,6 +36,7 @@ public class KfashionImageController {
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file){
+        System.out.println(file);
             KfashionImage kfashionImage = new KfashionImage();
         try {
             kfashionImage.setImgData(file.getBytes());
@@ -55,7 +56,7 @@ public class KfashionImageController {
 
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-            System.out.println(files);
+            System.out.println(files.toString());
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))
