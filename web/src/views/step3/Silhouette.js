@@ -12,11 +12,11 @@ import {Checkbox} from "@material-ui/core";
 @observer
 export default class Category extends React.Component {
     componentDidMount() {
-        this.props.thirdStepStore.loadStyleList();
+        this.props.thirdStepStore.loadSilhouetteList();
     }
 
     render(){
-        const {styleList} = this.props.thirdStepStore;
+        const {silhouetteList} = this.props.thirdStepStore;
         return(
             <TableContainer style={{maxHeight:100}}>
                 <Table size="small" aria-label="a dense table">
@@ -28,11 +28,11 @@ export default class Category extends React.Component {
                     </TableHead>
 
                     <TableBody>
-                        {styleList.length > 0 ?
-                            styleList.map((style) =>
-                                <TableRow key={style.no}>
+                        {silhouetteList.length > 0 ?
+                            silhouetteList.map((silhouette) =>
+                                <TableRow key={silhouette.no}>
                                     <TableCell>
-                                        {style.categoryItemName}
+                                        {silhouette.categoryItemName}
                                     </TableCell>
                                     <TableCell>
                                         <Checkbox color="primary"/>

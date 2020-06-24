@@ -1,26 +1,27 @@
 import TableHead from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Table from "@material-ui/core/Table";
 import React from "react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControl from "@material-ui/core/FormControl";
+import TableBody from "@material-ui/core/TableBody";
 import {inject, observer} from "mobx-react";
 import {Checkbox} from "@material-ui/core";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import TableContainer from "@material-ui/core/TableContainer";
 
 @inject('secondStepStore')
 @observer
-export default class Color extends React.Component {
+export default class SleeveLength extends React.Component {
     componentDidMount() {
-        this.props.secondStepStore.loadColorList();
+        this.props.secondStepStore.loadSleeveList();
     }
     render(){
-        const {colorList} = this.props.secondStepStore;
+        const {sleeveList} = this.props.secondStepStore;
         return(
-            <Table stickyHeader size="small" aria-label="a dense table, sticky table" >
+            <TableContainer style={{maxHeight:250}}>
+            <Table size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Label</TableCell>
@@ -28,11 +29,11 @@ export default class Color extends React.Component {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {colorList.length > 0 ?
-                        colorList.map((color) =>
-                            <TableRow key={color.no}>
+                    {sleeveList.length > 0 ?
+                        sleeveList.map((sleeve) =>
+                            <TableRow key={sleeve.no}>
                                 <TableCell>
-                                    {color.categoryItemName}
+                                    {sleeve.categoryItemName}
                                 </TableCell>
                                 <TableCell>
                                     <Checkbox color="primary"/>
@@ -40,10 +41,13 @@ export default class Color extends React.Component {
                             </TableRow>
                         )
                         :
-                        ''
+                        <TableRow>
+
+                        </TableRow>
                     }
                 </TableBody>
             </Table>
+            </TableContainer>
         );
     }
 };

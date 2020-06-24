@@ -2,27 +2,19 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {Button, Container, Grid, ListItemIcon, Typography} from "@material-ui/core";
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import Gender from "./Step2/Gender";
-import Color from "./Step2/Color";
-import ClothLength from "./Step2/ClothLength";
-import Category from "./Step2/Category";
-import Print from "./Step2/Print";
-import SleeveLength from "./Step2/SleeveLength";
+import {Button, Container, Grid, Typography} from "@material-ui/core";
+import Color from "./step2/Color";
+import SleeveLength from "./step2/SleeveLength";
 import AddIcon from '@material-ui/icons/Add';
 
 
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        padding: theme.spacing(3),
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(1),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -53,7 +45,7 @@ const styles = theme => ({
 class Step2 extends React.Component {
     componentDidMount() {
         this.props.enqueueSnackbar("Step2", {
-            variant: 'info'
+            variant: 'info',
         });
     }
     render() {
@@ -63,18 +55,15 @@ class Step2 extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
-                        <Typography variant="h4" component="h2">
-                            기본정보 입력
-                        </Typography>
                  <Grid container spacing={3}>
-                     <Grid item xs={6}>
-                         <img src="https://placeimg.com/450/650/any" alt={""}></img>
+                     <Grid item xs={12} lg={6} style={{margin:"auto"}}>
+                         <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block", margin:"auto"}}></img>
                      </Grid>
-                     <Grid item xs={6}>
+                     <Grid item xs={12} lg={6}>
 
                          <div className={classes.content}>
                              <div style={{display:"inline-flex"}}>
-                             <Typography variant="h4" component="h2">
+                             <Typography variant="h5" component="h2">
                                  색상
                              </Typography>
                              <Button
@@ -93,7 +82,7 @@ class Step2 extends React.Component {
                          </div>
                          <div className={classes.content}>
                              <div style={{display:"inline-flex"}}>
-                                 <Typography variant="h4" component="h2">
+                                 <Typography variant="h5" component="h2">
                                      소매 길이
                                  </Typography>
                                  <Button

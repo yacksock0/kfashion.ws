@@ -8,22 +8,17 @@ const ListState = {
 };
 
 export default class SecondStepStore {
-    @observable listState = ListState.Loaded;
-    @observable categoryList = []
     @observable colorList = []
     @observable sleeveList = []
 
-    @computed
-    get category() {
-        return this.categoryList === undefined ? [] : this.categoryList;
-    }
+
     @computed
     get color() {
         return this.colorList === undefined ? [] : this.colorList;
     }
     @computed
     get sleeve() {
-        return this.sleeveLengthList === undefined ? [] : this.sleeveLengthList;
+        return this.sleeveList === undefined ? [] : this.sleeveList;
     }
     /*@computed
     get clothLength() {
@@ -40,28 +35,14 @@ export default class SecondStepStore {
         this.loadColorList();
     }*/
 
-    loadCategoryList = flow(function* getCategoryList() {
-        this.listState = ListState.Loading;
-        try {
-            const response = yield axios.get(`/api/v1/category/item/basic/category`)
-            if(response.status === 200) {
-                const category =response.data.categoryList;
-                this.categoryList=category
-                this.listState = ListState.Loaded;
-            }
-        } catch(error) {
-            console.log("error getCategoryList", error);
-        }
-    })
+
 
     loadColorList = flow(function* getColorList() {
-        this.listState = ListState.Loading;
         try {
             const response = yield axios.get(`/api/v1/category/item/basic/color`)
             if(response.status === 200) {
                 const color =response.data.colorList;
                 this.colorList=color
-                this.listState = ListState.Loaded;
             }
         } catch(error) {
             console.log("error getColorList", error);
@@ -74,7 +55,6 @@ export default class SecondStepStore {
             if(response.status === 200) {
                 const sleeve =response.data.sleeveList;
                 this.sleeveList=sleeve
-                this.listState = ListState.Loaded;
             }
         } catch(error) {
             console.log("error getSleeveList", error);

@@ -1,24 +1,24 @@
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
+import TableBody from "@material-ui/core/TableBody";
 import Table from "@material-ui/core/Table";
 import React from "react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import TableBody from "@material-ui/core/TableBody";
 import {inject, observer} from "mobx-react";
+import TableContainer from "@material-ui/core/TableContainer";
 import {Checkbox} from "@material-ui/core";
-import RadioGroup from "@material-ui/core/RadioGroup";
 
-@inject('secondStepStore')
+@inject('thirdStepStore')
 @observer
-export default class SleeveLength extends React.Component {
+export default class Category extends React.Component {
     componentDidMount() {
-        this.props.secondStepStore.loadSleeveList();
+        this.props.thirdStepStore.loadCategoryList();
     }
+
     render(){
-        const {sleeveList} = this.props.secondStepStore;
+        const {categoryList} = this.props.thirdStepStore;
         return(
+            <TableContainer style={{maxHeight:100}}>
             <Table size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
@@ -26,12 +26,13 @@ export default class SleeveLength extends React.Component {
                         <TableCell>Main</TableCell>
                     </TableRow>
                 </TableHead>
+
                 <TableBody>
-                    {sleeveList.length > 0 ?
-                        sleeveList.map((sleeve) =>
-                            <TableRow key={sleeve.no}>
+                    {categoryList.length > 0 ?
+                        categoryList.map((category) =>
+                            <TableRow key={category.no}>
                                 <TableCell>
-                                    {sleeve.categoryItemName}
+                                    {category.categoryItemName}
                                 </TableCell>
                                 <TableCell>
                                     <Checkbox color="primary"/>
@@ -39,12 +40,11 @@ export default class SleeveLength extends React.Component {
                             </TableRow>
                         )
                         :
-                        <TableRow>
-
-                        </TableRow>
+                        ''
                     }
                 </TableBody>
             </Table>
+            </TableContainer>
         );
     }
 };

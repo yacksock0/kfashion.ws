@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {DropzoneDialog} from 'material-ui-dropzone'
+import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button';
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
@@ -32,7 +32,7 @@ class DropzoneDialogExample extends Component {
         super(props);
         this.state = {
             open: false,
-            files: []
+            files: [],
         };
     }
 
@@ -41,11 +41,15 @@ class DropzoneDialogExample extends Component {
             open: false
         });
     }
-    handleSave(files){
+    handleChange(files) {
+//Saving files to state for further use and closing Modal.
         this.setState({
-            open: false,
-            files: []
+            files: files,
+            open: false
         });
+    }
+    handleSave(){
+        const { files } = this.state.files;
         this.props.fileUploadStore.fileupload(files);
     }
 
@@ -57,6 +61,7 @@ class DropzoneDialogExample extends Component {
 
     render() {
         const { classes } = this.props;
+        const {uploadFile} = this.props.fileUploadStore;
         return (
             <div>
                 <Button onClick={this.handleOpen.bind(this)} className={classes.toolButton} variant="contained"
@@ -65,12 +70,18 @@ class DropzoneDialogExample extends Component {
                 </Button>
                 <DropzoneDialog
                     open={this.state.open}
+                    onChange={this.handleChange.bind(this)}
                     onSave={this.handleSave.bind(this)}
                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
                     showPreviews={true}
                     maxFileSize={5000000}
                     onClose={this.handleClose.bind(this)}
                 />
+                <div className="button">
+                    { this.state.visible ? <Button variant="contained" color="primary" onClick={this.handleSave.bind(this)}>
+                        Submit
+                    </Button> :null}
+                </div>
             </div>
         );
     }
