@@ -1,12 +1,20 @@
 package io.aetherit.kfashion.ws.service;
 
+import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
+import io.aetherit.kfashion.ws.repository.KfashionEmailAuthorityRepository;
 import io.aetherit.kfashion.ws.repository.KfashionUserInfoRepository;
+import io.aetherit.kfashion.ws.util.MailUtils;
+import io.aetherit.kfashion.ws.util.TempKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -34,17 +42,24 @@ public class KfashionUserInfoService {
     }
     private KfashionUserInfoRepository repository;
     private PasswordEncoder passwordEncoder;
+    private JavaMailSender mailSender;
+    private KfashionEmailAuthorityRepository kfashionEmailAuthorityRepository;
 
     @Autowired
-    public KfashionUserInfoService(KfashionUserInfoRepository repository, PasswordEncoder passwordEncoder) {
+    public KfashionUserInfoService(KfashionUserInfoRepository repository,
+                                   PasswordEncoder passwordEncoder,
+                                   JavaMailSender mailSender,
+                                   KfashionEmailAuthorityRepository kfashionEmailAuthorityRepository) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
+        this.mailSender = mailSender;
+        this.kfashionEmailAuthorityRepository = kfashionEmailAuthorityRepository;
     }
 
     @PostConstruct
     public void checkAdmin() {
-        boolean checkAdmin = (true);
-        final List<KfashionUserInfo> users = getUsers(true);
+        char isAdmin = 'Y';
+        final List<KfashionUserInfo> users = getUsers(isAdmin);
 
         if((users == null) || (users.size() < 1)) {
             logger.info("Admin account not exists : create a default admin account");
@@ -53,28 +68,80 @@ public class KfashionUserInfoService {
                     .id(DEFAULT_ADMIN_ID)
                     .password(DEFAULT_ADMIN_PASSWORD)
                     .name(DEFAULT_ADMIN_NAME)
-                    .isAdmin(true)
-                    .isApproved(true)
+                    .isAdmin('Y')
+                    .isApproved('Y')
                     .build();
 
-            createNewUser(newAdmin);
+            createNewAdmin(newAdmin);
         }
     }
 
+    public void createNewAdmin(KfashionUserInfo user) {
+        repository.createNewUser(user);
+    }
 
-    public String createNewUser(KfashionUserInfo user) {
+
+    @Transactional
+    public String createNewUser(KfashionUserInfo user) throws Exception {
         String msg="";
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repository.createNewUser(user);
-        int sucess =repository.checkUser(user);
-        if(sucess == 1) {
-            msg = "success";
+
+        String authKey = new TempKey().getKey(30, false);
+        KfashionEmailAuthority emailAuthority = new KfashionEmailAuthority();
+        emailAuthority.setUserId(user.getId());
+        emailAuthority.setAuthKey(authKey);
+        kfashionEmailAuthorityRepository.insertAuthkey(emailAuthority);
+
+
+
+        // mail 작성 관련
+        MailUtils sendMail = new MailUtils(mailSender);
+
+        sendMail.setSubject("[Kfashion] 회원가입 이메일 인증");
+        sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
+                .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+                .append("<a href='http://localhost:3000/api/v1/verify?userId=")
+                .append(user.getId())
+                .append("&authKey=")
+                .append(authKey)
+                .append("' target='_blenk'>이메일 인증 확인</a>")
+                .toString());
+        sendMail.setFrom("yeol6845@gmail.com", "장성열");
+        sendMail.setTo(user.getEmail());
+        sendMail.send();
+        msg = "인증 메일이 발송 되었 습니다.";
             return msg;
-        }else {
-            msg = "fail";
-            return msg;
-        }
     }
+
+    /**
+     * 사용자 등록 인증메일 검증
+     * @param authMail
+     * @return
+     * @throws Exception
+     */
+    public ResponseEntity<String> signupAuthMailVerify(KfashionEmailAuthority authMail) throws Exception {
+        String msg = "";
+        try {
+            String id = kfashionEmailAuthorityRepository.selectCheckAuthMail(authMail);
+            if(id != null) {
+                kfashionEmailAuthorityRepository.updateAuthority(authMail);
+                repository.updateAuthUser(id);
+                msg = "success";
+                return new ResponseEntity<String>(msg, HttpStatus.OK);
+            }else {
+                msg = "fail";
+                return new ResponseEntity<String>(msg, HttpStatus.NOT_FOUND);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            msg = "fail";
+            return new ResponseEntity<String>(msg, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 
     public KfashionUserInfo getUser(String id) {
         return repository.selectUser(id);
@@ -90,8 +157,8 @@ public class KfashionUserInfoService {
         return isNotAcceptable;
     }
 
-    public List<KfashionUserInfo> getUsers(boolean checkAdmin) {
-        return repository.selectUsers(checkAdmin);
+    public List<KfashionUserInfo> getUsers(char isAdmin) {
+        return repository.selectUsers(isAdmin);
     }
 
     public KfashionUserInfo selectUserById(String id) {

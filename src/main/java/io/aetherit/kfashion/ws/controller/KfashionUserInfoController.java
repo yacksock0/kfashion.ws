@@ -1,10 +1,12 @@
 package io.aetherit.kfashion.ws.controller;
 
+import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +18,16 @@ import java.util.HashMap;
 public class KfashionUserInfoController {
 
     private KfashionUserInfoService kfashionUserInfoService;
+    private JavaMailSender mailSender;
+
+
+
+
 
     @Autowired
-    public KfashionUserInfoController(KfashionUserInfoService kfashionUserInfoService) {
+    public KfashionUserInfoController(KfashionUserInfoService kfashionUserInfoService, JavaMailSender mailSender) {
         this.kfashionUserInfoService = kfashionUserInfoService;
+        this.mailSender = mailSender;
     }
 
     /**
@@ -33,11 +41,26 @@ public class KfashionUserInfoController {
             throws Exception {
         return new ResponseEntity<String>(kfashionUserInfoService.createNewUser(user), HttpStatus.OK);
     }
+    /**
+     * 이메일 인증 : 사용자 등록
+     * @param authMail
+     * @return
+     * @throws Exception
+     */
+    @GetMapping(value = "/signup/confirm")
+    public ResponseEntity<String> signupAuth(HttpServletRequest httpServletRequest, @RequestParam(value= "userId", required = true)String userId,
+                                                                                     @RequestParam(value= "authKey", required = true)String authKey) throws Exception{
+        KfashionEmailAuthority authMail = new KfashionEmailAuthority();
+        authMail.setUserId(userId);
+        authMail.setAuthKey(authKey);
+        return kfashionUserInfoService.signupAuthMailVerify(authMail);
+    }
+
 
     /**
      * 사용자 조회 : 기가입 여부 확인용
      * @param httpRequest
-     * @param userId
+     * @param email
      * @return
      * @throws Exception
      */
@@ -51,6 +74,13 @@ public class KfashionUserInfoController {
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
+    /**
+     * 사용자 조회 : 기가입 여부 확인용
+     * @param httpRequest
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @GetMapping(value = "/signupcheck/id")
     public ResponseEntity<Object> getIdCheck(HttpServletRequest httpRequest, @RequestParam(value = "id", required=true) String id) throws Exception{
         KfashionUserInfo user = kfashionUserInfoService.selectUserById(id);
@@ -60,6 +90,10 @@ public class KfashionUserInfoController {
         resultMap.put("result", result);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
+
+
+
+
 
 
 

@@ -364,7 +364,7 @@ class SignUp extends React.Component {
                                         <Typography className={classes.successTitle}>회원 가입 완료</Typography>
                                         <Typography className={classes.successHeader}>{`${newMember.email}로 전송된 이메일을 확인하여`}</Typography>
                                         <Typography className={classes.successHeader2}>가입절차를 완료해 주세요.</Typography>
-                                        <Typography className={classes.successBody}>이메일인증 완료 후에 ONTHELIVE의 서비스를<br/> 이용하실 수 있습니다.</Typography>
+                                        <Typography className={classes.successBody}>이메일인증 완료 후에 Kfashion의 서비스를<br/> 이용하실 수 있습니다.</Typography>
                                     </React.Fragment>
                                 }
                                 <Button color="primary" variant="contained"

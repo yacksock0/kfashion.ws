@@ -22,8 +22,8 @@ public class KfashionUserInfo {
     private String phone;
     private int groupNo;
     private String nickName;
-    private boolean isAdmin;
-    private boolean isApproved;
+    private char isAdmin;
+    private char isApproved;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 

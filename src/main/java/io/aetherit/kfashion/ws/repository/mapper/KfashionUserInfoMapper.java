@@ -10,10 +10,11 @@ public interface KfashionUserInfoMapper {
 
     int checkUser(KfashionUserInfo user);
 
-    List<KfashionUserInfo> selectUsersWhereType(boolean checkAdmin);
+    List<KfashionUserInfo> selectUsersWhereType(char isAdmin);
 
     KfashionUserInfo selectUserById(String id);
 
     KfashionUserInfo selectUserByEmail(String email);
 
+    void updateAuthUser(String id);
 }

@@ -19,8 +19,8 @@ public class KfashionSimpleUser implements Serializable {
     private String password;
     private String name;
     private String email;
-    private boolean isAdmin;
-    private boolean isApproved;
+    private char isAdmin;
+    private char isApproved;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 

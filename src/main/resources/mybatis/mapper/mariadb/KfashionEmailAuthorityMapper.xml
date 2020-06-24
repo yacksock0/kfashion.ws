@@ -8,4 +8,36 @@
         <result property="authorityDatetime"            column="authority_datetime" />
     </resultMap>
 
+    <insert id="insertAuthkey" parameterType="KfashionEmailAuthority">
+        INSERT
+        INTO kfashion_email_authority (
+        user_id,
+        authkey,
+        expiration_datetime,
+        created_datetime
+        ) VALUES (
+        #{userId},
+        #{authKey},
+        NOW(),
+        NOW()
+        )
+    </insert>
+
+    <select id="selectCheckAuthMail" parameterType="KfashionEmailAuthority" resultType="String">
+        SELECT user_id
+        FROM kfashion_email_authority
+        WHERE user_id=#{userId}
+        AND authKey=#{authKey}
+    </select>
+
+    <update id="updateAuthority" parameterType="KfashionEmailAuthority">
+       UPDATE kfashion_email_authority
+       SET
+       authority_datetime = NOW()
+       WHERE user_id=#{userId}
+       AND authKey=#{authKey}
+    </update>
+
+
+
 </mapper>

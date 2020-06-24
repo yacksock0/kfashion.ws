@@ -1,14 +1,14 @@
 {
   "groups": [
     {
+      "name": "file",
+      "type": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
+    },
+    {
       "name": "kfashion.ws.application",
       "type": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties",
       "sourceType": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties"
-    },
-    {
-      "name": "kfashion.ws.file",
-      "type": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties",
-      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
     },
     {
       "name": "kfashion.ws.mail",
@@ -33,6 +33,11 @@
   ],
   "properties": [
     {
+      "name": "file.upload-dir",
+      "type": "java.lang.String",
+      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
+    },
+    {
       "name": "kfashion.ws.application.network-conn-timeout",
       "type": "java.lang.Integer",
       "sourceType": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties",
@@ -43,31 +48,6 @@
       "type": "java.lang.Integer",
       "sourceType": "io.aetherit.kfashion.ws.configuration.support.ApplicationProperties",
       "defaultValue": 0
-    },
-    {
-      "name": "kfashion.ws.file.channel-path",
-      "type": "java.lang.String",
-      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
-    },
-    {
-      "name": "kfashion.ws.file.files-domain",
-      "type": "java.lang.String",
-      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
-    },
-    {
-      "name": "kfashion.ws.file.upload-dir",
-      "type": "java.lang.String",
-      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
-    },
-    {
-      "name": "kfashion.ws.file.user-board-path",
-      "type": "java.lang.String",
-      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
-    },
-    {
-      "name": "kfashion.ws.file.user-profile-path",
-      "type": "java.lang.String",
-      "sourceType": "io.aetherit.kfashion.ws.configuration.support.FileStorageProperties"
     },
     {
       "name": "kfashion.ws.mail.certification-image",

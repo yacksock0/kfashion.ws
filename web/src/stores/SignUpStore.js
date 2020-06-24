@@ -183,4 +183,15 @@ export default class SignUpStore {
             }
     });
 
+    getServerMode = flow(function* getServerMode() {
+        try {
+            const response = yield axios.get('/api/v1/informations/mode');
+            const serverMode = response.data;
+
+            this.serverMode = serverMode;
+        } catch(error) {
+            console.log("Can't get server mode");
+        }
+    })
+
 }

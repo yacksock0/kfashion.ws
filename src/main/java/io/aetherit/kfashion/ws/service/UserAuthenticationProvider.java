@@ -42,7 +42,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
             throw new UsernameNotFoundException("Username not found : " + userId);
         }
 
-        if(!user.isApproved()) {
+        if(user.getIsApproved() == 'N') {
             throw new DisabledException("User is not enabled : " + userId);
         }
 
@@ -67,7 +67,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         return KfashionSimpleUser.builder()
                 .id(user.getId())
                 .name(user.getName())
-                .isApproved(user.isApproved())
+                .isApproved(user.getIsApproved())
                 .createdDatetime(user.getCreatedDatetime())
                 .updatedDatetime(user.getUpdatedDatetime())
                 .build();

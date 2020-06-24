@@ -28,7 +28,6 @@ public class AuthenticationController {
     @PostMapping("/signin")
     public ResponseEntity<KfashionUserToken> getLoginToken(HttpServletRequest httpRequest, HttpSession session, @RequestBody KfashionUserInfo account) {
         final KfashionUserToken token = authenticationService.getToken(account.getId(), account.getPassword(), session);
-
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 

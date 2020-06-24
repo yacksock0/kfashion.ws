@@ -27,8 +27,8 @@ public class KfashionUserInfoRepository {
         return mapper.checkUser(user);
     }
 
-    public List<KfashionUserInfo> selectUsers(boolean checkAdmin) {
-        return mapper.selectUsersWhereType(checkAdmin);
+    public List<KfashionUserInfo> selectUsers(char isAdmin) {
+        return mapper.selectUsersWhereType(isAdmin);
     }
 
     public KfashionUserInfo selectUserById(String id) {
@@ -37,5 +37,9 @@ public class KfashionUserInfoRepository {
 
     public KfashionUserInfo selectUserByEmail(String email) {
         return mapper.selectUserByEmail(email);
+    }
+
+    public void updateAuthUser(String id) {
+        mapper.updateAuthUser(id);
     }
 }

@@ -22,7 +22,7 @@ const UpdateState = {
     UploadFailed: 'UploadFailed',
 };
 export default class FileUploadStore {
-    @observable files = [];
+    @observable fileList = [];
     @observable uploadFile = '';
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
@@ -66,11 +66,19 @@ export default class FileUploadStore {
         }
     });*/
     fileupload = flow(function* handleSave(files) {
-        console.log(files)
         try {
-            const fileParam = new FormData();
-            fileParam.append('file', files);
-            yield axios.post('/api/v1/img/uploadMultipleFiles', fileParam);
+            const formData = new FormData();
+            for(let i = 0; i < files.length; i++ ) {
+                console.log(files.length);
+                formData.append("file", files[0]);
+            }
+            console.log("formData[]",formData.file);
+
+            yield axios.post( '/api/v1/img/uploadMultipleFiles',formData,
+            ).then(function(){
+            })
+                .catch(function(){
+                });
         } catch (error) {
             console.log('error')
         }

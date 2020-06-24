@@ -38,7 +38,7 @@
       where id=#{id}
     </select>
 
-    <select id="selectUsersWhereType" parameterType="boolean" resultMap="kfashionUserInfoResultMap">
+    <select id="selectUsersWhereType" resultMap="kfashionUserInfoResultMap">
         SELECT id,
                password,
                name,
@@ -47,7 +47,7 @@
                created_datetime,
                updated_datetime
         FROM kfashion_user_info
-        WHERE is_admin = #{value}
+        WHERE is_admin = #{isAdmin}
         ORDER BY created_datetime DESC
     </select>
 
@@ -88,6 +88,13 @@
         FROM   kfashion_user_info
         WHERE  email = #{id}
     </select>
+
+    <update id="updateAuthUser" parameterType="String">
+        UPDATE kfashion_user_info
+        SET
+        is_approved = 'Y'
+        WHERE id=#{id}
+    </update>
 
 
 

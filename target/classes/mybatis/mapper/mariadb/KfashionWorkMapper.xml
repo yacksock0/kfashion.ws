@@ -8,4 +8,20 @@
         <result property="updatedDatetime"            column="updated_datetime" />
     </resultMap>
 
+    <insert id="insertWork" parameterType="KfashionWork">
+        INSERT
+        INTO kfashion_work
+        (
+        work_name,
+        work_state,
+        created_datetime,
+        updated_datetime
+        ) VALUE(
+        #{workName},
+        #{1},
+        NOW(),
+        NOW()
+        )
+    </insert>
+
 </mapper>
