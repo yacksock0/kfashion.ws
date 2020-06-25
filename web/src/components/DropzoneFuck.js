@@ -26,7 +26,7 @@ class DropzoneFuck extends Component {
 
         // Update the formData object
         formData.append(
-            "file",
+            "files",
             this.state.selectedFile,
             this.state.selectedFile.name
         );
