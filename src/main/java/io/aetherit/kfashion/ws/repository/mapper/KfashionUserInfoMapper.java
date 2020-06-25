@@ -17,4 +17,6 @@ public interface KfashionUserInfoMapper {
     KfashionUserInfo selectUserByEmail(String email);
 
     void updateAuthUser(String id);
+
+    List<KfashionUserInfo> selectUserList();
 }

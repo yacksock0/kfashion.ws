@@ -96,6 +96,14 @@
         WHERE id=#{id}
     </update>
 
+    <select id="selectUserList" resultMap="kfashionUserInfoResultMap">
+        SELECT *
+        FROM kfashion_user_info
+        WHERE group_no IS NULL
+        AND is_approved = 'Y'
+        AND id NOT IN('admin')
+        ORDER BY created_datetime
+    </select>
 
 
 

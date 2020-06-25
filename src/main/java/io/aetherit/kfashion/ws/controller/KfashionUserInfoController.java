@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/kfashion/users")
@@ -91,6 +92,14 @@ public class KfashionUserInfoController {
         if(user!=null) result = true;
         HashMap<String,Object> resultMap = new HashMap<String,Object>();
         resultMap.put("result", result);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/userList")
+    public ResponseEntity<Object> userList(HttpServletRequest httpRequest) throws Exception{
+        HashMap<String,Object> resultMap = new HashMap<String,Object>();
+        List<KfashionUserInfo> userList = kfashionUserInfoService.selectUserList();
+        resultMap.put("userList", userList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
