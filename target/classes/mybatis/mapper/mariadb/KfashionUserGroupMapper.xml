@@ -11,13 +11,13 @@
     <insert id="createUserGroup" parameterType="KfashionUserGroup">
         INSERT
         INTO kfashion_user_group (
-        group_name,
-        created_datetime,
-        updated_datetime
-        ) VALUES (
-        #{groupName},
-        NOW(),
-        NOW()
+            group_name,
+            created_datetime,
+            updated_datetime
+            ) VALUES (
+            #{groupName},
+            NOW(),
+            NOW()
         )
     </insert>
 
@@ -26,5 +26,13 @@
         FROM kfashion_user_group
         ORDER BY no
     </select>
+
+    <select id="selectGroupNo" resultType="int" parameterType="KfashionUserGroup">
+        SELECT no
+        FROM kfashion_user_group
+        WHERE group_name=#{groupName}
+    </select>
+
+
 
 </mapper>

@@ -24,10 +24,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.apache.commons.io.FilenameUtils;
 
 @RestController
-@RequestMapping("/api/v1/img")
+@RequestMapping("/api/v1/kfashion/img")
 public class KfashionImageController {
 
     private static final Logger logger = LoggerFactory.getLogger(KfashionImageController.class);
@@ -47,6 +46,14 @@ public class KfashionImageController {
             this.kfashionWorkService = kfashionWorkService;
             this.fileStorageService = fileStorageService;
         }
+
+    /**
+     * 단일 파일 업로드
+     * @param RequestParam
+     * @param file
+     * @return UploadFileResponse
+     * @throws IOException
+     */
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
@@ -75,6 +82,14 @@ public class KfashionImageController {
                 file.getContentType(), file.getSize());
     }
 
+    /**
+     * 다중 파일 업로드
+     * @param RequestParam
+     * @param files
+     * @return uploadFile
+     * @throws IOException
+     */
+
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
             System.out.println(files.length);
@@ -85,6 +100,13 @@ public class KfashionImageController {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 다운로드 파일
+     * @param PathVariable
+     * @param fileName
+     * @return ResponseEntity
+     * @throws IOException
+     */
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName,
                                                  HttpServletRequest request) {
@@ -112,8 +134,4 @@ public class KfashionImageController {
                 .body(resource);
     }
 
-    @RequestMapping("/uploadFile")
-    public void forGues() {
-        logger.info("file==========================");
-    }
 }

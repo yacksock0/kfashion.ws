@@ -1,0 +1,25 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionUserGroupAdminMapper">
+    <resultMap id="kfashionUserGroupAdminResultMap" type="KfashionUserGroupAdmin">
+        <id property="userId"                              column="user_id" />
+        <result property="groupNo"                         column="group_no" />
+        <result property="createdDatetime"                 column="created_datetime" />
+        <result property="updatedDatetime"                 column="updated_datetime" />
+    </resultMap>
+
+    <insert id="groupAdmin" parameterType="KfashionUserGroupAdmin">
+        INSERT
+        INTO kfashion_user_group_admin (
+            user_id,
+            group_no,
+            created_datetime,
+            updated_datetime
+            ) VALUES (
+            #{userId},
+            #{groupNo},
+            NOW(),
+            NOW()
+            )
+    </insert>
+
+</mapper>

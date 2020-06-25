@@ -49,7 +49,7 @@ export default class AuthStore {
 
         try {
             const param = this.login;
-            const response = yield axios.post('/api/v1/authentications/signin', param);
+            const response = yield axios.post('/api/v1/kfashion/authentications/signin', param);
             const token = response.data.token;
             const user = response.data.user;
 
@@ -73,7 +73,7 @@ export default class AuthStore {
 
         if(token) {
             try {
-                const response = yield axios.get('/api/v1/authentications/signcheck');
+                const response = yield axios.get('/api/v1/kfashion/authentications/signcheck');
                 const token = response.data.token;
                 const user = response.data.user;
 
@@ -92,7 +92,7 @@ export default class AuthStore {
         localStorage.removeItem(LocalStorageTokenKey);
 
         try {
-            yield axios.post('/api/v1/authentications/signout');
+            yield axios.post('/api/v1/kfashion/authentications/signout');
 
             console.log(this);
             this.login = Object.assign({}, EmptyLogin);

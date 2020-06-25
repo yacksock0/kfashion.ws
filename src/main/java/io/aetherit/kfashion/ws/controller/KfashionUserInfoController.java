@@ -35,7 +35,7 @@ public class KfashionUserInfoController {
     /**
          * 사용자 등록
          * @param user
-         * @return
+         * @return ResponseEntity
          * @throws Exception
      */
     @PostMapping(value = "/signup")
@@ -46,7 +46,7 @@ public class KfashionUserInfoController {
     /**
      * 이메일 인증 : 사용자 등록
      * @param authMail
-     * @return
+     * @return sendMail
      * @throws Exception
      */
     @GetMapping(value = "/signup/confirm")
@@ -65,7 +65,7 @@ public class KfashionUserInfoController {
      * 사용자 조회 : 기가입 여부 확인용
      * @param httpRequest
      * @param email
-     * @return
+     * @return boolean
      * @throws Exception
      */
     @GetMapping(value = "/signupcheck/email")
@@ -82,7 +82,7 @@ public class KfashionUserInfoController {
      * 사용자 조회 : 기가입 여부 확인용
      * @param httpRequest
      * @param id
-     * @return
+     * @return boolean
      * @throws Exception
      */
     @GetMapping(value = "/signupcheck/id")
@@ -94,6 +94,13 @@ public class KfashionUserInfoController {
         resultMap.put("result", result);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
+
+    /**
+     * 회원가입 인증 완료 후 그룹 넘버 없는 회원 리스트 출력
+     * @param httpRequest
+     * @return List
+     * @throws Exception
+     */
 
     @GetMapping(value = "/userList")
     public ResponseEntity<Object> userList(HttpServletRequest httpRequest) throws Exception{

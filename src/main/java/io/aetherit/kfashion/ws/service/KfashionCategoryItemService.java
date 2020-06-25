@@ -51,8 +51,8 @@ public class KfashionCategoryItemService {
         return repository.selectNeckLineList();
     }
 
-    public List<KfashionCategoryItem> selectColorKaraList() {
-        return repository.selectColorKaraList();
+    public List<KfashionCategoryItem> selectKaraList() {
+        return repository.selectKaraList();
     }
 
     public List<KfashionCategoryItem> selectFitList() {

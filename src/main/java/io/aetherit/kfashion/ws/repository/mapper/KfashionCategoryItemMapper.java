@@ -22,7 +22,7 @@ public interface KfashionCategoryItemMapper {
 
     List<KfashionCategoryItem> selectNeckLineList();
 
-    List<KfashionCategoryItem> selectColorKaraList();
+    List<KfashionCategoryItem> selectKaraList();
 
     List<KfashionCategoryItem> selectFitList();
 

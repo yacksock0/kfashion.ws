@@ -105,6 +105,14 @@
         ORDER BY created_datetime
     </select>
 
+    <update id="updateUserGroup" parameterType="map">
+        UPDATE kfashion_user_info
+        SET
+        group_no=#{groupNo}
+        WHERE
+        id=#{id}
+    </update>
+
 
 
 </mapper>

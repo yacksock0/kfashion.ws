@@ -2,6 +2,7 @@ package io.aetherit.kfashion.ws.repository.mapper;
 
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import java.util.List;
+import java.util.Map;
 
 public interface KfashionUserInfoMapper {
     void createNewUser(KfashionUserInfo user);
@@ -19,4 +20,6 @@ public interface KfashionUserInfoMapper {
     void updateAuthUser(String id);
 
     List<KfashionUserInfo> selectUserList();
+
+    void updateUserGroup(Map<String, Object> map);
 }

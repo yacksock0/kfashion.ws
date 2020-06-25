@@ -180,4 +180,8 @@ public class KfashionUserInfoService {
     public List<KfashionUserInfo> selectUserList() {
         return repository.selectUserList();
     }
+
+    public void updateUserGroup(int groupNo, String id) {
+        repository.updateUserGroup(groupNo, id);
+    }
 }

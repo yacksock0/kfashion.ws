@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/api/v1/authentications/")
+@RequestMapping("/api/v1/kfashion/authentications/")
 public class AuthenticationController {
     private AuthenticationService authenticationService;
 
