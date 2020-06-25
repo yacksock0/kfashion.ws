@@ -16,8 +16,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Button from "@material-ui/core/Button";
-import {DropzoneDialog} from "material-ui-dropzone";
+import {inject, observer} from "mobx-react";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -39,48 +38,53 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
+@inject('createGroupDialogStore')
+@observer
 export default class CreateGroupDialog extends React.Component {
-    state = {
-        text: 'text',
-        data: [
-            {no: '1', group_name: '이화여자대학교', createdDateTime: '1994-11-23T08:15:30-05:00', updatedDateTime: new Date() },
-            {no: '2', group_name: '아이테르대학교', createdDateTime: '1994-11-23T08:15:30-05:00', updatedDateTime: new Date() },
-            {no: '3', group_name: '교마이스터고', createdDateTime: '1994-11-23T08:15:30-05:00', updatedDateTime: new Date() },
-        ],
-        columns: [
-            { title: '그룹번호', field: 'no', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력' },
-            { title: '소속', field: 'group_name', initialEditValue: 'test', tooltip: 'This is tooltip text' },
-            { title: '생성일', field: 'createdDateTime', type: 'datetime' },
-            { title: '수정일', field: 'updatedDateTime', type: 'datetime' },
-        ],
+    constructor(props) {
+        super(props);
+        this.state={
+            open: false,
+            data: [],
+            columns: [
+                { title: '그룹번호', field: 'no', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력' },
+                { title: '소속', field: 'group_name', initialEditValue: 'test', tooltip: 'This is tooltip text' },
+                { title: '그룹권한', field: 'authority', type: 'string' },
+                { title: '생성일', field: 'createdDateTime', type: 'datetime' },
+                { title: '수정일', field: 'updatedDateTime', type: 'datetime' },
+            ],
+        }
     }
-
+    componentDidMount() {
+        const groupList = this.props.createGroupDialogStore.loadGroupList();
+            this.setState({
+                data: [{
+                    no: groupList.no, group_name: '정말',
+                }],
+            });
+    }
 
     handleClose() {
         this.setState({
             open: false
         });
     }
-    handleOpen() {
-        this.setState({
-            open: true,
-        });
-    }
-    handleSave(file){
+    handleSave(){
         this.setState({
             open: false,
         });
-        this.props.fileUploadStore.fileupload(file);
     }
+
     render() {
+
         return (
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
                     open={this.state.open}
                     icons={tableIcons}
                     columns={this.state.columns}
-                    onSave={this.handleSave.bind(this)}
                     data={this.state.data}
+                    onSave={this.handleSave.bind(this)}
                     onClose={this.handleClose.bind(this)}
                     showPreviews={true}
                     title="그룹생성"
@@ -89,9 +93,9 @@ export default class CreateGroupDialog extends React.Component {
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     {
-                                        /* const data = this.state.data;
+                                         const data = this.state.data;
                                         data.push(newData);
-                                        this.setState({ data }, () => resolve()); */
+                                        this.setState({ data }, () => resolve());
                                     }
                                     resolve();
                                 }, 1000);

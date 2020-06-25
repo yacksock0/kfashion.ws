@@ -142,7 +142,7 @@ class SignUp extends React.Component {
         }
 
         if(this.props.signUpStore.isNotAvailableEmail) {
-            this.props.enqueueSnackbar('이미 존재하는 이메일 혹은 별칭 입니다.', {
+            this.props.enqueueSnackbar('이미 존재하는 이메일 혹은 아이디 입니다.', {
                 variant: 'error'
             });
 
