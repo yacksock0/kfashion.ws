@@ -176,4 +176,8 @@ public class KfashionUserInfoService {
     public KfashionUserInfo selectUserByEmail(String email) {
         return repository.selectUserByEmail(email);
     }
+
+    public List<KfashionUserInfo> selectUserList() {
+        return repository.selectUserList();
+    }
 }

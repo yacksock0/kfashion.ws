@@ -171,7 +171,7 @@ export default class SignUpStore {
     doSignUp = flow(function* doSignUp(doAction) {
         this.state = State.Pending;
         try {
-        const response = yield axios.get(`/api/v1/users/signupcheck?email=${this.newMember.email}`)
+        const response = yield axios.get(`/api/v1/kfashion/users/signupcheck/email?email=${this.newMember.email}`)
         const isNotAvailEmail = response.data.result;
 
         if(!isNotAvailEmail) {

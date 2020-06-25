@@ -42,4 +42,8 @@ public class KfashionUserInfoRepository {
     public void updateAuthUser(String id) {
         mapper.updateAuthUser(id);
     }
+
+    public List<KfashionUserInfo> selectUserList() {
+        return mapper.selectUserList();
+    }
 }
