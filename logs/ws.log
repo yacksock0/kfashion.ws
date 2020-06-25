@@ -3411,3 +3411,202 @@ Caused by: java.nio.file.AccessDeniedException: /Users/ho
 2020-06-25 11:24:28.084 3227 [-8080-exec-3] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : ==>  Preparing: INSERT INTO kfashion_image ( work_no, img_data, created_datetime, updated_datetime ) VALUES ( ?, ?, NOW(), NOW() ) 
 2020-06-25 11:24:28.085 3227 [-8080-exec-3] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : ==> Parameters: 16(Long), [B@709b60a2(byte[])
 2020-06-25 11:24:28.106 3227 [-8080-exec-3] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : <==    Updates: 1
+2020-06-25 11:27:47.860 2532 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 2532 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
+2020-06-25 11:27:47.862 2532 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-25 11:27:47.862 2532 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-25 11:27:48.463 2532 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$2655b7e5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-25 11:27:48.717 2532 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 11:27:48.718 2532 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 11:27:48.718 2532 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-25 11:27:48.730 2532 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-25 11:27:48.735 2532 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-25 11:27:48.735 2532 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-25 11:27:48.735 2532 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-25 11:27:48.781 2532 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-25 11:27:48.782 2532 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 896 ms
+2020-06-25 11:27:48.822 2532 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-25 11:27:49.242 2532 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-06-25 11:27:49.255 2532 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-06-25 11:27:49.270 2532 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-06-25 11:27:49.271 2532 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-06-25 11:27:49.273 2532 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-06-25 11:27:49.393 2532 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200624_1106 #0
+2020-06-25 11:27:49.418 2532 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'kfashionImageController' defined in file [/Users/ho/kfashion.ws/target/classes/io/aetherit/kfashion/ws/controller/KfashionImageController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/ho/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+2020-06-25 11:27:49.442 2532 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-06-25 11:27:49.451 2532 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-25 11:27:49.456 2532 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'kfashionImageController' defined in file [/Users/ho/kfashion.ws/target/classes/io/aetherit/kfashion/ws/controller/KfashionImageController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/ho/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/ho/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:314)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:295)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:216)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:117)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:310)
+	... 33 common frames omitted
+Caused by: io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at io.aetherit.kfashion.ws.service.FileStorageService.<init>(FileStorageService.java:32)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:203)
+	... 35 common frames omitted
+Caused by: java.nio.file.AccessDeniedException: /Users/jangseong-yeol
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:84)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixFileSystemProvider.createDirectory(UnixFileSystemProvider.java:384)
+	at java.nio.file.Files.createDirectory(Files.java:674)
+	at java.nio.file.Files.createAndCheckIsDirectory(Files.java:781)
+	at java.nio.file.Files.createDirectories(Files.java:767)
+	at io.aetherit.kfashion.ws.service.FileStorageService.<init>(FileStorageService.java:30)
+	... 40 common frames omitted
+2020-06-25 11:28:03.925 2542 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 2542 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
+2020-06-25 11:28:03.928 2542 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-25 11:28:03.928 2542 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-25 11:28:04.565 2542 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$2e535803] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-25 11:28:04.827 2542 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 11:28:04.827 2542 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 11:28:04.827 2542 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-25 11:28:04.840 2542 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-25 11:28:04.845 2542 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-25 11:28:04.845 2542 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-25 11:28:04.845 2542 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-25 11:28:04.889 2542 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-25 11:28:04.890 2542 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 936 ms
+2020-06-25 11:28:04.927 2542 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-25 11:28:05.309 2542 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-06-25 11:28:05.322 2542 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-06-25 11:28:05.339 2542 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-06-25 11:28:05.340 2542 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-06-25 11:28:05.341 2542 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-06-25 11:28:05.457 2542 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200624_1106 #0
+2020-06-25 11:28:05.745 2542 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@285c6918, org.springframework.security.web.context.SecurityContextPersistenceFilter@4e682398, org.springframework.security.web.header.HeaderWriterFilter@427ae189, org.springframework.security.web.authentication.logout.LogoutFilter@4f94e148, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24a86066, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7d0d91a1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@78a0ff63, org.springframework.security.web.session.SessionManagementFilter@3f1ef9d6, org.springframework.security.web.access.ExceptionTranslationFilter@69d23296, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@49d831c2]
+2020-06-25 11:28:05.846 2542 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-25 11:28:06.012 2542 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-25 11:28:06.016 2542 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-25 11:28:06.063 2542 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-25 11:28:06.065 2542 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.397 seconds (JVM running for 2.752)
+2020-06-25 11:28:11.745 2542 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-25 11:28:11.745 2542 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-25 11:28:11.751 2542 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 6 ms
+2020-06-25 11:28:17.505 2542 [-8080-exec-2] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : ==>  Preparing: INSERT INTO kfashion_work ( work_name, work_state, created_datetime, updated_datetime ) VALUE( ?, 1, NOW(), NOW() ) 
+2020-06-25 11:28:17.506 2542 [-8080-exec-2] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : ==> Parameters: Labelbox.png(String)
+2020-06-25 11:28:17.513 2542 [-8080-exec-2] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : <==    Updates: 1
+2020-06-25 11:28:17.514 2542 [-8080-exec-2] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : ==>  Preparing: SELECT no FROM kfashion_work WHERE work_name=? 
+2020-06-25 11:28:17.514 2542 [-8080-exec-2] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : ==> Parameters: Labelbox.png(String)
+2020-06-25 11:28:17.520 2542 [-8080-exec-2] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==    Columns: no
+2020-06-25 11:28:17.521 2542 [-8080-exec-2] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==        Row: 9
+2020-06-25 11:28:17.522 2542 [-8080-exec-2] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==        Row: 13
+2020-06-25 11:28:17.522 2542 [-8080-exec-2] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==        Row: 17
+2020-06-25 11:28:17.522 2542 [-8080-exec-2] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : <==      Total: 3
+2020-06-25 11:28:17.528 2542 [-8080-exec-2] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T11:28:17.528, code=Unknown, status=500, error=Internal Server Error, message=nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 3, path=/api/v1/img/uploadMultipleFiles)
+2020-06-25 11:31:24.946 2542 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-25 11:31:26.920 2570 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 2570 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
+2020-06-25 11:31:26.922 2570 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-25 11:31:26.922 2570 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-25 11:31:27.537 2570 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$5df2fc41] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-25 11:31:27.803 2570 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 11:31:27.803 2570 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 11:31:27.803 2570 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-25 11:31:27.817 2570 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-25 11:31:27.822 2570 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-25 11:31:27.822 2570 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-25 11:31:27.822 2570 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-25 11:31:27.867 2570 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-25 11:31:27.867 2570 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 921 ms
+2020-06-25 11:31:27.906 2570 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-25 11:31:28.261 2570 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-06-25 11:31:28.274 2570 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-06-25 11:31:28.289 2570 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-06-25 11:31:28.290 2570 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-06-25 11:31:28.292 2570 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-06-25 11:31:28.411 2570 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200624_1106 #0
+2020-06-25 11:31:28.700 2570 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@630b6190, org.springframework.security.web.context.SecurityContextPersistenceFilter@444f44c5, org.springframework.security.web.header.HeaderWriterFilter@4b0b64cc, org.springframework.security.web.authentication.logout.LogoutFilter@642413d4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24d61e4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2f521c4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@532e27ab, org.springframework.security.web.session.SessionManagementFilter@7ad1caa2, org.springframework.security.web.access.ExceptionTranslationFilter@4d499d65, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@29fa6b65]
+2020-06-25 11:31:28.797 2570 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-25 11:31:28.977 2570 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-25 11:31:28.981 2570 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-25 11:31:29.021 2570 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-25 11:31:29.024 2570 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.363 seconds (JVM running for 2.726)
+2020-06-25 11:31:55.886 2570 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-25 11:31:55.886 2570 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-25 11:31:55.891 2570 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-25 11:31:56.120 2570 [-8080-exec-1] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T11:31:56.119, code=Unknown, status=500, error=Internal Server Error, message=Maximum upload size exceeded; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException: the request was rejected because its size (201524) exceeds the configured maximum (10240), path=/api/v1/img/uploadMultipleFiles)
+2020-06-25 11:33:27.704 2570 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-25 11:33:29.735 2585 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 2585 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
+2020-06-25 11:33:29.737 2585 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-25 11:33:29.737 2585 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-25 11:33:30.365 2585 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$5a289290] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-25 11:33:30.630 2585 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 11:33:30.630 2585 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 11:33:30.630 2585 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-25 11:33:30.643 2585 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-25 11:33:30.648 2585 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-25 11:33:30.648 2585 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-25 11:33:30.648 2585 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-25 11:33:30.691 2585 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-25 11:33:30.691 2585 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 929 ms
+2020-06-25 11:33:30.730 2585 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-25 11:33:31.143 2585 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-06-25 11:33:31.154 2585 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-06-25 11:33:31.170 2585 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-06-25 11:33:31.171 2585 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-06-25 11:33:31.173 2585 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-06-25 11:33:31.294 2585 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200624_1106 #0
+2020-06-25 11:33:31.709 2585 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f95f1e1, org.springframework.security.web.context.SecurityContextPersistenceFilter@2149594a, org.springframework.security.web.header.HeaderWriterFilter@404db674, org.springframework.security.web.authentication.logout.LogoutFilter@3f183caa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@57f847af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6c6017b9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@672a1c62, org.springframework.security.web.session.SessionManagementFilter@444f44c5, org.springframework.security.web.access.ExceptionTranslationFilter@7c2dfa2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@61ecbee9]
+2020-06-25 11:33:31.818 2585 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-25 11:33:32.005 2585 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-25 11:33:32.020 2585 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-25 11:33:32.069 2585 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-25 11:33:32.071 2585 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.601 seconds (JVM running for 3.083)
+2020-06-25 11:34:58.516 2585 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-25 11:34:58.517 2585 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-25 11:34:58.522 2585 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-25 11:34:58.596 2585 [-8080-exec-1] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : ==>  Preparing: INSERT INTO kfashion_work ( work_name, work_state, created_datetime, updated_datetime ) VALUE( ?, 1, NOW(), NOW() ) 
+2020-06-25 11:34:58.596 2585 [-8080-exec-1] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : ==> Parameters: 티셔츠.jpeg(String)
+2020-06-25 11:34:58.601 2585 [-8080-exec-1] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : <==    Updates: 1
+2020-06-25 11:34:58.602 2585 [-8080-exec-1] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : ==>  Preparing: SELECT no FROM kfashion_work WHERE work_name=? 
+2020-06-25 11:34:58.602 2585 [-8080-exec-1] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : ==> Parameters: 티셔츠.jpeg(String)
+2020-06-25 11:34:58.607 2585 [-8080-exec-1] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==    Columns: no
+2020-06-25 11:34:58.608 2585 [-8080-exec-1] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==        Row: 18
+2020-06-25 11:34:58.608 2585 [-8080-exec-1] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : <==      Total: 1
+2020-06-25 11:34:58.612 2585 [-8080-exec-1] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : ==>  Preparing: INSERT INTO kfashion_image ( work_no, img_data, created_datetime, updated_datetime ) VALUES ( ?, ?, NOW(), NOW() ) 
+2020-06-25 11:34:58.613 2585 [-8080-exec-1] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : ==> Parameters: 18(Long), [B@49a28a1e(byte[])
+2020-06-25 11:34:58.618 2585 [-8080-exec-1] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : <==    Updates: 1

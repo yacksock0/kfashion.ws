@@ -170,17 +170,29 @@ export default class SignUpStore {
 
     doSignUp = flow(function* doSignUp(doAction) {
         this.state = State.Pending;
+        try {
+        const response = yield axios.get(`/api/v1/users/signupcheck?email=${this.newMember.email}`)
+        const isNotAvailEmail = response.data.result;
 
+        if(!isNotAvailEmail) {
 
-                const param = toJS(this.newMember);
-                delete param.passwordConfirm;
+            const param = toJS(this.newMember);
+            delete param.passwordConfirm;
 
-                const resp = yield axios.post('/api/v1/kfashion/users/signup', param);
-                if(resp.status === 200) {
-                    this.state = State.Success;
-                    if (doAction !== undefined) doAction();
-
+            const resp = yield axios.post('/api/v1/kfashion/users/signup', param);
+            if (resp.status === 200) {
+                this.state = State.Success;
+                if (doAction !== undefined) doAction();
+            } else {
+                this.state = State.NotAvailableEmail;
             }
+        }else{
+            console.log('이메일이 있다 임마')
+        }
+        } catch (e) {
+            console.log('에러좀 나지 마라')
+        }
+
     });
 
     getServerMode = flow(function* getServerMode() {
@@ -193,5 +205,4 @@ export default class SignUpStore {
             console.log("Can't get server mode");
         }
     })
-
 }
