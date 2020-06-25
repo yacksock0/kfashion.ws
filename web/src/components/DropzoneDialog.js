@@ -41,13 +41,13 @@ class DropzoneDialogExample extends Component {
             open: false
         });
     }
-    /*   handleChange(files) {
-   //Saving files to state for further use and closing Modal.
-           this.setState({
-               files: files,
-               open: false
-           });
-       }*/
+ /*   handleChange(files) {
+//Saving files to state for further use and closing Modal.
+        this.setState({
+            files: files,
+            open: false
+        });
+    }*/
     handleSave(file){
         this.setState({
             open: false,
@@ -64,7 +64,6 @@ class DropzoneDialogExample extends Component {
 
     render() {
         const { classes } = this.props;
-        const {uploadFile} = this.props.fileUploadStore;
         return (
             <div>
                 <Button onClick={this.handleOpen.bind(this)} className={classes.toolButton} variant="contained"
@@ -79,11 +78,6 @@ class DropzoneDialogExample extends Component {
                     maxFileSize={5000000}
                     onClose={this.handleClose.bind(this)}
                 />
-                <div className="button">
-                    { this.state.visible ? <Button variant="contained" color="primary" onClick={this.handleSave.bind(this)}>
-                        Submit
-                    </Button> :null}
-                </div>
             </div>
         );
     }

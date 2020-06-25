@@ -16,6 +16,8 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import Button from "@material-ui/core/Button";
+import {DropzoneDialog} from "material-ui-dropzone";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -38,6 +40,12 @@ const tableIcons = {
 };
 
 export default class CreateGroupDialog extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+        };
+    }
     state = {
         text: 'text',
         data: [
@@ -52,13 +60,41 @@ export default class CreateGroupDialog extends React.Component {
             { title: '수정일', field: 'updatedDateTime', type: 'datetime' },
         ],
     }
+
+
+    handleClose() {
+        this.setState({
+            open: false
+        });
+    }
+    handleOpen() {
+        this.setState({
+            open: true,
+        });
+    }
+    handleSave(file){
+        this.setState({
+            open: false,
+        });
+        this.props.fileUploadStore.fileupload(file);
+    }
     render() {
         return (
+            <div>
+            <Button onClick={this.handleOpen.bind(this)} variant="contained"
+                    color="primary">
+                그룹생성
+            </Button>
+
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
+                    open={this.state.open}
                     icons={tableIcons}
                     columns={this.state.columns}
+                    onSave={this.handleSave.bind(this)}
                     data={this.state.data}
+                    onClose={this.handleClose.bind(this)}
+                    showPreviews={true}
                     title="그룹생성"
                     editable={{
                         onRowAdd: newData =>
@@ -98,6 +134,7 @@ export default class CreateGroupDialog extends React.Component {
                             })
                     }}
                 />
+            </div>
             </div>
         );
     }
