@@ -24,4 +24,11 @@
         )
     </insert>
 
+    <select id="selectWorkNo" parameterType="String" resultType="Long">
+        SELECT no
+        FROM kfashion_work
+        WHERE work_name=#{work_name}
+    </select>
+
+
 </mapper>
