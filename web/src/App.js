@@ -122,7 +122,7 @@ class App extends React.Component {
                         ) : (
                             <Switch>
                                 <Route path="/SignUp" component={SignUp} />
-                                <Route path="/sign/success" component={Verify} />
+                               {/* <Route path="/sign/success" component={Verify} />*/}
                                 <Route path="/" component={SignIn} />
                             </Switch>
                         )}
