@@ -10,10 +10,12 @@
     <insert id="insertImgUpload" parameterType="KfashionImage">
      INSERT
      INTO kfashion_image (
+     work_no,
      img_data,
      created_datetime,
      updated_datetime
      ) VALUES (
+     1,
      #{imgData},
       NOW(),
       NOW()
