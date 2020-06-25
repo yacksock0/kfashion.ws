@@ -40,12 +40,6 @@ const tableIcons = {
 };
 
 export default class CreateGroupDialog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            open: false,
-        };
-    }
     state = {
         text: 'text',
         data: [
@@ -80,12 +74,6 @@ export default class CreateGroupDialog extends React.Component {
     }
     render() {
         return (
-            <div>
-            <Button onClick={this.handleOpen.bind(this)} variant="contained"
-                    color="primary">
-                그룹생성
-            </Button>
-
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
                     open={this.state.open}
@@ -134,7 +122,6 @@ export default class CreateGroupDialog extends React.Component {
                             })
                     }}
                 />
-            </div>
             </div>
         );
     }
