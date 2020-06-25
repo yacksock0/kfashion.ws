@@ -16,6 +16,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import axios from "axios";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -40,28 +41,36 @@ const tableIcons = {
 export default class AdminVerify extends React.Component {
     state = {
         text: 'text',
-        data: [
-            {no: '1',email:'jang6845@naver.com', group: <select/>, name:'장성열', birthDay:new Date(),createdDateTime: '1994-11-23T08:15:30-05:00', updatedDateTime: new Date() },
-            {no: '2', group: '아이테르대학교', createdDateTime: '1994-11-23T08:15:30-05:00', updatedDateTime: new Date() },
-            {no: '3', group: '교마이스터고', createdDateTime: '1994-11-23T08:15:30-05:00', updatedDateTime: new Date() },
-        ],
+        userList : [],
+        data: [],
         columns: [
-            { title: '아이디', field: 'no', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력' },
+            { title: '아이디', field: 'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력' },
             { title: '이메일', field: 'email', initialEditValue: 'test', tooltip: 'This is tooltip text' },
             { title: '이름', field: 'name', type: 'datetime' },
-            { title: '생년월일', field: 'birthDay', type: 'date' },
             { title: '연락처', field: 'updatedDateTime', type: 'datetime' },
-            { title: '소속', field: 'group', type: '<select>' },
-            { title: '신청일', field: 'updatedDateTime', type: 'datetime' },
+            { title: '소속', field: 'group_no', type: '<select>' },
+            { title: '신청일', field: 'createdDatetime', type: 'datetime' },
         ],
     }
+    componentDidMount() {
+        this.setState({ loading: true })
+        axios.get('/api/v1/kfashion/users/userList')
+            .then(response => response.data)
+            .then(res => {
+                this.setState({ userList : res, loading: false }, () =>console.log(res))
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
     render() {
+        const {userList} = this.state.userList;
         return (
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
                     icons={tableIcons}
                     columns={this.state.columns}
-                    data={this.state.data}
+                    data={userList}
                     title="관리자 승인"
                     editable={{
                         onRowUpdate: (newData, oldData) =>

@@ -17,6 +17,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import {inject, observer} from "mobx-react";
+import axios from "axios";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -43,25 +44,30 @@ const tableIcons = {
 export default class CreateGroupDialog extends React.Component {
     constructor(props) {
         super(props);
+        this.tableRef = React.createRef();
         this.state={
+            loading:false,
             open: false,
+            groupList: [],
             data: [],
             columns: [
                 { title: '그룹번호', field: 'no', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력' },
-                { title: '소속', field: 'group_name', initialEditValue: 'test', tooltip: 'This is tooltip text' },
-                { title: '그룹권한', field: 'authority', type: 'string' },
-                { title: '생성일', field: 'createdDateTime', type: 'datetime' },
-                { title: '수정일', field: 'updatedDateTime', type: 'datetime' },
+                { title: '소속', field: 'groupName', initialEditValue: 'test', tooltip: 'This is tooltip text' },
+                { title: '생성일', field: 'createdDatetime', type: 'datetime' },
+                { title: '수정일', field: 'updatedDatetime', type: 'datetime' },
             ],
         }
     }
     componentDidMount() {
-        const groupList = this.props.createGroupDialogStore.loadGroupList();
-            this.setState({
-                data: [{
-                    no: groupList.no, group_name: '정말',
-                }],
-            });
+        this.setState({ loading: true })
+        axios.get('/api/v1/kfashion/group/groupList')
+            .then(response => response.data)
+            .then(res => {
+                this.setState({ groupList : res, loading: false }, () =>console.log(res))
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     handleClose() {
@@ -74,18 +80,17 @@ export default class CreateGroupDialog extends React.Component {
             open: false,
         });
     }
-
     render() {
-
+        const {groupList} = this.state.groupList;
         return (
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
                     open={this.state.open}
                     icons={tableIcons}
                     columns={this.state.columns}
-                    data={this.state.data}
                     onSave={this.handleSave.bind(this)}
                     onClose={this.handleClose.bind(this)}
+                    data={groupList}
                     showPreviews={true}
                     title="그룹생성"
                     editable={{
@@ -93,7 +98,7 @@ export default class CreateGroupDialog extends React.Component {
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     {
-                                         const data = this.state.data;
+                                        const data = this.state.data;
                                         data.push(newData);
                                         this.setState({ data }, () => resolve());
                                     }

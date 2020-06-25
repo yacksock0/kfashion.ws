@@ -23,4 +23,8 @@ public class KfashionUserGroupRepository {
     public List<KfashionUserGroup> selectGroupList() {
         return mapper.selectGroupList();
     }
+
+    public int selectGroupNo(KfashionUserGroup userGroup) {
+        return mapper.selectGroupNo(userGroup);
+    }
 }

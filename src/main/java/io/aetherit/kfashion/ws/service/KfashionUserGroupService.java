@@ -16,14 +16,15 @@ public class KfashionUserGroupService {
         this.repository = repository;
     }
 
-    public String createUserGroup(KfashionUserGroup userGroup) {
-        String msg = "";
+    public void createUserGroup(KfashionUserGroup userGroup) {
         repository.createUserGroup(userGroup);
-        msg = "그룹이 생성되었습니다.";
-        return msg;
     }
 
     public List<KfashionUserGroup> selectGroupList() {
         return repository.selectGroupList();
+    }
+
+    public int selectGroupNo(KfashionUserGroup userGroup) {
+        return repository.selectGroupNo(userGroup);
     }
 }

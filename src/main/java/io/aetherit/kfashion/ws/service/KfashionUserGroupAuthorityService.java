@@ -14,7 +14,10 @@ public class KfashionUserGroupAuthorityService {
         this.repository = repository;
     }
 
-    public void insertUserGroupAuthority(KfashionUserGroupAuthority userGroupAuthority) {
+    public String insertUserGroupAuthority(KfashionUserGroupAuthority userGroupAuthority) {
+        String msg = "";
         repository.insertUserGroupAuthority(userGroupAuthority);
+        msg = "그룹이 생성되었습니다.";
+        return msg;
     }
 }

@@ -8,4 +8,6 @@ public interface KfashionUserGroupMapper {
     void createUserGroup(KfashionUserGroup userGroup);
 
     List<KfashionUserGroup> selectGroupList();
+
+    int selectGroupNo(KfashionUserGroup userGroup);
 }

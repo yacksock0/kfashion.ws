@@ -42,16 +42,26 @@ public class KfashionUserGroupController {
 
         /**
          * 유저그룹 생성
-         * @param httpRequest
-         * @param userGroup
-         * @return
+         * @param httpServletRequest
+         * @param groupName
+         * @param authorityNo
+         * @return ResponseEntity
          * @throws Exception
          */
 
         @PostMapping(value ="/create")
         public ResponseEntity<String> createUserGroup(HttpServletRequest httpServletRequest,
-                                                      @RequestBody @Valid KfashionUserGroup userGroup) throws Exception{
-            return new ResponseEntity<String>(kfashionUserGroupService.createUserGroup(userGroup), HttpStatus.OK);
+                                                      @RequestParam(value ="groupName", required = true) String groupName,
+                                                      @RequestParam(value ="authorityNo", required = true) int authorityNo) throws Exception{
+            KfashionUserGroup userGroup = new KfashionUserGroup();
+            userGroup.setGroupName(groupName);
+            kfashionUserGroupService.createUserGroup(userGroup);
+            int groupNo = kfashionUserGroupService.selectGroupNo(userGroup);
+            KfashionUserGroupAuthority userGroupAuthority = new KfashionUserGroupAuthority();
+            userGroupAuthority.setAuthorityNo(authorityNo);
+            userGroupAuthority.setGroupNo(groupNo);
+
+            return new ResponseEntity<String>(kfashionUserGroupAuthorityService.insertUserGroupAuthority(userGroupAuthority), HttpStatus.OK);
         }
 
         /**
@@ -71,24 +81,21 @@ public class KfashionUserGroupController {
 
         /**
          * 유저그룹 지정
-         * @param httpRequest
+         * @param httpServletRequest
+         * @param groupNo
+         * @param id
          * @return groupList
          * @throws Exception
          */
          @PostMapping(value ="/updateUser")
          public ResponseEntity<Object> updateUserGroup(HttpServletRequest httpServletRequest,
                                                        @RequestParam(value ="groupNo", required = true) int groupNo,
-                                                       @RequestParam(value ="authorityNo", required = true) int authorityNo ,
                                                        @RequestParam(value ="id", required = true) String id) throws Exception{
              kfashionUserInfoService.updateUserGroup(groupNo,id);
              KfashionUserGroupAdmin groupAdmin = new KfashionUserGroupAdmin();
              groupAdmin.setGroupNo(groupNo);
              groupAdmin.setUserId(id);
              kfashionUserGroupAdminService.insertUserAdminGroup(groupAdmin);
-             KfashionUserGroupAuthority userGroupAuthority = new KfashionUserGroupAuthority();
-             userGroupAuthority.setAuthorityNo(authorityNo);
-             userGroupAuthority.setGroupNo(groupNo);
-             kfashionUserGroupAuthorityService.insertUserGroupAuthority(userGroupAuthority);
              return new ResponseEntity<Object>(HttpStatus.OK);
          }
 
