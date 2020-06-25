@@ -3,14 +3,10 @@ import
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import FormControl from "@material-ui/core/FormControl/FormControl";
-import InputLabel from "@material-ui/core/InputLabel/InputLabel"
-import {Container, Toolbar, Typography, Button, Grid, TextField, CircularProgress} from "@material-ui/core";
+import {Container, Toolbar, Typography, Button, Grid,} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import DropzoneDialogExample from "../../components/DropzoneDialog";
-
+import DropzoneFuck from "../../components/DropzoneFuck";
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
@@ -109,6 +105,9 @@ class BoundaryBox extends React.Component {
                         <Grid container>
                             <Grid item xs={1} style={{marginRight:5}}>
                                 <DropzoneDialogExample />
+                                <div>
+                                <DropzoneFuck/>
+                                </div>
                             </Grid>
                             <Grid item xs={1} style={{marginRight:5}}>
                                 <Button

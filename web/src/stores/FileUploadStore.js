@@ -27,25 +27,26 @@ export default class FileUploadStore {
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
-    /*
-        @action fileUploadHandle = () => {
-            this.fileUpload();
-        }
-    */
-    @action changeUploadFile = (files) => {
-        console.log('changeUploadFile 실행...:',files )
-        this.uploadFile = files;
+/*
+    @action fileUploadHandle = () => {
+        this.fileUpload();
+    }
+*/
+    @action changeUploadFile = (file) => {
+        console.log('changeUploadFile 실행...:',file )
+        this.uploadFile = file;
         const uploadFile = this.uploadFile;
         console.log("this.uploadFile:", uploadFile);
     }
 
-    fileupload = flow(function* changeUploadFile(file) {
-        let formData = new FormData();
-        for(let i=0; i < file.length; i++) {
-            formData.append("files", file.files[i], '1.jpg');
-        }
-        console.log(formData);
-        yield axios.post('/api/v1/img/uploadMultipleFiles', formData, {headers: {}});
-    });
+    fileupload (file){
+            const uploadFile = file;
+            console.log("file:", file);
+            console.log("this.uploadFile:", uploadFile);
+            const formData = new FormData();
+            formData.append('file', file);
+            console.log("fileParam:", formData);
+            axios.post('/api/v1/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') });
+    };
 
 }
