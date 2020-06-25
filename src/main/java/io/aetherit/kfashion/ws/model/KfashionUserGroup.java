@@ -17,6 +17,8 @@ public class KfashionUserGroup {
 
     private int no;
     private String groupName;
+    private String authorityName;
+    private int authorityNo;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 
