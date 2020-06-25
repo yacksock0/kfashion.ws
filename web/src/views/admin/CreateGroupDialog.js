@@ -16,8 +16,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Button from "@material-ui/core/Button";
-import {DropzoneDialog} from "material-ui-dropzone";
 import {inject, observer} from "mobx-react";
 
 const tableIcons = {
@@ -48,33 +46,27 @@ export default class CreateGroupDialog extends React.Component {
         this.state={
             open: false,
             data: [],
+            columns: [
+                { title: '그룹번호', field: 'no', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력' },
+                { title: '소속', field: 'group_name', initialEditValue: 'test', tooltip: 'This is tooltip text' },
+                { title: '그룹권한', field: 'authority', type: 'string' },
+                { title: '생성일', field: 'createdDateTime', type: 'datetime' },
+                { title: '수정일', field: 'updatedDateTime', type: 'datetime' },
+            ],
         }
     }
     componentDidMount() {
-        this.props.createGroupDialogStore.loadGroupList();
+        const groupList = this.props.createGroupDialogStore.loadGroupList();
+            this.setState({
+                data: [{
+                    no: groupList.no, group_name: '정말',
+                }],
+            });
     }
-    state = {
-        text: 'text',
-        data: [
-            {no: this.props.createGroupDialogStore, group_name: this.props.createGroupDialogStore, createdDateTime: this.props.createGroupDialogStore, updatedDateTime: this.props.createGroupDialogStore},
-        ],
-        columns: [
-            { title: '그룹번호', field: 'no', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력' },
-            { title: '소속', field: 'group_name', initialEditValue: 'test', tooltip: 'This is tooltip text' },
-            { title: '생성일', field: 'createdDateTime', type: 'datetime' },
-            { title: '수정일', field: 'updatedDateTime', type: 'datetime' },
-        ],
-    }
-
 
     handleClose() {
         this.setState({
             open: false
-        });
-    }
-    handleOpen() {
-        this.setState({
-            open: true,
         });
     }
     handleSave(){
@@ -82,16 +74,17 @@ export default class CreateGroupDialog extends React.Component {
             open: false,
         });
     }
+
     render() {
+
         return (
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
                     open={this.state.open}
                     icons={tableIcons}
                     columns={this.state.columns}
-                    onOpen={this.handleOpen(this)}
-                    onSave={this.handleSave.bind(this)}
                     data={this.state.data}
+                    onSave={this.handleSave.bind(this)}
                     onClose={this.handleClose.bind(this)}
                     showPreviews={true}
                     title="그룹생성"

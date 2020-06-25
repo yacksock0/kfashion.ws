@@ -3697,3 +3697,638 @@ Caused by: java.nio.file.AccessDeniedException: /Users/ho
 	at java.nio.file.Files.createDirectories(Files.java:767)
 	at io.aetherit.kfashion.ws.service.FileStorageService.<init>(FileStorageService.java:30)
 	... 40 common frames omitted
+2020-06-25 14:03:02.847 3548 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 3548 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
+2020-06-25 14:03:02.849 3548 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-25 14:03:02.850 3548 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-25 14:03:03.461 3548 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$ad48924] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-25 14:03:03.747 3548 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 14:03:03.748 3548 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 14:03:03.748 3548 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-25 14:03:03.761 3548 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-25 14:03:03.766 3548 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-25 14:03:03.766 3548 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-25 14:03:03.766 3548 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-25 14:03:03.809 3548 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-25 14:03:03.809 3548 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 936 ms
+2020-06-25 14:03:03.846 3548 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-25 14:03:04.183 3548 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-06-25 14:03:04.196 3548 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-06-25 14:03:04.212 3548 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-06-25 14:03:04.213 3548 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-06-25 14:03:04.215 3548 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-06-25 14:03:04.338 3548 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200624_1106 #0
+2020-06-25 14:03:04.631 3548 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@597f0937, org.springframework.security.web.context.SecurityContextPersistenceFilter@5ec5ea63, org.springframework.security.web.header.HeaderWriterFilter@3f1a4795, org.springframework.security.web.authentication.logout.LogoutFilter@c29fe36, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@47d023b7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7d904ff1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ad1caa2, org.springframework.security.web.session.SessionManagementFilter@6732726, org.springframework.security.web.access.ExceptionTranslationFilter@670b3ca, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4d499d65]
+2020-06-25 14:03:04.719 3548 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-25 14:03:04.888 3548 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-25 14:03:04.892 3548 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-25 14:03:04.943 3548 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-25 14:03:04.945 3548 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.353 seconds (JVM running for 2.889)
+2020-06-25 14:03:15.598 3548 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-25 14:03:15.598 3548 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-25 14:03:15.603 3548 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-25 14:03:56.919 3548 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-25 14:04:31.001 3581 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 3581 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
+2020-06-25 14:04:31.004 3581 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-06-25 14:04:31.004 3581 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-06-25 14:04:31.650 3581 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$3f04d349] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-25 14:04:31.915 3581 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 14:04:31.915 3581 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-06-25 14:04:31.915 3581 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-06-25 14:04:31.928 3581 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-06-25 14:04:31.932 3581 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-25 14:04:31.933 3581 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-06-25 14:04:31.933 3581 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-06-25 14:04:31.977 3581 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-06-25 14:04:31.977 3581 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 944 ms
+2020-06-25 14:04:32.014 3581 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.13:3306/kfashion, user1
+2020-06-25 14:04:32.410 3581 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-06-25 14:04:32.422 3581 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-06-25 14:04:32.439 3581 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-06-25 14:04:32.439 3581 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-06-25 14:04:32.441 3581 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-06-25 14:04:32.562 3581 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200624_1106 #0
+2020-06-25 14:04:32.863 3581 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7b66322e, org.springframework.security.web.context.SecurityContextPersistenceFilter@196ae579, org.springframework.security.web.header.HeaderWriterFilter@6e43ddd6, org.springframework.security.web.authentication.logout.LogoutFilter@7e7f3cfd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@41853299, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f76c2cc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@63538bb4, org.springframework.security.web.session.SessionManagementFilter@78e17a99, org.springframework.security.web.access.ExceptionTranslationFilter@22a10ac6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@35a0e495]
+2020-06-25 14:04:32.956 3581 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-25 14:04:33.143 3581 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-25 14:04:33.147 3581 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-25 14:04:33.189 3581 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-25 14:04:33.192 3581 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.479 seconds (JVM running for 2.882)
+2020-06-25 14:04:46.556 3581 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-25 14:04:46.557 3581 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-06-25 14:04:46.562 3581 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-06-25 14:11:04.223 3581 [8080-exec-17] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:11:04.223 3581 [8080-exec-17] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:11:04.235 3581 [8080-exec-17] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:11:04.236 3581 [8080-exec-17] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:11:04.236 3581 [8080-exec-17] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:11:04.236 3581 [8080-exec-17] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:14:24.339 3581 [8080-exec-19] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:14:24.340 3581 [8080-exec-19] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:14:24.344 3581 [8080-exec-19] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:14:24.345 3581 [8080-exec-19] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:14:24.345 3581 [8080-exec-19] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:14:24.345 3581 [8080-exec-19] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:15:35.815 3581 [8080-exec-21] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:15:35.816 3581 [8080-exec-21] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:15:35.821 3581 [8080-exec-21] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:15:35.821 3581 [8080-exec-21] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:15:35.822 3581 [8080-exec-21] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:15:35.822 3581 [8080-exec-21] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:17:41.863 3581 [8080-exec-23] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:17:41.863 3581 [8080-exec-23] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:17:41.868 3581 [8080-exec-23] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:17:41.868 3581 [8080-exec-23] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:17:41.869 3581 [8080-exec-23] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:17:41.869 3581 [8080-exec-23] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:18:28.827 3581 [8080-exec-25] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:18:28.827 3581 [8080-exec-25] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:18:28.831 3581 [8080-exec-25] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:18:28.832 3581 [8080-exec-25] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:18:28.833 3581 [8080-exec-25] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:18:28.833 3581 [8080-exec-25] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:18:40.161 3581 [8080-exec-27] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:18:40.162 3581 [8080-exec-27] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:18:40.166 3581 [8080-exec-27] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:18:40.166 3581 [8080-exec-27] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:18:40.167 3581 [8080-exec-27] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:18:40.167 3581 [8080-exec-27] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:18:55.690 3581 [8080-exec-29] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:18:55.690 3581 [8080-exec-29] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:18:55.694 3581 [8080-exec-29] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:18:55.695 3581 [8080-exec-29] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:18:55.696 3581 [8080-exec-29] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:18:55.696 3581 [8080-exec-29] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:19:34.603 3581 [8080-exec-31] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:19:34.604 3581 [8080-exec-31] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:19:34.609 3581 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:19:34.610 3581 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:19:34.610 3581 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:19:34.612 3581 [8080-exec-31] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:25:46.482 3581 [8080-exec-33] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:25:46.482 3581 [8080-exec-33] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:25:46.488 3581 [8080-exec-33] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:25:46.489 3581 [8080-exec-33] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:25:46.489 3581 [8080-exec-33] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:25:46.489 3581 [8080-exec-33] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:26:17.756 3581 [8080-exec-36] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:26:17.757 3581 [8080-exec-36] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:26:17.767 3581 [8080-exec-36] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:26:17.768 3581 [8080-exec-36] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:26:17.769 3581 [8080-exec-36] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:26:17.770 3581 [8080-exec-36] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:27:05.636 3581 [8080-exec-38] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:27:05.638 3581 [8080-exec-38] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:27:05.642 3581 [8080-exec-38] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:27:05.643 3581 [8080-exec-38] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:27:05.644 3581 [8080-exec-38] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:27:05.645 3581 [8080-exec-38] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:27:10.680 3581 [8080-exec-40] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:27:10.681 3581 [8080-exec-40] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:27:10.687 3581 [8080-exec-40] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:27:10.687 3581 [8080-exec-40] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:27:10.688 3581 [8080-exec-40] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:27:10.688 3581 [8080-exec-40] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:27:30.008 3581 [8080-exec-42] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:27:30.009 3581 [8080-exec-42] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:27:30.015 3581 [8080-exec-42] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:27:30.016 3581 [8080-exec-42] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:27:30.017 3581 [8080-exec-42] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:27:30.018 3581 [8080-exec-42] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:27:42.717 3581 [8080-exec-44] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:27:42.718 3581 [8080-exec-44] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:27:42.726 3581 [8080-exec-44] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:27:42.727 3581 [8080-exec-44] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:27:42.728 3581 [8080-exec-44] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:27:42.728 3581 [8080-exec-44] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:39:01.940 3581 [8080-exec-47] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:39:01.940 3581 [8080-exec-47] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:39:01.952 3581 [8080-exec-47] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:39:01.952 3581 [8080-exec-47] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:39:01.953 3581 [8080-exec-47] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:39:01.953 3581 [8080-exec-47] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:39:27.623 3581 [8080-exec-49] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:39:27.624 3581 [8080-exec-49] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:39:27.628 3581 [8080-exec-49] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:39:27.628 3581 [8080-exec-49] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:39:27.629 3581 [8080-exec-49] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:39:27.629 3581 [8080-exec-49] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:40:19.948 3581 [8080-exec-51] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:40:19.948 3581 [8080-exec-51] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:40:19.953 3581 [8080-exec-51] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:40:19.954 3581 [8080-exec-51] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:40:19.954 3581 [8080-exec-51] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:40:19.954 3581 [8080-exec-51] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:40:50.756 3581 [8080-exec-53] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:40:50.757 3581 [8080-exec-53] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:40:50.761 3581 [8080-exec-53] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:40:50.762 3581 [8080-exec-53] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:40:50.762 3581 [8080-exec-53] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:40:50.762 3581 [8080-exec-53] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:51:05.995 3581 [8080-exec-56] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:51:05.996 3581 [8080-exec-56] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:51:06.000 3581 [8080-exec-56] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:51:06.000 3581 [8080-exec-56] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:51:06.001 3581 [8080-exec-56] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:51:06.001 3581 [8080-exec-56] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:51:57.099 3581 [8080-exec-58] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:51:57.100 3581 [8080-exec-58] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:51:57.105 3581 [8080-exec-58] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:51:57.106 3581 [8080-exec-58] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:51:57.107 3581 [8080-exec-58] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:51:57.108 3581 [8080-exec-58] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:53:33.456 3581 [8080-exec-60] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:53:33.457 3581 [8080-exec-60] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:53:33.462 3581 [8080-exec-60] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:53:33.462 3581 [8080-exec-60] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:53:33.462 3581 [8080-exec-60] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:53:33.463 3581 [8080-exec-60] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:53:48.152 3581 [8080-exec-62] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:53:48.153 3581 [8080-exec-62] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:53:48.157 3581 [8080-exec-62] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:53:48.157 3581 [8080-exec-62] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:53:48.158 3581 [8080-exec-62] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:53:48.158 3581 [8080-exec-62] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:54:15.854 3581 [8080-exec-64] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:54:15.855 3581 [8080-exec-64] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:54:15.859 3581 [8080-exec-64] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:54:15.860 3581 [8080-exec-64] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:54:15.860 3581 [8080-exec-64] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:54:15.861 3581 [8080-exec-64] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:54:37.351 3581 [8080-exec-66] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:54:37.352 3581 [8080-exec-66] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:54:37.356 3581 [8080-exec-66] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:54:37.356 3581 [8080-exec-66] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:54:37.357 3581 [8080-exec-66] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:54:37.357 3581 [8080-exec-66] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:55:47.600 3581 [8080-exec-68] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:55:47.600 3581 [8080-exec-68] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:55:47.604 3581 [8080-exec-68] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:55:47.604 3581 [8080-exec-68] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:55:47.605 3581 [8080-exec-68] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:55:47.605 3581 [8080-exec-68] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:55:47.670 3581 [8080-exec-69] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:55:47.671 3581 [8080-exec-69] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:55:47.674 3581 [8080-exec-69] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:55:47.675 3581 [8080-exec-69] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:55:47.675 3581 [8080-exec-69] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:55:47.675 3581 [8080-exec-69] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:56:00.105 3581 [8080-exec-71] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:56:00.106 3581 [8080-exec-71] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:56:00.116 3581 [8080-exec-71] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:56:00.117 3581 [8080-exec-71] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:56:00.119 3581 [8080-exec-71] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:56:00.119 3581 [8080-exec-71] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 14:59:50.781 3581 [8080-exec-73] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 14:59:50.781 3581 [8080-exec-73] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 14:59:50.785 3581 [8080-exec-73] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 14:59:50.786 3581 [8080-exec-73] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:59:50.786 3581 [8080-exec-73] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 14:59:50.786 3581 [8080-exec-73] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:01:10.365 3581 [8080-exec-75] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:01:10.366 3581 [8080-exec-75] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:01:10.372 3581 [8080-exec-75] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:01:10.373 3581 [8080-exec-75] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:01:10.373 3581 [8080-exec-75] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:01:10.374 3581 [8080-exec-75] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:02:42.936 3581 [8080-exec-77] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:02:42.937 3581 [8080-exec-77] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:02:42.942 3581 [8080-exec-77] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:02:42.942 3581 [8080-exec-77] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:02:42.943 3581 [8080-exec-77] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:02:42.944 3581 [8080-exec-77] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:03:35.570 3581 [8080-exec-79] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:03:35.570 3581 [8080-exec-79] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:03:35.576 3581 [8080-exec-79] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:03:35.577 3581 [8080-exec-79] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:03:35.577 3581 [8080-exec-79] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:03:35.577 3581 [8080-exec-79] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:03:40.184 3581 [8080-exec-81] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:03:40.185 3581 [8080-exec-81] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:03:40.190 3581 [8080-exec-81] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:03:40.190 3581 [8080-exec-81] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:03:40.190 3581 [8080-exec-81] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:03:40.191 3581 [8080-exec-81] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:03:53.591 3581 [8080-exec-83] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:03:53.591 3581 [8080-exec-83] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:03:53.595 3581 [8080-exec-83] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:03:53.595 3581 [8080-exec-83] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:03:53.595 3581 [8080-exec-83] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:03:53.596 3581 [8080-exec-83] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:04:01.906 3581 [8080-exec-85] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:04:01.906 3581 [8080-exec-85] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:04:01.911 3581 [8080-exec-85] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:04:01.912 3581 [8080-exec-85] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:04:01.912 3581 [8080-exec-85] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:04:01.912 3581 [8080-exec-85] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:04:17.858 3581 [8080-exec-87] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:04:17.859 3581 [8080-exec-87] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:04:17.862 3581 [8080-exec-87] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:04:17.862 3581 [8080-exec-87] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:04:17.863 3581 [8080-exec-87] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:04:17.863 3581 [8080-exec-87] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:04:38.682 3581 [8080-exec-89] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:04:38.683 3581 [8080-exec-89] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:04:38.698 3581 [8080-exec-89] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:04:38.699 3581 [8080-exec-89] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:04:38.700 3581 [8080-exec-89] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:04:38.701 3581 [8080-exec-89] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:04:56.927 3581 [8080-exec-91] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:04:56.928 3581 [8080-exec-91] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:04:56.931 3581 [8080-exec-91] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:04:56.932 3581 [8080-exec-91] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:04:56.933 3581 [8080-exec-91] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:04:56.933 3581 [8080-exec-91] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:05:41.727 3581 [8080-exec-93] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:05:41.727 3581 [8080-exec-93] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:05:41.733 3581 [8080-exec-93] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:05:41.734 3581 [8080-exec-93] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:05:41.734 3581 [8080-exec-93] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:05:41.735 3581 [8080-exec-93] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:06:19.195 3581 [8080-exec-95] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:06:19.195 3581 [8080-exec-95] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:06:19.199 3581 [8080-exec-95] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:06:19.200 3581 [8080-exec-95] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:06:19.200 3581 [8080-exec-95] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:06:19.200 3581 [8080-exec-95] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:06:43.559 3581 [8080-exec-97] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:06:43.560 3581 [8080-exec-97] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:06:43.564 3581 [8080-exec-97] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:06:43.565 3581 [8080-exec-97] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:06:43.565 3581 [8080-exec-97] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:06:43.565 3581 [8080-exec-97] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:06:50.745 3581 [8080-exec-99] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:06:50.745 3581 [8080-exec-99] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:06:50.750 3581 [8080-exec-99] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:06:50.750 3581 [8080-exec-99] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:06:50.751 3581 [8080-exec-99] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:06:50.751 3581 [8080-exec-99] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:23:27.889 3581 [080-exec-101] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:23:27.889 3581 [080-exec-101] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:23:27.894 3581 [080-exec-101] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:23:27.894 3581 [080-exec-101] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:23:27.895 3581 [080-exec-101] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:23:27.896 3581 [080-exec-101] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:24:52.092 3581 [080-exec-103] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:24:52.092 3581 [080-exec-103] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:24:52.096 3581 [080-exec-103] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:24:52.097 3581 [080-exec-103] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:24:52.097 3581 [080-exec-103] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:24:52.098 3581 [080-exec-103] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:25:03.968 3581 [080-exec-105] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:25:03.969 3581 [080-exec-105] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:25:03.974 3581 [080-exec-105] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:25:03.974 3581 [080-exec-105] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:25:03.975 3581 [080-exec-105] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:25:03.975 3581 [080-exec-105] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:31:01.143 3581 [080-exec-107] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:31:01.144 3581 [080-exec-107] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:31:01.149 3581 [080-exec-107] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:31:01.149 3581 [080-exec-107] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:31:01.150 3581 [080-exec-107] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:31:01.151 3581 [080-exec-107] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 15:31:27.462 3581 [080-exec-109] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 15:31:27.463 3581 [080-exec-109] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 15:31:27.468 3581 [080-exec-109] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 15:31:27.468 3581 [080-exec-109] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:31:27.469 3581 [080-exec-109] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 15:31:27.469 3581 [080-exec-109] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:07:13.573 3581 [080-exec-110] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:07:13.573, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/authentications/signcheck)
+2020-06-25 16:07:20.028 3581 [080-exec-111] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:07:20.028, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/authentications/signcheck)
+2020-06-25 16:07:24.659 3581 [080-exec-112] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==>  Preparing: SELECT id, password, name, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE id = ? 
+2020-06-25 16:07:24.659 3581 [080-exec-112] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==> Parameters: admin(String)
+2020-06-25 16:07:24.664 3581 [080-exec-112] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==    Columns: id, password, name, is_approved, created_datetime, updated_datetime
+2020-06-25 16:07:24.677 3581 [080-exec-112] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-06-25 16:07:24.678 3581 [080-exec-112] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : <==      Total: 1
+2020-06-25 16:07:25.132 3581 [080-exec-113] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:07:25.132 3581 [080-exec-113] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:07:25.138 3581 [080-exec-113] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:07:25.139 3581 [080-exec-113] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:07:25.139 3581 [080-exec-113] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:07:25.140 3581 [080-exec-113] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:07:40.082 3581 [080-exec-116] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:07:40.083 3581 [080-exec-116] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:07:40.088 3581 [080-exec-116] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:07:40.088 3581 [080-exec-116] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:07:40.089 3581 [080-exec-116] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:07:40.089 3581 [080-exec-116] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:10:40.210 3581 [080-exec-118] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:10:40.210 3581 [080-exec-118] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:10:40.215 3581 [080-exec-118] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:10:40.215 3581 [080-exec-118] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:40.216 3581 [080-exec-118] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:40.216 3581 [080-exec-118] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:10:40.295 3581 [080-exec-119] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:10:40.295 3581 [080-exec-119] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:10:40.303 3581 [080-exec-119] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:10:40.304 3581 [080-exec-119] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:40.304 3581 [080-exec-119] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:40.304 3581 [080-exec-119] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:10:40.377 3581 [080-exec-120] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:10:40.378 3581 [080-exec-120] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:10:40.384 3581 [080-exec-120] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:10:40.385 3581 [080-exec-120] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:40.385 3581 [080-exec-120] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:40.386 3581 [080-exec-120] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:10:48.400 3581 [080-exec-122] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:10:48.401 3581 [080-exec-122] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:10:48.406 3581 [080-exec-122] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:10:48.406 3581 [080-exec-122] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:48.407 3581 [080-exec-122] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:48.407 3581 [080-exec-122] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:10:48.539 3581 [080-exec-123] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:10:48.540 3581 [080-exec-123] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:10:48.546 3581 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:10:48.546 3581 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:48.547 3581 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:48.547 3581 [080-exec-123] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:10:48.633 3581 [080-exec-124] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:10:48.634 3581 [080-exec-124] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:10:48.680 3581 [080-exec-124] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:10:48.680 3581 [080-exec-124] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:48.681 3581 [080-exec-124] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:10:48.682 3581 [080-exec-124] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:11:31.915 3581 [080-exec-126] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:11:31.916 3581 [080-exec-126] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:11:31.921 3581 [080-exec-126] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:11:31.921 3581 [080-exec-126] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:11:31.922 3581 [080-exec-126] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:11:31.923 3581 [080-exec-126] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:11:59.564 3581 [080-exec-128] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:11:59.564 3581 [080-exec-128] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:11:59.570 3581 [080-exec-128] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:11:59.571 3581 [080-exec-128] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:11:59.571 3581 [080-exec-128] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:11:59.572 3581 [080-exec-128] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:14:33.678 3581 [080-exec-130] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:14:33.679 3581 [080-exec-130] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:14:33.683 3581 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:14:33.683 3581 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:33.684 3581 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:33.685 3581 [080-exec-130] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:14:35.331 3581 [080-exec-131] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:14:35.332 3581 [080-exec-131] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:14:35.336 3581 [080-exec-132] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=8; 
+2020-06-25 16:14:35.336 3581 [080-exec-132] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==> Parameters: 
+2020-06-25 16:14:35.336 3581 [080-exec-131] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:14:35.337 3581 [080-exec-131] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:35.337 3581 [080-exec-131] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:35.338 3581 [080-exec-131] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:14:35.346 3581 [080-exec-132] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-06-25 16:14:35.346 3581 [080-exec-132] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 195, 8, 민소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:35.347 3581 [080-exec-132] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 196, 8, 반팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:35.347 3581 [080-exec-132] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 197, 8, 캡, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:35.347 3581 [080-exec-132] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 198, 8, 7부소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:35.348 3581 [080-exec-132] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 199, 8, 긴팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:35.348 3581 [080-exec-132] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : <==      Total: 5
+2020-06-25 16:14:57.757 3581 [080-exec-135] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=8; 
+2020-06-25 16:14:57.758 3581 [080-exec-135] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==> Parameters: 
+2020-06-25 16:14:57.768 3581 [080-exec-135] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-06-25 16:14:57.768 3581 [080-exec-135] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 195, 8, 민소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.769 3581 [080-exec-134] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=3; 
+2020-06-25 16:14:57.769 3581 [080-exec-135] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 196, 8, 반팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.769 3581 [080-exec-134] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==> Parameters: 
+2020-06-25 16:14:57.770 3581 [080-exec-135] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 197, 8, 캡, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.770 3581 [080-exec-135] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 198, 8, 7부소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.770 3581 [080-exec-135] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 199, 8, 긴팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.771 3581 [080-exec-135] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : <==      Total: 5
+2020-06-25 16:14:57.778 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-06-25 16:14:57.778 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 42, 3, 블랙, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.778 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 43, 3, 화이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.779 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 44, 3, 그레이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.779 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 45, 3, 레드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.779 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 46, 3, 핑크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.780 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 47, 3, 오렌지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.781 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 48, 3, 베이지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.782 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 49, 3, 브라운, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.782 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 50, 3, 옐로우, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.782 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 51, 3, 그린, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.782 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 52, 3, 카키, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.783 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 53, 3, 민트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.783 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 54, 3, 블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.783 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 55, 3, 네이비, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.783 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 56, 3, 스카이블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.784 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 57, 3, 퍼플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.784 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 58, 3, 라벤더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.784 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 59, 3, 와인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.784 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 60, 3, 네온, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.785 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 61, 3, 골드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.785 3581 [080-exec-134] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 62, 3, 실버, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:14:57.785 3581 [080-exec-134] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : <==      Total: 21
+2020-06-25 16:15:08.572 3581 [080-exec-136] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:15:08.572 3581 [080-exec-136] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:15:08.578 3581 [080-exec-136] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:15:08.578 3581 [080-exec-136] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:15:08.579 3581 [080-exec-136] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:15:08.579 3581 [080-exec-136] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:16:52.207 3581 [080-exec-138] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:16:52.208 3581 [080-exec-138] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:16:52.212 3581 [080-exec-138] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:16:52.212 3581 [080-exec-138] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:16:52.212 3581 [080-exec-138] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:16:52.212 3581 [080-exec-138] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:17:30.826 3581 [080-exec-140] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:17:30.826 3581 [080-exec-140] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:17:30.831 3581 [080-exec-140] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:17:30.831 3581 [080-exec-140] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:17:30.831 3581 [080-exec-140] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:17:30.832 3581 [080-exec-140] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:17:57.957 3581 [080-exec-142] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/CreateGroupDialog.js
+2020-06-25 16:17:57.957 3581 [080-exec-145] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/AdminGroup.js
+2020-06-25 16:17:57.957 3581 [080-exec-143] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/src/index.js
+2020-06-25 16:17:57.957 3581 [080-exec-144] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/App.js
+2020-06-25 16:17:57.959 3581 [080-exec-142] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:17:57.959, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/CreateGroupDialog.js, path=/admin/CreateGroupDialog.js)
+2020-06-25 16:17:57.959 3581 [080-exec-143] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:17:57.959, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/src/index.js, path=/admin/src/index.js)
+2020-06-25 16:17:57.959 3581 [080-exec-145] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:17:57.959, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/AdminGroup.js, path=/admin/AdminGroup.js)
+2020-06-25 16:17:57.959 3581 [080-exec-144] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:17:57.959, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/App.js, path=/admin/App.js)
+2020-06-25 16:17:57.969 3581 [080-exec-146] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/CreateGroupDialog.js
+2020-06-25 16:17:57.969 3581 [080-exec-146] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:17:57.969, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/CreateGroupDialog.js, path=/admin/CreateGroupDialog.js)
+2020-06-25 16:17:57.976 3581 [080-exec-148] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/App.js
+2020-06-25 16:17:57.976 3581 [080-exec-149] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/src/index.js
+2020-06-25 16:17:57.976 3581 [080-exec-147] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/AdminGroup.js
+2020-06-25 16:17:57.976 3581 [080-exec-149] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:17:57.976, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/src/index.js, path=/admin/src/index.js)
+2020-06-25 16:17:57.976 3581 [080-exec-148] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:17:57.976, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/App.js, path=/admin/App.js)
+2020-06-25 16:17:57.977 3581 [080-exec-147] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:17:57.977, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/AdminGroup.js, path=/admin/AdminGroup.js)
+2020-06-25 16:17:58.069 3581 [080-exec-150] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:17:58.070 3581 [080-exec-150] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:17:58.074 3581 [080-exec-150] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:17:58.074 3581 [080-exec-150] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:17:58.074 3581 [080-exec-150] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:17:58.074 3581 [080-exec-150] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:20:32.863 3581 [080-exec-152] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/CreateGroupDialog.js
+2020-06-25 16:20:32.864 3581 [080-exec-152] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:32.864, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/CreateGroupDialog.js, path=/admin/CreateGroupDialog.js)
+2020-06-25 16:20:32.869 3581 [080-exec-153] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/AdminGroup.js
+2020-06-25 16:20:32.869 3581 [080-exec-154] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/App.js
+2020-06-25 16:20:32.869 3581 [080-exec-155] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/src/index.js
+2020-06-25 16:20:32.870 3581 [080-exec-153] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:32.870, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/AdminGroup.js, path=/admin/AdminGroup.js)
+2020-06-25 16:20:32.870 3581 [080-exec-154] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:32.870, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/App.js, path=/admin/App.js)
+2020-06-25 16:20:32.870 3581 [080-exec-155] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:32.870, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/src/index.js, path=/admin/src/index.js)
+2020-06-25 16:20:32.886 3581 [080-exec-156] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/CreateGroupDialog.js
+2020-06-25 16:20:32.886 3581 [080-exec-158] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/App.js
+2020-06-25 16:20:32.886 3581 [080-exec-159] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/src/index.js
+2020-06-25 16:20:32.886 3581 [080-exec-157] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/AdminGroup.js
+2020-06-25 16:20:32.887 3581 [080-exec-159] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:32.887, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/src/index.js, path=/admin/src/index.js)
+2020-06-25 16:20:32.887 3581 [080-exec-158] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:32.887, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/App.js, path=/admin/App.js)
+2020-06-25 16:20:32.887 3581 [080-exec-156] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:32.887, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/CreateGroupDialog.js, path=/admin/CreateGroupDialog.js)
+2020-06-25 16:20:32.887 3581 [080-exec-157] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:32.887, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/AdminGroup.js, path=/admin/AdminGroup.js)
+2020-06-25 16:20:32.995 3581 [080-exec-160] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:20:32.995 3581 [080-exec-160] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:20:32.999 3581 [080-exec-160] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:20:33.000 3581 [080-exec-160] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:20:33.000 3581 [080-exec-160] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:20:33.000 3581 [080-exec-160] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:20:47.151 3581 [080-exec-162] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:20:47.151 3581 [080-exec-162] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:20:47.157 3581 [080-exec-162] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:20:47.157 3581 [080-exec-162] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:20:47.157 3581 [080-exec-162] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:20:47.157 3581 [080-exec-162] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:20:59.461 3581 [080-exec-164] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/CreateGroupDialog.js
+2020-06-25 16:20:59.461 3581 [080-exec-165] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/AdminGroup.js
+2020-06-25 16:20:59.461 3581 [080-exec-164] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:59.461, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/CreateGroupDialog.js, path=/admin/CreateGroupDialog.js)
+2020-06-25 16:20:59.461 3581 [080-exec-165] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:59.461, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/AdminGroup.js, path=/admin/AdminGroup.js)
+2020-06-25 16:20:59.467 3581 [080-exec-166] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/App.js
+2020-06-25 16:20:59.468 3581 [080-exec-166] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:59.468, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/App.js, path=/admin/App.js)
+2020-06-25 16:20:59.469 3581 [080-exec-167] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/src/index.js
+2020-06-25 16:20:59.469 3581 [080-exec-167] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:59.469, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/src/index.js, path=/admin/src/index.js)
+2020-06-25 16:20:59.478 3581 [080-exec-168] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/CreateGroupDialog.js
+2020-06-25 16:20:59.478 3581 [080-exec-168] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:59.478, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/CreateGroupDialog.js, path=/admin/CreateGroupDialog.js)
+2020-06-25 16:20:59.488 3581 [080-exec-170] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/AdminGroup.js
+2020-06-25 16:20:59.488 3581 [080-exec-169] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/App.js
+2020-06-25 16:20:59.488 3581 [080-exec-171] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/src/index.js
+2020-06-25 16:20:59.488 3581 [080-exec-169] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:59.488, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/App.js, path=/admin/App.js)
+2020-06-25 16:20:59.488 3581 [080-exec-170] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:59.488, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/AdminGroup.js, path=/admin/AdminGroup.js)
+2020-06-25 16:20:59.488 3581 [080-exec-171] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:20:59.488, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/src/index.js, path=/admin/src/index.js)
+2020-06-25 16:20:59.618 3581 [080-exec-172] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:20:59.618 3581 [080-exec-172] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:20:59.622 3581 [080-exec-172] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:20:59.623 3581 [080-exec-172] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:20:59.623 3581 [080-exec-172] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:20:59.623 3581 [080-exec-172] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:21:09.463 3581 [080-exec-175] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/CreateGroupDialog.js
+2020-06-25 16:21:09.463 3581 [080-exec-176] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/AdminGroup.js
+2020-06-25 16:21:09.464 3581 [080-exec-176] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:21:09.464, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/AdminGroup.js, path=/admin/AdminGroup.js)
+2020-06-25 16:21:09.464 3581 [080-exec-175] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:21:09.464, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/CreateGroupDialog.js, path=/admin/CreateGroupDialog.js)
+2020-06-25 16:21:09.469 3581 [080-exec-178] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/src/index.js
+2020-06-25 16:21:09.469 3581 [080-exec-177] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/App.js
+2020-06-25 16:21:09.470 3581 [080-exec-178] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:21:09.470, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/src/index.js, path=/admin/src/index.js)
+2020-06-25 16:21:09.470 3581 [080-exec-177] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:21:09.470, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/App.js, path=/admin/App.js)
+2020-06-25 16:21:09.484 3581 [080-exec-179] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/CreateGroupDialog.js
+2020-06-25 16:21:09.484 3581 [080-exec-179] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:21:09.484, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/CreateGroupDialog.js, path=/admin/CreateGroupDialog.js)
+2020-06-25 16:21:09.491 3581 [080-exec-181] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/App.js
+2020-06-25 16:21:09.491 3581 [080-exec-182] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/src/index.js
+2020-06-25 16:21:09.491 3581 [080-exec-180] - WARN  o.springframework.web.servlet.PageNotFound 1251 : No mapping for GET /admin/AdminGroup.js
+2020-06-25 16:21:09.491 3581 [080-exec-181] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:21:09.491, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/App.js, path=/admin/App.js)
+2020-06-25 16:21:09.491 3581 [080-exec-182] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:21:09.491, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/src/index.js, path=/admin/src/index.js)
+2020-06-25 16:21:09.491 3581 [080-exec-180] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [404 NOT_FOUND] to 127.0.0.1 : ErrorResponse(timestamp=2020-06-25T16:21:09.491, code=Unknown, status=404, error=Not Found, message=No handler found for GET /admin/AdminGroup.js, path=/admin/AdminGroup.js)
+2020-06-25 16:21:09.559 3581 [080-exec-183] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:21:09.559 3581 [080-exec-183] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:21:09.564 3581 [080-exec-183] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:21:09.565 3581 [080-exec-183] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:21:09.565 3581 [080-exec-183] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:21:09.565 3581 [080-exec-183] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:21:27.269 3581 [080-exec-185] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:21:27.270 3581 [080-exec-185] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:21:27.275 3581 [080-exec-185] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:21:27.276 3581 [080-exec-185] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:21:27.277 3581 [080-exec-185] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:21:27.277 3581 [080-exec-185] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:21:39.258 3581 [080-exec-187] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:21:39.259 3581 [080-exec-187] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:21:39.262 3581 [080-exec-187] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:21:39.263 3581 [080-exec-187] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:21:39.263 3581 [080-exec-187] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:21:39.263 3581 [080-exec-187] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:21:56.669 3581 [080-exec-189] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:21:56.670 3581 [080-exec-189] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:21:56.678 3581 [080-exec-189] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:21:56.679 3581 [080-exec-189] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:21:56.680 3581 [080-exec-189] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:21:56.681 3581 [080-exec-189] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:22:04.550 3581 [080-exec-191] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:22:04.551 3581 [080-exec-191] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:22:04.558 3581 [080-exec-191] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:22:04.559 3581 [080-exec-191] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:22:04.560 3581 [080-exec-191] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:22:04.560 3581 [080-exec-191] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:22:10.280 3581 [080-exec-193] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:22:10.281 3581 [080-exec-193] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:22:10.285 3581 [080-exec-193] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:22:10.286 3581 [080-exec-193] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:22:10.287 3581 [080-exec-193] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:22:10.287 3581 [080-exec-193] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:22:29.828 3581 [080-exec-195] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:22:29.828 3581 [080-exec-195] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:22:29.834 3581 [080-exec-195] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:22:29.834 3581 [080-exec-195] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:22:29.834 3581 [080-exec-195] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:22:29.834 3581 [080-exec-195] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:22:56.269 3581 [080-exec-197] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:22:56.270 3581 [080-exec-197] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:22:56.275 3581 [080-exec-197] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:22:56.276 3581 [080-exec-197] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:22:56.276 3581 [080-exec-197] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:22:56.276 3581 [080-exec-197] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:23:03.828 3581 [080-exec-199] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:23:03.828 3581 [080-exec-199] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:23:03.833 3581 [080-exec-199] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:23:03.834 3581 [080-exec-199] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:23:03.834 3581 [080-exec-199] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:23:03.834 3581 [080-exec-199] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:23:16.736 3581 [080-exec-201] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:23:16.736 3581 [080-exec-201] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:23:16.740 3581 [080-exec-201] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:23:16.741 3581 [080-exec-201] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:23:16.742 3581 [080-exec-201] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:23:16.742 3581 [080-exec-201] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:25:30.475 3581 [080-exec-203] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:25:30.476 3581 [080-exec-203] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:25:30.481 3581 [080-exec-203] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:25:30.481 3581 [080-exec-203] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:25:30.482 3581 [080-exec-203] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:25:30.482 3581 [080-exec-203] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2
+2020-06-25 16:25:32.831 3581 [080-exec-205] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==>  Preparing: SELECT * FROM kfashion_user_group ORDER BY no 
+2020-06-25 16:25:32.832 3581 [080-exec-205] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : ==> Parameters: 
+2020-06-25 16:25:32.838 3581 [080-exec-205] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==    Columns: no, group_name, created_datetime, updated_datetime
+2020-06-25 16:25:32.839 3581 [080-exec-205] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 1, highschool, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:25:32.839 3581 [080-exec-205] - TRACE              i.a.k.w.r.m.K.selectGroupList  165 : <==        Row: 2, 이화여자대학교, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-06-25 16:25:32.839 3581 [080-exec-205] - DEBUG              i.a.k.w.r.m.K.selectGroupList  159 : <==      Total: 2

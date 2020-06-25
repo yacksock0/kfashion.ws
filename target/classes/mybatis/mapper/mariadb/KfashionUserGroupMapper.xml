@@ -7,5 +7,24 @@
         <result property="updatedDatetime"                 column="updated_datetime" />
     </resultMap>
 
+    
+    <insert id="createUserGroup" parameterType="KfashionUserGroup">
+        INSERT
+        INTO kfashion_user_group (
+        group_name,
+        created_datetime,
+        updated_datetime
+        ) VALUES (
+        #{groupName},
+        NOW(),
+        NOW()
+        )
+    </insert>
+
+    <select id="selectGroupList" resultMap="kfashionUserGroupResultMap">
+        SELECT *
+        FROM kfashion_user_group
+        ORDER BY no
+    </select>
 
 </mapper>

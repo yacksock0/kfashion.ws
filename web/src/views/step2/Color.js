@@ -18,30 +18,30 @@ export default class Color extends React.Component {
         const {colorList} = this.props.secondStepStore;
         return(
             <TableContainer style={{maxHeight:250}}>
-            <Table stickyHeader size="small" aria-label="a dense table sticky table" >
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Label</TableCell>
-                        <TableCell>Main</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {colorList.length > 0 ?
-                        colorList.map((color) =>
-                            <TableRow key={color.no}>
-                                <TableCell>
-                                    {color.categoryItemName}
-                                </TableCell>
-                                <TableCell>
-                                    <Checkbox color="primary"/>
-                                </TableCell>
-                            </TableRow>
-                        )
-                        :
-                        ''
-                    }
-                </TableBody>
-            </Table>
+                <Table stickyHeader size="small" aria-label="a dense table sticky table" >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Label</TableCell>
+                            <TableCell>Main</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {colorList.length > 0 ?
+                            colorList.map((color) =>
+                                <TableRow key={color.no}>
+                                    <TableCell>
+                                        {color.categoryItemName}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Checkbox color="primary"/>
+                                    </TableCell>
+                                </TableRow>
+                            )
+                            :
+                            ''
+                        }
+                    </TableBody>
+                </Table>
             </TableContainer>
         );
     }
