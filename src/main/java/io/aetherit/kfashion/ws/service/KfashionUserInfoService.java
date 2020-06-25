@@ -9,6 +9,7 @@ import io.aetherit.kfashion.ws.util.TempKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,7 +103,7 @@ public class KfashionUserInfoService {
         sendMail.setSubject("[Kfashion] 회원가입 이메일 인증");
         sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
                 .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-                .append("<a href='http://localhost:3000/api/v1/verify?userId=")
+                .append("<a href='http://localhost:8080/api/v1/kfashion/users/signup/confirm?userId=")
                 .append(user.getId())
                 .append("&authKey=")
                 .append(authKey)
@@ -120,24 +122,30 @@ public class KfashionUserInfoService {
      * @return
      * @throws Exception
      */
-    public ResponseEntity<String> signupAuthMailVerify(KfashionEmailAuthority authMail) throws Exception {
+    public ResponseEntity<Object> signupAuthMailVerify(KfashionEmailAuthority authMail) throws Exception {
         String msg = "";
         try {
             String id = kfashionEmailAuthorityRepository.selectCheckAuthMail(authMail);
             if(id != null) {
                 kfashionEmailAuthorityRepository.updateAuthority(authMail);
                 repository.updateAuthUser(id);
-                msg = "success";
-                return new ResponseEntity<String>(msg, HttpStatus.OK);
+                URI redirectUri = new URI("http://localhost:3000/sign/success");
+                HttpHeaders httpHeaders = new HttpHeaders();
+                httpHeaders.setLocation(redirectUri);
+                return new ResponseEntity<Object>(httpHeaders, HttpStatus.SEE_OTHER);
             }else {
-                msg = "fail";
-                return new ResponseEntity<String>(msg, HttpStatus.NOT_FOUND);
+                URI redirectUri = new URI("http://localhost:3000/sign/fail");
+                HttpHeaders httpHeaders = new HttpHeaders();
+                httpHeaders.setLocation(redirectUri);
+                return new ResponseEntity<Object>(httpHeaders, HttpStatus.NOT_FOUND);
             }
 
         }catch (Exception e) {
             e.printStackTrace();
-            msg = "fail";
-            return new ResponseEntity<String>(msg, HttpStatus.NOT_FOUND);
+            URI redirectUri = new URI("http://localhost:3000/sign/fail");
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setLocation(redirectUri);
+            return new ResponseEntity<Object>(httpHeaders, HttpStatus.NOT_FOUND);
         }
 
     }

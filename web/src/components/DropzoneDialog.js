@@ -41,16 +41,19 @@ class DropzoneDialogExample extends Component {
             open: false
         });
     }
-    handleChange(files) {
-//Saving files to state for further use and closing Modal.
+    /*   handleChange(files) {
+   //Saving files to state for further use and closing Modal.
+           this.setState({
+               files: files,
+               open: false
+           });
+       }*/
+    handleSave(file){
         this.setState({
-            files: files,
-            open: false
+            open: false,
+            files:file
         });
-    }
-    handleSave(){
-        const { files } = this.state.files;
-        this.props.fileUploadStore.fileupload(files);
+        this.props.fileUploadStore.fileupload(file);
     }
 
     handleOpen() {
@@ -70,7 +73,6 @@ class DropzoneDialogExample extends Component {
                 </Button>
                 <DropzoneDialog
                     open={this.state.open}
-                    onChange={this.handleChange.bind(this)}
                     onSave={this.handleSave.bind(this)}
                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
                     showPreviews={true}

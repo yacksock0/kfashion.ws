@@ -106,27 +106,27 @@ class App extends React.Component {
 
                         {loginState === store.State.Authenticated ? (
                             <React.Fragment>
-                              <Switch>
-                                <Route exact path="/" component={Home} />
-                                <Route exact path="/home" component={Home} />
-                                  <Route exact path="/step" component={Step} />
-                                  <Route exact path="/step2" component={Step2} />
-                                  <Route exact path="/step3" component={Step3} />
-                                  <Route exact path="/Step/BoundaryBox" component={BoundaryBox} />
-                                  <Route exact path="/Step/BoundaryBoxList" component={BoundaryBoxList} />
-                                  <Route exact path="/Step/Segmentation" component={Segmentation} />
-                                  <Route exact path="/Step/Polygon" component={Polygon} />
-                                  <Route exact path="/admin/createGroup" component={AdminGroup} />
-                              </Switch>
+                                <Switch>
+                                    <Route exact path="/" component={Home} />
+                                    <Route exact path="/home" component={Home} />
+                                    <Route exact path="/step" component={Step} />
+                                    <Route exact path="/step2" component={Step2} />
+                                    <Route exact path="/step3" component={Step3} />
+                                    <Route exact path="/Step/BoundaryBox" component={BoundaryBox} />
+                                    <Route exact path="/Step/BoundaryBoxList" component={BoundaryBoxList} />
+                                    <Route exact path="/Step/Segmentation" component={Segmentation} />
+                                    <Route exact path="/Step/Polygon" component={Polygon} />
+                                    <Route exact path="/admin/createGroup" component={AdminGroup} />
+                                </Switch>
                             </React.Fragment>
                         ) : (
                             <Switch>
-                            <Route path="/SignUp" component={SignUp} />
-                            <Route path="/api/v1/verify" component={Verify} />
-                            <Route path="/" component={SignIn} />
+                                <Route path="/SignUp" component={SignUp} />
+                                <Route path="/sign/success" component={Verify} />
+                                <Route path="/" component={SignIn} />
                             </Switch>
                         )}
-                  </Route>
+                    </Route>
                 </Router>
             </div>
         );

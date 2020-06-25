@@ -10,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
 
@@ -48,11 +49,13 @@ public class KfashionUserInfoController {
      * @throws Exception
      */
     @GetMapping(value = "/signup/confirm")
-    public ResponseEntity<String> signupAuth(HttpServletRequest httpServletRequest, @RequestParam(value= "userId", required = true)String userId,
-                                                                                     @RequestParam(value= "authKey", required = true)String authKey) throws Exception{
+    public ResponseEntity<Object> signupAuth(HttpServletResponse response,
+                                             HttpServletRequest httpServletRequest, @RequestParam(value= "userId", required = true)String userId,
+                                                                                    @RequestParam(value= "authKey", required = true)String authKey) throws Exception{
         KfashionEmailAuthority authMail = new KfashionEmailAuthority();
         authMail.setUserId(userId);
         authMail.setAuthKey(authKey);
+        response.sendRedirect("http://localhost:3000/sign/success");
         return kfashionUserInfoService.signupAuthMailVerify(authMail);
     }
 

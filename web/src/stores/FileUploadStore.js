@@ -22,66 +22,30 @@ const UpdateState = {
     UploadFailed: 'UploadFailed',
 };
 export default class FileUploadStore {
-    @observable fileList = [];
+    @observable files = [];
     @observable uploadFile = '';
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
-/*
-    @action fileUploadHandle = () => {
-        this.fileUpload();
-    }
-*/
-    @action changeUploadFile = (file) => {
-        this.uploadFile = file;
-    }
-/*    @computed get isAdding() {
-        return this.addState === AddState.Adding;
-    }
-
-    @computed get isAdded() {
-        return this.addState === AddState.Added;
-    }
-
-    @computed get isAddFailed() {
-        return this.addState === AddState.AddFailed;
-    }*/
-
-
- /*   fileUpload = flow(function* fileUpload(e) {
-        const formData = new FormData()
-
-        formData.append('file', blob, 'filename.jpg')
-        formData.append('subPath', 'shop')
-
-        const res = await axios.post(`/api/v1/img/uploadImgFile`, formData)
-        try {
-            const formData = new FormData();
-            formData.append('file', e.target.file[0]);
-            const response = yield axios.post('/api/v1/img/uploadImgFile', formData);
-            if(response.status === 200) {
-            }
-        } catch (e) {
-            console.log('error다 이놈아');
+    /*
+        @action fileUploadHandle = () => {
+            this.fileUpload();
         }
-    });*/
-    fileupload = flow(function* handleSave(files) {
-        try {
-            const formData = new FormData();
-            for(let i = 0; i < files.length; i++ ) {
-                console.log(files.length);
-                formData.append("file", files[0]);
-            }
-            console.log("formData[]",formData.file);
+    */
+    @action changeUploadFile = (files) => {
+        console.log('changeUploadFile 실행...:',files )
+        this.uploadFile = files;
+        const uploadFile = this.uploadFile;
+        console.log("this.uploadFile:", uploadFile);
+    }
 
-            yield axios.post( '/api/v1/img/uploadMultipleFiles',formData,
-            ).then(function(){
-            })
-                .catch(function(){
-                });
-        } catch (error) {
-            console.log('error')
+    fileupload = flow(function* changeUploadFile(file) {
+        let formData = new FormData();
+        for(let i=0; i < file.length; i++) {
+            formData.append("files", file.files[i], '1.jpg');
         }
+        console.log(formData);
+        yield axios.post('/api/v1/img/uploadMultipleFiles', formData, {headers: {}});
     });
 
 }

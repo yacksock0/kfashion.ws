@@ -50,9 +50,6 @@ public class KfashionImageController {
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
-        System.out.println("---------------uploadFile");
-        logger.info("uploadFile");
-        System.out.println(file);
         String workName = StringUtils.cleanPath(file.getOriginalFilename());
         KfashionWork work = new KfashionWork();
         work.setWorkName(workName);
@@ -77,8 +74,9 @@ public class KfashionImageController {
     }
 
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files)  throws IOException {
+    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
             System.out.println(files.length);
+
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))
