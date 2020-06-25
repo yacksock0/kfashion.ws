@@ -1,5 +1,6 @@
 import React from 'react'
 import { post } from 'axios';
+import axios from "axios";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,10 +10,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {values} from "mobx";
 
 const styles = theme => ({
 });
@@ -22,7 +20,7 @@ class AddGroup extends React.Component {
         super(props);
         this.state = {
             groupName: '',
-            groupAuthority:'',
+            authorityNo:'',
             open: false
         }
 
@@ -38,11 +36,10 @@ class AddGroup extends React.Component {
         this.addGroup()
             .then((response) => {
                 console.log(response.data);
-                this.props.stateRefresh();
             })
         this.setState({
             groupName: '',
-            groupAuthority: '',
+            authorityNo: '',
             open: false
         })
     }
@@ -59,7 +56,7 @@ class AddGroup extends React.Component {
         const url = '/api/v1/kfashion/group/create';
         const formData = new FormData();
         formData.append('groupName', this.state.groupName)
-        formData.append('authorityNo', this.state.groupAuthority)
+        formData.append('authorityNo', this.state.authorityNo)
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -81,7 +78,7 @@ class AddGroup extends React.Component {
     handleClose() {
         this.setState({
             groupName: '',
-            groupAuthority:'',
+            authorityNo:'',
             open: false
         })
     }
@@ -102,6 +99,7 @@ class AddGroup extends React.Component {
                         <Select style={{width:'100%'}}
                             labelId="그룹권한"
                             onChange={this.handleValueChange}
+                             name='authorityNo'
                         >
                             <MenuItem value={1}>ImageUpload</MenuItem>
                             <MenuItem value={2}>BoundaryBox</MenuItem>

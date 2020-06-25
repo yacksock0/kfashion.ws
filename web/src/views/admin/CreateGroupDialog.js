@@ -5,12 +5,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import {Button} from "@material-ui/core";
 import TableContainer from "@material-ui/core/TableContainer";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogTitle from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
 
 @inject('createGroupDialogStore')
 @observer
@@ -66,13 +61,7 @@ export default class CreateGroupDialog extends React.Component {
                                         {group.groupName}
                                     </TableCell>
                                     <TableCell>
-                                        <select color="primary">
-                                            <option>ImageUpload</option>
-                                            <option>BoundaryBox</option>
-                                            <option>Polygon</option>
-                                            <option>Basic</option>
-                                            <option>Professional</option>
-                                        </select>
+                                        {group.groupName}
                                     </TableCell>
                                     <TableCell>
                                         {group.createdDatetime}
@@ -80,6 +69,7 @@ export default class CreateGroupDialog extends React.Component {
                                     <TableCell>
                                         {group.updatedDatetime}
                                     </TableCell>
+
                                 </TableRow>
                             )
                             :

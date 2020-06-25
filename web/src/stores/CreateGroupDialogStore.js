@@ -8,7 +8,6 @@ export default class CreateGroupDialogStore {
     get group() {
         return this.groupList === undefined ? [] : this.groupList;
     }
-
     loadGroupList = flow(function* getGroupList() {
         try {
             const response = yield axios.get(`/api/v1/kfashion/group/groupList`)
