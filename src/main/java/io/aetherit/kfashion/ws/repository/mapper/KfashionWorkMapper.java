@@ -4,4 +4,6 @@ import io.aetherit.kfashion.ws.model.KfashionWork;
 
 public interface KfashionWorkMapper {
     void insertWork(KfashionWork work);
+
+    Long selectWorkNo(String workName);
 }

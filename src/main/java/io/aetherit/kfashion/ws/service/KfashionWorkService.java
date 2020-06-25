@@ -18,4 +18,8 @@ public class KfashionWorkService {
     public void insertWork(KfashionWork work) {
         repository.insertWork(work);
     }
+
+    public Long selectWorkNo(String workName) {
+        return repository.selectWorkNo(workName);
+    }
 }

@@ -55,7 +55,9 @@ public class KfashionImageController {
         work.setWorkName(workName);
         kfashionWorkService.insertWork(work);
         try {
+            Long work_no = kfashionWorkService.selectWorkNo(workName);
             KfashionImage kfashionImage = new KfashionImage();
+            kfashionImage.setWorkNo(work_no);
             kfashionImage.setImgData(file.getBytes());
             kfashionImageService.insertImgUpload(kfashionImage);
         }catch (IOException e) {
