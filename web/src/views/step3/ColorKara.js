@@ -12,11 +12,11 @@ import {Checkbox} from "@material-ui/core";
 @observer
 export default class Category extends React.Component {
     componentDidMount() {
-        this.props.thirdStepStore.loadColorKaraList();
+        this.props.thirdStepStore.loadKaraList();
     }
 
     render(){
-        const {colorKaraList} = this.props.thirdStepStore;
+        const {karaList} = this.props.thirdStepStore;
         return(
             <TableContainer style={{maxHeight:100}}>
                 <Table size="small" aria-label="a dense table">
@@ -28,11 +28,11 @@ export default class Category extends React.Component {
                     </TableHead>
 
                     <TableBody>
-                        {colorKaraList.length > 0 ?
-                            colorKaraList.map((colorKara) =>
-                                <TableRow key={colorKara.no}>
+                        {karaList.length > 0 ?
+                            karaList.map((kara) =>
+                                <TableRow key={kara.no}>
                                     <TableCell>
-                                        {colorKara.categoryItemName}
+                                        {kara.categoryItemName}
                                     </TableCell>
                                     <TableCell>
                                         <Checkbox color="primary"/>

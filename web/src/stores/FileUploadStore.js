@@ -46,7 +46,7 @@ export default class FileUploadStore {
             const formData = new FormData();
             formData.append('file', file);
             console.log("fileParam:", formData);
-            axios.post('/api/v1/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') });
+            axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') });
     };
 
 }

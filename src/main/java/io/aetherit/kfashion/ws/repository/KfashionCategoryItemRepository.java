@@ -53,8 +53,8 @@ public class KfashionCategoryItemRepository {
         return mapper.selectNeckLineList();
     }
 
-    public List<KfashionCategoryItem> selectColorKaraList() {
-        return mapper.selectColorKaraList();
+    public List<KfashionCategoryItem> selectKaraList() {
+        return mapper.selectKaraList();
     }
 
     public List<KfashionCategoryItem> selectFitList() {

@@ -4,7 +4,10 @@ import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.repository.mapper.KfashionUserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class KfashionUserInfoRepository {
@@ -45,5 +48,12 @@ public class KfashionUserInfoRepository {
 
     public List<KfashionUserInfo> selectUserList() {
         return mapper.selectUserList();
+    }
+
+    public void updateUserGroup(int groupNo, String id) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("groupNo",groupNo);
+        map.put("id",id);
+        mapper.updateUserGroup(map);
     }
 }

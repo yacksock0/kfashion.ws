@@ -64,7 +64,7 @@
         where category_no=9;
     </select>
 
-    <select id="selectColorKaraList" resultMap="kfashionCategoryItemResultMap">
+    <select id="selectKaraList" resultMap="kfashionCategoryItemResultMap">
         select *
         from kfashion_category_item
         where category_no=10;

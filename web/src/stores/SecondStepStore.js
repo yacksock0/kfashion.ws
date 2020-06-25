@@ -39,7 +39,7 @@ export default class SecondStepStore {
 
     loadColorList = flow(function* getColorList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/color`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/basic/color`)
             if(response.status === 200) {
                 const color =response.data.colorList;
                 this.colorList=color
@@ -51,7 +51,7 @@ export default class SecondStepStore {
 
     loadSleeveList = flow(function* getSleeveList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/sleeve`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/basic/sleeve`)
             if(response.status === 200) {
                 const sleeve =response.data.sleeveList;
                 this.sleeveList=sleeve

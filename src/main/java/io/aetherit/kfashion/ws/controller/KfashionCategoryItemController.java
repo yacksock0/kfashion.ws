@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/category/item")
+@RequestMapping("/api/v1/kfashion/category/item")
 public class KfashionCategoryItemController {
 
     private KfashionCategoryItemService kfashionCategoryItemService;
@@ -25,9 +26,11 @@ public class KfashionCategoryItemController {
 
     }
 
-        /*
-           일반인 레이블러
-           색상 속성
+        /**
+         * 일반인 레이블러 색상 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
          */
         @GetMapping (value = "/basic/color")
         public ResponseEntity<Object> colorList(HttpServletRequest httpRequest) {
@@ -37,9 +40,11 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-           일반인 레이블러
-           소매기 속성
+        /**
+         * 일반인 레이블러 소매길이 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
          */
         @GetMapping (value = "/basic/sleeve")
         public ResponseEntity<Object> sleeveLengthList(HttpServletRequest httpRequest) {
@@ -49,11 +54,13 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-         /*
-            전문가 레이블러
-            스타일 속성
+        /**
+         * 전문가 레이블러 스타일 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
          */
-        @GetMapping(value = "/basic/style")
+        @GetMapping(value = "/professional/style")
         public ResponseEntity<Object> styleList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> styleList = kfashionCategoryItemService.selectStyleList();
@@ -61,11 +68,13 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-           전문가 레이블러
-           카테고리 속성
+        /**
+         * 전문가 레이블러 카테고리 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
          */
-        @GetMapping(value = "/basic/category")
+        @GetMapping(value = "/professional/category")
         public ResponseEntity<Object> categoryList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> categoryList = kfashionCategoryItemService.selectCategoryList();
@@ -73,11 +82,13 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-           전문가 레이블러
-           디테일 속성
+        /**
+         * 전문가 레이블러 디테일 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
          */
-        @GetMapping (value = "/basic/detail")
+        @GetMapping (value = "/professional/detail")
         public ResponseEntity<Object> detailList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> detailList = kfashionCategoryItemService.selectDetailList();
@@ -85,11 +96,13 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-           전문가 레이블러
-           프린트 속성
+        /**
+         * 전문가 레이블러 프린트 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
          */
-        @GetMapping (value = "/basic/print")
+        @GetMapping (value = "/professional/print")
         public ResponseEntity<Object> printList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> printList = kfashionCategoryItemService.selectPrintList();
@@ -97,22 +110,27 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-          전문가 레이블러
-          소재감 속성
-       */
-        @GetMapping (value = "/basic/texture")
+        /**
+         * 전문가 레이블러 소재감 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
+         */
+        @GetMapping (value = "/professional/texture")
         public ResponseEntity<Object> textureList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> textureList = kfashionCategoryItemService.selectTextureList();
             resultMap.put("textureList", textureList);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
-        /*
-           전문가 레이블러
-            기장 속성
-        */
-        @GetMapping (value = "/basic/length")
+
+        /**
+         * 전문가 레이블러 기장 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
+         */
+        @GetMapping (value = "/professional/length")
         public ResponseEntity<Object> lengthList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> lengthList = kfashionCategoryItemService.selectLengthList();
@@ -120,11 +138,13 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-          전문가 레이블러
-           넥라인 속성
-       */
-        @GetMapping (value = "/basic/neckLine")
+        /**
+         * 전문가 레이블러 넥라인 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
+         */
+        @GetMapping (value = "/professional/neckLine")
         public ResponseEntity<Object> neckLineList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> neckLineList = kfashionCategoryItemService.selectNeckLineList();
@@ -132,23 +152,27 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-          전문가 레이블러
-          칼라(카라)속성
-        */
-        @GetMapping (value = "/basic/colorKara")
-        public ResponseEntity<Object> colorKaraList(HttpServletRequest httpRequest) {
+        /**
+         * 전문가 레이블러 카라 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
+         */
+        @GetMapping (value = "/professional/Kara")
+        public ResponseEntity<Object> karaList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionCategoryItem> colorKaraList = kfashionCategoryItemService.selectColorKaraList();
-            resultMap.put("colorKaraList", colorKaraList);
+            List<KfashionCategoryItem> karaList = kfashionCategoryItemService.selectKaraList();
+            resultMap.put("karaList", karaList);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-         전문가 레이블러
-         핏 속성
-       */
-        @GetMapping (value = "/basic/fit")
+        /**
+         * 전문가 레이블러 핏 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
+         */
+        @GetMapping (value = "/professional/fit")
         public ResponseEntity<Object> fitList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> fitList = kfashionCategoryItemService.selectFitList();
@@ -156,11 +180,13 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-       /*
-         전문가 레이블러
-         세이프 속성
-       */
-        @GetMapping (value = "/basic/safe")
+        /**
+         * 전문가 레이블러 세이프 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
+         */
+        @GetMapping (value = "/professional/safe")
         public ResponseEntity<Object> safeList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> safeList = kfashionCategoryItemService.selectSafeList();
@@ -168,11 +194,13 @@ public class KfashionCategoryItemController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-        /*
-         전문가 레이블러
-         실루엣 속성
-       */
-        @GetMapping (value = "/basic/silhouette")
+        /**
+         * 전문가 레이블러 실루엣 속성
+         * @param httpRequest
+         * @return ResponseEntity
+         * @throws
+         */
+        @GetMapping (value = "/professional/silhouette")
         public ResponseEntity<Object> silhouetteList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> silhouetteList = kfashionCategoryItemService.selectSilhouetteList();

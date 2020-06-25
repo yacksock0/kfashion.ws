@@ -10,7 +10,7 @@ export default class ThirdStepStore {
     @observable textureList = []
     @observable lengthList = []
     @observable neckLineList = []
-    @observable colorKaraList = []
+    @observable karaList = []
     @observable fitList = []
     @observable safeList = []
     @observable silhouetteList = []
@@ -25,7 +25,7 @@ export default class ThirdStepStore {
 
     loadStyleList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/style`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/style`)
             if(response.status === 200) {
                 const style =response.data.styleList;
                 this.styleList=style
@@ -36,7 +36,7 @@ export default class ThirdStepStore {
     })
     loadCategoryList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/category`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/category`)
             if(response.status === 200) {
                 const category =response.data.categoryList;
                 this.categoryList=category
@@ -47,7 +47,7 @@ export default class ThirdStepStore {
     })
     loadDetailList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/detail`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/detail`)
             if(response.status === 200) {
                 const detail =response.data.detailList;
                 this.detailList=detail
@@ -58,7 +58,7 @@ export default class ThirdStepStore {
     })
     loadPrintList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/print`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/print`)
             if(response.status === 200) {
                 const print =response.data.printList;
                 this.printList=print
@@ -69,7 +69,7 @@ export default class ThirdStepStore {
     })
     loadTextureList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/texture`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/texture`)
             if(response.status === 200) {
                 const texture =response.data.textureList;
                 this.textureList=texture
@@ -80,7 +80,7 @@ export default class ThirdStepStore {
     })
     loadLengthList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/length`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/length`)
             if(response.status === 200) {
                 const length =response.data.lengthList;
                 this.lengthList=length
@@ -91,7 +91,7 @@ export default class ThirdStepStore {
     })
     loadNeckLineList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/neckLine`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/neckLine`)
             if(response.status === 200) {
                 const neckLine =response.data.neckLineList;
                 this.neckLineList=neckLine
@@ -100,12 +100,12 @@ export default class ThirdStepStore {
             console.log("error getCategoryList", error);
         }
     })
-    loadColorKaraList = flow(function* getCategoryList() {
+    loadKaraList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/colorKara`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/kara`)
             if(response.status === 200) {
-                const colorKara =response.data.colorKaraList;
-                this.colorKaraList=colorKara
+                const kara =response.data.karaList;
+                this.karaList=kara
             }
         } catch(error) {
             console.log("error getCategoryList", error);
@@ -113,7 +113,7 @@ export default class ThirdStepStore {
     })
     loadFitList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/fit`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/fit`)
             if(response.status === 200) {
                 const fit =response.data.fitList;
                 this.fitList=fit
@@ -124,7 +124,7 @@ export default class ThirdStepStore {
     })
     loadSafeList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/safe`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/safe`)
             if(response.status === 200) {
                 const safe =response.data.safeList;
                 this.safeList=safe
@@ -135,7 +135,7 @@ export default class ThirdStepStore {
     })
     loadSilhouetteList = flow(function* getCategoryList() {
         try {
-            const response = yield axios.get(`/api/v1/category/item/basic/silhouette`)
+            const response = yield axios.get(`/api/v1/kfashion/category/item/professional/silhouette`)
             if(response.status === 200) {
                 const silhouette =response.data.silhouetteList;
                 this.silhouetteList=silhouette
