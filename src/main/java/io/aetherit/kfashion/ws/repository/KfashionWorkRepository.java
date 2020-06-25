@@ -17,4 +17,8 @@ public class KfashionWorkRepository {
     public void insertWork(KfashionWork work) {
         mapper.insertWork(work);
     }
+
+    public Long selectWorkNo(String workName) {
+        return mapper.selectWorkNo(workName);
+    }
 }

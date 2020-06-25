@@ -67,6 +67,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         return KfashionSimpleUser.builder()
                 .id(user.getId())
                 .name(user.getName())
+                .isAdmin(user.getIsAdmin())
                 .isApproved(user.getIsApproved())
                 .createdDatetime(user.getCreatedDatetime())
                 .updatedDatetime(user.getUpdatedDatetime())
