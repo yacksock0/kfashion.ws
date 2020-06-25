@@ -1,6 +1,8 @@
 import {action, computed, flow, observable, toJS} from "mobx";
+import React from "react";
 import axios from "axios";
 import * as validation from "../common/Validation";
+import SimpleAlerts from "../components/alert";
 
 const MinUserId = 4;
 const MinUserName = 2;
@@ -167,14 +169,17 @@ export default class SignUpStore {
     @computed get isNotAvailableEmail() {
         return this.state === State.NotAvailableEmail;
     }
-
     doSignUp = flow(function* doSignUp(doAction) {
         this.state = State.Pending;
         try {
-        const response = yield axios.get(`/api/v1/users/signupcheck?email=${this.newMember.email}`)
+        const response = yield axios.get(`/api/v1/kfashion/users/signupcheck/email?email=${this.newMember.email}`)
+        const responseid = yield axios.get(`/api/v1/kfashion/users/signupcheck/id?id=${this.newMember.id}`)
+            console.log(response.data);
+            console.log(responseid.data);
         const isNotAvailEmail = response.data.result;
+        const isNotAvailId = response.data.result;
 
-        if(!isNotAvailEmail) {
+        if(!isNotAvailEmail || !isNotAvailId) {
 
             const param = toJS(this.newMember);
             delete param.passwordConfirm;
@@ -187,7 +192,7 @@ export default class SignUpStore {
                 this.state = State.NotAvailableEmail;
             }
         }else{
-            console.log('이메일이 있다 임마')
+             this.state = State.NotAvailableEmail;
         }
         } catch (e) {
             console.log('에러좀 나지 마라')

@@ -4,6 +4,7 @@ import SignUpStore from "./SignUpStore";
 import SecondStepStore from "./SecondStepStore";
 import FileUploadStore from "./FileUploadStore";
 import ThirdStepStore from "./ThirdStepStore";
+import CreateGroupDialogStore from "./CreateGroupDialogStore";
 
 export const stores = {
     signUpStore: new SignUpStore(),
@@ -12,4 +13,5 @@ export const stores = {
     secondStepStore: new SecondStepStore(),
     fileUploadStore: new FileUploadStore(),
     thirdStepStore: new ThirdStepStore(),
+    createGroupDialogStore : new CreateGroupDialogStore(),
 };

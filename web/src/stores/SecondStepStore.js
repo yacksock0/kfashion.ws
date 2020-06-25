@@ -20,22 +20,6 @@ export default class SecondStepStore {
     get sleeve() {
         return this.sleeveList === undefined ? [] : this.sleeveList;
     }
-    /*@computed
-    get clothLength() {
-        return this.clothLengthList === undefined ? [] : this.clothLengthList;
-    }
-    @computed
-    get print() {
-        return this.printList === undefined ? [] : this.printList;
-    }
-    @action changeCategory =() => {
-        this.loadCategoryList();
-    }
-    @action changeColor =() => {
-        this.loadColorList();
-    }*/
-
-
 
     loadColorList = flow(function* getColorList() {
         try {
