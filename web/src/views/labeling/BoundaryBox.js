@@ -85,7 +85,7 @@ class BoundaryBox extends React.Component {
     handleChangeUploadFile = (event) => {
         const file = event.target.files[0];
 
-        this.props.fileUploadStore.changeUploadFile(file);
+        this.props.fileUploadStore.changeUploadFile(file,this.props.id);
     }
     handleOk = () => {
         this.props.fileUploadStore.addNewImg();
@@ -106,7 +106,6 @@ class BoundaryBox extends React.Component {
                             <Grid item xs={1} style={{marginRight:5}}>
                                 <DropzoneDialogExample />
                                 <div>
-                                <DropzoneFuck/>
                                 </div>
                             </Grid>
                             <Grid item xs={1} style={{marginRight:5}}>

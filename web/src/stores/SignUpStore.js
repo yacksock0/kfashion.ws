@@ -7,7 +7,7 @@ import SimpleAlerts from "../components/alert";
 const MinUserId = 4;
 const MinUserName = 2;
 const MinPassword = 4;
-const MinNickName = 2;
+const MinPhone = 13;
 
 const State = {
     Ready: 'Ready',
@@ -23,7 +23,7 @@ const EmptyNewMember = {
     password: '',
     passwordConfirm: '',
     name: '',
-    nickName: '',
+    phone: '',
 }
 
 const EmptyAgreements = {
@@ -70,8 +70,8 @@ export default class SignUpStore {
         this.newMember.name = name;
     }
 
-    @action changeNewMemberNickName = (nickName) => {
-        this.newMember.nickName = nickName;
+    @action changeNewMemberPhone = (phone) => {
+        this.newMember.phone = phone;
     }
 
     @action changeAgreementsAll = (allAgreement) => {
@@ -115,9 +115,9 @@ export default class SignUpStore {
         const passwordConfirm = this.newMember.password === this.newMember.passwordConfirm;
         const password = this.newMember.password.length >= MinPassword;
         const userName = this.newMember.name.length >= MinUserName;
-        const nickName = this.newMember.nickName.length >= MinNickName;
+        const phone = this.newMember.phone.length >= MinPhone;
 
-        return emailVerification && agreements && passwordConfirm && password && userName && nickName;
+        return emailVerification && agreements && passwordConfirm && password && userName && phone;
     }
 
     @computed get canAdminSignUp() {
@@ -126,9 +126,9 @@ export default class SignUpStore {
         const passwordConfirm = this.newMember.password === this.newMember.passwordConfirm;
         const password = this.newMember.password.length >= MinPassword;
         const userName = this.newMember.name.length >= MinUserName;
-        const nickName = this.newMember.nickName.length >= MinNickName;
+        const phone = this.newMember.phone.length >= MinPhone;
 
-        return emailVerification && passwordConfirm && password && userName && nickName;
+        return emailVerification && passwordConfirm && password && userName && phone;
     }
 
     @computed get isValidId() {
@@ -150,8 +150,8 @@ export default class SignUpStore {
         return this.newMember.name.length >= MinUserName;
     }
 
-    @computed get isValidNickName() {
-        return this.newMember.nickName.length >= MinNickName;
+    @computed get isValidPhone() {
+        return this.newMember.phone.length >= MinPhone;
     }
 
     @computed get isPending() {

@@ -1,85 +1,91 @@
-import axios from 'axios';
-
-import React,{Component} from 'react';
-
-class DropzoneFuck extends Component {
-
-    state = {
-
-        // Initially, no file is selected
-        selectedFile: null
-    };
-
-    // On file select (from the pop up)
-    onFileChange = event => {
-
-        // Update the state
-        this.setState({ selectedFile: event.target.files[0] });
-
-    };
-
-    // On file upload (click the upload button)
-    onFileUpload = () => {
-
-        // Create an object of formData
-        const formData = new FormData();
-
-        // Update the formData object
-        formData.append(
-            "files",
-            this.state.selectedFile,
-            this.state.selectedFile.name
-        );
-
-        // Details of the uploaded file
-        console.log(this.state.selectedFile);
-
-        // Request made to the backend api
-        // Send formData object
-        axios.post("/api/v1/img/uploadMultipleFiles", formData);
-    };
-
-    // File content to be displayed after
-    // file upload is complete
-    fileData = () => {
-
-        if (this.state.selectedFile) {
-
-            return (
-                <div>
-                    <h2>File Details:</h2>
-                    <p>File Name: {this.state.selectedFile.name}</p>
-                    <p>File Type: {this.state.selectedFile.type}</p>
-                    <p>
-                        Last Modified:{" "}
-                        {this.state.selectedFile.lastModifiedDate.toDateString()}
-                    </p>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <br />
-                    <h4>Choose before Pressing the Upload button</h4>
-                </div>
-            );
-        }
-    };
-
-    render() {
-
-        return (
-            <div>
-                <div>
-                    <input type="file" onChange={this.onFileChange} />
-                    <button onClick={this.onFileUpload}>
-                        Upload!
-                    </button>
-                </div>
-                {this.fileData()}
-            </div>
-        );
-    }
-}
-
-export default DropzoneFuck;
+// import axios from 'axios';
+// import Button from '@material-ui/core/Button';
+// import React,{Component} from 'react';
+// import DropzoneDialog from "./DropzoneDialog";
+//
+//
+// class DropzoneFuck extends Component {
+//
+//     state = {
+//         // Initially, no file is selected
+//         files: [],
+//         open: false,
+//     };
+//
+//     // On file select (from the pop up)
+//     onFileChange = event => {
+//
+//         // Update the state
+//         this.setState({ files:[...this.state.files, ...event.target.files]});
+//
+//     };
+//
+//     // On file upload (click the upload button)
+//     onFileUpload = () => {
+//
+//         // Create an object of formData
+//         const formData = new FormData();
+//
+//         for(let i=0; i < this.state.files.length; i++) {
+//             formData.append("files",this.state.files[i]);
+//             console.log(this.state.files[i]);
+//
+//         }
+//         axios.post("/api/v1/kfashion/img/uploadMultipleFiles", formData);
+//         // Details of the uploaded file
+//
+//         // Request made to the backend api
+//         // Send formData object
+//
+//     };
+//
+//     handleClose() {
+//         this.setState({
+//             open: false
+//         });
+//     }
+//
+//     handleSave(files) {
+//         //Saving files to state for further use and closing Modal.
+//         this.setState({
+//             open: false
+//         });
+//         const formData = new FormData();
+//
+//         for(let i=0; i < files.length; i++) {
+//             formData.append("files",files[i]);
+//             console.log(files[i]);
+//
+//         }
+//         axios.post("/api/v1/kfashion/img/uploadMultipleFiles", formData);
+//     }
+//
+//     handleOpen() {
+//         this.setState({
+//             open: true,
+//         });
+//     }
+//
+//     // File content to be displayed after
+//     // file upload is complete
+//     render() {
+//
+//         return (
+//             <div>
+//                 <Button onClick={this.handleOpen.bind(this)}>
+//                     Add Image
+//                 </Button>
+//                 <DropzoneDialog
+//                     open={this.state.open}
+//                     onSave={this.handleSave.bind(this)}
+//                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
+//                     showPreviews={true}
+//                     maxFileSize={5000000}
+//                     onClose={this.handleClose.bind(this)}
+//                 />
+//             </div>
+//         );
+//     }
+// }
+//
+// export default DropzoneFuck;

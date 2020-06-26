@@ -158,7 +158,7 @@ public class KfashionCategoryItemController {
          * @return ResponseEntity
          * @throws
          */
-        @GetMapping (value = "/professional/Kara")
+        @GetMapping (value = "/professional/kara")
         public ResponseEntity<Object> karaList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> karaList = kfashionCategoryItemService.selectKaraList();
