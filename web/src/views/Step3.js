@@ -3,17 +3,9 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
 import {Button, Container, Grid, TextField, Typography} from "@material-ui/core";
-import Table from '@material-ui/core/Table';
-import Checkbox from '@material-ui/core/Checkbox';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Category from "./step3/Category";
-import FormGroup from '@material-ui/core/FormGroup';
 import Style from "./step3/Style";
 import Detail from "./step3/Detail";
 import Print from "./step3/Print";
@@ -24,6 +16,7 @@ import ColorKara from "./step3/ColorKara";
 import Fit from "./step3/Fit";
 import Safe from "./step3/Safe";
 import Silhouette from "./step3/Silhouette";
+import SelectTest from "./step3/SelectTest";
 
 const styles = theme => ({
     mainContainer: {
@@ -215,8 +208,20 @@ class Step3 extends React.Component {
                                         <Silhouette />
                                     </div>
                                 </Grid>
+                                <Grid item xs={12} lg={6}>
+                                    <div className={classes.content}>
+                                        <Typography variant="h5" component="h5">
+                                            실루엣
+                                        </Typography>
+                                        <div>
+                                            <hr></hr>
+                                        </div>
+                                        <SelectTest />
+                                    </div>
+                                </Grid>
                                 </Grid>
                             </Grid>
+
                     </div>
                     <hr></hr>
                     <Button

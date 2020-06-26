@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -158,7 +157,7 @@ public class KfashionCategoryItemController {
          * @return ResponseEntity
          * @throws
          */
-        @GetMapping (value = "/professional/Kara")
+        @GetMapping (value = "/professional/kara")
         public ResponseEntity<Object> karaList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> karaList = kfashionCategoryItemService.selectKaraList();
