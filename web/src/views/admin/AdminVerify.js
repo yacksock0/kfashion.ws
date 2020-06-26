@@ -17,6 +17,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
+import {Button} from "@material-ui/core";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -66,6 +67,7 @@ export default class AdminVerify extends React.Component {
     render() {
         const {userList} = this.state.userList;
         return (
+            <div>
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
                     icons={tableIcons}
@@ -73,18 +75,6 @@ export default class AdminVerify extends React.Component {
                     data={userList}
                     title="관리자 승인"
                     editable={{
-                        onRowUpdate: (newData, oldData) =>
-                            new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                    {
-                                        /* const data = this.state.data;
-                                        const index = data.indexOf(oldData);
-                                        data[index] = newData;
-                                        this.setState({ data }, () => resolve()); */
-                                    }
-                                    resolve();
-                                }, 1000);
-                            }),
                         onRowDelete: oldData =>
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
@@ -99,6 +89,11 @@ export default class AdminVerify extends React.Component {
                             })
                     }}
                 />
+            </div>
+                <hr></hr>
+                <Button  style={{float:"right"}} variant="contained" color="primary" onClick={this.handleClickOpen}>
+                    승인
+                </Button>
             </div>
         );
     }

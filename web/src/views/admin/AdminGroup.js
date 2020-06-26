@@ -5,7 +5,6 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import CreateGroupDialog from "./CreateGroupDialog";
 import AdminVerify from "./AdminVerify";
-import AddGroup from "./AddGroup";
 
 const styles = theme => ({
     mainContainer: {
@@ -39,15 +38,10 @@ class AdminGroup extends React.Component {
                 <div className={classes.appBarSpacer} />
                     <Toolbar className={classes.toolbar}>
                     </Toolbar>
-                <Grid container>
-                <Grid item xs={12} lg={12}>
-                    <CreateGroupDialog />
-                    </Grid>
-                    <AddGroup/>
                 <Grid item xs={12} lg={12}>
                     <AdminVerify />
                 </Grid>
-                </Grid>
+                <CreateGroupDialog />
             </Container>
         );
     }

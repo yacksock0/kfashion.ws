@@ -91,12 +91,16 @@ class AddGroup extends React.Component {
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
                     그룹 추가
                 </Button>
+                <Button style={{float:"right"}} variant="outlined" color="primary" onClick={this.handleClose}>
+                    닫기
+                </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>그룹 추가</DialogTitle>
                     <DialogContent>
-                        <TextField label="그룹명" type="text" name="groupName" value={this.state.groupName} onChange={this.handleValueChange} /><br/>
+                        <TextField label="그룹명" type="text" name="groupName" value={this.state.groupName} onChange={this.handleValueChange} />
+                        <div style={{display:'inline-block'}}>
                         <InputLabel id="demo-simple-select-label">그룹권한</InputLabel>
-                        <Select style={{width:'100%'}}
+                        <Select style={{width: 150, marginLeft:10}}
                             labelId="그룹권한"
                             onChange={this.handleValueChange}
                              name='authorityNo'
@@ -107,6 +111,7 @@ class AddGroup extends React.Component {
                             <MenuItem value={4}>Basic</MenuItem>
                             <MenuItem value={5}>Professional</MenuItem>
                         </Select>
+                        </div>
                     </DialogContent>
                     <DialogActions>
                         <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>

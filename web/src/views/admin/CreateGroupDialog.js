@@ -6,6 +6,11 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
+import {Button, Grid} from "@material-ui/core";
+import AddGroup from "./AddGroup";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
 
 @inject('createGroupDialogStore')
 @observer
@@ -31,6 +36,7 @@ export default class CreateGroupDialog extends React.Component {
             open: false
         })
     }
+
     componentDidMount() {
         this.props.createGroupDialogStore.loadGroupList();
     }
@@ -39,6 +45,12 @@ export default class CreateGroupDialog extends React.Component {
         const {groupList} = this.props.createGroupDialogStore;
         return (
             <div>
+            <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+                그룹 관리
+            </Button>
+            <Dialog open={this.state.open} onClose={this.handleClose}>
+                <DialogTitle>그룹 리스트</DialogTitle>
+                <DialogContent>
             <TableContainer style={{maxHeight:300}}>
                 <Table stickyHeader size="small" aria-label="a dense table sticky table" >
                     <TableHead>
@@ -61,7 +73,7 @@ export default class CreateGroupDialog extends React.Component {
                                         {group.groupName}
                                     </TableCell>
                                     <TableCell>
-                                        {group.groupName}
+                                        {group.authorityName}
                                     </TableCell>
                                     <TableCell>
                                         {group.createdDatetime}
@@ -79,6 +91,9 @@ export default class CreateGroupDialog extends React.Component {
                 </Table>
             </TableContainer>
         <hr></hr>
+                <AddGroup/>
+                </DialogContent>
+            </Dialog>
         </div>
         );
     }

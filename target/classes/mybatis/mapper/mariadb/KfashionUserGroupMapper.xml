@@ -3,6 +3,8 @@
     <resultMap id="kfashionUserGroupResultMap" type="KfashionUserGroup">
         <id property="no"                       column="no" />
         <result property="groupName"             column="group_name" />
+        <result property="authorityNo"             column="authority_no" />
+        <result property="authorityName"             column="authority_name" />
         <result property="createdDatetime"                 column="created_datetime" />
         <result property="updatedDatetime"                 column="updated_datetime" />
     </resultMap>
@@ -22,8 +24,12 @@
     </insert>
 
     <select id="selectGroupList" resultMap="kfashionUserGroupResultMap">
-        SELECT *
-        FROM kfashion_user_group
+        SELECT
+        a.no ,
+        a.group_name ,
+        b.authority_name ,
+        b.no authority_no
+        FROM kfashion_user_group a, kfashion_user_authority b
         ORDER BY no
     </select>
 
