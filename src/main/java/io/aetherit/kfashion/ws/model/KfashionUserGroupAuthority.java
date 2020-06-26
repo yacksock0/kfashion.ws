@@ -16,7 +16,9 @@ import java.time.LocalDateTime;
 public class KfashionUserGroupAuthority {
 
     private int authorityNo;
+    private String authorityName;
     private int groupNo;
+    private String groupName;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 
