@@ -100,7 +100,7 @@ class AddGroup extends React.Component {
                         <TextField label="그룹명" type="text" name="groupName" value={this.state.groupName} onChange={this.handleValueChange} />
                         <div style={{display:'inline-block'}}>
                         <InputLabel id="demo-simple-select-label">그룹권한</InputLabel>
-                        <Select style={{width: 150, marginLeft:10}}
+                        <Select style={{width: 130, marginLeft:10}}
                             labelId="그룹권한"
                             onChange={this.handleValueChange}
                              name='authorityNo'

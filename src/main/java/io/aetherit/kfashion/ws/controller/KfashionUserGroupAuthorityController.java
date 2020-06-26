@@ -1,7 +1,6 @@
 package io.aetherit.kfashion.ws.controller;
 
 import io.aetherit.kfashion.ws.model.KfashionCategoryItem;
-import io.aetherit.kfashion.ws.service.KfashionUserAuthorityService;
 import io.aetherit.kfashion.ws.service.KfashionUserGroupAuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +36,7 @@ public class KfashionUserGroupAuthorityController {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> userGroupAuthorityList = kfashionUserGroupAuthorityService.selectUserGroupAuthorityList();
             resultMap.put("userGroupAuthorityList", userGroupAuthorityList);
+            System.out.println(userGroupAuthorityList);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 }

@@ -18,7 +18,6 @@ export default class CreateGroupDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupName: '',
             open: false
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -42,7 +41,7 @@ export default class CreateGroupDialog extends React.Component {
     }
 
     render() {
-        const {groupList} = this.props.createGroupDialogStore;
+        const {userGroupAuthorityList} = this.props.createGroupDialogStore;
         return (
             <div>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
@@ -63,23 +62,23 @@ export default class CreateGroupDialog extends React.Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {groupList.length > 0 ?
-                            groupList.map((group) =>
-                                <TableRow key={group.no}>
+                        {userGroupAuthorityList.length > 0 ?
+                            userGroupAuthorityList.map((authority) =>
+                                <TableRow key={authority.groupNo}>
                                     <TableCell>
-                                        {group.no}
+                                        {authority.groupNo}
                                     </TableCell>
                                     <TableCell>
-                                        {group.groupName}
+                                        {authority.groupName}
                                     </TableCell>
                                     <TableCell>
-                                        {group.authorityName}
+                                        {authority.authorityName}
                                     </TableCell>
                                     <TableCell>
-                                        {group.createdDatetime}
+                                        {authority.createdDatetime}
                                     </TableCell>
                                     <TableCell>
-                                        {group.updatedDatetime}
+                                        {authority.updatedDatetime}
                                     </TableCell>
 
                                 </TableRow>
