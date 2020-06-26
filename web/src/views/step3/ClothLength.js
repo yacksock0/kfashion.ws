@@ -28,7 +28,7 @@ export default class Category extends React.Component {
                     </TableHead>
 
                     <TableBody>
-                        {lengthList.length > 0 ?
+                        {
                             lengthList.map((length) =>
                                 <TableRow key={length.no}>
                                     <TableCell>
@@ -39,8 +39,7 @@ export default class Category extends React.Component {
                                     </TableCell>
                                 </TableRow>
                             )
-                            :
-                            ''
+
                         }
                     </TableBody>
                 </Table>

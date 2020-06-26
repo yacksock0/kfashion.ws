@@ -19,6 +19,13 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {Button} from "@material-ui/core";
 
+const styles = theme => ({
+    table: {
+       textAlign:"center",
+
+    },
+});
+
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -41,16 +48,15 @@ const tableIcons = {
 
 export default class AdminVerify extends React.Component {
     state = {
-        text: 'text',
         userList : [],
         data: [],
         columns: [
-            { title: '아이디', field: 'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력' },
-            { title: '이메일', field: 'email', initialEditValue: 'test', tooltip: 'This is tooltip text' },
-            { title: '이름', field: 'name', type: 'datetime' },
-            { title: '연락처', field: 'updatedDateTime', type: 'datetime' },
-            { title: '소속', field: 'group_no', type: '<select>' },
-            { title: '신청일', field: 'createdDatetime', type: 'datetime' },
+            { title: '아이디', field: 'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
+            { title: '이메일', field: 'email',type: 'text'},
+            { title: '이름', field: 'name', type: 'text'},
+            { title: '연락처', field: 'updatedDateTime', type: 'number'},
+            { title: '소속', field: 'group_no', type: '<select>'},
+            { title: '신청일', field: 'createdDatetime', type: 'date'},
         ],
     }
     componentDidMount() {
@@ -58,7 +64,7 @@ export default class AdminVerify extends React.Component {
         axios.get('/api/v1/kfashion/users/userList')
             .then(response => response.data)
             .then(res => {
-                this.setState({ userList : res, loading: false }, () =>console.log(res))
+                this.setState({ userList : res, loading: false },)
             })
             .catch(error => {
                 console.log(error)
