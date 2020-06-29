@@ -1,50 +1,52 @@
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import Table from "@material-ui/core/Table";
-import React from "react";
-import {inject, observer} from "mobx-react";
-import TableContainer from "@material-ui/core/TableContainer";
-import {Checkbox} from "@material-ui/core";
+import React from 'react';
+import Select from 'react-select';
+import axios from "axios";
 
-@inject('thirdStepStore')
-@observer
-export default class Category extends React.Component {
-    componentDidMount() {
-        this.props.thirdStepStore.loadStyleList();
+export default class SelectTest extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'text',
+            styleList: [],
+            selectedOption:null,
+        }
     }
-
-    render(){
-        const {styleList} = this.props.thirdStepStore;
-        return(
-            <TableContainer style={{maxHeight:100}}>
-                <Table size="small" aria-label="a dense table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Label</TableCell>
-                            <TableCell>Main</TableCell>
-                        </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                        {styleList.length > 0 ?
-                            styleList.map((style) =>
-                                <TableRow key={style.no}>
-                                    <TableCell>
-                                        {style.categoryItemName}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Checkbox color="primary"/>
-                                    </TableCell>
-                                </TableRow>
-                            )
-                            :
-                            ''
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
+    componentDidMount() {
+        axios.get('/api/v1/kfashion/category/item/professional/style')
+            .then(response => {
+                const styleList = response.data.styleList;
+                this.setState({ styleList : styleList.map(style => {
+                        style.value = style.no;
+                        style.label = style.categoryItemName;
+                        return style
+                    })
+                })
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    handleChange = (selectedOption) => {
+        if(selectedOption.length <= 2) {
+            this.setState(
+                {selectedOption},
+                () => console.log(`Option selected:`, this.state.selectedOption)
+            );
+        }
+    };
+    render() {
+        const { selectedOption } = this.state;
+        const styleList= this.state.styleList;
+        console.log(styleList);
+        return (
+            <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={styleList}
+                autoFocus={true}
+                isMulti
+            />
         );
     }
-};
+}
