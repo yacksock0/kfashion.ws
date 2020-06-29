@@ -43,6 +43,7 @@ export default class Silhouette extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={silhouetteList}
+                placeholder={'실루엣을 선택 하세요'}
             />
         );
     }

@@ -1,53 +1,50 @@
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import Table from "@material-ui/core/Table";
-import React from "react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import TableBody from "@material-ui/core/TableBody";
-import {inject, observer} from "mobx-react";
-import {Checkbox} from "@material-ui/core";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import TableContainer from "@material-ui/core/TableContainer";
+import React from 'react';
+import Select from 'react-select';
+import axios from "axios";
 
-@inject('secondStepStore')
-@observer
-export default class SleeveLength extends React.Component {
-    componentDidMount() {
-        this.props.secondStepStore.loadSleeveList();
+export default class SelectTest extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'text',
+            sleeveList: [],
+            selectedOption:null,
+        }
     }
-    render(){
-        const {sleeveList} = this.props.secondStepStore;
-        return(
-            <TableContainer style={{maxHeight:250}}>
-            <Table size="small" aria-label="a dense table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Label</TableCell>
-                        <TableCell>Main</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {sleeveList.length > 0 ?
-                        sleeveList.map((sleeve) =>
-                            <TableRow key={sleeve.no}>
-                                <TableCell>
-                                    {sleeve.categoryItemName}
-                                </TableCell>
-                                <TableCell>
-                                    <Checkbox color="primary"/>
-                                </TableCell>
-                            </TableRow>
-                        )
-                        :
-                        <TableRow>
+    componentDidMount() {
+        axios.get('/api/v1/kfashion/category/item/basic/sleeve')
+            .then(response => {
+                const sleeveList = response.data.sleeveList;
+                this.setState({ sleeveList : sleeveList.map(sleeve => {
+                        sleeve.value = sleeve.no;
+                        sleeve.label = sleeve.categoryItemName;
+                        return sleeve
+                    })
+                })
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    handleChange = (selectedOption) => {
+        this.setState(
+            { selectedOption },
+            () => console.log(`Option selected:`, this.state.selectedOption)
+        );
+    };
 
-                        </TableRow>
-                    }
-                </TableBody>
-            </Table>
-            </TableContainer>
+    render() {
+        const { selectedOption } = this.state;
+        const sleeveList= this.state.sleeveList;
+        console.log(sleeveList);
+        return (
+            <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={sleeveList}
+                placeholder={'색상을 선택 하세요'}
+            />
         );
     }
-};
+}

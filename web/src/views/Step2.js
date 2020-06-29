@@ -5,7 +5,6 @@ import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Color from "./step2/Color";
 import SleeveLength from "./step2/SleeveLength";
-import AddIcon from '@material-ui/icons/Add';
 
 
 const styles = theme => ({
@@ -66,14 +65,14 @@ class Step2 extends React.Component {
                              <Typography variant="h5" component="h2">
                                  색상
                              </Typography>
-                             <Button
+                            {/* <Button
                                  variant="outlined"
                                  color="primary"
                                  className={classes.insertButton}
                                  startIcon={<AddIcon />}
                              >
                                  항목추가
-                             </Button>
+                             </Button>*/}
                              </div>
                              <div>
                                  <hr></hr>
@@ -85,14 +84,14 @@ class Step2 extends React.Component {
                                  <Typography variant="h5" component="h2">
                                      소매 길이
                                  </Typography>
-                                 <Button
+                                 {/*<Button
                                      variant="outlined"
                                      color="primary"
                                      className={classes.insertButton}
                                      startIcon={<AddIcon />}
                                  >
                                      항목추가
-                                 </Button>
+                                 </Button>*/}
                              </div>
                              <div>
                                  <hr></hr>

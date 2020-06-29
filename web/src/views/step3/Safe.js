@@ -43,6 +43,7 @@ export default class Safe extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={safeList}
+                placeholder={'세이프를 선택 하세요'}
             />
         );
     }

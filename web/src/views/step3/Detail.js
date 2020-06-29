@@ -43,6 +43,7 @@ export default class Detail extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={detailList}
+                placeholder={'디테일을 선택 하세요'}
             />
         );
     }

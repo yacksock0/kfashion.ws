@@ -43,6 +43,7 @@ export default class Texture extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={textureList}
+                placeholder={'소재감을 선택 하세요'}
             />
         );
     }

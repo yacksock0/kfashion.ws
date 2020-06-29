@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {Button, Container, Grid, TextField, Typography} from "@material-ui/core";
+import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Category from "./step3/Category";
 import Style from "./step3/Style";
 import Detail from "./step3/Detail";
@@ -47,25 +47,6 @@ const styles = theme => ({
 
     },
 });
-function createData(label, main) {
-    return { label, main};
-}
-function createStyleData(label, main, cm) {
-    return { label, main, cm};
-}
-
-const ItemRows = [
-    createData('소매길이', <FormControlLabel value="male" control={<Radio />}  />),
-    createData('의상길이', <FormControlLabel value="male" control={<Radio />} />),
-];
-
-const styleRows = [
-    createStyleData('sleeve(소매길이)', ),
-    createStyleData('chest(가슴둘레)',),
-    createStyleData('Length(총 기장)',),
-    createStyleData('shoulder(어깨너비)'),
-
-];
 
 class Step3 extends React.Component {
     componentDidMount() {

@@ -43,6 +43,7 @@ export default class ColorKara extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={fitList}
+                placeholder={'핏을 선택 하세요'}
             />
         );
     }

@@ -45,6 +45,7 @@ export default class SelectTest extends React.Component {
                 onChange={this.handleChange}
                 options={styleList}
                 autoFocus={true}
+                placeholder={'스타일을 선택 하세요 (Main, Sub)'}
                 isMulti
             />
         );
