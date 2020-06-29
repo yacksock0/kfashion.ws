@@ -2,14 +2,36 @@
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionLabelMapper">
     <resultMap id="kfashionLabelResultMap" type="KfashionLabel">
         <id property="workNo"                       column="work_no" />
-        <result property="workStep"             column="work_step" />
-        <result property="workSubStep"                 column="work_sub_step" />
-        <result property="categoryNo"                 column="category_no" />
-        <result property="categoryItemNo"                 column="category_item_no" />
-        <result property="createdId"      column="created_id" />
-        <result property="createdDatetime"      column="created_datetime" />
-        <result property="updatedDatetime"      column="updated_datetime" />
+        <result property="workStep"                 column="work_step" />
+        <result property="workSubStep"              column="work_sub_step" />
+        <result property="categoryNo"               column="category_no" />
+        <result property="categoryItemNo"           column="category_item_no" />
+        <result property="createdId"                column="created_id" />
+        <result property="createdDatetime"          column="created_datetime" />
+        <result property="updatedDatetime"          column="updated_datetime" />
     </resultMap>
 
+    <insert id="" parameterType="KfashionLabel">
+        INSERT
+        INTO kfashion_label (
+        work_no,
+        work_step,
+        work_sub_step,
+        category_no,
+        category_item_no,
+        created_id,
+        created_datetime,
+        updated_datetime
+        ) VALUES (
+        #{workNo},
+        #{workStep},
+        #{workSubStep},
+        #{categoryNo},
+        #{categoryItemNo},
+        #{createdId},
+        NOW(),
+        NOW()
+        )
+    </insert>
 
 </mapper>

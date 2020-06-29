@@ -3,6 +3,7 @@
     <resultMap id="kfashionImageResultMap" type="KfashionImage">
         <id property="workNo"                       column="work_no" />
         <result property="imgData"             column="img_data" />
+        <result property="createdId"             column="created_id" />
         <result property="createdDatetime"      column="created_datetime" />
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
@@ -22,6 +23,17 @@
       )
     </insert>
 
+    <select id="selectBoundaryList" resultMap="kfashionImageResultMap" parameterType="String">
+        SELECT
+        kfashion_image.work_no,
+         kfashion_work.work_name,
+        kfashion_image.img_data,
+        kfashion_work_history.created_id
+        FROM kfashion_image
+        LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no
+        RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        WHERE kfashion_work_history.created_id = #{userId};
+    </select>
 
 
 </mapper>

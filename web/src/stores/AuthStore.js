@@ -9,9 +9,9 @@ export const State = {
 };
 
 export const LocalStorageTokenKey = '_BASKITOP_AUTHENTICATION_TOKEN_';
-export const LocalStorageSaveIdKey = "_OTL_AUTHENTICATION_SAVE_ID_";
-export const LocalStorageSaveEmailKey = "_OTL_AUTHENTICATION_EMAIL_";
-export const LocalStorageSaveNameKey = "_OTL_AUTHENTICATION_NAME_";
+export const LocalStorageSaveIdKey = "Kfashion_AUTHENTICATION_SAVE_ID_";
+export const LocalStorageSaveEmailKey = "_Kfashion_AUTHENTICATION_EMAIL_";
+export const LocalStorageSaveNameKey = "_Kfashion_AUTHENTICATION_NAME_";
 
 
 const EmptyLogin = {
@@ -22,9 +22,16 @@ const EmptyLogin = {
 const EmptyUser = {
     id: '',
     name: '',
-    type: '',
+    email: '',
+    phone: '',
+    groupNo: '',
+    isAdmin: '',
+    isApproved: '',
+    authorityNo: '',
+    groupAdmin: '',
     createdDatetime: '',
     updatedDatetime: '',
+
 };
 
 export default class AuthStore {
@@ -70,15 +77,16 @@ export default class AuthStore {
             localStorage.setItem(LocalStorageTokenKey, token);
 
             console.log('doLogin');
-            console.log(this);
 
             this.loginState = State.Authenticated;
             this.loginToken = token;
             this.loginUser = user;
+            console.log(this.loginUser)
         } catch (e) {
             this.loginState = State.Failed;
             this.loginToken = '';
             this.loginUser = Object.assign({}, EmptyUser);
+
         }
     });
 
@@ -90,10 +98,11 @@ export default class AuthStore {
                 const response = yield axios.get('/api/v1/kfashion/authentications/signcheck');
                 const token = response.data.token;
                 const user = response.data.user;
-
+                console.log( 'user:', user)
                 this.loginState = State.Authenticated;
                 this.loginToken = token;
                 this.loginUser = user;
+                console.log(this.loginUser)
             } catch(e) {
                 this.loginState = State.NotAuthenticated;
                 this.loginToken = '';

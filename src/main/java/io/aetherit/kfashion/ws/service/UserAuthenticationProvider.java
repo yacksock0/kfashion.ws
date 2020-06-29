@@ -49,6 +49,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         if ((password != null) && (password.length() > 0) && (passwordEncoder.matches(password, user.getPassword()))) {
             final List<GrantedAuthority> authorities = new ArrayList<>();
 
+
             result = new UsernamePasswordAuthenticationToken(userId, password, authorities);
             result.setDetails(getSimpleUser(user));
         } else {
@@ -63,12 +64,18 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(aClass);
     }
 
+
     private KfashionSimpleUser getSimpleUser(KfashionUserInfo user) {
         return KfashionSimpleUser.builder()
                 .id(user.getId())
                 .name(user.getName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
                 .isAdmin(user.getIsAdmin())
                 .isApproved(user.getIsApproved())
+                .groupNo(user.getGroupNo())
+                .authorityNo(user.getAuthorityNo())
+                .groupAdmin(user.getGroupAdmin())
                 .createdDatetime(user.getCreatedDatetime())
                 .updatedDatetime(user.getUpdatedDatetime())
                 .build();

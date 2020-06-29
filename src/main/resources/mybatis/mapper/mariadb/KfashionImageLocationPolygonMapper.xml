@@ -11,4 +11,27 @@
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
 
+    <insert id="" parameterType="KfashionImageLocationPolygon">
+        INSERT
+        INTO kfashion_image_location_polygon (
+        work_no,
+        work_step,
+        work_sub_step,
+        location_x,
+        location_y,
+        location_seq,
+        created_datetime,
+        updated_datetime
+        )VALUES(
+        #{workNo},
+        #{workStep},
+        #{workSubStep},
+        #{locationX},
+        #{locationY},
+        #{locationSeq},
+        NOW(),
+        NOW()
+        )
+    </insert>
+
 </mapper>

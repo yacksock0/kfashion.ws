@@ -89,7 +89,6 @@ class App extends React.Component {
     render() {
         const { classes } = this.props;
         const { loginState, loginUser} = this.props.authStore;
-
         return (
             <div className={classes.root}>
                 <Router>
@@ -98,6 +97,7 @@ class App extends React.Component {
                     <Route path="/" component={ScrollToTop}>
                         <TopBar mobileOpen={this.state.mobileOpen}
                                 setMobileOpen={this.setMobileOpen}
+                                loginUser={loginUser}
                                 isLoggedIn={loginState === store.State.Authenticated}
                                 doLogout={() => this.props.authStore.doLogout()} />
                         <SideMenu mobileOpen={this.state.mobileOpen}

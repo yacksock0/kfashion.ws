@@ -146,7 +146,7 @@ export default function SideMenu(props) {
             </List>
 
             <Divider />
-            <Link to="/admin" className={classes.link}>
+            <Link className={classes.link}>
                 <ListItem button>
                     <ListItemIcon><WallpaperIcon /></ListItemIcon>
                     <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
