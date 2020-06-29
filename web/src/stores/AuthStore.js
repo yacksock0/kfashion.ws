@@ -70,15 +70,16 @@ export default class AuthStore {
             localStorage.setItem(LocalStorageTokenKey, token);
 
             console.log('doLogin');
-            console.log(this);
 
             this.loginState = State.Authenticated;
             this.loginToken = token;
             this.loginUser = user;
+            console.log(this.loginUser)
         } catch (e) {
             this.loginState = State.Failed;
             this.loginToken = '';
             this.loginUser = Object.assign({}, EmptyUser);
+
         }
     });
 
@@ -90,10 +91,11 @@ export default class AuthStore {
                 const response = yield axios.get('/api/v1/kfashion/authentications/signcheck');
                 const token = response.data.token;
                 const user = response.data.user;
-
+                console.log( 'user:', user)
                 this.loginState = State.Authenticated;
                 this.loginToken = token;
                 this.loginUser = user;
+                console.log(this.loginUser)
             } catch(e) {
                 this.loginState = State.NotAuthenticated;
                 this.loginToken = '';
