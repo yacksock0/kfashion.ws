@@ -43,6 +43,7 @@ export default class Print extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={printList}
+                placeholder={'프린트를 선택 하세요'}
             />
         );
     }

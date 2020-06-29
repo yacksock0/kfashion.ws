@@ -1,48 +1,51 @@
-import TableHead from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import React from "react";
-import {inject, observer} from "mobx-react";
-import {Checkbox} from "@material-ui/core";
+import React from 'react';
+import Select from 'react-select';
+import axios from "axios";
 
-@inject('secondStepStore')
-@observer
-export default class Color extends React.Component {
-    componentDidMount() {
-        this.props.secondStepStore.loadColorList();
+export default class SelectTest extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'text',
+            colorList: [],
+            selectedOption:null,
+        }
     }
-    render(){
-        const {colorList} = this.props.secondStepStore;
-        return(
-            <TableContainer style={{maxHeight:250}}>
-                <Table stickyHeader size="small" aria-label="a dense table sticky table" >
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Label</TableCell>
-                            <TableCell>Main</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {colorList.length > 0 ?
-                            colorList.map((color) =>
-                                <TableRow key={color.no}>
-                                    <TableCell>
-                                        {color.categoryItemName}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Checkbox color="primary"/>
-                                    </TableCell>
-                                </TableRow>
-                            )
-                            :
-                            ''
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
+    componentDidMount() {
+        axios.get('/api/v1/kfashion/category/item/basic/color')
+            .then(response => {
+                const colorList = response.data.colorList;
+                this.setState({ colorList : colorList.map(color => {
+                        color.value = color.no;
+                        color.label = color.categoryItemName;
+                        return color
+                    })
+                })
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    handleChange = (selectedOption) => {
+        this.setState(
+            { selectedOption },
+            () => console.log(`Option selected:`, this.state.selectedOption)
+        );
+    };
+
+    render() {
+        const { selectedOption } = this.state;
+        const colorList= this.state.colorList;
+        console.log(colorList);
+        return (
+            <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={colorList}
+                autoFocus={true}
+                placeholder={'색상을 선택 하세요'}
+            />
         );
     }
-};
+}

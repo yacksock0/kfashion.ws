@@ -9,7 +9,6 @@ import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import FormatShapesIcon from '@material-ui/icons/FormatShapes';
-import CompareIcon from '@material-ui/icons/Compare';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
@@ -90,24 +89,36 @@ export default function SideMenu(props) {
                         <ListItemText primary="홈"></ListItemText>
                     </ListItem>
                 </Link>
-                    <Link to="/step" className={classes.link}>
+                    <Link className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText button onClick={handleClick} primary="1단계 영역지정"></ListItemText>
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                 </Link>
-                <Link to="/step/boundaryBox" className={classes.link}>
+                <Link to="/step/imageUpload" className={classes.link}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
                                 <AspectRatioIcon />
                             </ListItemIcon>
-                            <ListItemText primary="BoundaryBox" />
+                            <ListItemText primary="ImageUpload" />
                         </ListItem>
                     </List>
                 </Collapse>
+                </Link>
+                <Link to="/step/boundaryBox" className={classes.link}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <AspectRatioIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="BoundaryBox" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
                 </Link>
                 <Link to="/Step/boundaryBoxList" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -120,18 +131,6 @@ export default function SideMenu(props) {
                             </ListItem>
                         </List>
                     </Collapse>
-                </Link>
-                <Link to="/step/segmentation" className={classes.link}>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <CompareIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Segmentation" />
-                        </ListItem>
-                    </List>
-                </Collapse>
                 </Link>
                 <Link to="/step/polygon" className={classes.link}>
                 <Collapse in={open} timeout="auto" unmountOnExit>

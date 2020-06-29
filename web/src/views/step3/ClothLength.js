@@ -42,6 +42,7 @@ export default class ClothLength extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={lengthList}
+                placeholder={'기장을 선택 하세요'}
             />
         );
     }

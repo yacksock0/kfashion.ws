@@ -43,6 +43,7 @@ export default class SelectTest extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={categoryList}
+                placeholder={'카테고리를 선택 하세요'}
             />
         );
     }

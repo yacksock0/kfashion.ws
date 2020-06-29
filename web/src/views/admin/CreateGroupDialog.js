@@ -20,7 +20,6 @@ import axios from "axios";
 import {Button, Container, Grid} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
 import AddGroup from "./AddGroup";
 
 const tableIcons = {

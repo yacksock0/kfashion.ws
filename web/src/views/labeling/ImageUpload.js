@@ -5,6 +5,7 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Container, Toolbar, Typography, Button, Grid,} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
+import DropzoneDialogExample from "../../components/DropzoneDialog";
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
@@ -100,13 +101,77 @@ class BoundaryBox extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
+                        <Grid container>
+                            <Grid item xs={1} style={{marginRight:5}}>
+                                <DropzoneDialogExample />
+                                <div>
+                                </div>
+                            </Grid>
+                            <Grid item xs={1} style={{marginRight:5}}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.toolButton} >
+                                    Open DIR
+                                </Button>
+                            </Grid>
+                            <Grid item xs={1} style={{marginRight:5}}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.toolButton} >
+                                    Change Save Dir
+                                </Button>
+                            </Grid>
+                            <Grid item xs={1} style={{marginRight:5}}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.toolButton} >
+                                    Zoom In
+                                </Button>
+                            </Grid>
+                            <Grid item xs={1} style={{marginRight:5}}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.toolButton} >
+                                    Zoom Out
+                                </Button>
+                            </Grid>
+                        </Grid>
+                        {/*Img*/}
                     </Toolbar>
+                    <hr></hr>
+                    <Grid container>
+                        <Grid item xs={1}>
+                            <div className={classes.toolBox}>
+                                Tool Box
+                            </div>
+                        </Grid>
+                        <Grid item xs={8} className={classes.canvas}>
+                            <img src="https://placeimg.com/1000/800/any" alt={''} />
+                        </Grid>
+                        <Grid item xs={3}>
+                            <div className={classes.test}>
+                                <Typography>
+                                    작업리스트
+                                </Typography>
+                                <hr></hr>
+                            </div>
 
-
-
-
-
-
+                            <div className={classes.test}>
+                                <Typography>
+                                    완료리스트
+                                </Typography>
+                                <hr></hr>
+                            </div>
+                        </Grid>
+                    </Grid>
                 </div>
                 <div>
                     <hr></hr>

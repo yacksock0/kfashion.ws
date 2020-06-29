@@ -43,6 +43,7 @@ export default class NeckLine extends React.Component {
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={neckLineList}
+                placeholder={'넥라인을 선택 하세요'}
             />
         );
     }
