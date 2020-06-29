@@ -88,7 +88,7 @@ class App extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { loginState } = this.props.authStore;
+        const { loginState, loginUser} = this.props.authStore;
 
         return (
             <div className={classes.root}>

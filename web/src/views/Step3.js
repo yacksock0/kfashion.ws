@@ -16,7 +16,6 @@ import ColorKara from "./step3/ColorKara";
 import Fit from "./step3/Fit";
 import Safe from "./step3/Safe";
 import Silhouette from "./step3/Silhouette";
-import SelectTest from "./step3/SelectTest";
 
 const styles = theme => ({
     mainContainer: {
@@ -216,7 +215,6 @@ class Step3 extends React.Component {
                                         <div>
                                             <hr></hr>
                                         </div>
-                                        <SelectTest />
                                     </div>
                                 </Grid>
                                 </Grid>
