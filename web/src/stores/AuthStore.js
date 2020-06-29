@@ -41,6 +41,16 @@ export default class AuthStore {
         this.login.password = password;
     };
 
+    @action logOut = pathname => {
+        // if(pathname.startsWith("/broadcast/")) {
+        if (window.confirm("로그아웃 하시겠습니까?")) {
+            this.doLogout();
+        }
+        // } else {
+        //     this.doLogout();
+        // }
+    };
+
     @action invalidateLogin = () => {
         this.login = Object.assign({}, EmptyLogin);
         this.loginState = State.NotAuthenticated;
