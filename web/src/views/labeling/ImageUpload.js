@@ -6,6 +6,8 @@ import {withStyles} from "@material-ui/core/styles";
 import {Container, Toolbar, Typography, Button, Grid,} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import DropzoneDialogExample from "../../components/DropzoneDialog";
+
+
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
