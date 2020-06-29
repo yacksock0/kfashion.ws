@@ -5,6 +5,8 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionImageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class KfashionImageRepository {
     private KfashionImageMapper mapper;
@@ -16,5 +18,9 @@ public class KfashionImageRepository {
 
     public void insertImgUpload(KfashionImage kfashionImage) {
         mapper.insertImgUpload(kfashionImage);
+    }
+
+    public List<KfashionImage> selectBoundaryList() {
+        return mapper.selectBoundaryList();
     }
 }

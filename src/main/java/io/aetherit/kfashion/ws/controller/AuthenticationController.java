@@ -44,6 +44,7 @@ public class AuthenticationController {
 
     @GetMapping("/signcheck")
     public ResponseEntity<KfashionSimpleUser> check(HttpServletRequest httpRequest) {
+        
         final KfashionSimpleUser user = authenticationService.getUser();
 
         if(user == null) {

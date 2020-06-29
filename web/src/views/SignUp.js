@@ -236,7 +236,6 @@ class SignUp extends React.Component {
                                            InputLabelProps={{shrink: true}}
                                            helperText={isValidEmail ? '' : '이메일 형식이 아닙니다.'}
                                            autoFocus={isEmailInputed ? false : true} required fullWidth/>
-
                                 <TextField id="password"
                                            type="password"
                                            name="password"

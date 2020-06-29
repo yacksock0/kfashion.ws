@@ -1,11 +1,10 @@
 package io.aetherit.kfashion.ws.controller;
 
 
-import io.aetherit.kfashion.ws.model.KfashionImage;
-import io.aetherit.kfashion.ws.model.KfashionWork;
-import io.aetherit.kfashion.ws.model.UploadFileResponse;
+import io.aetherit.kfashion.ws.model.*;
 import io.aetherit.kfashion.ws.service.FileStorageService;
 import io.aetherit.kfashion.ws.service.KfashionImageService;
+import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import io.aetherit.kfashion.ws.service.KfashionWorkService;
 import io.aetherit.kfashion.ws.util.CommonUtil;
 import org.slf4j.Logger;
@@ -13,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -22,6 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,7 @@ public class KfashionImageController {
         private KfashionImageService kfashionImageService;
         private KfashionWorkService kfashionWorkService;
         private FileStorageService fileStorageService;
+        private KfashionWorkHistoryService kfashionWorkHistoryService;
 
          @Autowired
          private CommonUtil commonUtil;
@@ -41,10 +43,12 @@ public class KfashionImageController {
         @Autowired
         public KfashionImageController(KfashionImageService kfashionImageService,
                                        KfashionWorkService kfashionWorkService,
-                                       FileStorageService fileStorageService) {
+                                       FileStorageService fileStorageService,
+                                       KfashionWorkHistoryService kfashionWorkHistoryService) {
             this.kfashionImageService = kfashionImageService;
             this.kfashionWorkService = kfashionWorkService;
             this.fileStorageService = fileStorageService;
+            this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         }
 
     /**
@@ -56,7 +60,8 @@ public class KfashionImageController {
      */
 
     @PostMapping("/uploadFile")
-    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+    public UploadFileResponse uploadFile(@PathVariable String userId,
+                                         @RequestParam("file") MultipartFile file) {
         String workName = StringUtils.cleanPath(file.getOriginalFilename());
         KfashionWork work = new KfashionWork();
         work.setWorkName(workName);
@@ -67,6 +72,11 @@ public class KfashionImageController {
             kfashionImage.setWorkNo(work_no);
             kfashionImage.setImgData(file.getBytes());
             kfashionImageService.insertImgUpload(kfashionImage);
+            KfashionWorkHistory workHistory= new KfashionWorkHistory();
+            workHistory.setCreateId(userId);
+            workHistory.setWorkNo(work_no);
+            workHistory.setWorkStep(1);
+            kfashionWorkHistoryService.insertWorkHistory(workHistory);
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -91,12 +101,13 @@ public class KfashionImageController {
      */
 
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
+    public List<UploadFileResponse> uploadMultipleFiles(@PathVariable String userId,
+                                                        @RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
             System.out.println(files.length);
 
         return Arrays.asList(files)
                 .stream()
-                .map(file -> uploadFile(file))
+                .map(file -> uploadFile(userId,file))
                 .collect(Collectors.toList());
     }
 
@@ -133,5 +144,13 @@ public class KfashionImageController {
                         + resource.getFilename() + "\"")
                 .body(resource);
     }
+
+    @GetMapping(value="/boundaryList")
+    public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest) {
+            HashMap<String, Object> resultMap = new HashMap<String, Object>();
+            List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList();
+            resultMap.put("boundaryList", boundaryList);
+            return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }
 
 }

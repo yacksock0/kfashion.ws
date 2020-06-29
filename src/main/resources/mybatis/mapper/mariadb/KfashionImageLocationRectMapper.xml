@@ -11,6 +11,32 @@
         <result property="createdDatetime"      column="created_datetime" />
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
+    
+    <insert id="" parameterType="KfashionImageLocationRect">
+        INSERT
+        INTO kfashion_image_location_rect (
+        work_no,
+        work_step,
+        work_sub_step,
+        location_x,
+        location_y,
+        location_width,
+        location_height,
+        created_datetime,
+        updated_datetime
+        ) VALUES(
+        #{workNo},
+        #{workStep},
+        #{workSubStep},
+        #{locationX},
+        #{locationY},
+        #{locationWidth},
+        #{locationHeight},
+        NOW(),
+        NOW()
+        )
+
+    </insert>
 
 
 </mapper>
