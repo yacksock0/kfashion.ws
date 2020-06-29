@@ -9,6 +9,10 @@ export const State = {
 };
 
 export const LocalStorageTokenKey = '_BASKITOP_AUTHENTICATION_TOKEN_';
+export const LocalStorageSaveIdKey = "_OTL_AUTHENTICATION_SAVE_ID_";
+export const LocalStorageSaveEmailKey = "_OTL_AUTHENTICATION_EMAIL_";
+export const LocalStorageSaveNameKey = "_OTL_AUTHENTICATION_NAME_";
+
 
 const EmptyLogin = {
     id: '',

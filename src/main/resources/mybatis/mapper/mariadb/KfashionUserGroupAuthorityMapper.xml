@@ -25,9 +25,9 @@
     </insert>
 
     <select id="selectUserGroupAuthorityList" resultMap="kfashionUserGroupAuthorityResultMap">
-        SELECT
-         kfashion_user_group_authority.authority_no,
+         SELECT
          kfashion_user_group_authority.group_no,
+         kfashion_user_group_authority.authority_no,
          kfashion_user_group_authority.created_datetime,
          kfashion_user_group_authority.updated_datetime,
          kfashion_user_authority.authority_name,

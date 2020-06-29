@@ -21,6 +21,7 @@
             password,
             name,
             email,
+            phone,
             created_datetime,
             updated_datetime
         ) VALUES (
@@ -28,6 +29,7 @@
             #{password},
             #{name},
             #{email},
+            #{phone},
             NOW(),
             NOW()
         )

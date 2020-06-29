@@ -148,6 +148,7 @@ class SignUp extends React.Component {
 
             this.props.signUpStore.clearState();
         }
+
     }
     handleChangeId = (event) => {
         this.props.signUpStore.changeNewMemberId(event.target.value);
@@ -169,8 +170,8 @@ class SignUp extends React.Component {
         this.props.signUpStore.changeNewMemberUserName(event.target.value);
     }
 
-    handleChangeNickName = (event) => {
-        this.props.signUpStore.changeNewMemberNickName(event.target.value);
+    handleChangePhone = (event) => {
+        this.props.signUpStore.changeNewMemberPhone(event.target.value);
     }
 
     handleChangeAllAgreements = (event) => {
@@ -196,7 +197,7 @@ class SignUp extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { isEmailInputed, isValidId, isValidEmail, isValidPassword, isPasswordConfirmed, isValidUsername, isValidNickName, isPending, isSignUpSuccess, canSignUp, newMember, agreements, serverMode} = this.props.signUpStore;
+        const { isEmailInputed, isValidId, isValidEmail, isValidPassword, isPasswordConfirmed, isValidUsername, isValidPhone, isPending, isSignUpSuccess, canSignUp, newMember, agreements, serverMode} = this.props.signUpStore;
 
         return (
             <React.Fragment>
@@ -270,19 +271,19 @@ class SignUp extends React.Component {
                                            InputLabelProps={{shrink: true}}
                                            helperText={isValidUsername ? '' : '최소 2 글자 이상을 입력해 주세요.'}
                                            required fullWidth/>
-                                <TextField id="nickName"
-                                           name="nickName"
-                                           label="별칭"
+                                <TextField id="phone"
+                                           name="phone"
+                                           label="휴대폰"
                                            margin="dense"
-                                           value={newMember.nickName}
-                                           onChange={this.handleChangeNickName}
+                                           value={newMember.phone}
+                                           onChange={this.handleChangePhone}
                                            className={classes.gutterMargin}
                                            InputLabelProps={{shrink: true}}
-                                           helperText={isValidNickName ? '' : '최소 2 글자 이상을 입력해 주세요.'}
+                                           helperText={isValidPhone ? '' : 'EX)010-1234-5678 입력해주세요.'}
                                            required fullWidth/>
                                 <div className={classes.titleArea}>
                                     <Typography variant="h5" component="h5">
-                                        약관 동의
+                                        약관 동의자
                                     </Typography>
                                     <hr></hr>
                                     <FormControlLabel
