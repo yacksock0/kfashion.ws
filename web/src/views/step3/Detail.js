@@ -1,50 +1,49 @@
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import Table from "@material-ui/core/Table";
-import React from "react";
-import {inject, observer} from "mobx-react";
-import TableContainer from "@material-ui/core/TableContainer";
-import {Checkbox} from "@material-ui/core";
+import React from 'react';
+import Select from 'react-select';
+import axios from "axios";
 
-@inject('thirdStepStore')
-@observer
-export default class Category extends React.Component {
-    componentDidMount() {
-        this.props.thirdStepStore.loadDetailList();
+export default class Detail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'text',
+            categoryList: [],
+            selectedOption:null,
+        }
     }
+    componentDidMount() {
+        axios.get('/api/v1/kfashion/category/item/professional/detail')
+            .then(response => {
+                const categoryList = response.data.detailList;
+                this.setState({ detailList : categoryList.map(detail => {
+                        detail.value = detail.no;
+                        detail.label = detail.categoryItemName;
+                        return detail
+                    })
+                })
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    handleChange = (selectedOption) => {
+        this.setState(
+            { selectedOption },
+            () => console.log(`Option selected:`, this.state.selectedOption)
+        );
+    };
 
-    render(){
-        const {detailList} = this.props.thirdStepStore;
-        return(
-            <TableContainer style={{maxHeight:100}}>
-                <Table size="small" aria-label="a dense table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Label</TableCell>
-                            <TableCell>Main</TableCell>
-                        </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                        {detailList.length > 0 ?
-                            detailList.map((detail) =>
-                                <TableRow key={detail.no}>
-                                    <TableCell>
-                                        {detail.categoryItemName}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Checkbox color="primary"/>
-                                    </TableCell>
-                                </TableRow>
-                            )
-                            :
-                            ''
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
+    render() {
+        const { selectedOption } = this.state;
+        const detailList= this.state.detailList;
+        console.log(detailList);
+        return (
+            <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={detailList}
+            />
         );
     }
-};
+}

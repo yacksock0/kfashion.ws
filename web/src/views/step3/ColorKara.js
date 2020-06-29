@@ -1,50 +1,49 @@
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import Table from "@material-ui/core/Table";
-import React from "react";
-import {inject, observer} from "mobx-react";
-import TableContainer from "@material-ui/core/TableContainer";
-import {Checkbox} from "@material-ui/core";
+import React from 'react';
+import Select from 'react-select';
+import axios from "axios";
 
-@inject('thirdStepStore')
-@observer
-export default class Category extends React.Component {
-    componentDidMount() {
-        this.props.thirdStepStore.loadKaraList();
+export default class ColorKara extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'text',
+            karaList: [],
+            selectedOption:null,
+        }
     }
+    componentDidMount() {
+        axios.get('/api/v1/kfashion/category/item/professional/kara')
+            .then(response => {
+                const karaList = response.data.karaList;
+                this.setState({ karaList : karaList.map(kara => {
+                        kara.value = kara.no;
+                        kara.label = kara.categoryItemName;
+                        return kara
+                    })
+                })
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    handleChange = (selectedOption) => {
+        this.setState(
+            { selectedOption },
+            () => console.log(`Option selected:`, this.state.selectedOption)
+        );
+    };
 
-    render(){
-        const {karaList} = this.props.thirdStepStore;
-        return(
-            <TableContainer style={{maxHeight:100}}>
-                <Table size="small" aria-label="a dense table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Label</TableCell>
-                            <TableCell>Main</TableCell>
-                        </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                        {karaList.length > 0 ?
-                            karaList.map((kara) =>
-                                <TableRow key={kara.no}>
-                                    <TableCell>
-                                        {kara.categoryItemName}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Checkbox color="primary"/>
-                                    </TableCell>
-                                </TableRow>
-                            )
-                            :
-                            ''
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
+    render() {
+        const { selectedOption } = this.state;
+        const karaList= this.state.karaList;
+        console.log(karaList);
+        return (
+            <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={karaList}
+            />
         );
     }
-};
+}

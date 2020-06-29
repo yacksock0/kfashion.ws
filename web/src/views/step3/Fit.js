@@ -1,50 +1,49 @@
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import Table from "@material-ui/core/Table";
-import React from "react";
-import {inject, observer} from "mobx-react";
-import TableContainer from "@material-ui/core/TableContainer";
-import {Checkbox} from "@material-ui/core";
+import React from 'react';
+import Select from 'react-select';
+import axios from "axios";
 
-@inject('thirdStepStore')
-@observer
-export default class Category extends React.Component {
-    componentDidMount() {
-        this.props.thirdStepStore.loadFitList();
+export default class ColorKara extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'text',
+            fitList: [],
+            selectedOption:null,
+        }
     }
+    componentDidMount() {
+        axios.get('/api/v1/kfashion/category/item/professional/fit')
+            .then(response => {
+                const fitList = response.data.fitList;
+                this.setState({ fitList : fitList.map(fit => {
+                        fit.value = fit.no;
+                        fit.label = fit.categoryItemName;
+                        return fit
+                    })
+                })
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    handleChange = (selectedOption) => {
+        this.setState(
+            { selectedOption },
+            () => console.log(`Option selected:`, this.state.selectedOption)
+        );
+    };
 
-    render(){
-        const {fitList} = this.props.thirdStepStore;
-        return(
-            <TableContainer style={{maxHeight:100}}>
-                <Table size="small" aria-label="a dense table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Label</TableCell>
-                            <TableCell>Main</TableCell>
-                        </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                        {fitList.length > 0 ?
-                            fitList.map((fit) =>
-                                <TableRow key={fit.no}>
-                                    <TableCell>
-                                        {fit.categoryItemName}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Checkbox color="primary"/>
-                                    </TableCell>
-                                </TableRow>
-                            )
-                            :
-                            ''
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
+    render() {
+        const { selectedOption } = this.state;
+        const fitList= this.state.fitList;
+        console.log(fitList);
+        return (
+            <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={fitList}
+            />
         );
     }
-};
+}

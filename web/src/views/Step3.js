@@ -33,6 +33,7 @@ const styles = theme => ({
     },
     content:{
         marginTop: 15,
+        marginRight: 15,
         display: 'flex',
         flexDirection: 'column',
     },
@@ -85,9 +86,9 @@ class Step3 extends React.Component {
                             <Grid item xs={12} lg={6} style={{margin:"auto"}}>
                                 <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block", margin:"auto"}}></img>
                             </Grid>
-                            <Grid container item xs={12} lg={6} >
+                            <Grid container item xs={12} lg={6}>
                             <Grid item xs={12} lg={6}>
-                                <div className={classes.content} >
+                                <div className={classes.content}>
                                     <Typography variant="h5" component="h5">
                                         스타일
                                     </Typography>
@@ -207,19 +208,8 @@ class Step3 extends React.Component {
                                         <Silhouette />
                                     </div>
                                 </Grid>
-                                <Grid item xs={12} lg={6}>
-                                    <div className={classes.content}>
-                                        <Typography variant="h5" component="h5">
-                                            실루엣
-                                        </Typography>
-                                        <div>
-                                            <hr></hr>
-                                        </div>
-                                    </div>
-                                </Grid>
                                 </Grid>
                             </Grid>
-
                     </div>
                     <hr></hr>
                     <Button

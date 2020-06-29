@@ -1,50 +1,49 @@
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import Table from "@material-ui/core/Table";
-import React from "react";
-import {inject, observer} from "mobx-react";
-import TableContainer from "@material-ui/core/TableContainer";
-import {Checkbox} from "@material-ui/core";
+import React from 'react';
+import Select from 'react-select';
+import axios from "axios";
 
-@inject('thirdStepStore')
-@observer
-export default class Category extends React.Component {
-    componentDidMount() {
-        this.props.thirdStepStore.loadTextureList();
+export default class Texture extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'text',
+            textureList: [],
+            selectedOption:null,
+        }
     }
+    componentDidMount() {
+        axios.get('/api/v1/kfashion/category/item/professional/texture')
+            .then(response => {
+                const textureList = response.data.textureList;
+                this.setState({ textureList : textureList.map(texture => {
+                        texture.value = texture.no;
+                        texture.label = texture.categoryItemName;
+                        return texture
+                    })
+                })
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    handleChange = (selectedOption) => {
+        this.setState(
+            { selectedOption },
+            () => console.log(`Option selected:`, this.state.selectedOption)
+        );
+    };
 
-    render(){
-        const {textureList} = this.props.thirdStepStore;
-        return(
-            <TableContainer style={{maxHeight:100}}>
-                <Table size="small" aria-label="a dense table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Label</TableCell>
-                            <TableCell>Main</TableCell>
-                        </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                        {textureList.length > 0 ?
-                            textureList.map((texture) =>
-                                <TableRow key={texture.no}>
-                                    <TableCell>
-                                        {texture.categoryItemName}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Checkbox color="primary"/>
-                                    </TableCell>
-                                </TableRow>
-                            )
-                            :
-                            ''
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
+    render() {
+        const { selectedOption } = this.state;
+        const textureList= this.state.textureList;
+        console.log(textureList);
+        return (
+            <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={textureList}
+            />
         );
     }
-};
+}
