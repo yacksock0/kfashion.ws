@@ -61,6 +61,7 @@ export default function TopBar(props) {
 
                 { isLoggedIn ? (
                     <IconButton color="inherit" onClick={doLogout}>
+                        {loginUser.id}
                         <ExitToAppIcon />
                     </IconButton>
                 ) : (

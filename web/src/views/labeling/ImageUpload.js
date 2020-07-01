@@ -168,6 +168,19 @@ class ImageUpload extends React.Component {
                                 columns={this.state.columns}
                                 data={userGroupAuthorityList}
                                 title="이미지 리스트"
+                                actions={[
+                                    {
+                                        icon: 'save',
+                                        tooltip: 'Save User',
+                                        onClick: (event, rowData) => alert("You saved " + rowData.name)
+                                    },
+                                    rowData => ({
+                                        icon: 'delete',
+                                        tooltip: 'Delete User',
+                                        onClick: (event, rowData) => alert("You want to delete " + rowData.name),
+                                        disabled: rowData.birthYear < 2000
+                                    })
+                                ]}
                                 editable={{
                                     onRowDelete: oldData =>
                                         new Promise((resolve, reject) => {

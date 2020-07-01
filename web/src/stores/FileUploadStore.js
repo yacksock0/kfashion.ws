@@ -51,7 +51,7 @@ export default class FileUploadStore {
             formData.append('files', file);
             formData.append("userId",userId);
             console.log("files:", formData);
-            console.log("files:", userId);
+            console.log("userId:", userId);
             axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') });
     };
 

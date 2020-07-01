@@ -104,7 +104,6 @@ class App extends React.Component {
                         {loginState === store.State.Authenticated ? (
                             <React.Fragment>
                                 <Switch>
-                                    <Route exact path="/" component={Home} />
                                     <Route exact path="/home" component={Home} />
                                     <Route exact path="/step" component={Step} />
                                     <Route exact path="/step2" component={Step2} />
