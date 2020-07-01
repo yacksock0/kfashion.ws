@@ -150,6 +150,7 @@ public class KfashionImageController {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList();
             resultMap.put("boundaryList", boundaryList);
+
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
