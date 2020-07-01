@@ -18412,3 +18412,153 @@ Caused by: java.net.SocketTimeoutException: connect timed out
 	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connect(AbstractConnectProtocol.java:409)
 	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connectWithoutProxy(AbstractConnectProtocol.java:1128)
 	... 14 common frames omitted
+2020-07-01 19:28:30.013 3381 [l-2-thread-1] - ERROR      o.s.s.s.TaskUtils$LoggingErrorHandler   95 : Unexpected error occurred in scheduled task
+org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30005ms.
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:307)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.springframework.session.jdbc.JdbcIndexedSessionRepository.cleanUpExpiredSessions(JdbcIndexedSessionRepository.java:553)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:93)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30005ms.
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:689)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:196)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	... 12 common frames omitted
+Caused by: java.sql.SQLNonTransientConnectionException: Could not connect to address=(host=192.168.10.12)(port=3306)(type=master) : connect timed out
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.get(ExceptionMapper.java:240)
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.connException(ExceptionMapper.java:101)
+	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connectWithoutProxy(AbstractConnectProtocol.java:1136)
+	at org.mariadb.jdbc.internal.util.Utils.retrieveProxy(Utils.java:620)
+	at org.mariadb.jdbc.MariaDbConnection.newConnection(MariaDbConnection.java:175)
+	at org.mariadb.jdbc.Driver.connect(Driver.java:92)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:354)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:473)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:719)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:705)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	... 3 common frames omitted
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:606)
+	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connect(AbstractConnectProtocol.java:409)
+	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connectWithoutProxy(AbstractConnectProtocol.java:1128)
+	... 14 common frames omitted
+2020-07-01 19:29:29.407 3381 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-01 19:29:30.014 3381 [l-2-thread-1] - ERROR      o.s.s.s.TaskUtils$LoggingErrorHandler   95 : Unexpected error occurred in scheduled task
+org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30006ms.
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:307)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.springframework.session.jdbc.JdbcIndexedSessionRepository.cleanUpExpiredSessions(JdbcIndexedSessionRepository.java:553)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:93)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30006ms.
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:689)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:196)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	... 12 common frames omitted
+Caused by: java.sql.SQLNonTransientConnectionException: Could not connect to address=(host=192.168.10.12)(port=3306)(type=master) : connect timed out
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.get(ExceptionMapper.java:240)
+	at org.mariadb.jdbc.internal.util.exceptions.ExceptionMapper.connException(ExceptionMapper.java:101)
+	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connectWithoutProxy(AbstractConnectProtocol.java:1136)
+	at org.mariadb.jdbc.internal.util.Utils.retrieveProxy(Utils.java:620)
+	at org.mariadb.jdbc.MariaDbConnection.newConnection(MariaDbConnection.java:175)
+	at org.mariadb.jdbc.Driver.connect(Driver.java:92)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:354)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:473)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:719)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:705)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	... 3 common frames omitted
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:606)
+	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connect(AbstractConnectProtocol.java:409)
+	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connectWithoutProxy(AbstractConnectProtocol.java:1128)
+	... 14 common frames omitted
+2020-07-01 19:29:55.373 4105 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 4105 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
+2020-07-01 19:29:55.374 4105 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-07-01 19:29:55.375 4105 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-07-01 19:29:55.952 4105 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$bd667e24] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-01 19:29:56.221 4105 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-01 19:29:56.221 4105 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-01 19:29:56.221 4105 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-07-01 19:29:56.234 4105 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-07-01 19:29:56.239 4105 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-01 19:29:56.240 4105 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-07-01 19:29:56.240 4105 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-01 19:29:56.283 4105 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-07-01 19:29:56.283 4105 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 885 ms
+2020-07-01 19:29:56.321 4105 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.5:3306/kfashion, user1
+2020-07-01 19:29:58.088 4105 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-07-01 19:29:58.101 4105 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-07-01 19:29:58.147 4105 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-01 19:29:58.148 4105 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-01 19:29:58.151 4105 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-07-01 19:29:58.277 4105 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200624_1106 #0
+2020-07-01 19:29:58.564 4105 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e146f93, org.springframework.security.web.context.SecurityContextPersistenceFilter@d5556bf, org.springframework.security.web.header.HeaderWriterFilter@63cd2cd2, org.springframework.security.web.authentication.logout.LogoutFilter@44784e2f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@b112b13, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@48904d5a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4bd5849e, org.springframework.security.web.session.SessionManagementFilter@3c79088e, org.springframework.security.web.access.ExceptionTranslationFilter@54067fdc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@439e3cb4]
+2020-07-01 19:29:58.651 4105 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-01 19:29:58.825 4105 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-07-01 19:29:58.829 4105 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-07-01 19:29:58.876 4105 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-01 19:29:58.878 4105 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 3.767 seconds (JVM running for 4.2)
+2020-07-01 19:30:05.646 4105 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-01 19:30:05.647 4105 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-07-01 19:30:05.652 4105 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
+2020-07-01 19:30:07.031 4105 [-8080-exec-1] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE id = ? 
+2020-07-01 19:30:07.032 4105 [-8080-exec-1] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==> Parameters: admin(String)
+2020-07-01 19:30:07.049 4105 [-8080-exec-1] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-01 19:30:07.050 4105 [-8080-exec-1] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-01 19:30:07.051 4105 [-8080-exec-1] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : <==      Total: 1
+2020-07-01 19:30:10.482 4105 [-8080-exec-3] - DEBUG i.a.k.w.r.m.K.selectUserGroupAuthorityList  159 : ==>  Preparing: SELECT kfashion_user_group_authority.group_no, kfashion_user_group_authority.authority_no, kfashion_user_group_authority.created_datetime, kfashion_user_group_authority.updated_datetime, kfashion_user_authority.authority_name, kfashion_user_group.group_name FROM kfashion_user_group_authority LEFT JOIN kfashion_user_authority ON kfashion_user_group_authority.authority_no = kfashion_user_authority.no RIGHT JOIN kfashion_user_group ON kfashion_user_group_authority.group_no = kfashion_user_group.no ORDER BY kfashion_user_group_authority.group_no ASC 
+2020-07-01 19:30:10.483 4105 [-8080-exec-3] - DEBUG i.a.k.w.r.m.K.selectUserGroupAuthorityList  159 : ==> Parameters: 
+2020-07-01 19:30:10.498 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==    Columns: group_no, authority_no, created_datetime, updated_datetime, authority_name, group_name
+2020-07-01 19:30:10.498 4105 [-8080-exec-2] - DEBUG               i.a.k.w.r.m.K.selectUserList  159 : ==>  Preparing: SELECT * FROM kfashion_user_info WHERE group_no IS NULL AND is_approved = 'Y' AND id NOT IN('admin') ORDER BY created_datetime 
+2020-07-01 19:30:10.498 4105 [-8080-exec-2] - DEBUG               i.a.k.w.r.m.K.selectUserList  159 : ==> Parameters: 
+2020-07-01 19:30:10.498 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==        Row: 1, 4, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0, Basic, highschool
+2020-07-01 19:30:10.500 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==        Row: 2, 5, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0, Professional, 이화여자대학교
+2020-07-01 19:30:10.500 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==        Row: 3, 5, 2020-06-25 20:43:02.0, 2020-06-25 20:43:02.0, Professional, 아이테르대학교
+2020-07-01 19:30:10.501 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==        Row: 4, 4, 2020-06-25 20:43:34.0, 2020-06-25 20:43:34.0, Basic, 아이테르고등학교
+2020-07-01 19:30:10.502 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==        Row: 5, 3, 2020-06-26 10:37:42.0, 2020-06-26 10:37:42.0, Polygon, 찬호찬호
+2020-07-01 19:30:10.503 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==        Row: 6, 2, 2020-06-29 12:24:45.0, 2020-06-29 12:24:45.0, BoundaryBox, choi
+2020-07-01 19:30:10.503 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==        Row: 7, 2, 2020-06-29 12:24:59.0, 2020-06-29 12:24:59.0, BoundaryBox, choichoi
+2020-07-01 19:30:10.504 4105 [-8080-exec-3] - TRACE i.a.k.w.r.m.K.selectUserGroupAuthorityList  165 : <==        Row: 8, 5, 2020-07-01 14:40:22.0, 2020-07-01 14:40:22.0, Professional, 신드테크
+2020-07-01 19:30:10.505 4105 [-8080-exec-3] - DEBUG i.a.k.w.r.m.K.selectUserGroupAuthorityList  159 : <==      Total: 8
+2020-07-01 19:30:10.532 4105 [-8080-exec-2] - TRACE               i.a.k.w.r.m.K.selectUserList  165 : <==    Columns: id, password, name, birth, gender, email, phone, group_no, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-01 19:30:10.533 4105 [-8080-exec-2] - TRACE               i.a.k.w.r.m.K.selectUserList  165 : <==        Row: jang8, {bcrypt}$2a$10$dLr6OrreIEnNqBSQUecqHeMzEnNx2vWz2yRXfYV6lnvakcOSNVey2, 홍길동, null, null, jang6845@naver.com, null, null, N, Y, 2020-06-24 16:34:12.0, 2020-06-24 16:34:12.0
+2020-07-01 19:30:10.534 4105 [-8080-exec-2] - TRACE               i.a.k.w.r.m.K.selectUserList  165 : <==        Row: a1234, {bcrypt}$2a$10$TUBdgBB1rpk3gvgmPnhga.xJ9I4v7rOCvR1SCGXAitaOwVKd0DSSy, 장성열, null, null, jang6845@naver.com, null, null, N, Y, 2020-06-24 17:51:15.0, 2020-06-24 17:51:15.0
+2020-07-01 19:30:10.535 4105 [-8080-exec-2] - TRACE               i.a.k.w.r.m.K.selectUserList  165 : <==        Row: asdf123, {bcrypt}$2a$10$gGtLWtj7j7lGFfFuETcT5O93NqtJaehLrv8y9Du57gbiBTDGs8OlK, 장성열, null, null, jang6845@naver.com, null, null, N, Y, 2020-06-24 18:08:57.0, 2020-06-24 18:08:57.0
+2020-07-01 19:30:10.536 4105 [-8080-exec-2] - DEBUG               i.a.k.w.r.m.K.selectUserList  159 : <==      Total: 3
