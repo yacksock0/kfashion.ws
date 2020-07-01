@@ -133,5 +133,34 @@
         ON kfashion_user_group_admin.group_no = kfashion_user_info.group_no;
     </select>
 
+    <select id="selectGroupUserList" resultMap="kfashionUserInfoResultMap">
+        SELECT *
+        FROM kfashion_user_info
+        WHERE group_no IS NOT NULL
+    </select>
+
+    <insert id="createGroupUser" parameterType="KfashionUserInfo">
+        INSERT
+        INTO kfashion_user_info (
+            id,
+            password,
+            name,
+            group_no,
+            is_approved,
+            created_datetime,
+            updated_datetime
+        ) VALUE (
+           #{id},
+           #{password},
+           #{name},
+           #{groupNo},
+           #{isApproved},
+           NOW(),
+           NOW()
+        )
+    </insert>
+
+
+
 
 </mapper>

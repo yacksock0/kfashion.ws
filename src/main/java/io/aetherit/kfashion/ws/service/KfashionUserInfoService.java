@@ -184,4 +184,21 @@ public class KfashionUserInfoService {
     public void updateUserGroup(int groupNo, String id) {
         repository.updateUserGroup(groupNo, id);
     }
+
+    public List<KfashionUserInfo> selectGroupUserList() {
+        return repository.selectGroupUserList();
+    }
+
+    public void createGroupUser(KfashionUserInfo user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        repository.createGroupUser(user);
+    }
+
+    public void deleteGroupUser(String id) {
+        repository.deleteGroupUser(id);
+    }
+
+    public void deleteGroupAdminUser(String id) {
+        repository.deleteGroupAdminUser(id);
+    }
 }

@@ -99,12 +99,4 @@ public class KfashionUserGroupController {
              return new ResponseEntity<Object>("success",HttpStatus.OK);
          }
 
-
-
-
-
-
-
-
-
 }
