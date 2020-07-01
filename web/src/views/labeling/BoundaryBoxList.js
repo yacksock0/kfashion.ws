@@ -130,7 +130,7 @@ class Step1 extends React.Component {
                         title="BoundaryBoxList"
                         actions={[
                             {
-                                icon: 'labeling',
+                                icon: 'go',
                                 tooltip: 'labeling',
                                 onClick: (event, rowData) => {
                                     history.push("/Step/BoundaryBox");

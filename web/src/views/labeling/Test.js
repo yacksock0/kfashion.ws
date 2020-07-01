@@ -124,7 +124,7 @@ class Test extends React.Component {
             .then(response => response.data.boundaryList.filter(b => b !== null))
             .then(res => {
                 this.setState({
-                    const boundaryList = response.data.boundaryList;
+
                     boundaryList : Customer.map(b => {
                         b.workNo  = b.workNo;
                         b.imgData = b.imgData;
