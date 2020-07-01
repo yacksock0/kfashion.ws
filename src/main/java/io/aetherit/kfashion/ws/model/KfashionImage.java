@@ -18,6 +18,7 @@ public class KfashionImage implements Serializable {
 
     private Long workNo;
     private byte[] imgData;
+    private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 }

@@ -101,7 +101,7 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore')
+@inject('fileUploadStore','authStore')
 @observer
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -159,7 +159,7 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={7}>
                             <div>
-                            <img src="https://placeimg.com/600/550/any" alt={''} />
+                                <img src="https://placeimg.com/600/550/any" alt={''} />
                             </div>
                         </Grid>
                         <Grid item xs={5}>
@@ -173,7 +173,7 @@ class ImageUpload extends React.Component {
                                         new Promise((resolve, reject) => {
                                             setTimeout(() => {
                                                 {
-                                                     let data = this.state.data;
+                                                    let data = this.state.data;
                                                     const index = data.indexOf(oldData);
                                                     data.splice(index, 1);
                                                     this.setState({ data }, () => resolve());
@@ -184,7 +184,7 @@ class ImageUpload extends React.Component {
                                 }}
                             />
                         </Grid>
-                        </Grid>
+                    </Grid>
                 </div>
                 <div>
                     <hr></hr>

@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -53,16 +54,17 @@ public class KfashionImageController {
 
     /**
      * 단일 파일 업로드
-     * @param RequestParam
+     * @param userId
      * @param file
      * @return UploadFileResponse
      * @throws IOException
      */
 
     @PostMapping("/uploadFile")
-    public UploadFileResponse uploadFile(@RequestParam(value ="userId", required = true) String userId,
+    public UploadFileResponse uploadFile(@RequestParam(value="userId", required = true) String userId,
                                          @RequestParam("file") MultipartFile file) {
-        String workName = StringUtils.cleanPath(file.getOriginalFilename());
+        UUID uuid = UUID.randomUUID();
+        String workName = StringUtils.cleanPath(uuid.toString()+"_"+file.getOriginalFilename());
         KfashionWork work = new KfashionWork();
         work.setWorkName(workName);
         kfashionWorkService.insertWork(work);
@@ -94,14 +96,14 @@ public class KfashionImageController {
 
     /**
      * 다중 파일 업로드
-     * @param RequestParam
+     * @param userId
      * @param files
      * @return uploadFile
      * @throws IOException
      */
 
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value ="userId", required = true) String userId,
+    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value="userId", required = true) String userId,
                                                         @RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
             System.out.println(files.length);
 
@@ -113,7 +115,6 @@ public class KfashionImageController {
 
     /**
      * 다운로드 파일
-     * @param PathVariable
      * @param fileName
      * @return ResponseEntity
      * @throws IOException
