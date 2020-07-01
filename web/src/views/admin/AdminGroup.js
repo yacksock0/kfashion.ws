@@ -14,7 +14,6 @@ const styles = theme => ({
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
         marginTop: theme.spacing(2),
-        display: 'flex',
         alignItems: 'center',
         width: '100%',
     },
@@ -36,12 +35,12 @@ class AdminGroup extends React.Component {
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
-                    <Toolbar className={classes.toolbar}>
-                    </Toolbar>
+                <div className={classes.mainContent}>
                 <Grid item xs={12} lg={12}>
                     <AdminVerify />
                 </Grid>
                 <CreateGroupDialog />
+                </div>
             </Container>
         );
     }

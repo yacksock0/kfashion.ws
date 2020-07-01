@@ -36,7 +36,6 @@ public class KfashionUserGroupAuthorityController {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             List<KfashionCategoryItem> userGroupAuthorityList = kfashionUserGroupAuthorityService.selectUserGroupAuthorityList();
             resultMap.put("userGroupAuthorityList", userGroupAuthorityList);
-            System.out.println(userGroupAuthorityList);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 

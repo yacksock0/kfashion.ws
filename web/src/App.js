@@ -3,9 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
-
 import axios from "axios";
-
 import TopBar from "./components/TopBar";
 import SideMenu from "./components/SideMenu";
 import ScrollToTop from "./components/ScrollToTop";
@@ -93,12 +91,11 @@ class App extends React.Component {
             <div className={classes.root}>
                 <Router>
                     <CssBaseline />
-
                     <Route path="/" component={ScrollToTop}>
                         <TopBar mobileOpen={this.state.mobileOpen}
                                 setMobileOpen={this.setMobileOpen}
-                                loginUser={loginUser}
                                 isLoggedIn={loginState === store.State.Authenticated}
+                                loginUser={loginUser}
                                 doLogout={() => this.props.authStore.doLogout()} />
                         <SideMenu mobileOpen={this.state.mobileOpen}
                                   setMobileOpen={this.setMobileOpen}
@@ -107,12 +104,11 @@ class App extends React.Component {
                         {loginState === store.State.Authenticated ? (
                             <React.Fragment>
                                 <Switch>
-                                    <Route exact path="/" component={Home} />
                                     <Route exact path="/home" component={Home} />
                                     <Route exact path="/step" component={Step} />
                                     <Route exact path="/step2" component={Step2} />
                                     <Route exact path="/step3" component={Step3} />
-                                    <Route exact path="/Step/ImageUpload" component={ImageUpload} />
+                                    <Route exact path="/Step/ImageUpload" component={ImageUpload}/>
                                     <Route exact path="/Step/BoundaryBox" component={BoundaryBox} />
                                     <Route exact path="/Step/BoundaryBoxList" component={BoundaryBoxList} />
                                     <Route exact path="/Step/Polygon" component={Polygon} />

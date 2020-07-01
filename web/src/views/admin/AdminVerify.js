@@ -18,13 +18,9 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {Button} from "@material-ui/core";
-
-const styles = theme => ({
-    table: {
-       textAlign:"center",
-
-    },
-});
+import GroupList from "./GroupList";
+import {Link} from "react-router-dom";
+import List from "@material-ui/core/List";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -47,28 +43,39 @@ const tableIcons = {
 };
 
 export default class AdminVerify extends React.Component {
-    state = {
+    constructor(props) {
+        super(props);
+        this.state = {
         userList : [],
-        data: [],
         columns: [
             { title: '아이디', field: 'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
             { title: '이메일', field: 'email',type: 'text'},
             { title: '이름', field: 'name', type: 'text'},
-            { title: '연락처', field: 'updatedDateTime', type: 'number'},
-            { title: '소속', field: 'group_no', type: '<select>'},
+            { title: '연락처', field: 'phone', type: 'number'},
+            { title: '소속', field: 'group_no', type:'',render: rowData => <GroupList />},
             { title: '신청일', field: 'createdDatetime', type: 'date'},
-        ],
+            ],
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.onRowSelection = this.onRowSelection.bind(this);
     }
+
     componentDidMount() {
         this.setState({ loading: true })
         axios.get('/api/v1/kfashion/users/userList')
             .then(response => response.data)
             .then(res => {
-                this.setState({ userList : res, loading: false },)
+                this.setState({ userList : res, loading: false})
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+    onRowSelection(){
+
+    }
+    handleSubmit(){
+
     }
     render() {
         const {userList} = this.state.userList;
@@ -79,25 +86,41 @@ export default class AdminVerify extends React.Component {
                     icons={tableIcons}
                     columns={this.state.columns}
                     data={userList}
-                    title="관리자 승인"
+                    title="그룹 관리자 승인"
                     editable={{
                         onRowDelete: oldData =>
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     {
-                                        /* let data = this.state.data;
-                                        const index = data.indexOf(oldData);
-                                        data.splice(index, 1);
-                                        this.setState({ data }, () => resolve()); */
+                                        axios.get('/api/v1/kfashion/users/userList')
+                                            .then(response => response.data)
+                                            .then(res => {
+                                                this.setState({ userList : res, loading: false})
+                                            })
                                     }
                                     resolve();
                                 }, 1000);
                             })
                     }}
+                    options={{
+                        /*padding:'dense',*/
+                        minBodyHeight: '35em',
+                        selection: true,
+                        actionsColumnIndex: -1,
+                        headerStyle: {
+                            backgroundColor: '#01579b',
+                            color: '#FFF',
+                            textAlign:'center',
+                        },
+                        cellStyle: {
+                            textAlign: 'center'
+                        },
+                    }}
+
                 />
             </div>
                 <hr></hr>
-                <Button  style={{float:"right"}} variant="contained" color="primary" onClick={this.handleClickOpen}>
+                <Button  style={{float:"right"}} variant="contained" color="primary" onClick={this.handleSubmit}>
                     승인
                 </Button>
             </div>

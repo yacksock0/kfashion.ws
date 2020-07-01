@@ -144,7 +144,7 @@ class Step2 extends React.Component {
                     color="primary"
                     variant="outlined"
                     >
-                    Save and Next
+                    Next Step
                 </Button>
             </Container>
         );

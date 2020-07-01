@@ -21,10 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -147,12 +144,23 @@ public class KfashionImageController {
     }
 
     @GetMapping(value="/boundaryList")
-    public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest) {
+    public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest,
+                                               @RequestParam(value="createdId")String createdId) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList();
+            List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList(createdId);
             resultMap.put("boundaryList", boundaryList);
 
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
+
+    @RequestMapping(value="/getByteImage")
+    public ResponseEntity<byte[]> getByteImage(@RequestParam(value="workNo")int workNo) {
+        Map<String, Object> map = kfashionImageService.getByteImage(workNo);
+        byte[] imageContent = (byte[]) map.get("img_data");
+
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+    }
 
 }

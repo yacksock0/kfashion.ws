@@ -35,19 +35,15 @@ class DropzoneDialogExample extends Component {
             files: [],
         };
     }
+    componentDidMount() {
+        this.props.authStore.checkLogin();
+    }
 
     handleClose() {
         this.setState({
             open: false
         });
     }
- /*   handleChange(files) {
-//Saving files to state for further use and closing Modal.
-        this.setState({
-            files: files,
-            open: false
-        });
-    }*/
     handleSave(file){
         this.setState({
             open: false,
