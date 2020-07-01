@@ -19,8 +19,6 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {Button} from "@material-ui/core";
 import GroupList from "./GroupList";
-import {Link} from "react-router-dom";
-import List from "@material-ui/core/List";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -88,15 +86,13 @@ export default class AdminVerify extends React.Component {
                     data={userList}
                     title="그룹 관리자 승인"
                     editable={{
-                        onRowDelete: oldData =>
+                        onRowDelete: rowData =>
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     {
-                                        axios.get('/api/v1/kfashion/users/userList')
-                                            .then(response => response.data)
-                                            .then(res => {
-                                                this.setState({ userList : res, loading: false})
-                                            })
+                                        console.log('userId:', rowData.id)
+                                        axios.delete(`/api/v1/kfashion/users/deleteGroupAdmin`, {data: {userId: rowData.id},
+                                    });
                                     }
                                     resolve();
                                 }, 1000);
