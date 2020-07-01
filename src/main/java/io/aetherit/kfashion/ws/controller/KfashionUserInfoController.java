@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.controller;
 
 import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
+import io.aetherit.kfashion.ws.model.KfashionUserGroupAdmin;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,9 +112,64 @@ public class KfashionUserInfoController {
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
+    /**
+     * 그룹 지정된 회원 리스트
+     * @param httpRequest
+     * @return List
+     * @throws Exception
+     */
 
+    @GetMapping(value="/groupUserList")
+    public ResponseEntity<Object> groupUserList(HttpServletRequest httpRequest) throws Exception {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList();
+        resultMap.put("groupUserList", groupUserList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
 
+    /**
+     * 그룹 지정된 회원 리스트
+     * @param httpServletRequest
+     * @return List
+     * @throws Exception
+     */
 
+    @PostMapping(value="/createGroupUser")
+    public ResponseEntity<Object> createGroupUser(HttpServletRequest httpServletRequest,
+                                            @RequestBody @Valid KfashionUserInfo user) throws Exception{
+        kfashionUserInfoService.createGroupUser(user);
+        return new ResponseEntity<Object>("success",HttpStatus.OK);
+    }
+
+    /**
+     * 그룹 유저 탈퇴
+     * @param httpRequest
+     * @param id
+     * @return List
+     * @throws Exception
+     */
+
+    @DeleteMapping("/deleteGroupUser")
+    public ResponseEntity<Object> deleteGroupUser(HttpServletRequest httpRequest,
+                                                   @RequestParam(value="userId")String id) {
+        kfashionUserInfoService.deleteGroupUser(id);
+        return new ResponseEntity<Object>("success",HttpStatus.OK);
+    }
+
+    /**
+     * 그룹 어드민 탈퇴
+     * @param httpRequest
+     * @param id
+     * @return List
+     * @throws Exception
+     */
+
+    @DeleteMapping("/deleteGroupAdminUser")
+    public ResponseEntity<Object> deleteGroupAdminUser (HttpServletRequest httpRequest,
+                                                   @RequestParam(value="userId")String id) {
+        kfashionUserInfoService.deleteGroupAdminUser(id);
+        return new ResponseEntity<Object>("success",HttpStatus.OK);
+    }
 
 
 
