@@ -45,7 +45,8 @@ public class KfashionUserInfoController {
     }
     /**
      * 이메일 인증 : 사용자 등록
-     * @param authMail
+     * @param userId
+     * @param authKey
      * @return sendMail
      * @throws Exception
      */

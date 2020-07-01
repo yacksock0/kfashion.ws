@@ -60,6 +60,7 @@
         SELECT id,
                password,
                name,
+               is_admin,
                is_approved,
                created_datetime,
                updated_datetime
@@ -124,6 +125,13 @@
         id=#{id}
     </update>
 
+    <select id="selectGroupAdminList" resultMap="kfashionUserInfoResultMap">
+        SELECT
+        kfashion_user_info.*
+        FROM kfashion_user_group_admin
+        LEFT JOIN kfashion_user_info
+        ON kfashion_user_group_admin.group_no = kfashion_user_info.group_no;
+    </select>
 
 
 </mapper>

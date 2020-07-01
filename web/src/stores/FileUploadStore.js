@@ -39,7 +39,7 @@ export default class FileUploadStore {
         console.log("this.uploadFile:", uploadFile);
     }
 
-    fileupload (file){
+    fileupload (file,userId){
             const uploadFile = file;
             console.log("file:", file);
             console.log("this.uploadFile:", uploadFile);
@@ -49,7 +49,9 @@ export default class FileUploadStore {
             console.log(file[i]);
         }
             formData.append('files', file);
+            formData.append("userId",userId);
             console.log("files:", formData);
+            console.log("files:", userId);
             axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') });
     };
 

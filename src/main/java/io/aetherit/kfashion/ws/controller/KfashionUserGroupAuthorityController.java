@@ -39,4 +39,6 @@ public class KfashionUserGroupAuthorityController {
             System.out.println(userGroupAuthorityList);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
+
+
 }

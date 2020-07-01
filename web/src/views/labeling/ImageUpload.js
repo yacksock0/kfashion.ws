@@ -101,8 +101,7 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore')
-@inject('authStore')
+@inject('fileUploadStore','authStore')
 @observer
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -145,7 +144,6 @@ class ImageUpload extends React.Component {
     render() {
         const {userGroupAuthorityList} = this.state.userGroupAuthorityList;
         const { classes } = this.props;
-        const {loginUser} = this.props.authStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 {/*Stepper*/}
@@ -161,11 +159,10 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={7}>
                             <div>
-                            <img src="https://placeimg.com/600/550/any" alt={''} />
+                                <img src="https://placeimg.com/600/550/any" alt={''} />
                             </div>
                         </Grid>
                         <Grid item xs={5}>
-                            {loginUser}
                             <MaterialTable
                                 icons={tableIcons}
                                 columns={this.state.columns}
@@ -176,7 +173,7 @@ class ImageUpload extends React.Component {
                                         new Promise((resolve, reject) => {
                                             setTimeout(() => {
                                                 {
-                                                     let data = this.state.data;
+                                                    let data = this.state.data;
                                                     const index = data.indexOf(oldData);
                                                     data.splice(index, 1);
                                                     this.setState({ data }, () => resolve());
@@ -187,7 +184,7 @@ class ImageUpload extends React.Component {
                                 }}
                             />
                         </Grid>
-                        </Grid>
+                    </Grid>
                 </div>
                 <div>
                     <hr></hr>
