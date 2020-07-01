@@ -19,6 +19,9 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {Button} from "@material-ui/core";
 import GroupList from "./GroupList";
+import {Link} from "react-router-dom";
+import List from "@material-ui/core/List";
+import {inject, observer} from "mobx-react";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -40,17 +43,21 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
+
+@inject('adminAuthorityStore')
+@observer
 export default class AdminVerify extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
         userList : [],
+            id: '',
         columns: [
             { title: '아이디', field: 'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
             { title: '이메일', field: 'email',type: 'text'},
             { title: '이름', field: 'name', type: 'text'},
             { title: '연락처', field: 'phone', type: 'number'},
-            { title: '소속', field: 'group_no', type:'',render: rowData => <GroupList />},
+            { title: '소속', field: 'value', type:'',render: rowData => <GroupList />},
             { title: '신청일', field: 'createdDatetime', type: 'date'},
             ],
         }
@@ -73,7 +80,8 @@ export default class AdminVerify extends React.Component {
 
     }
     handleSubmit(){
-
+        this.props.adminAuthorityStore.changeNewAdminId(this.state.id);
+        this.props.adminAuthorityStore.doAdminUp();
     }
     render() {
         const {userList} = this.state.userList;
@@ -86,13 +94,15 @@ export default class AdminVerify extends React.Component {
                     data={userList}
                     title="그룹 관리자 승인"
                     editable={{
-                        onRowDelete: rowData =>
+                        onRowDelete: oldData =>
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     {
-                                        console.log('userId:', rowData.id)
-                                        axios.delete(`/api/v1/kfashion/users/deleteGroupAdmin`, {data: {userId: rowData.id},
-                                    });
+                                        axios.get('/api/v1/kfashion/users/userList')
+                                            .then(response => response.data)
+                                            .then(res => {
+                                                this.setState({ userList : res, loading: false})
+                                            })
                                     }
                                     resolve();
                                 }, 1000);
@@ -112,7 +122,8 @@ export default class AdminVerify extends React.Component {
                             textAlign: 'center'
                         },
                     }}
-
+                    onSelectionChange={(rows,rowData) => {this.setState({id : rowData.id})}
+                    }
                 />
             </div>
                 <hr></hr>

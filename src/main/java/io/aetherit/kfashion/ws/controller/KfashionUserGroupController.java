@@ -96,7 +96,7 @@ public class KfashionUserGroupController {
              groupAdmin.setGroupNo(groupNo);
              groupAdmin.setUserId(id);
              kfashionUserGroupAdminService.insertUserAdminGroup(groupAdmin);
-             return new ResponseEntity<Object>(HttpStatus.OK);
+             return new ResponseEntity<Object>("success",HttpStatus.OK);
          }
 
 

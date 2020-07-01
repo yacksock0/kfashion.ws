@@ -1,7 +1,11 @@
 import React from 'react';
 import Select from 'react-select';
 import axios from "axios";
+import {inject, observer} from "mobx-react";
 
+
+@inject('adminAuthorityStore')
+@observer
 export default class GroupList extends React.Component {
     constructor(props) {
         super(props);
@@ -33,6 +37,7 @@ export default class GroupList extends React.Component {
             { selectedOption },
             () => console.log(`Option selected:`, this.state.selectedOption)
         );
+        this.props.adminAuthorityStore.changeNewAdminGroupNo(selectedOption.groupNo);
     };
 
     render() {

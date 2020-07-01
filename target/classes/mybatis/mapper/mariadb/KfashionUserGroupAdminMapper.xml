@@ -7,7 +7,7 @@
         <result property="updatedDatetime"                 column="updated_datetime" />
     </resultMap>
 
-    <insert id="groupAdmin" parameterType="KfashionUserGroupAdmin">
+    <insert id="insertUserAdminGroup" parameterType="KfashionUserGroupAdmin">
         INSERT
         INTO kfashion_user_group_admin (
             user_id,
