@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class KfashionImageRepository {
@@ -20,7 +21,11 @@ public class KfashionImageRepository {
         mapper.insertImgUpload(kfashionImage);
     }
 
-    public List<KfashionImage> selectBoundaryList() {
-        return mapper.selectBoundaryList();
+    public List<KfashionImage> selectBoundaryList(String createdId) {
+        return mapper.selectBoundaryList(createdId);
+    }
+
+    public Map<String, Object> getByteImage(int workNo) {
+        return mapper.getByteImage(workNo);
     }
 }
