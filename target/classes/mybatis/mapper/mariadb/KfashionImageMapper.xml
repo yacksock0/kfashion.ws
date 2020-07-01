@@ -26,13 +26,14 @@
     <select id="selectBoundaryList" resultMap="kfashionImageResultMap" parameterType="String">
         SELECT
         kfashion_image.work_no,
-         kfashion_work.work_name,
+         kfashion_image.created_datetime,
+        kfashion_work.work_name,
         kfashion_image.img_data,
         kfashion_work_history.created_id
         FROM kfashion_image
         LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        WHERE kfashion_work_history.created_id = #{userId};
+
     </select>
 
 

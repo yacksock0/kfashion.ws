@@ -122,7 +122,8 @@ class BoundaryBox extends React.Component {
         });
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage('/Users/youngrackchoi/uploadfiles/cloth.jpg');
+        // this.canvas.setBackgroundImage('/Users/youngrackchoi/uploadfiles/cloth.jpg');
+        this.canvas.setBackgroundImage('https://placeimg.com/550/600/any');
 
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {

@@ -12,11 +12,10 @@ class Customer extends React.Component {
     render() {
         return (
             <TableRow>
-                <TableCell>{this.props.id}</TableCell>
-                <TableCell><img src={this.props.image} alt="profile"/></TableCell>
-                <TableCell>{this.props.name}</TableCell>
-                <TableCell>{this.props.date}</TableCell>
-                <TableCell>{this.props.step}</TableCell>
+                <TableCell>{this.props.workNo}</TableCell>
+                <TableCell><img src={this.props.imgData} alt="profile"/></TableCell>
+                <TableCell>{this.props.createdId}</TableCell>
+                <TableCell>{this.props.createdDatetime}</TableCell>
                 <TableCell>
                     <Link to="/Step/BoundaryBox">
                     <Button
