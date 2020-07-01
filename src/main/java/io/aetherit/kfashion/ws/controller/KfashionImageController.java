@@ -60,7 +60,7 @@ public class KfashionImageController {
      */
 
     @PostMapping("/uploadFile")
-    public UploadFileResponse uploadFile(@PathVariable String userId,
+    public UploadFileResponse uploadFile(@RequestParam(value ="userId", required = true) String userId,
                                          @RequestParam("file") MultipartFile file) {
         String workName = StringUtils.cleanPath(file.getOriginalFilename());
         KfashionWork work = new KfashionWork();
@@ -73,7 +73,7 @@ public class KfashionImageController {
             kfashionImage.setImgData(file.getBytes());
             kfashionImageService.insertImgUpload(kfashionImage);
             KfashionWorkHistory workHistory= new KfashionWorkHistory();
-            workHistory.setCreateId(userId);
+            workHistory.setCreatedId(userId);
             workHistory.setWorkNo(work_no);
             workHistory.setWorkStep(1);
             kfashionWorkHistoryService.insertWorkHistory(workHistory);
@@ -101,7 +101,7 @@ public class KfashionImageController {
      */
 
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@PathVariable String userId,
+    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value ="userId", required = true) String userId,
                                                         @RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
             System.out.println(files.length);
 

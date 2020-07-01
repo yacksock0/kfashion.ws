@@ -18,6 +18,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {Button} from "@material-ui/core";
+import Category from "../step3/Category";
 
 const styles = theme => ({
     table: {
@@ -55,7 +56,7 @@ export default class AdminVerify extends React.Component {
             { title: '이메일', field: 'email',type: 'text'},
             { title: '이름', field: 'name', type: 'text'},
             { title: '연락처', field: 'updatedDateTime', type: 'number'},
-            { title: '소속', field: 'group_no', type: '<select>'},
+            { title: '소속', field: 'group_no', type: <Category />},
             { title: '신청일', field: 'createdDatetime', type: 'date'},
         ],
     }

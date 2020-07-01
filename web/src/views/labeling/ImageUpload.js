@@ -102,7 +102,6 @@ const styles = theme => ({
 
 
 @inject('fileUploadStore')
-@inject('authStore')
 @observer
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -145,7 +144,6 @@ class ImageUpload extends React.Component {
     render() {
         const {userGroupAuthorityList} = this.state.userGroupAuthorityList;
         const { classes } = this.props;
-        const {loginUser} = this.props.authStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 {/*Stepper*/}
@@ -165,7 +163,6 @@ class ImageUpload extends React.Component {
                             </div>
                         </Grid>
                         <Grid item xs={5}>
-                            {loginUser}
                             <MaterialTable
                                 icons={tableIcons}
                                 columns={this.state.columns}

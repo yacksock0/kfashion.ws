@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import axios from "axios";
 import {inject, observer} from "mobx-react";
 
 const styles = theme => ({
@@ -25,7 +24,7 @@ DropzoneDialog.defaultProps = {
     initialFiles: [],
 };
 
-@inject('fileUploadStore')
+@inject('fileUploadStore', 'authStore')
 @observer
 class DropzoneDialogExample extends Component {
     constructor(props) {
@@ -35,7 +34,6 @@ class DropzoneDialogExample extends Component {
             files: [],
         };
     }
-
     handleClose() {
         this.setState({
             open: false
@@ -48,12 +46,14 @@ class DropzoneDialogExample extends Component {
             open: false
         });
     }*/
-    handleSave(file){
+    handleSave(file, userId){
         this.setState({
             open: false,
-            files:file
+            files:file,
+            userId: this.props.userId,
         });
-        this.props.fileUploadStore.fileupload(file);
+
+        this.props.fileUploadStore.fileupload(file,userId);
     }
 
     handleOpen() {
@@ -64,6 +64,7 @@ class DropzoneDialogExample extends Component {
 
     render() {
         const { classes } = this.props;
+
         return (
             <div>
                 <Button onClick={this.handleOpen.bind(this)} className={classes.toolButton} variant="contained"

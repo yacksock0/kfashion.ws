@@ -213,7 +213,7 @@ class Step3 extends React.Component {
                         color="primary"
                         variant="outlined"
                         onClick="/home">
-                        Save and Next
+                        Next Step
                     </Button>
                 </Container>
             );
