@@ -109,12 +109,13 @@ class ImageUpload extends React.Component {
         this.state = {
             open: false,
             text: 'text',
-            userGroupAuthorityList: [],
+            boundaryList: [],
+            imgData : '',
             data: [],
             columns: [
-                {title: '번호', field: 'groupNo', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬'},
-                {title: '파일이름', field: 'groupName', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                {title: '등록일', field: 'createdDatetime', type: 'date'},
+                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
+                {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
@@ -122,10 +123,14 @@ class ImageUpload extends React.Component {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
+        this.props.authStore.checkLogin();
         this.setState({ open : false })
-        axios.get('/api/v1/kfashion/userGroupAuthority/userGroupAuthorityList')
+        const createdId = this.props.authStore.loginUser.id;
+
+        axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
             .then(response => {
-                this.setState({ userGroupAuthorityList : response.data})
+                this.setState({ boundaryList : response.data})
+                console.log("epaslkdfjasldkfjads;lkfj",response.data);
             })
             .catch(error => {
                 console.log(error)
@@ -137,12 +142,10 @@ class ImageUpload extends React.Component {
 
         this.props.fileUploadStore.changeUploadFile(file,this.props.id);
     }
-    handleOk = () => {
-        this.props.fileUploadStore.addNewImg();
-    }
+
 
     render() {
-        const {userGroupAuthorityList} = this.state.userGroupAuthorityList;
+        const {boundaryList} = this.state.boundaryList;
         const { classes } = this.props;
         return (
             <Container component="main" className={classes.mainContainer}>
@@ -159,14 +162,14 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={7}>
                             <div>
-                                <img src="https://placeimg.com/600/550/any" alt={''} />
+                                <img src={this.state.imgData} />
                             </div>
                         </Grid>
                         <Grid item xs={5}>
                             <MaterialTable
                                 icons={tableIcons}
                                 columns={this.state.columns}
-                                data={userGroupAuthorityList}
+                                data={boundaryList}
                                 title="이미지 리스트"
                                 actions={[
                                     {
@@ -193,8 +196,17 @@ class ImageUpload extends React.Component {
                                                 }
                                                 resolve();
                                             }, 1000);
-                                        })
+                                        }),
                                 }}
+                                actions={[
+                                    {
+                                        icon: 'save',
+                                        tooltip: 'Save User',
+                                        onClick: (event, rowData) => {
+                                            this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
+                                        }
+                                    }
+                                ]}
                             />
                         </Grid>
                     </Grid>

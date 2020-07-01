@@ -7,6 +7,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -22,7 +23,11 @@ public class KfashionImageService {
         repository.insertImgUpload(kfashionImage);
     }
 
-    public List<KfashionImage> selectBoundaryList() {
-        return repository.selectBoundaryList();
+    public List<KfashionImage> selectBoundaryList(String createdId) {
+        return repository.selectBoundaryList(createdId);
+    }
+
+    public Map<String, Object> getByteImage(int workNo) {
+      return repository.getByteImage(workNo);
     }
 }

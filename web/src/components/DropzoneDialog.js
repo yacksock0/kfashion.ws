@@ -35,6 +35,9 @@ class DropzoneDialogExample extends Component {
             files: [],
         };
     }
+    componentDidMount() {
+        this.props.authStore.checkLogin();
+    }
 
     handleClose() {
         this.setState({
