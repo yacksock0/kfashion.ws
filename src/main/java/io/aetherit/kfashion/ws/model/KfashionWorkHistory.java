@@ -16,7 +16,7 @@ public class KfashionWorkHistory {
     private Long workNo;
     private int workStep;
     private int workSubStep;
-    private String createId;
+    private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 }

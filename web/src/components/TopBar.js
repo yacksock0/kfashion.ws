@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TopBar(props) {
     const classes = useStyles();
-    const { mobileOpen, setMobileOpen, isLoggedIn, doLogout } = props;
+    const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser } = props;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

@@ -1,17 +1,51 @@
-import
-    React from "react";
+import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Container, Toolbar, Typography, Button, Grid,} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import DropzoneDialogExample from "../../components/DropzoneDialog";
+import MaterialTable from 'material-table';
+import { forwardRef } from 'react';
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import Check from '@material-ui/icons/Check';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+import axios from "axios";
 
-
+const tableIcons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+};
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        marginTop:20,
         maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
@@ -47,19 +81,11 @@ const styles = theme => ({
         marginRight: 1,
         height:'100%',
     },
-    canvas:{
-        backgroundColor:'black',
-    },
     fileText: {
         paddingTop: 32,
         paddingRight: theme.spacing(2),
         textAlign: 'left'
 
-    },
-    filebox: {
-        paddingTop: 35,
-        marginRight: theme.spacing(1),
-        marginLeft: theme.spacing(1),
     },
     fileSelection: {
         position: 'absolute',
@@ -75,13 +101,36 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore')
+@inject('fileUploadStore','authStore')
 @observer
-class BoundaryBox extends React.Component {
+class ImageUpload extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+            text: 'text',
+            userGroupAuthorityList: [],
+            data: [],
+            columns: [
+                {title: '번호', field: 'groupNo', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬'},
+                {title: '파일이름', field: 'groupName', initialEditValue: 'test', tooltip: 'This is tooltip text'},
+                {title: '등록일', field: 'createdDatetime', type: 'date'},
+            ],
+        }
+    }
     componentDidMount() {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
+        this.setState({ open : false })
+        axios.get('/api/v1/kfashion/userGroupAuthority/userGroupAuthorityList')
+            .then(response => {
+                this.setState({ userGroupAuthorityList : response.data})
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
     }
     handleChangeUploadFile = (event) => {
         const file = event.target.files[0];
@@ -93,85 +142,47 @@ class BoundaryBox extends React.Component {
     }
 
     render() {
+        const {userGroupAuthorityList} = this.state.userGroupAuthorityList;
         const { classes } = this.props;
-        const { uploadFile} = this.props.fileUploadStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 {/*Stepper*/}
-                <div style={{marginTop:70}}>
-                </div>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
                         <Grid container>
-                            <Grid item xs={1} style={{marginRight:5}}>
+                            <Grid item xs={2} style={{marginRight:5}}>
                                 <DropzoneDialogExample />
-                                <div>
-                                </div>
-                            </Grid>
-                            <Grid item xs={1} style={{marginRight:5}}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.toolButton} >
-                                    Open DIR
-                                </Button>
-                            </Grid>
-                            <Grid item xs={1} style={{marginRight:5}}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.toolButton} >
-                                    Change Save Dir
-                                </Button>
-                            </Grid>
-                            <Grid item xs={1} style={{marginRight:5}}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.toolButton} >
-                                    Zoom In
-                                </Button>
-                            </Grid>
-                            <Grid item xs={1} style={{marginRight:5}}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.toolButton} >
-                                    Zoom Out
-                                </Button>
                             </Grid>
                         </Grid>
-                        {/*Img*/}
                     </Toolbar>
-                    <hr></hr>
                     <Grid container>
-                        <Grid item xs={1}>
-                            <div className={classes.toolBox}>
-                                Tool Box
+                        <Grid item xs={7}>
+                            <div>
+                                <img src="https://placeimg.com/600/550/any" alt={''} />
                             </div>
                         </Grid>
-                        <Grid item xs={8} className={classes.canvas}>
-                            <img src="https://placeimg.com/1000/800/any" alt={''} />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <div className={classes.test}>
-                                <Typography>
-                                    작업리스트
-                                </Typography>
-                                <hr></hr>
-                            </div>
-
-                            <div className={classes.test}>
-                                <Typography>
-                                    완료리스트
-                                </Typography>
-                                <hr></hr>
-                            </div>
+                        <Grid item xs={5}>
+                            <MaterialTable
+                                icons={tableIcons}
+                                columns={this.state.columns}
+                                data={userGroupAuthorityList}
+                                title="이미지 리스트"
+                                editable={{
+                                    onRowDelete: oldData =>
+                                        new Promise((resolve, reject) => {
+                                            setTimeout(() => {
+                                                {
+                                                    let data = this.state.data;
+                                                    const index = data.indexOf(oldData);
+                                                    data.splice(index, 1);
+                                                    this.setState({ data }, () => resolve());
+                                                }
+                                                resolve();
+                                            }, 1000);
+                                        })
+                                }}
+                            />
                         </Grid>
                     </Grid>
                 </div>
@@ -205,4 +216,4 @@ class BoundaryBox extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (BoundaryBox)));
+export default withSnackbar(withRouter(withStyles(styles) (ImageUpload)));
