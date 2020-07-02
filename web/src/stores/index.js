@@ -7,6 +7,7 @@ import CreateGroupDialogStore from "./CreateGroupDialogStore";
 import AdminAuthorityStore from "./AdminAuthorityStore";
 import ProfessionalLabelStore from "./ProfessionalLabelStore";
 import BasicLabelStore from "./BasicLabelStore";
+import UserListStore from "./UserListStore";
 
 
 export const stores = {
@@ -19,4 +20,5 @@ export const stores = {
     adminAuthorityStore : new AdminAuthorityStore(),
     professionalLabelStore : new ProfessionalLabelStore(),
     basicLabelStore : new BasicLabelStore(),
+    userListStore: new UserListStore(),
 };
