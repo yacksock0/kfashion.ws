@@ -72,6 +72,7 @@ class UserList extends React.Component {
             id:'',
             name:'',
             password:'',
+            groupUserList:[],
             newMember:[],
             columns: [
                 {
@@ -82,15 +83,19 @@ class UserList extends React.Component {
                     editPlaceholder: '아이디 입력'
                 },
                 {title: '이름', field: 'name', type: 'text'},
-                {title: '비밀번호', field: 'password', type: 'password'},
+                {title: '비밀번호', field: 'password', type: 'hidden'},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
     componentDidMount() {
         const groupNo = this.props.authStore.loginUser.groupNo;
-        const response = axios.get('api/v1/kfashion/users/groupUserList?groupNo='+groupNo)
-        const groupUserList = response.data.groupUserList;
+        axios.get('/api/v1/kfashion/users/groupUserList?groupNo='+groupNo)
+            .then(response => response.data)
+            .then(res => {
+                this.setState({ groupUserList : res, loading: false})
+            })
+
 
         this.props.enqueueSnackbar("User List", {
             variant: 'info'
@@ -101,6 +106,7 @@ class UserList extends React.Component {
     render() {
         const { classes } = this.props;
         const groupNo = this.props.authStore.loginUser.groupNo;
+        const {groupUserList} = this.state.groupUserList;
         return (
             <Container component="main" className={classes.mainContainer}>
                 console
@@ -110,6 +116,7 @@ class UserList extends React.Component {
                         <MaterialTable
                             icons={tableIcons}
                             columns={this.state.columns}
+                            data={groupUserList}
                             title="그룹 회원 리스트"
                             editable={{
                                 onRowAdd:rowData =>
