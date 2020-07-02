@@ -136,7 +136,7 @@ public class KfashionUserInfoController {
 
     @PostMapping(value="/createGroupUser")
     public ResponseEntity<Object> createGroupUser(HttpServletRequest httpServletRequest,
-                                            @RequestBody @Valid KfashionUserInfo user) throws Exception{
+                                            @RequestParam KfashionUserInfo user) throws Exception{
         kfashionUserInfoService.createGroupUser(user);
         return new ResponseEntity<Object>("success",HttpStatus.OK);
     }

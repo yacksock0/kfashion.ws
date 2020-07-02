@@ -57,14 +57,22 @@
 
 
     <select id="selectUser" parameterType="String" resultMap="kfashionUserInfoResultMap">
-        SELECT id,
-               password,
-               name,
-               is_admin,
-               is_approved,
-               created_datetime,
-               updated_datetime
-        FROM kfashion_user_info
+        SELECT
+       		   kfashion_user_info.id,
+        	   kfashion_user_info.email,
+               kfashion_user_info.password,
+               kfashion_user_info.name,
+               kfashion_user_info.phone,
+               kfashion_user_info.group_no,
+               kfashion_user_info.is_admin,
+               kfashion_user_info.is_approved,
+               kfashion_user_group_authority.authority_no,
+               COUNT(kfashion_user_group_admin.user_id) AS group_admin,
+               kfashion_user_info.created_datetime,
+               kfashion_user_info.updated_datetime
+        FROM   kfashion_user_info
+        LEFT JOIN kfashion_user_group_authority ON kfashion_user_info.group_no = kfashion_user_group_authority.group_no
+        RIGHT JOIN kfashion_user_group_admin ON kfashion_user_info.id = kfashion_user_group_admin.user_id
         WHERE id = #{value}
     </select>
 
@@ -82,22 +90,15 @@
     </select>
 
     <select id="selectUserById" parameterType="String" resultMap="kfashionUserInfoResultMap">
-          SELECT
-       		   kfashion_user_info.id,
-        	   kfashion_user_info.email,
-               kfashion_user_info.password,
-               kfashion_user_info.name,
-               kfashion_user_info.phone,
-               kfashion_user_info.group_no,
-               kfashion_user_info.is_admin,
-               kfashion_user_info.is_approved,
-               kfashion_user_group_authority.authority_no,
-               COUNT(kfashion_user_group_admin.user_id) AS group_admin,
-               kfashion_user_info.created_datetime,
-               kfashion_user_info.updated_datetime
+          SELECT id,
+               email,
+               password,
+               name,
+               is_admin,
+               is_approved,
+               created_datetime,
+               updated_datetime
         FROM   kfashion_user_info
-        LEFT JOIN kfashion_user_group_authority ON kfashion_user_info.group_no = kfashion_user_group_authority.group_no
-        RIGHT JOIN kfashion_user_group_admin ON kfashion_user_info.id = kfashion_user_group_admin.user_id
         WHERE  id = #{id}
     </select>
 

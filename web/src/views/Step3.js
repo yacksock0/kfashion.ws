@@ -16,6 +16,7 @@ import ColorKara from "./step3/ColorKara";
 import Fit from "./step3/Fit";
 import Safe from "./step3/Safe";
 import Silhouette from "./step3/Silhouette";
+import {inject, observer} from "mobx-react";
 
 const styles = theme => ({
     mainContainer: {
@@ -48,6 +49,8 @@ const styles = theme => ({
     },
 });
 
+@inject('professionalLabelStore','authStore')
+@observer
 class Step3 extends React.Component {
     componentDidMount() {
         this.props.enqueueSnackbar("Step3", {
@@ -55,6 +58,9 @@ class Step3 extends React.Component {
         });
     }
 
+    handleClickOK = () => {
+        this.props.professionalLabelStore.doProfessionalLabelUp();
+    }
 
     render() {
         const {classes} = this.props;
@@ -212,7 +218,7 @@ class Step3 extends React.Component {
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick="/home">
+                        onClick={this.handleClickOK}>
                         Next Step
                     </Button>
                 </Container>

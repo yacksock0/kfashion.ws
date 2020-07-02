@@ -128,8 +128,6 @@ const decodeURLParams = search => {
 class SignUp extends React.Component {
     componentDidMount() {
         const params = decodeURLParams(this.props.location.search);
-
-
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
