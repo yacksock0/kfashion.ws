@@ -21,6 +21,8 @@ import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Remove from "@material-ui/icons/Remove";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import GroupList from "./GroupList";
+import {toJS} from "mobx";
+import {inject, observer} from "mobx-react";
 
 const styles = theme => ({
     mainContainer: {
@@ -59,11 +61,15 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
+@inject('authStore', 'userListStore')
+@observer
 class UserList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             userList: [],
+            groupNo:'',
+            newMember:[],
             columns: [
                 {
                     title: '아이디',
@@ -82,13 +88,15 @@ class UserList extends React.Component {
         this.props.enqueueSnackbar("User List", {
             variant: 'info'
         });
+        this.props.authStore.checkLogin();
     }
 
     render() {
         const { classes } = this.props;
-
+        const groupNo = this.props.authStore.loginUser.groupNo;
         return (
             <Container component="main" className={classes.mainContainer}>
+                console
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid item xs={12} lg={12}>
@@ -101,17 +109,14 @@ class UserList extends React.Component {
                                     new Promise((resolve, reject) => {
                                         setTimeout(() => {
                                             try {
-                                                const formData = new FormData;
-                                                formData.append('id', rowData.id);
-                                                formData.append('name', rowData.name);
-                                                formData.append('password', rowData.password);
-                                                formData.append('isApproved', 'Y');
-                                                const response = axios.post('/api/v1/kfashion/users/createGroupUser', formData);
-
-                                                console.log('doLogin');
-
+                                            this.setState({
+                                                newMember: rowData,
+                                                groupNo : groupNo,
+                                            },()=> console.log("groupNo",groupNo)
+                                            )
+                                                this.props.userListStore.addGroupUser();
                                             } catch (e) {
-
+                                                console.log('여기 에러 났음')
                                             }
                                             resolve();
                                         }, 1000);
