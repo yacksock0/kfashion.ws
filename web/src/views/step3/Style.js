@@ -1,7 +1,11 @@
 import React from 'react';
 import Select from 'react-select';
 import axios from "axios";
+import {inject, observer} from "mobx-react";
 
+
+@inject('professionalLabelStore','authStore')
+@observer
 export default class SelectTest extends React.Component {
     constructor(props) {
         super(props);
@@ -28,6 +32,7 @@ export default class SelectTest extends React.Component {
             })
     }
     handleChange = (selectedOption) => {
+        this.props.professionalLabelStore.changeNewProfessionalLabelStyle(selectedOption);
         if(selectedOption.length <= 2) {
             this.setState(
                 {selectedOption},

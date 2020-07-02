@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.controller;
 
 import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
+import io.aetherit.kfashion.ws.model.KfashionUserGroupAdmin;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,7 +136,7 @@ public class KfashionUserInfoController {
 
     @PostMapping(value="/createGroupUser")
     public ResponseEntity<Object> createGroupUser(HttpServletRequest httpServletRequest,
-                                            @RequestBody KfashionUserInfo user) throws Exception{
+                                            @RequestParam KfashionUserInfo user) throws Exception{
         kfashionUserInfoService.createGroupUser(user);
         return new ResponseEntity<Object>("success",HttpStatus.OK);
     }
