@@ -15,9 +15,6 @@ export default class ThirdStepStore {
     @observable safeList = []
     @observable silhouetteList = []
 
-
-
-
     @computed
     get category() {
         return this.categoryList === undefined ? [] : this.categoryList;

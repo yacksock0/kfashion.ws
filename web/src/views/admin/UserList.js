@@ -69,6 +69,9 @@ class UserList extends React.Component {
         this.state = {
             userList: [],
             groupNo:'',
+            id:'',
+            name:'',
+            password:'',
             newMember:[],
             columns: [
                 {
@@ -85,6 +88,10 @@ class UserList extends React.Component {
         }
     }
     componentDidMount() {
+        const groupNo = this.props.authStore.loginUser.groupNo;
+        const response = axios.get('api/v1/kfashion/users/groupUserList?groupNo='+groupNo)
+        const groupUserList = response.data.groupUserList;
+
         this.props.enqueueSnackbar("User List", {
             variant: 'info'
         });
@@ -109,11 +116,10 @@ class UserList extends React.Component {
                                     new Promise((resolve, reject) => {
                                         setTimeout(() => {
                                             try {
-                                            this.setState({
-                                                newMember: rowData,
-                                                groupNo : groupNo,
-                                            },()=> console.log("groupNo",groupNo)
-                                            )
+                                                this.props.userListStore.changeNewMemberId(rowData.id)
+                                                this.props.userListStore.changeNewMemberPassword(rowData.password)
+                                                this.props.userListStore.changeNewMemberUserName(rowData.name)
+                                                this.props.userListStore.changeNewMemberGroupNo(groupNo)
                                                 this.props.userListStore.addGroupUser();
                                             } catch (e) {
                                                 console.log('여기 에러 났음')

@@ -13,7 +13,7 @@ const EmptyNewMember = {
     id: '',
     password: '',
     name: '',
-    isApproved: '',
+    isApproved: 'Y',
     groupNo: '',
     createdDatetime: '',
     updatedDatetime: '',
@@ -49,6 +49,7 @@ export default class UserListStore {
         this.state = State.Pending;
         try {
             const param = toJS(this.newMember);
+            console.log('param:', param)
             const response = axios.post('/api/v1/kfashion/users/createGroupUser', param)
             console.log(response.data);
                 if (response.status === 200) {
