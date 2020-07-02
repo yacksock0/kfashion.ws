@@ -5,7 +5,9 @@ import FileUploadStore from "./FileUploadStore";
 import ThirdStepStore from "./ThirdStepStore";
 import CreateGroupDialogStore from "./CreateGroupDialogStore";
 import AdminAuthorityStore from "./AdminAuthorityStore";
-import ProfessionalLabelStore from "./ProfessionalLabelStore"
+import ProfessionalLabelStore from "./ProfessionalLabelStore";
+import BasicLabelStore from "./BasicLabelStore";
+
 
 export const stores = {
     signUpStore: new SignUpStore(),
@@ -16,4 +18,5 @@ export const stores = {
     createGroupDialogStore : new CreateGroupDialogStore(),
     adminAuthorityStore : new AdminAuthorityStore(),
     professionalLabelStore : new ProfessionalLabelStore(),
+    basicLabelStore : new BasicLabelStore(),
 };

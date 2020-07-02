@@ -23,7 +23,7 @@ public interface KfashionUserInfoMapper {
 
     void updateUserGroup(Map<String, Object> map);
 
-    List<KfashionUserInfo> selectGroupUserList();
+    List<KfashionUserInfo> selectGroupUserList(int groupNo);
 
     void createGroupUser(KfashionUserInfo user);
 
