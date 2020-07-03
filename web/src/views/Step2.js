@@ -6,7 +6,27 @@ import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Color from "./step2/Color";
 import SleeveLength from "./step2/SleeveLength";
 import {inject, observer} from "mobx-react";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import ImageList from "./labeling/ImageList";
 
+function TabPanel(props) {
+    const { children, value, index } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+        >
+            {value === index && (
+                <Typography>{children}</Typography>
+            )}
+        </div>
+    );
+}
 
 const styles = theme => ({
     mainContainer: {
@@ -48,6 +68,7 @@ class Step2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            value: 0,
             createdId: '',
         }
     }
@@ -64,6 +85,10 @@ class Step2 extends React.Component {
         this.props.basicLabelStore.changeNewBasicLabelCreatedId(this.state.createdId);
         this.props.basicLabelStore.doBasicLabelUp();
     }
+
+    handleTabChange = (event, newValue) => {
+        this.setState({ value: newValue });
+    }
     render() {
         const { classes } = this.props;
 
@@ -76,13 +101,21 @@ class Step2 extends React.Component {
                          <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block", margin:"auto"}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
-
-                         <div className={classes.content}>
-                             <div style={{display:"inline-flex"}}>
-                             <Typography variant="h5" component="h2">
-                                 색상
-                             </Typography>
-                            {/* <Button
+                                 <AppBar position="static">
+                                     <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example" >
+                                         <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>
+                                         <Tab label="하의" value={1} style={{minWidth:'20%'}}/>
+                                         <Tab label="신발" value={2} style={{minWidth:'20%'}}/>
+                                         <Tab label="가방" value={3} style={{minWidth:'20%'}}/>
+                                         <Tab label="악세서리" value={4} style={{minWidth:'20%'}}/>
+                                     </Tabs>
+                                 </AppBar>
+                                 <TabPanel value={this.state.value} index={0}>
+                                     <div className={classes.content}>
+                                     <Typography variant="h5" component="h2">
+                                         색상
+                                     </Typography>
+                                     {/* <Button
                                  variant="outlined"
                                  color="primary"
                                  className={classes.insertButton}
@@ -90,18 +123,17 @@ class Step2 extends React.Component {
                              >
                                  항목추가
                              </Button>*/}
-                             </div>
-                             <div>
-                                 <hr></hr>
-                             </div>
-                             <Color />
-                         </div>
-                         <div className={classes.content}>
-                             <div style={{display:"inline-flex"}}>
-                                 <Typography variant="h5" component="h2">
-                                     소매 길이
-                                 </Typography>
-                                 {/*<Button
+                                     <div>
+                                         <hr></hr>
+                                     </div>
+                                     <Color />
+                                     </div>
+                                     <div className={classes.content}>
+                                         <div style={{display:"inline-flex"}}>
+                                             <Typography variant="h5" component="h2">
+                                                 소매 길이
+                                             </Typography>
+                                             {/*<Button
                                      variant="outlined"
                                      color="primary"
                                      className={classes.insertButton}
@@ -109,13 +141,13 @@ class Step2 extends React.Component {
                                  >
                                      항목추가
                                  </Button>*/}
-                             </div>
-                             <div>
-                                 <hr></hr>
-                             </div>
-                             <SleeveLength />
-                         </div>
-                         {/*<Grid container spacing={3} row>
+                                         </div>
+                                         <div>
+                                             <hr></hr>
+                                         </div>
+                                         <SleeveLength />
+                                     </div>
+                                     {/*<Grid container spacing={3} row>
                          <Grid item xs={6}>
                              <div className={classes.content}>
                                  <div style={{display:"inline-flex"}}>
@@ -137,6 +169,95 @@ class Step2 extends React.Component {
                                  <SleeveLength />
                              </div>
                         </Grid>*/}
+                                 </TabPanel>
+                                 <TabPanel value={this.state.value} index={2}>
+                                     <div className={classes.content}>
+                                         <Typography variant="h5" component="h2">
+                                             색상
+                                         </Typography>
+                                         <div>
+                                             <hr></hr>
+                                         </div>
+                                         <Color />
+                                     </div>
+                                     <div className={classes.content}>
+                                         <div style={{display:"inline-flex"}}>
+                                             <Typography variant="h5" component="h2">
+                                                 소매 길이
+                                             </Typography>
+                                         </div>
+                                         <div>
+                                             <hr></hr>
+                                         </div>
+                                         <SleeveLength />
+                                     </div>
+                                 </TabPanel>
+                         <TabPanel value={this.state.value} index={3}>
+                             <div className={classes.content}>
+                                 <Typography variant="h5" component="h2">
+                                     색상
+                                 </Typography>
+                                 <div>
+                                     <hr></hr>
+                                 </div>
+                                 <Color />
+                             </div>
+                             <div className={classes.content}>
+                                 <div style={{display:"inline-flex"}}>
+                                     <Typography variant="h5" component="h2">
+                                         소매 길이
+                                     </Typography>
+                                 </div>
+                                 <div>
+                                     <hr></hr>
+                                 </div>
+                                 <SleeveLength />
+                             </div>
+                         </TabPanel>
+                         <TabPanel value={this.state.value} index={4}>
+                             <div className={classes.content}>
+                                 <Typography variant="h5" component="h2">
+                                     색상
+                                 </Typography>
+                                 <div>
+                                     <hr></hr>
+                                 </div>
+                                 <Color />
+                             </div>
+                             <div className={classes.content}>
+                                 <div style={{display:"inline-flex"}}>
+                                     <Typography variant="h5" component="h2">
+                                         소매 길이
+                                     </Typography>
+                                 </div>
+                                 <div>
+                                     <hr></hr>
+                                 </div>
+                                 <SleeveLength />
+                             </div>
+                         </TabPanel>
+                         <TabPanel value={this.state.value} index={1}>
+                             <div className={classes.content}>
+                                 <Typography variant="h5" component="h2">
+                                     색상
+                                 </Typography>
+                                 <div>
+                                     <hr></hr>
+                                 </div>
+                                 <Color />
+                             </div>
+                             <div className={classes.content}>
+                                 <div style={{display:"inline-flex"}}>
+                                     <Typography variant="h5" component="h2">
+                                         소매 길이
+                                     </Typography>
+                                 </div>
+                                 <div>
+                                     <hr></hr>
+                                 </div>
+                                 <SleeveLength />
+                             </div>
+                         </TabPanel>
                      </Grid>
                  </Grid>
                 </div>
