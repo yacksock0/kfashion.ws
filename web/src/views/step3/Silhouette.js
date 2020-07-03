@@ -25,7 +25,6 @@ export default class Silhouette extends React.Component {
                         return silhouette
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -42,7 +41,6 @@ export default class Silhouette extends React.Component {
     render() {
         const { selectedOption } = this.state;
         const silhouetteList= this.state.silhouetteList;
-        console.log(silhouetteList);
         return (
             <Select
                 value={selectedOption}

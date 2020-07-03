@@ -25,7 +25,6 @@ export default class ColorKara extends React.Component {
                         return fit
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -35,14 +34,12 @@ export default class ColorKara extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelFit(selectedOption);
         this.setState(
             { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const fitList= this.state.fitList;
-        console.log(fitList);
         return (
             <Select
                 value={selectedOption}

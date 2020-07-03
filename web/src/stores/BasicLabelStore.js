@@ -9,8 +9,13 @@ const State = {
 }
 
 const EmptyNewBasicLabel= {
+    workNo : 18,
+    workStep : 4,
     color: '',
+    colorCategoryNo: '',
     sleeveLength: '',
+    sleeveLengthCategoryNo : '',
+    createdId : '',
 }
 
 export default class BasicLabelStore {
@@ -18,12 +23,19 @@ export default class BasicLabelStore {
     @observable newBasicLabel = {...EmptyNewBasicLabel}
 
     @action changeNewBasicLabelColor = (color) => {
-        this.newBasicLabel.color = color;
+        this.newBasicLabel.color = color.no;
+        this.newBasicLabel.colorCategoryNo = color.categoryNo;
+    }
+
+    @action changeNewBasicLabelCreatedId = (createdId) => {
+        this.newBasicLabel.createdId = createdId;
     }
 
     @action changeNewBasicLabelSleeveLength = (sleeveLength) => {
-        this.newBasicLabel.sleeveLength = sleeveLength;
+        this.newBasicLabel.sleeveLength = sleeveLength.no;
+        this.newBasicLabel.sleeveLengthCategoryNo = sleeveLength.categoryNo;
     }
+
     @computed get isPending() {
         return this.state === State.Pending;
     }
@@ -41,9 +53,9 @@ export default class BasicLabelStore {
     doBasicLabelUp = flow(function* doBasicLabelUp(doAction) {
         this.state = State.Pending;
         try {
-            const param = toJS(this.newProfessionalLabel);
+            const param = toJS(this.newBasicLabel);
 
-            const resp = yield axios.post('/api/v1/kfashion/label/BasicLabel', param);
+            const resp = yield axios.post('/api/v1/kfashion/label/basicLabel', param);
             if (resp.status === 200) {
                 this.state = State.Success;
                 if (doAction !== undefined) doAction();

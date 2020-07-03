@@ -24,7 +24,6 @@ export default class NeckLine extends React.Component {
                         return neckLine
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -33,15 +32,13 @@ export default class NeckLine extends React.Component {
     handleChange = (selectedOption) => {
         this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine(selectedOption);
         this.setState(
-            { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            { selectedOption }
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const neckLineList= this.state.neckLineList;
-        console.log(neckLineList);
         return (
             <Select
                 value={selectedOption}

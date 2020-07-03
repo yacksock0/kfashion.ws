@@ -26,7 +26,6 @@ export default class SelectTest extends React.Component {
                         return category
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -36,14 +35,12 @@ export default class SelectTest extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory(selectedOption);
         this.setState(
             { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const categoryList= this.state.categoryList;
-        console.log(categoryList);
         return (
             <Select
                 value={selectedOption}

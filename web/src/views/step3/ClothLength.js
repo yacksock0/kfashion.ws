@@ -24,7 +24,6 @@ export default class ClothLength extends React.Component {
                         return length
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -34,13 +33,11 @@ export default class ClothLength extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelClothLength(selectedOption);
             this.setState(
                 { selectedOption },
-                () => console.log(`Option selected:`, this.state.selectedOption)
             );
     };
     render() {
         const { selectedOption } = this.state;
         const lengthList= this.state.lengthList;
-        console.log(lengthList);
         return (
             <Select
                 value={selectedOption}

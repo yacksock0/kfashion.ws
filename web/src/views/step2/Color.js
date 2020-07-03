@@ -1,7 +1,12 @@
 import React from 'react';
 import Select from 'react-select';
 import axios from "axios";
+import {inject, observer} from "mobx-react";
 
+
+
+@inject('basicLabelStore','authStore')
+@observer
 export default class SelectTest extends React.Component {
     constructor(props) {
         super(props);
@@ -21,23 +26,21 @@ export default class SelectTest extends React.Component {
                         return color
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
             })
     }
     handleChange = (selectedOption) => {
+        this.props.basicLabelStore.changeNewBasicLabelColor(selectedOption)
         this.setState(
-            { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            { selectedOption }
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const colorList= this.state.colorList;
-        console.log(colorList);
         return (
             <Select
                 value={selectedOption}

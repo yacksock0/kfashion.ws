@@ -9,20 +9,35 @@ const State = {
 }
 
 const EmptyNewProfessionalLabel = {
-    workNo : '',
-    workStep : '',
-    createId: '',
-    style: '',
-    category: '',
-    detail: '',
-    print: '',
-    texture: '',
-    clothLength: '',
-    neckLine: '',
+    workNo : 17,
+    workStep : 5,
+    createId : '',
+    styleNoList: [],
+    styleCategoryNoList: [],
+    style : '',
+    styleSub : '',
+    styleCategoryNo : '',
+    styleCategorySubNo : '',
+    category : '',
+    categoryCategoryNo : '',
+    detail : '',
+    detailCategoryNo : '',
+    print : '',
+    printCategoryNo : '',
+    texture : '',
+    textureCategoryNo : '',
+    clothLength : '',
+    clothLengthCategoryNo : '',
+    neckLine : '',
+    neckLineCategoryNo : '',
     kara : '',
+    karaCategoryNo : '',
     fit : '',
+    fitCategoryNo : '',
     safe : '',
-    silhouette: '',
+    safeCategoryNo : '',
+    silhouette : '',
+    silhouetteCategoryNo : '',
 }
 
 export default class ProfessionalLabelStore {
@@ -30,45 +45,68 @@ export default class ProfessionalLabelStore {
     @observable newProfessionalLabel = {...EmptyNewProfessionalLabel}
 
     @action changeNewProfessionalLabelStyle = (style) => {
-        this.newProfessionalLabel.style = style;
+        if(style) {
+            for(let i=0; i < style.length; i++) {
+                this.newProfessionalLabel.styleNoList[i] = style[i].no;
+                this.newProfessionalLabel.styleCategoryNoList[i] = style[i].categoryNo;
+            }
+            this.newProfessionalLabel.style = this.newProfessionalLabel.styleNoList[0]
+            this.newProfessionalLabel.styleCategoryNo = this.newProfessionalLabel.styleCategoryNoList[0]
+            this.newProfessionalLabel.styleSub = this.newProfessionalLabel.styleNoList[1]
+            this.newProfessionalLabel.styleCategorySubNo = this.newProfessionalLabel.styleCategoryNoList[1]
+        }
     }
 
     @action changeNewProfessionalLabelCategory = (category) => {
-        this.newProfessionalLabel.category = category;
+        this.newProfessionalLabel.category = category.no;
+        this.newProfessionalLabel.categoryCategoryNo = category.categoryNo;
     }
 
     @action changeNewProfessionalLabelDetail = (detail) => {
-        this.newProfessionalLabel.detail = detail;
+        this.newProfessionalLabel.detail = detail.no;
+        this.newProfessionalLabel.detailCategoryNo = detail.categoryNo;
     }
 
     @action changeNewProfessionalLabelPrint= (print) => {
-        this.newProfessionalLabel.print = print;
+        this.newProfessionalLabel.print = print.no;
+        this.newProfessionalLabel.printCategoryNo = print.categoryNo;
     }
 
     @action changeNewProfessionalLabelTexture = (texture) => {
-        this.newProfessionalLabel.texture = texture;
+        this.newProfessionalLabel.texture = texture.no;
+        this.newProfessionalLabel.textureCategoryNo = texture.categoryNo;
     }
     @action changeNewProfessionalLabelClothLength = (clothLength) => {
-        this.newProfessionalLabel.clothLength = clothLength;
+        this.newProfessionalLabel.clothLength = clothLength.no;
+        this.newProfessionalLabel.clothLengthCategoryNo = clothLength.categoryNo;
     }
 
     @action changeNewProfessionalLabelNeckLine = (neckLine) => {
-        this.newProfessionalLabel.neckLine = neckLine;
+        this.newProfessionalLabel.neckLine = neckLine.no;
+        this.newProfessionalLabel.neckLineCategoryNo = neckLine.categoryNo;
     }
     @action changeNewProfessionalLabelKara = (kara) => {
-        this.newProfessionalLabel.kara = kara;
+        this.newProfessionalLabel.kara = kara.no;
+        this.newProfessionalLabel.karaCategoryNo = kara.categoryNo;
     }
 
     @action changeNewProfessionalLabelFit = (fit) => {
-        this.newProfessionalLabel.fit = fit;
+        this.newProfessionalLabel.fit = fit.no;
+        this.newProfessionalLabel.fitCategoryNo = fit.categoryNo;
     }
 
     @action changeNewProfessionalLabelSafe= (safe) => {
-        this.newProfessionalLabel.safe = safe;
+        this.newProfessionalLabel.safe = safe.no;
+        this.newProfessionalLabel.safeCategoryNo = safe.categoryNo;
     }
 
     @action changeNewProfessionalLabelSilhouette = (silhouette) => {
-        this.newProfessionalLabel.silhouette = silhouette;
+        this.newProfessionalLabel.silhouette = silhouette.no;
+        this.newProfessionalLabel.silhouetteCategoryNo = silhouette.categoryNo;
+    }
+
+    @action changeNewProfessionalLabelCreatedId = (createdId) => {
+        this.newProfessionalLabel.createdId = createdId;
     }
 
     @computed get isPending() {
@@ -83,16 +121,14 @@ export default class ProfessionalLabelStore {
         return this.state === State.Fail;
     }
 
-    doProfessionalLabelUp = flow(function* doProfessionalLabelUp(doAction) {
+    doProfessionalLabelUp = flow(function* doProfessionalLabelUp() {
         this.state = State.Pending;
-
         try {
                 const param = toJS(this.newProfessionalLabel);
 
-                const resp = yield axios.post('/api/v1/kfashion/label/ProfessionalLabel', param);
+                const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
                     this.state = State.Success;
-                    if (doAction !== undefined) doAction();
                 } else {
                 }
         } catch (e) {

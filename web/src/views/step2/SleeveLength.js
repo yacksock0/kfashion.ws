@@ -1,7 +1,11 @@
 import React from 'react';
 import Select from 'react-select';
 import axios from "axios";
+import {inject, observer} from "mobx-react";
 
+
+@inject('basicLabelStore','authStore')
+@observer
 export default class SelectTest extends React.Component {
     constructor(props) {
         super(props);
@@ -21,23 +25,21 @@ export default class SelectTest extends React.Component {
                         return sleeve
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
             })
     }
     handleChange = (selectedOption) => {
+        this.props.basicLabelStore.changeNewBasicLabelSleeveLength(selectedOption)
         this.setState(
-            { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            { selectedOption }
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const sleeveList= this.state.sleeveList;
-        console.log(sleeveList);
         return (
             <Select
                 value={selectedOption}

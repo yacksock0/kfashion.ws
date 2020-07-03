@@ -25,7 +25,6 @@ export default class Detail extends React.Component {
                         return detail
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -35,14 +34,12 @@ export default class Detail extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelDetail(selectedOption);
         this.setState(
             { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const detailList= this.state.detailList;
-        console.log(detailList);
         return (
             <Select
                 value={selectedOption}

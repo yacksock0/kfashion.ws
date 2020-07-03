@@ -25,25 +25,26 @@ export default class SelectTest extends React.Component {
                         return style
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
             })
     }
     handleChange = (selectedOption) => {
+        if(selectedOption === null) {
+            selectedOption =[];
+        }
         this.props.professionalLabelStore.changeNewProfessionalLabelStyle(selectedOption);
-        if(selectedOption.length <= 2) {
+        if (!selectedOption && this.props.isMulti ? [] : selectedOption && selectedOption.length <= 2) {
             this.setState(
-                {selectedOption},
-                () => console.log(`Option selected:`, this.state.selectedOption)
+                {selectedOption}
             );
         }
+
     };
     render() {
         const { selectedOption } = this.state;
         const styleList= this.state.styleList;
-        console.log(styleList);
         return (
             <Select
                 value={selectedOption}
@@ -52,6 +53,7 @@ export default class SelectTest extends React.Component {
                 autoFocus={true}
                 placeholder={'스타일을 선택 하세요 (Main, Sub)'}
                 isMulti
+                isClearable
             />
         );
     }
