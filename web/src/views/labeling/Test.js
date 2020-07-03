@@ -1,6 +1,6 @@
 import React, {forwardRef} from "react";
 import {withSnackbar} from "notistack";
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Typography} from "@material-ui/core";
 import Table from '@material-ui/core/Table';
@@ -85,60 +85,79 @@ const tableIcons = {
     SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
- };
+};
 
-class Step1 extends React.Component {
+// const customers = [
+//
+//     {
+//         'workNo': 2,
+//         'imgData': 'https://placeimg.com/48/48/2',
+//         'createdId': '나동빈',
+//         'createdDatetime': '200516',
+//     },
+//     {
+//         'workNo': 3,
+//         'imgData': 'https://placeimg.com/48/48/3',
+//         'createdId': '이순신',
+//         'createdDatetime': '200614',
+//     }
+// ]
+
+
+class Test extends React.Component {
+
     state = {
         loading: false,
         boundaryList : [],
         data: [],
         columns: [
             { title: '번호', field: 'workNo', filterPlaceholder: 'workNo filter', tooltip: 'workNo로 정렬', editPlaceholder: 'workNo 입력'},
-            { title: '이미지'},
-            // { title: '이미지', field: 'imgData',type: 'string'},
+            { title: '이미지', field: '',type: 'byte'},
             { title: '작성자', field: 'createdId', type: 'string'},
             { title: '날짜', field: 'createdDatetime', type: 'date'},
-            { title: 'go'},
+            // { title: '작업하기', field: '', type: 'string'},
         ],
     }
-
     componentDidMount() {
         this.setState({ loading: true })
         axios.get('/api/v1/kfashion/img/boundaryList')
-            .then(response => {
+            .then(response => response.data.boundaryList.filter(b => b !== null))
+            .then(res => {
                 this.setState({
-                    // render: rowData => <img src={rowData.url} style={{width: 50, borderRadius: '50%'}}/>,
-                    boundaryList : response.data.boundaryList.filter(b => b !== null), loading: false },)
+
+                    boundaryList : Customer.map(b => {
+                        b.workNo  = b.workNo;
+                        b.imgData = b.imgData;
+                        b.createdId = b.createdId;
+                        b.createdDatetime = b.createdDatetime;
+
+                        return b
+                    }), loading: false },)
+
             })
             .catch(error => {
                 console.log(error)
             })
     }
 
+
     render() {
-        const { classes, history } = this.props;
+        const { classes } = this.props;
         const {boundaryList} = this.state;
-        console.log(boundaryList);
+
         return (
+
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
+
+
                 <div style={{ maxWidth: "100%" }}>
+
                     <MaterialTable
                         icons={tableIcons}
                         columns={this.state.columns}
-                        data={boundaryList}
+                        data={this.state.boundaryList}
                         title="BoundaryBoxList"
-                        actions={[
-                            {
-                                icon: 'go',
-                                tooltip: 'labeling',
-                                onClick: (event, rowData) => {
-                                    history.push("/Step/BoundaryBox");
-                                    // const formData = new formData();
-                                    // formData.append('workNo', boundaryList.columns.field.workNo);
-                                }
-                            }
-                        ]}
                         editable={{
                             onRowDelete: oldData =>
                                 new Promise((resolve, reject) => {
@@ -153,11 +172,34 @@ class Step1 extends React.Component {
                                     }, 1000);
                                 })
                         }}
-                        options={{
-                            actionsColumnIndex: -1
-                        }}
                     />
                 </div>
+                {/*<hr></hr>*/}
+                {/*<div className={classes.mainContent}>*/}
+                {/*    <Typography variant="h4" component="h2">*/}
+                {/*        BoundaryBoxList*/}
+                {/*    </Typography>*/}
+                {/*    <Paper className={classes.root}>*/}
+                {/*        <Table className={classes.table}>*/}
+                {/*            <TableHead>*/}
+                {/*                <TableRow>*/}
+                {/*                    <TableCell>번호</TableCell>*/}
+                {/*                    <TableCell>이미지</TableCell>*/}
+                {/*                    <TableCell>작성자</TableCell>*/}
+                {/*                    <TableCell>업로드 날짜</TableCell>*/}
+                {/*                    <TableCell>진행 상황</TableCell>*/}
+                {/*                    <TableCell>작업하기</TableCell>*/}
+                {/*                </TableRow>*/}
+                {/*            </TableHead>*/}
+                {/*            <TableBody>*/}
+                {/*                {boundaryList.map(c => {*/}
+                {/*                    return <Customer key={c.workNo} id={c.workNo} image={c.imgData} name={c.createdId} date={c.createdDatetime} action={c.action} />*/}
+                {/*                })}*/}
+                {/*            </TableBody>*/}
+                {/*        </Table>*/}
+                {/*    </Paper>*/}
+                {/*</div>*/}
+                {/*<hr></hr>*/}
                 <Button
                     type="submit"
                     className={classes.buttonType1}
@@ -185,4 +227,4 @@ class Step1 extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (Step1)));
+export default withSnackbar(withRouter(withStyles(styles) (Test)));
