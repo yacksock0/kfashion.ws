@@ -239,3 +239,417 @@ Caused by: java.net.SocketException: Network is unreachable (connect failed)
 	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connect(AbstractConnectProtocol.java:409)
 	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connectWithoutProxy(AbstractConnectProtocol.java:1128)
 	... 14 common frames omitted
+2020-07-03 10:16:01.905 41776 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on youngui-MacBookPro.local with PID 41776 (/Users/youngrackchoi/kfashion.ws/target/classes started by youngrackchoi in /Users/youngrackchoi/kfashion.ws)
+2020-07-03 10:16:01.907 41776 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-07-03 10:16:01.907 41776 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-07-03 10:16:02.665 41776 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$8a7ca364] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-03 10:16:02.941 41776 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-03 10:16:02.941 41776 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-03 10:16:02.941 41776 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-07-03 10:16:02.954 41776 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-07-03 10:16:02.958 41776 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-03 10:16:02.959 41776 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-07-03 10:16:02.959 41776 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-03 10:16:03.003 41776 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-07-03 10:16:03.004 41776 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 1069 ms
+2020-07-03 10:16:03.043 41776 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.0.5:3306/kfashion, user1
+2020-07-03 10:16:03.498 41776 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-07-03 10:16:03.510 41776 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-07-03 10:16:03.571 41776 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-03 10:16:03.572 41776 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-03 10:16:03.574 41776 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-07-03 10:16:03.699 41776 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200701_1736 #0
+2020-07-03 10:16:04.004 41776 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c2dfa2, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c5ddccd, org.springframework.security.web.header.HeaderWriterFilter@30c1da48, org.springframework.security.web.authentication.logout.LogoutFilter@71e35c4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c101cc1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ec5ea63, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@661d88a, org.springframework.security.web.session.SessionManagementFilter@58d6b7b9, org.springframework.security.web.access.ExceptionTranslationFilter@187e5235, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5e1fc42f]
+2020-07-03 10:16:04.096 41776 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-03 10:16:04.281 41776 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-07-03 10:16:04.285 41776 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-07-03 10:16:04.328 41776 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-03 10:16:04.330 41776 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.721 seconds (JVM running for 3.217)
+2020-07-03 10:16:24.162 41776 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-03 10:16:24.163 41776 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-07-03 10:16:24.170 41776 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 7 ms
+2020-07-03 10:16:24.296 41776 [-8080-exec-1] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-03T10:16:24.296, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/kfashion/authentications/signcheck)
+2020-07-03 10:16:27.767 41776 [-8080-exec-2] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==>  Preparing: SELECT kfashion_user_info.id, kfashion_user_info.email, kfashion_user_info.password, kfashion_user_info.name, kfashion_user_info.phone, kfashion_user_info.group_no, kfashion_user_info.is_admin, kfashion_user_info.is_approved, kfashion_user_group_authority.authority_no, COUNT(kfashion_user_group_admin.user_id) AS group_admin, kfashion_user_info.created_datetime, kfashion_user_info.updated_datetime FROM kfashion_user_info LEFT JOIN kfashion_user_group_authority ON kfashion_user_info.group_no = kfashion_user_group_authority.group_no RIGHT JOIN kfashion_user_group_admin ON kfashion_user_info.id = kfashion_user_group_admin.user_id WHERE id = ? 
+2020-07-03 10:16:27.768 41776 [-8080-exec-2] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==> Parameters: admin(String)
+2020-07-03 10:16:27.780 41776 [-8080-exec-2] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==    Columns: id, email, password, name, phone, group_no, is_admin, is_approved, authority_no, group_admin, created_datetime, updated_datetime
+2020-07-03 10:16:27.780 41776 [-8080-exec-2] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==        Row: admin, null, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, null, null, Y, Y, null, 0, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-03 10:16:27.781 41776 [-8080-exec-2] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : <==      Total: 1
+2020-07-03 10:16:33.611 41776 [-8080-exec-4] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 10:16:33.611 41776 [-8080-exec-4] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 10:16:33.890 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 10:16:33.891 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:33.892 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:33.893 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 10:16:33.894 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 10:16:33.895 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:33.895 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 10:16:33.896 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 10:16:33.896 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:33.897 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 10:16:33.897 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 10:16:33.898 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 10:16:33.899 41776 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 10:16:33.899 41776 [-8080-exec-4] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 10:16:37.449 41776 [-8080-exec-6] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=8; 
+2020-07-03 10:16:37.449 41776 [-8080-exec-7] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=3; 
+2020-07-03 10:16:37.449 41776 [-8080-exec-6] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==> Parameters: 
+2020-07-03 10:16:37.449 41776 [-8080-exec-7] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==> Parameters: 
+2020-07-03 10:16:37.518 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-03 10:16:37.520 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 42, 3, 블랙, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.521 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 43, 3, 화이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.522 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 44, 3, 그레이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.523 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 45, 3, 레드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.524 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 46, 3, 핑크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.525 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 47, 3, 오렌지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.526 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 48, 3, 베이지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.527 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 49, 3, 브라운, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.529 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 50, 3, 옐로우, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.530 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 51, 3, 그린, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.530 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 52, 3, 카키, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.531 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 53, 3, 민트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.532 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 54, 3, 블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.532 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 55, 3, 네이비, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.533 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 56, 3, 스카이블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.534 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 57, 3, 퍼플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.536 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 58, 3, 라벤더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.537 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 59, 3, 와인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.537 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 60, 3, 네온, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.538 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 61, 3, 골드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.538 41776 [-8080-exec-7] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 62, 3, 실버, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.539 41776 [-8080-exec-7] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : <==      Total: 21
+2020-07-03 10:16:37.974 41776 [-8080-exec-6] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-03 10:16:37.975 41776 [-8080-exec-6] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 195, 8, 민소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.977 41776 [-8080-exec-6] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 196, 8, 반팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.978 41776 [-8080-exec-6] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 197, 8, 캡, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.978 41776 [-8080-exec-6] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 198, 8, 7부소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.979 41776 [-8080-exec-6] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 199, 8, 긴팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 10:16:37.979 41776 [-8080-exec-6] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : <==      Total: 5
+2020-07-03 10:16:40.035 41776 [-8080-exec-9] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 10:16:40.036 41776 [-8080-exec-9] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 10:16:40.046 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 10:16:40.047 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:40.048 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:40.048 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 10:16:40.049 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 10:16:40.050 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:40.050 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 10:16:40.051 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 10:16:40.051 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:40.051 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 10:16:40.052 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 10:16:40.052 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 10:16:40.052 41776 [-8080-exec-9] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 10:16:40.053 41776 [-8080-exec-9] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 10:16:49.014 41776 [8080-exec-12] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 10:16:49.015 41776 [8080-exec-12] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 10:16:49.034 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 10:16:49.035 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:49.036 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:49.037 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 10:16:49.037 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 10:16:49.038 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:49.038 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 10:16:49.039 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 10:16:49.039 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:49.040 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 10:16:49.040 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 10:16:49.041 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 10:16:49.041 41776 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 10:16:49.041 41776 [8080-exec-12] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 10:16:50.259 41776 [8080-exec-14] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 10:16:50.260 41776 [8080-exec-14] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 10:16:50.267 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 10:16:50.268 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:50.268 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:50.268 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 10:16:50.269 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 10:16:50.269 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:50.270 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 10:16:50.270 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 10:16:50.270 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:50.271 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 10:16:50.271 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 10:16:50.271 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 10:16:50.271 41776 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 10:16:50.272 41776 [8080-exec-14] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 10:16:52.929 41776 [8080-exec-16] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 10:16:52.930 41776 [8080-exec-16] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 10:16:52.943 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 10:16:52.944 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:52.946 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:52.946 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 10:16:52.947 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 10:16:52.947 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:52.948 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 10:16:52.948 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 10:16:52.949 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 10:16:52.950 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 10:16:52.950 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 10:16:52.951 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 10:16:52.951 41776 [8080-exec-16] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 10:16:52.951 41776 [8080-exec-16] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 10:17:00.116 41776 [8080-exec-18] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-03 10:17:00.117 41776 [8080-exec-18] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
+2020-07-03 10:17:00.299 41776 [8080-exec-18] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-03 10:17:00.300 41776 [8080-exec-18] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-03 10:17:00.303 41776 [8080-exec-18] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-03 11:13:14.510 41776 [8080-exec-19] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-03 11:13:14.512 41776 [8080-exec-19] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 13(Integer)
+2020-07-03 11:13:14.529 41776 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-03 11:13:14.529 41776 [8080-exec-19] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-03 11:13:14.530 41776 [8080-exec-19] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-03 11:13:15.333 41776 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-03 11:13:15.335 41776 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 14(Integer)
+2020-07-03 11:13:15.371 41776 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-03 11:13:15.372 41776 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-03 11:13:15.374 41776 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-03 11:13:24.484 41776 [8080-exec-21] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 11:13:24.485 41776 [8080-exec-21] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 11:13:24.495 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 11:13:24.496 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:24.497 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:24.497 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 11:13:24.498 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 11:13:24.499 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:24.499 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 11:13:24.500 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 11:13:24.500 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:24.501 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 11:13:24.501 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 11:13:24.502 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 11:13:24.502 41776 [8080-exec-21] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 11:13:24.503 41776 [8080-exec-21] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 11:13:31.749 41776 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 11:13:31.751 41776 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 11:13:31.756 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 11:13:31.757 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:31.757 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:31.758 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 11:13:31.758 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 11:13:31.758 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:31.759 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 11:13:31.759 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 11:13:31.760 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:31.760 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 11:13:31.760 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 11:13:31.761 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 11:13:31.761 41776 [8080-exec-22] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 11:13:31.761 41776 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 11:13:32.801 41776 [8080-exec-23] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-03T11:13:32.801, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/kfashion/authentications/signcheck)
+2020-07-03 11:13:32.801 41776 [8080-exec-24] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 11:13:32.802 41776 [8080-exec-24] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 11:13:32.810 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 11:13:32.811 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:32.811 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:32.811 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 11:13:32.812 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 11:13:32.812 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:32.812 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 11:13:32.812 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 11:13:32.813 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:32.813 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 11:13:32.813 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 11:13:32.813 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 11:13:32.814 41776 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 11:13:32.814 41776 [8080-exec-24] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 11:13:32.848 41776 [8080-exec-25] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-03T11:13:32.848, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/kfashion/authentications/signcheck)
+2020-07-03 11:13:34.724 41776 [8080-exec-26] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==>  Preparing: SELECT kfashion_user_info.id, kfashion_user_info.email, kfashion_user_info.password, kfashion_user_info.name, kfashion_user_info.phone, kfashion_user_info.group_no, kfashion_user_info.is_admin, kfashion_user_info.is_approved, kfashion_user_group_authority.authority_no, COUNT(kfashion_user_group_admin.user_id) AS group_admin, kfashion_user_info.created_datetime, kfashion_user_info.updated_datetime FROM kfashion_user_info LEFT JOIN kfashion_user_group_authority ON kfashion_user_info.group_no = kfashion_user_group_authority.group_no RIGHT JOIN kfashion_user_group_admin ON kfashion_user_info.id = kfashion_user_group_admin.user_id WHERE id = ? 
+2020-07-03 11:13:34.726 41776 [8080-exec-26] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==> Parameters: admin(String)
+2020-07-03 11:13:34.736 41776 [8080-exec-26] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==    Columns: id, email, password, name, phone, group_no, is_admin, is_approved, authority_no, group_admin, created_datetime, updated_datetime
+2020-07-03 11:13:34.737 41776 [8080-exec-26] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==        Row: admin, null, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, null, null, Y, Y, null, 0, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-03 11:13:34.738 41776 [8080-exec-26] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : <==      Total: 1
+2020-07-03 11:13:35.040 41776 [8080-exec-28] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 11:13:35.041 41776 [8080-exec-28] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 11:13:35.049 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 11:13:35.050 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:35.051 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:35.052 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 11:13:35.053 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 11:13:35.053 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:35.054 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 11:13:35.054 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 11:13:35.055 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 11:13:35.055 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 11:13:35.056 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 11:13:35.056 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 11:13:35.057 41776 [8080-exec-28] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 11:13:35.057 41776 [8080-exec-28] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 11:13:37.809 41776 [8080-exec-31] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=3; 
+2020-07-03 11:13:37.809 41776 [8080-exec-30] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=8; 
+2020-07-03 11:13:37.810 41776 [8080-exec-31] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==> Parameters: 
+2020-07-03 11:13:37.810 41776 [8080-exec-30] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==> Parameters: 
+2020-07-03 11:13:37.823 41776 [8080-exec-30] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-03 11:13:37.824 41776 [8080-exec-30] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 195, 8, 민소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.825 41776 [8080-exec-30] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 196, 8, 반팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.826 41776 [8080-exec-30] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 197, 8, 캡, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.826 41776 [8080-exec-30] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 198, 8, 7부소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.827 41776 [8080-exec-30] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 199, 8, 긴팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.828 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-03 11:13:37.828 41776 [8080-exec-30] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : <==      Total: 5
+2020-07-03 11:13:37.828 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 42, 3, 블랙, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.829 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 43, 3, 화이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.829 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 44, 3, 그레이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.830 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 45, 3, 레드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.830 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 46, 3, 핑크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.830 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 47, 3, 오렌지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.831 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 48, 3, 베이지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.831 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 49, 3, 브라운, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.832 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 50, 3, 옐로우, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.832 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 51, 3, 그린, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.833 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 52, 3, 카키, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.833 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 53, 3, 민트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.834 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 54, 3, 블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.834 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 55, 3, 네이비, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.834 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 56, 3, 스카이블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.835 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 57, 3, 퍼플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.835 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 58, 3, 라벤더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.835 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 59, 3, 와인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.836 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 60, 3, 네온, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.836 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 61, 3, 골드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.837 41776 [8080-exec-31] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 62, 3, 실버, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-03 11:13:37.837 41776 [8080-exec-31] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : <==      Total: 21
+2020-07-03 12:03:45.240 41776 [8080-exec-32] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 12:03:45.241 41776 [8080-exec-32] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 12:03:45.241 41776 [8080-exec-33] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-03T12:03:45.241, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/kfashion/authentications/signcheck)
+2020-07-03 12:03:45.250 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 12:03:45.251 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:03:45.251 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:03:45.251 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 12:03:45.252 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 12:03:45.252 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:03:45.252 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 12:03:45.252 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 12:03:45.253 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:03:45.253 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 12:03:45.253 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 12:03:45.253 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 12:03:45.254 41776 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 12:03:45.254 41776 [8080-exec-32] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 12:03:45.281 41776 [8080-exec-34] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-03T12:03:45.281, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/kfashion/authentications/signcheck)
+2020-07-03 12:03:46.950 41776 [8080-exec-35] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==>  Preparing: SELECT kfashion_user_info.id, kfashion_user_info.email, kfashion_user_info.password, kfashion_user_info.name, kfashion_user_info.phone, kfashion_user_info.group_no, kfashion_user_info.is_admin, kfashion_user_info.is_approved, kfashion_user_group_authority.authority_no, COUNT(kfashion_user_group_admin.user_id) AS group_admin, kfashion_user_info.created_datetime, kfashion_user_info.updated_datetime FROM kfashion_user_info LEFT JOIN kfashion_user_group_authority ON kfashion_user_info.group_no = kfashion_user_group_authority.group_no RIGHT JOIN kfashion_user_group_admin ON kfashion_user_info.id = kfashion_user_group_admin.user_id WHERE id = ? 
+2020-07-03 12:03:46.951 41776 [8080-exec-35] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==> Parameters: admin(String)
+2020-07-03 12:03:46.958 41776 [8080-exec-35] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==    Columns: id, email, password, name, phone, group_no, is_admin, is_approved, authority_no, group_admin, created_datetime, updated_datetime
+2020-07-03 12:03:46.959 41776 [8080-exec-35] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==        Row: admin, null, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, null, null, Y, Y, null, 0, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-03 12:03:46.960 41776 [8080-exec-35] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : <==      Total: 1
+2020-07-03 12:03:47.433 41776 [8080-exec-37] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 12:03:47.434 41776 [8080-exec-37] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 12:03:47.442 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 12:03:47.442 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:03:47.442 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:03:47.443 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 12:03:47.443 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 12:03:47.443 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:03:47.444 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 12:03:47.444 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 12:03:47.444 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:03:47.444 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 12:03:47.445 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 12:03:47.445 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 12:03:47.445 41776 [8080-exec-37] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 12:03:47.446 41776 [8080-exec-37] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 12:03:50.196 41776 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-03 12:03:50.197 41776 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
+2020-07-03 12:03:50.313 41776 [8080-exec-39] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-03 12:03:50.314 41776 [8080-exec-39] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-03 12:03:50.314 41776 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-03 12:04:29.352 41776 [8080-exec-40] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 12:04:29.354 41776 [8080-exec-40] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 12:04:29.363 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 12:04:29.364 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:04:29.365 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:04:29.366 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 12:04:29.366 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 12:04:29.367 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:04:29.367 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 12:04:29.368 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 12:04:29.368 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:04:29.369 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 12:04:29.369 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 12:04:29.370 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 12:04:29.370 41776 [8080-exec-40] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 12:04:29.371 41776 [8080-exec-40] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 12:09:21.919 41776 [8080-exec-42] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 12:09:21.920 41776 [8080-exec-42] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 12:09:21.929 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 12:09:21.930 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:21.931 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:21.931 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 12:09:21.931 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 12:09:21.932 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:21.932 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 12:09:21.932 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 12:09:21.933 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:21.933 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 12:09:21.934 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 12:09:21.934 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 12:09:21.934 41776 [8080-exec-42] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 12:09:21.935 41776 [8080-exec-42] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 12:09:26.086 41776 [8080-exec-44] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 12:09:26.087 41776 [8080-exec-44] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 12:09:26.105 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 12:09:26.105 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:26.106 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:26.106 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 12:09:26.106 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 12:09:26.107 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:26.107 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 12:09:26.108 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 12:09:26.108 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:26.108 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 12:09:26.109 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 12:09:26.109 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 12:09:26.109 41776 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 12:09:26.110 41776 [8080-exec-44] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 12:09:29.852 41776 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-03 12:09:29.853 41776 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
+2020-07-03 12:09:30.033 41776 [8080-exec-46] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-03 12:09:30.034 41776 [8080-exec-46] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-03 12:09:30.035 41776 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-03 12:09:50.797 41776 [8080-exec-49] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 12:09:50.798 41776 [8080-exec-49] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 12:09:50.813 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 12:09:50.814 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:50.815 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:50.816 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 12:09:50.817 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 12:09:50.817 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:50.818 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 12:09:50.818 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 12:09:50.819 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:50.819 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 12:09:50.819 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 12:09:50.820 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 12:09:50.820 41776 [8080-exec-49] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 12:09:50.821 41776 [8080-exec-49] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 12:09:51.919 41776 [8080-exec-51] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 12:09:51.920 41776 [8080-exec-51] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 12:09:51.935 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 12:09:51.936 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:51.937 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:51.938 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 12:09:51.938 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 12:09:51.939 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:51.939 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 12:09:51.940 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 12:09:51.940 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:51.941 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 12:09:51.941 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 12:09:51.942 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 12:09:51.942 41776 [8080-exec-51] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 12:09:51.942 41776 [8080-exec-51] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
+2020-07-03 12:09:54.862 41776 [8080-exec-53] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 12:09:54.863 41776 [8080-exec-53] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 12:09:54.875 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 12:09:54.876 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:54.876 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:54.877 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 12:09:54.878 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 12:09:54.878 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:54.879 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 12:09:54.879 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 12:09:54.879 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 12:09:54.880 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 12:09:54.880 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 12:09:54.881 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 12:09:54.881 41776 [8080-exec-53] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 12:09:54.881 41776 [8080-exec-53] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 12
