@@ -175,7 +175,7 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={7}>
                             <div>
-                                <img src={this.state.imgData} style={{display:"block" , width:650, height: 600}}/>
+                                <img src={this.state.imgData} style={{display:"block" , width:750, height: 850}}/>
                             </div>
                         </Grid>
                         <Grid item xs={5}>
@@ -200,8 +200,8 @@ class ImageUpload extends React.Component {
                                 }}
                                 actions={[
                                     {
-                                        icon: 'save',
-                                        tooltip: 'Save User',
+                                        icon: Edit,
+                                        tooltip: 'Select Image',
                                         onClick: (event, rowData) => {
                                             this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
                                             /*this.setState({count:rowData.indexOf()})*/

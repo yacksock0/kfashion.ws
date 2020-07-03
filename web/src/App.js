@@ -45,11 +45,9 @@ class App extends React.Component {
     componentDidMount() {
         const axiosRequestInterceptors = (config) => {
             const token = localStorage.getItem(store.LocalStorageTokenKey);
-
             if(token) {
                 config.headers['X-Auth-Token'] = token;
             }
-
             return config;
         };
 
@@ -61,7 +59,6 @@ class App extends React.Component {
             if(response.status === 403) {
                 this.props.authStore.invalidateLogin();
             }
-
             return response;
         };
 
