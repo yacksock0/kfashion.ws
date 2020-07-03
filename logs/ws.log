@@ -10457,3 +10457,21 @@ Caused by: java.nio.file.AccessDeniedException: /Users/jangseong-yeol
 2020-07-03 18:40:46.829 11842 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
 2020-07-03 18:40:46.829 11842 [8080-exec-12] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, b19f507f-0824-447a-9a14-e11601429964_스크린샷 2020-06-18 오후 2.20.29.png, admin
 2020-07-03 18:40:46.830 11842 [8080-exec-12] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 13
+2020-07-03 18:44:29.795 11842 [8080-exec-15] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
+2020-07-03 18:44:29.796 11842 [8080-exec-15] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-03 18:44:29.810 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-03 18:44:29.811 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 18:44:29.811 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 18:44:29.812 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
+2020-07-03 18:44:29.812 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
+2020-07-03 18:44:29.812 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 18:44:29.813 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
+2020-07-03 18:44:29.813 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
+2020-07-03 18:44:29.813 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
+2020-07-03 18:44:29.814 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
+2020-07-03 18:44:29.814 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
+2020-07-03 18:44:29.814 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
+2020-07-03 18:44:29.815 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-03 18:44:29.815 11842 [8080-exec-15] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, b19f507f-0824-447a-9a14-e11601429964_스크린샷 2020-06-18 오후 2.20.29.png, admin
+2020-07-03 18:44:29.815 11842 [8080-exec-15] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 13
+2020-07-03 18:47:42.749 11842 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
