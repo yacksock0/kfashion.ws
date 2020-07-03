@@ -144,10 +144,11 @@ public class KfashionImageController {
     }
 
     @GetMapping(value="/boundaryList")
-    public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest,
-                                               @RequestParam(value="createdId")String createdId) {
+    public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest) { //, @RequestParam(value="createdId")String createdId
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList(createdId);
+            System.out.println("asdasdasqqqqqd");
+
+            List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList("admin");
             resultMap.put("boundaryList", boundaryList);
 
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);

@@ -26,7 +26,7 @@
     <select id="selectBoundaryList" resultMap="kfashionImageResultMap" parameterType="String">
         SELECT
         kfashion_image.work_no,
-         kfashion_image.created_datetime,
+        kfashion_image.created_datetime,
         kfashion_work.work_name,
         kfashion_image.img_data,
         kfashion_work_history.created_id
