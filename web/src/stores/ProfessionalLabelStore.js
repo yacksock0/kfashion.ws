@@ -9,7 +9,7 @@ const State = {
 }
 
 const EmptyNewProfessionalLabel = {
-    workNo : 17,
+    workNo : 16,
     workStep : 5,
     createId : '',
     styleNoList: [],
@@ -50,6 +50,8 @@ export default class ProfessionalLabelStore {
                 this.newProfessionalLabel.styleNoList[i] = style[i].no;
                 this.newProfessionalLabel.styleCategoryNoList[i] = style[i].categoryNo;
             }
+            console.log(this.newProfessionalLabel.styleNoList);
+            console.log(this.newProfessionalLabel.styleCategoryNoList);
             this.newProfessionalLabel.style = this.newProfessionalLabel.styleNoList[0]
             this.newProfessionalLabel.styleCategoryNo = this.newProfessionalLabel.styleCategoryNoList[0]
             this.newProfessionalLabel.styleSub = this.newProfessionalLabel.styleNoList[1]
