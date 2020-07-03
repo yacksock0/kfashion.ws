@@ -10275,3 +10275,90 @@ org.springframework.http.converter.HttpMessageNotWritableException: No converter
 2020-07-03 12:25:18.169 5236 [8080-exec-95] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 238, 12, 테이퍼드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
 2020-07-03 12:25:18.169 5236 [8080-exec-95] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 239, 12, 스트레이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
 2020-07-03 12:25:18.170 5236 [8080-exec-95] - DEBUG               i.a.k.w.r.m.K.selectSafeList  159 : <==      Total: 11
+2020-07-03 18:36:44.848 49254 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on youngui-MacBookPro.local with PID 49254 (/Users/youngrackchoi/kfashion.ws/target/classes started by youngrackchoi in /Users/youngrackchoi/kfashion.ws)
+2020-07-03 18:36:44.850 49254 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-07-03 18:36:44.851 49254 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-07-03 18:36:45.584 49254 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$f85184ce] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-03 18:36:45.876 49254 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-03 18:36:45.876 49254 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-03 18:36:45.876 49254 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-07-03 18:36:45.889 49254 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-07-03 18:36:45.894 49254 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-03 18:36:45.894 49254 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-07-03 18:36:45.895 49254 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-03 18:36:45.937 49254 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-07-03 18:36:45.938 49254 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 1062 ms
+2020-07-03 18:36:45.978 49254 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.10.110:3306/kfashion, user1
+2020-07-03 18:36:46.385 49254 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-07-03 18:36:46.396 49254 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-07-03 18:36:46.411 49254 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-03 18:36:46.412 49254 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-03 18:36:46.414 49254 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-07-03 18:36:46.541 49254 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200701_1736 #0
+2020-07-03 18:36:46.567 49254 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'kfashionImageController' defined in file [/Users/youngrackchoi/kfashion.ws/target/classes/io/aetherit/kfashion/ws/controller/KfashionImageController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/youngrackchoi/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+2020-07-03 18:36:46.593 49254 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-07-03 18:36:46.603 49254 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-07-03 18:36:46.609 49254 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'kfashionImageController' defined in file [/Users/youngrackchoi/kfashion.ws/target/classes/io/aetherit/kfashion/ws/controller/KfashionImageController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/youngrackchoi/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/youngrackchoi/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:314)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:295)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:216)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:117)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:310)
+	... 33 common frames omitted
+Caused by: io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at io.aetherit.kfashion.ws.service.FileStorageService.<init>(FileStorageService.java:32)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:203)
+	... 35 common frames omitted
+Caused by: java.nio.file.AccessDeniedException: /Users/jangseong-yeol
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:84)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixFileSystemProvider.createDirectory(UnixFileSystemProvider.java:384)
+	at java.nio.file.Files.createDirectory(Files.java:674)
+	at java.nio.file.Files.createAndCheckIsDirectory(Files.java:781)
+	at java.nio.file.Files.createDirectories(Files.java:767)
+	at io.aetherit.kfashion.ws.service.FileStorageService.<init>(FileStorageService.java:30)
+	... 40 common frames omitted
