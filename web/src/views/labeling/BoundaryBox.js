@@ -130,6 +130,7 @@ class BoundaryBox extends React.Component {
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(this.props.imageStore.isImgData);
+        
 
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
