@@ -139,7 +139,6 @@ class Step1 extends React.Component {
                                 }
                             }
                         ]}
-
                         editable={{
                             onRowDelete: oldData =>
                                 new Promise((resolve, reject) => {

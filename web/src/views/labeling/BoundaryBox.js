@@ -7,15 +7,29 @@ import {inject, observer} from "mobx-react";
 import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
 import {green, grey ,red} from "@material-ui/core/colors";
 import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
-
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = theme => ({
+import Table from '@material-ui/core/Table';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import TableBody from '@material-ui/core/TableBody';
+import TableHead from '@material-ui/core/TableHead';
+import Paper from '@material-ui/core/Paper';
 
+
+const styles = theme => ({
+    root: {
+        width: "100%",
+        marginTop: theme.spacing.unit * 3,
+        overflowX: "auto"
+    },
+    table: {
+        minWidth: 500,
+    },
     // --START Test
     fab: {
         margin: theme.spacing(2),
@@ -90,10 +104,6 @@ const styles = theme => ({
         border: 0,
         borderRadius: 12,
     },
-
-    divStyle: {
-        display: 'inline',
-    },
 });
 
 
@@ -115,15 +125,13 @@ class BoundaryBox extends React.Component {
         winwidth: 0
     }
 
-
     componentDidMount() {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        // this.canvas.setBackgroundImage('/Users/youngrackchoi/uploadfiles/cloth.jpg');
-        this.canvas.setBackgroundImage('https://placeimg.com/550/600/any');
+        this.canvas.setBackgroundImage('/images/cloth.jpg');
 
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
@@ -152,8 +160,6 @@ class BoundaryBox extends React.Component {
         //     console.log('6. mouse:out');
         // });
         // // --END  < Testing... >
-
-
 
         // -- START  < rect가 canvas를 못벗어나도록... >
         this.canvas.on('object:moving', function (e) {
@@ -205,16 +211,15 @@ class BoundaryBox extends React.Component {
         });
         // --END  < rect가 canvas를 못벗어나도록... >
     }
-    handleChangeUploadFile = (event) => {
-        const file = event.target.files[0];
 
-        this.props.fileUploadStore.changeUploadFile(file,this.props.id);
-    }
-    handleOk = () => {
-        this.props.fileUploadStore.addNewImg();
-    }
-
-    addRect = () => {
+    addRect = (rectNo) => {
+        let obj = 0;
+        this.canvas.getObjects().forEach(function( o) {
+            if(o.id == rectNo) {
+                obj = o;
+            }
+        })
+        if(obj==0){
         const rect = new fabric.Rect({
             left: 100,
             top: 100,
@@ -223,52 +228,23 @@ class BoundaryBox extends React.Component {
             fill: grey,
             opacity: 0.20
         });
-        rect.name =`${this.i}`;
-        rect.id =`${this.i}`;
+        rect.name = `${rectNo}`;
+        rect.id = `${rectNo}`;
         this.canvas.add(rect);
         this.canvas.setActiveObject(rect);
-
-        const label = document.createElement('Label');
-        label.innerText = `rect ${this.i + 1}`;
-
-        const button = document.createElement('Button');
-        button.innerText = `지우기`;
-        button.id = `${this.i}`;
-        button.onclick = () => {this.deleteObject(`${button.id }`)};
-
-        const button2 = document.createElement('Button');
-        button2.innerText = `선택`;
-        button2.onclick = () => {this.SelectObject(`${button.id }`)};
-
-        const br = document.createElement('br');
-        const div = document.createElement('div');
-        div.id =  `rect ${this.i + 1}`;
-
-        const labelList = document.getElementById('labelList');
-        labelList.append(div);
-
-        const divId = document.getElementById(`rect ${this.i + 1}`);
-        divId.append(label, button2, button, br );
-
-        this.i +=1;
+        }else {
+            alert('그만!! 제발 그만!!!!');
+        }
     }
 
-
-
-    deleteObject = (j) => {
-        console.log("j : " + j);
+    deleteObject = (rectNo) => {
         let obj = 0;
-        if(j == -1){
-            this.canvas.remove( this.canvas.getActiveObject());
-        }
         this.canvas.getObjects().forEach(function( o) {
             console.log("o : " +o.id);
-            if(o.id == j) {
-                console.log("o????" +o.id);
+            if(o.id == rectNo) {
                 obj = o;
             }
         })
-
         this.canvas.remove(obj);
     }
 
@@ -285,13 +261,14 @@ class BoundaryBox extends React.Component {
     }
 
     submit = () => {
+        // let b =this.canvas.getObjects().count();
+        // console.log(b);
         let a = 0;
         this.canvas.getObjects().forEach(function(o) {
             a+=1;
         })
-
         for (let j =0; j < a ; j++){
-            console.log(j);
+            console.log(this.canvas.item(j).id);
             console.log(this.canvas.item(j).left);
             console.log(this.canvas.item(j).top);
             console.log(this.canvas.item(j).width);
@@ -308,38 +285,151 @@ class BoundaryBox extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
-                    <div className={classes.divStyle}>                                          {/* style={{backgroundColor :'green'}}  */}
-                        <Tooltip title="Add" aria-label="add" onClick={ () => this.addRect()} >
-                            <Fab color="white" className={classes.fab}>
-                                <AddIcon/>
-                            </Fab>
-                        </Tooltip>
-                        <Tooltip title="Delete">
-                            <IconButton aria-label="delete" onClick={() => this.deleteObject(-1)}>
-                                <DeleteIcon />
-                            </IconButton>
-                        </Tooltip>
+                    <Grid container spacing={3}>
 
-                        <div style ={{ backgroundColor : "#13264E"}}>
-                            <canvas id="c" width= "750" height= "750"  >  </canvas>
-                        </div>
-
-                        <div style={{backgroundColor :'grey'}}>
-                            <div align = "right">
-                                <Button onClick={this.submit} >submit </Button>
+                        <Grid item xs={12} lg={5} style={{margin:"auto"}}>
+                            <div style ={{ backgroundColor : "#13264E"}}>
+                                <canvas id="c" width= "750" height= "750"  >  </canvas>
                             </div>
-                        </div>
-                    </div>
+                        </Grid>
 
-                    <div id={"labelList"} className={classes.divStyle}>
-                    </div>
+                        <Grid item xs={12} lg={6}>
+                            <div className={classes.mainContent}>
+                                <Typography variant="h4" component="h2">
+                                    영역 지정
+                                </Typography>
+                                <Paper className={classes.root}>
+                                    <Table className={classes.table}>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>영역</TableCell>
+                                                <TableCell>추가버튼</TableCell>
+                                                <TableCell>삭제버튼</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>상의 영역</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        type="submit"
+                                                        className={classes.buttonType1}
+                                                        variant="outlined"
+                                                        onClick={() => this.addRect(1) } >
+                                                        rect <AddIcon/>
+                                                    </Button>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Delete">
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(1)}>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>하의 영역</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        type="submit"
+                                                        className={classes.buttonType1}
+                                                        variant="outlined"
+                                                        onClick={() => this.addRect(2) } >
+                                                        rect <AddIcon/>
+                                                    </Button>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Delete">
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(2)}>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>신발 영역</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        type="submit"
+                                                        className={classes.buttonType1}
+                                                        variant="outlined"
+                                                        onClick={() => this.addRect(3) } >
+                                                        rect <AddIcon/>
+                                                    </Button>
+                                                </TableCell>
+                                                <TableCell>
+                                                        <Tooltip title="Delete">
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteObject(3)}>
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>가방 영역</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        type="submit"
+                                                        className={classes.buttonType1}
+                                                        variant="outlined"
+                                                        onClick={() => this.addRect(4) } >
+                                                        rect <AddIcon/>
+                                                    </Button>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Delete">
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(4)}>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>악세사리 영역</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        type="submit"
+                                                        className={classes.buttonType1}
+                                                        variant="outlined"
+                                                        onClick={() => this.addRect(5) } >
+                                                        rect <AddIcon/>
+                                                    </Button>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Delete">
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(5)}>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </Paper>
+                            </div>
+
+                            <div style={{backgroundColor: 'grey'}}>
+                                <div align="center">
+                                    <Button onClick={this.submit} color={'#999999'}>submit </Button>
+                                </div>
+                            </div>
+                        </Grid>
+                    </Grid>
                 </div>
 
 
                 {/*Stepper*/}
                 <div style={{marginTop:70}}>
                 </div>
-
                 <div>
                     <hr></hr>
                     <Button
