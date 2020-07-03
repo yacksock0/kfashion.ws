@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class KfashionLabel {
 
-    private int workNo;
+    private Long workNo;
     private int workStep;
-    private int workSubStep;
+    private int labelNo;
     private int categoryNo;
     private int categoryItemNo;
     private String createdId;

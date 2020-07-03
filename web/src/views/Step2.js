@@ -5,6 +5,7 @@ import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Color from "./step2/Color";
 import SleeveLength from "./step2/SleeveLength";
+import {inject, observer} from "mobx-react";
 
 
 const styles = theme => ({
@@ -41,11 +42,27 @@ const styles = theme => ({
     },
 });
 
+@inject('basicLabelStore','authStore')
+@observer
 class Step2 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            createdId: '',
+        }
+    }
     componentDidMount() {
+        this.props.authStore.checkLogin();
+        const id = this.props.authStore.loginUser.id;
+        this.setState({createdId : id});
         this.props.enqueueSnackbar("Step2", {
             variant: 'info',
         });
+    }
+
+    handleClickOK = () => {
+        this.props.basicLabelStore.changeNewBasicLabelCreatedId(this.state.createdId);
+        this.props.basicLabelStore.doBasicLabelUp();
     }
     render() {
         const { classes } = this.props;
@@ -135,6 +152,7 @@ class Step2 extends React.Component {
                     type="submit"
                     className={classes.buttonType1}
                     variant="outlined"
+                    onClick={this.handleClickOK}
                      >
                     Next
                 </Button>

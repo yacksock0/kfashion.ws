@@ -25,7 +25,6 @@ export default class Safe extends React.Component {
                         return safe
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -34,15 +33,13 @@ export default class Safe extends React.Component {
     handleChange = (selectedOption) => {
         this.props.professionalLabelStore.changeNewProfessionalLabelSafe(selectedOption);
         this.setState(
-            { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            { selectedOption }
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const safeList= this.state.safeList;
-        console.log(safeList);
         return (
             <Select
                 value={selectedOption}

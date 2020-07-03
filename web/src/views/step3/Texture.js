@@ -25,7 +25,6 @@ export default class Texture extends React.Component {
                         return texture
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -35,14 +34,12 @@ export default class Texture extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelTexture(selectedOption);
         this.setState(
             { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const textureList= this.state.textureList;
-        console.log(textureList);
         return (
             <Select
                 value={selectedOption}

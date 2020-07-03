@@ -52,13 +52,23 @@ const styles = theme => ({
 @inject('professionalLabelStore','authStore')
 @observer
 class Step3 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            createdId: '',
+        }
+    }
     componentDidMount() {
+        this.props.authStore.checkLogin();
+        const id = this.props.authStore.loginUser.id;
+        this.setState({createdId : id});
         this.props.enqueueSnackbar("Step3", {
             variant: 'info'
         });
     }
 
-    handleClickOK = () => {
+    handleClickSubmit = () => {
+        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(this.state.createdId);
         this.props.professionalLabelStore.doProfessionalLabelUp();
     }
 
@@ -210,7 +220,7 @@ class Step3 extends React.Component {
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleSubmitForm}>
+                        onClick={this.handleClickSubmit}>
                         Next
                     </Button>
                     <Button
@@ -218,7 +228,7 @@ class Step3 extends React.Component {
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={this.handleClickOK}>
+                        onClick={this.handleClickSubmit}>
                         Next Step
                     </Button>
                 </Container>
