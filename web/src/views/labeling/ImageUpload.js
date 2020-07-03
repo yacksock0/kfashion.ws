@@ -23,7 +23,6 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
-import BoundaryBox from "./BoundaryBox";;
 
 
 const tableIcons = {
@@ -136,7 +135,7 @@ class ImageUpload extends React.Component {
 
         axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
             .then(response => {
-                this.setState({ boundaryList : response.data.boundaryList})
+                this.setState({ boundaryList : response.data.boundaryList.filter(b =>b !==null)})
                 this.setState({ imgData : `/api/v1/kfashion/img/getByteImage?workNo=${this.state.boundaryList[0].workNo}`});
             })
             .catch(error => {

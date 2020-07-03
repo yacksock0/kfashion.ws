@@ -107,7 +107,7 @@ export default function SideMenu(props) {
                     </List>
                 </Collapse>
                 </Link>
-                <Link to="/Step/boundaryBoxList" className={classes.link}>
+                <Link to="/Step/boundaryBox" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>

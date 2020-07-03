@@ -2,7 +2,6 @@ import {action, computed, flow, observable, toJS} from "mobx";
 import React from "react";
 import axios from "axios";
 import * as validation from "../common/Validation";
-import SimpleAlerts from "../components/alert";
 
 const MinUserId = 4;
 const MinUserName = 2;

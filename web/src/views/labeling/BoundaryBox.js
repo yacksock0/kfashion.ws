@@ -6,9 +6,7 @@ import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
 import {green, grey ,red} from "@material-ui/core/colors";
-import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -107,7 +105,7 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore')
+@inject('fileUploadStore','imageStore')
 @observer
 class BoundaryBox extends React.Component {
 
@@ -131,7 +129,7 @@ class BoundaryBox extends React.Component {
         });
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage('/images/cloth.jpg');
+        this.canvas.setBackgroundImage(this.props.imageStore.isImgData);
 
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
@@ -286,10 +284,9 @@ class BoundaryBox extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-
-                        <Grid item xs={12} lg={5} style={{margin:"auto"}}>
+                        <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width= "750" height= "750"  >  </canvas>
+                                <canvas id="c" width= "600" height= "550"  >  </canvas>
                             </div>
                         </Grid>
 
