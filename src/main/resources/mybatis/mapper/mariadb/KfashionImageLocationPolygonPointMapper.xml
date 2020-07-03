@@ -1,0 +1,36 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionImageLocationPolygonPointMapper">
+    <resultMap id="kfashionImageLocationPolygonPointResultMap" type="KfashionImageLocationPolygonPoint">
+        <id property="workNo"                       column="work_no" />
+        <result property="workStep"                 column="work_step" />
+        <result property="rectNo"                   column="rect_no" />
+        <result property="polyNo"                       column="poly_no" />
+        <result property="no"                           column="no" />
+        <result property="locationX"                       column="location_X" />
+        <result property="locationY"                       column="location_Y" />
+        <result property="locationSeq"                       column="location_seq" />
+        <result property="createdDatetime"          column="created_datetime" />
+        <result property="updatedDatetime"          column="updated_datetime" />
+    </resultMap>
+
+
+    <insert id="" parameterType="KfashionImageLocationPolygon">
+        INSERT
+        INTO kfashion_image_location_polygon (
+        work_no,
+        work_step,
+        rect_no,
+        no,
+        created_datetime,
+        updated_datetime
+        )VALUES(
+        #{workNo},
+        #{workStep},
+        #{rectNo},
+        #{no},
+        NOW(),
+        NOW()
+        )
+    </insert>
+
+</mapper>
