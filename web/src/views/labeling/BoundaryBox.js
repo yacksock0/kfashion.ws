@@ -105,7 +105,7 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore','imageStore')
+@inject('fileUploadStore','imageStore','rectStore','authStore')
 @observer
 class BoundaryBox extends React.Component {
 
@@ -261,19 +261,33 @@ class BoundaryBox extends React.Component {
     submit = () => {
         // let b =this.canvas.getObjects().count();
         // console.log(b);
-        let a = 0;
-        this.canvas.getObjects().forEach(function(o) {
-            a+=1;
-        })
-        for (let j =0; j < a ; j++){
-            console.log(this.canvas.item(j).id);
-            console.log(this.canvas.item(j).left);
-            console.log(this.canvas.item(j).top);
-            console.log(this.canvas.item(j).width);
-            console.log(this.canvas.item(j).height);
-            console.log(this.canvas.item(j).scaleX);
-            console.log(this.canvas.item(j).scaleY);
-        }
+        // let obj = [];
+        // let a = 0;
+        this.props.rectStore.objGet(this.canvas.getObjects());
+        this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+        this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+        this.props.rectStore.doRectLocationUp();
+        // this.canvas.getObjects().forEach(function(o) {
+        //
+        //     obj = o;
+        //
+        //     a+=1;
+        // })
+
+
+    //     for (let j =0; j < a ; j++){
+    //
+    //         this.props.rectStore.changeNewRectLocationRectNo(this.canvas.item(j).id);
+    //         this.props.rectStore.changeNewRectLocationX(this.canvas.item(j).left);
+    //         this.props.rectStore.changeNewRectLocationY(this.canvas.item(j).top);
+    //         this.props.rectStore.changeNewRectLocationWidth(this.canvas.item(j).width);
+    //         this.props.rectStore.changeNewRectLocationHeight(this.canvas.item(j).height);
+    //         this.props.rectStore.changeNewRectLocationScaleX(this.canvas.item(j).scaleX);
+    //         this.props.rectStore.changeNewRectLocationScaleY(this.canvas.item(j).scaleY);
+    //         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+    //         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+    //     }
+    //     this.props.rectStore.doRectLocationUp();
     }
 
     render() {
@@ -285,9 +299,7 @@ class BoundaryBox extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                            <div style ={{ backgroundColor : "#13264E"}}>
                                 <canvas id="c" width= "600" height= "550"  >  </canvas>
-                            </div>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>

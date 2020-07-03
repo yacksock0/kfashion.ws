@@ -33,6 +33,7 @@
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionUserInfo" alias="KfashionUserInfo" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionWork" alias="KfashionWork" />
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionWorkHistory" alias="KfashionWorkHistory" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.KfashionImageLocationPolygonPoint" alias="KfashionImageLocationPolygonPoint" />
 
 
     </typeAliases>
@@ -46,6 +47,7 @@
         <mapper resource="mybatis/mapper/mariadb/KfashionCategoryMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionEmailAuthorityMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionImageLocationPolygonMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/KfashionImageLocationPolygonPointMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionImageLocationRectMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionImageMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionInspectionStatusMapper.xml" />

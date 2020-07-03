@@ -9,6 +9,7 @@ import ProfessionalLabelStore from "./ProfessionalLabelStore";
 import BasicLabelStore from "./BasicLabelStore";
 import UserListStore from "./UserListStore";
 import ImageStore from "./ImageStore";
+import RectStore from "./RectStore";
 
 
 export const stores = {
@@ -23,4 +24,5 @@ export const stores = {
     basicLabelStore : new BasicLabelStore(),
     userListStore: new UserListStore(),
     imageStore : new ImageStore(),
+    rectStore : new RectStore(),
 };

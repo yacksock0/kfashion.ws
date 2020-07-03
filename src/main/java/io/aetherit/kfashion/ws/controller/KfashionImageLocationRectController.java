@@ -1,16 +1,17 @@
 package io.aetherit.kfashion.ws.controller;
 
-import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygon;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationRect;
-import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonService;
+import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
+import io.aetherit.kfashion.ws.model.KfashionRectList;
 import io.aetherit.kfashion.ws.service.KfashionImageLocationRectService;
+import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -18,16 +19,34 @@ import javax.validation.Valid;
 public class KfashionImageLocationRectController {
 
         private KfashionImageLocationRectService kfashionImageLocationRectService;
+        private KfashionWorkHistoryService kfashionWorkHistoryService;
 
         @Autowired
-        public KfashionImageLocationRectController(KfashionImageLocationRectService kfashionImageLocationRectService) {
+        public KfashionImageLocationRectController(KfashionImageLocationRectService kfashionImageLocationRectService,
+                                                   KfashionWorkHistoryService kfashionWorkHistoryService) {
             this.kfashionImageLocationRectService = kfashionImageLocationRectService;
+            this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         }
 
-    @PostMapping(value="/")
+    @PostMapping(value="/location")
     public ResponseEntity<String> insertLocationRect(HttpServletRequest httpServletRequest,
-                                                        @RequestBody @Valid KfashionImageLocationRect rect) throws Exception {
-        return new ResponseEntity<String>(kfashionImageLocationRectService.insertLocationRect(rect), HttpStatus.OK);
+                                                        @RequestBody List<KfashionRectList> rectList
+//                                                        @RequestParam(value="workNo", required = true) Long workNo,
+//                                                        @RequestParam(value="workStep", required = true) int workStep,
+//                                                        @RequestParam(value="createdId", required = true) String createdId
+                                                                                                    ) throws Exception {
+            String msg= "";
+            System.out.println("asdljkfasdlkfjasldkfj;as"+rectList);
+            KfashionWorkHistory workHistory = new KfashionWorkHistory();
+//            workHistory.setWorkNo(workNo);
+//            workHistory.setWorkStep(workStep);
+//            workHistory.setCreatedId(createdId);
+            kfashionWorkHistoryService.insertWorkHistory(workHistory);
+
+//            KfashionImageLocationRect rect = new KfashionImageLocationRect();
+
+//            msg = kfashionImageLocationRectService.insertLocationRect(rect);
+        return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
 
 }

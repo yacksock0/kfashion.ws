@@ -3,6 +3,7 @@ package io.aetherit.kfashion.ws.controller;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygon;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.service.KfashionEmailAuthorityService;
+import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonPointService;
 import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,13 @@ import javax.validation.Valid;
 public class KfashionImageLocationPolygonController {
 
         private KfashionImageLocationPolygonService kfashionImageLocationPolygonService;
+        private KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService;
 
         @Autowired
-        public KfashionImageLocationPolygonController(KfashionImageLocationPolygonService kfashionImageLocationPolygonService) {
+        public KfashionImageLocationPolygonController(KfashionImageLocationPolygonService kfashionImageLocationPolygonService,
+                                                      KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService) {
             this.kfashionImageLocationPolygonService = kfashionImageLocationPolygonService;
+            this.kfashionImageLocationPolygonPointService = kfashionImageLocationPolygonPointService;
         }
 
         @PostMapping(value="/")
@@ -30,13 +34,7 @@ public class KfashionImageLocationPolygonController {
                                                             @RequestParam("locationX") int[] locationsX,
                                                             @RequestParam("locationY") int[] locationsY) throws Exception {
             String msg="";
-            if(locationsX.length > 0 || locationsY.length > 0) {
-                for(int i=0; i < locationsX.length; i++) {
-                    polygon.setLocationX(locationsX[i]);
-                    polygon.setLocationY(locationsY[i]);
                     msg=kfashionImageLocationPolygonService.insertLocationPolygon(polygon);
-                }
-            }
             return new ResponseEntity<String>(msg, HttpStatus.OK);
         }
 }

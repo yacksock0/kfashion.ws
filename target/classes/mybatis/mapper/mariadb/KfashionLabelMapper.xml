@@ -3,7 +3,9 @@
     <resultMap id="kfashionLabelResultMap" type="KfashionLabel">
         <id property="workNo"                       column="work_no" />
         <result property="workStep"                 column="work_step" />
-        <result property="labelNo"                  column="label_no" />
+        <result property="no"                       column="no" />
+        <result property="rectNo"                       column="rect_no" />
+        <result property="polyNo"                       column="poly_no" />
         <result property="categoryNo"               column="category_no" />
         <result property="categoryItemNo"           column="category_item_no" />
         <result property="createdId"                column="created_id" />
@@ -16,7 +18,9 @@
         INTO kfashion_label (
         work_no,
         work_step,
-        label_no,
+        no,
+        rect_no,
+        poly_no,
         category_no,
         category_item_no,
         created_id,
@@ -25,7 +29,9 @@
         ) VALUES (
         #{workNo},
         #{workStep},
-        #{labelNo},
+        #{no},
+        #{rect_no},
+        #{poly_no},
         #{categoryNo},
         #{categoryItemNo},
         #{createdId},
@@ -39,7 +45,9 @@
         INTO kfashion_label (
         work_no,
         work_step,
-        label_no,
+        no,
+        rect_no,
+        poly_no,
         category_no,
         category_item_no,
         created_id,
@@ -48,7 +56,9 @@
         ) VALUES (
         #{workNo},
         #{workStep},
-        #{labelNo},
+        #{no},
+        #{rect_no},
+        #{poly_no},
         #{categoryNo},
         #{categoryItemNo},
         #{createdId},
