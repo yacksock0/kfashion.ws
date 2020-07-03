@@ -151,7 +151,14 @@ class Polygon extends React.Component {
 
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(this.props.imageStore.isImgData);
+        this.canvas.setBackgroundImage(this.props.imageStore.isImgData, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
 
         this.canvas.on('selection:created', function (e) {
             const asd = e.target;
@@ -399,7 +406,7 @@ class Polygon extends React.Component {
 
                         <Grid item xs={12} lg={5} style={{margin:"auto"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width= "750" height= "750"  >  </canvas>
+                                <canvas id="c" width= "750" height= "850"  >  </canvas>
                             </div>
                         </Grid>
 

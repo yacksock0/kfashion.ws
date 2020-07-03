@@ -126,7 +126,14 @@ class BoundaryBox extends React.Component {
         });
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(this.props.imageStore.isImgData);
+        this.canvas.setBackgroundImage(this.props.imageStore.isImgData, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
         //     const asd = e.target;
@@ -143,7 +150,6 @@ class BoundaryBox extends React.Component {
         this.canvas.on('object:moving', function (e) {
             const asd = e.target;
             console.log("name : "+asd.name);
-
         });
         // this.canvas.on('mouse:over', function (e) {
         //     const asd = e.target;
@@ -153,6 +159,46 @@ class BoundaryBox extends React.Component {
         //     const asd = e.target;
         //     console.log('6. mouse:out');
         // });
+
+
+        this.canvas.on('mouse:move', (e) => {
+            console.log("mouse.x : " +e.pointer.x);
+            console.log("mouse.y : " +e.pointer.y);
+            if(e.pointer.x <700){
+                // e.pointer.x-10;
+            }
+        });
+
+        const maxScaleX = 3.2;
+        const maxScaleY = 3.2;
+        this.canvas.on('object:scaling', function (e) {
+            const obj = e.target;
+            console.log(obj.scaleX);
+            obj.setCoords();
+            // top-left  corner
+            if(obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < 0){
+                obj.top = Math.max(obj.top, obj.top-obj.getBoundingRect().top);
+                obj.left = Math.max(obj.left, obj.left-obj.getBoundingRect().left);
+            }
+            // bot-right corner
+            if(obj.getBoundingRect().top+obj.getBoundingRect().height  > obj.canvas.height || obj.getBoundingRect().left+obj.getBoundingRect().width  > obj.canvas.width){
+                obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
+                obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
+            }
+
+            if(obj.scaleX > maxScaleX) {
+                obj.scaleX = maxScaleX;
+                obj.left = obj.lastGoodLeft;
+                obj.top = obj.lastGoodTop;
+            }
+            if(obj.scaleY > maxScaleY) {
+                obj.scaleY = maxScaleY;
+                obj.left = obj.lastGoodLeft;
+                obj.top = obj.lastGoodTop;
+            }
+            obj.lastGoodTop = obj.top;
+            obj.lastGoodLeft = obj.left;
+        });
         // // --END  < Testing... >
 
         // -- START  < rect가 canvas를 못벗어나도록... >
@@ -281,8 +327,10 @@ class BoundaryBox extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
-                                <canvas id="c" width= "650" height= "550"  style={{backgroundSize:'100%'}} >  </canvas>
+                        <Grid item xs={12} lg={5} style={{margin:"auto"}}>
+                            <div style ={{ backgroundColor : "#13264E"}}>
+                                <canvas id="c" width= "750" height= "850"  >  </canvas>
+                            </div>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
