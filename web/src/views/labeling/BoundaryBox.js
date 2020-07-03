@@ -72,13 +72,21 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore')
+@inject('fileUploadStore','imageStore')
 @observer
 class BoundaryBox extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            imgData:'',
+        }
+    }
+
     componentDidMount() {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
+        this.setState({imgData : this.props.imageStore.isImgData})
     }
     handleChangeUploadFile = (event) => {
         const file = event.target.files[0];
@@ -91,7 +99,6 @@ class BoundaryBox extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { uploadFile} = this.props.fileUploadStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 {/*Stepper*/}
@@ -101,12 +108,7 @@ class BoundaryBox extends React.Component {
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
                     </Toolbar>
-
-
-
-
-
-
+                    <img src={this.state.imgData}/>
                 </div>
                 <div>
                     <hr></hr>

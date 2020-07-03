@@ -1,6 +1,6 @@
 import React from "react";
 import {withSnackbar} from "notistack";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter, Router, Route} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Container, Toolbar, Typography, Button, Grid,} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
@@ -23,6 +23,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
+import BoundaryBox from "./BoundaryBox";;
+
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -105,7 +107,7 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore','authStore')
+@inject('fileUploadStore','authStore','imageStore')
 @observer
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -115,6 +117,7 @@ class ImageUpload extends React.Component {
             text: 'text',
             boundaryList: [],
             imgData : '',
+            count: 0,
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
@@ -124,7 +127,7 @@ class ImageUpload extends React.Component {
         }
     }
     componentDidMount() {
-        this.props.enqueueSnackbar("BoundaryBox Work", {
+        this.props.enqueueSnackbar("Image Upload", {
             variant: 'info'
         });
         this.props.authStore.checkLogin();
@@ -133,18 +136,31 @@ class ImageUpload extends React.Component {
 
         axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
             .then(response => {
-                this.setState({ boundaryList : response.data})
-                console.log("epaslkdfjasldkfjads;lkfj",response.data);
+                this.setState({ boundaryList : response.data.boundaryList})
+                this.setState({ imgData : `/api/v1/kfashion/img/getByteImage?workNo=${this.state.boundaryList[0].workNo}`});
             })
             .catch(error => {
                 console.log(error)
             })
-
     }
-
+    handlePrevious(){
+        this.setState({count: this.state.count-1})
+        { 0 < this.state.count ? this.setState({imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.state.boundaryList[this.state.count].workNo}`})
+                : this.setState({count: this.state.boundaryList.length})
+            console.log(this.state.count)
+        }
+    }
+    handleNext(){
+        this.setState({count: this.state.count+1});
+        {this.state.count < this.state.boundaryList.length ? this.setState({imgData : `/api/v1/kfashion/img/getByteImage?workNo=${this.state.boundaryList[this.state.count].workNo}`} )
+            : this.setState({count: 0})
+        }
+        console.log(this.state.count)
+    }
     render() {
-        const {boundaryList} = this.state.boundaryList;
-        const { classes } = this.props;
+        const {boundaryList} = this.state;
+        const {classes, history} = this.props;
+        this.props.imageStore.changeImgData(this.state.imgData)
         return (
             <Container component="main" className={classes.mainContainer}>
                 {/*Stepper*/}
@@ -160,7 +176,7 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={7}>
                             <div>
-                                <img src={this.state.imgData}/>
+                                <img src={this.state.imgData} style={{display:"block" , width:650, height: 600}}/>
                             </div>
                         </Grid>
                         <Grid item xs={5}>
@@ -189,6 +205,8 @@ class ImageUpload extends React.Component {
                                         tooltip: 'Save User',
                                         onClick: (event, rowData) => {
                                             this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
+                                            /*this.setState({count:rowData.indexOf()})*/
+                                            console.log(rowData);
                                         }
                                     }
                                 ]}
@@ -202,23 +220,26 @@ class ImageUpload extends React.Component {
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
+                        onClick={this.handlePrevious.bind(this)}
+                         >
                         Previous
                     </Button>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
+                        onClick={this.handleNext.bind(this)}
+                         >
                         Next
                     </Button>
                     <Button
-                        type="submit"
+                        type="button"
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
-                        Save and Next
+                        onClick={()=>history.push('/step/boundaryBox')}
+                        >
+                        Next Step
                     </Button>
                 </div>
             </Container>
