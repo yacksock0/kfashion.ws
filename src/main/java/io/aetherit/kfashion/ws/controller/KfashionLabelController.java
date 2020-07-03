@@ -39,12 +39,12 @@ public class KfashionLabelController {
                 KfashionLabel basic = new KfashionLabel();
                 basic.setWorkNo(basicLabel.getWorkNo());
                 basic.setWorkStep(basicLabel.getWorkStep());
-                basic.setLabelNo(1);
+                basic.setNo(1);
                 basic.setCategoryNo(basicLabel.getColor());
                 basic.setCategoryItemNo(basicLabel.getColorCategoryNo());
                 basic.setCreatedId(basicLabel.getCreatedId());
                 kfashionLabelService.insertBasicLabel(basic);
-                basic.setLabelNo(2);
+                basic.setNo(2);
                 basic.setCategoryNo(basicLabel.getSleeveLength());
                 basic.setCategoryItemNo(basicLabel.getSleeveLengthCategoryNo());
                 kfashionLabelService.insertBasicLabel(basic);
@@ -63,63 +63,63 @@ public class KfashionLabelController {
                 KfashionLabel professional = new KfashionLabel();
                 professional.setWorkNo(professionalLabel.getWorkNo());
                 professional.setWorkStep(professionalLabel.getWorkStep());
-                professional.setLabelNo(1);
+                professional.setNo(1);
                 professional.setCategoryNo(professionalLabel.getStyle());
                 professional.setCategoryItemNo(professionalLabel.getStyleCategoryNo());
                 professional.setCreatedId(professionalLabel.getCreatedId());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(2);
+                professional.setNo(2);
                 professional.setCategoryNo(professionalLabel.getStyleSub());
                 professional.setCategoryItemNo(professionalLabel.getStyleCategorySubNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(3);
+                professional.setNo(3);
                 professional.setCategoryNo(professionalLabel.getCategory());
                 professional.setCategoryItemNo(professionalLabel.getCategoryCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(4);
+                professional.setNo(4);
                 professional.setCategoryNo(professionalLabel.getDetail());
                 professional.setCategoryItemNo(professionalLabel.getDetailCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(5);
+                professional.setNo(5);
                 professional.setCategoryNo(professionalLabel.getPrint());
                 professional.setCategoryItemNo(professionalLabel.getPrintCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(6);
+                professional.setNo(6);
                 professional.setCategoryNo(professionalLabel.getTexture());
                 professional.setCategoryItemNo(professionalLabel.getTextureCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(7);
+                professional.setNo(7);
                 professional.setCategoryNo(professionalLabel.getClothLength());
                 professional.setCategoryItemNo(professionalLabel.getClothLengthCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(8);
+                professional.setNo(8);
                 professional.setCategoryNo(professionalLabel.getNeckLine());
                 professional.setCategoryItemNo(professionalLabel.getNeckLineCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(9);
+                professional.setNo(9);
                 professional.setCategoryNo(professionalLabel.getKara());
                 professional.setCategoryItemNo(professionalLabel.getKaraCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(10);
+                professional.setNo(10);
                 professional.setCategoryNo(professionalLabel.getFit());
                 professional.setCategoryItemNo(professionalLabel.getFitCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(11);
+                professional.setNo(11);
                 professional.setCategoryNo(professionalLabel.getSafe());
                 professional.setCategoryItemNo(professionalLabel.getSafeCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);
 
-                professional.setLabelNo(12);
+                professional.setNo(12);
                 professional.setCategoryNo(professionalLabel.getSilhouette());
                 professional.setCategoryItemNo(professionalLabel.getSilhouetteCategoryNo());
                 kfashionLabelService.insertProfessionalLabel(professional);

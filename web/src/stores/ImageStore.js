@@ -33,6 +33,7 @@ const EmptyAgreements = {
 
 const EmptyImg = {
     imgData : '',
+    workNo : '',
 }
 
 export default class SignUpStore {
@@ -58,6 +59,14 @@ export default class SignUpStore {
 
     @computed get isImgData() {
         return this.imageData.imgData;
+    }
+
+    @action changeWorkNo = (workNo) => {
+        this.imageData.workNo = workNo;
+    }
+
+    @computed get isWorkNo() {
+        return this.imageData.workNo;
     }
 
     @action clearState = () => {

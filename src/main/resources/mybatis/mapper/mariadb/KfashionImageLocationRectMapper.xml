@@ -1,37 +1,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionImageLocationRectMapper">
     <resultMap id="kfashionImageLocationRectResultMap" type="KfashionImageLocationRect">
-        <id property="workNo"                       column="work_no" />
-        <result property="workStep"             column="work_step" />
-        <result property="workSubStep"                 column="work_sub_step" />
-        <result property="locationX"                 column="location_x" />
-        <result property="locationY"                 column="location_y" />
-        <result property="locationWidth"            column="location_width" />
-        <result property="locationHeight"      column="location_height" />
-        <result property="createdDatetime"      column="created_datetime" />
-        <result property="updatedDatetime"      column="updated_datetime" />
+        <id property="workNo"                        column="work_no" />
+        <result property="workStep"                  column="work_step" />
+        <result property="rectNo"                        column="rect_no" />
+        <result property="locationX"                 column="location_X" />
+        <result property="locationY"                 column="location_Y" />
+        <result property="locationWidth"             column="location_width" />
+        <result property="locationHeight"            column="location_height" />
+        <result property="scaleX"                    column="scale_X" />
+        <result property="scaleY"                    column="scale_Y" />
+        <result property="createdDatetime"           column="created_datetime" />
+        <result property="updatedDatetime"           column="updated_datetime" />
     </resultMap>
-    
-    <insert id="" parameterType="KfashionImageLocationRect">
+
+
+    <insert id="insertLocationRect" parameterType="KfashionImageLocationRect">
         INSERT
         INTO kfashion_image_location_rect (
         work_no,
         work_step,
-        work_sub_step,
-        location_x,
-        location_y,
+        rect_no,
+        location_X,
+        location_Y,
         location_width,
         location_height,
+        scale_X,
+        scale_Y,
         created_datetime,
         updated_datetime
         ) VALUES(
         #{workNo},
         #{workStep},
-        #{workSubStep},
+        #{rectNo},
         #{locationX},
         #{locationY},
         #{locationWidth},
         #{locationHeight},
+        #{scaleX},
+        #{scaleY},
         NOW(),
         NOW()
         )

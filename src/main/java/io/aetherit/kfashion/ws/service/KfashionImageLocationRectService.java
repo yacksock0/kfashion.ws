@@ -15,7 +15,7 @@ public class KfashionImageLocationRectService {
     }
 
     public String insertLocationRect(KfashionImageLocationRect rect) {
-        String msg ="";
+        String msg ="success";
         repository.insertLocationRect(rect);
         return msg;
     }

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class KfashionWorkHistory {
     private Long workNo;
     private int workStep;
-    private int workSubStep;
+    private int no;
     private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
