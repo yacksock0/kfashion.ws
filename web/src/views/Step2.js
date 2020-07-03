@@ -9,7 +9,6 @@ import {inject, observer} from "mobx-react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import ImageList from "./labeling/ImageList";
 
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -98,7 +97,7 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                         <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block", margin:"auto"}}></img>
+                         <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block" , width:'100%', height:'100%'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
                                  <AppBar position="static">

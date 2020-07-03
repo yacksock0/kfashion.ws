@@ -173,12 +173,13 @@ class ImageUpload extends React.Component {
                         </Grid>
                     </Toolbar>
                     <Grid container>
-                        <Grid item xs={7}>
-                            <div>
-                                <img src={this.state.imgData} style={{display:"block" , width:750, height: 850}}/>
+                        <Grid item xs={12} lg={6}>
+                            <div style={{marginRight:15}}>
+                                <img src={this.state.imgData} style={{display:"block" , width:'100%', height:'100%'}}/>
                             </div>
                         </Grid>
-                        <Grid item xs={5}>
+                        <Grid item xs={12} lg={6}>
+                            <div>
                             <MaterialTable
                                 icons={tableIcons}
                                 columns={this.state.columns}
@@ -210,6 +211,7 @@ class ImageUpload extends React.Component {
                                     }
                                 ]}
                             />
+                            </div>
                         </Grid>
                     </Grid>
                 </div>
