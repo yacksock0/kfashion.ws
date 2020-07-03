@@ -8,6 +8,7 @@ import AdminAuthorityStore from "./AdminAuthorityStore";
 import ProfessionalLabelStore from "./ProfessionalLabelStore";
 import BasicLabelStore from "./BasicLabelStore";
 import UserListStore from "./UserListStore";
+import ImageStore from "./ImageStore";
 
 
 export const stores = {
@@ -21,4 +22,5 @@ export const stores = {
     professionalLabelStore : new ProfessionalLabelStore(),
     basicLabelStore : new BasicLabelStore(),
     userListStore: new UserListStore(),
+    imageStore : new ImageStore(),
 };

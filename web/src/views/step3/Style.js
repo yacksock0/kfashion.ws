@@ -38,6 +38,7 @@ export default class SelectTest extends React.Component {
                 {selectedOption},
                 () => console.log(`Option selected:`, this.state.selectedOption)
             );
+        }else {
         }
     };
     render() {

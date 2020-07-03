@@ -29,8 +29,8 @@ export default class SelectTest extends React.Component {
     }
     handleChange = (selectedOption) => {
         this.setState(
-            { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            {selectedOption},
+            () => console.log(`Option selected:`, this.state.selectedOption.categoryNo, this.state.selectedOption.no)
         );
     };
 
