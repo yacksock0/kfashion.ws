@@ -24,6 +24,8 @@ import {KeyboardIcon} from "@material-ui/pickers/_shared/icons/KeyboardIcon";
 import {TimeIcon} from "@material-ui/pickers/_shared/icons/TimeIcon";
 import {DateRangeIcon} from "@material-ui/pickers/_shared/icons/DateRangeIcon";
 import SaveIcon from '@material-ui/icons/Save';
+import {inject, observer} from "mobx-react";
+
 
 const styles = theme => ({
     root: {
@@ -114,7 +116,8 @@ const styles = theme => ({
     },
 });
 
-
+@inject('fileUploadStore','imageStore')
+@observer
 class Polygon extends React.Component {
     state = {
         buttonDis1 : false,
@@ -148,7 +151,7 @@ class Polygon extends React.Component {
 
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage('/images/cloth.jpg');
+        this.canvas.setBackgroundImage(this.props.imageStore.isImgData);
 
         this.canvas.on('selection:created', function (e) {
             const asd = e.target;

@@ -3,7 +3,7 @@
     <resultMap id="kfashionLabelResultMap" type="KfashionLabel">
         <id property="workNo"                       column="work_no" />
         <result property="workStep"                 column="work_step" />
-        <result property="workSubStep"              column="work_sub_step" />
+        <result property="labelNo"                  column="label_no" />
         <result property="categoryNo"               column="category_no" />
         <result property="categoryItemNo"           column="category_item_no" />
         <result property="createdId"                column="created_id" />
@@ -11,12 +11,12 @@
         <result property="updatedDatetime"          column="updated_datetime" />
     </resultMap>
 
-    <insert id="" parameterType="KfashionLabel">
+    <insert id="insertBasicLabel" parameterType="KfashionLabel">
         INSERT
         INTO kfashion_label (
         work_no,
         work_step,
-        work_sub_step,
+        label_no,
         category_no,
         category_item_no,
         created_id,
@@ -25,7 +25,7 @@
         ) VALUES (
         #{workNo},
         #{workStep},
-        #{workSubStep},
+        #{labelNo},
         #{categoryNo},
         #{categoryItemNo},
         #{createdId},
@@ -34,4 +34,26 @@
         )
     </insert>
 
+    <insert id="insertProfessionalLabel" parameterType="KfashionLabel">
+        INSERT
+        INTO kfashion_label (
+        work_no,
+        work_step,
+        label_no,
+        category_no,
+        category_item_no,
+        created_id,
+        created_datetime,
+        updated_datetime
+        ) VALUES (
+        #{workNo},
+        #{workStep},
+        #{labelNo},
+        #{categoryNo},
+        #{categoryItemNo},
+        #{createdId},
+        NOW(),
+        NOW()
+        )
+    </insert>
 </mapper>

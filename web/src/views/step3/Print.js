@@ -25,7 +25,6 @@ export default class Print extends React.Component {
                         return print
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -34,15 +33,13 @@ export default class Print extends React.Component {
     handleChange = (selectedOption) => {
         this.props.professionalLabelStore.changeNewProfessionalLabelPrint(selectedOption);
         this.setState(
-            { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            { selectedOption }
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const printList= this.state.printList;
-        console.log(printList);
         return (
             <Select
                 value={selectedOption}

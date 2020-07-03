@@ -24,7 +24,6 @@ export default class ColorKara extends React.Component {
                         return kara
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)
@@ -34,14 +33,12 @@ export default class ColorKara extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelKara(selectedOption);
         this.setState(
             { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
         );
     };
 
     render() {
         const { selectedOption } = this.state;
         const karaList= this.state.karaList;
-        console.log(karaList);
         return (
             <Select
                 value={selectedOption}
