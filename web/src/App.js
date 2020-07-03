@@ -12,7 +12,6 @@ import Step from "./views/Step";
 import Step2 from "./views/Step2";
 import Step3 from "./views/Step3";
 import BoundaryBox from "./views/labeling/BoundaryBox";
-import BoundaryBoxList from "./views/labeling/BoundaryBoxList";
 import Polygon from "./views/labeling/Polygon";
 import SignIn from "./views/SignIn";
 import * as store from "./stores/AuthStore";
@@ -111,7 +110,6 @@ class App extends React.Component {
                                     <Route exact path="/step3" component={Step3} />
                                     <Route exact path="/Step/ImageUpload" component={ImageUpload}/>
                                     <Route exact path="/Step/BoundaryBox" component={BoundaryBox} />
-                                    <Route exact path="/Step/BoundaryBoxList" component={BoundaryBoxList} />
                                     <Route exact path="/Step/Polygon" component={Polygon} />
                                     <Route exact path="/admin/createGroup" component={AdminGroup} />
                                     <Route exact path="/admin/userList" component={UserList} />

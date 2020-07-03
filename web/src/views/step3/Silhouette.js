@@ -34,7 +34,7 @@ export default class Silhouette extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelSilhouette(selectedOption);
         this.setState(
             { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            () => console.log(`Option selected:`, this.state.selectedOption.no)
         );
     };
 

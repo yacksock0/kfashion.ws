@@ -39,6 +39,7 @@ export default class SelectTest extends React.Component {
             this.setState(
                 {selectedOption}
             );
+        }else {
         }
 
     };

@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-
 import {Divider, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Toolbar} from "@material-ui/core";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import ComputerIcon from '@material-ui/icons/Computer';
@@ -89,7 +88,7 @@ export default function SideMenu(props) {
                         <ListItemText primary="홈"></ListItemText>
                     </ListItem>
                 </Link>
-                    <Link className={classes.link}>
+                <Link className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText button onClick={handleClick} primary="1단계 영역지정"></ListItemText>
@@ -108,7 +107,7 @@ export default function SideMenu(props) {
                     </List>
                 </Collapse>
                 </Link>
-                <Link to="/step/boundaryBox" className={classes.link}>
+                <Link to="/Step/boundaryBox" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
@@ -116,18 +115,6 @@ export default function SideMenu(props) {
                                     <AspectRatioIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="BoundaryBox" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
-                <Link to="/Step/boundaryBoxList" className={classes.link}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <AspectRatioIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="BoundaryBoxList" />
                             </ListItem>
                         </List>
                     </Collapse>

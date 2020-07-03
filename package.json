@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "material-ui-dropzone": "^3.3.0"
+    "material-ui-dropzone": "^3.3.0",
+    "react-fabric": "^0.4.1"
   }
 }

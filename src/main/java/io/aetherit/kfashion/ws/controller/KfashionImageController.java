@@ -30,24 +30,24 @@ public class KfashionImageController {
 
     private static final Logger logger = LoggerFactory.getLogger(KfashionImageController.class);
 
-        private KfashionImageService kfashionImageService;
-        private KfashionWorkService kfashionWorkService;
-        private FileStorageService fileStorageService;
-        private KfashionWorkHistoryService kfashionWorkHistoryService;
+    private KfashionImageService kfashionImageService;
+    private KfashionWorkService kfashionWorkService;
+    private FileStorageService fileStorageService;
+    private KfashionWorkHistoryService kfashionWorkHistoryService;
 
-         @Autowired
-         private CommonUtil commonUtil;
+    @Autowired
+    private CommonUtil commonUtil;
 
-        @Autowired
-        public KfashionImageController(KfashionImageService kfashionImageService,
-                                       KfashionWorkService kfashionWorkService,
-                                       FileStorageService fileStorageService,
-                                       KfashionWorkHistoryService kfashionWorkHistoryService) {
-            this.kfashionImageService = kfashionImageService;
-            this.kfashionWorkService = kfashionWorkService;
-            this.fileStorageService = fileStorageService;
-            this.kfashionWorkHistoryService = kfashionWorkHistoryService;
-        }
+    @Autowired
+    public KfashionImageController(KfashionImageService kfashionImageService,
+                                   KfashionWorkService kfashionWorkService,
+                                   FileStorageService fileStorageService,
+                                   KfashionWorkHistoryService kfashionWorkHistoryService) {
+        this.kfashionImageService = kfashionImageService;
+        this.kfashionWorkService = kfashionWorkService;
+        this.fileStorageService = fileStorageService;
+        this.kfashionWorkHistoryService = kfashionWorkHistoryService;
+    }
 
     /**
      * 단일 파일 업로드
@@ -102,7 +102,7 @@ public class KfashionImageController {
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value="userId", required = true) String userId,
                                                         @RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
-            System.out.println(files.length);
+        System.out.println(files.length);
 
         return Arrays.asList(files)
                 .stream()
@@ -146,11 +146,11 @@ public class KfashionImageController {
     @GetMapping(value="/boundaryList")
     public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest,
                                                @RequestParam(value="createdId")String createdId) {
-            HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList(createdId);
-            resultMap.put("boundaryList", boundaryList);
-            return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
-        }
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList(createdId);
+        resultMap.put("boundaryList", boundaryList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
 
     @RequestMapping(value="/getByteImage")
     public ResponseEntity<byte[]> getByteImage(@RequestParam(value="workNo")int workNo) {
