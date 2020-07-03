@@ -77,9 +77,6 @@ const styles = theme => ({
         marginRight: 1,
         height:'100%',
     },
-    canvas:{
-        backgroundColor:'black',
-    },
     fileText: {
         paddingTop: 32,
         paddingRight: theme.spacing(2),
@@ -130,12 +127,11 @@ class BoundaryBox extends React.Component {
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(this.props.imageStore.isImgData);
-
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
         //     const asd = e.target;
         //     console.log('1. created');
-        // });
+        //
         // this.canvas.on('selection:cleared', function (e) {
         //     const asd = e.target;
         //     console.log('2. cleared');
@@ -229,7 +225,8 @@ class BoundaryBox extends React.Component {
         rect.name = `${rectNo}`;
         rect.id = `${rectNo}`;
         this.canvas.add(rect);
-        this.canvas.setActiveObject(rect);
+
+
         }else {
             alert('그만!! 제발 그만!!!!');
         }
@@ -284,14 +281,11 @@ class BoundaryBox extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                            <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width= "600" height= "550"  >  </canvas>
-                            </div>
+                        <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
+                                <canvas id="c" width= "650" height= "550"  style={{backgroundSize:'100%'}} >  </canvas>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
-                            <div className={classes.mainContent}>
                                 <Typography variant="h4" component="h2">
                                     영역 지정
                                 </Typography>
@@ -412,7 +406,6 @@ class BoundaryBox extends React.Component {
                                         </TableBody>
                                     </Table>
                                 </Paper>
-                            </div>
 
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
@@ -423,8 +416,6 @@ class BoundaryBox extends React.Component {
                     </Grid>
                 </div>
 
-
-                {/*Stepper*/}
                 <div style={{marginTop:70}}>
                 </div>
                 <div>
