@@ -20,6 +20,7 @@ import SignUp from "./views/SignUp";
 import AdminGroup from "./views/admin/AdminGroup";
 import Verify from "./views/verify";
 import ImageUpload from "./views/labeling/ImageUpload";
+import UserList from "./views/admin/UserList";
 
 
 const style = () => ({
@@ -113,6 +114,7 @@ class App extends React.Component {
                                     <Route exact path="/Step/BoundaryBoxList" component={BoundaryBoxList} />
                                     <Route exact path="/Step/Polygon" component={Polygon} />
                                     <Route exact path="/admin/createGroup" component={AdminGroup} />
+                                    <Route exact path="/admin/userList" component={UserList} />
                                 </Switch>
                             </React.Fragment>
                         ) : (

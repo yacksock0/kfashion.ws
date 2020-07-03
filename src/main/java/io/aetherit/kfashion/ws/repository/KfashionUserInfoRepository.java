@@ -56,4 +56,21 @@ public class KfashionUserInfoRepository {
         map.put("id",id);
         mapper.updateUserGroup(map);
     }
+
+    public List<KfashionUserInfo> selectGroupUserList(int groupNo) {
+        return mapper.selectGroupUserList(groupNo);
+
+    }
+
+    public void createGroupUser(KfashionUserInfo user) {
+        mapper.createGroupUser(user);
+    }
+
+    public void deleteGroupAdminUser(String id) {
+        mapper.deleteGroupAdminUser(id);
+    }
+
+    public void deleteGroupUser(String id) {
+        mapper.deleteGroupUser(id);
+    }
 }

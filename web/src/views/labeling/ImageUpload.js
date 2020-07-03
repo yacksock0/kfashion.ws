@@ -98,6 +98,10 @@ const styles = theme => ({
         border: 0,
         borderRadius: 12,
     },
+    imgLayout:{
+        maxWidth: 600,
+        maxHeight: 600,
+    }
 });
 
 
@@ -137,12 +141,6 @@ class ImageUpload extends React.Component {
             })
 
     }
-    handleChangeUploadFile = (event) => {
-        const file = event.target.files[0];
-
-        this.props.fileUploadStore.changeUploadFile(file,this.props.id);
-    }
-
 
     render() {
         const {boundaryList} = this.state.boundaryList;
@@ -162,7 +160,7 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={7}>
                             <div>
-                                <img src={this.state.imgData} />
+                                <img src={this.state.imgData}/>
                             </div>
                         </Grid>
                         <Grid item xs={5}>
@@ -171,19 +169,6 @@ class ImageUpload extends React.Component {
                                 columns={this.state.columns}
                                 data={boundaryList}
                                 title="이미지 리스트"
-                                actions={[
-                                    {
-                                        icon: 'save',
-                                        tooltip: 'Save User',
-                                        onClick: (event, rowData) => alert("You saved " + rowData.name)
-                                    },
-                                    rowData => ({
-                                        icon: 'delete',
-                                        tooltip: 'Delete User',
-                                        onClick: (event, rowData) => alert("You want to delete " + rowData.name),
-                                        disabled: rowData.birthYear < 2000
-                                    })
-                                ]}
                                 editable={{
                                     onRowDelete: oldData =>
                                         new Promise((resolve, reject) => {

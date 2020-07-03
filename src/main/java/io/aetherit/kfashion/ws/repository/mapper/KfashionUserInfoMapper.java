@@ -22,4 +22,12 @@ public interface KfashionUserInfoMapper {
     List<KfashionUserInfo> selectUserList();
 
     void updateUserGroup(Map<String, Object> map);
+
+    List<KfashionUserInfo> selectGroupUserList(int groupNo);
+
+    void createGroupUser(KfashionUserInfo user);
+
+    void deleteGroupAdminUser(String id);
+
+    void deleteGroupUser(String id);
 }
