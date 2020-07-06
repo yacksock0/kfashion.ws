@@ -19,9 +19,10 @@ public class KfashionRectList {
     private Double translateX;
     private Double translateY;
 
-//    private String createdId;
-//    private Long workNo;
-//    private int workStep;
+    private String createdId;
+    private Long workNo;
+    private int rectNo;
+    private int workStep;
 
 
 }

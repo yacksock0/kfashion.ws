@@ -15162,197 +15162,117 @@ Caused by: java.net.SocketException: Network is unreachable (connect failed)
 2020-07-03 21:32:22.263 8406 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
 2020-07-03 21:32:22.322 8406 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
 2020-07-03 21:32:22.325 8406 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 3.48 seconds (JVM running for 3.87)
-2020-07-03 21:39:14.065 13214 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 13214 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
-2020-07-03 21:39:14.068 13214 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
-2020-07-03 21:39:14.068 13214 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
-2020-07-03 21:39:14.734 13214 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$ec71370f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-03 21:39:14.999 13214 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
-2020-07-03 21:39:15.000 13214 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
-2020-07-03 21:39:15.000 13214 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2020-07-03 21:39:15.014 13214 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
-2020-07-03 21:39:15.020 13214 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
-2020-07-03 21:39:15.020 13214 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
-2020-07-03 21:39:15.021 13214 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-07-03 21:39:15.069 13214 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
-2020-07-03 21:39:15.070 13214 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 974 ms
-2020-07-03 21:39:15.109 13214 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.10.110:3306/kfashion, user1
-2020-07-03 21:39:15.827 13214 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
-2020-07-03 21:39:15.839 13214 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
-2020-07-03 21:39:15.873 13214 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
-2020-07-03 21:39:15.874 13214 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
-2020-07-03 21:39:15.876 13214 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
-2020-07-03 21:39:16.000 13214 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200701_1736 #0
-2020-07-03 21:39:16.310 13214 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@63a28987, org.springframework.security.web.context.SecurityContextPersistenceFilter@5114b7c7, org.springframework.security.web.header.HeaderWriterFilter@48f4713c, org.springframework.security.web.authentication.logout.LogoutFilter@4a37191a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@767f6ee7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@65e0b505, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@120d3fd, org.springframework.security.web.session.SessionManagementFilter@5a50d9fc, org.springframework.security.web.access.ExceptionTranslationFilter@4fe64d23, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@14f40030]
-2020-07-03 21:39:16.413 13214 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-03 21:39:16.590 13214 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
-2020-07-03 21:39:16.594 13214 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
-2020-07-03 21:39:16.634 13214 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
-2020-07-03 21:39:16.637 13214 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.895 seconds (JVM running for 3.538)
-2020-07-03 21:39:44.795 13214 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-07-03 21:39:47.741 13230 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on canhoui-MacBookPro.local with PID 13230 (/Users/ho/kfashion.ws/target/classes started by ho in /Users/ho/kfashion.ws)
-2020-07-03 21:39:47.743 13230 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
-2020-07-03 21:39:47.743 13230 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
-2020-07-03 21:39:48.371 13230 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$3e210924] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-03 21:39:48.626 13230 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
-2020-07-03 21:39:48.627 13230 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/ho/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
-2020-07-03 21:39:48.627 13230 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2020-07-03 21:39:48.641 13230 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
-2020-07-03 21:39:48.646 13230 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
-2020-07-03 21:39:48.647 13230 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
-2020-07-03 21:39:48.647 13230 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-07-03 21:39:48.691 13230 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
-2020-07-03 21:39:48.692 13230 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 923 ms
-2020-07-03 21:39:48.730 13230 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.10.110:3306/kfashion, user1
-2020-07-03 21:39:49.176 13230 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
-2020-07-03 21:39:49.187 13230 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
-2020-07-03 21:39:49.202 13230 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
-2020-07-03 21:39:49.202 13230 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
-2020-07-03 21:39:49.204 13230 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
-2020-07-03 21:39:49.328 13230 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200701_1736 #0
-2020-07-03 21:39:49.650 13230 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61f6d381, org.springframework.security.web.context.SecurityContextPersistenceFilter@7add838c, org.springframework.security.web.header.HeaderWriterFilter@7c601d50, org.springframework.security.web.authentication.logout.LogoutFilter@4fe64d23, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1bb15351, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2149594a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@656922a0, org.springframework.security.web.session.SessionManagementFilter@4860827a, org.springframework.security.web.access.ExceptionTranslationFilter@6296474f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1386313f]
-2020-07-03 21:39:49.749 13230 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-03 21:39:49.921 13230 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
-2020-07-03 21:39:49.926 13230 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
-2020-07-03 21:39:49.968 13230 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
-2020-07-03 21:39:49.970 13230 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.49 seconds (JVM running for 2.851)
-2020-07-03 21:40:05.560 13230 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-07-03 21:40:05.560 13230 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
-2020-07-03 21:40:05.565 13230 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 5 ms
-2020-07-03 21:40:08.789 13230 [-8080-exec-2] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==>  Preparing: SELECT kfashion_user_info.id, kfashion_user_info.email, kfashion_user_info.password, kfashion_user_info.name, kfashion_user_info.phone, kfashion_user_info.group_no, kfashion_user_info.is_admin, kfashion_user_info.is_approved, kfashion_user_group_authority.authority_no, COUNT(kfashion_user_group_admin.user_id) AS group_admin, kfashion_user_info.created_datetime, kfashion_user_info.updated_datetime FROM kfashion_user_info LEFT JOIN kfashion_user_group_authority ON kfashion_user_info.group_no = kfashion_user_group_authority.group_no RIGHT JOIN kfashion_user_group_admin ON kfashion_user_info.id = kfashion_user_group_admin.user_id WHERE id = ? 
-2020-07-03 21:40:08.790 13230 [-8080-exec-2] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==> Parameters: admin(String)
-2020-07-03 21:40:08.839 13230 [-8080-exec-2] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==    Columns: id, email, password, name, phone, group_no, is_admin, is_approved, authority_no, group_admin, created_datetime, updated_datetime
-2020-07-03 21:40:08.840 13230 [-8080-exec-2] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==        Row: admin, null, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, null, null, Y, Y, null, 0, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
-2020-07-03 21:40:08.841 13230 [-8080-exec-2] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : <==      Total: 1
-2020-07-03 21:40:09.055 13230 [-8080-exec-4] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
-2020-07-03 21:40:09.055 13230 [-8080-exec-4] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
-2020-07-03 21:40:09.089 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
-2020-07-03 21:40:09.090 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:09.092 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:09.093 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
-2020-07-03 21:40:09.093 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
-2020-07-03 21:40:09.094 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:09.095 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
-2020-07-03 21:40:09.095 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
-2020-07-03 21:40:09.096 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:09.096 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
-2020-07-03 21:40:09.097 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
-2020-07-03 21:40:09.097 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
-2020-07-03 21:40:09.098 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
-2020-07-03 21:40:09.098 13230 [-8080-exec-4] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, b19f507f-0824-447a-9a14-e11601429964_스크린샷 2020-06-18 오후 2.20.29.png, admin
-2020-07-03 21:40:09.098 13230 [-8080-exec-4] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 13
-2020-07-03 21:40:11.015 13230 [-8080-exec-6] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
-2020-07-03 21:40:11.015 13230 [-8080-exec-6] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
-2020-07-03 21:40:12.455 13230 [-8080-exec-6] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
-2020-07-03 21:40:12.457 13230 [-8080-exec-6] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
-2020-07-03 21:40:12.459 13230 [-8080-exec-6] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
-2020-07-03 21:40:14.078 13230 [-8080-exec-8] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
-2020-07-03 21:40:14.078 13230 [-8080-exec-8] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
-2020-07-03 21:40:14.138 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
-2020-07-03 21:40:14.139 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:14.140 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:14.140 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
-2020-07-03 21:40:14.142 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
-2020-07-03 21:40:14.143 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:14.144 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
-2020-07-03 21:40:14.144 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
-2020-07-03 21:40:14.145 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:14.145 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
-2020-07-03 21:40:14.146 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
-2020-07-03 21:40:14.146 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
-2020-07-03 21:40:14.146 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
-2020-07-03 21:40:14.147 13230 [-8080-exec-8] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, b19f507f-0824-447a-9a14-e11601429964_스크린샷 2020-06-18 오후 2.20.29.png, admin
-2020-07-03 21:40:14.147 13230 [-8080-exec-8] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 13
-2020-07-03 21:40:18.191 13230 [8080-exec-11] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
-2020-07-03 21:40:18.192 13230 [8080-exec-11] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
-2020-07-03 21:40:18.204 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
-2020-07-03 21:40:18.205 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:18.206 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:18.206 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
-2020-07-03 21:40:18.207 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
-2020-07-03 21:40:18.207 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:18.207 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
-2020-07-03 21:40:18.208 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
-2020-07-03 21:40:18.208 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:18.208 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
-2020-07-03 21:40:18.209 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
-2020-07-03 21:40:18.209 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
-2020-07-03 21:40:18.209 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
-2020-07-03 21:40:18.210 13230 [8080-exec-11] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, b19f507f-0824-447a-9a14-e11601429964_스크린샷 2020-06-18 오후 2.20.29.png, admin
-2020-07-03 21:40:18.210 13230 [8080-exec-11] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 13
-2020-07-03 21:40:19.366 13230 [8080-exec-13] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
-2020-07-03 21:40:19.367 13230 [8080-exec-13] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
-2020-07-03 21:40:19.409 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
-2020-07-03 21:40:19.410 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:19.411 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:19.412 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
-2020-07-03 21:40:19.412 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
-2020-07-03 21:40:19.413 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:19.414 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
-2020-07-03 21:40:19.414 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
-2020-07-03 21:40:19.415 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:19.416 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
-2020-07-03 21:40:19.416 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
-2020-07-03 21:40:19.416 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
-2020-07-03 21:40:19.417 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
-2020-07-03 21:40:19.417 13230 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, b19f507f-0824-447a-9a14-e11601429964_스크린샷 2020-06-18 오후 2.20.29.png, admin
-2020-07-03 21:40:19.418 13230 [8080-exec-13] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 13
-2020-07-03 21:40:19.943 13230 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
-2020-07-03 21:40:19.943 13230 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
-2020-07-03 21:40:20.122 13230 [8080-exec-16] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
-2020-07-03 21:40:20.123 13230 [8080-exec-16] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
-2020-07-03 21:40:20.123 13230 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
-2020-07-03 21:40:21.724 13230 [8080-exec-17] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
-2020-07-03 21:40:21.726 13230 [8080-exec-17] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
-2020-07-03 21:40:22.026 13230 [8080-exec-17] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
-2020-07-03 21:40:22.026 13230 [8080-exec-17] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
-2020-07-03 21:40:22.027 13230 [8080-exec-17] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
-2020-07-03 21:40:28.433 13230 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
-2020-07-03 21:40:28.434 13230 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
-2020-07-03 21:40:28.451 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
-2020-07-03 21:40:28.451 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:28.452 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:28.452 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
-2020-07-03 21:40:28.452 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
-2020-07-03 21:40:28.453 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:28.453 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
-2020-07-03 21:40:28.453 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
-2020-07-03 21:40:28.454 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:28.454 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
-2020-07-03 21:40:28.454 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
-2020-07-03 21:40:28.455 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
-2020-07-03 21:40:28.455 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
-2020-07-03 21:40:28.455 13230 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, b19f507f-0824-447a-9a14-e11601429964_스크린샷 2020-06-18 오후 2.20.29.png, admin
-2020-07-03 21:40:28.455 13230 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 13
-2020-07-03 21:40:29.277 13230 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
-2020-07-03 21:40:29.278 13230 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
-2020-07-03 21:40:29.675 13230 [8080-exec-21] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
-2020-07-03 21:40:29.676 13230 [8080-exec-21] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
-2020-07-03 21:40:29.676 13230 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
-2020-07-03 21:40:30.741 13230 [8080-exec-23] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ?; 
-2020-07-03 21:40:30.742 13230 [8080-exec-23] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
-2020-07-03 21:40:30.755 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
-2020-07-03 21:40:30.756 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 11, hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:30.758 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 12, f5857961-ad4c-46f2-ac20-ad272ab8214b_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:30.759 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 13, 84fbdfef-05f9-4cd7-9b91-f4e35c2e9e89_images (1).jpeg, admin
-2020-07-03 21:40:30.759 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 14, ccdebb34-ad97-436e-8743-90e51039d9b1_images.jpeg, admin
-2020-07-03 21:40:30.760 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 15, 72c46fe0-d719-4054-bf2e-ce55c001ca5f_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:30.760 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 16, 35bd0f62-38fc-4be5-ba27-8ef71b1e3ab8_images (1).jpeg, admin
-2020-07-03 21:40:30.761 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 17, 784bb200-9915-462f-b828-8345e6bb9eba_images.jpeg, admin
-2020-07-03 21:40:30.761 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 4e52cfa4-7942-4792-85d1-35f2fa1189b7_hot-air-balloons-4381674_1920.jpg, admin
-2020-07-03 21:40:30.762 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 티셔츠3.jpeg, admin
-2020-07-03 21:40:30.762 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 2cbdfbf0-f8a3-45dd-bb49-3d6803586b9b_KakaoTalk_Photo_2020-06-15-16-04-31.jpeg, admin
-2020-07-03 21:40:30.762 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, 6d4d5b77-a804-40ea-b982-77c243ec4031_images.jpeg, admin
-2020-07-03 21:40:30.763 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, ffa0ee5d-588e-4839-b819-924f468575fc_스크린샷 2020-06-29 오후 6.20.59.png, admin
-2020-07-03 21:40:30.763 13230 [8080-exec-23] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, b19f507f-0824-447a-9a14-e11601429964_스크린샷 2020-06-18 오후 2.20.29.png, admin
-2020-07-03 21:40:30.763 13230 [8080-exec-23] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 13
-2020-07-03 21:40:31.379 13230 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
-2020-07-03 21:40:31.380 13230 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
-2020-07-03 21:40:31.629 13230 [8080-exec-25] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
-2020-07-03 21:40:31.630 13230 [8080-exec-25] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
-2020-07-03 21:40:31.631 13230 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
-2020-07-03 21:40:32.527 13230 [8080-exec-26] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
-2020-07-03 21:40:32.527 13230 [8080-exec-26] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
-2020-07-03 21:40:32.693 13230 [8080-exec-26] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
-2020-07-03 21:40:32.693 13230 [8080-exec-26] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
-2020-07-03 21:40:32.694 13230 [8080-exec-26] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
-2020-07-03 21:42:03.127 13230 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-03 21:36:46.912 8600 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 8600 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-07-03 21:36:46.917 8600 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-07-03 21:36:46.919 8600 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-07-03 21:36:48.031 8600 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$63102946] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-03 21:36:48.492 8600 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-03 21:36:48.493 8600 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-03 21:36:48.493 8600 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-07-03 21:36:48.525 8600 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-07-03 21:36:48.534 8600 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-03 21:36:48.535 8600 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-07-03 21:36:48.535 8600 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-03 21:36:48.645 8600 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-07-03 21:36:48.646 8600 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 1639 ms
+2020-07-03 21:36:48.774 8600 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.10.110:3306/kfashion, user1
+2020-07-03 21:36:49.443 8600 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-07-03 21:36:49.459 8600 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-07-03 21:36:49.482 8600 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-03 21:36:49.483 8600 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-03 21:36:49.486 8600 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-07-03 21:36:49.668 8600 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200701_1736 #0
+2020-07-03 21:36:49.711 8600 [        main] - WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext  558 : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'kfashionImageController' defined in file [/Users/jangseong-yeol/kfashion.ws/target/classes/io/aetherit/kfashion/ws/controller/KfashionImageController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/jangseong-yeol/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+2020-07-03 21:36:49.738 8600 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Stopping service [Tomcat]
+2020-07-03 21:36:49.747 8600 [        main] - INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener  136 : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-07-03 21:36:49.753 8600 [        main] - ERROR org.springframework.boot.SpringApplication  826 : Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'kfashionImageController' defined in file [/Users/jangseong-yeol/kfashion.ws/target/classes/io/aetherit/kfashion/ws/controller/KfashionImageController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/jangseong-yeol/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at io.aetherit.kfashion.ws.Application.main(Application.java:10)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'fileStorageService' defined in file [/Users/jangseong-yeol/kfashion.ws/target/classes/io/aetherit/kfashion/ws/service/FileStorageService.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:314)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:295)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1287)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:885)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.aetherit.kfashion.ws.service.FileStorageService]: Constructor threw exception; nested exception is io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:216)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:117)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:310)
+	... 33 common frames omitted
+Caused by: io.aetherit.kfashion.ws.exception.FileStorageException: Could not create the directory where the uploaded files will be stored.
+	at io.aetherit.kfashion.ws.service.FileStorageService.<init>(FileStorageService.java:32)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:203)
+	... 35 common frames omitted
+Caused by: java.nio.file.AccessDeniedException: /Users/youngrackchoi
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:84)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixFileSystemProvider.createDirectory(UnixFileSystemProvider.java:384)
+	at java.nio.file.Files.createDirectory(Files.java:674)
+	at java.nio.file.Files.createAndCheckIsDirectory(Files.java:781)
+	at java.nio.file.Files.createDirectories(Files.java:767)
+	at io.aetherit.kfashion.ws.service.FileStorageService.<init>(FileStorageService.java:30)
+	... 40 common frames omitted
+2020-07-03 21:37:15.543 8614 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on jangseong-yeol-ui-MacBookPro.local with PID 8614 (/Users/jangseong-yeol/kfashion.ws/target/classes started by jangseong-yeol in /Users/jangseong-yeol/kfashion.ws)
+2020-07-03 21:37:15.545 8614 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-07-03 21:37:15.545 8614 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-07-03 21:37:16.209 8614 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$14949675] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-03 21:37:16.475 8614 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-03 21:37:16.476 8614 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/jangseong-yeol/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-03 21:37:16.476 8614 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-07-03 21:37:16.488 8614 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-07-03 21:37:16.492 8614 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-03 21:37:16.493 8614 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-07-03 21:37:16.493 8614 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-03 21:37:16.537 8614 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-07-03 21:37:16.538 8614 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 967 ms
+2020-07-03 21:37:16.577 8614 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.10.110:3306/kfashion, user1
+2020-07-03 21:37:17.024 8614 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-07-03 21:37:17.036 8614 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-07-03 21:37:17.049 8614 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-03 21:37:17.050 8614 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-03 21:37:17.052 8614 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-07-03 21:37:17.174 8614 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200701_1736 #0
+2020-07-03 21:37:17.504 8614 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@288f173f, org.springframework.security.web.context.SecurityContextPersistenceFilter@326d27ac, org.springframework.security.web.header.HeaderWriterFilter@600f5704, org.springframework.security.web.authentication.logout.LogoutFilter@4afbb6c2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@313f8301, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7add838c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a22c4d8, org.springframework.security.web.session.SessionManagementFilter@78a0ff63, org.springframework.security.web.access.ExceptionTranslationFilter@49d831c2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3ac3f6f]
+2020-07-03 21:37:17.616 8614 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-03 21:37:17.810 8614 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-07-03 21:37:17.815 8614 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-07-03 21:37:17.873 8614 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-03 21:37:17.876 8614 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.601 seconds (JVM running for 2.977)
+2020-07-03 21:38:02.966 8614 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'

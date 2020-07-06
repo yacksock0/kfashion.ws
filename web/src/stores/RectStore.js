@@ -30,6 +30,12 @@ export default class RectStore {
     @action objGet = (obj) => {
         const objList = this.List.concat(obj);
         this.rectList = objList;
+        // this.rectList.push(this.NewRectLocation.workNo);
+        // this.rectList.push(this.NewRectLocation.rectNo);
+        // this.rectList.push(this.NewRectLocation.createdId);
+        // this.rectList.push(this.NewRectLocation.workStep);
+        console.log(this.rectList);
+
         // for(let i = 0; i < objList.length; i++){
         //     this.rectList.rectNo = objList[i].id;
         //     this.rectList.locationX = objList[i].left;
@@ -39,7 +45,6 @@ export default class RectStore {
         //     this.rectList.scaleX = objList[i].scaleX;
         //     this.rectList.scaleY = objList[i].scaleY;
         // }
-        // console.log("나다 이자식아22222222 : " +  this.rectList);
 
     }
 
@@ -53,7 +58,7 @@ export default class RectStore {
     }
 
     @action changeNewRectLocationRectNo = (rectNo) => {
-                this.NewRectLocation.rectNo =rectNo;
+        this.NewRectLocation.rectNo =rectNo;
     }
 
     @action changeNewRectLocationX = (locationX) => {
@@ -77,7 +82,7 @@ export default class RectStore {
     }
 
     @action changeNewRectLocationScaleY = (scaleY) => {
-                this.NewRectLocation.scaleY = scaleY;
+        this.NewRectLocation.scaleY = scaleY;
     }
 
 
@@ -91,6 +96,10 @@ export default class RectStore {
 
     @computed get isSignUpFailed() {
         return this.state === State.Fail;
+    }
+
+    @computed get isWorkStep() {
+        return this.NewRectLocation.workStep;
     }
 
 

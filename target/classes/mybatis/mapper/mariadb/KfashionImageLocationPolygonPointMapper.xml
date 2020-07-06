@@ -6,28 +6,36 @@
         <result property="rectNo"                   column="rect_no" />
         <result property="polyNo"                       column="poly_no" />
         <result property="no"                           column="no" />
-        <result property="locationX"                       column="location_X" />
-        <result property="locationY"                       column="location_Y" />
+        <result property="locationX"                       column="location_x" />
+        <result property="locationY"                       column="location_y" />
         <result property="locationSeq"                       column="location_seq" />
         <result property="createdDatetime"          column="created_datetime" />
         <result property="updatedDatetime"          column="updated_datetime" />
     </resultMap>
 
 
-    <insert id="" parameterType="KfashionImageLocationPolygon">
+    <insert id="insertLocationPolygonPoint" parameterType="KfashionImageLocationPolygon">
         INSERT
         INTO kfashion_image_location_polygon (
         work_no,
         work_step,
         rect_no,
+        poly_no,
         no,
+        location_x,
+        location_y,
+        location_seq,
         created_datetime,
         updated_datetime
         )VALUES(
         #{workNo},
         #{workStep},
         #{rectNo},
+        #{polyNo},
         #{no},
+        #{locationX},
+        #{locationY},
+        #{locationSeq},
         NOW(),
         NOW()
         )

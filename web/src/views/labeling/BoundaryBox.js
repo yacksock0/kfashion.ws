@@ -17,10 +17,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
 import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import AppBar from '@material-ui/core/AppBar';
-import ImageList from "./ImageList";
 
 
 const styles = theme => ({
@@ -107,23 +103,6 @@ const styles = theme => ({
         borderRadius: 12,
     },
 });
-function TabPanel(props) {
-    const { children, value, index } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-        >
-            {value === index && (
-                <Typography>{children}</Typography>
-            )}
-        </div>
-    );
-}
-
 
 
 @inject('fileUploadStore','imageStore','rectStore','authStore')
@@ -140,7 +119,6 @@ class BoundaryBox extends React.Component {
     y;
 
     state = {
-        value:0,
         winheight: 0,
         winwidth: 0
     }
@@ -151,14 +129,7 @@ class BoundaryBox extends React.Component {
         });
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width : 700,
-            height : 800,
-            originX: 'left',
-            originY: 'top'
-        });
+        this.canvas.setBackgroundImage(this.props.imageStore.isImgData);
 
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
@@ -288,40 +259,40 @@ class BoundaryBox extends React.Component {
     }
 
     submit = () => {
-        // let b =this.canvas.getObjects().count();
-        // console.log(b);
-        // let obj = [];
-        // let a = 0;
-        this.props.rectStore.objGet(this.canvas.getObjects());
-        console.log('this.canvas.getObjects():',this.canvas.getObjects())
+        let obj = [];
+
+        let a = 0;
+        // this.props.rectStore.objGet(this.canvas.getObjects());
         // this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
         // this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+        // this.props.rectStore.doRectLocationUp();
+        this.canvas.getObjects().forEach(function(o) {
+
+            obj = o;
+
+            a+=1;
+        })
+
+        const rectList = [];
+        for (let j =0; j < a ; j++){
+            let rect = {
+                rectNo : this.canvas.item(j).id,
+                locationX : this.canvas.item(j).left,
+                locationY : this.canvas.item(j).top,
+                locationWidth : this.canvas.item(j).width,
+                locationHeight : this.canvas.item(j).height,
+                scaleX: this.canvas.item(j).scaleX,
+                scaleY: this.canvas.item(j).scaleY,
+                createdId : this.props.authStore.loginUser.id,
+                workNo : this.props.imageStore.isWorkNo,
+                workStep : this.props.rectStore.isWorkStep,
+            };
+            rectList.push(rect);
+        }
+        this.props.rectStore.objGet(rectList);
         this.props.rectStore.doRectLocationUp();
-        // this.canvas.getObjects().forEach(function(o) {
-        //
-        //     obj = o;
-        //
-        //     a+=1;
-        // })
-
-
-    //     for (let j =0; j < a ; j++){
-    //
-    //         this.props.rectStore.changeNewRectLocationRectNo(this.canvas.item(j).id);
-    //         this.props.rectStore.changeNewRectLocationX(this.canvas.item(j).left);
-    //         this.props.rectStore.changeNewRectLocationY(this.canvas.item(j).top);
-    //         this.props.rectStore.changeNewRectLocationWidth(this.canvas.item(j).width);
-    //         this.props.rectStore.changeNewRectLocationHeight(this.canvas.item(j).height);
-    //         this.props.rectStore.changeNewRectLocationScaleX(this.canvas.item(j).scaleX);
-    //         this.props.rectStore.changeNewRectLocationScaleY(this.canvas.item(j).scaleY);
-    //         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-    //         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-    //     }
-    //     this.props.rectStore.doRectLocationUp();
     }
-    handleTabChange = (event, newValue) => {
-        this.setState({ value: newValue });
-    }
+
     render() {
         const { classes } = this.props;
         const { uploadFile} = this.props.fileUploadStore;
@@ -335,14 +306,11 @@ class BoundaryBox extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
+                            <div className={classes.mainContent}>
+                                <Typography variant="h4" component="h2">
+                                    영역 지정
+                                </Typography>
                                 <Paper className={classes.root}>
-                                    <AppBar position="static">
-                                        <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
-                                            <Tab label="영역지정" value={0} style={{minWidth:'50%'}}/>
-                                            <Tab label="이미지 리스트" value={1} style={{minWidth:'50%'}}/>
-                                        </Tabs>
-                                    </AppBar>
-                                    <TabPanel value={this.state.value} index={0}>
                                     <Table className={classes.table}>
                                         <TableHead>
                                             <TableRow>
@@ -458,16 +426,14 @@ class BoundaryBox extends React.Component {
                                             </TableRow>
                                         </TableBody>
                                     </Table>
+                                </Paper>
+                            </div>
+
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
                                     <Button onClick={this.submit} color={'#999999'}>submit </Button>
                                 </div>
                             </div>
-                                    </TabPanel>
-                                </Paper>
-                            <TabPanel value={this.state.value} index={1}>
-                                <ImageList />
-                            </TabPanel>
                         </Grid>
                     </Grid>
                 </div>

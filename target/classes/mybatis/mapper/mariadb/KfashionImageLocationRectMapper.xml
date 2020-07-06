@@ -44,5 +44,9 @@
         )
     </insert>
 
+    <select id="selectRectList" parameterType="KfashionImageLocationRect" resultMap="kfashionImageLocationRectResultMap" >
+
+    </select>
+
 
 </mapper>

@@ -24,14 +24,15 @@
     </insert>
 
     <select id="selectBoundaryList" resultMap="kfashionImageResultMap" parameterType="String">
-        SELECT
+        SELECT DISTINCT
         kfashion_image.work_no,
         kfashion_work.work_name,
         kfashion_work_history.created_id
         FROM kfashion_image
-        LEFT JOIN kfashion_work_history on kfashion_image.work_no = kfashion_work_history.work_no
+        LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        WHERE kfashion_work_history.created_id = #{createdId};
+        WHERE kfashion_work_history.created_id = #{createdId}
+        ORDER BY kfashion_image.work_no
     </select>
 
     <select id="getByteImage" parameterType="int" resultType="java.util.Map">

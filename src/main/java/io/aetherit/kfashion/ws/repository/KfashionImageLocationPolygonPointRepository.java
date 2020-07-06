@@ -14,4 +14,8 @@ public class KfashionImageLocationPolygonPointRepository {
     public KfashionImageLocationPolygonPointRepository(KfashionImageLocationPolygonPointMapper mapper) {
         this.mapper = mapper;
     }
+
+    public void insertLocationPolygonPoint(KfashionImageLocationPolygonPoint polygonPoint) {
+        mapper.insertLocationPolygonPoint(polygonPoint);
+    }
 }
