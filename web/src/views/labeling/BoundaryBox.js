@@ -138,6 +138,7 @@ class BoundaryBox extends React.Component {
     id = []
 
     state = {
+        imgData: './No_Picture.jpg' ,
         value:0,
         count:0,
         winheight: 0,
@@ -157,7 +158,7 @@ class BoundaryBox extends React.Component {
         })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+        this.canvas.setBackgroundImage(this.state.imgData, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
             width : 700,
@@ -454,9 +455,6 @@ class BoundaryBox extends React.Component {
                                             </TableRow>
                                         </TableBody>
                                     </Table>
-
-
-
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
                                     <Button onClick={this.submit} color={'#999999'}>submit </Button>
