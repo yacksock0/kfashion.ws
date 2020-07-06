@@ -149,6 +149,9 @@ class BoundaryBox extends React.Component {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
+        this.props.authStore.checkLogin();
+        const createdId = this.props.authStore.loginUser.id;
+        this.props.imageStore.LoadImage(createdId)
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
@@ -156,7 +159,14 @@ class BoundaryBox extends React.Component {
         })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas));
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
 
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
@@ -329,8 +339,8 @@ class BoundaryBox extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                            <canvas id="c" width= "600" height= "550"  >  </canvas>
+                        <Grid item xs={12} lg={5} style={{margin:"auto", display:"inline-block"}}>
+                            <canvas id="c"  width={600} height={650}>  </canvas>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>

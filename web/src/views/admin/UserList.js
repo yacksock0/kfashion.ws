@@ -28,6 +28,7 @@ const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
         width: '100%',
+        minWidth:'90%'
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -109,7 +110,6 @@ class UserList extends React.Component {
         const {groupUserList} = this.state.groupUserList;
         return (
             <Container component="main" className={classes.mainContainer}>
-                console
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid item xs={12} lg={12}>
@@ -151,7 +151,7 @@ class UserList extends React.Component {
                                   textAlign:"center"
                                 },
                                 /*padding:'dense',*/
-                                minBodyHeight: '35em',
+                                minBodyHeight: '77vh',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
                                     backgroundColor: '#01579b',
