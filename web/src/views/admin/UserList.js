@@ -28,7 +28,7 @@ const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
         width: '100%',
-        minWidth:'90%'
+        minWidth: '80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {

@@ -67,7 +67,6 @@ class ImageList extends React.Component {
     }
     render() {
         const {boundaryList} = this.state;
-        const {classes} = this.props;
         return (
                 <MaterialTable
                 icons={tableIcons}

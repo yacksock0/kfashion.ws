@@ -66,6 +66,9 @@ const styles = theme => ({
         float:'right',
 
     },
+    test:{
+        border: '1px solid black'
+    }
 });
 
 @inject('professionalLabelStore','authStore', 'imageStore')
@@ -110,7 +113,7 @@ class Step3 extends React.Component {
                             <Grid item xs={12} lg={6} style={{margin:"auto"}}>
                                 <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                             </Grid>
-                            <Grid container item xs={12} lg={6}>
+                            <Grid item xs={12} lg={6} >
                                 <AppBar position="static">
                                     <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example" >
                                         <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>
@@ -120,6 +123,8 @@ class Step3 extends React.Component {
                                         <Tab label="악세서리" value={4} style={{minWidth:'20%'}}/>
                                     </Tabs>
                                 </AppBar>
+                                <TabPanel value={this.state.value} index={0}>
+                                <Grid container item xs={12} lg={12}>
                             <Grid item xs={12} lg={6}>
                                 <div className={classes.content}>
                                     <Typography variant="h5" component="h5">
@@ -240,8 +245,9 @@ class Step3 extends React.Component {
                                         </div>
                                         <Silhouette />
                                     </div>
-
                                 </Grid>
+                                </Grid>
+                                </TabPanel>
                                 </Grid>
                             </Grid>
                     </div>

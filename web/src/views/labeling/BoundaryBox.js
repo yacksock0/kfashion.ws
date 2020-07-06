@@ -4,8 +4,8 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
-import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
-import {green, grey ,red} from "@material-ui/core/colors";
+import {Container, Typography, Button, Grid} from "@material-ui/core";
+import {grey} from "@material-ui/core/colors";
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
@@ -104,6 +104,10 @@ const styles = theme => ({
         border: 0,
         borderRadius: 12,
     },
+    __canvas:{
+        width:'100%',
+        height:'77vh',
+    },
 });
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -149,9 +153,6 @@ class BoundaryBox extends React.Component {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
-        this.props.authStore.checkLogin();
-        const createdId = this.props.authStore.loginUser.id;
-        this.props.imageStore.LoadImage(createdId)
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
@@ -339,8 +340,8 @@ class BoundaryBox extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} lg={5} style={{margin:"auto", display:"inline-block"}}>
-                            <canvas id="c"  width={600} height={650}>  </canvas>
+                        <Grid item xs={12} lg={5}>
+                            <canvas id="c" width={600} height={650}></canvas>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>

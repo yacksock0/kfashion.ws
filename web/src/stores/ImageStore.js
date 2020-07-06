@@ -16,23 +16,31 @@ const WorkNo = {
     workNo : '',
 }
 
-
+const BoundaryList ={
+    boundaryList:[],
+}
 export default class ImageStore {
     @observable state = State.Ready;
-    @observable workNo = {...WorkNo}
-
+    @observable workNo = {...WorkNo};
     @action changeWorkNo = (workNo) => {
         this.workNo = workNo;
+    }
+    @action changeBoundaryList=(boundaryList)=>{
+        console.log("changeBoundaryList", boundaryList)
+        this.boundaryList = boundaryList;
+    }
+    @action clearState = () => {
+        this.state = State.Ready;
     }
 
     @computed get isWorkNo() {
         return this.workNo;
     }
-
-
-    @action clearState = () => {
-        this.state = State.Ready;
+    @computed get isBoundaryList(){
+        console.log("isBoundaryList", this.boundaryList)
+        return this.boundaryList;
     }
+
     LoadImage = flow(function* loadImage(createdId) {
         try {
           const response = yield axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
