@@ -5,6 +5,8 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionLabelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class KfashionLabelRepository {
     private KfashionLabelMapper mapper;
@@ -20,5 +22,8 @@ public class KfashionLabelRepository {
 
     public void insertProfessionalLabel(KfashionLabel professional) {
         mapper.insertProfessionalLabel(professional);
+    }
+    public List<KfashionLabel> selectBasicLabelList(String createdId) {
+        return mapper.selectBasicLabelList(createdId);
     }
 }
