@@ -127,9 +127,17 @@ class BoundaryBox extends React.Component {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
+        this.props.authStore.checkLogin();
+        const createdId = this.props.authStore.loginUser.id;
+        this.props.imageStore.LoadImage(createdId)
+        this.setState({
+            boundaryList: this.props.imageStore.boundaryList,
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
+            workNo: this.props.imageStore.workNo
+        })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(this.props.imageStore.isImgData);
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas));
 
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
@@ -297,7 +305,7 @@ class BoundaryBox extends React.Component {
         const { classes } = this.props;
         const { uploadFile} = this.props.fileUploadStore;
         return (
-            <Container component="main" className={classes.mainContainer}>
+            <Container component="main" className={classes.mainContainer} style={{height:'97vh', border: '1px solid black'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
@@ -438,10 +446,6 @@ class BoundaryBox extends React.Component {
                     </Grid>
                 </div>
 
-
-                {/*Stepper*/}
-                <div style={{marginTop:70}}>
-                </div>
                 <div>
                     <hr></hr>
                     <Button

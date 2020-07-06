@@ -60,12 +60,12 @@ const styles = theme => ({
         padding:0,
     },
     buttonType1:{
-        width: 100,
-        marginRight: theme.spacing(2),
+        width: '100%',
+        height: 50,
     },
     buttonType2:{
-        width: 150,
-        float:'right',
+        width: '100%',
+        height: 50,
 
     },
     toolButton:{
@@ -168,7 +168,7 @@ class ImageUpload extends React.Component {
         const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;
         return (
-            <Container component="main" className={classes.mainContainer}>
+            <Container component="main" className={classes.mainContainer} style={{height:'100vh'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
@@ -181,12 +181,12 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={12} lg={6}>
                             <div style={{marginRight:15}}>
-                                <img src={this.state.imgData} style={{display:"block" , width:'100%', height:'100%'}}/>
+                                <img src={this.state.imgData} style={{display:"inline-block" , width:'100%', height:'77vh'}}/>
                             </div>
                         </Grid>
                         <Grid item xs={12} lg={6}>
                             <div>
-                            <MaterialTable
+                            <MaterialTable style={{height:'77vh'}}
                                 icons={tableIcons}
                                 columns={this.state.columns}
                                 data={boundaryList}
@@ -223,6 +223,8 @@ class ImageUpload extends React.Component {
                 </div>
                 <div>
                     <hr></hr>
+                    <Grid container>
+                        <Grid item xs={3} lg={1} style={{marginRight:10}}>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
@@ -231,6 +233,8 @@ class ImageUpload extends React.Component {
                          >
                         Previous
                     </Button>
+                        </Grid>
+                        <Grid item xs={3} lg={1}>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
@@ -239,6 +243,8 @@ class ImageUpload extends React.Component {
                          >
                         Next
                     </Button>
+                        </Grid>
+                        <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                     <Button
                         type="button"
                         className={classes.buttonType2}
@@ -248,6 +254,8 @@ class ImageUpload extends React.Component {
                         >
                         Next Step
                     </Button>
+                    </Grid>
+                    </Grid>
                 </div>
             </Container>
         );
