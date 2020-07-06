@@ -1,35 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <echo message="Set NAME = io.aetherit.kfashion.ws"/>
-  <echo message="Set VERSION = 1.0-SNAPSHOT"/>
-  <echo message="Set BUILD_ID = ${build.time}"/>
-  <echo message="Set BUILD_NUMBER = 0"/>
-  <echo message="Set SERVER-INFO = io.aetherit.kfashion.ws 1.0-SNAPSHOT"/>
-  <echo message="Updating InformationController.java"/>
-  <replaceregexp file="/Users/youngrackchoi/kfashion.ws/src/main/java/io/aetherit/kfashion/ws/controller/InformationController.java" byline="true">
-    <regexp pattern="public static final String NAME = &quot;[0-9A-Za-z\(\)\#\-\{\}$:_. ]*&quot;;"/>
-    <substitution expression="public static final String NAME = &quot;io.aetherit.kfashion.ws&quot;;"/>
-  </replaceregexp>
-  <replaceregexp file="/Users/youngrackchoi/kfashion.ws/src/main/java/io/aetherit/kfashion/ws/controller/InformationController.java" byline="true">
-    <regexp pattern="public static final String VERSION = &quot;[0-9A-Za-z\(\)\#\-\{\}$:_. ]*&quot;;"/>
-    <substitution expression="public static final String VERSION = &quot;1.0-SNAPSHOT&quot;;"/>
-  </replaceregexp>
-  <replaceregexp file="/Users/youngrackchoi/kfashion.ws/src/main/java/io/aetherit/kfashion/ws/controller/InformationController.java" byline="true">
-    <regexp pattern="public static final String BUILD_ID = &quot;[0-9A-Za-z\(\)\#\-\{\}$:_. ]*&quot;;"/>
-    <substitution expression="public static final String BUILD_ID = &quot;${build.time}&quot;;"/>
-  </replaceregexp>
-  <replaceregexp file="/Users/youngrackchoi/kfashion.ws/src/main/java/io/aetherit/kfashion/ws/controller/InformationController.java" byline="true">
-    <regexp pattern="public static final String BUILD_NUMBER = &quot;[0-9A-Za-z\(\)\#\-\{\}$:_. ]*&quot;;"/>
-    <substitution expression="public static final String BUILD_NUMBER = &quot;0&quot;;"/>
-  </replaceregexp>
-  <replaceregexp file="/Users/youngrackchoi/kfashion.ws/src/main/resources/application.properties" byline="true">
-    <regexp pattern="tbk.tomcat.server-info=[0-9A-Za-z\(\)\#\-\{\}$:_. ]*"/>
-    <substitution expression="tbk.tomcat.server-info=io.aetherit.kfashion.ws 1.0-SNAPSHOT"/>
-  </replaceregexp>
-  <replaceregexp file="/Users/youngrackchoi/kfashion.ws/src/main/resources/banner.txt" byline="true">
-    <regexp pattern="    :: [0-9A-Za-z\(\)\#\-\{\}$:_. ]* :: [0-9A-Za-z\(\)\#\-\{\}$:_. ]*"/>
-    <substitution expression="    :: kfashion.ws :: (v1.0-SNAPSHOT ${build.time} #0)"/>
-  </replaceregexp>
+  <copy todir="/Users/youngrackchoi/kfashion.ws/target/classes/static">
+    <fileset dir="/Users/youngrackchoi/kfashion.ws/web/build"/>
+  </copy>
 </target>
 </project>

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -17,11 +18,12 @@ public class KfashionImageLocationPolygonPoint {
     private int rectNo;
     private int polyNo;
     private int no;
-    private int locationX;
-    private int locationY;
+    private float locationX;
+    private float locationY;
     private int locationSeq;
     private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
+    private Object points;
 
 }
