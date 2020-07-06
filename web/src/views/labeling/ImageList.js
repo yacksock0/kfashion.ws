@@ -56,12 +56,19 @@ class ImageList extends React.Component {
     }
     componentDidMount() {
         this.props.authStore.checkLogin();
+        const createdId = this.props.authStore.loginUser.id;
 
+        axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
+            .then(response => {
+                this.setState({ boundaryList : response.data.boundaryList.filter(b =>b !==null)})
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
     render() {
         const {boundaryList} = this.state;
         const {classes} = this.props;
-
         return (
                 <MaterialTable
                 icons={tableIcons}

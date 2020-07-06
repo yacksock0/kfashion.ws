@@ -10,13 +10,15 @@ import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
-import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import AppBar from '@material-ui/core/AppBar';
+import ImageList from "./ImageList";
 
 
 const styles = theme => ({
@@ -103,6 +105,22 @@ const styles = theme => ({
         borderRadius: 12,
     },
 });
+function TabPanel(props) {
+    const { children, value, index } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+        >
+            {value === index && (
+                <Typography>{children}</Typography>
+            )}
+        </div>
+    );
+}
 
 
 @inject('fileUploadStore','imageStore','rectStore','authStore')
@@ -120,17 +138,17 @@ class BoundaryBox extends React.Component {
     id = []
 
     state = {
+        value:0,
         winheight: 0,
         winwidth: 0
     }
-
+    handleTabChange = (event, newValue) => {
+        this.setState({ value: newValue });
+    }
     componentDidMount() {
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
-        this.props.authStore.checkLogin();
-        const createdId = this.props.authStore.loginUser.id;
-        this.props.imageStore.LoadImage(createdId)
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
@@ -306,7 +324,6 @@ class BoundaryBox extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { uploadFile} = this.props.fileUploadStore;
         return (
             <Container component="main" className={classes.mainContainer} style={{height:'97vh', border: '1px solid black'}}>
                 <div className={classes.appBarSpacer} />
@@ -317,11 +334,14 @@ class BoundaryBox extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
-                            <div className={classes.mainContent}>
-                                <Typography variant="h4" component="h2">
-                                    영역 지정
-                                </Typography>
-                                <Paper className={classes.root}>
+                            <div className={classes.root}>
+                                <AppBar position="static">
+                                    <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
+                                        <Tab label="영역지정" value={0} style={{minWidth:'50%'}}/>
+                                        <Tab label="이미지 리스트" value={1} style={{minWidth:'50%'}}/>
+                                    </Tabs>
+                                </AppBar>
+                                <TabPanel value={this.state.value} index={0}>
                                     <Table className={classes.table}>
                                         <TableHead>
                                             <TableRow>
@@ -437,20 +457,25 @@ class BoundaryBox extends React.Component {
                                             </TableRow>
                                         </TableBody>
                                     </Table>
-                                </Paper>
-                            </div>
+
+
 
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
                                     <Button onClick={this.submit} color={'#999999'}>submit </Button>
                                 </div>
                             </div>
+                        </TabPanel>
+                            </div>
+                                <TabPanel value={this.state.value} index={1}>
+                                    <ImageList />
+                                </TabPanel>
                         </Grid>
                     </Grid>
                 </div>
 
                 <div>
-                    <hr></hr>S
+                    <hr></hr>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
