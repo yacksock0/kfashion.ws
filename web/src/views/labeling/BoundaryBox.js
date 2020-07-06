@@ -259,35 +259,38 @@ class BoundaryBox extends React.Component {
     }
 
     submit = () => {
-        // let b =this.canvas.getObjects().count();
-        // console.log(b);
-        // let obj = [];
-        // let a = 0;
-        this.props.rectStore.objGet(this.canvas.getObjects());
-        this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-        this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+        let obj = [];
+
+        let a = 0;
+        // this.props.rectStore.objGet(this.canvas.getObjects());
+        // this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+        // this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+        // this.props.rectStore.doRectLocationUp();
+        this.canvas.getObjects().forEach(function(o) {
+
+            obj = o;
+
+            a+=1;
+        })
+
+        const rectList = [];
+        for (let j =0; j < a ; j++){
+            let rect = {
+                rectNo : this.canvas.item(j).id,
+                locationX : this.canvas.item(j).left,
+                locationY : this.canvas.item(j).top,
+                locationWidth : this.canvas.item(j).width,
+                locationHeight : this.canvas.item(j).height,
+                scaleX: this.canvas.item(j).scaleX,
+                scaleY: this.canvas.item(j).scaleY,
+                createdId : this.props.authStore.loginUser.id,
+                workNo : this.props.imageStore.isWorkNo,
+                workStep : this.props.rectStore.isWorkStep,
+            };
+            rectList.push(rect);
+        }
+        this.props.rectStore.objGet(rectList);
         this.props.rectStore.doRectLocationUp();
-        // this.canvas.getObjects().forEach(function(o) {
-        //
-        //     obj = o;
-        //
-        //     a+=1;
-        // })
-
-
-    //     for (let j =0; j < a ; j++){
-    //
-    //         this.props.rectStore.changeNewRectLocationRectNo(this.canvas.item(j).id);
-    //         this.props.rectStore.changeNewRectLocationX(this.canvas.item(j).left);
-    //         this.props.rectStore.changeNewRectLocationY(this.canvas.item(j).top);
-    //         this.props.rectStore.changeNewRectLocationWidth(this.canvas.item(j).width);
-    //         this.props.rectStore.changeNewRectLocationHeight(this.canvas.item(j).height);
-    //         this.props.rectStore.changeNewRectLocationScaleX(this.canvas.item(j).scaleX);
-    //         this.props.rectStore.changeNewRectLocationScaleY(this.canvas.item(j).scaleY);
-    //         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-    //         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-    //     }
-    //     this.props.rectStore.doRectLocationUp();
     }
 
     render() {

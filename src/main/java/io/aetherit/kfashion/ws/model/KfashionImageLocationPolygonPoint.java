@@ -20,6 +20,7 @@ public class KfashionImageLocationPolygonPoint {
     private int locationX;
     private int locationY;
     private int locationSeq;
+    private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 

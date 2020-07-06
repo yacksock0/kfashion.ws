@@ -9,8 +9,10 @@ const State = {
 }
 
 const EmptyNewProfessionalLabel = {
-    workNo : 16,
+    workNo : 30,
     workStep : 5,
+    rectNo : 1,
+    polyNo : 1,
     createId : '',
     styleNoList: [],
     styleCategoryNoList: [],

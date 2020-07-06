@@ -16,7 +16,7 @@ public class KfashionWork {
 
     private Long no;
     private String workName;
-    private String workState;
+    private int workState;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 }

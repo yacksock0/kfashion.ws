@@ -9,8 +9,11 @@ const State = {
 }
 
 const EmptyNewBasicLabel= {
-    workNo : 23,
+    workNo : 52,
     workStep : 4,
+    rectNo : 1,
+    polyNo : 1,
+    no : 1,
     color: '',
     colorCategoryNo: '',
     sleeveLength: '',

@@ -31,6 +31,10 @@ public class KfashionLabelController {
         @PostMapping(value = "/basicLabel")
         public ResponseEntity<Object> basicLabel(HttpServletRequest httpServletRequest,
                                                  @RequestBody BasicLabel basicLabel) throws Exception{
+                KfashionWork work = new KfashionWork();
+                work.setNo(basicLabel.getWorkNo());
+                work.setWorkState(basicLabel.getWorkStep());
+
                 KfashionWorkHistory workHistory = new KfashionWorkHistory();
                 workHistory.setWorkNo(basicLabel.getWorkNo());
                 workHistory.setWorkStep(basicLabel.getWorkStep());
@@ -39,6 +43,8 @@ public class KfashionLabelController {
                 KfashionLabel basic = new KfashionLabel();
                 basic.setWorkNo(basicLabel.getWorkNo());
                 basic.setWorkStep(basicLabel.getWorkStep());
+                basic.setPolyNo(basicLabel.getPolyNo());
+                basic.setRectNo(basicLabel.getRectNo());
                 basic.setNo(1);
                 basic.setCategoryNo(basicLabel.getColor());
                 basic.setCategoryItemNo(basicLabel.getColorCategoryNo());
@@ -54,6 +60,9 @@ public class KfashionLabelController {
         @PostMapping(value = "/professionalLabel")
         public ResponseEntity<Object> professionalLabel(HttpServletRequest httpServletRequest,
                                       @RequestBody ProfessionalLabel professionalLabel) throws Exception {
+                KfashionWork work = new KfashionWork();
+                work.setNo(professionalLabel.getWorkNo());
+                work.setWorkState(professionalLabel.getWorkStep());
 
                 KfashionWorkHistory workHistory = new KfashionWorkHistory();
                 workHistory.setWorkNo(professionalLabel.getWorkNo());
@@ -63,6 +72,8 @@ public class KfashionLabelController {
                 KfashionLabel professional = new KfashionLabel();
                 professional.setWorkNo(professionalLabel.getWorkNo());
                 professional.setWorkStep(professionalLabel.getWorkStep());
+                professional.setPolyNo(professionalLabel.getPolyNo());
+                professional.setRectNo(professionalLabel.getRectNo());
                 professional.setNo(1);
                 professional.setCategoryNo(professionalLabel.getStyle());
                 professional.setCategoryItemNo(professionalLabel.getStyleCategoryNo());
