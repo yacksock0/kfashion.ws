@@ -25,9 +25,9 @@
     </insert>
 
     <update id="updateWork" parameterType="KfashionWork">
-        update kfashion_work
-        set work_state=${workState}
-        where no = ${no}
+        UPDATE kfashion_work
+        SET work_state=${workState}
+        WHERE NO = ${no}
 
     </update>
 
@@ -36,6 +36,7 @@
         FROM kfashion_work
         WHERE work_name=#{work_name}
     </select>
+
 
 
 </mapper>
