@@ -19685,3 +19685,15 @@ Caused by: java.net.SocketTimeoutException: connect timed out
 	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connect(AbstractConnectProtocol.java:409)
 	at org.mariadb.jdbc.internal.protocol.AbstractConnectProtocol.connectWithoutProxy(AbstractConnectProtocol.java:1128)
 	... 14 common frames omitted
+2020-07-07 02:37:07.575 9694 [-8080-exec-8] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-07T02:37:07.575, code=Unknown, status=500, error=Internal Server Error, message=nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30003ms.
+### The error may exist in mybatis/mapper/mariadb/KfashionImageMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionImageMapper.getByteImage
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30003ms., path=/api/v1/kfashion/img/getByteImage?workNo=78)
+2020-07-07 02:37:08.900 9694 [-8080-exec-9] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-07T02:37:08.900, code=Unknown, status=500, error=Internal Server Error, message=nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30006ms.
+### The error may exist in mybatis/mapper/mariadb/KfashionImageMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionImageMapper.getByteImage
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30006ms., path=/api/v1/kfashion/img/getByteImage?workNo=82)
