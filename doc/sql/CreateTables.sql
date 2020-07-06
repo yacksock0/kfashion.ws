@@ -52,4 +52,3 @@ CREATE TABLE kfashion_user_info (
     CONSTRAINT fk_kfashion_user_info_group_no 		FOREIGN KEY (group_no)
 													REFERENCES 	kfashion_user_group (no)
 );
-​

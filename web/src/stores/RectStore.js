@@ -101,9 +101,9 @@ export default class RectStore {
             // this.rectList.push(this.NewRectLocation.workNo);
             // this.rectList.push(this.NewRectLocation.workStep);
             // this.rectList.push(this.NewRectLocation.createdId);
-            const param = this.rectList;
+            const param = toJS(this.rectList);
 
-            console.log(param);
+            console.log('param: ',param);
 
 
             const resp = yield axios.post('/api/v1/kfashion/rect/location', param);

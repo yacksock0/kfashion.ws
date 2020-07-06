@@ -67,7 +67,7 @@ const styles = theme => ({
     },
 });
 
-@inject('professionalLabelStore','authStore')
+@inject('professionalLabelStore','authStore', 'imageStore')
 @observer
 class Step3 extends React.Component {
     constructor(props) {
@@ -84,6 +84,9 @@ class Step3 extends React.Component {
         this.props.enqueueSnackbar("Step3", {
             variant: 'info'
         });
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+        })
     }
 
     handleClickSubmit = () => {
@@ -103,7 +106,7 @@ class Step3 extends React.Component {
                     <div className={classes.mainContent}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                                <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block" , width:'100%', height:'100%'}}></img>
+                                <img src={this.state.imgData} alt="" style={{display:"block" , width:'100%', height:'100%'}}></img>
                             </Grid>
                             <Grid container item xs={12} lg={6}>
                                 <AppBar position="static">

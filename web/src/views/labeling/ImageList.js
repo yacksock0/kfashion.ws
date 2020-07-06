@@ -1,7 +1,4 @@
 import React, {forwardRef} from "react";
-import {withSnackbar} from "notistack";
-import {withRouter} from "react-router-dom";
-import {withStyles} from "@material-ui/core/styles";
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -40,66 +37,7 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
-const styles = theme => ({
-    mainContainer: {
-        flexGrow: 1,
-        maxWidth:'100%',
-    },
-    appBarSpacer: theme.mixins.toolbar,
-    mainContent: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    toolbar: {
-        width: '100%',
-        padding:0,
-    },
-    buttonType1:{
-        width: 100,
-        marginRight: theme.spacing(2),
-    },
-    buttonType2:{
-        width: 150,
-        float:'right',
 
-    },
-    toolButton:{
-        border:'1px solid black',
-        height:50,
-        width:'100%',
-    },
-    test:{
-        border:'1px solid black',
-        height: '50%',
-    },
-    toolBox:{
-        border:'1px solid black',
-        marginRight: 1,
-        height:'100%',
-    },
-    fileText: {
-        paddingTop: 32,
-        paddingRight: theme.spacing(2),
-        textAlign: 'left'
-
-    },
-    fileSelection: {
-        position: 'absolute',
-        width: 1,
-        height: 1,
-        padding: 0,
-        margin: -1,
-        overflow: 'hidden',
-        clip: 'rect(0,0,0,0)',
-        border: 0,
-        borderRadius: 12,
-    },
-    imgLayout:{
-        maxWidth: 600,
-        maxHeight: 600,
-    }
-});
 @inject('fileUploadStore','authStore')
 @observer
 class ImageList extends React.Component {
@@ -118,56 +56,44 @@ class ImageList extends React.Component {
     }
     componentDidMount() {
         this.props.authStore.checkLogin();
-        const createdId = this.props.authStore.loginUser.id;
 
-        axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
-            .then(response => {
-                this.setState({ boundaryList : response.data.boundaryList.filter(b =>b !==null)})
-            })
-            .catch(error => {
-                console.log(error)
-            })
     }
     render() {
         const {boundaryList} = this.state;
         const {classes} = this.props;
+
         return (
-            <div>
-            <hr/>
-
-                            <MaterialTable
-                                icons={tableIcons}
-                                columns={this.state.columns}
-                                data={boundaryList}
-                                title="이미지 리스트"
-                                editable={{
-                                    onRowDelete: oldData =>
-                                        new Promise((resolve, reject) => {
-                                            setTimeout(() => {
-                                                {
-                                                    let data = this.state.data;
-                                                    const index = data.indexOf(oldData);
-                                                    data.splice(index, 1);
-                                                    this.setState({ data }, () => resolve());
-                                                }
-                                                resolve();
-                                            }, 1000);
-                                        }),
-                                }}
-                                actions={[
-                                    {
-                                        icon: Edit,
-                                        tooltip: 'Select Image',
-                                        onClick: (event, rowData) => {
-                                            this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                                            console.log(rowData);
-                                        }
-                                    }
-                                ]}
-
-                            />
-            </div>
+                <MaterialTable
+                icons={tableIcons}
+                columns={this.state.columns}
+                data={boundaryList}
+                title="이미지 리스트"
+                editable={{
+                    onRowDelete: oldData =>
+                    new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                    {
+                    let data = this.state.data;
+                    const index = data.indexOf(oldData);
+                    data.splice(index, 1);
+                    this.setState({ data }, () => resolve());
+                    }
+                    resolve();
+                    }, 1000);
+                    }),
+                    }}
+                    actions={[
+                        {
+                        icon: Edit,
+                        tooltip: 'Select Image',
+                        onClick: (event, rowData) => {
+                        this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
+                        console.log(rowData);
+                        }
+                     }
+                    ]}
+                />
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(styles) (ImageList)));
+export default ImageList;
