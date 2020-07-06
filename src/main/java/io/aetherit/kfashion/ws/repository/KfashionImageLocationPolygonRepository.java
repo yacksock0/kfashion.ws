@@ -14,7 +14,9 @@ public class KfashionImageLocationPolygonRepository {
         this.mapper = mapper;
     }
 
-    public void insertLocationPolygon(KfashionImageLocationPolygon polygon) {
+    public String insertLocationPolygon(KfashionImageLocationPolygon polygon) {
+        String msg="";
         mapper.insertLocationPolygon(polygon);
+        return msg;
     }
 }
