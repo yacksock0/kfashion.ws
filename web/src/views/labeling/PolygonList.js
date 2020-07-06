@@ -38,7 +38,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore')
+@inject('fileUploadStore','authStore','imageStore')
 @observer
  class PolygonList extends React.Component {
     constructor(props) {
@@ -93,7 +93,7 @@ const tableIcons = {
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => {
                             this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                            console.log(rowData);
+                            this.props.imageStore.changeWorkNo(rowData.workNo);
                         }
                     }
                 ]}

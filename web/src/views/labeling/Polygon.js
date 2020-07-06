@@ -125,7 +125,7 @@ const styles = theme => ({
 @observer
 class Polygon extends React.Component {
     state = {
-        value:0,
+        value:1,
         finishbtn : false,
         buttonDis1 : false,
         buttonDis2 : false,
@@ -172,17 +172,13 @@ class Polygon extends React.Component {
         this.props.enqueueSnackbar("Polygon Work", {
             variant: 'info'
         });
+        this.setState({
+            boundaryList: this.props.imageStore.boundaryList,
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+        })
 
         // canvas Drawing
-        this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width : 700,
-            height : 800,
-            originX: 'left',
-            originY: 'top'
-        });
+
 
         this.canvas.on('selection:created', function (e) {
             const asd = e.target;
@@ -433,6 +429,16 @@ class Polygon extends React.Component {
     }
     render() {
         const { classes } = this.props;
+        const {workNo} = this.props.imageStore;
+        this.canvas = new fabric.Canvas('c');
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
