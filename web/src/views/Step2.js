@@ -81,6 +81,7 @@ class Step2 extends React.Component {
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
+        this.props.basicLabelStore.changeNewBasicLabelWorkNo(this.props.imageStore.isWorkNo);
     }
 
     handleClickOK = () => {

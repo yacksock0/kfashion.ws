@@ -9,7 +9,7 @@ const State = {
 }
 
 const EmptyNewProfessionalLabel = {
-    workNo : 60,
+    workNo : '',
     workStep : 5,
     rectNo : 1,
     polyNo : 1,
@@ -111,6 +111,10 @@ export default class ProfessionalLabelStore {
 
     @action changeNewProfessionalLabelCreatedId = (createdId) => {
         this.newProfessionalLabel.createdId = createdId;
+    }
+
+    @action changeNewProfessionalLabelWorkNo = (workNo) => {
+        this.newProfessionalLabel.workNo = workNo;
     }
 
     @computed get isPending() {

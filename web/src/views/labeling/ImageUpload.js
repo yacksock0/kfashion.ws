@@ -128,17 +128,17 @@ class ImageUpload extends React.Component {
     componentDidMount() {
         this.props.enqueueSnackbar("Image Upload", {
             variant: 'info'
-        });
-        this.props.authStore.checkLogin();
-        const createdId = this.props.authStore.loginUser.id;
+        })
+        const createdId = this.props.authStore.isUserId;
         this.props.imageStore.LoadImage(createdId)
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
             workNo: this.props.imageStore.workNo
         })
-
     }
+
+
     handlePrevious(){
         this.setState({
             count: this.state.count-1

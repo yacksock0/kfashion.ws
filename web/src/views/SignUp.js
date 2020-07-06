@@ -16,6 +16,7 @@ import {
     Typography
 } from "@material-ui/core";
 import ErrorIcon from "@material-ui/icons/Error";
+import axios from "axios";
 
 
 
@@ -140,7 +141,7 @@ class SignUp extends React.Component {
         }
 
         if(this.props.signUpStore.isNotAvailableEmail) {
-            this.props.enqueueSnackbar('이미 존재하는 이메일 혹은 아이디 입니다.', {
+            this.props.enqueueSnackbar('이미 사용중인 이메일 입니다.', {
                 variant: 'error'
             });
 

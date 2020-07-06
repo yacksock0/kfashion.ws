@@ -1,4 +1,4 @@
-import {action, flow, observable} from "mobx";
+import {action, computed, flow, observable} from "mobx";
 import axios from "axios";
 
 export const State = {
@@ -75,6 +75,10 @@ export default class AuthStore {
         //     this.doLogout();
         // }
     };
+
+    @computed get isUserId() {
+       return this.loginUser.id;
+    }
 
     @action invalidateLogin = () => {
         this.login = Object.assign({}, EmptyLogin);
