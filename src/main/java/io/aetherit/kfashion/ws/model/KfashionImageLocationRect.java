@@ -19,12 +19,12 @@ public class KfashionImageLocationRect {
     private Long workNo;
     private int workStep;
     private int rectNo;
-    private int locationX;
-    private int locationY;
+    private float locationX;
+    private float locationY;
     private int locationWidth;
     private int locationHeight;
-    private Double scaleX;
-    private Double scaleY;
+    private float scaleX;
+    private float scaleY;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 

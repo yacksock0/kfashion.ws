@@ -36,16 +36,6 @@ const styles = theme => ({
     table: {
         minWidth: 500,
     },
-    // --START Test
-    fab: {
-        margin: theme.spacing(2),
-    },
-    absolute: {
-        position: 'absolute',
-        bottom: theme.spacing(2),
-        right: theme.spacing(3),
-    },
-    // --END Test
 
     mainContainer: {
         flexGrow: 1,
@@ -92,7 +82,6 @@ const styles = theme => ({
         paddingTop: 32,
         paddingRight: theme.spacing(2),
         textAlign: 'left'
-
     },
     filebox: {
         paddingTop: 35,
@@ -116,10 +105,14 @@ const styles = theme => ({
     },
 });
 
-@inject('fileUploadStore','imageStore')
+
+
+
+@inject('fileUploadStore','imageStore', 'polygonStore','authStore')
 @observer
 class Polygon extends React.Component {
     state = {
+        finishbtn : false,
         buttonDis1 : false,
         buttonDis2 : false,
         buttonDis3 : false,
@@ -131,18 +124,31 @@ class Polygon extends React.Component {
     save3 = false;
     save4 = false;
     save5 = false;
+    polygonIndex = 0;
+    polygon = [{
+        polyNo : '',
+        points: [{
+            index : 0,
+            x: 0,
+            y: 0,
+        }
+        ]
 
-    polyNo;
+    }];
+
     canvas;
+    polyNo;
+    polyPointX = [];
+    polyPointY = [];
+
     x;
     y;
     lineTwoPoint=[];
-    polyPointX = [];
-    polyPointY = [];
     lineCounter = 0;
     polyCounter = 0;
     onOff = '';
     onOff2 = 1;
+    i=0;
 
     componentDidMount() {
         this.props.enqueueSnackbar("Polygon Work", {
@@ -151,14 +157,14 @@ class Polygon extends React.Component {
 
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width : 700,
-            height : 800,
-            originX: 'left',
-            originY: 'top'
-        });
+        // this.canvas.setBackgroundImage(this.props.imageStore.isImgData, this.canvas.renderAll.bind(this.canvas), {
+        //     left: 25,
+        //     top: 25,
+        //     width : 700,
+        //     height : 800,
+        //     originX: 'left',
+        //     originY: 'top'
+        // });
 
         this.canvas.on('selection:created', function (e) {
             const asd = e.target;
@@ -170,10 +176,16 @@ class Polygon extends React.Component {
 
         this.canvas.on('mouse:down', (e) => {
             console.log('polyNo : ' + this.polyNo);
+
+            // if (this.polyNo ==  ){
+            //
+            // }
             if (this.onOff == 'lineUse') {
                 this.canvas.selection = false;
                 this.polyPointX[this.polyCounter] = e.pointer.x;
                 this.polyPointY[this.polyCounter] = e.pointer.y;
+
+
                 this.lineTwoPoint = [this.x, this.y, e.pointer.x, e.pointer.y];
                 this.x = e.pointer.x;
                 this.y = e.pointer.y;
@@ -193,7 +205,6 @@ class Polygon extends React.Component {
                 this.canvas.renderAll();
                 this.polyCounter += 1;
             }
-
             console.log(this.polyPointX);
             console.log(this.polyPointY);
         });
@@ -239,45 +250,10 @@ class Polygon extends React.Component {
             }
             this.canvas.selection = true;
         });
-
-        // this.canvas.on('mouse:down', (options) => {
-        //
-        //     if (this.drawingObject.type === "roof") {
-        //         console.log("if?");
-        //         this.canvas.selection = false;
-        //         this.setStartingPoint(options); // set x,y
-        //         this.roofPoints.push(this.Point(this.x, this.y));
-        //         let points = [this.x, this.y, this.x, this.y];
-        //         this.lines.push(new fabric.Line(points, {
-        //             strokeWidth: 3,
-        //             selectable: false,
-        //             stroke: 'red'
-        //         }).set('originX', this.x).set('originY', this.y));
-        //             // .setOriginX(this.x).setOriginY(toString(this.y)));
-        //
-        //
-        //         this.canvas.add(this.lines[this.lineCounter]);
-        //         this.lineCounter++;
-        //         this.canvas.on('mouse:up', (options) =>{
-        //             this.canvas.selection = true;
-        //             this.canvas.renderAll();
-        //         });
-        //     }
-        // });
-        // this.canvas.on('mouse:move', function (options) {
-        //     if (this.lines[0] != null && this.lines[0] != undefined && this.drawingObject.type == "roof") {
-        //         this.setStartingPoint(options);
-        //         this.lines[this.lineCounter - 1].set({
-        //             x2: this.x,
-        //             y2: this.y
-        //         });
-        //         this.canvas.renderAll();
-        //     }
-        // });
     }
 
-
     startPoly = (polyNo) => {
+        // this.polygonIndex +=1;
         this.onOff = 'lineUse';
         this.polyNo = polyNo;
 
@@ -295,7 +271,7 @@ class Polygon extends React.Component {
             case 3 : console.log('3');this.setState({buttonDis3: false}); break;
             case 4 : console.log('4');this.setState({buttonDis4: false}); break;
             case 5 : console.log('5');this.setState({buttonDis5: false}); break;
-         }
+        }
     }
 
     deleteOne = () => {
@@ -317,8 +293,6 @@ class Polygon extends React.Component {
         this.lineCounter -=1;
         this.polyPointX[this.polyCounter] = 0;
         this.polyPointY[this.polyCounter] = 0;
-
-
     }
 
     deleteAll = (b) =>{
@@ -330,21 +304,19 @@ class Polygon extends React.Component {
             this.canvas.remove(objList[i]);
         }
 
-
-
         if( b != -1) {
+            console.log(b);
             this.x = 0;
             this.y = 0;
             this.polyCounter =0;
             this.lineCounter =0;
             this.polyPointX.length =0;
             this.polyPointY.length =0;
-           this.buttonState();
+            this.buttonState();
         }
     }
 
     buttonState = () => {
-        console.log("왜안나와?");
         this.setState({
             buttonDis1: this.save1,
             buttonDis2: this.save2,
@@ -353,8 +325,8 @@ class Polygon extends React.Component {
             buttonDis5: this.save5,
         });
     }
-    finishPath = () => {
 
+    finishPath = () => {
 
         if(this.canvas.getObjects().length !=0) {
             console.log("여기는 피니시");
@@ -367,35 +339,82 @@ class Polygon extends React.Component {
             let path = new fabric.Path(makePath);
             this.deleteAll(-1);
             this.canvas.add(path);
+            this.state.finishbtn = true;
         }else{
             alert("입력된 polygon이 존재하지 않습니다.");
         }
     }
 
-    submit = (polyNo) => {
-        console.log(this.polyNo);
-        console.log(this.polyPointX);
-        console.log(this.polyPointY);
-        console.log(this.canvas.getObjects().length);
-        console.log(this.canvas.getObjects());
+    poly = [];
+    polyX = [];
+    polyY = [];
+    doSave = (newPolyNo) => {
+
+        const newPolygon = {
+            polyNo:'',
+            points: [{
+            }],
+        };
+
+        console.log(newPolyNo);
+        console.log(this.i);
+        if(this.state.finishbtn) {
+            if (this.canvas.getObjects().length != 0) {
+                newPolygon.polyNo = newPolyNo;
+                for(let i in this.polyPointX) {
+                    const x = this.polyPointX[i];
+                    const y = this.polyPointY[i];
+
+                    newPolygon.points.push({x: x, y: y});
+                }
+                this.polygon.push(newPolygon);
 
 
-        if(this.canvas.getObjects().length !=0){
-            switch (polyNo) {
-                case 1 : console.log('1');this.save1 = true; break;
-                case 2 : console.log('2');this.save2 = true; break;
-                case 3 : console.log('3');this.save3 = true; break;
-                case 4 : console.log('4');this.save4 = true; break;
-                case 5 : console.log('5');this.save5 = true; break;
+                this.deleteAll(newPolyNo);
+                console.log(this.polygon);
+
+                switch (newPolyNo) {
+                    case 1 :
+                        console.log('1');
+                        this.save1 = true;
+                        break;
+                    case 2 :
+                        console.log('2');
+                        this.save2 = true;
+                        break;
+                    case 3 :
+                        console.log('3');
+                        this.save3 = true;
+                        break;
+                    case 4 :
+                        console.log('4');
+                        this.save4 = true;
+                        break;
+                    case 5 :
+                        console.log('5');
+                        this.save5 = true;
+                        break;
+                }
+                this.buttonState();
+
+            } else {
+                alert("입력된 polygon이 존재하지 않습니다.");
             }
-            this.buttonState();
+            this.state.finishbtn = false;
         }else{
-            alert("입력된 polygon이 존재하지 않습니다.");
+            alert("finish를 눌러 작업을 마무리 하세요.");
         }
-
     }
 
 
+    submit = () =>{
+
+        this.props.polygonStore.objGet(this.polygon);
+        this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.loginUser.id);
+        this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
+        this.props.polygonStore.doPolygonLocationUp();
+
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -482,7 +501,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.submit(1) }
+                                                        onClick={() => this.doSave(1) }
                                                         startIcon={<SaveIcon />}
                                                         disabled={this.state.buttonDis1}>
                                                         save
@@ -540,7 +559,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.submit(2) }
+                                                        onClick={() => this.doSave(2) }
                                                         disabled={this.state.buttonDis2}>
                                                         save
                                                     </Button>
@@ -597,7 +616,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.submit(3) }
+                                                        onClick={() => this.doSave(3) }
                                                         disabled={this.state.buttonDis3} >
                                                         save
                                                     </Button>
@@ -654,7 +673,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.submit(4) }
+                                                        onClick={() => this.doSave(4) }
                                                         disabled={this.state.buttonDis4}>
                                                         save
                                                     </Button>
@@ -711,7 +730,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.submit(5) }
+                                                        onClick={() => this.doSave(5) }
                                                         disabled={this.state.buttonDis5}>
                                                         save
                                                     </Button>
@@ -725,7 +744,7 @@ class Polygon extends React.Component {
 
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
-                                    <Button onClick={this.submit} color={'#999999'}>submit </Button>
+                                    <Button onClick={() => this.submit()} color={'#999999'}>submit </Button>
                                 </div>
                             </div>
 

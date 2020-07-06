@@ -10,6 +10,7 @@ import BasicLabelStore from "./BasicLabelStore";
 import UserListStore from "./UserListStore";
 import ImageStore from "./ImageStore";
 import RectStore from "./RectStore";
+import PolygonStore from "./PolygonStore";
 
 
 export const stores = {
@@ -25,4 +26,5 @@ export const stores = {
     userListStore: new UserListStore(),
     imageStore : new ImageStore(),
     rectStore : new RectStore(),
+    polygonStore :  new PolygonStore(),
 };

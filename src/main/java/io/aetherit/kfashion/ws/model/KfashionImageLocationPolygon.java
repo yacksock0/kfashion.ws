@@ -19,4 +19,5 @@ public class KfashionImageLocationPolygon {
     private int no;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
+
 }
