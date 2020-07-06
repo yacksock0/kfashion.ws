@@ -28,24 +28,8 @@ export default class RectStore {
     @observable rectList= [];
 
     @action objGet = (obj) => {
-        const objList = this.List.concat(obj);
-        this.rectList = objList;
-        // this.rectList.push(this.NewRectLocation.workNo);
-        // this.rectList.push(this.NewRectLocation.rectNo);
-        // this.rectList.push(this.NewRectLocation.createdId);
-        // this.rectList.push(this.NewRectLocation.workStep);
-        console.log(this.rectList);
-
-        // for(let i = 0; i < objList.length; i++){
-        //     this.rectList.rectNo = objList[i].id;
-        //     this.rectList.locationX = objList[i].left;
-        //     this.rectList.locationY = objList[i].top;
-        //     this.rectList.locationWidth = objList[i].width;
-        //     this.rectList.locationHeight = objList[i].height;
-        //     this.rectList.scaleX = objList[i].scaleX;
-        //     this.rectList.scaleY = objList[i].scaleY;
-        // }
-
+        console.log(obj);
+        this.rectList = obj;
     }
 
 
@@ -98,10 +82,6 @@ export default class RectStore {
         return this.state === State.Fail;
     }
 
-    @computed get isWorkStep() {
-        return this.NewRectLocation.workStep;
-    }
-
 
 
     doRectLocationUp = flow(function* doRectLocationUp(doAction) {
@@ -110,12 +90,27 @@ export default class RectStore {
             // this.rectList.push(this.NewRectLocation.workNo);
             // this.rectList.push(this.NewRectLocation.workStep);
             // this.rectList.push(this.NewRectLocation.createdId);
-            const param = toJS(this.rectList);
+            // const param = this.rectList;
+            //
+            // console.log(param);
 
-            console.log('param: ',param);
+            const kfashionRectList = this.rectList.map(r => ({
+                id: r.id,
+                left: r.left,
+                top: r.top,
+                width: r.width,
+                height: r.height,
+                scaleX: r.scaleX,
+                scaleY: r.scaleY,
 
+                createdId : this.NewRectLocation.createdId,
+                workNo :this.NewRectLocation.workNo,
+                workStep : this.NewRectLocation.workStep
 
-            const resp = yield axios.post('/api/v1/kfashion/rect/location', param);
+            }));
+            console.log(kfashionRectList);
+
+            const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList);
             if (resp.status === 200) {
                 this.state = State.Success;
                 if (doAction !== undefined) doAction();
