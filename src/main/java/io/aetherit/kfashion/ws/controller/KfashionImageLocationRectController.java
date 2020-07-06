@@ -30,6 +30,14 @@ public class KfashionImageLocationRectController {
             this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         }
 
+    /**
+     * 렉트 인서트
+     * @param httpServletRequest
+     * @param rectList
+     * @return String
+     * @throws Exception
+     */
+
     @PostMapping(value="/location")
     public ResponseEntity<String> insertLocationRect(HttpServletRequest httpServletRequest,
                                                         @RequestBody List<KfashionImageLocationRect> rectList
@@ -61,6 +69,14 @@ public class KfashionImageLocationRectController {
               }
         return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
+
+    /**
+     * 렉트 리스트
+     * @param rectNo
+     * @param workNo
+     * @return rectList
+     * @throws Exception
+     */
 
     @GetMapping(value = "/rectList")
     public ResponseEntity<Object> selectRectList(@RequestParam(value ="workNo") Long workNo,
