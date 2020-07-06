@@ -109,7 +109,7 @@ export default class AdminVerify extends React.Component {
                     options={{
                         sorting: false,
                         /*padding:'dense',*/
-                        minBodyHeight: '35em',
+                        minBodyHeight: '70vh',
                         selection: true,
                         actionsColumnIndex: -1,
                         headerStyle: {

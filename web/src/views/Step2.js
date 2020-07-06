@@ -31,6 +31,7 @@ function TabPanel(props) {
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -113,7 +114,7 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                         <img src={this.state.imgData} alt="" style={{display:"block" , width:'100%', height:'100%'}}></img>
+                         <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
                                  <AppBar position="static">

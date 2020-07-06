@@ -61,8 +61,8 @@ export default class PolygonStore {
                 polyNo: r.polyNo,
                 points : r.points,
             }));
-            console.log("1111111 : "+kfashionPolygonList[1].rectNo);
-
+            console.log("1111111 : "+kfashionPolygonList);
+            console.log("1111111 : "+this.workNo);
             const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
             if (resp.status === 200) {
                 this.state = State.Success;

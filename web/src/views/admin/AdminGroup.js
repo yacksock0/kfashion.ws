@@ -10,6 +10,7 @@ const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
         width: '100%',
+        minWidth: '80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -31,12 +32,11 @@ class AdminGroup extends React.Component {
 
     render() {
         const { classes } = this.props;
-
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
-                <Grid item xs={12} lg={12}>
+                <Grid item xs={12}>
                     <AdminVerify />
                 </Grid>
                 <CreateGroupDialog />

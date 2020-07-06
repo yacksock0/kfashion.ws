@@ -138,7 +138,6 @@ class ImageUpload extends React.Component {
         })
     }
 
-
     handlePrevious(){
         this.setState({
             count: this.state.count-1
@@ -164,6 +163,7 @@ class ImageUpload extends React.Component {
             workNo: this.props.imageStore.workNo
         })
     }
+
     render() {
         const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;

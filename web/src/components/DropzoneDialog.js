@@ -51,6 +51,8 @@ class DropzoneDialogExample extends Component {
         });
         const userId=this.props.authStore.isUserId;
         this.props.fileUploadStore.fileupload(file,userId);
+        this.props.imageStore.LoadImage(userId)
+        this.props.imageStore.changeBoundaryList();
     }
 
     handleOpen() {
@@ -58,7 +60,6 @@ class DropzoneDialogExample extends Component {
             open: true,
         });
     }
-
     render() {
         const { classes } = this.props;
         return (

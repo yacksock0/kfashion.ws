@@ -5,11 +5,8 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 
 import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
-import {green, grey ,red} from "@material-ui/core/colors";
-import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 
 import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -19,13 +16,28 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import {ArrowLeftIcon} from "@material-ui/pickers/_shared/icons/ArrowLeftIcon";
-import {KeyboardIcon} from "@material-ui/pickers/_shared/icons/KeyboardIcon";
-import {TimeIcon} from "@material-ui/pickers/_shared/icons/TimeIcon";
-import {DateRangeIcon} from "@material-ui/pickers/_shared/icons/DateRangeIcon";
 import SaveIcon from '@material-ui/icons/Save';
 import {inject, observer} from "mobx-react";
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import AppBar from '@material-ui/core/AppBar';
 
+function TabPanel(props) {
+    const { children, value, index } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+        >
+            {value === index && (
+                <Typography>{children}</Typography>
+            )}
+        </div>
+    );
+}
 
 const styles = theme => ({
     root: {
@@ -112,6 +124,7 @@ const styles = theme => ({
 @observer
 class Polygon extends React.Component {
     state = {
+        value:0,
         finishbtn : false,
         buttonDis1 : false,
         buttonDis2 : false,
@@ -149,6 +162,10 @@ class Polygon extends React.Component {
     onOff = '';
     onOff2 = 1;
     i=0;
+
+    handleTabChange = (event, newValue) => {
+        this.setState({ value: newValue });
+    }
 
     componentDidMount() {
         this.props.enqueueSnackbar("Polygon Work", {
@@ -408,12 +425,10 @@ class Polygon extends React.Component {
 
 
     submit = () =>{
-
         this.props.polygonStore.objGet(this.polygon);
-        this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.loginUser.id);
+        this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
         this.props.polygonStore.doPolygonLocationUp();
-
     }
     render() {
         const { classes } = this.props;
@@ -430,11 +445,14 @@ class Polygon extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
+                        <AppBar position="static">
+                            <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
+                                <Tab label="영역지정" value={0} style={{minWidth:'50%'}}/>
+                                <Tab label="이미지 리스트" value={1} style={{minWidth:'50%'}}/>
+                            </Tabs>
+                        </AppBar>
+                        <TabPanel value={this.state.value} index={0}>
                             <div className={classes.mainContent}>
-                                <Typography variant="h4" component="h2">
-                                    Polygon 영역 지정
-                                </Typography>
-                                <Paper className={classes.root}>
                                     <Table className={classes.table}>
                                         <TableHead>
                                             <TableRow>
@@ -737,39 +755,20 @@ class Polygon extends React.Component {
                                                 </TableCell>
                                             </TableRow>
                                         </TableBody>
-
                                     </Table>
-                                </Paper>
                             </div>
 
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
-                                    <Button onClick={() => this.submit()} color={'#999999'}>submit </Button>
+                                    <Button onClick={() => this.submit()}>submit </Button>
                                 </div>
                             </div>
 
-                            {/*<div className={classes.mainContent} >*/}
-                            {/*    <div>*/}
-                            {/*        <div style={{display: "inline-block"}}>*/}
-                            {/*            <Button id="poly" title="Draw Polygon" onClick={this.startPoly}>start</Button>*/}
-                            {/*        </div>*/}
-                            {/*        <div style={{display: "inline-block"}}>*/}
-                            {/*            <Button id="poly" title="Draw Polygon" onClick={this.finishPath}>finish</Button>*/}
-                            {/*        </div>*/}
-                            {/*        <div style={{display: "inline-block"}} align="right">*/}
-                            {/*            <Button id="poly" title="Draw Polygon" onClick={this.deleteOne}>deleteOne</Button>*/}
-                            {/*        </div>*/}
-                            {/*    </div>*/}
-
-
-                            {/*    <div style={{backgroundColor: 'grey'}}>*/}
-                            {/*        <div align="right">*/}
-                            {/*            <Button onClick={this.submit}>submit </Button>*/}
-                            {/*        </div>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
-
+                        </TabPanel>
                         </Grid>
+                        <TabPanel value={this.state.value} index={1}>
+
+                        </TabPanel>
                     </Grid>
 
                 </div>
