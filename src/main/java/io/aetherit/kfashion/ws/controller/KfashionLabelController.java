@@ -46,6 +46,7 @@ public class KfashionLabelController {
                 KfashionWork work = new KfashionWork();
                 work.setNo(basicLabel.getWorkNo());
                 work.setWorkState(basicLabel.getWorkStep());
+                kfashionWorkService.updateWork(work);
 
                 KfashionWorkHistory workHistory = new KfashionWorkHistory();
                 workHistory.setWorkNo(basicLabel.getWorkNo());
@@ -84,6 +85,7 @@ public class KfashionLabelController {
                 KfashionWork work = new KfashionWork();
                 work.setNo(professionalLabel.getWorkNo());
                 work.setWorkState(professionalLabel.getWorkStep());
+                kfashionWorkService.updateWork(work);
 
                 KfashionWorkHistory workHistory = new KfashionWorkHistory();
                 workHistory.setWorkNo(professionalLabel.getWorkNo());

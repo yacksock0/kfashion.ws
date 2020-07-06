@@ -36,24 +36,19 @@ public class KfashionImageLocationRectController {
 
     @PostMapping(value="/location")
     public ResponseEntity<String> insertLocationRect(HttpServletRequest httpServletRequest,
-                                                     @RequestBody List<KfashionRectList> rectList
-//                                                        @RequestParam(value="createdId", required = true) String createdId,
-//                                                        @RequestParam(value="workNo", required = true) Long workNo,
-//                                                        @RequestParam(value="workStep", required = true) int workStep
-
-    ) throws Exception {
+                                                     @RequestBody List<KfashionRectList> rectList) throws Exception {
         String msg= "";
         System.out.println("q1111111111111"+rectList);
         KfashionWork work = new KfashionWork();
         work.setNo(rectList.get(0).getWorkNo());
         work.setWorkState(rectList.get(0).getWorkStep());
         kfashionWorkService.updateWork(work);
-//
-//        KfashionWorkHistory workHistory = new KfashionWorkHistory();
-//        workHistory.setWorkNo(rectList.get(0).getWorkNo());
-//        workHistory.setWorkStep(rectList.get(0).getWorkStep());
-//        workHistory.setCreatedId(rectList.get(0).getCreatedId());
-//        kfashionWorkHistoryService.insertWorkHistory(workHistory);
+
+        KfashionWorkHistory workHistory = new KfashionWorkHistory();
+        workHistory.setWorkNo(rectList.get(0).getWorkNo());
+        workHistory.setWorkStep(rectList.get(0).getWorkStep());
+        workHistory.setCreatedId(rectList.get(0).getCreatedId());
+        kfashionWorkHistoryService.insertWorkHistory(workHistory);
 
 
         KfashionImageLocationRect rect = new KfashionImageLocationRect();
