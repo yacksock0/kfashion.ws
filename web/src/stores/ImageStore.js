@@ -1,6 +1,7 @@
 import {action, computed, flow, observable, toJS} from "mobx";
 import React from "react";
 import axios from "axios";
+import {inject, observer} from "mobx-react";
 
 const State = {
     Ready: 'Ready',
@@ -16,7 +17,7 @@ const WorkNo = {
 }
 
 
-export default class SignUpStore {
+export default class ImageStore {
     @observable state = State.Ready;
     @observable workNo = {...WorkNo}
 
@@ -27,6 +28,7 @@ export default class SignUpStore {
     @computed get isWorkNo() {
         return this.workNo;
     }
+
 
     @action clearState = () => {
         this.state = State.Ready;

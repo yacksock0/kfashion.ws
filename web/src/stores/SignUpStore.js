@@ -13,6 +13,7 @@ const State = {
     Ready: 'Ready',
     Pending: 'Pending',
     NotAvailableEmail: 'NotAvailableEmail',
+    NotAvailableId: 'NotAvailableId',
     Success: 'Success',
     Fail: 'Fail',
 }
@@ -169,6 +170,11 @@ export default class SignUpStore {
     @computed get isNotAvailableEmail() {
         return this.state === State.NotAvailableEmail;
     }
+
+    @computed get isNotAvailableId() {
+        return this.state === State.NotAvailableId;
+    }
+
     doSignUp = flow(function* doSignUp(doAction) {
         this.state = State.Pending;
         try {

@@ -9,7 +9,7 @@ const State = {
 }
 
 const EmptyNewBasicLabel= {
-    workNo : 52,
+    workNo : '',
     workStep : 4,
     rectNo : 1,
     polyNo : 1,
@@ -28,6 +28,14 @@ export default class BasicLabelStore {
     @action changeNewBasicLabelColor = (color) => {
         this.newBasicLabel.color = color.no;
         this.newBasicLabel.colorCategoryNo = color.categoryNo;
+    }
+
+    @action changeNewBasicLabelWorkNo = (workNo) => {
+        this.newBasicLabel.workNo = workNo;
+    }
+
+    @computed get isWorkNo() {
+        return this.newBasicLabel.workNo;
     }
 
     @action changeNewBasicLabelCreatedId = (createdId) => {

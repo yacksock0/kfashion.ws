@@ -55,8 +55,7 @@ class ImageList extends React.Component {
         }
     }
     componentDidMount() {
-        this.props.authStore.checkLogin();
-        const createdId = this.props.authStore.loginUser.id;
+        const createdId = this.props.authStore.isUserId;
 
         axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
             .then(response => {

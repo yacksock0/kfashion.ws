@@ -19,8 +19,6 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {Button} from "@material-ui/core";
 import GroupList from "./GroupList";
-import {Link} from "react-router-dom";
-import List from "@material-ui/core/List";
 import {inject, observer} from "mobx-react";
 
 const tableIcons = {

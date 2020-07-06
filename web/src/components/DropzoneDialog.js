@@ -25,7 +25,7 @@ DropzoneDialog.defaultProps = {
     initialFiles: [],
 };
 
-@inject('fileUploadStore','authStore')
+@inject('fileUploadStore','authStore','imageStore')
 @observer
 class DropzoneDialogExample extends Component {
     constructor(props) {
@@ -36,7 +36,7 @@ class DropzoneDialogExample extends Component {
         };
     }
     componentDidMount() {
-        this.props.authStore.checkLogin();
+
     }
 
     handleClose() {
@@ -49,7 +49,7 @@ class DropzoneDialogExample extends Component {
             open: false,
             files:file
         });
-        const userId=this.props.authStore.loginUser.id;
+        const userId=this.props.authStore.isUserId;
         this.props.fileUploadStore.fileupload(file,userId);
     }
 
