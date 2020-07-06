@@ -1,7 +1,6 @@
 import {action, computed, flow, observable, toJS} from "mobx";
 import React from "react";
 import axios from "axios";
-import {inject, observer} from "mobx-react";
 
 const State = {
     Ready: 'Ready',
