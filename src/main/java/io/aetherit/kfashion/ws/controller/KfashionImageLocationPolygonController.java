@@ -35,6 +35,14 @@ public class KfashionImageLocationPolygonController {
             this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         }
 
+
+        /**
+         * 렉트 인서트
+         * @param httpServletRequest
+         * @param polygonList
+         * @return String
+         * @throws Exception
+         */
         @PostMapping(value="/")
         public ResponseEntity<String> insertLocationPolygon(HttpServletRequest httpServletRequest,
                                                             @RequestBody List<KfashionImageLocationPolygonPoint> polygonList)throws Exception {

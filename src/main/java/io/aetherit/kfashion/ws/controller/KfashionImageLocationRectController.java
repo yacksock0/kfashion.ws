@@ -81,15 +81,16 @@ public class KfashionImageLocationRectController {
     @GetMapping(value = "/rectList")
     public ResponseEntity<Object> selectRectList(@RequestParam(value ="workNo") Long workNo,
                                                  @RequestParam(value="rectNo") int rectNo) {
+
         KfashionImageLocationRect rect = KfashionImageLocationRect.builder()
                     .workNo(workNo)
                     .rectNo(rectNo)
                     .build();
+        System.out.println(rect);
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionCategoryItem> rectList = kfashionImageLocationRectService.selectRectList(rect);
         resultMap.put("rectList", rectList);
         System.out.println(rectList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
-
 }

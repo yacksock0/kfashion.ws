@@ -25,11 +25,27 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+    /**
+     * 로그인
+     * @param account
+     * @param session
+     * @return ResponseEntity
+     * @throws
+     */
+
     @PostMapping("/signin")
-    public ResponseEntity<KfashionUserToken> getLoginToken(HttpServletRequest httpRequest, HttpSession session, @RequestBody KfashionUserInfo account) {
+    public ResponseEntity<KfashionUserToken> getLoginToken(HttpServletRequest 인, HttpSession session, @RequestBody KfashionUserInfo account) {
         final KfashionUserToken token = authenticationService.getToken(account.getId(), account.getPassword(), session);
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
+
+    /**
+     * 로그아웃
+     * @param httpRequest
+     * @param resp
+     * @return ResponseEntity
+     * @throws
+     */
 
     @PostMapping("/signout")
     public ResponseEntity logout(HttpServletRequest httpRequest, HttpServletResponse resp) {
@@ -41,6 +57,13 @@ public class AuthenticationController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    /**
+     * 로그인 체크
+     * @param httpRequest
+     * @return ResponseEntity
+     * @throws
+     */
 
     @GetMapping("/signcheck")
     public ResponseEntity<KfashionSimpleUser> check(HttpServletRequest httpRequest) {

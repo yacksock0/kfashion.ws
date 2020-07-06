@@ -143,6 +143,13 @@ public class KfashionImageController {
                 .body(resource);
     }
 
+    /**
+     * 이미지업로드 리스트
+     * @param createdId
+     * @return ResponseEntity
+     * @throws
+     */
+
     @GetMapping(value="/boundaryList")
     public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest,
                                                @RequestParam(value="createdId")String createdId) {
@@ -152,6 +159,12 @@ public class KfashionImageController {
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
+    /**
+     * 이미지 화면
+     * @param workNo
+     * @return ResponseEntity
+     * @throws
+     */
     @RequestMapping(value="/getByteImage")
     public ResponseEntity<byte[]> getByteImage(@RequestParam(value="workNo")int workNo) {
         Map<String, Object> map = kfashionImageService.getByteImage(workNo);
