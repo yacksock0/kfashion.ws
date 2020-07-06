@@ -4,8 +4,8 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
-import {Container, Typography, Button, Grid} from "@material-ui/core";
-import {grey} from "@material-ui/core/colors";
+import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
+import {green, grey ,red} from "@material-ui/core/colors";
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
@@ -30,6 +30,7 @@ const styles = theme => ({
     table: {
         minWidth: 500,
     },
+    // --START Test
     fab: {
         margin: theme.spacing(2),
     },
@@ -38,6 +39,7 @@ const styles = theme => ({
         bottom: theme.spacing(2),
         right: theme.spacing(3),
     },
+    // --END Test
 
     mainContainer: {
         flexGrow: 1,
@@ -67,6 +69,10 @@ const styles = theme => ({
         border:'1px solid black',
         height:50,
         width:'100%',
+    },
+    test:{
+        border:'1px solid black',
+        height: '50%',
     },
     toolBox:{
         border:'1px solid black',
@@ -153,8 +159,8 @@ class BoundaryBox extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 800,
-            height : 1300,
+            width : 700,
+            height : 800,
             originX: 'left',
             originY: 'top'
         });
@@ -164,6 +170,49 @@ class BoundaryBox extends React.Component {
             console.log("name : "+asd.name);
 
         });
+
+
+        this.canvas.on('mouse:move', (e) => {
+            console.log("mouse.x : " +e.pointer.x);
+            console.log("mouse.y : " +e.pointer.y);
+            if(e.pointer.x <700){
+                // e.pointer.x-10;
+            }
+        });
+
+        const maxScaleX = 3.2;
+        const maxScaleY = 3.2;
+        this.canvas.on('object:scaling', function (e) {
+            const obj = e.target;
+            console.log(obj.scaleX);
+            obj.setCoords();
+            // top-left  corner
+            if(obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < 0){
+                obj.top = Math.max(obj.top, obj.top-obj.getBoundingRect().top);
+                obj.left = Math.max(obj.left, obj.left-obj.getBoundingRect().left);
+            }
+            // bot-right corner
+            if(obj.getBoundingRect().top+obj.getBoundingRect().height  > obj.canvas.height || obj.getBoundingRect().left+obj.getBoundingRect().width  > obj.canvas.width){
+                obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
+                obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
+            }
+
+            if(obj.scaleX > maxScaleX) {
+                obj.scaleX = maxScaleX;
+                obj.left = obj.lastGoodLeft;
+                obj.top = obj.lastGoodTop;
+            }
+            if(obj.scaleY > maxScaleY) {
+                obj.scaleY = maxScaleY;
+                obj.left = obj.lastGoodLeft;
+                obj.top = obj.lastGoodTop;
+            }
+            obj.lastGoodTop = obj.top;
+            obj.lastGoodLeft = obj.left;
+        });
+        // // --END  < Testing... >
+
+        // -- START  < rect가 canvas를 못벗어나도록... >
         this.canvas.on('object:moving', function (e) {
             const obj = e.target;
             // if object is too big ignore
@@ -182,35 +231,7 @@ class BoundaryBox extends React.Component {
                 obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
             }
         });
-
-        const left1 = 0;
-        const top1 = 0 ;
-        const scale1x = 0 ;
-        const scale1y = 0 ;
-        const width1 = 0 ;
-        const height1 = 0 ;
-        this.canvas.on('object:scaling', function (e){
-            const obj = e.target;
-            obj.setCoords();
-            const brNew = obj.getBoundingRect();
-
-            if (((brNew.width+brNew.left)>=obj.canvas.width) || ((brNew.height+brNew.top)>=obj.canvas.height) || ((brNew.left<0) || (brNew.top<0))) {
-                obj.left = left1;
-                obj.top=top1;
-                obj.scaleX=scale1x;
-                obj.scaleY=scale1y;
-                obj.width=width1;
-                obj.height=height1;
-            }
-            else{
-                this.left1 =obj.left;
-                this.top1 =obj.top;
-                this.scale1x = obj.scaleX;
-                this.scale1y=obj.scaleY;
-                this.width1=obj.width;
-                this.height1=obj.height;
-            }
-        });
+        // --END  < rect가 canvas를 못벗어나도록... >
     }
 
     addRect = (rectNo) => {
@@ -274,12 +295,14 @@ class BoundaryBox extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Container component="main" className={classes.mainContainer}>
+            <Container component="main" className={classes.mainContainer} style={{height:'97vh', border: '1px solid black'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} lg={5}>
-                            <canvas id="c" width={800} height={1300}></canvas>
+                        <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
+                            <div style ={{ backgroundColor : "#13264E"}}>
+                                <canvas id="c" width= "750" height= "850"  >  </canvas>
+                            </div>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
