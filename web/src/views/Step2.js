@@ -9,6 +9,7 @@ import {inject, observer} from "mobx-react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import {fabric} from "fabric";
 
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -82,6 +83,18 @@ class Step2 extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
         this.props.basicLabelStore.changeNewBasicLabelWorkNo(this.props.imageStore.isWorkNo);
+
+
+        // -- fabric.js canvas SET
+        this.canvas = this.__canvas = new fabric.Canvas('c');
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
     }
 
     handleClickOK = () => {

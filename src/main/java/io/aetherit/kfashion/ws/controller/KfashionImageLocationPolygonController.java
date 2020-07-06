@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -21,12 +22,11 @@ public class KfashionImageLocationPolygonController {
         private KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService;
         private KfashionWorkService kfashionWorkService;
 
-
         @Autowired
         public KfashionImageLocationPolygonController(KfashionImageLocationPolygonService kfashionImageLocationPolygonService,
                                                       KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService,
                                                       KfashionWorkHistoryService kfashionWorkHistoryService,
-                                                         KfashionWorkService kfashionWorkService) {
+                                                      KfashionWorkService kfashionWorkService) {
             this.kfashionImageLocationPolygonService = kfashionImageLocationPolygonService;
             this.kfashionImageLocationPolygonPointService = kfashionImageLocationPolygonPointService;
             this.kfashionWorkHistoryService = kfashionWorkHistoryService;
@@ -41,23 +41,16 @@ public class KfashionImageLocationPolygonController {
          * @return String
          * @throws Exception
          */
+
+
+
+
         @PostMapping(value="/location")
         public ResponseEntity<String> insertLocationPolygon(HttpServletRequest httpServletRequest,
                                                             @RequestBody List<KfashionImageLocationPolygonPoint> polygonList
-//                                                            @RequestBody List<KfashionImageLocationPolygonPoint> polygonPointList
-
-
                                                             )throws Exception {
             System.out.println(polygonList);
             String msg= "";
-
-//            for(int i = 1; i <=polygonList.size(); i++) {
-//                System.out.println("q1111111111111"+polygonList.get(i));
-//                for (int j =1 ;j< polygonList.get(i).getPoints().size(); j++ ){
-//                    System.out.println("X : " +polygonList.get(i).getPoints().get(j).getX());
-//                    System.out.println("Y : " +polygonList.get(i).getPoints().get(j).getY());
-//                }
-//            }
 
             KfashionWork work = new KfashionWork();
             work.setNo(polygonList.get(0).getWorkNo());
@@ -102,4 +95,13 @@ public class KfashionImageLocationPolygonController {
             }
             return new ResponseEntity<String>(msg, HttpStatus.OK);
         }
+
+    @GetMapping(value="/polygonList")
+    public ResponseEntity<Object> polygonList(HttpServletRequest httpRequest,
+                                           @RequestParam(value="createdId")String createdId) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImageLocationPolygon> polygonList = kfashionImageLocationPolygonService.selectPolygonList(createdId);
+        resultMap.put("polygonList", polygonList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
 }

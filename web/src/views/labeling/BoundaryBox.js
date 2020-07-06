@@ -156,7 +156,14 @@ class BoundaryBox extends React.Component {
         })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas));
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
 
         // // -- START  < Testing... >
         // this.canvas.on('selection:created', function (e) {
@@ -184,6 +191,45 @@ class BoundaryBox extends React.Component {
         //     const asd = e.target;
         //     console.log('6. mouse:out');
         // });
+
+        this.canvas.on('mouse:move', (e) => {
+            console.log("mouse.x : " +e.pointer.x);
+            console.log("mouse.y : " +e.pointer.y);
+            if(e.pointer.x <700){
+                // e.pointer.x-10;
+            }
+        });
+
+        const maxScaleX = 3.2;
+        const maxScaleY = 3.2;
+        this.canvas.on('object:scaling', function (e) {
+            const obj = e.target;
+            console.log(obj.scaleX);
+            obj.setCoords();
+            // top-left  corner
+            if(obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < 0){
+                obj.top = Math.max(obj.top, obj.top-obj.getBoundingRect().top);
+                obj.left = Math.max(obj.left, obj.left-obj.getBoundingRect().left);
+            }
+            // bot-right corner
+            if(obj.getBoundingRect().top+obj.getBoundingRect().height  > obj.canvas.height || obj.getBoundingRect().left+obj.getBoundingRect().width  > obj.canvas.width){
+                obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
+                obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
+            }
+
+            if(obj.scaleX > maxScaleX) {
+                obj.scaleX = maxScaleX;
+                obj.left = obj.lastGoodLeft;
+                obj.top = obj.lastGoodTop;
+            }
+            if(obj.scaleY > maxScaleY) {
+                obj.scaleY = maxScaleY;
+                obj.left = obj.lastGoodLeft;
+                obj.top = obj.lastGoodTop;
+            }
+            obj.lastGoodTop = obj.top;
+            obj.lastGoodLeft = obj.left;
+        });
         // // --END  < Testing... >
 
         // -- START  < rect가 canvas를 못벗어나도록... >
@@ -289,37 +335,10 @@ class BoundaryBox extends React.Component {
 
 
     submit = () => {
-        // let b =this.canvas.getObjects().count();
-        // console.log(b);
-        // let obj = [];
-        // let a = 0;
         this.props.rectStore.objGet(this.canvas.getObjects());
         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
         this.props.rectStore.doRectLocationUp();
-
-
-        // this.canvas.getObjects().forEach(function(o) {
-        //
-        //     obj = o;
-        //
-        //     a+=1;
-        // })
-
-
-        //     for (let j =0; j < a ; j++){
-        //
-        //         this.props.rectStore.changeNewRectLocationRectNo(this.canvas.item(j).id);
-        //         this.props.rectStore.changeNewRectLocationX(this.canvas.item(j).left);
-        //         this.props.rectStore.changeNewRectLocationY(this.canvas.item(j).top);
-        //         this.props.rectStore.changeNewRectLocationWidth(this.canvas.item(j).width);
-        //         this.props.rectStore.changeNewRectLocationHeight(this.canvas.item(j).height);
-        //         this.props.rectStore.changeNewRectLocationScaleX(this.canvas.item(j).scaleX);
-        //         this.props.rectStore.changeNewRectLocationScaleY(this.canvas.item(j).scaleY);
-        //         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-        //         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-        //     }
-        //     this.props.rectStore.doRectLocationUp();
     }
 
     render() {
@@ -330,7 +349,9 @@ class BoundaryBox extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                            <canvas id="c" width= "600" height= "550"  >  </canvas>
+                            <div style ={{ backgroundColor : "#13264E"}}>
+                                <canvas id="c" width= "750" height= "850"  >  </canvas>
+                            </div>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>

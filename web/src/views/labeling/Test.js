@@ -120,14 +120,13 @@ class Test extends React.Component {
     }
     componentDidMount() {
         this.setState({ loading: true })
-        axios.get('/api/v1/kfashion/img/boundaryList')
-            .then(response => response.data.boundaryList.filter(b => b !== null))
+        axios.get('/api/v1/kfashion/polygon/polygonList')
+            .then(response => response.data.polygonList.filter(b => b !== null))
             .then(res => {
                 this.setState({
 
-                    boundaryList : Customer.map(b => {
+                    polygonList : Customer.map(b => {
                         b.workNo  = b.workNo;
-                        b.imgData = b.imgData;
                         b.createdId = b.createdId;
                         b.createdDatetime = b.createdDatetime;
 
@@ -174,32 +173,7 @@ class Test extends React.Component {
                         }}
                     />
                 </div>
-                {/*<hr></hr>*/}
-                {/*<div className={classes.mainContent}>*/}
-                {/*    <Typography variant="h4" component="h2">*/}
-                {/*        BoundaryBoxList*/}
-                {/*    </Typography>*/}
-                {/*    <Paper className={classes.root}>*/}
-                {/*        <Table className={classes.table}>*/}
-                {/*            <TableHead>*/}
-                {/*                <TableRow>*/}
-                {/*                    <TableCell>번호</TableCell>*/}
-                {/*                    <TableCell>이미지</TableCell>*/}
-                {/*                    <TableCell>작성자</TableCell>*/}
-                {/*                    <TableCell>업로드 날짜</TableCell>*/}
-                {/*                    <TableCell>진행 상황</TableCell>*/}
-                {/*                    <TableCell>작업하기</TableCell>*/}
-                {/*                </TableRow>*/}
-                {/*            </TableHead>*/}
-                {/*            <TableBody>*/}
-                {/*                {boundaryList.map(c => {*/}
-                {/*                    return <Customer key={c.workNo} id={c.workNo} image={c.imgData} name={c.createdId} date={c.createdDatetime} action={c.action} />*/}
-                {/*                })}*/}
-                {/*            </TableBody>*/}
-                {/*        </Table>*/}
-                {/*    </Paper>*/}
-                {/*</div>*/}
-                {/*<hr></hr>*/}
+
                 <Button
                     type="submit"
                     className={classes.buttonType1}

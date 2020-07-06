@@ -1424,3 +1424,973 @@ java.lang.IllegalArgumentException: Invalid character found in the request targe
 2020-07-07 02:11:55.970 11895 [-8080-exec-8] - DEBUG   i.a.k.w.r.m.K.insertLocationPolygonPoint  159 : ==> Parameters: 110(Long), 3(Integer), 2(Integer), 2(Integer), 5(Integer), 653.0(Float), 591.86017(Float), 5(Integer)
 2020-07-07 02:11:55.975 11895 [-8080-exec-8] - DEBUG   i.a.k.w.r.m.K.insertLocationPolygonPoint  159 : <==    Updates: 1
 2020-07-07 02:11:55.983 11895 [-8080-exec-8] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-07T02:11:55.983, code=Unknown, status=500, error=Internal Server Error, message=Index: 3, Size: 3, path=/api/v1/kfashion/polygon/location)
+2020-07-07 02:36:06.920 11895 [-8080-exec-9] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 02:36:06.922 11895 [-8080-exec-9] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 110(Integer)
+2020-07-07 02:36:07.006 11895 [-8080-exec-9] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 02:36:07.006 11895 [-8080-exec-9] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 02:36:07.007 11895 [-8080-exec-9] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 02:36:07.033 11895 [8080-exec-10] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 02:36:07.033 11895 [8080-exec-10] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 02:36:07.041 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 02:36:07.041 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 78, 6503bd88-00bc-4fd0-8e67-21ba24903a54_모델.jpg, admin
+2020-07-07 02:36:07.041 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 82, 7a83bae5-e213-4272-9948-47e181bb46dc_모델.jpg, admin
+2020-07-07 02:36:07.042 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 83, 8e6415f3-d99e-4108-84df-cb48d733b3dc_송해나.jpg, admin
+2020-07-07 02:36:07.042 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 84, 8d314865-6175-4575-a79f-2fd9a0296762_애기모델.jpg, admin
+2020-07-07 02:36:07.042 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 85, a5554700-5171-4ab7-aa4b-235340c2f0b5_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2.jpg, admin
+2020-07-07 02:36:07.042 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 86, 5f8c58bb-dc50-400c-b86c-d282179eebd5_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2.jpg, admin
+2020-07-07 02:36:07.043 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 87, 15882b3e-401c-4854-97b0-c103604980fa_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4.jpg, admin
+2020-07-07 02:36:07.043 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 88, 2d6421cd-4979-4bd3-a770-20fa94649e7d_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2.jpg, admin
+2020-07-07 02:36:07.043 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 91, 225d0514-230e-413c-8725-22f6759bb64b_26030264-흰색-배경에-3d-반짝이-빨간-숫자-x28-5-x29-.jpg, admin
+2020-07-07 02:36:07.043 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 92, d5f91553-afe6-4f00-94a9-1ae79bbb8df1_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2.jpg, admin
+2020-07-07 02:36:07.043 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 93, 4e2adf29-1917-4abb-825c-9bed7440cdba_모델.jpg, admin
+2020-07-07 02:36:07.044 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 94, f7e26443-0bba-4eb6-b6ce-b7622244acfe_모델.jpg, admin
+2020-07-07 02:36:07.044 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 95, 49905b98-3585-4715-b154-baa92b39f045_26030264-흰색-배경에-3d-반짝이-빨간-숫자-x28-5-x29-.jpg, admin
+2020-07-07 02:36:07.044 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 97, 333f0c54-5fe4-4c96-9278-56d3ff499e50_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2.jpg, admin
+2020-07-07 02:36:07.044 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 98, bbfda9f4-7456-4631-bb6f-db0419d345f5_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4.jpg, admin
+2020-07-07 02:36:07.045 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 99, 510556a7-a136-4eeb-922a-3cc6296bff56_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4.jpg, admin
+2020-07-07 02:36:07.045 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 100, a0c86685-0cb3-4549-a294-f7c6e1969fee_26030264-흰색-배경에-3d-반짝이-빨간-숫자-x28-5-x29-.jpg, admin
+2020-07-07 02:36:07.045 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 101, 4f948c7d-ea7e-4a56-a63d-6edd917628a7_24544055-3-차원-반짝이-빨간-숫자-3-격리-된-흰색-배경.jpg, admin
+2020-07-07 02:36:07.045 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 103, d0e18bb8-d062-4c22-8ed5-920b4db6261a_26030264-흰색-배경에-3d-반짝이-빨간-숫자-x28-5-x29-.jpg, admin
+2020-07-07 02:36:07.045 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 104, 59716936-a302-4993-b67a-040047260dcf_스크린샷 2020-06-29 오후 6.20.59.png, admin
+2020-07-07 02:36:07.046 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 105, ae0853fd-e311-4029-ae12-3ccdf2d5ea30_모델.jpg, admin
+2020-07-07 02:36:07.046 11895 [8080-exec-10] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 106, 753b9bc1-951e-40c0-9faa-c9ed920d79fb_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2.jpg, admin
+2020-07-07 02:36:07.046 11895 [8080-exec-10] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 22
+2020-07-07 02:55:09.514 11895 [8080-exec-13] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 02:55:09.515 11895 [8080-exec-13] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 02:55:09.520 11895 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 02:55:09.520 11895 [8080-exec-13] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 1, fab80c9a-c5ce-4eb3-99d8-be009a84f4d7_모델.jpg, admin
+2020-07-07 02:55:09.521 11895 [8080-exec-13] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 02:55:16.259 11895 [8080-exec-15] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 02:55:16.260 11895 [8080-exec-15] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 1(Integer)
+2020-07-07 02:55:16.310 11895 [8080-exec-14] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 02:55:16.311 11895 [8080-exec-14] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 02:55:16.328 11895 [8080-exec-15] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 02:55:16.330 11895 [8080-exec-15] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 02:55:16.330 11895 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 02:55:16.330 11895 [8080-exec-15] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 02:55:16.331 11895 [8080-exec-14] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 1, fab80c9a-c5ce-4eb3-99d8-be009a84f4d7_모델.jpg, admin
+2020-07-07 02:55:16.331 11895 [8080-exec-14] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 02:55:39.941 11895 [8080-exec-16] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : ==>  Preparing: INSERT INTO kfashion_work ( work_name, work_state, created_datetime, updated_datetime ) VALUE( ?, 1, NOW(), NOW() ) 
+2020-07-07 02:55:39.941 11895 [8080-exec-16] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : ==> Parameters: bdd6833e-fa0d-4bc4-8c88-a295753a1f52_image-1.png(String)
+2020-07-07 02:55:39.949 11895 [8080-exec-16] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : <==    Updates: 1
+2020-07-07 02:55:39.950 11895 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : ==>  Preparing: SELECT no FROM kfashion_work WHERE work_name=? 
+2020-07-07 02:55:39.950 11895 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : ==> Parameters: bdd6833e-fa0d-4bc4-8c88-a295753a1f52_image-1.png(String)
+2020-07-07 02:55:39.955 11895 [8080-exec-16] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==    Columns: no
+2020-07-07 02:55:39.955 11895 [8080-exec-16] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==        Row: 2
+2020-07-07 02:55:39.956 11895 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : <==      Total: 1
+2020-07-07 02:55:39.957 11895 [8080-exec-16] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : ==>  Preparing: INSERT INTO kfashion_image ( work_no, img_data, created_datetime, updated_datetime ) VALUES ( ?, ?, NOW(), NOW() ) 
+2020-07-07 02:55:39.957 11895 [8080-exec-16] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : ==> Parameters: 2(Long), [B@471ec6f8(byte[])
+2020-07-07 02:55:40.096 11895 [8080-exec-16] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : <==    Updates: 1
+2020-07-07 02:55:40.097 11895 [8080-exec-16] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : ==>  Preparing: INSERT INTO kfashion_work_history ( work_no, work_step, created_id, created_datetime, updated_datetime ) VALUES ( ?, ?, ?, NOW(), NOW() ) 
+2020-07-07 02:55:40.098 11895 [8080-exec-16] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : ==> Parameters: 2(Long), 1(Integer), admin(String)
+2020-07-07 02:55:40.103 11895 [8080-exec-16] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : <==    Updates: 1
+2020-07-07 02:55:45.985 11895 [8080-exec-18] - INFO    org.apache.coyote.http11.Http11Processor  175 : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:468)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-07 02:55:46.003 11895 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 02:55:46.004 11895 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 02:55:46.010 11895 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 02:55:46.011 11895 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 1, fab80c9a-c5ce-4eb3-99d8-be009a84f4d7_모델.jpg, admin
+2020-07-07 02:55:46.011 11895 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 2, bdd6833e-fa0d-4bc4-8c88-a295753a1f52_image-1.png, admin
+2020-07-07 02:55:46.012 11895 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 2
+2020-07-07 02:55:50.256 11895 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 02:55:50.257 11895 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 2(Integer)
+2020-07-07 02:55:50.342 11895 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 02:55:50.343 11895 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 02:55:50.344 11895 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 02:55:52.509 11895 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 02:55:52.510 11895 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 2(Integer)
+2020-07-07 02:55:52.586 11895 [8080-exec-21] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 02:55:52.587 11895 [8080-exec-21] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 02:55:52.587 11895 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 02:56:04.516 11895 [8080-exec-22] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.updateWork  159 : ==>  Preparing: UPDATE kfashion_work SET work_state=2 WHERE NO = 2 
+2020-07-07 02:56:04.516 11895 [8080-exec-22] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.updateWork  159 : ==> Parameters: 
+2020-07-07 02:56:04.520 11895 [8080-exec-22] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.updateWork  159 : <==    Updates: 1
+2020-07-07 02:56:04.522 11895 [8080-exec-22] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : ==>  Preparing: INSERT INTO kfashion_work_history ( work_no, work_step, created_id, created_datetime, updated_datetime ) VALUES ( ?, ?, ?, NOW(), NOW() ) 
+2020-07-07 02:56:04.522 11895 [8080-exec-22] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : ==> Parameters: 2(Long), 2(Integer), admin(String)
+2020-07-07 02:56:04.527 11895 [8080-exec-22] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : <==    Updates: 1
+2020-07-07 02:56:04.530 11895 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.insertLocationRect  159 : ==>  Preparing: INSERT INTO kfashion_image_location_rect ( work_no, work_step, rect_no, location_X, location_Y, location_width, location_height, scale_X, scale_Y, created_datetime, updated_datetime ) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW() ) 
+2020-07-07 02:56:04.531 11895 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.insertLocationRect  159 : ==> Parameters: 2(Long), 2(Integer), 1(Integer), 100.0(Float), 100.0(Float), 200(Integer), 200(Integer), 1.0(Float), 1.0(Float)
+2020-07-07 02:56:04.535 11895 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.insertLocationRect  159 : <==    Updates: 1
+2020-07-07 02:56:29.067 11895 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 02:56:29.069 11895 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 2(Integer)
+2020-07-07 02:56:29.135 11895 [8080-exec-24] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 02:56:29.136 11895 [8080-exec-24] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 02:56:29.167 11895 [8080-exec-23] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 02:56:29.167 11895 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 02:56:29.168 11895 [8080-exec-23] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 02:56:29.168 11895 [8080-exec-24] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 1, fab80c9a-c5ce-4eb3-99d8-be009a84f4d7_모델.jpg, admin
+2020-07-07 02:56:29.168 11895 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 02:56:29.168 11895 [8080-exec-24] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 02:56:31.217 11895 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 02:56:31.218 11895 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 1(Integer)
+2020-07-07 02:56:31.243 11895 [8080-exec-25] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 02:56:31.244 11895 [8080-exec-25] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 02:56:31.245 11895 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:00:15.801 11895 [8080-exec-26] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.updateWork  159 : ==>  Preparing: UPDATE kfashion_work SET work_state=2 WHERE NO = 1 
+2020-07-07 03:00:15.803 11895 [8080-exec-26] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.updateWork  159 : ==> Parameters: 
+2020-07-07 03:00:15.807 11895 [8080-exec-26] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.updateWork  159 : <==    Updates: 1
+2020-07-07 03:00:15.808 11895 [8080-exec-26] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : ==>  Preparing: INSERT INTO kfashion_work_history ( work_no, work_step, created_id, created_datetime, updated_datetime ) VALUES ( ?, ?, ?, NOW(), NOW() ) 
+2020-07-07 03:00:15.808 11895 [8080-exec-26] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : ==> Parameters: 1(Long), 2(Integer), admin(String)
+2020-07-07 03:00:15.844 11895 [8080-exec-26] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-07T03:00:15.844, code=Unknown, status=500, error=Internal Server Error, message=
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: (conn=7406) Duplicate entry '1-2' for key 'PRIMARY'
+### The error may exist in mybatis/mapper/mariadb/KfashionWorkHistoryMapper.xml
+### The error may involve io.aetherit.kfashion.ws.repository.mapper.KfashionWorkHistoryMapper.insertWorkHistory-Inline
+### The error occurred while setting parameters
+### SQL: INSERT         INTO kfashion_work_history (         work_no,         work_step,         created_id,         created_datetime,         updated_datetime         ) VALUES (         ?,         ?,         ?,         NOW(),         NOW()         )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: (conn=7406) Duplicate entry '1-2' for key 'PRIMARY'
+; (conn=7406) Duplicate entry '1-2' for key 'PRIMARY'; nested exception is java.sql.SQLIntegrityConstraintViolationException: (conn=7406) Duplicate entry '1-2' for key 'PRIMARY', path=/api/v1/kfashion/rect/location)
+2020-07-07 03:04:11.190 11895 [ShutdownHook] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  208 : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-07 03:12:53.169 12197 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on youngui-MacBookPro.local with PID 12197 (/Users/youngrackchoi/kfashion.ws/target/classes started by youngrackchoi in /Users/youngrackchoi/kfashion.ws)
+2020-07-07 03:12:53.172 12197 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-07-07 03:12:53.172 12197 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-07-07 03:12:54.012 12197 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$28c9113] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-07 03:12:54.354 12197 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-07 03:12:54.354 12197 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-07 03:12:54.354 12197 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-07-07 03:12:54.372 12197 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-07-07 03:12:54.378 12197 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-07 03:12:54.379 12197 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-07-07 03:12:54.379 12197 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-07 03:12:54.439 12197 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-07-07 03:12:54.439 12197 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 1223 ms
+2020-07-07 03:12:54.481 12197 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.10.110:3306/kfashion, user1
+2020-07-07 03:12:54.892 12197 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-07-07 03:12:54.906 12197 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-07-07 03:12:54.920 12197 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-07 03:12:54.921 12197 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-07 03:12:54.923 12197 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-07-07 03:12:55.065 12197 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200706_2134 #0
+2020-07-07 03:12:55.425 12197 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2538bc06, org.springframework.security.web.context.SecurityContextPersistenceFilter@50f097b5, org.springframework.security.web.header.HeaderWriterFilter@78a0ff63, org.springframework.security.web.authentication.logout.LogoutFilter@5399f6c5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3662bdff, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24d61e4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61f6d381, org.springframework.security.web.session.SessionManagementFilter@59ce792e, org.springframework.security.web.access.ExceptionTranslationFilter@7ee8130e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59b65dce]
+2020-07-07 03:12:55.531 12197 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-07 03:12:55.600 12197 [        main] - INFO       o.s.b.a.w.s.WelcomePageHandlerMapping   54 : Adding welcome page: class path resource [static/index.html]
+2020-07-07 03:12:55.738 12197 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-07-07 03:12:55.743 12197 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-07-07 03:12:55.793 12197 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-07 03:12:55.795 12197 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.957 seconds (JVM running for 3.634)
+2020-07-07 03:13:15.800 12197 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-07 03:13:15.801 12197 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-07-07 03:13:15.810 12197 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 9 ms
+2020-07-07 03:13:19.270 12197 [-8080-exec-2] - INFO    org.apache.coyote.http11.Http11Processor  175 : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:468)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-07 03:13:19.388 12197 [-8080-exec-3] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:13:19.388 12197 [-8080-exec-3] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:13:19.393 12197 [-8080-exec-3] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:13:26.507 12197 [-8080-exec-4] - INFO    org.apache.coyote.http11.Http11Processor  175 : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:468)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-07 03:13:26.946 12197 [-8080-exec-6] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:13:26.947 12197 [-8080-exec-6] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:13:26.952 12197 [-8080-exec-6] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:13:31.452 12197 [-8080-exec-9] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:13:31.453 12197 [-8080-exec-9] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:13:31.460 12197 [-8080-exec-9] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:13:33.701 12197 [8080-exec-12] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:13:33.702 12197 [8080-exec-12] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:13:33.706 12197 [8080-exec-12] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:13:36.677 12197 [8080-exec-15] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:13:36.678 12197 [8080-exec-15] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:13:36.683 12197 [8080-exec-15] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:13:48.343 12197 [8080-exec-18] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:13:48.343 12197 [8080-exec-18] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:13:48.348 12197 [8080-exec-18] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:13:51.929 12197 [8080-exec-20] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:13:51.929 12197 [8080-exec-20] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:13:51.934 12197 [8080-exec-20] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:13:54.187 12197 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:13:54.188 12197 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:13:54.192 12197 [8080-exec-22] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:14:12.540 12197 [8080-exec-23] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : ==>  Preparing: INSERT INTO kfashion_work ( work_name, work_state, created_datetime, updated_datetime ) VALUE( ?, 1, NOW(), NOW() ) 
+2020-07-07 03:14:12.541 12197 [8080-exec-23] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : ==> Parameters: 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png(String)
+2020-07-07 03:14:12.545 12197 [8080-exec-23] - DEBUG  i.a.k.w.r.m.KfashionWorkMapper.insertWork  159 : <==    Updates: 1
+2020-07-07 03:14:12.546 12197 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : ==>  Preparing: SELECT no FROM kfashion_work WHERE work_name=? 
+2020-07-07 03:14:12.546 12197 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : ==> Parameters: 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png(String)
+2020-07-07 03:14:12.550 12197 [8080-exec-23] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==    Columns: no
+2020-07-07 03:14:12.551 12197 [8080-exec-23] - TRACE                 i.a.k.w.r.m.K.selectWorkNo  165 : <==        Row: 3
+2020-07-07 03:14:12.551 12197 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.selectWorkNo  159 : <==      Total: 1
+2020-07-07 03:14:12.552 12197 [8080-exec-23] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : ==>  Preparing: INSERT INTO kfashion_image ( work_no, img_data, created_datetime, updated_datetime ) VALUES ( ?, ?, NOW(), NOW() ) 
+2020-07-07 03:14:12.553 12197 [8080-exec-23] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : ==> Parameters: 3(Long), [B@1678c0a2(byte[])
+2020-07-07 03:14:12.647 12197 [8080-exec-23] - DEBUG              i.a.k.w.r.m.K.insertImgUpload  159 : <==    Updates: 1
+2020-07-07 03:14:12.650 12197 [8080-exec-23] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : ==>  Preparing: INSERT INTO kfashion_work_history ( work_no, work_step, created_id, created_datetime, updated_datetime ) VALUES ( ?, ?, ?, NOW(), NOW() ) 
+2020-07-07 03:14:12.650 12197 [8080-exec-23] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : ==> Parameters: 3(Long), 1(Integer), admin(String)
+2020-07-07 03:14:12.654 12197 [8080-exec-23] - DEBUG            i.a.k.w.r.m.K.insertWorkHistory  159 : <==    Updates: 1
+2020-07-07 03:14:16.095 12197 [8080-exec-26] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:14:16.096 12197 [8080-exec-26] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:14:16.106 12197 [8080-exec-26] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:14:16.106 12197 [8080-exec-26] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:14:16.107 12197 [8080-exec-26] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:14:20.792 12197 [8080-exec-27] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:14:20.793 12197 [8080-exec-27] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:14:20.875 12197 [8080-exec-27] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:14:20.876 12197 [8080-exec-27] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:14:20.879 12197 [8080-exec-27] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:14:22.635 12197 [8080-exec-28] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:14:22.635 12197 [8080-exec-28] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:14:22.716 12197 [8080-exec-28] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:14:22.717 12197 [8080-exec-28] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:14:22.718 12197 [8080-exec-28] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:14:34.535 12197 [8080-exec-32] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:14:34.535 12197 [8080-exec-32] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:14:34.542 12197 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:14:34.542 12197 [8080-exec-32] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:14:34.543 12197 [8080-exec-32] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:14:39.431 12197 [8080-exec-33] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:14:39.431 12197 [8080-exec-33] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:14:39.487 12197 [8080-exec-33] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:14:39.488 12197 [8080-exec-33] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:14:39.489 12197 [8080-exec-33] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:14:40.351 12197 [8080-exec-34] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:14:40.353 12197 [8080-exec-34] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:14:40.440 12197 [8080-exec-34] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:14:40.440 12197 [8080-exec-34] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:14:40.441 12197 [8080-exec-34] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:14:44.269 12197 [8080-exec-38] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:14:44.270 12197 [8080-exec-38] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:14:44.275 12197 [8080-exec-38] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:14:44.276 12197 [8080-exec-38] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:14:44.276 12197 [8080-exec-38] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:14:46.085 12197 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:14:46.086 12197 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:14:46.229 12197 [8080-exec-39] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:14:46.230 12197 [8080-exec-39] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:14:46.231 12197 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:14:47.416 12197 [8080-exec-40] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:14:47.417 12197 [8080-exec-40] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:14:47.498 12197 [8080-exec-40] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:14:47.498 12197 [8080-exec-40] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:14:47.499 12197 [8080-exec-40] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:14:47.504 12197 [8080-exec-41] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:14:47.505 12197 [8080-exec-41] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:14:47.514 12197 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:14:47.514 12197 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:14:47.514 12197 [8080-exec-41] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:14:49.908 12197 [8080-exec-44] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:14:49.908 12197 [8080-exec-44] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:14:49.913 12197 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:14:49.913 12197 [8080-exec-44] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:14:49.914 12197 [8080-exec-44] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:14:56.735 12197 [8080-exec-45] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:14:56.735 12197 [8080-exec-45] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:14:56.789 12197 [8080-exec-45] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:14:56.790 12197 [8080-exec-45] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:14:56.790 12197 [8080-exec-45] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:14:58.682 12197 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:14:58.682 12197 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:14:58.739 12197 [8080-exec-46] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:14:58.740 12197 [8080-exec-46] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:14:58.740 12197 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:14:58.749 12197 [8080-exec-47] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:14:58.749 12197 [8080-exec-47] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:14:58.758 12197 [8080-exec-47] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:14:58.758 12197 [8080-exec-47] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:14:58.759 12197 [8080-exec-47] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:15:01.050 12197 [8080-exec-50] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:15:01.050 12197 [8080-exec-50] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:15:01.056 12197 [8080-exec-50] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:15:01.057 12197 [8080-exec-50] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:15:01.057 12197 [8080-exec-50] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:15:02.879 12197 [8080-exec-51] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:15:02.880 12197 [8080-exec-51] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:15:02.949 12197 [8080-exec-51] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:15:02.950 12197 [8080-exec-51] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:15:02.951 12197 [8080-exec-51] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:15:06.462 12197 [8080-exec-52] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:15:06.463 12197 [8080-exec-52] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:15:06.531 12197 [8080-exec-52] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:15:06.531 12197 [8080-exec-52] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:15:06.532 12197 [8080-exec-52] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:16:26.458 12197 [8080-exec-57] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:16:26.459 12197 [8080-exec-57] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:16:26.463 12197 [8080-exec-57] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:16:26.463 12197 [8080-exec-57] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:16:26.464 12197 [8080-exec-57] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:16:30.635 12197 [8080-exec-58] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:16:30.636 12197 [8080-exec-58] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:16:30.702 12197 [8080-exec-58] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:16:30.702 12197 [8080-exec-58] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:16:30.703 12197 [8080-exec-58] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:16:31.351 12197 [8080-exec-59] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:16:31.352 12197 [8080-exec-59] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:16:31.405 12197 [8080-exec-59] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:16:31.406 12197 [8080-exec-59] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:16:31.406 12197 [8080-exec-59] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:17:20.320 12197 [8080-exec-64] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:17:20.320 12197 [8080-exec-64] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:17:20.326 12197 [8080-exec-64] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:17:20.327 12197 [8080-exec-64] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:17:20.327 12197 [8080-exec-64] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:17:23.270 12197 [8080-exec-65] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:17:23.271 12197 [8080-exec-65] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:17:23.323 12197 [8080-exec-65] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:17:23.323 12197 [8080-exec-65] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:17:23.324 12197 [8080-exec-65] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:19:15.526 12197 [8080-exec-69] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:19:15.527 12197 [8080-exec-69] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:19:15.543 12197 [8080-exec-69] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:19:15.544 12197 [8080-exec-69] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:19:15.544 12197 [8080-exec-69] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:19:16.022 12197 [8080-exec-70] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:19:16.022 12197 [8080-exec-70] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:19:16.094 12197 [8080-exec-70] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:19:16.094 12197 [8080-exec-70] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:19:16.095 12197 [8080-exec-70] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:19:17.445 12197 [8080-exec-71] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:19:17.447 12197 [8080-exec-71] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:19:17.525 12197 [8080-exec-71] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:19:17.526 12197 [8080-exec-71] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:19:17.527 12197 [8080-exec-71] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:19:18.368 12197 [8080-exec-72] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:19:18.369 12197 [8080-exec-72] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:19:18.450 12197 [8080-exec-72] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:19:18.451 12197 [8080-exec-72] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:19:18.453 12197 [8080-exec-72] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:21:11.234 12197 [8080-exec-78] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:21:11.235 12197 [8080-exec-78] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:21:11.242 12197 [8080-exec-78] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:21:11.242 12197 [8080-exec-78] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:21:11.243 12197 [8080-exec-78] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:21:37.701 12197 [8080-exec-80] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:21:37.701 12197 [8080-exec-80] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:21:37.708 12197 [8080-exec-80] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:21:37.708 12197 [8080-exec-80] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:21:37.709 12197 [8080-exec-80] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:21:42.651 12197 [8080-exec-82] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:21:42.652 12197 [8080-exec-82] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:21:42.706 12197 [8080-exec-82] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:21:42.706 12197 [8080-exec-82] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:21:42.707 12197 [8080-exec-82] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:21:43.779 12197 [8080-exec-83] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:21:43.780 12197 [8080-exec-83] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:21:43.836 12197 [8080-exec-83] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:21:43.837 12197 [8080-exec-83] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:21:43.838 12197 [8080-exec-83] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:21:43.847 12197 [8080-exec-84] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:21:43.848 12197 [8080-exec-84] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:21:43.857 12197 [8080-exec-84] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:21:43.858 12197 [8080-exec-84] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:21:43.858 12197 [8080-exec-84] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:21:57.208 12197 [8080-exec-86] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==>  Preparing: SELECT kfashion_user_info.id, kfashion_user_info.email, kfashion_user_info.password, kfashion_user_info.name, kfashion_user_info.phone, kfashion_user_info.group_no, kfashion_user_info.is_admin, kfashion_user_info.is_approved, kfashion_user_group_authority.authority_no, COUNT(kfashion_user_group_admin.user_id) AS group_admin, kfashion_user_info.created_datetime, kfashion_user_info.updated_datetime FROM kfashion_user_info LEFT JOIN kfashion_user_group_authority ON kfashion_user_info.group_no = kfashion_user_group_authority.group_no RIGHT JOIN kfashion_user_group_admin ON kfashion_user_info.id = kfashion_user_group_admin.user_id WHERE id = ? 
+2020-07-07 03:21:57.209 12197 [8080-exec-86] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==> Parameters: admin(String)
+2020-07-07 03:21:57.215 12197 [8080-exec-86] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==    Columns: id, email, password, name, phone, group_no, is_admin, is_approved, authority_no, group_admin, created_datetime, updated_datetime
+2020-07-07 03:21:57.216 12197 [8080-exec-86] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==        Row: admin, null, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, null, null, Y, Y, null, 0, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-07 03:21:57.217 12197 [8080-exec-86] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : <==      Total: 1
+2020-07-07 03:21:57.453 12197 [8080-exec-87] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:21:57.453 12197 [8080-exec-87] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:21:57.533 12197 [8080-exec-87] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:21:57.534 12197 [8080-exec-87] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:21:57.534 12197 [8080-exec-87] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:21:57.557 12197 [8080-exec-88] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:21:57.557 12197 [8080-exec-88] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: undefined(String)
+2020-07-07 03:21:57.563 12197 [8080-exec-88] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 0
+2020-07-07 03:22:04.441 12197 [8080-exec-91] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:22:04.442 12197 [8080-exec-91] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:22:04.446 12197 [8080-exec-91] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:22:04.447 12197 [8080-exec-91] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:22:04.448 12197 [8080-exec-91] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:22:16.260 12197 [8080-exec-94] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:22:16.261 12197 [8080-exec-94] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:22:16.266 12197 [8080-exec-94] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:22:16.266 12197 [8080-exec-94] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:22:16.267 12197 [8080-exec-94] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:22:21.604 12197 [8080-exec-95] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:22:21.605 12197 [8080-exec-95] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:22:21.705 12197 [8080-exec-95] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:22:21.705 12197 [8080-exec-95] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:22:21.706 12197 [8080-exec-95] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:22:21.973 12197 [8080-exec-96] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:22:21.973 12197 [8080-exec-96] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:22:22.038 12197 [8080-exec-96] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:22:22.039 12197 [8080-exec-96] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:22:22.040 12197 [8080-exec-96] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:22:22.063 12197 [8080-exec-97] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:22:22.063 12197 [8080-exec-97] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:22:22.072 12197 [8080-exec-97] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:22:22.073 12197 [8080-exec-97] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:22:22.074 12197 [8080-exec-97] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:22:34.568 12197 [8080-exec-98] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:22:34.569 12197 [8080-exec-98] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:22:34.622 12197 [8080-exec-98] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:22:34.623 12197 [8080-exec-98] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:22:34.623 12197 [8080-exec-98] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:22:40.835 12197 [080-exec-102] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:22:40.835 12197 [080-exec-102] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:22:40.840 12197 [080-exec-102] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:22:40.840 12197 [080-exec-102] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:22:40.841 12197 [080-exec-102] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:22:47.882 12197 [080-exec-105] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:22:47.882 12197 [080-exec-105] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:22:47.887 12197 [080-exec-105] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:22:47.887 12197 [080-exec-105] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:22:47.887 12197 [080-exec-105] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:23:00.884 12197 [080-exec-106] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:23:00.885 12197 [080-exec-106] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:23:01.000 12197 [080-exec-106] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:23:01.001 12197 [080-exec-106] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:23:01.001 12197 [080-exec-106] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:23:02.114 12197 [080-exec-107] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:23:02.115 12197 [080-exec-107] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:23:02.224 12197 [080-exec-107] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:23:02.224 12197 [080-exec-107] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:23:02.225 12197 [080-exec-107] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:23:04.572 12197 [080-exec-108] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:23:04.573 12197 [080-exec-108] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:23:04.631 12197 [080-exec-108] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:23:04.632 12197 [080-exec-108] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:23:04.632 12197 [080-exec-108] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:23:05.083 12197 [080-exec-109] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:23:05.083 12197 [080-exec-109] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:23:05.248 12197 [080-exec-109] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:23:05.249 12197 [080-exec-109] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:23:05.249 12197 [080-exec-109] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:23:05.722 12197 [080-exec-110] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:23:05.722 12197 [080-exec-110] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:23:05.861 12197 [080-exec-110] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:23:05.861 12197 [080-exec-110] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:23:05.862 12197 [080-exec-110] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:23:05.921 12197 [080-exec-112] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=8; 
+2020-07-07 03:23:05.921 12197 [080-exec-111] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=3; 
+2020-07-07 03:23:05.922 12197 [080-exec-112] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==> Parameters: 
+2020-07-07 03:23:05.922 12197 [080-exec-111] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==> Parameters: 
+2020-07-07 03:23:05.927 12197 [080-exec-112] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:23:05.927 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:23:05.927 12197 [080-exec-112] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 195, 8, 민소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.927 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 42, 3, 블랙, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.928 12197 [080-exec-112] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 196, 8, 반팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.928 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 43, 3, 화이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.929 12197 [080-exec-112] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 197, 8, 캡, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.929 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 44, 3, 그레이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.929 12197 [080-exec-112] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 198, 8, 7부소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.929 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 45, 3, 레드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.930 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 46, 3, 핑크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.930 12197 [080-exec-112] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 199, 8, 긴팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.930 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 47, 3, 오렌지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.930 12197 [080-exec-112] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : <==      Total: 5
+2020-07-07 03:23:05.931 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 48, 3, 베이지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.931 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 49, 3, 브라운, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.932 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 50, 3, 옐로우, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.932 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 51, 3, 그린, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.933 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 52, 3, 카키, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.934 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 53, 3, 민트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.935 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 54, 3, 블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.936 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 55, 3, 네이비, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.936 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 56, 3, 스카이블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.936 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 57, 3, 퍼플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.937 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 58, 3, 라벤더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.937 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 59, 3, 와인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.937 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 60, 3, 네온, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.938 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 61, 3, 골드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.938 12197 [080-exec-111] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 62, 3, 실버, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:23:05.938 12197 [080-exec-111] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : <==      Total: 21
+2020-07-07 03:25:20.460 12197 [080-exec-114] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:25:20.461 12197 [080-exec-114] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:25:20.540 12197 [080-exec-114] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:25:20.540 12197 [080-exec-114] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:25:20.541 12197 [080-exec-114] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:25:20.545 12197 [080-exec-115] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:25:20.546 12197 [080-exec-115] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:25:20.547 12197 [080-exec-114] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-07T03:25:20.547, code=Unknown, status=500, error=Internal Server Error, message=java.io.IOException: Broken pipe, path=/api/v1/kfashion/img/getByteImage?workNo=3)
+2020-07-07 03:25:20.548 12197 [080-exec-114] - WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver  414 : Failure in @ExceptionHandler io.aetherit.kfashion.ws.controller.support.ControllerExceptionHandler#handleUnknownException(HttpServletRequest, Exception)
+org.springframework.http.converter.HttpMessageNotWritableException: No converter for [class io.aetherit.kfashion.ws.exception.ErrorResponse] with preset Content-Type 'image/jpeg;charset=UTF-8'
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:317)
+	at org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor.handleReturnValue(HttpEntityMethodProcessor.java:226)
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:82)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:124)
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:403)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:61)
+	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:141)
+	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1300)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1111)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.session.web.http.SessionRepositoryFilter.doFilterInternal(SessionRepositoryFilter.java:141)
+	at org.springframework.session.web.http.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:82)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-07 03:25:20.549 12197 [080-exec-115] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:25:20.550 12197 [080-exec-115] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:25:20.550 12197 [080-exec-115] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:25:21.094 12197 [080-exec-117] - INFO    org.apache.coyote.http11.Http11Processor  175 : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:468)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-07 03:25:21.112 12197 [080-exec-118] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:25:21.112 12197 [080-exec-118] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:25:21.116 12197 [080-exec-118] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:25:21.117 12197 [080-exec-118] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:25:21.117 12197 [080-exec-118] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:25:25.476 12197 [080-exec-119] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:25:25.477 12197 [080-exec-119] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:25:25.546 12197 [080-exec-119] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:25:25.546 12197 [080-exec-119] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:25:25.547 12197 [080-exec-119] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:25:31.210 12197 [080-exec-120] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:25:31.210 12197 [080-exec-120] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:25:31.322 12197 [080-exec-120] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:25:31.323 12197 [080-exec-120] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:25:31.323 12197 [080-exec-120] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:25:32.447 12197 [080-exec-121] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:25:32.448 12197 [080-exec-121] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:25:32.529 12197 [080-exec-121] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:25:32.530 12197 [080-exec-121] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:25:32.530 12197 [080-exec-121] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:25:33.220 12197 [080-exec-122] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:25:33.221 12197 [080-exec-122] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:25:33.295 12197 [080-exec-122] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:25:33.295 12197 [080-exec-122] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:25:33.296 12197 [080-exec-122] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:25:33.326 12197 [080-exec-123] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=3; 
+2020-07-07 03:25:33.326 12197 [080-exec-124] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==>  Preparing: select * from kfashion_category_item kci where category_no=8; 
+2020-07-07 03:25:33.326 12197 [080-exec-123] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : ==> Parameters: 
+2020-07-07 03:25:33.327 12197 [080-exec-124] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : ==> Parameters: 
+2020-07-07 03:25:33.386 12197 [080-exec-124] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:33.386 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:33.387 12197 [080-exec-124] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 195, 8, 민소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.387 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 42, 3, 블랙, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.387 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 43, 3, 화이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.387 12197 [080-exec-124] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 196, 8, 반팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.388 12197 [080-exec-124] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 197, 8, 캡, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.388 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 44, 3, 그레이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.388 12197 [080-exec-124] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 198, 8, 7부소매, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.388 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 45, 3, 레드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.389 12197 [080-exec-124] - TRACE       i.a.k.w.r.m.K.selectSleeveLengthList  165 : <==        Row: 199, 8, 긴팔, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.389 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 46, 3, 핑크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.389 12197 [080-exec-124] - DEBUG       i.a.k.w.r.m.K.selectSleeveLengthList  159 : <==      Total: 5
+2020-07-07 03:25:33.389 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 47, 3, 오렌지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.390 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 48, 3, 베이지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.390 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 49, 3, 브라운, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.391 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 50, 3, 옐로우, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.391 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 51, 3, 그린, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.391 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 52, 3, 카키, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.392 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 53, 3, 민트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.392 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 54, 3, 블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.393 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 55, 3, 네이비, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.393 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 56, 3, 스카이블루, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.393 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 57, 3, 퍼플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.394 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 58, 3, 라벤더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.394 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 59, 3, 와인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.395 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 60, 3, 네온, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.395 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 61, 3, 골드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.395 12197 [080-exec-123] - TRACE              i.a.k.w.r.m.K.selectColorList  165 : <==        Row: 62, 3, 실버, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:33.395 12197 [080-exec-123] - DEBUG              i.a.k.w.r.m.K.selectColorList  159 : <==      Total: 21
+2020-07-07 03:25:34.591 12197 [080-exec-126] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:25:34.592 12197 [080-exec-126] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:25:34.669 12197 [080-exec-126] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:25:34.670 12197 [080-exec-126] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:25:34.670 12197 [080-exec-126] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:25:34.690 12197 [080-exec-129] - DEBUG             i.a.k.w.r.m.K.selectDetailList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=4; 
+2020-07-07 03:25:34.690 12197 [080-exec-127] - DEBUG              i.a.k.w.r.m.K.selectStyleList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=1; 
+2020-07-07 03:25:34.690 12197 [080-exec-128] - DEBUG           i.a.k.w.r.m.K.selectCategoryList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=2; 
+2020-07-07 03:25:34.690 12197 [080-exec-130] - DEBUG              i.a.k.w.r.m.K.selectPrintList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=5; 
+2020-07-07 03:25:34.690 12197 [080-exec-131] - DEBUG            i.a.k.w.r.m.K.selectTextureList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=6; 
+2020-07-07 03:25:34.690 12197 [080-exec-129] - DEBUG             i.a.k.w.r.m.K.selectDetailList  159 : ==> Parameters: 
+2020-07-07 03:25:34.690 12197 [080-exec-127] - DEBUG              i.a.k.w.r.m.K.selectStyleList  159 : ==> Parameters: 
+2020-07-07 03:25:34.690 12197 [080-exec-130] - DEBUG              i.a.k.w.r.m.K.selectPrintList  159 : ==> Parameters: 
+2020-07-07 03:25:34.690 12197 [080-exec-128] - DEBUG           i.a.k.w.r.m.K.selectCategoryList  159 : ==> Parameters: 
+2020-07-07 03:25:34.691 12197 [080-exec-131] - DEBUG            i.a.k.w.r.m.K.selectTextureList  159 : ==> Parameters: 
+2020-07-07 03:25:34.696 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.696 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.696 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.696 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 26, 2, 점퍼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.696 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.696 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 1, 1, 클래식, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.696 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 161, 6, 퍼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 103, 5, 체크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 27, 2, 패딩, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 2, 1, 프레피, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 162, 6, 무스탕, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 104, 5, 스트라이프, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 28, 2, 청바지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 3, 1, 매니시, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 163, 6, 스웨이드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.697 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 105, 5, 지그재그, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 29, 2, 팬츠, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 4, 1, 톰보이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 164, 6, 앙고라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 106, 5, 호피, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 5, 1, 엘레강스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 30, 2, 스커트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 165, 6, 코듀로이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 107, 5, 지브라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.698 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 6, 1, 소피스트케이티드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 31, 2, 드레스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 166, 6, 시퀀/글리터, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 108, 5, 도트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 7, 1, 에스닉, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 32, 2, 점프수트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 167, 6, 데님, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 109, 5, 카무플라쥬, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 8, 1, 히피, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 33, 2, 수영복, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.699 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 168, 6, 저지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 110, 5, 페이즐리, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 9, 1, 오리엔탈, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 34, 2, 탑, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 169, 6, 니트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 111, 5, 아가일, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 10, 1, 모던, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 35, 2, 블라우스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 170, 6, 레이스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.700 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 112, 5, 플로럴, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 36, 2, 캐주얼상의, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 11, 1, 미니멀, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 171, 6, 린넨, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.701 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 113, 5, 레터링, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 37, 2, 니트웨어, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 63, 4, 비즈, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 12, 1, 내추럴, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 172, 6, 메시, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 114, 5, 해골, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 173, 6, 플리스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 64, 4, 단추, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 13, 1, 컨트리, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.701 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 38, 2, 셔츠, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 115, 5, 타이다이, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 65, 4, 니트꽈배기, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 14, 1, 로맨틱, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 39, 2, 베스트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 174, 6, 네오프렌, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 116, 5, 그라데이션, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 66, 4, 체인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 15, 1, 섹시, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.702 12197 [080-exec-132] - DEBUG             i.a.k.w.r.m.K.selectLengthList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=7; 
+2020-07-07 03:25:34.703 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 40, 2, 코트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 175, 6, 실크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-132] - DEBUG             i.a.k.w.r.m.K.selectLengthList  159 : ==> Parameters: 
+2020-07-07 03:25:34.703 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 117, 5, 무지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 67, 4, 컷오프, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-128] - TRACE           i.a.k.w.r.m.K.selectCategoryList  165 : <==        Row: 41, 2, 재킷, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 16, 1, 스포티, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 176, 6, 스판덱스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-128] - DEBUG           i.a.k.w.r.m.K.selectCategoryList  159 : <==      Total: 16
+2020-07-07 03:25:34.703 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 68, 4, 더블브레스티드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 118, 5, 그래픽, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 177, 6, 트위드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.703 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 17, 1, 애슬레저, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 69, 4, 드롭숄더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 119, 5, 하운즈투스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 18, 1, 놈코어, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 178, 6, 벨벳, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 70, 4, 자수, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 19, 1, 밀리터리, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-130] - TRACE              i.a.k.w.r.m.K.selectPrintList  165 : <==        Row: 120, 5, 깅엄, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 179, 6, 비닐/pvc, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-130] - DEBUG              i.a.k.w.r.m.K.selectPrintList  159 : <==      Total: 18
+2020-07-07 03:25:34.704 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 180, 6, 울/캐시미어, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 71, 4, 프릴, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.704 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 20, 1, 문화, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.705 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 72, 4, 프린지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.705 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 21, 1, 뉴트로, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.705 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 181, 6, 합성섬유, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.705 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 73, 4, 플레어, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.705 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 182, 6, 자카드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.705 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 22, 1, 힙합, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.705 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 74, 4, 퍼트리밍, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.705 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 23, 1, 키치/키덜트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 183, 6, 가죽, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 75, 4, 글리터, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 24, 1, 맥시멀, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 76, 4, 후드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 184, 6, 면, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-127] - TRACE              i.a.k.w.r.m.K.selectStyleList  165 : <==        Row: 25, 1, 캐주얼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 77, 4, 레이스업, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-131] - TRACE            i.a.k.w.r.m.K.selectTextureList  165 : <==        Row: 185, 6, 시폰, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.706 12197 [080-exec-127] - DEBUG              i.a.k.w.r.m.K.selectStyleList  159 : <==      Total: 25
+2020-07-07 03:25:34.706 12197 [080-exec-131] - DEBUG            i.a.k.w.r.m.K.selectTextureList  159 : <==      Total: 25
+2020-07-07 03:25:34.706 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 78, 4, 패딩, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.707 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 79, 4, 패치워크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.707 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 80, 4, 페플럼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.707 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 81, 4, 플리츠, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.708 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 82, 4, 포켓, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.708 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 83, 4, 폼폼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.708 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.708 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 84, 4, 퍼프, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.708 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 186, 7, 롱, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 85, 4, 퀼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 187, 7, 크롭, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 86, 4, 리본, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 188, 7, 노멀, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 87, 4, 롤업, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 189, 7, 맥시, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 88, 4, 러플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 190, 7, 하프, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.709 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 89, 4, 셔링, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.710 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 90, 4, 슬릿, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.710 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 191, 7, 미니, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.710 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 91, 4, 스팽글, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.710 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 192, 7, 니렝스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.710 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 92, 4, 스티치, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.710 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 193, 7, 긴, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.710 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 93, 4, 스터드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.710 12197 [080-exec-132] - TRACE             i.a.k.w.r.m.K.selectLengthList  165 : <==        Row: 194, 7, 숏, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.711 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 94, 4, 태슬, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.711 12197 [080-exec-132] - DEBUG             i.a.k.w.r.m.K.selectLengthList  159 : <==      Total: 9
+2020-07-07 03:25:34.711 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 95, 4, 집업, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.711 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 96, 4, 띠, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.711 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 97, 4, 디스트로이드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.712 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 98, 4, 드롭웨이스트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.712 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 99, 4, 버클, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.712 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 100, 4, 컷아웃, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.712 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 101, 4, x스트랩, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.712 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 102, 4, 비대칭, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.713 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 121, 4, 비즈, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.713 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 123, 4, 니트꽈배기, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.713 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 124, 4, 체인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.713 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 125, 4, 컷오프, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.714 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 126, 4, 더블브레스티드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.714 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 127, 4, 드롭숄더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.714 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 128, 4, 자수, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.714 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 129, 4, 프릴, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.715 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 130, 4, 프린지, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.715 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 131, 4, 플레어, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.715 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 132, 4, 퍼트리밍, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.715 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 133, 4, 글리터, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.716 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 134, 4, 후드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.716 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 135, 4, 레이스업, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.716 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 136, 4, 패딩, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.717 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 137, 4, 패치워크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.717 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 138, 4, 페플럼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.717 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 139, 4, 플리츠, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.717 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 140, 4, 포켓, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.718 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 141, 4, 폼폼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.718 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 142, 4, 퍼프, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.718 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 143, 4, 퀼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.718 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 144, 4, 리본, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.718 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 145, 4, 롤업, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.719 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 146, 4, 러플, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.719 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 147, 4, 셔링, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.719 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 148, 4, 슬릿, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.719 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 149, 4, 스팽글, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.720 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 150, 4, 스티치, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.720 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 151, 4, 스터드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.720 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 152, 4, 태슬, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.720 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 153, 4, 집업, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.720 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 154, 4, 띠, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.721 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 155, 4, 디스트로이드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.721 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 156, 4, 드롭웨이스트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.721 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 157, 4, 버클, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.721 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 158, 4, 컷아웃, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.722 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 159, 4, x스트랩, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.722 12197 [080-exec-129] - TRACE             i.a.k.w.r.m.K.selectDetailList  165 : <==        Row: 160, 4, 비대칭, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.722 12197 [080-exec-129] - DEBUG             i.a.k.w.r.m.K.selectDetailList  159 : <==      Total: 79
+2020-07-07 03:25:34.839 12197 [080-exec-133] - DEBUG           i.a.k.w.r.m.K.selectNeckLineList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=9; 
+2020-07-07 03:25:34.840 12197 [080-exec-133] - DEBUG           i.a.k.w.r.m.K.selectNeckLineList  159 : ==> Parameters: 
+2020-07-07 03:25:34.848 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.850 12197 [080-exec-135] - DEBUG                i.a.k.w.r.m.K.selectFitList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=11; 
+2020-07-07 03:25:34.850 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 200, 9, 라운드넥, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.850 12197 [080-exec-134] - DEBUG               i.a.k.w.r.m.K.selectKaraList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=10; 
+2020-07-07 03:25:34.850 12197 [080-exec-135] - DEBUG                i.a.k.w.r.m.K.selectFitList  159 : ==> Parameters: 
+2020-07-07 03:25:34.851 12197 [080-exec-134] - DEBUG               i.a.k.w.r.m.K.selectKaraList  159 : ==> Parameters: 
+2020-07-07 03:25:34.851 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 201, 9, 유넥, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.851 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 202, 9, 브이넥, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.851 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 203, 9, 홀터넥, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.852 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 204, 9, 오프숄더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.852 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 205, 9, 원숄더, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.853 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 206, 9, 스퀘어넥, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.853 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 207, 9, 노카라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.853 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 208, 9, 후드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.854 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 209, 9, 터틀넥, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.854 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 210, 9, 보트넥, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.854 12197 [080-exec-133] - TRACE           i.a.k.w.r.m.K.selectNeckLineList  165 : <==        Row: 211, 9, 스위트하트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.855 12197 [080-exec-133] - DEBUG           i.a.k.w.r.m.K.selectNeckLineList  159 : <==      Total: 12
+2020-07-07 03:25:34.855 12197 [080-exec-135] - TRACE                i.a.k.w.r.m.K.selectFitList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.855 12197 [080-exec-136] - DEBUG               i.a.k.w.r.m.K.selectSafeList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=12; 
+2020-07-07 03:25:34.856 12197 [080-exec-135] - TRACE                i.a.k.w.r.m.K.selectFitList  165 : <==        Row: 223, 11, 노멀, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.856 12197 [080-exec-136] - DEBUG               i.a.k.w.r.m.K.selectSafeList  159 : ==> Parameters: 
+2020-07-07 03:25:34.856 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.856 12197 [080-exec-135] - TRACE                i.a.k.w.r.m.K.selectFitList  165 : <==        Row: 224, 11, 루즈, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.856 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 212, 10, 셔츠칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.856 12197 [080-exec-135] - TRACE                i.a.k.w.r.m.K.selectFitList  165 : <==        Row: 225, 11, 오버사이즈, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.856 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 213, 10, 보우칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.857 12197 [080-exec-135] - TRACE                i.a.k.w.r.m.K.selectFitList  165 : <==        Row: 226, 11, 스키니, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.857 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 214, 10, 세일러칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.857 12197 [080-exec-135] - TRACE                i.a.k.w.r.m.K.selectFitList  165 : <==        Row: 227, 11, 와이드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.857 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 215, 10, 숄칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.857 12197 [080-exec-135] - TRACE                i.a.k.w.r.m.K.selectFitList  165 : <==        Row: 228, 11, 타이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.857 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 216, 10, 폴로칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.858 12197 [080-exec-135] - DEBUG                i.a.k.w.r.m.K.selectFitList  159 : <==      Total: 6
+2020-07-07 03:25:34.858 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 217, 10, 피터팬칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.858 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 218, 10, 너치드칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.858 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 219, 10, 차이나칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.859 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 220, 10, 테일러드칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.859 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 221, 10, 밴드칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.859 12197 [080-exec-134] - TRACE               i.a.k.w.r.m.K.selectKaraList  165 : <==        Row: 222, 10, 밴드칼라, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.859 12197 [080-exec-134] - DEBUG               i.a.k.w.r.m.K.selectKaraList  159 : <==      Total: 11
+2020-07-07 03:25:34.861 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.861 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 229, 12, 페플럼, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.861 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 230, 12, 비대칭, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.861 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 231, 12, 알수없음, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.862 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 232, 12, 펜슬, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.862 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 233, 12, A라인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.862 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 234, 12, H라인, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.863 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 235, 12, 머메이드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.863 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 236, 12, 벨보텀/플레어, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.863 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 237, 12, 부츠컷, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.863 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 238, 12, 테이퍼드, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.864 12197 [080-exec-136] - TRACE               i.a.k.w.r.m.K.selectSafeList  165 : <==        Row: 239, 12, 스트레이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.864 12197 [080-exec-136] - DEBUG               i.a.k.w.r.m.K.selectSafeList  159 : <==      Total: 11
+2020-07-07 03:25:34.867 12197 [080-exec-137] - DEBUG         i.a.k.w.r.m.K.selectSilhouetteList  159 : ==>  Preparing: select * from kfashion_category_item where category_no=13; 
+2020-07-07 03:25:34.867 12197 [080-exec-137] - DEBUG         i.a.k.w.r.m.K.selectSilhouetteList  159 : ==> Parameters: 
+2020-07-07 03:25:34.890 12197 [080-exec-137] - TRACE         i.a.k.w.r.m.K.selectSilhouetteList  165 : <==    Columns: no, category_no, category_item_name, created_id, updated_id, created_datetime, updated_datetime
+2020-07-07 03:25:34.891 12197 [080-exec-137] - TRACE         i.a.k.w.r.m.K.selectSilhouetteList  165 : <==        Row: 240, 13, 아우러글래스, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.892 12197 [080-exec-137] - TRACE         i.a.k.w.r.m.K.selectSilhouetteList  165 : <==        Row: 241, 13, 스트레이트, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.893 12197 [080-exec-137] - TRACE         i.a.k.w.r.m.K.selectSilhouetteList  165 : <==        Row: 242, 13, 벌크, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.893 12197 [080-exec-137] - TRACE         i.a.k.w.r.m.K.selectSilhouetteList  165 : <==        Row: 243, 13, A, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.894 12197 [080-exec-137] - TRACE         i.a.k.w.r.m.K.selectSilhouetteList  165 : <==        Row: 244, 13, T/Y, admin, admin, 2020-06-21 14:15:00.0, 2020-06-21 14:15:00.0
+2020-07-07 03:25:34.895 12197 [080-exec-137] - DEBUG         i.a.k.w.r.m.K.selectSilhouetteList  159 : <==      Total: 5
+2020-07-07 03:28:18.434 12197 [080-exec-139] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:28:18.435 12197 [080-exec-139] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:28:18.497 12197 [080-exec-139] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:28:18.497 12197 [080-exec-139] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:28:18.498 12197 [080-exec-139] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:28:18.509 12197 [080-exec-140] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:28:18.509 12197 [080-exec-140] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:28:18.519 12197 [080-exec-140] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:28:18.520 12197 [080-exec-140] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:28:18.520 12197 [080-exec-140] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:28:18.915 12197 [080-exec-141] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:28:18.915 12197 [080-exec-141] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:28:19.010 12197 [080-exec-141] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:28:19.010 12197 [080-exec-141] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:28:19.011 12197 [080-exec-141] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:28:20.479 12197 [080-exec-142] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:28:20.480 12197 [080-exec-142] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:28:20.551 12197 [080-exec-142] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:28:20.552 12197 [080-exec-142] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:28:20.553 12197 [080-exec-142] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:28:22.124 12197 [080-exec-143] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:28:22.125 12197 [080-exec-143] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:28:22.184 12197 [080-exec-143] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:28:22.185 12197 [080-exec-143] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:28:22.186 12197 [080-exec-143] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 03:28:25.009 12197 [080-exec-144] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 03:28:25.009 12197 [080-exec-144] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 03:28:25.014 12197 [080-exec-144] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 03:28:25.015 12197 [080-exec-144] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 03:28:25.015 12197 [080-exec-144] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 03:28:26.419 12197 [080-exec-145] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-07 03:28:26.420 12197 [080-exec-145] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-07 03:28:26.500 12197 [080-exec-145] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-07 03:28:26.501 12197 [080-exec-145] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-07 03:28:26.502 12197 [080-exec-145] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-07 04:16:33.214 12197 [080-exec-146] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, kfashion_work.work_name, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-07 04:16:33.216 12197 [080-exec-146] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-07 04:16:33.227 12197 [080-exec-146] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, created_id
+2020-07-07 04:16:33.227 12197 [080-exec-146] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1.png, admin
+2020-07-07 04:16:33.227 12197 [080-exec-146] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 1
+2020-07-07 04:38:11.408 12197 [080-exec-147] - INFO      i.a.k.w.c.s.ControllerExceptionHandler   79 : HTTP Response [500 INTERNAL_SERVER_ERROR] to 127.0.0.1 : ErrorResponse(timestamp=2020-07-07T04:38:11.407, code=Unknown, status=500, error=Internal Server Error, message=org.springframework.security.web.authentication.WebAuthenticationDetails cannot be cast to io.aetherit.kfashion.ws.model.KfashionSimpleUser, path=/api/v1/kfashion/authentications/signcheck)
+2020-07-07 04:38:13.190 12197 [080-exec-148] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==>  Preparing: SELECT kfashion_user_info.id, kfashion_user_info.email, kfashion_user_info.password, kfashion_user_info.name, kfashion_user_info.phone, kfashion_user_info.group_no, kfashion_user_info.is_admin, kfashion_user_info.is_approved, kfashion_user_group_authority.authority_no, COUNT(kfashion_user_group_admin.user_id) AS group_admin, kfashion_user_info.created_datetime, kfashion_user_info.updated_datetime FROM kfashion_user_info LEFT JOIN kfashion_user_group_authority ON kfashion_user_info.group_no = kfashion_user_group_authority.group_no RIGHT JOIN kfashion_user_group_admin ON kfashion_user_info.id = kfashion_user_group_admin.user_id WHERE id = ? 
+2020-07-07 04:38:13.191 12197 [080-exec-148] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : ==> Parameters: admin(String)
+2020-07-07 04:38:13.195 12197 [080-exec-148] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==    Columns: id, email, password, name, phone, group_no, is_admin, is_approved, authority_no, group_admin, created_datetime, updated_datetime
+2020-07-07 04:38:13.196 12197 [080-exec-148] - TRACE                   i.a.k.w.r.m.K.selectUser  165 : <==        Row: admin, null, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, null, null, Y, Y, null, 0, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-07 04:38:13.197 12197 [080-exec-148] - DEBUG                   i.a.k.w.r.m.K.selectUser  159 : <==      Total: 1
