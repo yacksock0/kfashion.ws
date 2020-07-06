@@ -138,7 +138,7 @@ class BoundaryBox extends React.Component {
     id = []
 
     state = {
-        value:0,
+        value:1,
         winheight: 0,
         winwidth: 0
     }
@@ -172,13 +172,13 @@ class BoundaryBox extends React.Component {
         });
 
 
-        this.canvas.on('mouse:move', (e) => {
-            console.log("mouse.x : " +e.pointer.x);
-            console.log("mouse.y : " +e.pointer.y);
-            if(e.pointer.x <700){
-                // e.pointer.x-10;
-            }
-        });
+        // this.canvas.on('mouse:move', (e) => {
+        //     console.log("mouse.x : " +e.pointer.x);
+        //     console.log("mouse.y : " +e.pointer.y);
+        //     if(e.pointer.x <700){
+        //         // e.pointer.x-10;
+        //     }
+        // });
 
         const maxScaleX = 3.2;
         const maxScaleY = 3.2;
@@ -290,6 +290,7 @@ class BoundaryBox extends React.Component {
         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
         this.props.rectStore.doRectLocationUp();
+        window.location.reload(false);
     }
 
     render() {
@@ -434,7 +435,7 @@ class BoundaryBox extends React.Component {
 
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
-                                    <Button onClick={this.submit} color={'#999999'}>submit </Button>
+                                    <Button onClick={this.submit}>submit </Button>
                                 </div>
                             </div>
                         </TabPanel>
@@ -447,6 +448,7 @@ class BoundaryBox extends React.Component {
                 </div>
 
                 <div>
+
                     <hr></hr>
                     <Button
                         type="submit"
@@ -470,6 +472,7 @@ class BoundaryBox extends React.Component {
                         onClick={this.handleSubmitForm} >
                         Save and Next
                     </Button>
+
                 </div>
             </Container>
         );

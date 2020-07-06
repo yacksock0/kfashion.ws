@@ -17,6 +17,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
+import {Button} from "@material-ui/core";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -68,6 +69,7 @@ class ImageList extends React.Component {
     render() {
         const {boundaryList} = this.state;
         return (
+
                 <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
@@ -92,8 +94,10 @@ class ImageList extends React.Component {
                         icon: Edit,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => {
-                        this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                        console.log(rowData);
+                            let workNo = rowData.workNo;
+                        this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+workNo});
+                        // window.location.reload(false);
+                        console.log(workNo);
                         }
                      }
                     ]}
