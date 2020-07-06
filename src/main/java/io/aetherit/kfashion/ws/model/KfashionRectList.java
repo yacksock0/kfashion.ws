@@ -16,8 +16,8 @@ public class KfashionRectList {
     private int top;
     private int width;
     private int height;
-    private Double scaleX;
-    private Double scaleY;
+    private Double translateX;
+    private Double translateY;
 
     private String createdId;
     private Long workNo;

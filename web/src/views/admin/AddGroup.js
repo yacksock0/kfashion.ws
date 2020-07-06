@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
 });
@@ -94,11 +95,12 @@ class AddGroup extends React.Component {
                     <DialogContent>
                         <TextField label="그룹명" type="text" name="groupName" value={this.state.groupName} onChange={this.handleValueChange} />
                         <div style={{display:'inline-block'}}>
+                            <FormControl >
                         <InputLabel id="demo-simple-select-label">그룹권한</InputLabel>
                         <Select style={{width: 130, marginLeft:10}}
-                            labelId="그룹권한"
+                            labelId="demo-simple-select-label"
                             onChange={this.handleValueChange}
-                             name='authorityNo'
+                            name='authorityNo'
                         >
                             <MenuItem value={1}>ImageUpload</MenuItem>
                             <MenuItem value={2}>BoundaryBox</MenuItem>
@@ -106,6 +108,7 @@ class AddGroup extends React.Component {
                             <MenuItem value={4}>Basic</MenuItem>
                             <MenuItem value={5}>Professional</MenuItem>
                         </Select>
+                            </FormControl>
                         </div>
                     </DialogContent>
                     <DialogActions>

@@ -130,39 +130,45 @@ class ImageUpload extends React.Component {
             variant: 'info'
         });
         this.props.authStore.checkLogin();
-        this.setState({ open : false })
         const createdId = this.props.authStore.loginUser.id;
+        this.props.imageStore.LoadImage(createdId)
+        this.setState({
+            boundaryList: this.props.imageStore.boundaryList,
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
+            workNo: this.props.imageStore.workNo
+        })
 
-        axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
-            .then(response => {
-                this.setState({ boundaryList : response.data.boundaryList.filter(b =>b !==null)})
-                this.setState({ imgData : `/api/v1/kfashion/img/getByteImage?workNo=${this.state.boundaryList[0].workNo}`});
-            })
-            .catch(error => {
-                console.log(error)
-            })
     }
     handlePrevious(){
-        this.setState({count: this.state.count-1})
-        { 0 < this.state.count ? this.setState({imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.state.boundaryList[this.state.count].workNo}`})
-                : this.setState({count: this.state.boundaryList.length})
-            console.log(this.state.count)
+        this.setState({
+            count: this.state.count-1
+        });
+        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            : alert("첫번째 이미지 입니다.")
         }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
     }
-    handleNext(){
-        this.setState({count: this.state.count+1});
-        {this.state.count < this.state.boundaryList.length ? this.setState({imgData : `/api/v1/kfashion/img/getByteImage?workNo=${this.state.boundaryList[this.state.count].workNo}`} )
-            : this.setState({count: 0})
+    handleNext() {
+        this.setState({
+            count: this.state.count+1
+        });
+        {this.state.count < this.state.boundaryList.length ?
+         this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+         :alert("마지막 이미지 입니다.")
         }
-        console.log(this.state.count)
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
     }
     render() {
-        const {boundaryList} = this.state;
+        const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;
-        this.props.imageStore.changeImgData(this.state.imgData)
         return (
             <Container component="main" className={classes.mainContainer}>
-                {/*Stepper*/}
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
@@ -173,12 +179,13 @@ class ImageUpload extends React.Component {
                         </Grid>
                     </Toolbar>
                     <Grid container>
-                        <Grid item xs={7}>
-                            <div>
-                                <img src={this.state.imgData} style={{display:"block" , width:750, height: 850}}/>
+                        <Grid item xs={12} lg={6}>
+                            <div style={{marginRight:15}}>
+                                <img src={this.state.imgData} style={{display:"block" , width:'100%', height:'100%'}}/>
                             </div>
                         </Grid>
-                        <Grid item xs={5}>
+                        <Grid item xs={12} lg={6}>
+                            <div>
                             <MaterialTable
                                 icons={tableIcons}
                                 columns={this.state.columns}
@@ -210,6 +217,7 @@ class ImageUpload extends React.Component {
                                     }
                                 ]}
                             />
+                            </div>
                         </Grid>
                     </Grid>
                 </div>

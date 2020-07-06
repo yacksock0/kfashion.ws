@@ -151,7 +151,7 @@ class Polygon extends React.Component {
 
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(this.props.imageStore.isImgData, this.canvas.renderAll.bind(this.canvas), {
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
             width : 700,

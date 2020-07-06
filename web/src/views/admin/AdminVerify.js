@@ -109,6 +109,7 @@ export default class AdminVerify extends React.Component {
                             })
                     }}
                     options={{
+                        sorting: false,
                         /*padding:'dense',*/
                         minBodyHeight: '35em',
                         selection: true,

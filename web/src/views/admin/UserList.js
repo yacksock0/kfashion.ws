@@ -158,6 +158,9 @@ class UserList extends React.Component {
                                 cellStyle: {
                                     textAlign: 'center'
                                 },
+                                actionsCellStyle: {
+                                    textAlign: 'center'
+                                },
                             }}
 
                         />

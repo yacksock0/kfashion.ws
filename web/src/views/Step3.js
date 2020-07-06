@@ -2,8 +2,6 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import Radio from '@material-ui/core/Radio';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Category from "./step3/Category";
 import Style from "./step3/Style";
@@ -17,6 +15,26 @@ import Fit from "./step3/Fit";
 import Safe from "./step3/Safe";
 import Silhouette from "./step3/Silhouette";
 import {inject, observer} from "mobx-react";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+
+function TabPanel(props) {
+    const { children, value, index } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+        >
+            {value === index && (
+                <Typography>{children}</Typography>
+            )}
+        </div>
+    );
+}
 
 const styles = theme => ({
     mainContainer: {
@@ -49,12 +67,13 @@ const styles = theme => ({
     },
 });
 
-@inject('professionalLabelStore','authStore')
+@inject('professionalLabelStore','authStore', 'imageStore')
 @observer
 class Step3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            value:0,
             createdId: '',
         }
     }
@@ -65,6 +84,9 @@ class Step3 extends React.Component {
         this.props.enqueueSnackbar("Step3", {
             variant: 'info'
         });
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+        })
     }
 
     handleClickSubmit = () => {
@@ -72,6 +94,9 @@ class Step3 extends React.Component {
         this.props.professionalLabelStore.doProfessionalLabelUp();
     }
 
+    handleTabChange = (event, newValue) => {
+        this.setState({ value: newValue });
+    }
     render() {
         const {classes} = this.props;
 
@@ -81,9 +106,18 @@ class Step3 extends React.Component {
                     <div className={classes.mainContent}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                                <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block", margin:"auto"}}></img>
+                                <img src={this.state.imgData} alt="" style={{display:"block" , width:'100%', height:'100%'}}></img>
                             </Grid>
                             <Grid container item xs={12} lg={6}>
+                                <AppBar position="static">
+                                    <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example" >
+                                        <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>
+                                        <Tab label="하의" value={1} style={{minWidth:'20%'}}/>
+                                        <Tab label="신발" value={2} style={{minWidth:'20%'}}/>
+                                        <Tab label="가방" value={3} style={{minWidth:'20%'}}/>
+                                        <Tab label="악세서리" value={4} style={{minWidth:'20%'}}/>
+                                    </Tabs>
+                                </AppBar>
                             <Grid item xs={12} lg={6}>
                                 <div className={classes.content}>
                                     <Typography variant="h5" component="h5">
@@ -204,6 +238,7 @@ class Step3 extends React.Component {
                                         </div>
                                         <Silhouette />
                                     </div>
+
                                 </Grid>
                                 </Grid>
                             </Grid>

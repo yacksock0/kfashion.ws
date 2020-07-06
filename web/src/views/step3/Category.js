@@ -12,7 +12,8 @@ export default class SelectTest extends React.Component {
         super(props);
         this.state = {
             text: 'text',
-            categoryList: [],
+            categoryList: [
+                ],
             selectedOption:null,
         }
     }
@@ -20,17 +21,23 @@ export default class SelectTest extends React.Component {
         axios.get('/api/v1/kfashion/category/item/professional/category')
             .then(response => {
                 const categoryList = response.data.categoryList;
-                this.setState({ categoryList : categoryList.map(category => {
-                        category.value = category.no;
-                        category.label = category.categoryItemName;
-                        return category
-                    })
+                this.setState({
+                    categoryList:
+                        categoryList.map(category => {
+
+                            category.value = category.no;
+                            category.label = category.categoryItemName;
+
+                            return category
+                        })
                 })
             })
             .catch(error => {
                 console.log(error)
             })
     }
+
+
     handleChange = (selectedOption) => {
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory(selectedOption);
         this.setState(
@@ -38,16 +45,20 @@ export default class SelectTest extends React.Component {
         );
     };
 
+
+
     render() {
         const { selectedOption } = this.state;
         const categoryList= this.state.categoryList;
         return (
+
             <Select
                 value={selectedOption}
                 onChange={this.handleChange}
                 options={categoryList}
                 placeholder={'카테고리를 선택 하세요'}
             />
+
         );
     }
 }

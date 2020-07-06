@@ -9,7 +9,6 @@ import {inject, observer} from "mobx-react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import ImageList from "./labeling/ImageList";
 
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -62,7 +61,7 @@ const styles = theme => ({
     },
 });
 
-@inject('basicLabelStore','authStore')
+@inject('basicLabelStore','authStore','imageStore')
 @observer
 class Step2 extends React.Component {
     constructor(props) {
@@ -79,6 +78,9 @@ class Step2 extends React.Component {
         this.props.enqueueSnackbar("Step2", {
             variant: 'info',
         });
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+        })
     }
 
     handleClickOK = () => {
@@ -91,14 +93,13 @@ class Step2 extends React.Component {
     }
     render() {
         const { classes } = this.props;
-
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                         <img src="https://placeimg.com/550/600/any" alt="" style={{display:"block", margin:"auto"}}></img>
+                         <img src={this.state.imgData} alt="" style={{display:"block" , width:'100%', height:'100%'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
                                  <AppBar position="static">
