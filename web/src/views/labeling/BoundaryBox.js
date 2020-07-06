@@ -30,7 +30,6 @@ const styles = theme => ({
     table: {
         minWidth: 500,
     },
-    // --START Test
     fab: {
         margin: theme.spacing(2),
     },
@@ -39,7 +38,6 @@ const styles = theme => ({
         bottom: theme.spacing(2),
         right: theme.spacing(3),
     },
-    // --END Test
 
     mainContainer: {
         flexGrow: 1,
@@ -70,10 +68,6 @@ const styles = theme => ({
         height:50,
         width:'100%',
     },
-    test:{
-        border:'1px solid black',
-        height: '50%',
-    },
     toolBox:{
         border:'1px solid black',
         marginRight: 1,
@@ -103,10 +97,6 @@ const styles = theme => ({
         clip: 'rect(0,0,0,0)',
         border: 0,
         borderRadius: 12,
-    },
-    __canvas:{
-        width:'100%',
-        height:'77vh',
     },
 });
 function TabPanel(props) {
@@ -163,41 +153,17 @@ class BoundaryBox extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 700,
-            height : 800,
+            width : 800,
+            height : 1300,
             originX: 'left',
             originY: 'top'
         });
 
-        // // -- START  < Testing... >
-        // this.canvas.on('selection:created', function (e) {
-        //     const asd = e.target;
-        //     console.log('1. created');
-        // });
-        // this.canvas.on('selection:cleared', function (e) {
-        //     const asd = e.target;
-        //     console.log('2. cleared');
-        // });
-        // this.canvas.on('selection:updated', function (e) {
-        //     const asd = e.target;
-        //     console.log('3. updated');
-        // });
         this.canvas.on('object:moving', function (e) {
             const asd = e.target;
             console.log("name : "+asd.name);
 
         });
-        // this.canvas.on('mouse:over', function (e) {
-        //     const asd = e.target;
-        //     console.log('5. mouse:over');
-        // });
-        // this.canvas.on('mouse:out', function (e) {
-        //     const asd = e.target;
-        //     console.log('6. mouse:out');
-        // });
-        // // --END  < Testing... >
-
-        // -- START  < rect가 canvas를 못벗어나도록... >
         this.canvas.on('object:moving', function (e) {
             const obj = e.target;
             // if object is too big ignore
@@ -245,7 +211,6 @@ class BoundaryBox extends React.Component {
                 this.height1=obj.height;
             }
         });
-        // --END  < rect가 canvas를 못벗어나도록... >
     }
 
     addRect = (rectNo) => {
@@ -300,48 +265,21 @@ class BoundaryBox extends React.Component {
 
 
     submit = () => {
-        // let b =this.canvas.getObjects().count();
-        // console.log(b);
-        // let obj = [];
-        // let a = 0;
         this.props.rectStore.objGet(this.canvas.getObjects());
         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
         this.props.rectStore.doRectLocationUp();
-
-
-        // this.canvas.getObjects().forEach(function(o) {
-        //
-        //     obj = o;
-        //
-        //     a+=1;
-        // })
-
-
-        //     for (let j =0; j < a ; j++){
-        //
-        //         this.props.rectStore.changeNewRectLocationRectNo(this.canvas.item(j).id);
-        //         this.props.rectStore.changeNewRectLocationX(this.canvas.item(j).left);
-        //         this.props.rectStore.changeNewRectLocationY(this.canvas.item(j).top);
-        //         this.props.rectStore.changeNewRectLocationWidth(this.canvas.item(j).width);
-        //         this.props.rectStore.changeNewRectLocationHeight(this.canvas.item(j).height);
-        //         this.props.rectStore.changeNewRectLocationScaleX(this.canvas.item(j).scaleX);
-        //         this.props.rectStore.changeNewRectLocationScaleY(this.canvas.item(j).scaleY);
-        //         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-        //         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-        //     }
-        //     this.props.rectStore.doRectLocationUp();
     }
 
     render() {
         const { classes } = this.props;
         return (
-            <Container component="main" className={classes.mainContainer} style={{height:'97vh', border: '1px solid black'}}>
+            <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5}>
-                            <canvas id="c" width={600} height={650}></canvas>
+                            <canvas id="c" width={800} height={1300}></canvas>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
