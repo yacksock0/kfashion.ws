@@ -138,7 +138,8 @@ class BoundaryBox extends React.Component {
     id = []
 
     state = {
-        value:1,
+        value:0,
+        count:0,
         winheight: 0,
         winwidth: 0
     }
@@ -151,8 +152,8 @@ class BoundaryBox extends React.Component {
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
-            workNo: this.props.imageStore.workNo
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.isWorkNo
         })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
@@ -172,13 +173,13 @@ class BoundaryBox extends React.Component {
         });
 
 
-        // this.canvas.on('mouse:move', (e) => {
-        //     console.log("mouse.x : " +e.pointer.x);
-        //     console.log("mouse.y : " +e.pointer.y);
-        //     if(e.pointer.x <700){
-        //         // e.pointer.x-10;
-        //     }
-        // });
+        this.canvas.on('mouse:move', (e) => {
+            console.log("mouse.x : " +e.pointer.x);
+            console.log("mouse.y : " +e.pointer.y);
+            if(e.pointer.x <700){
+                // e.pointer.x-10;
+            }
+        });
 
         const maxScaleX = 3.2;
         const maxScaleY = 3.2;
@@ -290,9 +291,32 @@ class BoundaryBox extends React.Component {
         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
         this.props.rectStore.doRectLocationUp();
-        window.location.reload(false);
     }
-
+    handlePrevious(){
+        this.setState({
+            count: this.state.count-1
+        });
+        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            : alert("첫번째 이미지 입니다.")
+        }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
+    }
+    handleNext() {
+        this.setState({
+            count: this.state.count+1
+        });
+        {this.state.count < this.state.boundaryList.length ?
+            this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            :alert("마지막 이미지 입니다.")
+        }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -435,7 +459,7 @@ class BoundaryBox extends React.Component {
 
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
-                                    <Button onClick={this.submit}>submit </Button>
+                                    <Button onClick={this.submit} color={'#999999'}>submit </Button>
                                 </div>
                             </div>
                         </TabPanel>
@@ -448,20 +472,19 @@ class BoundaryBox extends React.Component {
                 </div>
 
                 <div>
-
                     <hr></hr>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
+                        onClick={this.handlePrevious.bind(this)} >
                         Previous
                     </Button>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
+                        onClick={this.handleNext.bind(this)} >
                         Next
                     </Button>
                     <Button
@@ -472,7 +495,6 @@ class BoundaryBox extends React.Component {
                         onClick={this.handleSubmitForm} >
                         Save and Next
                     </Button>
-
                 </div>
             </Container>
         );

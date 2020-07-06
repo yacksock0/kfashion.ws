@@ -22,6 +22,7 @@ export default class ImageStore {
     @observable state = State.Ready;
     @observable workNo = {...WorkNo};
     @action changeWorkNo = (workNo) => {
+        console.log('changeWorkNo',workNo)
         this.workNo = workNo;
     }
     @action changeBoundaryList=(boundaryList)=>{

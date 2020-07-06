@@ -17,7 +17,6 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button} from "@material-ui/core";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -39,7 +38,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore')
+@inject('fileUploadStore','authStore','imageStore')
 @observer
 class ImageList extends React.Component {
     constructor(props) {
@@ -69,35 +68,33 @@ class ImageList extends React.Component {
     render() {
         const {boundaryList} = this.state;
         return (
-
                 <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
                 data={boundaryList}
                 title="이미지 리스트"
-                editable={{
-                    onRowDelete: oldData =>
-                    new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                    {
-                    let data = this.state.data;
-                    const index = data.indexOf(oldData);
-                    data.splice(index, 1);
-                    this.setState({ data }, () => resolve());
-                    }
-                    resolve();
-                    }, 1000);
-                    }),
-                    }}
+                // editable={{
+                //     onRowDelete: oldData =>
+                //     new Promise((resolve, reject) => {
+                //     setTimeout(() => {
+                //     {
+                //     let data = this.state.data;
+                //     const index = data.indexOf(oldData);
+                //     data.splice(index, 1);
+                //     this.setState({ data }, () => resolve());
+                //     }
+                //     resolve();
+                //     }, 1000);
+                //     }),
+                //     }}
                     actions={[
                         {
                         icon: Edit,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => {
-                            let workNo = rowData.workNo;
-                        this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+workNo});
-                        // window.location.reload(false);
-                        console.log(workNo);
+                            this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
+                            this.props.imageStore.changeWorkNo(rowData.workNo);
+                            console.log('rowData.workNo',rowData.workNo)
                         }
                      }
                     ]}
