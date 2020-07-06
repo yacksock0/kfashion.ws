@@ -138,7 +138,7 @@ class BoundaryBox extends React.Component {
     id = []
 
     state = {
-        value:0,
+        value:1,
         count:0,
         winheight: 0,
         winwidth: 0
@@ -153,18 +153,9 @@ class BoundaryBox extends React.Component {
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.isWorkNo
         })
 
-        this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width : 700,
-            height : 800,
-            originX: 'left',
-            originY: 'top'
-        });
+
 
         this.canvas.on('object:moving', function (e) {
             const asd = e.target;
@@ -319,6 +310,16 @@ class BoundaryBox extends React.Component {
     }
     render() {
         const { classes } = this.props;
+        const {workNo} = this.props.imageStore;
+        this.canvas = this.__canvas = new fabric.Canvas('c');
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
         return (
             <Container component="main" className={classes.mainContainer} style={{height:'97vh', border: '1px solid black'}}>
                 <div className={classes.appBarSpacer} />
@@ -327,6 +328,7 @@ class BoundaryBox extends React.Component {
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
                                 <canvas id="c" width= "750" height= "850"  >  </canvas>
+
                             </div>
                         </Grid>
 

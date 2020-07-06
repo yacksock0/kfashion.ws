@@ -41,7 +41,7 @@
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work.work_state = 2
-        ORDER BY kfashion_image.work_no
+        GROUP BY kfashion_image.work_no
     </select>
 
 
