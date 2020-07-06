@@ -57,7 +57,7 @@ const tableIcons = {
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
 
-        axios.get('/api/v1/kfashion/img/polygonList?createdId='+createdId)
+        axios.get('/api/v1/kfashion/polygon/polygonList?createdId='+createdId)
             .then(response => {
                 this.setState({ polygonList : response.data.polygonList.filter(b =>b !==null)})
             })

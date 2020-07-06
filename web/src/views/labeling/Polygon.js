@@ -21,6 +21,7 @@ import {inject, observer} from "mobx-react";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
+import PolygonList from "./PolygonList";
 
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -765,10 +766,11 @@ class Polygon extends React.Component {
                             </div>
 
                         </TabPanel>
+                            <TabPanel value={this.state.value} index={1}>
+                                <PolygonList />
+                            </TabPanel>
                         </Grid>
-                        <TabPanel value={this.state.value} index={1}>
 
-                        </TabPanel>
                     </Grid>
 
                 </div>

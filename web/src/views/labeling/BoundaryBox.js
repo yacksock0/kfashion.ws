@@ -139,6 +139,7 @@ class BoundaryBox extends React.Component {
 
     state = {
         value:0,
+        count:0,
         winheight: 0,
         winwidth: 0
     }
@@ -151,8 +152,8 @@ class BoundaryBox extends React.Component {
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
-            workNo: this.props.imageStore.workNo
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.isWorkNo
         })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
@@ -291,7 +292,31 @@ class BoundaryBox extends React.Component {
         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
         this.props.rectStore.doRectLocationUp();
     }
-
+    handlePrevious(){
+        this.setState({
+            count: this.state.count-1
+        });
+        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            : alert("첫번째 이미지 입니다.")
+        }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
+    }
+    handleNext() {
+        this.setState({
+            count: this.state.count+1
+        });
+        {this.state.count < this.state.boundaryList.length ?
+            this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            :alert("마지막 이미지 입니다.")
+        }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -452,14 +477,14 @@ class BoundaryBox extends React.Component {
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
+                        onClick={this.handlePrevious.bind(this)} >
                         Previous
                     </Button>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
+                        onClick={this.handleNext.bind(this)} >
                         Next
                     </Button>
                     <Button

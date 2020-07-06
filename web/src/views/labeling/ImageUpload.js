@@ -211,7 +211,6 @@ class ImageUpload extends React.Component {
                                         tooltip: 'Select Image',
                                         onClick: (event, rowData) => {
                                             this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                                            /*this.setState({count:rowData.indexOf()})*/
                                             this.props.imageStore.changeWorkNo(rowData.workNo);
                                         }
                                     }
