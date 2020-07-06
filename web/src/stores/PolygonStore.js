@@ -54,14 +54,12 @@ export default class PolygonStore {
         this.state = State.Pending;
         try {
             const kfashionPolygonList = this.polygonList.map(r => ({
+                workNo :this.NewPolygonLocation.workNo,
+                workStep : this.NewPolygonLocation.workStep,
+                createdId : this.NewPolygonLocation.createdId,
                 rectNo: r.polyNo,
                 polyNo: r.polyNo,
                 points : r.points,
-
-                workNo :this.NewPolygonLocation.workNo,
-                workStep : this.NewPolygonLocation.workStep,
-                createdId : this.NewPolygonLocation.createdId
-
             }));
             console.log("1111111 : "+kfashionPolygonList[1].rectNo);
 

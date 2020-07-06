@@ -41,12 +41,24 @@ public class KfashionImageLocationPolygonController {
          * @return String
          * @throws Exception
          */
-        @PostMapping(value="/")
+        @PostMapping(value="/location")
         public ResponseEntity<String> insertLocationPolygon(HttpServletRequest httpServletRequest,
-                                                            @RequestBody List<KfashionImageLocationPolygonPoint> polygonList)throws Exception {
+                                                            @RequestBody List<KfashionImageLocationPolygonPoint> polygonList
+//                                                            @RequestBody List<KfashionImageLocationPolygonPoint> polygonPointList
+
+
+                                                            )throws Exception {
             System.out.println(polygonList);
             String msg= "";
-            System.out.println("q1111111111111"+polygonList);
+
+//            for(int i = 1; i <=polygonList.size(); i++) {
+//                System.out.println("q1111111111111"+polygonList.get(i));
+//                for (int j =1 ;j< polygonList.get(i).getPoints().size(); j++ ){
+//                    System.out.println("X : " +polygonList.get(i).getPoints().get(j).getX());
+//                    System.out.println("Y : " +polygonList.get(i).getPoints().get(j).getY());
+//                }
+//            }
+
             KfashionWork work = new KfashionWork();
             work.setNo(polygonList.get(0).getWorkNo());
             work.setWorkState(polygonList.get(0).getWorkStep());
@@ -77,14 +89,15 @@ public class KfashionImageLocationPolygonController {
                     polygonPoint.setRectNo(polygonList.get(i).getRectNo());
                     polygonPoint.setPolyNo(polygonList.get(i).getPolyNo());
 
-                    for(int j = 1 ; j < polygonList.get(i).getPoints().size()){
 
+                    for (int j =1 ;j< polygonList.get(i).getPoints().size(); j++ ){
+                        polygonPoint.setNo(j);
+                        polygonPoint.setLocationX(polygonList.get(i).getPoints().get(j).getX());
+                        polygonPoint.setLocationY(polygonList.get(i).getPoints().get(j).getY());
+                        polygonPoint.setLocationSeq(j);
+                        msg=kfashionImageLocationPolygonPointService.insertLocationPolygonPoint(polygonPoint);
                     }
-                    polygonPoint.setNo(i);
-                    polygonPoint.setLocationX(polygonList.get(i).getLocationX());
-                    polygonPoint.setLocationY(polygonList.get(i).getLocationY());
-                    polygonPoint.setLocationSeq(i);
-                    msg=kfashionImageLocationPolygonPointService.insertLocationPolygonPoint(polygonPoint);
+
                 }
             }
             return new ResponseEntity<String>(msg, HttpStatus.OK);
