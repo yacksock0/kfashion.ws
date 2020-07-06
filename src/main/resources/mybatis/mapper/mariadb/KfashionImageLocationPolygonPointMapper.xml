@@ -14,9 +14,9 @@
     </resultMap>
 
 
-    <insert id="insertLocationPolygonPoint" parameterType="KfashionImageLocationPolygon">
+    <insert id="insertLocationPolygonPoint" parameterType="KfashionImageLocationPolygonPoint">
         INSERT
-        INTO kfashion_image_location_polygon (
+        INTO kfashion_image_location_polygon_point (
         work_no,
         work_step,
         rect_no,

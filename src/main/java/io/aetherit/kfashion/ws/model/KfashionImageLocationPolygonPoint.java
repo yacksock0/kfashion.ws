@@ -23,6 +23,15 @@ public class KfashionImageLocationPolygonPoint {
     private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
-    private Object points;
+    private List<points> points;
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class points
+    {
+        private float x;
+        private float y;
+    }
 
 }
