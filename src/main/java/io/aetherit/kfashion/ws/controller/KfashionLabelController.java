@@ -3,6 +3,7 @@ package io.aetherit.kfashion.ws.controller;
 import io.aetherit.kfashion.ws.model.*;
 import io.aetherit.kfashion.ws.service.KfashionLabelService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
+import io.aetherit.kfashion.ws.service.KfashionWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,24 @@ public class KfashionLabelController {
 
         private KfashionLabelService kfashionLabelService;
         private KfashionWorkHistoryService kfashionWorkHistoryService;
+        private KfashionWorkService kfashionWorkService;
 
         @Autowired
         public KfashionLabelController(KfashionLabelService kfashionLabelService,
-                                       KfashionWorkHistoryService kfashionWorkHistoryService) {
+                                       KfashionWorkHistoryService kfashionWorkHistoryService,
+                                       KfashionWorkService kfashionWorkService) {
             this.kfashionLabelService = kfashionLabelService;
             this.kfashionWorkHistoryService = kfashionWorkHistoryService;
+            this.kfashionWorkService = kfashionWorkService;
         }
+
+        /**
+         * 기본라벨 인서트
+         * @param httpServletRequest
+         * @param basicLabel
+         * @return String
+         * @throws Exception
+         */
 
 
         @PostMapping(value = "/basicLabel")
@@ -34,6 +46,7 @@ public class KfashionLabelController {
                 KfashionWork work = new KfashionWork();
                 work.setNo(basicLabel.getWorkNo());
                 work.setWorkState(basicLabel.getWorkStep());
+                kfashionWorkService.updateWork(work);
 
                 KfashionWorkHistory workHistory = new KfashionWorkHistory();
                 workHistory.setWorkNo(basicLabel.getWorkNo());
@@ -57,12 +70,22 @@ public class KfashionLabelController {
                 return new ResponseEntity<Object>("success", HttpStatus.OK);
         }
 
+        /**
+         * 전문가라벨 인서트
+         * @param httpServletRequest
+         * @param professionalLabel
+         * @return String
+         * @throws Exception
+         */
+
+
         @PostMapping(value = "/professionalLabel")
         public ResponseEntity<Object> professionalLabel(HttpServletRequest httpServletRequest,
                                       @RequestBody ProfessionalLabel professionalLabel) throws Exception {
                 KfashionWork work = new KfashionWork();
                 work.setNo(professionalLabel.getWorkNo());
                 work.setWorkState(professionalLabel.getWorkStep());
+                kfashionWorkService.updateWork(work);
 
                 KfashionWorkHistory workHistory = new KfashionWorkHistory();
                 workHistory.setWorkNo(professionalLabel.getWorkNo());

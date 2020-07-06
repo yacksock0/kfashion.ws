@@ -9,7 +9,7 @@ const State = {
 }
 
 const EmptyNewProfessionalLabel = {
-    workNo : 30,
+    workNo : 60,
     workStep : 5,
     rectNo : 1,
     polyNo : 1,

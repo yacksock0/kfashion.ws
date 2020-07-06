@@ -45,7 +45,11 @@
     </insert>
 
     <select id="selectRectList" parameterType="KfashionImageLocationRect" resultMap="kfashionImageLocationRectResultMap" >
-
+        SELECT
+        *
+        FROM kfashion_image_location_rect
+        WHERE work_no = #{workNo}
+        AND rect_no = #{rectNo}
     </select>
 
 
