@@ -7,12 +7,11 @@ import io.aetherit.kfashion.ws.service.KfashionWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/kfashion/label")
@@ -159,6 +158,16 @@ public class KfashionLabelController {
                 kfashionLabelService.insertProfessionalLabel(professional);
 
                 return new ResponseEntity<Object>("success", HttpStatus.OK);
+        }
+
+        @GetMapping(value="/basicLabelList")
+        public ResponseEntity<Object> basicLabelList(HttpServletRequest httpRequest,
+                                                  @RequestParam(value="createdId")String createdId) {
+                HashMap<String, Object> resultMap = new HashMap<String, Object>();
+                List<KfashionLabel> basicLabelList = kfashionLabelService.selectBasicLabelList(createdId);
+                resultMap.put("basicLabelList", basicLabelList);
+                System.out.println(basicLabelList);
+                return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
 
