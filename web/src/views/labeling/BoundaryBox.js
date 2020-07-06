@@ -117,6 +117,7 @@ class BoundaryBox extends React.Component {
     fill;
     x;
     y;
+    id = []
 
     state = {
         winheight: 0,
@@ -211,6 +212,7 @@ class BoundaryBox extends React.Component {
     }
 
     addRect = (rectNo) => {
+        this.id = rectNo;
         let obj = 0;
         this.canvas.getObjects().forEach(function( o) {
             if(o.id == rectNo) {
@@ -218,20 +220,21 @@ class BoundaryBox extends React.Component {
             }
         })
         if(obj==0){
-        const rect = new fabric.Rect({
-            left: 100,
-            top: 100,
-            width: 200,
-            height: 200,
-            fill: grey,
-            opacity: 0.20
-        });
-        rect.name = `${rectNo}`;
-        rect.id = `${rectNo}`;
-        this.canvas.add(rect);
-        this.canvas.setActiveObject(rect);
+            const rect = new fabric.Rect({
+                id : `${rectNo}`,
+                name : `${rectNo}`,
+                left: 100,
+                top: 100,
+                width: 200,
+                height: 200,
+                fill: grey,
+                opacity: 0.20
+            });
+
+            this.canvas.add(rect);
+            this.canvas.setActiveObject(rect);
         }else {
-            alert('그만!! 제발 그만!!!!');
+            alert('이미 존재합니다.');
         }
     }
 
@@ -258,39 +261,39 @@ class BoundaryBox extends React.Component {
         this.canvas.renderAll();
     }
 
+
     submit = () => {
-        let obj = [];
-
-        let a = 0;
-        // this.props.rectStore.objGet(this.canvas.getObjects());
-        // this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-        // this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-        // this.props.rectStore.doRectLocationUp();
-        this.canvas.getObjects().forEach(function(o) {
-
-            obj = o;
-
-            a+=1;
-        })
-
-        const rectList = [];
-        for (let j =0; j < a ; j++){
-            let rect = {
-                rectNo : this.canvas.item(j).id,
-                locationX : this.canvas.item(j).left,
-                locationY : this.canvas.item(j).top,
-                locationWidth : this.canvas.item(j).width,
-                locationHeight : this.canvas.item(j).height,
-                scaleX: this.canvas.item(j).scaleX,
-                scaleY: this.canvas.item(j).scaleY,
-                createdId : this.props.authStore.loginUser.id,
-                workNo : this.props.imageStore.isWorkNo,
-                workStep : this.props.rectStore.isWorkStep,
-            };
-            rectList.push(rect);
-        }
-        this.props.rectStore.objGet(rectList);
+        // let b =this.canvas.getObjects().count();
+        // console.log(b);
+        // let obj = [];
+        // let a = 0;
+        this.props.rectStore.objGet(this.canvas.getObjects());
+        this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+        this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
         this.props.rectStore.doRectLocationUp();
+
+
+        // this.canvas.getObjects().forEach(function(o) {
+        //
+        //     obj = o;
+        //
+        //     a+=1;
+        // })
+
+
+        //     for (let j =0; j < a ; j++){
+        //
+        //         this.props.rectStore.changeNewRectLocationRectNo(this.canvas.item(j).id);
+        //         this.props.rectStore.changeNewRectLocationX(this.canvas.item(j).left);
+        //         this.props.rectStore.changeNewRectLocationY(this.canvas.item(j).top);
+        //         this.props.rectStore.changeNewRectLocationWidth(this.canvas.item(j).width);
+        //         this.props.rectStore.changeNewRectLocationHeight(this.canvas.item(j).height);
+        //         this.props.rectStore.changeNewRectLocationScaleX(this.canvas.item(j).scaleX);
+        //         this.props.rectStore.changeNewRectLocationScaleY(this.canvas.item(j).scaleY);
+        //         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+        //         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+        //     }
+        //     this.props.rectStore.doRectLocationUp();
     }
 
     render() {
@@ -302,7 +305,7 @@ class BoundaryBox extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                                <canvas id="c" width= "600" height= "550"  >  </canvas>
+                            <canvas id="c" width= "600" height= "550"  >  </canvas>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
@@ -375,11 +378,11 @@ class BoundaryBox extends React.Component {
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
-                                                        <Tooltip title="Delete">
-                                                            <IconButton aria-label="delete" onClick={() => this.deleteObject(3)}>
-                                                                <DeleteIcon />
-                                                            </IconButton>
-                                                        </Tooltip>
+                                                    <Tooltip title="Delete">
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(3)}>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
                                                 </TableCell>
                                             </TableRow>
                                         </TableBody>
@@ -443,7 +446,7 @@ class BoundaryBox extends React.Component {
                 <div style={{marginTop:70}}>
                 </div>
                 <div>
-                    <hr></hr>
+                    <hr></hr>S
                     <Button
                         type="submit"
                         className={classes.buttonType1}

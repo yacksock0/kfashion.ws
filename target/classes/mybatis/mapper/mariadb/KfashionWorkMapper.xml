@@ -24,6 +24,13 @@
         )
     </insert>
 
+    <update id="updateWork" parameterType="KfashionWork">
+        update kfashion_work
+        set work_state=${workState}
+        where no = ${no}
+
+    </update>
+
     <select id="selectWorkNo" parameterType="String" resultType="Long">
         SELECT no
         FROM kfashion_work
