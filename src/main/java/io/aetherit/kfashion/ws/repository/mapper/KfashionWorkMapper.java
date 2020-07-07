@@ -8,4 +8,6 @@ public interface KfashionWorkMapper {
     Long selectWorkNo(String workName);
 
     void updateWorkName(KfashionWork work);
+
+    String selectFileExtension(KfashionWork work);
 }
