@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.repository.mapper;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionWork;
 
 public interface KfashionWorkMapper {
@@ -11,5 +12,5 @@ public interface KfashionWorkMapper {
 
     String selectFileExtension(KfashionWork work);
 
-    void deleteWork(Long workNo);
+    void deleteWork(KfashionImage workImage);
 }

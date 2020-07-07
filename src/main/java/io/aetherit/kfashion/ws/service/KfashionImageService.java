@@ -39,7 +39,7 @@ public class KfashionImageService {
         return  repository.selectRectList(createdId);
     }
 
-    public void deleteImage(Long workNo) {
-        repository.deleteImage(workNo);
+    public void deleteImage(KfashionImage workImage) {
+        repository.deleteImage(workImage);
     }
 }

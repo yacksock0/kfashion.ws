@@ -66,8 +66,8 @@ export default class AuthStore {
         this.login.password = password;
     };
 
-    @action changeLoginUserGroupNo = (groupNo) =>{
-        this.loginUser.workNo = groupNo;
+    @action changeUserAuthorityNo = (authorityNo) =>{
+        this.loginUser.authorityNo = authorityNo;
     };
     @action logOut = pathname => {
         // if(pathname.startsWith("/broadcast/")) {
@@ -78,7 +78,7 @@ export default class AuthStore {
         //     this.doLogout();
         // }
     };
-    @computed get loginUserGroupNo(){
+    @computed get loginUserAuthorityNo(){
         return this.loginUser.groupNo;
     }
 

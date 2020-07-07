@@ -77,7 +77,7 @@
     </select>
 
 
-    <delete id="deleteImage" parameterType="Long">
+    <delete id="deleteImage" parameterType="KfashionImage">
         DELETE
         FROM kfashion_image
         WHERE work_no=#{workNo}

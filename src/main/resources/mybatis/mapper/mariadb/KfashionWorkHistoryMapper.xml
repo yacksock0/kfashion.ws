@@ -26,7 +26,7 @@
         )
     </insert>
 
-    <delete id="deleteWorkHistory" parameterType="Long">
+    <delete id="deleteWorkHistory" parameterType="KfashionImage">
         DELETE
         FROM kfashion_work_history
         WHERE work_no = #{workNo}

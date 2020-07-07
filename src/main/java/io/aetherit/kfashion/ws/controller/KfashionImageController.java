@@ -1,7 +1,10 @@
 package io.aetherit.kfashion.ws.controller;
 
 
-import io.aetherit.kfashion.ws.model.*;
+import io.aetherit.kfashion.ws.model.KfashionImage;
+import io.aetherit.kfashion.ws.model.KfashionWork;
+import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
+import io.aetherit.kfashion.ws.model.UploadFileResponse;
 import io.aetherit.kfashion.ws.service.FileStorageService;
 import io.aetherit.kfashion.ws.service.KfashionImageService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
@@ -15,13 +18,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -176,17 +182,17 @@ public class KfashionImageController {
 
     /**
      * 이미지 삭제
-     * @param workNo
+     * @param workImage
      * @return ResponseEntity
      * @throws
      */
 
-    @DeleteMapping(value="/deleteImage")
-    public ResponseEntity<Object> deleteImage(@RequestParam(value="workNo")Long workNo) {
-        kfashionWorkHistoryService.deleteWorkHistory(workNo);
-        kfashionImageService.deleteImage(workNo);
-        kfashionWorkService.deleteWork(workNo);
-        return new ResponseEntity<Object>("success", HttpStatus.OK);
+    @DeleteMapping(value="/deleteImage/{workNo}")
+    public ResponseEntity<Void> deleteImage(@RequestBody KfashionImage workImage) {
+        kfashionWorkHistoryService.deleteWorkHistory(workImage);
+        kfashionImageService.deleteImage(workImage);
+        kfashionWorkService.deleteWork(workImage);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
