@@ -80,7 +80,9 @@ const styles = theme => ({
         height:'100%',
     },
     canvas:{
-        backgroundColor:'black',
+        width:'100%',
+        minWidth:'100%',
+        height:'100vh',
     },
     fileText: {
         paddingTop: 32,
@@ -138,6 +140,8 @@ class BoundaryBox extends React.Component {
     id = []
 
     state = {
+        imgData :'',
+        workNo:'',
         value:1,
         count:0,
         winheight: 0,
@@ -147,6 +151,8 @@ class BoundaryBox extends React.Component {
         this.setState({ value: newValue });
     }
     componentDidMount() {
+
+
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
@@ -154,7 +160,6 @@ class BoundaryBox extends React.Component {
             boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
-
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
@@ -169,7 +174,9 @@ class BoundaryBox extends React.Component {
         this.canvas.on('object:moving', function (e) {
             const asd = e.target;
             console.log("name : "+asd.name);
+
         });
+
 
         this.canvas.on('mouse:move', (e) => {
             console.log("mouse.x : " +e.pointer.x);
@@ -315,9 +322,9 @@ class BoundaryBox extends React.Component {
             workNo: this.props.imageStore.workNo
         })
     }
+
     render() {
         const { classes } = this.props;
-        const {workNo} = this.props.imageStore;
         return (
             <Container component="main" className={classes.mainContainer} style={{height:'97vh', border: '1px solid black'}}>
                 <div className={classes.appBarSpacer} />
@@ -325,7 +332,7 @@ class BoundaryBox extends React.Component {
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width= "750" height= "850"  >  </canvas>
+                                <canvas id="c" resize="true" className={classes.canvas}>  </canvas>
 
                             </div>
                         </Grid>

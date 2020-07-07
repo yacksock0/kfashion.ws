@@ -45,7 +45,7 @@ class BasicImageList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            boundaryList: [],
+            basicLabelList: [],
             count: 0,
             data: [],
             columns: [
@@ -60,19 +60,19 @@ class BasicImageList extends React.Component {
 
         axios.get('/api/v1/kfashion/label/basicLabelList?createdId='+createdId)
             .then(response => {
-                this.setState({ boundaryList : response.data.boundaryList.filter(b =>b !==null)})
+                this.setState({ basicLabelList : response.data.basicLabelList})
             })
             .catch(error => {
                 console.log(error)
             })
     }
     render() {
-        const {boundaryList} = this.state;
+        const {basicLabelList} = this.state;
         return (
             <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
-                data={boundaryList}
+                data={basicLabelList}
                 title="이미지 리스트"
                 // editable={{
                 //     onRowDelete: oldData =>
