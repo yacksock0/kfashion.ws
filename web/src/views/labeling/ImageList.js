@@ -88,6 +88,7 @@ class ImageList extends React.Component {
                         }
                     }) : []}
                 title="이미지 리스트"
+
                 options={{
                     actionsColumnIndex: -1,
                 }}

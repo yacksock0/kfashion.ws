@@ -208,20 +208,22 @@ class ImageUpload extends React.Component {
                                            options={{
                                                actionsColumnIndex: -1,
                                            }}
-                                editable={{
-                                    onRowDelete: oldData =>
-                                        new Promise((resolve, reject) => {
-                                            setTimeout(() => {
-                                                {
-                                                    let data = this.state.data;
-                                                    const index = data.indexOf(oldData);
-                                                    data.splice(index, 1);
-                                                    this.setState({ data }, () => resolve());
-                                                }
-                                                resolve();
-                                            }, 1000);
-                                        }),
-                                }}
+                                           editable={{
+                                               onRowUpdate: rowData =>
+                                                   new Promise((resolve, reject) => {
+                                                       setTimeout(() => {
+                                                           {
+                                                               axios.get('/api/v1/kfashion/users/userList')
+                                                                   .then(response => response.data)
+                                                                   .then(res => {
+                                                                       this.setState({ userList : res, loading: false})
+                                                                   })
+                                                           }
+                                                           resolve();
+                                                       }, 1000);
+                                                   })
+                                           }
+                                           }
                                 actions={[
                                     {
                                         icon: Edit,
@@ -233,6 +235,7 @@ class ImageUpload extends React.Component {
                                     }
                                 ]}
                             />
+
                             </div>
                         </Grid>
                     </Grid>
