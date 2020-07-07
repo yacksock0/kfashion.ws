@@ -22,7 +22,4 @@ public class KfashionImageLocationPolygonService {
         return msg;
     }
 
-    public List<KfashionImageLocationPolygon> selectPolygonList(String createdId) {
-        return repository.selectPolygonList(createdId);
-    }
 }

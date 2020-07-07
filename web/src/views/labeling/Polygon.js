@@ -126,6 +126,7 @@ class Polygon extends React.Component {
         workNo:'',
         value:1,
         finishbtn : false,
+        savebtn : false,
         buttonDis1 : false,
         buttonDis2 : false,
         buttonDis3 : false,
@@ -149,7 +150,6 @@ class Polygon extends React.Component {
     }];
 
     rectList=[]
-
     canvas;
     polyNo;
     polyPointX = [];
@@ -313,15 +313,13 @@ class Polygon extends React.Component {
         this.polyPointY[this.polyCounter] = 0;
     }
 
-    deleteAll = (b) =>{
-        let objList =[];
-        this.canvas.getObjects().forEach(function( o) {
-            objList.push(o);
-        })
-        for (let i=0 ; i<=objList.length; i++ ){
-            this.canvas.remove(objList[i]);
+    delete = (b) => {
+        let result = window.confirm("모두 지우시겠습니까?");
+        if(result){
+            this.deleteAll(1);
         }
-
+    }
+    deleteAll = (b) =>{
         if( b != -1) {
             console.log(b);
             this.x = 0;
@@ -332,6 +330,15 @@ class Polygon extends React.Component {
             this.polyPointY.length =0;
             this.buttonState();
         }
+
+            let objList = [];
+            this.canvas.getObjects().forEach(function (o) {
+                objList.push(o);
+            })
+            for (let i = 0; i <= objList.length; i++) {
+                this.canvas.remove(objList[i]);
+            }
+
     }
 
     buttonState = () => {
@@ -347,6 +354,7 @@ class Polygon extends React.Component {
     finishPath = () => {
 
         if(this.canvas.getObjects().length !=0) {
+            this.state.savebtn = false;
             console.log("여기는 피니시");
             this.onOff = '';
             let makePath = 'M' + this.polyPointX[0] + ' ' + this.polyPointY[0];
@@ -363,11 +371,7 @@ class Polygon extends React.Component {
         }
     }
 
-    poly = [];
-    polyX = [];
-    polyY = [];
     doSave = (newPolyNo) => {
-
         const newPolygon = {
             polyNo:'',
             points: [{
@@ -386,7 +390,7 @@ class Polygon extends React.Component {
                 }
                 this.polygon.push(newPolygon);
 
-
+                this.state.savebtn = true;
                 this.deleteAll(newPolyNo);
                 console.log(this.polygon);
 
@@ -425,7 +429,15 @@ class Polygon extends React.Component {
 
 
     submit = () =>{
-
+        console.log(this.state.savebtn);
+        if(this.onOff !=""){
+            alert("finish를 눌러 작업을 마무리 하세요.");
+        }else if(this.state.savebtn){
+            alert("save 눌러 작업을 마무리 하세요.");
+        }else{
+            alert("저장되었습니다.");
+            this.state.savebtn = false;
+        }
         console.log(this.state.rectList);
         // this.props.polygonStore.objGet(this.polygon);
         // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
@@ -521,7 +533,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.deleteAll(1) }
+                                                        onClick={() => this.delete(1) }
                                                         disabled={this.state.buttonDis1}>
                                                         All<DeleteIcon />
                                                     </Button>
@@ -580,7 +592,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.deleteAll(2) }
+                                                        onClick={() => this.delete(2) }
                                                         disabled={this.state.buttonDis2}>
                                                         All<DeleteIcon />
                                                     </Button>
@@ -637,7 +649,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.deleteAll(3) }
+                                                        onClick={() => this.delete(3) }
                                                         disabled={this.state.buttonDis3} >
                                                         All<DeleteIcon />
                                                     </Button>
@@ -694,7 +706,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.deleteAll(4) }
+                                                        onClick={() => this.delete(4) }
                                                         disabled={this.state.buttonDis4}>
                                                         All<DeleteIcon />
                                                     </Button>
@@ -751,7 +763,7 @@ class Polygon extends React.Component {
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         title="Delete All"
-                                                        onClick={() => this.deleteAll(5) }
+                                                        onClick={() => this.delete(5) }
                                                         disabled={this.state.buttonDis5}>
                                                         All<DeleteIcon />
                                                     </Button>

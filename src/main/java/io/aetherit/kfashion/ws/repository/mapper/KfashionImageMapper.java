@@ -11,4 +11,8 @@ public interface KfashionImageMapper {
     List<KfashionImage> selectBoundaryList(String createdId);
 
     Map<String, Object> getByteImage(int workNo);
+
+    List<KfashionImage> selectPolygonList(String createdId);
+
+    List<KfashionImage> selectRectList(String createdId);
 }
