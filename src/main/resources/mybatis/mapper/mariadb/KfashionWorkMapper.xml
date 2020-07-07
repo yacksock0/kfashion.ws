@@ -53,7 +53,7 @@
         WHERE no=#{no}
     </select>
 
-    <delete id="deleteWork" parameterType="Long">
+    <delete id="deleteWork" parameterType="KfashionImage">
         DELETE
         FROM kfashion_work
         WHERE no=#{workNo}

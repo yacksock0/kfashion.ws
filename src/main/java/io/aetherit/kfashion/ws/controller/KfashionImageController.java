@@ -182,11 +182,11 @@ public class KfashionImageController {
      */
 
     @DeleteMapping(value="/deleteImage")
-    public ResponseEntity<Object> deleteImage(@RequestParam(value="workNo")Long workNo) {
-        kfashionWorkHistoryService.deleteWorkHistory(workNo);
-        kfashionImageService.deleteImage(workNo);
-        kfashionWorkService.deleteWork(workNo);
-        return new ResponseEntity<Object>("success", HttpStatus.OK);
+    public ResponseEntity<Void> deleteImage(@RequestBody KfashionImage workImage) {
+        kfashionWorkHistoryService.deleteWorkHistory(workImage);
+        kfashionImageService.deleteImage(workImage);
+        kfashionWorkService.deleteWork(workImage);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

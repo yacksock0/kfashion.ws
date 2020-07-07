@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.service;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
 import io.aetherit.kfashion.ws.repository.KfashionWorkHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class KfashionWorkHistoryService {
         repository.insertWorkHistory(workHistory);
     }
 
-    public void deleteWorkHistory(Long workNo) {
-        repository.deleteWorkHistory(workNo);
+    public void deleteWorkHistory(KfashionImage workImage) {
+        repository.deleteWorkHistory(workImage);
     }
 }

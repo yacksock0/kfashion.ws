@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.service;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionWork;
 import io.aetherit.kfashion.ws.repository.KfashionWorkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class KfashionWorkService {
         return repository.selectFileExtension(work);
     }
 
-    public void deleteWork(Long workNo) {
-        repository.deleteWork(workNo);
+    public void deleteWork(KfashionImage workImage) {
+        repository.deleteWork(workImage);
     }
 }

@@ -80,6 +80,7 @@ export default class PolygonStore {
 
 
     doPolygonLocationUp = flow(function* doPolygonLocationUp() {
+        console.log("11111111111");
         this.state = State.Pending;
         try {
             const kfashionPolygonList = this.polygonInsertList.map(r => ({
@@ -90,8 +91,10 @@ export default class PolygonStore {
                 polyNo: r.polyNo,
                 points : r.points,
             }));
+            // const kfashionPolygonList = [];
+            // kfashionPolygonList.concat(polygonList);
+            // console.log("1111111 : "+this.workNo);
             console.log("1111111 : "+kfashionPolygonList);
-            console.log("1111111 : "+this.workNo);
             const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
             if (resp.status === 200) {
                 this.state = State.Success;
