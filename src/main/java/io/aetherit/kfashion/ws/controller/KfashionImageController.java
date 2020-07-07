@@ -60,20 +60,20 @@ public class KfashionImageController {
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam(value="userId", required = true) String userId,
                                          @RequestParam("file") MultipartFile file) {
-        UUID uuid = UUID.randomUUID();
-        String workName = StringUtils.cleanPath(uuid.toString()+"_"+file.getOriginalFilename());
+        String workName = file.getOriginalFilename();
         KfashionWork work = new KfashionWork();
         work.setWorkName(workName);
         kfashionWorkService.insertWork(work);
+        Long no = work.getNo();
+        System.out.println(no);
         try {
-            Long work_no = kfashionWorkService.selectWorkNo(workName);
             KfashionImage kfashionImage = new KfashionImage();
-            kfashionImage.setWorkNo(work_no);
+            kfashionImage.setWorkNo(no);
             kfashionImage.setImgData(file.getBytes());
             kfashionImageService.insertImgUpload(kfashionImage);
             KfashionWorkHistory workHistory= new KfashionWorkHistory();
             workHistory.setCreatedId(userId);
-            workHistory.setWorkNo(work_no);
+            workHistory.setWorkNo(no);
             workHistory.setWorkStep(1);
             kfashionWorkHistoryService.insertWorkHistory(workHistory);
         }catch (IOException e) {
