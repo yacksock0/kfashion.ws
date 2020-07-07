@@ -50,7 +50,6 @@ class Step3 extends React.Component {
     }
 
     componentDidMount() {
-        this.props.authStore.checkLogin();
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("Step3", {
