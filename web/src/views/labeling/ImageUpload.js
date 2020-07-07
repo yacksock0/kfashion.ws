@@ -226,6 +226,8 @@ class ImageUpload extends React.Component {
                                                                        console.log('SUCCESS')
                                                                    })
                                                            }
+                                                               const userId = this.props.authStore.isUserId
+                                                               this.props.imageStore.LoadImage(userId);
                                                            resolve();
                                                        }, 1000);
                                                    })
