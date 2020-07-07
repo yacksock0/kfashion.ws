@@ -24,6 +24,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {toJS} from "mobx";
+import CheckIcon from "@material-ui/icons/Check";
 
 
 const tableIcons = {
@@ -138,7 +139,6 @@ class ImageUpload extends React.Component {
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
             workNo: this.props.imageStore.workNo,
-            boundaryList: this.props.imageStore.boundaryList,
         })
         console.log('@@@@@', this.state.boundaryList)
     }
@@ -231,11 +231,13 @@ class ImageUpload extends React.Component {
                                                            resolve();
                                                        }, 1000);
                                                    }),
-                                               onRowDelete:rowData =>
+                                               onRowDelete: rowData =>
                                                    new Promise((resolve, reject) => {
                                                        setTimeout(() => {
-                                                           {axios.delete(`/api/v1/kfashion/image/deleteImage`,  {
-                                                               no: rowData.workNo,
+                                                           {axios.delete(`/api/v1/kfashion/img/deleteImage/${rowData.workNo}`,  {
+                                                               data: {
+                                                               workNo: rowData.workNo,
+                                                               }
                                                            })
                                                                .then(res => {
                                                                        if(res.status === 200) {
@@ -247,7 +249,7 @@ class ImageUpload extends React.Component {
                                                            }
                                                            resolve();
                                                        }, 1000);
-                                                   }),
+                                                   })
                                            }
                                          }
                             />
