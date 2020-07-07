@@ -23,6 +23,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
+import {toJS} from "mobx";
 
 
 const tableIcons = {
@@ -47,7 +48,7 @@ const tableIcons = {
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        maxWidth:'100%',
+        maxWidth:'80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -119,11 +120,11 @@ class ImageUpload extends React.Component {
             count: 0,
             data: [],
             columns: [
-                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
-                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
-                {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                {title: '등록일 ', field: 'createdDatetime', type: 'date'},
+                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬', editable:false},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/>, editable:false},
+                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter'},
+                {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',editable:false},
+                {title: '등록일 ', field: 'createdDatetime', type: 'date',editable:false},
             ],
         }
     }
@@ -137,7 +138,9 @@ class ImageUpload extends React.Component {
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
             workNo: this.props.imageStore.workNo,
+            boundaryList: this.props.imageStore.boundaryList,
         })
+        console.log('@@@@@', this.state.boundaryList)
     }
     componentWillUnmount() {
         this.props.imageStore.initStore();
@@ -159,8 +162,8 @@ class ImageUpload extends React.Component {
         this.setState({
             count: this.state.count+1
         });
-        {this.state.count < this.state.boundaryList.length ?
-         this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+        {this.state.count < this.props.imageStore.boundaryList.length ?
+         this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].isWorkNo)
          :alert("마지막 이미지 입니다.")
         }
         this.setState({
@@ -207,35 +210,28 @@ class ImageUpload extends React.Component {
                                 title="이미지 리스트"
                                            options={{
                                                actionsColumnIndex: -1,
+                                               editCellStyle:'',
+
                                            }}
                                            editable={{
                                                onRowUpdate: rowData =>
                                                    new Promise((resolve, reject) => {
                                                        setTimeout(() => {
-                                                           {
-                                                               axios.get('/api/v1/kfashion/users/userList')
+                                                           {axios.put(`/api/v1/kfashion/work/updateWorkName`,  {
+                                                                   workNo: rowData.workNo,
+                                                                   workName: rowData.workName,
+                                                               })
                                                                    .then(response => response.data)
                                                                    .then(res => {
-                                                                       this.setState({ userList : res, loading: false})
+                                                                       console.log('SUCCESS')
                                                                    })
                                                            }
                                                            resolve();
                                                        }, 1000);
                                                    })
                                            }
-                                           }
-                                actions={[
-                                    {
-                                        icon: Edit,
-                                        tooltip: 'Select Image',
-                                        onClick: (event, rowData) => {
-                                            this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                                            this.props.imageStore.changeWorkNo(rowData.workNo);
-                                        }
-                                    }
-                                ]}
+                                         }
                             />
-
                             </div>
                         </Grid>
                     </Grid>
