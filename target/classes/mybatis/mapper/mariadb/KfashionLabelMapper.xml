@@ -4,8 +4,8 @@
         <id property="workNo"                       column="work_no" />
         <result property="workStep"                 column="work_step" />
         <result property="no"                       column="no" />
-        <result property="rectNo"                       column="rect_no" />
-        <result property="polyNo"                       column="poly_no" />
+        <result property="rectNo"                   column="rect_no" />
+        <result property="polyNo"                   column="poly_no" />
         <result property="categoryNo"               column="category_no" />
         <result property="categoryItemNo"           column="category_item_no" />
         <result property="createdId"                column="created_id" />
@@ -66,4 +66,18 @@
         NOW()
         )
     </insert>
+
+    <select id="selectBasicLabelList" resultMap="kfashionLabelResultMap" parameterType="String">
+          SELECT DISTINCT
+        kfashion_image.work_no,
+        kfashion_work.work_name,
+        kfashion_work_history.created_id,
+        kfashion_work_history.created_datetime
+        FROM kfashion_image
+        LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+        RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        WHERE kfashion_work_history.created_id = #{createdId}
+        AND kfashion_work.work_state = 3
+        GROUP BY kfashion_image.work_no
+    </select>
 </mapper>

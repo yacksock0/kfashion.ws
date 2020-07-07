@@ -140,7 +140,7 @@ CREATE TABLE kfashion_image (
 	updated_datetime		DATETIME		NOT NULL,
   PRIMARY KEY (work_no),
   CONSTRAINT fk_kfashion_image_work_no 	FOREIGN KEY (work_no)
-											REFERENCES 	kfashion_work (no)
+										REFERENCES 	kfashion_work (no)
 );
 ​
 CREATE TABLE kfashion_work_history (
@@ -182,8 +182,10 @@ CREATE TABLE kfashion_image_location_polygon (
 	updated_datetime		DATETIME		NOT NULL,
 
 	PRIMARY KEY (work_no, work_step, rect_no, no),
-  CONSTRAINT fk_kfashion_image_location_polygon_work_no_work_step_rect_no 	FOREIGN KEY (work_no, work_step, rect_no)
-																			REFERENCES 	kfashion_image_location_rect (work_no,work_step, rect_no)
+	CONSTRAINT fk_kfashion_image_location_polygon_work_no_work_step	FOREIGN KEY (work_no,work_step)
+																    REFERENCES 	kfashion_work_history (work_no, work_step),
+    CONSTRAINT fk_kfashion_image_location_polygon_rect_no 	        FOREIGN KEY (rect_no)
+																	REFERENCES 	kfashion_image_location_rect (rect_no)
 );
 ​
 CREATE TABLE kfashion_image_location_polygon_point (
@@ -253,8 +255,10 @@ CREATE TABLE kfashion_label (
 	updated_datetime		DATETIME		NOT NULL,
 
 	PRIMARY KEY (work_no, work_step, rect_no, polygon_no, no),
-	CONSTRAINT fk_kfashion_label_work_no_work_step_rect_no_polygon_no	FOREIGN KEY (work_no, work_step, rect_no, polygon_no)
-																		REFERENCES 	kfashion_image_location_polygon (work_no, work_step, rect_no, no),
+	CONSTRAINT fk_kfashion_label_work_no_work_step	                    FOREIGN KEY (work_no,work_step)
+													                    REFERENCES 	kfashion_work_history (work_no, work_step),
+	CONSTRAINT fk_kfashion_label_rect_no_polygon_no	                    FOREIGN KEY (rect_no, polygon_no)
+																		REFERENCES 	kfashion_image_location_polygon (rect_no, no),
 	CONSTRAINT fk_kfashion_label_category_no 							FOREIGN KEY (category_no)
 																		REFERENCES 	kfashion_category_item (no),
 	CONSTRAINT fk_kfashion_label_category_item_no 						FOREIGN KEY (category_item_no)
