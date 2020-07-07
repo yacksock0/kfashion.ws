@@ -74,22 +74,24 @@ export default class ImageStore {
           this.boundaryList = response.data.boundaryList;
           const workNo = this.boundaryList[0].workNo;
           this.workNo = workNo;
-          return this.boundaryList;
         } catch (e) {
             this.imageData = Object.assign({}, WorkNo);
         }
     });
 
-    deleteImg = flow(function* (rowData) {
-        console.log(rowData);
+    deleteImg = flow(function* (oldData) {
+        console.log(oldData);
+        const createdId = oldData.createdId;
         try {
-            yield axios.delete(`/api/v1/kfashion/image/deleteImage/${rowData.workNo}`, {
+            const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${oldData.workNo}`, {
                 data:
                     {
-                        workNo: rowData.workNo,
+                        workNo: oldData.workNo,
                     }
-            });
-            this.LoadImage(rowData.createdId);
+            })
+                if(resp.status === 200) {
+                    this.LoadImage(createdId);
+                }
         } catch (err) {
             console.log(err);
         }

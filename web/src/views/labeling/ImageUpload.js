@@ -139,7 +139,6 @@ class ImageUpload extends React.Component {
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
             workNo: this.props.imageStore.workNo,
-            boundaryList: this.props.imageStore.boundaryList,
         })
         console.log('@@@@@', this.state.boundaryList)
     }
@@ -232,33 +231,27 @@ class ImageUpload extends React.Component {
                                                            resolve();
                                                        }, 1000);
                                                    }),
-                                               onRowDelete:rowData => {
-                                                   this.props.imageStore.deleteImg(rowData);
-                                               }
-                                               // onRowDelete:rowData =>
-                                               //     new Promise((resolve, reject) => {
-                                               //         setTimeout(() => {
-                                               //             {async.axios.delete('/api/v1/kfashion/image/deleteImage/${rowData.workNo}',{})
-                                               //                 .then(res => {
-                                               //                         if(res.status === 200) {
-                                               //                             const userId = this.props.authStore.isUserId
-                                               //                             this.props.imageStore.LoadImage(userId);
-                                               //                         }
-                                               //                     }
-                                               //                 )
-                                               //             }
-                                               //             resolve();
-                                               //         }, 1000);
-                                               //     }),
+                                               onRowDelete: rowData =>
+                                                   new Promise((resolve, reject) => {
+                                                       setTimeout(() => {
+                                                           {axios.delete(`/api/v1/kfashion/img/deleteImage/${rowData.workNo}`,  {
+                                                               data: {
+                                                               workNo: rowData.workNo,
+                                                               }
+                                                           })
+                                                               .then(res => {
+                                                                       if(res.status === 200) {
+                                                                           const userId = this.props.authStore.isUserId
+                                                                           this.props.imageStore.LoadImage(userId);
+                                                                       }
+                                                                   }
+                                                               )
+                                                           }
+                                                           resolve();
+                                                       }, 1000);
+                                                   })
                                            }
                                          }
-                                           // actions={[
-                                           //     {
-                                           //         icon: CheckIcon,
-                                           //         tooltip: 'Delete Image',
-                                           //         onClick: (event, rowData) => axios.delete("/api/v1/kfashion/image/deleteImage?workNo"+rowData.workNo)
-                                           //     }
-                                           // ]}
                             />
                             </div>
                         </Grid>
