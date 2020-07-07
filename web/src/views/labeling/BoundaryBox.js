@@ -151,8 +151,6 @@ class BoundaryBox extends React.Component {
         this.setState({ value: newValue });
     }
     componentDidMount() {
-
-
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
@@ -165,8 +163,8 @@ class BoundaryBox extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 700,
-            height : 800,
+            width : 200,
+            height : 200,
             originX: 'left',
             originY: 'top'
         });
@@ -254,8 +252,8 @@ class BoundaryBox extends React.Component {
                 name : `${rectNo}`,
                 left: 100,
                 top: 100,
-                width: 200,
-                height: 200,
+                width: 600,
+                height: 800,
                 fill: grey,
                 opacity: 0.20
             });
@@ -323,16 +321,30 @@ class BoundaryBox extends React.Component {
         })
     }
 
+    handleClickItem = (workNo, imageData) => {
+        this.props.imageStore.changeWorkNo(workNo);
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 200,
+            height : 200,
+            originX: 'left',
+            originY: 'top'
+        });
+    }
+
     render() {
         const { classes } = this.props;
+        const {workNo} = this.props.imageStore;
+
         return (
-            <Container component="main" className={classes.mainContainer} style={{height:'97vh', border: '1px solid black'}}>
+            <Container component="main" className={classes.mainContainer} style={{height:'97vh'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" resize="true" className={classes.canvas}>  </canvas>
+                                <canvas id="c" width={600} height={800} className={classes.canvas}>  </canvas>
 
                             </div>
                         </Grid>
@@ -461,23 +473,19 @@ class BoundaryBox extends React.Component {
                                             </TableRow>
                                         </TableBody>
                                     </Table>
-
-
-
                             <div style={{backgroundColor: 'grey'}}>
                                 <div align="center">
-                                    <Button onClick={this.submit} color={'#999999'}>submit </Button>
+                                    <Button onClick={this.submit} >submit </Button>
                                 </div>
                             </div>
                         </TabPanel>
                             </div>
                                 <TabPanel value={this.state.value} index={1}>
-                                    <ImageList />
+                                    <ImageList onClick={this.handleClickItem} />
                                 </TabPanel>
                         </Grid>
                     </Grid>
                 </div>
-
                 <div>
                     <hr></hr>
                     <Button
