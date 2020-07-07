@@ -176,7 +176,7 @@ public class KfashionImageController {
 
     /**
      * 이미지 삭제
-     * @param KfashionImage
+     * @param workImage
      * @return ResponseEntity
      * @throws
      */
