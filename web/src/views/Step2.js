@@ -70,6 +70,8 @@ class Step2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            imgData :'',
+            workNo:'',
             value: 0,
             number:1,
             createdId: '',
@@ -83,21 +85,9 @@ class Step2 extends React.Component {
             variant: 'info',
         });
         this.setState({
+            boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
-        this.props.basicLabelStore.changeNewBasicLabelWorkNo(this.props.imageStore.isWorkNo);
-
-
-        // -- fabric.js canvas SET
-        this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width : 700,
-            height : 800,
-            originX: 'left',
-            originY: 'top'
-        });
     }
 
     handleClickOK = () => {
@@ -111,15 +101,19 @@ class Step2 extends React.Component {
     handleTabChangeTop= (event, newNumber) => {
         this.setState({ number: newNumber });
     }
+    handleClickItem = (workNo, imageData) => {
+        this.props.imageStore.changeWorkNo(workNo);
+    }
     render() {
         const { classes } = this.props;
+        const {isWorkNo} = this.props.imageStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                         <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
+                         <img src={`/api/v1/kfashion/img/getByteImage?workNo=${isWorkNo}`} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
                          <AppBar position="static">
@@ -161,42 +155,12 @@ class Step2 extends React.Component {
                                              <Typography variant="h5" component="h2">
                                                  소매 길이
                                              </Typography>
-                                             {/*<Button
-                                     variant="outlined"
-                                     color="primary"
-                                     className={classes.insertButton}
-                                     startIcon={<AddIcon />}
-                                 >
-                                     항목추가
-                                 </Button>*/}
                                          </div>
                                          <div>
                                              <hr></hr>
                                          </div>
                                          <SleeveLength />
                                      </div>
-                                     {/*<Grid container spacing={3} row>
-                         <Grid item xs={6}>
-                             <div className={classes.content}>
-                                 <div style={{display:"inline-flex"}}>
-                                 <Typography variant="h4" component="h2">
-                                     의상 길이
-                                 </Typography>
-                                 <Button
-                                     variant="outlined"
-                                     color="primary"
-                                     className={classes.insertButton}
-                                     startIcon={<AddIcon />}
-                                 >
-                                     항목추가
-                                 </Button>
-                             </div>
-                                 <div>
-                                     <hr></hr>
-                                 </div>
-                                 <SleeveLength />
-                             </div>
-                        </Grid>*/}
                                  </TabPanel>
                                  <TabPanel value={this.state.value} index={2}>
                                      <div className={classes.content}>
@@ -288,7 +252,7 @@ class Step2 extends React.Component {
                          </TabPanel>
                          </TabPanel>
                          <TabPanel value={this.state.number} index={1}>
-                            <BasicImageList />
+                            <BasicImageList onClick={this.handleClickItem}/>
                          </TabPanel>
                      </Grid>
                  </Grid>

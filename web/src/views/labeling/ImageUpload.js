@@ -22,7 +22,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import axios from "axios";
 
 
 const tableIcons = {
@@ -119,7 +118,9 @@ class ImageUpload extends React.Component {
             count: 0,
             data: [],
             columns: [
-                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '이미지', field:'imgData', type:'image'},
+                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'FileNo filter', tooltip: '번호 정렬'},
+                {title: '파일명', field: 'fileName',type: 'text', filterPlaceholder: 'GroupNo filter', tooltip: '파일명으로 정렬'},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '등록일 ', field: 'createdDatetime', type: 'date'},
             ],
@@ -130,10 +131,9 @@ class ImageUpload extends React.Component {
             variant: 'info'
         })
         const createdId = this.props.authStore.isUserId;
-        this.props.imageStore.LoadImage(createdId)
+        this.props.imageStore.LoadImage(createdId);
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
-            workNo: this.props.imageStore.workNo
         })
     }
 
@@ -190,20 +190,6 @@ class ImageUpload extends React.Component {
                                 columns={this.state.columns}
                                 data={boundaryList}
                                 title="이미지 리스트"
-                                editable={{
-                                    onRowDelete: oldData =>
-                                        new Promise((resolve, reject) => {
-                                            setTimeout(() => {
-                                                {
-                                                    let data = this.state.data;
-                                                    const index = data.indexOf(oldData);
-                                                    data.splice(index, 1);
-                                                    this.setState({ data }, () => resolve());
-                                                }
-                                                resolve();
-                                            }, 1000);
-                                        }),
-                                }}
                                 actions={[
                                     {
                                         icon: Edit,
@@ -214,6 +200,9 @@ class ImageUpload extends React.Component {
                                         }
                                     }
                                 ]}
+                                options={{
+                                    actionsColumnIndex: -1,
+                                }}
                             />
                             </div>
                         </Grid>

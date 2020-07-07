@@ -66,6 +66,11 @@ class BasicImageList extends React.Component {
                 console.log(error)
             })
     }
+    handleClick = (workNo, imageData) => {
+        if(this.props.onClick) {
+            this.props.onClick(workNo, imageData);
+        }
+    }
     render() {
         const {basicLabelList} = this.state;
         return (
@@ -92,10 +97,7 @@ class BasicImageList extends React.Component {
                     {
                         icon: Edit,
                         tooltip: 'Select Image',
-                        onClick: (event, rowData) => {
-                            this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                            this.props.imageStore.changeWorkNo(rowData.workNo);
-                        }
+                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                     }
                 ]}
             />

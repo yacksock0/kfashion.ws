@@ -13,13 +13,13 @@ const State = {
 const WorkNo = {
     workNo : '',
 }
-
 const BoundaryList ={
-    boundaryList:[],
+    boundaryList : [],
 }
 export default class ImageStore {
     @observable state = State.Ready;
     @observable workNo = {...WorkNo};
+
     @action changeWorkNo = (workNo) => {
         this.workNo = workNo;
     }
@@ -45,6 +45,7 @@ export default class ImageStore {
           this.boundaryList=boundaryList;
           const workNo = this.boundaryList[0].workNo;
           this.workNo = workNo;
+            this.changeBoundaryList(boundaryList);
         } catch (e) {
             this.loginState = State.Failed;
             this.imageData = Object.assign({}, WorkNo);

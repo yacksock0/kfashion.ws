@@ -88,9 +88,6 @@ const styles = theme => ({
         marginRight: 1,
         height:'100%',
     },
-    canvas:{
-        backgroundColor:'black',
-    },
     fileText: {
         paddingTop: 32,
         paddingRight: theme.spacing(2),
@@ -125,6 +122,8 @@ const styles = theme => ({
 @observer
 class Polygon extends React.Component {
     state = {
+        imgData :'',
+        workNo:'',
         value:1,
         finishbtn : false,
         buttonDis1 : false,
@@ -175,17 +174,15 @@ class Polygon extends React.Component {
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
-            imgData : `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            rectList : `/api/v1/kfashion/rect/locationRectList?workNo="+${this.props.imageStore.isWorkNo}`,
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
-
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 700,
-            height : 800,
+            width : 200,
+            height : 200,
             originX: 'left',
             originY: 'top'
         });
@@ -435,9 +432,20 @@ class Polygon extends React.Component {
         // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
         // this.props.polygonStore.doPolygonLocationUp();
     }
+    handleClickItem = (workNo, imageData) => {
+        this.props.imageStore.changeWorkNo(workNo);
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 200,
+            height : 200,
+            originX: 'left',
+            originY: 'top'
+        });
+    }
     render() {
         const { classes } = this.props;
-        const {workNo} = this.props.imageStore;
+        const {isWorkNo} = this.props.imageStore;
 
         return (
             <Container component="main" className={classes.mainContainer}>
@@ -447,7 +455,7 @@ class Polygon extends React.Component {
 
                         <Grid item xs={12} lg={5} style={{margin:"auto"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width= "750" height= "850"  >  </canvas>
+                                <canvas id="c" width={600} height={800} className={classes.canvas}>  </canvas>
                             </div>
                         </Grid>
 
@@ -773,7 +781,7 @@ class Polygon extends React.Component {
 
                         </TabPanel>
                             <TabPanel value={this.state.value} index={1}>
-                                <PolygonList />
+                                <PolygonList onClick={this.handleClickItem} />
                             </TabPanel>
                         </Grid>
 

@@ -46,8 +46,7 @@ class DropzoneDialogExample extends Component {
             files: file
         });
         const userId = this.props.authStore.isUserId;
-        this.props.fileUploadStore.fileupload(file, userId);
-        this.props.imageStore.LoadImage(userId)
+        this.props.fileUploadStore.fileUpload(file, userId);
     }
 
     handleOpen() {

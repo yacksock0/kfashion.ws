@@ -179,13 +179,12 @@ export default class SignUpStore {
         this.state = State.Pending;
         try {
         const response = yield axios.get(`/api/v1/kfashion/users/signupcheck/email?email=${this.newMember.email}`)
-        const responseid = yield axios.get(`/api/v1/kfashion/users/signupcheck/id?id=${this.newMember.id}`)
-            console.log(response.data);
-            console.log(responseid.data);
+        const responseId = yield axios.get(`/api/v1/kfashion/users/signupcheck/id?id=${this.newMember.id}`)
         const isNotAvailEmail = response.data.result;
-        const isNotAvailId = response.data.result;
-
-        if(!isNotAvailEmail || !isNotAvailId) {
+        console.log('isNotAvailEmail',isNotAvailEmail)
+        const isNotAvailId = responseId.data.result;
+            console.log('isNotAvailId',isNotAvailId)
+        if(!isNotAvailEmail && !isNotAvailId) {
 
             const param = toJS(this.newMember);
             delete param.passwordConfirm;
