@@ -22,6 +22,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import axios from "axios";
 
 
 const tableIcons = {
@@ -118,24 +119,28 @@ class ImageUpload extends React.Component {
             count: 0,
             data: [],
             columns: [
-                {title: '이미지', field:'imgData', type:'image'},
-                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'FileNo filter', tooltip: '번호 정렬'},
-                {title: '파일명', field: 'fileName',type: 'text', filterPlaceholder: 'GroupNo filter', tooltip: '파일명으로 정렬'},
+                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '등록일 ', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
+
     componentDidMount() {
         this.props.enqueueSnackbar("Image Upload", {
             variant: 'info'
         })
         const createdId = this.props.authStore.isUserId;
-        this.props.imageStore.LoadImage(createdId);
+        this.props.imageStore.LoadImage(createdId)
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
+            workNo: this.props.imageStore.workNo,
+            boundaryList : this.props.imageStore.isBoundaryList,
         })
     }
+
 
     handlePrevious(){
         this.setState({
@@ -188,8 +193,23 @@ class ImageUpload extends React.Component {
                             <MaterialTable style={{height:'77vh'}}
                                 icons={tableIcons}
                                 columns={this.state.columns}
-                                data={boundaryList}
+                                data={this.state.boundaryList}
                                 title="이미지 리스트"
+                                onChange={this.handelChagneBoundaryList}
+                                editable={{
+                                    onRowDelete: oldData =>
+                                        new Promise((resolve, reject) => {
+                                            setTimeout(() => {
+                                                {
+                                                    let data = this.state.data;
+                                                    const index = data.indexOf(oldData);
+                                                    data.splice(index, 1);
+                                                    this.setState({ data }, () => resolve());
+                                                }
+                                                resolve();
+                                            }, 1000);
+                                        }),
+                                }}
                                 actions={[
                                     {
                                         icon: Edit,
@@ -200,10 +220,8 @@ class ImageUpload extends React.Component {
                                         }
                                     }
                                 ]}
-                                options={{
-                                    actionsColumnIndex: -1,
-                                }}
                             />
+
                             </div>
                         </Grid>
                     </Grid>

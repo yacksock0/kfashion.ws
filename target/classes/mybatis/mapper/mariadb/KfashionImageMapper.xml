@@ -3,6 +3,8 @@
     <resultMap id="kfashionImageResultMap" type="KfashionImage">
         <id property="workNo"                       column="work_no" />
         <result property="imgData"             column="img_data" />
+        <result property="workName"             column="work_name" />
+        <result property="fileName"             column="file_name" />
         <result property="createdId"             column="created_id" />
         <result property="createdDatetime"      column="created_datetime" />
         <result property="updatedDatetime"      column="updated_datetime" />
@@ -26,7 +28,9 @@
     <select id="selectBoundaryList" resultMap="kfashionImageResultMap" parameterType="String">
         SELECT DISTINCT
         kfashion_image.work_no,
-        kfashion_work.work_name,
+        SUBSTRING_INDEX(kfashion_work.work_name, '_', -1) work_name,
+        CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
+        kfashion_work.created_datetime,
         kfashion_work_history.created_id
         FROM kfashion_image
         LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
