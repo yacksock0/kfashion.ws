@@ -25,4 +25,8 @@ public class KfashionWorkRepository {
     public void updateWorkName(KfashionWork work) {
         mapper.updateWorkName(work);
     }
+
+    public String selectFileExtension(KfashionWork work) {
+        return mapper.selectFileExtension(work);
+    }
 }
