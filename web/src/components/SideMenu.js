@@ -143,12 +143,6 @@ export default function SideMenu(props) {
                         <ListItemText primary="3단계 전문 레이블링"></ListItemText>
                     </ListItem>
                 </Link>
-                <Link to="/Step/Test" className={classes.link}>
-                    <ListItem button>
-                        <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
-                        <ListItemText primary="Test"></ListItemText>
-                    </ListItem>
-                </Link>
             </List>
 
             <Divider />

@@ -6,7 +6,6 @@ import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import TopBar from "./components/TopBar";
 import SideMenu from "./components/SideMenu";
-import ScrollToTop from "./components/ScrollToTop";
 import Home from "./views/Home";
 import Step from "./views/Step";
 import Step2 from "./views/Step2";
@@ -20,7 +19,6 @@ import AdminGroup from "./views/admin/AdminGroup";
 import Verify from "./views/verify";
 import ImageUpload from "./views/labeling/ImageUpload";
 import UserList from "./views/admin/UserList";
-import Test from "./views/labeling/Test";
 
 
 const style = () => ({
@@ -109,7 +107,6 @@ class App extends React.Component {
                                     <Route exact path="/Step/ImageUpload" component={ImageUpload}/>
                                     <Route exact path="/Step/BoundaryBox" component={BoundaryBox} />
                                     <Route exact path="/Step/Polygon" component={Polygon} />
-                                    <Route exact path="/Step/Test" component={Test} />
                                     <Route exact path="/admin/createGroup" component={AdminGroup} />
                                     <Route exact path="/admin/userList" component={UserList} />
                                 </Switch>
