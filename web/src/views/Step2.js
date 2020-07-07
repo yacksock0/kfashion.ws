@@ -50,12 +50,12 @@ const styles = theme => ({
         flexDirection: 'column',
     },
     buttonType1:{
-        width: 100,
-        marginRight: theme.spacing(2),
+        width: '100%',
+        height: 50,
     },
     buttonType2:{
-        width: 150,
-        float:'right',
+        width: '100%',
+        height: 50,
 
     },
     insertButton:{
@@ -104,6 +104,31 @@ class Step2 extends React.Component {
     handleClickItem = (workNo, imageData) => {
         this.props.imageStore.changeWorkNo(workNo);
     }
+    handlePrevious(){
+        this.setState({
+            count: this.state.count-1
+        });
+        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            : alert("첫번째 이미지 입니다.")
+        }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
+    }
+    handleNext() {
+        this.setState({
+            count: this.state.count+1
+        });
+        {this.state.count < this.state.boundaryList.length ?
+            this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            :alert("마지막 이미지 입니다.")
+        }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
+    }
     render() {
         const { classes } = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -112,7 +137,7 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
-                     <Grid item xs={12} lg={5} style={{margin:"auto"}}>
+                     <Grid item xs={12} lg={6} style={{margin:"auto"}}>
                          <img src={`/api/v1/kfashion/img/getByteImage?workNo=${isWorkNo}`} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
@@ -258,29 +283,38 @@ class Step2 extends React.Component {
                  </Grid>
                 </div>
                 <hr></hr>
+                <Grid container>
+                    <Grid item xs={3} lg={1} style={{marginRight:10}}>
                 <Button
                     type="submit"
                     className={classes.buttonType1}
                     variant="outlined"
-                    >
+                    onClick={this.handlePrevious.bind(this)}
+                >
                     Previous
                 </Button>
+                    </Grid>
+                    <Grid item xs={3} lg={1}>
                 <Button
                     type="submit"
                     className={classes.buttonType1}
                     variant="outlined"
-                    onClick={this.handleClickOK}
-                     >
+                    onClick={this.handleNext.bind(this)}
+                >
                     Next
                 </Button>
+                    </Grid>
+                    <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                 <Button
-                    type="submit"
+                    type="button"
                     className={classes.buttonType2}
                     color="primary"
                     variant="outlined"
-                    >
+                >
                     Next Step
                 </Button>
+                    </Grid>
+                </Grid>
             </Container>
         );
     }

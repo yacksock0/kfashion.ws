@@ -47,7 +47,7 @@ const tableIcons = {
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        maxWidth:'100%',
+        maxWidth:'70%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -172,7 +172,7 @@ class ImageUpload extends React.Component {
         const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;
         return (
-            <Container component="main" className={classes.mainContainer} style={{height:'100vh'}}>
+            <Container component="main" className={classes.mainContainer} style={{height:'90vh'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
@@ -185,31 +185,16 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={12} lg={6}>
                             <div style={{marginRight:15}}>
-                                <img src={this.state.imgData} style={{display:"inline-block" , width:'100%', height:'77vh'}}/>
+                                <img src={this.state.imgData} style={{display:"inline-block" , width:'100%', height:'80vh'}}/>
                             </div>
                         </Grid>
                         <Grid item xs={12} lg={6}>
                             <div>
-                            <MaterialTable style={{height:'77vh'}}
+                            <MaterialTable style={{height:'80vh'}}
                                 icons={tableIcons}
                                 columns={this.state.columns}
                                 data={this.state.boundaryList}
                                 title="이미지 리스트"
-                                onChange={this.handelChagneBoundaryList}
-                                editable={{
-                                    onRowDelete: oldData =>
-                                        new Promise((resolve, reject) => {
-                                            setTimeout(() => {
-                                                {
-                                                    let data = this.state.data;
-                                                    const index = data.indexOf(oldData);
-                                                    data.splice(index, 1);
-                                                    this.setState({ data }, () => resolve());
-                                                }
-                                                resolve();
-                                            }, 1000);
-                                        }),
-                                }}
                                 actions={[
                                     {
                                         icon: Edit,
@@ -220,8 +205,11 @@ class ImageUpload extends React.Component {
                                         }
                                     }
                                 ]}
+                                options={{
+                                actionsColumnIndex: -1,
+                                rowsPerPage:10,
+                                }}
                             />
-
                             </div>
                         </Grid>
                     </Grid>
@@ -266,5 +254,4 @@ class ImageUpload extends React.Component {
         );
     }
 };
-
 export default withSnackbar(withRouter(withStyles(styles) (ImageUpload)));
