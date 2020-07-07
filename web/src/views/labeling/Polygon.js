@@ -100,7 +100,7 @@ const styles = theme => ({
 
 
 
-@inject('rectStore','imageStore', 'rectStore','authStore')
+@inject('rectStore','imageStore', 'rectStore','authStore','polygonStore')
 @observer
 class Polygon extends React.Component {
     state = {
@@ -108,7 +108,7 @@ class Polygon extends React.Component {
         workNo:'',
         value:1,
         finishbtn : false,
-        savebtn : false,
+        savebtn : true,
         buttonDis1 : false,
         buttonDis2 : false,
         buttonDis3 : false,
@@ -132,7 +132,6 @@ class Polygon extends React.Component {
 
     }];
 
-    rectList=[]
     canvas;
     polyNo;
     polyPointX = [];
@@ -323,6 +322,15 @@ class Polygon extends React.Component {
         }
     }
     deleteAll = (b) =>{
+
+
+        let objList = [];
+        this.canvas.getObjects().forEach(function (o) {
+            objList.push(o);
+        })
+        for (let i = 0; i <= objList.length; i++) {
+            this.canvas.remove(objList[i]);
+        }
         if( b != -1) {
             console.log(b);
             this.x = 0;
@@ -332,14 +340,6 @@ class Polygon extends React.Component {
             this.polyPointX.length =0;
             this.polyPointY.length =0;
             this.buttonState();
-        }
-
-        let objList = [];
-        this.canvas.getObjects().forEach(function (o) {
-            objList.push(o);
-        })
-        for (let i = 0; i <= objList.length; i++) {
-            this.canvas.remove(objList[i]);
         }
 
     }
@@ -394,7 +394,7 @@ class Polygon extends React.Component {
                 }
                 this.polygon.push(newPolygon);
 
-                this.state.savebtn = true;
+                this.state.savebtn = false;
                 this.deleteAll(newPolyNo);
                 console.log(this.polygon);
 
@@ -442,12 +442,19 @@ class Polygon extends React.Component {
             alert("저장되었습니다.");
             this.state.savebtn = false;
         }
-        console.log(this.state.rectList);
+
         // this.props.polygonStore.objGet(this.polygon);
         // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
         // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
         // this.props.polygonStore.doPolygonLocationUp();
+        //
+        window.location.reload();
     }
+
+
+
+
+
     handleClickItem = (workNo, imageData) => {
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
@@ -478,8 +485,8 @@ class Polygon extends React.Component {
                         <Grid item xs={12} lg={6}>
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                 <TabList>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={0}><h3>영역지정</h3></Tab>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={1}><h3>이미지 리스트</h3></Tab>
+                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={1}><h3>영역지정</h3></Tab>
+                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={0}><h3>이미지 리스트</h3></Tab>
                                 </TabList>
 
                                 <TabPanel value={this.state.value} index={0}>

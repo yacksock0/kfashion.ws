@@ -55,16 +55,24 @@ public class KfashionImageLocationPolygonController {
             System.out.println(polygonList);
             String msg= "";
 
-            KfashionWork work = new KfashionWork();
-            work.setNo(polygonList.get(0).getWorkNo());
-            work.setWorkState(polygonList.get(0).getWorkStep());
-            kfashionWorkService.updateWork(work);
-
-            KfashionWorkHistory workHistory = new KfashionWorkHistory();
-            workHistory.setWorkNo(polygonList.get(0).getWorkNo());
-            workHistory.setWorkStep(polygonList.get(0).getWorkStep());
-            workHistory.setCreatedId(polygonList.get(0).getCreatedId());
-            kfashionWorkHistoryService.insertWorkHistory(workHistory);
+//                for(int i=1; i <= polygonList.size(); i++) {
+//                    System.out.println(polygonList.get(i));
+//                for (int j =1 ;j< polygonList.get(i).getPoints().size(); j++ ) {
+//                    System.out.println(polygonList.get(i).getPoints().get(j).getX());
+//
+//                }
+//            }
+//
+//            KfashionWork work = new KfashionWork();
+//            work.setNo(polygonList.get(0).getWorkNo());
+//            work.setWorkState(polygonList.get(0).getWorkStep());
+//            kfashionWorkService.updateWork(work);
+//
+//            KfashionWorkHistory workHistory = new KfashionWorkHistory();
+//            workHistory.setWorkNo(polygonList.get(0).getWorkNo());
+//            workHistory.setWorkStep(polygonList.get(0).getWorkStep());
+//            workHistory.setCreatedId(polygonList.get(0).getCreatedId());
+//            kfashionWorkHistoryService.insertWorkHistory(workHistory);
 
 
 
