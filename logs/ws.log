@@ -6308,3 +6308,645 @@
 2020-07-08 00:55:25.797 26610 [080-exec-142] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
 2020-07-08 00:55:25.797 26610 [080-exec-142] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
 2020-07-08 00:55:25.797 26610 [080-exec-142] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:00:23.106 29138 [        main] - INFO         io.aetherit.kfashion.ws.Application   55 : Starting Application on youngui-MacBookPro.local with PID 29138 (/Users/youngrackchoi/kfashion.ws/target/classes started by youngrackchoi in /Users/youngrackchoi/kfashion.ws)
+2020-07-08 01:00:23.108 29138 [        main] - DEBUG        io.aetherit.kfashion.ws.Application   56 : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-07-08 01:00:23.108 29138 [        main] - INFO         io.aetherit.kfashion.ws.Application  651 : No active profile set, falling back to default profiles: default
+2020-07-08 01:00:23.808 29138 [        main] - INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker  330 : Bean 'applicationConfiguration' of type [io.aetherit.kfashion.ws.configuration.ApplicationConfiguration$$EnhancerBySpringCGLIB$$a8457f54] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-08 01:00:24.071 29138 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1   81 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-08 01:00:24.072 29138 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  125 : Code archive: /Users/youngrackchoi/.m2/repository/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar
+2020-07-08 01:00:24.072 29138 [        main] - DEBUG       i.a.k.w.c.ApplicationConfiguration$1  149 : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2020-07-08 01:00:24.084 29138 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer   92 : Tomcat initialized with port(s): 8080 (http)
+2020-07-08 01:00:24.090 29138 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-08 01:00:24.090 29138 [        main] - INFO    org.apache.catalina.core.StandardService  173 : Starting service [Tomcat]
+2020-07-08 01:00:24.090 29138 [        main] - INFO     org.apache.catalina.core.StandardEngine  173 : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-08 01:00:24.137 29138 [        main] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring embedded WebApplicationContext
+2020-07-08 01:00:24.137 29138 [        main] - INFO               o.s.web.context.ContextLoader  284 : Root WebApplicationContext: initialization completed in 1006 ms
+2020-07-08 01:00:24.176 29138 [        main] - DEBUG            i.a.k.w.c.DatabaseConfiguration   47 : Creating DB DataSource : org.mariadb.jdbc.Driver, jdbc:mariadb://192.168.10.110:3306/kfashion, user1
+2020-07-08 01:00:24.592 29138 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==>  Preparing: SELECT id, password, name, is_admin, is_approved, created_datetime, updated_datetime FROM kfashion_user_info WHERE is_admin = ? ORDER BY created_datetime DESC 
+2020-07-08 01:00:24.605 29138 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : ==> Parameters: Y(String)
+2020-07-08 01:00:24.618 29138 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==    Columns: id, password, name, is_admin, is_approved, created_datetime, updated_datetime
+2020-07-08 01:00:24.619 29138 [        main] - TRACE         i.a.k.w.r.m.K.selectUsersWhereType  165 : <==        Row: admin, {bcrypt}$2a$10$.nj8ne9ZRvs/fQ6qt8khyefVHhULl8gHL5o8B2KYzZ7bDI22tJ4nG, administrator, Y, Y, 2020-06-23 11:46:43.0, 2020-06-23 11:46:43.0
+2020-07-08 01:00:24.621 29138 [        main] - DEBUG         i.a.k.w.r.m.K.selectUsersWhereType  159 : <==      Total: 1
+2020-07-08 01:00:24.745 29138 [        main] - INFO   i.a.k.ws.controller.InformationController   22 : Appliction Information : io.aetherit.kfashion.ws 1.0-SNAPSHOT 20200706_2134 #0
+2020-07-08 01:00:25.063 29138 [        main] - INFO        o.s.s.web.DefaultSecurityFilterChain   43 : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@65e0b505, org.springframework.security.web.context.SecurityContextPersistenceFilter@441b8382, org.springframework.security.web.header.HeaderWriterFilter@2e5b7fba, org.springframework.security.web.authentication.logout.LogoutFilter@44b21f9f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5349b246, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79a7bfbc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@67de7a99, org.springframework.security.web.session.SessionManagementFilter@6fc6deb7, org.springframework.security.web.access.ExceptionTranslationFilter@41dc0598, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5a50d9fc]
+2020-07-08 01:00:25.153 29138 [        main] - INFO     o.s.s.concurrent.ThreadPoolTaskExecutor  171 : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-08 01:00:25.333 29138 [        main] - INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor  297 : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-07-08 01:00:25.338 29138 [        main] - INFO  org.apache.coyote.http11.Http11NioProtocol  173 : Starting ProtocolHandler ["http-nio-8080"]
+2020-07-08 01:00:25.386 29138 [        main] - INFO   o.s.b.web.embedded.tomcat.TomcatWebServer  204 : Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-08 01:00:25.389 29138 [        main] - INFO         io.aetherit.kfashion.ws.Application   61 : Started Application in 2.546 seconds (JVM running for 3.144)
+2020-07-08 01:01:10.778 29138 [-8080-exec-1] - INFO          o.a.c.c.C.[Tomcat].[localhost].[/]  173 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-08 01:01:10.779 29138 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  525 : Initializing Servlet 'dispatcherServlet'
+2020-07-08 01:01:10.785 29138 [-8080-exec-1] - INFO           o.s.web.servlet.DispatcherServlet  547 : Completed initialization in 6 ms
+2020-07-08 01:01:11.222 29138 [-8080-exec-2] - INFO    org.apache.coyote.http11.Http11Processor  175 : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:468)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-08 01:01:11.380 29138 [-8080-exec-3] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name, CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name, kfashion_work.created_datetime, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 2 ORDER BY kfashion_image.work_no 
+2020-07-08 01:01:11.380 29138 [-8080-exec-3] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : ==> Parameters: admin(String)
+2020-07-08 01:01:11.385 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==    Columns: work_no, work_name, file_name, created_datetime, created_id
+2020-07-08 01:01:11.386 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 1, fab80c9a-c5ce-4eb3-99d8-be009a84f4d7_모델, /api/v1/kfashion/img/getByteImage?workNo=1, 2020-07-07 02:54:00.0, admin
+2020-07-08 01:01:11.386 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 2, bdd6833e-fa0d-4bc4-8c88-a295753a1f52_image-1, /api/v1/kfashion/img/getByteImage?workNo=2, 2020-07-07 02:55:39.0, admin
+2020-07-08 01:01:11.387 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1, /api/v1/kfashion/img/getByteImage?workNo=3, 2020-07-07 03:14:12.0, admin
+2020-07-08 01:01:11.387 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 9, 8b5a5696-842a-4cf1-8cef-cb80985e4bfe_송해나, /api/v1/kfashion/img/getByteImage?workNo=9, 2020-07-07 05:32:59.0, admin
+2020-07-08 01:01:11.388 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 11, 26665aaa-8a5d-42fc-a5ec-8a2b290b8175_모델, /api/v1/kfashion/img/getByteImage?workNo=11, 2020-07-07 06:29:51.0, admin
+2020-07-08 01:01:11.388 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 13, 618fc9b6-e95c-45ca-8fb4-5a8d285ab5c4_애기모델, /api/v1/kfashion/img/getByteImage?workNo=13, 2020-07-07 06:29:52.0, admin
+2020-07-08 01:01:11.389 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 14, 166bf536-f8eb-42a7-86da-f214fe9071fb_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=14, 2020-07-07 08:43:03.0, admin
+2020-07-08 01:01:11.389 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 15, 9c261a15-e71c-4f5f-af22-3cf6ac0100cf_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2, /api/v1/kfashion/img/getByteImage?workNo=15, 2020-07-07 10:11:39.0, admin
+2020-07-08 01:01:11.389 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 16, 2b81f18c-36d6-40b4-a86f-618faa16e3c0_images, /api/v1/kfashion/img/getByteImage?workNo=16, 2020-07-07 10:20:11.0, admin
+2020-07-08 01:01:11.390 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 17, cab9ac27-4b25-4184-ad86-6b7a75c91995_images, /api/v1/kfashion/img/getByteImage?workNo=17, 2020-07-07 10:26:27.0, admin
+2020-07-08 01:01:11.390 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 18, 8e163ee9-6a76-41b1-89a4-aa55f3d51de9_images (1), /api/v1/kfashion/img/getByteImage?workNo=18, 2020-07-07 10:28:05.0, admin
+2020-07-08 01:01:11.391 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 46, 8ff671c8-21ad-4a87-9fbc-4359205a4ab5_모델, /api/v1/kfashion/img/getByteImage?workNo=46, 2020-07-07 11:22:32.0, admin
+2020-07-08 01:01:11.391 29138 [-8080-exec-3] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 131, image-1, /api/v1/kfashion/img/getByteImage?workNo=131, 2020-07-08 00:16:34.0, admin
+2020-07-08 01:01:11.392 29138 [-8080-exec-3] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : <==      Total: 13
+2020-07-08 01:01:11.580 29138 [-8080-exec-7] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:01:11.581 29138 [-8080-exec-7] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 2(Integer)
+2020-07-08 01:01:11.585 29138 [-8080-exec-4] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:01:11.585 29138 [-8080-exec-8] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:01:11.585 29138 [-8080-exec-5] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:01:11.585 29138 [-8080-exec-6] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:01:11.586 29138 [-8080-exec-4] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 9(Integer)
+2020-07-08 01:01:11.586 29138 [-8080-exec-5] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 1(Integer)
+2020-07-08 01:01:11.586 29138 [-8080-exec-6] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-08 01:01:11.586 29138 [-8080-exec-8] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
+2020-07-08 01:01:11.735 29138 [-8080-exec-7] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:01:11.736 29138 [-8080-exec-7] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:01:11.738 29138 [-8080-exec-7] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:01:11.771 29138 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:01:11.772 29138 [-8080-exec-4] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:01:11.773 29138 [-8080-exec-4] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:01:11.778 29138 [-8080-exec-8] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:01:11.778 29138 [-8080-exec-8] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:01:11.781 29138 [-8080-exec-8] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:01:11.789 29138 [-8080-exec-5] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:01:11.789 29138 [-8080-exec-5] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:01:11.790 29138 [-8080-exec-5] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:01:11.816 29138 [-8080-exec-6] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:01:11.817 29138 [-8080-exec-6] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:01:11.817 29138 [-8080-exec-6] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:57.232 29138 [8080-exec-11] - INFO    org.apache.coyote.http11.Http11Processor  175 : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:468)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-08 01:03:57.278 29138 [8080-exec-12] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name, CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name, kfashion_work.created_datetime, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 2 ORDER BY kfashion_image.work_no 
+2020-07-08 01:03:57.279 29138 [8080-exec-12] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : ==> Parameters: admin(String)
+2020-07-08 01:03:57.289 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==    Columns: work_no, work_name, file_name, created_datetime, created_id
+2020-07-08 01:03:57.290 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 1, fab80c9a-c5ce-4eb3-99d8-be009a84f4d7_모델, /api/v1/kfashion/img/getByteImage?workNo=1, 2020-07-07 02:54:00.0, admin
+2020-07-08 01:03:57.291 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 2, bdd6833e-fa0d-4bc4-8c88-a295753a1f52_image-1, /api/v1/kfashion/img/getByteImage?workNo=2, 2020-07-07 02:55:39.0, admin
+2020-07-08 01:03:57.292 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1, /api/v1/kfashion/img/getByteImage?workNo=3, 2020-07-07 03:14:12.0, admin
+2020-07-08 01:03:57.294 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 9, 8b5a5696-842a-4cf1-8cef-cb80985e4bfe_송해나, /api/v1/kfashion/img/getByteImage?workNo=9, 2020-07-07 05:32:59.0, admin
+2020-07-08 01:03:57.295 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 11, 26665aaa-8a5d-42fc-a5ec-8a2b290b8175_모델, /api/v1/kfashion/img/getByteImage?workNo=11, 2020-07-07 06:29:51.0, admin
+2020-07-08 01:03:57.295 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 13, 618fc9b6-e95c-45ca-8fb4-5a8d285ab5c4_애기모델, /api/v1/kfashion/img/getByteImage?workNo=13, 2020-07-07 06:29:52.0, admin
+2020-07-08 01:03:57.295 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 14, 166bf536-f8eb-42a7-86da-f214fe9071fb_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=14, 2020-07-07 08:43:03.0, admin
+2020-07-08 01:03:57.296 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 15, 9c261a15-e71c-4f5f-af22-3cf6ac0100cf_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2, /api/v1/kfashion/img/getByteImage?workNo=15, 2020-07-07 10:11:39.0, admin
+2020-07-08 01:03:57.296 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 16, 2b81f18c-36d6-40b4-a86f-618faa16e3c0_images, /api/v1/kfashion/img/getByteImage?workNo=16, 2020-07-07 10:20:11.0, admin
+2020-07-08 01:03:57.297 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 17, cab9ac27-4b25-4184-ad86-6b7a75c91995_images, /api/v1/kfashion/img/getByteImage?workNo=17, 2020-07-07 10:26:27.0, admin
+2020-07-08 01:03:57.297 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 18, 8e163ee9-6a76-41b1-89a4-aa55f3d51de9_images (1), /api/v1/kfashion/img/getByteImage?workNo=18, 2020-07-07 10:28:05.0, admin
+2020-07-08 01:03:57.298 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 46, 8ff671c8-21ad-4a87-9fbc-4359205a4ab5_모델, /api/v1/kfashion/img/getByteImage?workNo=46, 2020-07-07 11:22:32.0, admin
+2020-07-08 01:03:57.298 29138 [8080-exec-12] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 131, image-1, /api/v1/kfashion/img/getByteImage?workNo=131, 2020-07-08 00:16:34.0, admin
+2020-07-08 01:03:57.299 29138 [8080-exec-12] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : <==      Total: 13
+2020-07-08 01:03:57.478 29138 [8080-exec-13] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:57.478 29138 [8080-exec-13] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 2(Integer)
+2020-07-08 01:03:57.524 29138 [8080-exec-17] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:57.524 29138 [8080-exec-15] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:57.524 29138 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:57.524 29138 [8080-exec-14] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:57.525 29138 [8080-exec-14] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 1(Integer)
+2020-07-08 01:03:57.525 29138 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 9(Integer)
+2020-07-08 01:03:57.525 29138 [8080-exec-17] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
+2020-07-08 01:03:57.525 29138 [8080-exec-15] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-08 01:03:57.570 29138 [8080-exec-13] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:57.570 29138 [8080-exec-13] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:57.571 29138 [8080-exec-13] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:57.711 29138 [8080-exec-16] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:57.712 29138 [8080-exec-16] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:57.713 29138 [8080-exec-16] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:57.726 29138 [8080-exec-14] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:57.727 29138 [8080-exec-14] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:57.727 29138 [8080-exec-14] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:57.753 29138 [8080-exec-15] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:57.753 29138 [8080-exec-17] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:57.754 29138 [8080-exec-15] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:57.754 29138 [8080-exec-17] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:57.754 29138 [8080-exec-17] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:57.754 29138 [8080-exec-15] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:58.274 29138 [8080-exec-18] - INFO    org.apache.coyote.http11.Http11Processor  175 : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:468)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-08 01:03:58.376 29138 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name, CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name, kfashion_work.created_datetime, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-08 01:03:58.376 29138 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-08 01:03:58.387 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, file_name, created_datetime, created_id
+2020-07-08 01:03:58.387 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 19, HIHIHIHIHIHI, /api/v1/kfashion/img/getByteImage?workNo=19, 2020-07-07 10:29:43.0, admin
+2020-07-08 01:03:58.388 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 20, Hi, /api/v1/kfashion/img/getByteImage?workNo=20, 2020-07-07 10:30:03.0, admin
+2020-07-08 01:03:58.388 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 21, Test, /api/v1/kfashion/img/getByteImage?workNo=21, 2020-07-07 10:33:43.0, admin
+2020-07-08 01:03:58.389 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 22, 이름변경, /api/v1/kfashion/img/getByteImage?workNo=22, 2020-07-07 10:34:26.0, admin
+2020-07-08 01:03:58.389 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 23, SUCCESS, /api/v1/kfashion/img/getByteImage?workNo=23, 2020-07-07 10:35:00.0, admin
+2020-07-08 01:03:58.390 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 몰라요, /api/v1/kfashion/img/getByteImage?workNo=24, 2020-07-07 10:35:17.0, admin
+2020-07-08 01:03:58.390 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 꽃이미지, /api/v1/kfashion/img/getByteImage?workNo=25, 2020-07-07 10:36:09.0, admin
+2020-07-08 01:03:58.390 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 26, 안녕~, /api/v1/kfashion/img/getByteImage?workNo=26, 2020-07-07 10:36:32.0, admin
+2020-07-08 01:03:58.391 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 27, asdjaskldj, /api/v1/kfashion/img/getByteImage?workNo=27, 2020-07-07 10:37:21.0, admin
+2020-07-08 01:03:58.391 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 28, HiHellow, /api/v1/kfashion/img/getByteImage?workNo=28, 2020-07-07 10:38:59.0, admin
+2020-07-08 01:03:58.391 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 29, 안ㄴ여핫에ㅛ, /api/v1/kfashion/img/getByteImage?workNo=29, 2020-07-07 10:41:06.0, admin
+2020-07-08 01:03:58.392 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 30, 안녕하세요, /api/v1/kfashion/img/getByteImage?workNo=30, 2020-07-07 10:48:47.0, admin
+2020-07-08 01:03:58.392 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 31, ㅁ너오머낭ㅁㄴㅇ, /api/v1/kfashion/img/getByteImage?workNo=31, 2020-07-07 10:51:09.0, admin
+2020-07-08 01:03:58.392 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 32, 413be, /api/v1/kfashion/img/getByteImage?workNo=32, 2020-07-07 10:51:42.0, admin
+2020-07-08 01:03:58.393 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 33, 이제바뀐다, /api/v1/kfashion/img/getByteImage?workNo=33, 2020-07-07 10:52:27.0, admin
+2020-07-08 01:03:58.393 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 34, 이ㅏㅇ, /api/v1/kfashion/img/getByteImage?workNo=34, 2020-07-07 10:56:17.0, admin
+2020-07-08 01:03:58.393 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 35, 123123123, /api/v1/kfashion/img/getByteImage?workNo=35, 2020-07-07 11:01:35.0, admin
+2020-07-08 01:03:58.394 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 36, 바바바바바바, /api/v1/kfashion/img/getByteImage?workNo=36, 2020-07-07 11:02:53.0, admin
+2020-07-08 01:03:58.394 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 37, 4bf52e08-a0cb-4006-9b0e-8fe7daba329a_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=37, 2020-07-07 11:03:38.0, admin
+2020-07-08 01:03:58.394 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 38, 550bedb9-82ce-4351-ad5d-0ceaa9369e7d_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=38, 2020-07-07 11:09:41.0, admin
+2020-07-08 01:03:58.395 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 39, 5a9a7d13-597e-417f-8a5d-512a1fb1769d_images, /api/v1/kfashion/img/getByteImage?workNo=39, 2020-07-07 11:09:48.0, admin
+2020-07-08 01:03:58.395 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 40, eff94c0d-b9ba-4ad7-b856-e0e78879dc8c_images, /api/v1/kfashion/img/getByteImage?workNo=40, 2020-07-07 11:10:08.0, admin
+2020-07-08 01:03:58.395 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 41, 5e1d45f2-92f4-4964-9bb3-a50fe80d1191_images (1), /api/v1/kfashion/img/getByteImage?workNo=41, 2020-07-07 11:10:24.0, admin
+2020-07-08 01:03:58.396 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 42, 10010e0b-8a6e-43ab-bf8a-9acfc2b802c2_images (1), /api/v1/kfashion/img/getByteImage?workNo=42, 2020-07-07 11:15:06.0, admin
+2020-07-08 01:03:58.396 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 43, 6fe22536-9e75-4315-87a5-4966f56f6bab_images (1), /api/v1/kfashion/img/getByteImage?workNo=43, 2020-07-07 11:15:19.0, admin
+2020-07-08 01:03:58.396 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 44, 9fee3159-cfb0-453f-b8f7-2a9e4276fb3c_images (1), /api/v1/kfashion/img/getByteImage?workNo=44, 2020-07-07 11:17:13.0, admin
+2020-07-08 01:03:58.396 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 45, 98c39b1f-cf5c-4e90-85ff-9543ae114c7b_images, /api/v1/kfashion/img/getByteImage?workNo=45, 2020-07-07 11:21:46.0, admin
+2020-07-08 01:03:58.397 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 5a04d968-bc3d-43b7-821e-47ca3e9e89e9_송해나, /api/v1/kfashion/img/getByteImage?workNo=47, 2020-07-07 11:22:32.0, admin
+2020-07-08 01:03:58.397 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 49, 4dcefb2c-4f09-4d05-b229-f56b425351f6_26030264-흰색-배경에-3d-반짝이-빨간-숫자-x28-5-x29-, /api/v1/kfashion/img/getByteImage?workNo=49, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:58.397 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, a23d5ff2-5b5a-4727-8728-3974bce942db_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2, /api/v1/kfashion/img/getByteImage?workNo=50, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:58.398 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 51, a416e8e4-de83-4a7a-ac8e-d137b8648d86_모델, /api/v1/kfashion/img/getByteImage?workNo=51, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:58.398 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, 252b4ba1-3b60-4837-aeb7-0ca59ad69a1c_송해나, /api/v1/kfashion/img/getByteImage?workNo=52, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:58.398 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 53, 882865b4-f8f8-4c29-b710-77f7e469f40b_애기모델, /api/v1/kfashion/img/getByteImage?workNo=53, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:58.398 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 54, b4496703-5e85-462c-b920-d470e068af8b_images, /api/v1/kfashion/img/getByteImage?workNo=54, 2020-07-07 11:58:36.0, admin
+2020-07-08 01:03:58.399 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 55, 7949eb02-a7f2-46da-87f2-215309b702a7_images, /api/v1/kfashion/img/getByteImage?workNo=55, 2020-07-07 11:59:17.0, admin
+2020-07-08 01:03:58.399 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 56, 54e3fc6c-e1d3-4be7-b5d4-2da1c5eccaf7_images, /api/v1/kfashion/img/getByteImage?workNo=56, 2020-07-07 11:59:33.0, admin
+2020-07-08 01:03:58.399 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 57, 02411ac1-ff77-434b-aa5c-a716ae4dd348_images, /api/v1/kfashion/img/getByteImage?workNo=57, 2020-07-07 12:00:05.0, admin
+2020-07-08 01:03:58.399 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, 94931839-4d41-418a-8acb-c77ee994a6f7_images, /api/v1/kfashion/img/getByteImage?workNo=58, 2020-07-07 12:05:15.0, admin
+2020-07-08 01:03:58.400 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 59, abcc5000-220b-427b-8c6c-c993e5fc1a66_images (1), /api/v1/kfashion/img/getByteImage?workNo=59, 2020-07-07 12:09:07.0, admin
+2020-07-08 01:03:58.400 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 60, a0ff345f-c607-46a3-8ada-2e55694bb881_images (1), /api/v1/kfashion/img/getByteImage?workNo=60, 2020-07-07 12:10:02.0, admin
+2020-07-08 01:03:58.400 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 61, b51bf16d-87d8-462b-be94-51110e74ed22_images, /api/v1/kfashion/img/getByteImage?workNo=61, 2020-07-07 12:20:49.0, admin
+2020-07-08 01:03:58.400 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 62, 95060183-1ca5-491e-a9d6-674e1e0d97eb_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=62, 2020-07-07 12:21:29.0, admin
+2020-07-08 01:03:58.401 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 63, 016e322f-a90e-4ed9-af30-f3cd54b1866e_images, /api/v1/kfashion/img/getByteImage?workNo=63, 2020-07-07 12:21:56.0, admin
+2020-07-08 01:03:58.401 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 64, 7dccaaf7-b2ef-41b1-b36b-3ab3bf020513_스크린샷 2020-06-15 오후 3, /api/v1/kfashion/img/getByteImage?workNo=64, 2020-07-07 12:23:09.0, admin
+2020-07-08 01:03:58.401 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 65, 8d6da7bb-bbd0-4544-93ab-b56a0637e27b_images, /api/v1/kfashion/img/getByteImage?workNo=65, 2020-07-07 12:23:41.0, admin
+2020-07-08 01:03:58.401 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 66, 587119e6-f11b-4f2d-8c99-a0058a5a3984_images, /api/v1/kfashion/img/getByteImage?workNo=66, 2020-07-07 12:26:13.0, admin
+2020-07-08 01:03:58.402 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 67, 59802538-334a-478b-98e7-877fe5e241ea_images, /api/v1/kfashion/img/getByteImage?workNo=67, 2020-07-07 12:26:58.0, admin
+2020-07-08 01:03:58.402 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 68, 1619146a-aac7-41f9-a712-1e46c2c59c20_송해나, /api/v1/kfashion/img/getByteImage?workNo=68, 2020-07-07 12:27:24.0, admin
+2020-07-08 01:03:58.402 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 69, 3da0cc37-b1da-44f4-8596-f12a25c445c0_images, /api/v1/kfashion/img/getByteImage?workNo=69, 2020-07-07 12:28:15.0, admin
+2020-07-08 01:03:58.402 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 70, f228de2a-a8d8-47bb-93ec-9b07a33dc31f_모델, /api/v1/kfashion/img/getByteImage?workNo=70, 2020-07-07 12:28:24.0, admin
+2020-07-08 01:03:58.403 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 71, 7cb33c60-8674-4055-b9ec-42479fd50895_images, /api/v1/kfashion/img/getByteImage?workNo=71, 2020-07-07 12:29:22.0, admin
+2020-07-08 01:03:58.403 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 72, 9f435b8c-7c68-4d31-a188-73d3397f6d4c_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=72, 2020-07-07 12:29:39.0, admin
+2020-07-08 01:03:58.403 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 73, 87147135-dada-4e3e-a953-fd0d94c1b00f_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=73, 2020-07-07 12:30:27.0, admin
+2020-07-08 01:03:58.403 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 74, 4c7d9d86-14be-4582-a986-d266e0f137cd_모델, /api/v1/kfashion/img/getByteImage?workNo=74, 2020-07-07 12:30:36.0, admin
+2020-07-08 01:03:58.404 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 75, 9bf8c3c8-4fcc-4d4c-9ad9-3f5471aab2ee_송해나, /api/v1/kfashion/img/getByteImage?workNo=75, 2020-07-07 12:31:33.0, admin
+2020-07-08 01:03:58.404 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 76, cd7caa78-e728-44f0-8798-a2cd63614f42_송해나, /api/v1/kfashion/img/getByteImage?workNo=76, 2020-07-07 12:32:09.0, admin
+2020-07-08 01:03:58.404 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 77, 5e87f254-69db-4721-931d-a718187f6b37_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=77, 2020-07-07 12:32:57.0, admin
+2020-07-08 01:03:58.404 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 78, afcf340c-bbce-4d50-8e09-61dede984402_티셔츠444, /api/v1/kfashion/img/getByteImage?workNo=78, 2020-07-07 12:33:50.0, admin
+2020-07-08 01:03:58.405 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 79, 8b04bd7d-c495-4dab-a03a-c77f1242fd37_images, /api/v1/kfashion/img/getByteImage?workNo=79, 2020-07-07 12:34:49.0, admin
+2020-07-08 01:03:58.405 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 80, b7a92828-de14-46f8-8cd5-6fa57593ebb1_모델, /api/v1/kfashion/img/getByteImage?workNo=80, 2020-07-07 12:36:05.0, admin
+2020-07-08 01:03:58.405 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 81, a91ab20b-3d18-45b6-bedb-63c8150b6ce5_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=81, 2020-07-07 12:37:07.0, admin
+2020-07-08 01:03:58.406 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 82, d3ab0700-092e-4727-959f-e7d3f548ab3a_애기모델, /api/v1/kfashion/img/getByteImage?workNo=82, 2020-07-07 12:37:33.0, admin
+2020-07-08 01:03:58.406 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 83, cfa461e7-3543-4520-8fc6-3e6b251d7384_송해나, /api/v1/kfashion/img/getByteImage?workNo=83, 2020-07-07 12:40:02.0, admin
+2020-07-08 01:03:58.406 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 84, cb57ff86-21f2-4831-8ba0-6d1a97bd4949_images, /api/v1/kfashion/img/getByteImage?workNo=84, 2020-07-07 12:40:41.0, admin
+2020-07-08 01:03:58.406 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 85, 32d03584-10cd-442b-abc6-6ce25df927c2_스크린샷 2020-06-15 오후 3, /api/v1/kfashion/img/getByteImage?workNo=85, 2020-07-07 12:42:53.0, admin
+2020-07-08 01:03:58.407 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 86, 68e805b0-d5d2-4481-a71a-83516c965451_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=86, 2020-07-07 13:09:27.0, admin
+2020-07-08 01:03:58.407 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 87, 31abfb37-968f-46fd-8bb2-7cbd6b6195f1_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=87, 2020-07-07 13:10:25.0, admin
+2020-07-08 01:03:58.407 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 88, 78cdd313-16e3-42bf-96ff-0aea4297b2d7_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=88, 2020-07-07 13:12:04.0, admin
+2020-07-08 01:03:58.407 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 89, ef71f8e5-5087-4783-b0ee-9d5f1751d3ea_images (1), /api/v1/kfashion/img/getByteImage?workNo=89, 2020-07-07 13:13:30.0, admin
+2020-07-08 01:03:58.408 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 90, 0808bfa1-233e-4a48-be0b-175f452d753a_img, /api/v1/kfashion/img/getByteImage?workNo=90, 2020-07-07 13:14:30.0, admin
+2020-07-08 01:03:58.408 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 91, 04325379-795e-4fb4-adce-02252df119a8_모델, /api/v1/kfashion/img/getByteImage?workNo=91, 2020-07-07 14:03:26.0, admin
+2020-07-08 01:03:58.408 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 92, 0fe735d7-b8b6-44ff-a797-3d58b7ff24d5_images, /api/v1/kfashion/img/getByteImage?workNo=92, 2020-07-07 14:03:36.0, admin
+2020-07-08 01:03:58.408 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 93, 2f981241-90d6-44a8-8749-2e3dc3f7d53a_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=93, 2020-07-07 14:03:56.0, admin
+2020-07-08 01:03:58.408 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 94, d88a2526-59bd-4034-b8c3-258eecf7bb8c_images (1), /api/v1/kfashion/img/getByteImage?workNo=94, 2020-07-07 15:20:23.0, admin
+2020-07-08 01:03:58.409 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 95, 6765df69-0797-4cf7-a97d-4c26ec90dd99_images (1), /api/v1/kfashion/img/getByteImage?workNo=95, 2020-07-07 15:28:28.0, admin
+2020-07-08 01:03:58.409 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 96, d02fcbfa-a9fa-47a2-83c5-aeea77907262_images, /api/v1/kfashion/img/getByteImage?workNo=96, 2020-07-07 15:51:04.0, admin
+2020-07-08 01:03:58.409 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 97, 52aee2ee-1793-48d5-86d6-8a104d1f5245_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=97, 2020-07-07 16:03:56.0, admin
+2020-07-08 01:03:58.409 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 98, 2235ecb4-8d0b-4c01-bea5-cc9943ffcd09_images (1), /api/v1/kfashion/img/getByteImage?workNo=98, 2020-07-07 16:05:08.0, admin
+2020-07-08 01:03:58.410 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 99, 1886ff83-705b-4578-b0cd-99f4f0b754f9_images, /api/v1/kfashion/img/getByteImage?workNo=99, 2020-07-07 16:05:55.0, admin
+2020-07-08 01:03:58.410 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 100, 4021e853-bd29-41da-add1-bb1f4137e8c1_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=100, 2020-07-07 16:06:46.0, admin
+2020-07-08 01:03:58.410 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 101, 24da207e-2990-47fa-a88c-2f51e93855f4_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=101, 2020-07-07 16:08:45.0, admin
+2020-07-08 01:03:58.410 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 102, 3b6c078f-ba71-478c-963c-dd678b4231c8_images, /api/v1/kfashion/img/getByteImage?workNo=102, 2020-07-07 16:09:18.0, admin
+2020-07-08 01:03:58.411 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 103, 84f82a3a-1888-44db-8c3a-f05a685efa6b_images, /api/v1/kfashion/img/getByteImage?workNo=103, 2020-07-07 16:10:56.0, admin
+2020-07-08 01:03:58.411 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 104, 40aa6608-01b9-48d9-8aaf-b87c34cd9d23_images, /api/v1/kfashion/img/getByteImage?workNo=104, 2020-07-07 16:11:46.0, admin
+2020-07-08 01:03:58.411 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 105, e51e836d-a149-465b-96e5-2a3cbd4894fa_images, /api/v1/kfashion/img/getByteImage?workNo=105, 2020-07-07 16:12:01.0, admin
+2020-07-08 01:03:58.411 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 106, 1893c55a-5e0c-4d67-a977-831a0d57841d_KakaoTalk_Photo_2020-06-15-16-04-31, /api/v1/kfashion/img/getByteImage?workNo=106, 2020-07-07 16:13:33.0, admin
+2020-07-08 01:03:58.411 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 107, f6153034-f893-4fb6-9207-65a6acc4bcf4_images, /api/v1/kfashion/img/getByteImage?workNo=107, 2020-07-07 16:24:45.0, admin
+2020-07-08 01:03:58.412 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 108, ff7fc0b5-3180-43fa-9766-e12b3a2085e9_images (1), /api/v1/kfashion/img/getByteImage?workNo=108, 2020-07-07 16:24:57.0, admin
+2020-07-08 01:03:58.412 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 109, 197aa39e-bce5-4b55-a624-3859627867a8_images, /api/v1/kfashion/img/getByteImage?workNo=109, 2020-07-07 16:39:04.0, admin
+2020-07-08 01:03:58.412 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 110, b9bcaf95-a6b0-4d95-866f-9d0d1d0f395d_images, /api/v1/kfashion/img/getByteImage?workNo=110, 2020-07-07 16:39:32.0, admin
+2020-07-08 01:03:58.412 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 111, e1394436-1c99-4be4-a17f-746e15a79ce8_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=111, 2020-07-07 16:40:29.0, admin
+2020-07-08 01:03:58.413 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 112, b48d4771-ac23-4d8d-a69c-fcb3aaa77604_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=112, 2020-07-07 18:32:45.0, admin
+2020-07-08 01:03:58.413 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 113, 9f1ed807-2770-470b-89ea-05168545a81b_모델, /api/v1/kfashion/img/getByteImage?workNo=113, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:03:58.413 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 114, 981651c8-8d05-4960-9468-1106030fa6be_송해나, /api/v1/kfashion/img/getByteImage?workNo=114, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:03:58.414 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 115, next, /api/v1/kfashion/img/getByteImage?workNo=115, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:03:58.414 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 116, asddfkff, /api/v1/kfashion/img/getByteImage?workNo=116, 2020-07-07 22:08:03.0, admin
+2020-07-08 01:03:58.414 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 117, images, /api/v1/kfashion/img/getByteImage?workNo=117, 2020-07-07 22:08:03.0, admin
+2020-07-08 01:03:58.414 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 126, images (1), /api/v1/kfashion/img/getByteImage?workNo=126, 2020-07-07 22:51:12.0, admin
+2020-07-08 01:03:58.414 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 127, images, /api/v1/kfashion/img/getByteImage?workNo=127, 2020-07-07 22:51:12.0, admin
+2020-07-08 01:03:58.415 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 128, hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=128, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:03:58.415 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 129, images (1), /api/v1/kfashion/img/getByteImage?workNo=129, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:03:58.415 29138 [8080-exec-19] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 130, images, /api/v1/kfashion/img/getByteImage?workNo=130, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:03:58.415 29138 [8080-exec-19] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 102
+2020-07-08 01:03:58.570 29138 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:58.571 29138 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 22(Integer)
+2020-07-08 01:03:58.575 29138 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:58.575 29138 [8080-exec-24] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:58.575 29138 [8080-exec-24] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 23(Integer)
+2020-07-08 01:03:58.575 29138 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 19(Integer)
+2020-07-08 01:03:58.579 29138 [8080-exec-22] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:58.579 29138 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:58.579 29138 [8080-exec-22] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 21(Integer)
+2020-07-08 01:03:58.579 29138 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 20(Integer)
+2020-07-08 01:03:58.598 29138 [8080-exec-21] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:58.598 29138 [8080-exec-21] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:58.599 29138 [8080-exec-21] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:58.651 29138 [8080-exec-23] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:58.651 29138 [8080-exec-23] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:58.652 29138 [8080-exec-23] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:58.654 29138 [8080-exec-24] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:58.655 29138 [8080-exec-24] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:58.655 29138 [8080-exec-24] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:58.662 29138 [8080-exec-22] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:58.662 29138 [8080-exec-22] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:58.662 29138 [8080-exec-22] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:58.663 29138 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:58.663 29138 [8080-exec-20] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:58.664 29138 [8080-exec-20] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.092 29138 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.092 29138 [8080-exec-26] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.093 29138 [8080-exec-26] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 20(Integer)
+2020-07-08 01:03:59.093 29138 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 19(Integer)
+2020-07-08 01:03:59.095 29138 [8080-exec-27] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.095 29138 [8080-exec-27] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 21(Integer)
+2020-07-08 01:03:59.098 29138 [8080-exec-28] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.098 29138 [8080-exec-28] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 22(Integer)
+2020-07-08 01:03:59.101 29138 [8080-exec-29] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.101 29138 [8080-exec-29] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 23(Integer)
+2020-07-08 01:03:59.204 29138 [8080-exec-25] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.205 29138 [8080-exec-25] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.206 29138 [8080-exec-25] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.259 29138 [8080-exec-27] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.259 29138 [8080-exec-29] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.260 29138 [8080-exec-29] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.260 29138 [8080-exec-27] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.261 29138 [8080-exec-29] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.261 29138 [8080-exec-27] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.263 29138 [8080-exec-26] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.263 29138 [8080-exec-28] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.263 29138 [8080-exec-26] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.263 29138 [8080-exec-28] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.264 29138 [8080-exec-26] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.264 29138 [8080-exec-28] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.278 29138 [8080-exec-30] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name, CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name, kfashion_work.created_datetime, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-08 01:03:59.278 29138 [8080-exec-30] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-08 01:03:59.285 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, file_name, created_datetime, created_id
+2020-07-08 01:03:59.286 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 19, HIHIHIHIHIHI, /api/v1/kfashion/img/getByteImage?workNo=19, 2020-07-07 10:29:43.0, admin
+2020-07-08 01:03:59.286 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 20, Hi, /api/v1/kfashion/img/getByteImage?workNo=20, 2020-07-07 10:30:03.0, admin
+2020-07-08 01:03:59.287 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 21, Test, /api/v1/kfashion/img/getByteImage?workNo=21, 2020-07-07 10:33:43.0, admin
+2020-07-08 01:03:59.287 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 22, 이름변경, /api/v1/kfashion/img/getByteImage?workNo=22, 2020-07-07 10:34:26.0, admin
+2020-07-08 01:03:59.287 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 23, SUCCESS, /api/v1/kfashion/img/getByteImage?workNo=23, 2020-07-07 10:35:00.0, admin
+2020-07-08 01:03:59.288 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 몰라요, /api/v1/kfashion/img/getByteImage?workNo=24, 2020-07-07 10:35:17.0, admin
+2020-07-08 01:03:59.288 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 꽃이미지, /api/v1/kfashion/img/getByteImage?workNo=25, 2020-07-07 10:36:09.0, admin
+2020-07-08 01:03:59.289 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 26, 안녕~, /api/v1/kfashion/img/getByteImage?workNo=26, 2020-07-07 10:36:32.0, admin
+2020-07-08 01:03:59.289 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 27, asdjaskldj, /api/v1/kfashion/img/getByteImage?workNo=27, 2020-07-07 10:37:21.0, admin
+2020-07-08 01:03:59.289 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 28, HiHellow, /api/v1/kfashion/img/getByteImage?workNo=28, 2020-07-07 10:38:59.0, admin
+2020-07-08 01:03:59.290 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 29, 안ㄴ여핫에ㅛ, /api/v1/kfashion/img/getByteImage?workNo=29, 2020-07-07 10:41:06.0, admin
+2020-07-08 01:03:59.290 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 30, 안녕하세요, /api/v1/kfashion/img/getByteImage?workNo=30, 2020-07-07 10:48:47.0, admin
+2020-07-08 01:03:59.290 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 31, ㅁ너오머낭ㅁㄴㅇ, /api/v1/kfashion/img/getByteImage?workNo=31, 2020-07-07 10:51:09.0, admin
+2020-07-08 01:03:59.290 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 32, 413be, /api/v1/kfashion/img/getByteImage?workNo=32, 2020-07-07 10:51:42.0, admin
+2020-07-08 01:03:59.291 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 33, 이제바뀐다, /api/v1/kfashion/img/getByteImage?workNo=33, 2020-07-07 10:52:27.0, admin
+2020-07-08 01:03:59.291 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 34, 이ㅏㅇ, /api/v1/kfashion/img/getByteImage?workNo=34, 2020-07-07 10:56:17.0, admin
+2020-07-08 01:03:59.291 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 35, 123123123, /api/v1/kfashion/img/getByteImage?workNo=35, 2020-07-07 11:01:35.0, admin
+2020-07-08 01:03:59.291 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 36, 바바바바바바, /api/v1/kfashion/img/getByteImage?workNo=36, 2020-07-07 11:02:53.0, admin
+2020-07-08 01:03:59.292 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 37, 4bf52e08-a0cb-4006-9b0e-8fe7daba329a_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=37, 2020-07-07 11:03:38.0, admin
+2020-07-08 01:03:59.292 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 38, 550bedb9-82ce-4351-ad5d-0ceaa9369e7d_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=38, 2020-07-07 11:09:41.0, admin
+2020-07-08 01:03:59.292 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 39, 5a9a7d13-597e-417f-8a5d-512a1fb1769d_images, /api/v1/kfashion/img/getByteImage?workNo=39, 2020-07-07 11:09:48.0, admin
+2020-07-08 01:03:59.292 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 40, eff94c0d-b9ba-4ad7-b856-e0e78879dc8c_images, /api/v1/kfashion/img/getByteImage?workNo=40, 2020-07-07 11:10:08.0, admin
+2020-07-08 01:03:59.293 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 41, 5e1d45f2-92f4-4964-9bb3-a50fe80d1191_images (1), /api/v1/kfashion/img/getByteImage?workNo=41, 2020-07-07 11:10:24.0, admin
+2020-07-08 01:03:59.293 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 42, 10010e0b-8a6e-43ab-bf8a-9acfc2b802c2_images (1), /api/v1/kfashion/img/getByteImage?workNo=42, 2020-07-07 11:15:06.0, admin
+2020-07-08 01:03:59.293 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 43, 6fe22536-9e75-4315-87a5-4966f56f6bab_images (1), /api/v1/kfashion/img/getByteImage?workNo=43, 2020-07-07 11:15:19.0, admin
+2020-07-08 01:03:59.293 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 44, 9fee3159-cfb0-453f-b8f7-2a9e4276fb3c_images (1), /api/v1/kfashion/img/getByteImage?workNo=44, 2020-07-07 11:17:13.0, admin
+2020-07-08 01:03:59.294 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 45, 98c39b1f-cf5c-4e90-85ff-9543ae114c7b_images, /api/v1/kfashion/img/getByteImage?workNo=45, 2020-07-07 11:21:46.0, admin
+2020-07-08 01:03:59.294 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 5a04d968-bc3d-43b7-821e-47ca3e9e89e9_송해나, /api/v1/kfashion/img/getByteImage?workNo=47, 2020-07-07 11:22:32.0, admin
+2020-07-08 01:03:59.294 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 49, 4dcefb2c-4f09-4d05-b229-f56b425351f6_26030264-흰색-배경에-3d-반짝이-빨간-숫자-x28-5-x29-, /api/v1/kfashion/img/getByteImage?workNo=49, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:59.295 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, a23d5ff2-5b5a-4727-8728-3974bce942db_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2, /api/v1/kfashion/img/getByteImage?workNo=50, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:59.295 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 51, a416e8e4-de83-4a7a-ac8e-d137b8648d86_모델, /api/v1/kfashion/img/getByteImage?workNo=51, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:59.295 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, 252b4ba1-3b60-4837-aeb7-0ca59ad69a1c_송해나, /api/v1/kfashion/img/getByteImage?workNo=52, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:59.295 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 53, 882865b4-f8f8-4c29-b710-77f7e469f40b_애기모델, /api/v1/kfashion/img/getByteImage?workNo=53, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:03:59.295 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 54, b4496703-5e85-462c-b920-d470e068af8b_images, /api/v1/kfashion/img/getByteImage?workNo=54, 2020-07-07 11:58:36.0, admin
+2020-07-08 01:03:59.296 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 55, 7949eb02-a7f2-46da-87f2-215309b702a7_images, /api/v1/kfashion/img/getByteImage?workNo=55, 2020-07-07 11:59:17.0, admin
+2020-07-08 01:03:59.296 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 56, 54e3fc6c-e1d3-4be7-b5d4-2da1c5eccaf7_images, /api/v1/kfashion/img/getByteImage?workNo=56, 2020-07-07 11:59:33.0, admin
+2020-07-08 01:03:59.296 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 57, 02411ac1-ff77-434b-aa5c-a716ae4dd348_images, /api/v1/kfashion/img/getByteImage?workNo=57, 2020-07-07 12:00:05.0, admin
+2020-07-08 01:03:59.296 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, 94931839-4d41-418a-8acb-c77ee994a6f7_images, /api/v1/kfashion/img/getByteImage?workNo=58, 2020-07-07 12:05:15.0, admin
+2020-07-08 01:03:59.297 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 59, abcc5000-220b-427b-8c6c-c993e5fc1a66_images (1), /api/v1/kfashion/img/getByteImage?workNo=59, 2020-07-07 12:09:07.0, admin
+2020-07-08 01:03:59.297 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 60, a0ff345f-c607-46a3-8ada-2e55694bb881_images (1), /api/v1/kfashion/img/getByteImage?workNo=60, 2020-07-07 12:10:02.0, admin
+2020-07-08 01:03:59.297 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 61, b51bf16d-87d8-462b-be94-51110e74ed22_images, /api/v1/kfashion/img/getByteImage?workNo=61, 2020-07-07 12:20:49.0, admin
+2020-07-08 01:03:59.297 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 62, 95060183-1ca5-491e-a9d6-674e1e0d97eb_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=62, 2020-07-07 12:21:29.0, admin
+2020-07-08 01:03:59.297 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 63, 016e322f-a90e-4ed9-af30-f3cd54b1866e_images, /api/v1/kfashion/img/getByteImage?workNo=63, 2020-07-07 12:21:56.0, admin
+2020-07-08 01:03:59.298 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 64, 7dccaaf7-b2ef-41b1-b36b-3ab3bf020513_스크린샷 2020-06-15 오후 3, /api/v1/kfashion/img/getByteImage?workNo=64, 2020-07-07 12:23:09.0, admin
+2020-07-08 01:03:59.298 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 65, 8d6da7bb-bbd0-4544-93ab-b56a0637e27b_images, /api/v1/kfashion/img/getByteImage?workNo=65, 2020-07-07 12:23:41.0, admin
+2020-07-08 01:03:59.298 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 66, 587119e6-f11b-4f2d-8c99-a0058a5a3984_images, /api/v1/kfashion/img/getByteImage?workNo=66, 2020-07-07 12:26:13.0, admin
+2020-07-08 01:03:59.298 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 67, 59802538-334a-478b-98e7-877fe5e241ea_images, /api/v1/kfashion/img/getByteImage?workNo=67, 2020-07-07 12:26:58.0, admin
+2020-07-08 01:03:59.299 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 68, 1619146a-aac7-41f9-a712-1e46c2c59c20_송해나, /api/v1/kfashion/img/getByteImage?workNo=68, 2020-07-07 12:27:24.0, admin
+2020-07-08 01:03:59.299 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 69, 3da0cc37-b1da-44f4-8596-f12a25c445c0_images, /api/v1/kfashion/img/getByteImage?workNo=69, 2020-07-07 12:28:15.0, admin
+2020-07-08 01:03:59.299 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 70, f228de2a-a8d8-47bb-93ec-9b07a33dc31f_모델, /api/v1/kfashion/img/getByteImage?workNo=70, 2020-07-07 12:28:24.0, admin
+2020-07-08 01:03:59.299 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 71, 7cb33c60-8674-4055-b9ec-42479fd50895_images, /api/v1/kfashion/img/getByteImage?workNo=71, 2020-07-07 12:29:22.0, admin
+2020-07-08 01:03:59.299 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 72, 9f435b8c-7c68-4d31-a188-73d3397f6d4c_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=72, 2020-07-07 12:29:39.0, admin
+2020-07-08 01:03:59.300 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 73, 87147135-dada-4e3e-a953-fd0d94c1b00f_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=73, 2020-07-07 12:30:27.0, admin
+2020-07-08 01:03:59.300 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 74, 4c7d9d86-14be-4582-a986-d266e0f137cd_모델, /api/v1/kfashion/img/getByteImage?workNo=74, 2020-07-07 12:30:36.0, admin
+2020-07-08 01:03:59.300 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 75, 9bf8c3c8-4fcc-4d4c-9ad9-3f5471aab2ee_송해나, /api/v1/kfashion/img/getByteImage?workNo=75, 2020-07-07 12:31:33.0, admin
+2020-07-08 01:03:59.300 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 76, cd7caa78-e728-44f0-8798-a2cd63614f42_송해나, /api/v1/kfashion/img/getByteImage?workNo=76, 2020-07-07 12:32:09.0, admin
+2020-07-08 01:03:59.301 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 77, 5e87f254-69db-4721-931d-a718187f6b37_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=77, 2020-07-07 12:32:57.0, admin
+2020-07-08 01:03:59.301 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 78, afcf340c-bbce-4d50-8e09-61dede984402_티셔츠444, /api/v1/kfashion/img/getByteImage?workNo=78, 2020-07-07 12:33:50.0, admin
+2020-07-08 01:03:59.301 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 79, 8b04bd7d-c495-4dab-a03a-c77f1242fd37_images, /api/v1/kfashion/img/getByteImage?workNo=79, 2020-07-07 12:34:49.0, admin
+2020-07-08 01:03:59.301 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 80, b7a92828-de14-46f8-8cd5-6fa57593ebb1_모델, /api/v1/kfashion/img/getByteImage?workNo=80, 2020-07-07 12:36:05.0, admin
+2020-07-08 01:03:59.301 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 81, a91ab20b-3d18-45b6-bedb-63c8150b6ce5_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=81, 2020-07-07 12:37:07.0, admin
+2020-07-08 01:03:59.302 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 82, d3ab0700-092e-4727-959f-e7d3f548ab3a_애기모델, /api/v1/kfashion/img/getByteImage?workNo=82, 2020-07-07 12:37:33.0, admin
+2020-07-08 01:03:59.302 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 83, cfa461e7-3543-4520-8fc6-3e6b251d7384_송해나, /api/v1/kfashion/img/getByteImage?workNo=83, 2020-07-07 12:40:02.0, admin
+2020-07-08 01:03:59.302 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 84, cb57ff86-21f2-4831-8ba0-6d1a97bd4949_images, /api/v1/kfashion/img/getByteImage?workNo=84, 2020-07-07 12:40:41.0, admin
+2020-07-08 01:03:59.302 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 85, 32d03584-10cd-442b-abc6-6ce25df927c2_스크린샷 2020-06-15 오후 3, /api/v1/kfashion/img/getByteImage?workNo=85, 2020-07-07 12:42:53.0, admin
+2020-07-08 01:03:59.303 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 86, 68e805b0-d5d2-4481-a71a-83516c965451_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=86, 2020-07-07 13:09:27.0, admin
+2020-07-08 01:03:59.303 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 87, 31abfb37-968f-46fd-8bb2-7cbd6b6195f1_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=87, 2020-07-07 13:10:25.0, admin
+2020-07-08 01:03:59.303 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 88, 78cdd313-16e3-42bf-96ff-0aea4297b2d7_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=88, 2020-07-07 13:12:04.0, admin
+2020-07-08 01:03:59.303 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 89, ef71f8e5-5087-4783-b0ee-9d5f1751d3ea_images (1), /api/v1/kfashion/img/getByteImage?workNo=89, 2020-07-07 13:13:30.0, admin
+2020-07-08 01:03:59.303 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 90, 0808bfa1-233e-4a48-be0b-175f452d753a_img, /api/v1/kfashion/img/getByteImage?workNo=90, 2020-07-07 13:14:30.0, admin
+2020-07-08 01:03:59.304 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 91, 04325379-795e-4fb4-adce-02252df119a8_모델, /api/v1/kfashion/img/getByteImage?workNo=91, 2020-07-07 14:03:26.0, admin
+2020-07-08 01:03:59.304 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 92, 0fe735d7-b8b6-44ff-a797-3d58b7ff24d5_images, /api/v1/kfashion/img/getByteImage?workNo=92, 2020-07-07 14:03:36.0, admin
+2020-07-08 01:03:59.304 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 93, 2f981241-90d6-44a8-8749-2e3dc3f7d53a_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=93, 2020-07-07 14:03:56.0, admin
+2020-07-08 01:03:59.304 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 94, d88a2526-59bd-4034-b8c3-258eecf7bb8c_images (1), /api/v1/kfashion/img/getByteImage?workNo=94, 2020-07-07 15:20:23.0, admin
+2020-07-08 01:03:59.305 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 95, 6765df69-0797-4cf7-a97d-4c26ec90dd99_images (1), /api/v1/kfashion/img/getByteImage?workNo=95, 2020-07-07 15:28:28.0, admin
+2020-07-08 01:03:59.305 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 96, d02fcbfa-a9fa-47a2-83c5-aeea77907262_images, /api/v1/kfashion/img/getByteImage?workNo=96, 2020-07-07 15:51:04.0, admin
+2020-07-08 01:03:59.305 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 97, 52aee2ee-1793-48d5-86d6-8a104d1f5245_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=97, 2020-07-07 16:03:56.0, admin
+2020-07-08 01:03:59.305 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 98, 2235ecb4-8d0b-4c01-bea5-cc9943ffcd09_images (1), /api/v1/kfashion/img/getByteImage?workNo=98, 2020-07-07 16:05:08.0, admin
+2020-07-08 01:03:59.305 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 99, 1886ff83-705b-4578-b0cd-99f4f0b754f9_images, /api/v1/kfashion/img/getByteImage?workNo=99, 2020-07-07 16:05:55.0, admin
+2020-07-08 01:03:59.306 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 100, 4021e853-bd29-41da-add1-bb1f4137e8c1_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=100, 2020-07-07 16:06:46.0, admin
+2020-07-08 01:03:59.306 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 101, 24da207e-2990-47fa-a88c-2f51e93855f4_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=101, 2020-07-07 16:08:45.0, admin
+2020-07-08 01:03:59.306 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 102, 3b6c078f-ba71-478c-963c-dd678b4231c8_images, /api/v1/kfashion/img/getByteImage?workNo=102, 2020-07-07 16:09:18.0, admin
+2020-07-08 01:03:59.306 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 103, 84f82a3a-1888-44db-8c3a-f05a685efa6b_images, /api/v1/kfashion/img/getByteImage?workNo=103, 2020-07-07 16:10:56.0, admin
+2020-07-08 01:03:59.306 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 104, 40aa6608-01b9-48d9-8aaf-b87c34cd9d23_images, /api/v1/kfashion/img/getByteImage?workNo=104, 2020-07-07 16:11:46.0, admin
+2020-07-08 01:03:59.307 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 105, e51e836d-a149-465b-96e5-2a3cbd4894fa_images, /api/v1/kfashion/img/getByteImage?workNo=105, 2020-07-07 16:12:01.0, admin
+2020-07-08 01:03:59.307 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 106, 1893c55a-5e0c-4d67-a977-831a0d57841d_KakaoTalk_Photo_2020-06-15-16-04-31, /api/v1/kfashion/img/getByteImage?workNo=106, 2020-07-07 16:13:33.0, admin
+2020-07-08 01:03:59.307 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 107, f6153034-f893-4fb6-9207-65a6acc4bcf4_images, /api/v1/kfashion/img/getByteImage?workNo=107, 2020-07-07 16:24:45.0, admin
+2020-07-08 01:03:59.307 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 108, ff7fc0b5-3180-43fa-9766-e12b3a2085e9_images (1), /api/v1/kfashion/img/getByteImage?workNo=108, 2020-07-07 16:24:57.0, admin
+2020-07-08 01:03:59.307 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 109, 197aa39e-bce5-4b55-a624-3859627867a8_images, /api/v1/kfashion/img/getByteImage?workNo=109, 2020-07-07 16:39:04.0, admin
+2020-07-08 01:03:59.308 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 110, b9bcaf95-a6b0-4d95-866f-9d0d1d0f395d_images, /api/v1/kfashion/img/getByteImage?workNo=110, 2020-07-07 16:39:32.0, admin
+2020-07-08 01:03:59.308 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 111, e1394436-1c99-4be4-a17f-746e15a79ce8_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=111, 2020-07-07 16:40:29.0, admin
+2020-07-08 01:03:59.308 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 112, b48d4771-ac23-4d8d-a69c-fcb3aaa77604_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=112, 2020-07-07 18:32:45.0, admin
+2020-07-08 01:03:59.308 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 113, 9f1ed807-2770-470b-89ea-05168545a81b_모델, /api/v1/kfashion/img/getByteImage?workNo=113, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:03:59.308 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 114, 981651c8-8d05-4960-9468-1106030fa6be_송해나, /api/v1/kfashion/img/getByteImage?workNo=114, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:03:59.309 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 115, next, /api/v1/kfashion/img/getByteImage?workNo=115, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:03:59.309 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 116, asddfkff, /api/v1/kfashion/img/getByteImage?workNo=116, 2020-07-07 22:08:03.0, admin
+2020-07-08 01:03:59.309 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 117, images, /api/v1/kfashion/img/getByteImage?workNo=117, 2020-07-07 22:08:03.0, admin
+2020-07-08 01:03:59.309 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 126, images (1), /api/v1/kfashion/img/getByteImage?workNo=126, 2020-07-07 22:51:12.0, admin
+2020-07-08 01:03:59.309 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 127, images, /api/v1/kfashion/img/getByteImage?workNo=127, 2020-07-07 22:51:12.0, admin
+2020-07-08 01:03:59.310 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 128, hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=128, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:03:59.310 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 129, images (1), /api/v1/kfashion/img/getByteImage?workNo=129, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:03:59.310 29138 [8080-exec-30] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 130, images, /api/v1/kfashion/img/getByteImage?workNo=130, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:03:59.310 29138 [8080-exec-30] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 102
+2020-07-08 01:03:59.424 29138 [8080-exec-31] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.424 29138 [8080-exec-31] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 19(Integer)
+2020-07-08 01:03:59.425 29138 [8080-exec-32] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.426 29138 [8080-exec-32] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 20(Integer)
+2020-07-08 01:03:59.428 29138 [8080-exec-33] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.428 29138 [8080-exec-33] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 21(Integer)
+2020-07-08 01:03:59.428 29138 [8080-exec-31] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.429 29138 [8080-exec-31] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.429 29138 [8080-exec-31] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.433 29138 [8080-exec-34] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.433 29138 [8080-exec-34] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 22(Integer)
+2020-07-08 01:03:59.434 29138 [8080-exec-35] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:03:59.434 29138 [8080-exec-35] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 23(Integer)
+2020-07-08 01:03:59.506 29138 [8080-exec-32] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.506 29138 [8080-exec-32] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.507 29138 [8080-exec-32] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.512 29138 [8080-exec-35] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.512 29138 [8080-exec-35] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.512 29138 [8080-exec-34] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.512 29138 [8080-exec-33] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:03:59.513 29138 [8080-exec-35] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.513 29138 [8080-exec-34] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.513 29138 [8080-exec-33] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:03:59.513 29138 [8080-exec-34] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:03:59.513 29138 [8080-exec-33] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.107 29138 [8080-exec-36] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.108 29138 [8080-exec-36] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 19(Integer)
+2020-07-08 01:04:00.108 29138 [8080-exec-37] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.108 29138 [8080-exec-37] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 20(Integer)
+2020-07-08 01:04:00.114 29138 [8080-exec-38] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.114 29138 [8080-exec-38] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 21(Integer)
+2020-07-08 01:04:00.115 29138 [8080-exec-40] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.115 29138 [8080-exec-40] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 23(Integer)
+2020-07-08 01:04:00.117 29138 [8080-exec-36] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.117 29138 [8080-exec-36] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.117 29138 [8080-exec-36] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.156 29138 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.157 29138 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 22(Integer)
+2020-07-08 01:04:00.184 29138 [8080-exec-40] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.184 29138 [8080-exec-37] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.184 29138 [8080-exec-38] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.184 29138 [8080-exec-40] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.184 29138 [8080-exec-38] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.184 29138 [8080-exec-37] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.185 29138 [8080-exec-40] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.185 29138 [8080-exec-38] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.185 29138 [8080-exec-37] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.205 29138 [8080-exec-39] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.205 29138 [8080-exec-39] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.205 29138 [8080-exec-39] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.233 29138 [8080-exec-41] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name, CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name, kfashion_work.created_datetime, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 1 ORDER BY kfashion_image.work_no 
+2020-07-08 01:04:00.233 29138 [8080-exec-41] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : ==> Parameters: admin(String)
+2020-07-08 01:04:00.243 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==    Columns: work_no, work_name, file_name, created_datetime, created_id
+2020-07-08 01:04:00.243 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 19, HIHIHIHIHIHI, /api/v1/kfashion/img/getByteImage?workNo=19, 2020-07-07 10:29:43.0, admin
+2020-07-08 01:04:00.244 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 20, Hi, /api/v1/kfashion/img/getByteImage?workNo=20, 2020-07-07 10:30:03.0, admin
+2020-07-08 01:04:00.244 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 21, Test, /api/v1/kfashion/img/getByteImage?workNo=21, 2020-07-07 10:33:43.0, admin
+2020-07-08 01:04:00.244 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 22, 이름변경, /api/v1/kfashion/img/getByteImage?workNo=22, 2020-07-07 10:34:26.0, admin
+2020-07-08 01:04:00.244 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 23, SUCCESS, /api/v1/kfashion/img/getByteImage?workNo=23, 2020-07-07 10:35:00.0, admin
+2020-07-08 01:04:00.245 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 24, 몰라요, /api/v1/kfashion/img/getByteImage?workNo=24, 2020-07-07 10:35:17.0, admin
+2020-07-08 01:04:00.245 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 25, 꽃이미지, /api/v1/kfashion/img/getByteImage?workNo=25, 2020-07-07 10:36:09.0, admin
+2020-07-08 01:04:00.245 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 26, 안녕~, /api/v1/kfashion/img/getByteImage?workNo=26, 2020-07-07 10:36:32.0, admin
+2020-07-08 01:04:00.245 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 27, asdjaskldj, /api/v1/kfashion/img/getByteImage?workNo=27, 2020-07-07 10:37:21.0, admin
+2020-07-08 01:04:00.246 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 28, HiHellow, /api/v1/kfashion/img/getByteImage?workNo=28, 2020-07-07 10:38:59.0, admin
+2020-07-08 01:04:00.246 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 29, 안ㄴ여핫에ㅛ, /api/v1/kfashion/img/getByteImage?workNo=29, 2020-07-07 10:41:06.0, admin
+2020-07-08 01:04:00.246 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 30, 안녕하세요, /api/v1/kfashion/img/getByteImage?workNo=30, 2020-07-07 10:48:47.0, admin
+2020-07-08 01:04:00.246 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 31, ㅁ너오머낭ㅁㄴㅇ, /api/v1/kfashion/img/getByteImage?workNo=31, 2020-07-07 10:51:09.0, admin
+2020-07-08 01:04:00.247 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 32, 413be, /api/v1/kfashion/img/getByteImage?workNo=32, 2020-07-07 10:51:42.0, admin
+2020-07-08 01:04:00.247 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 33, 이제바뀐다, /api/v1/kfashion/img/getByteImage?workNo=33, 2020-07-07 10:52:27.0, admin
+2020-07-08 01:04:00.247 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 34, 이ㅏㅇ, /api/v1/kfashion/img/getByteImage?workNo=34, 2020-07-07 10:56:17.0, admin
+2020-07-08 01:04:00.247 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 35, 123123123, /api/v1/kfashion/img/getByteImage?workNo=35, 2020-07-07 11:01:35.0, admin
+2020-07-08 01:04:00.247 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 36, 바바바바바바, /api/v1/kfashion/img/getByteImage?workNo=36, 2020-07-07 11:02:53.0, admin
+2020-07-08 01:04:00.248 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 37, 4bf52e08-a0cb-4006-9b0e-8fe7daba329a_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=37, 2020-07-07 11:03:38.0, admin
+2020-07-08 01:04:00.248 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 38, 550bedb9-82ce-4351-ad5d-0ceaa9369e7d_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=38, 2020-07-07 11:09:41.0, admin
+2020-07-08 01:04:00.248 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 39, 5a9a7d13-597e-417f-8a5d-512a1fb1769d_images, /api/v1/kfashion/img/getByteImage?workNo=39, 2020-07-07 11:09:48.0, admin
+2020-07-08 01:04:00.248 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 40, eff94c0d-b9ba-4ad7-b856-e0e78879dc8c_images, /api/v1/kfashion/img/getByteImage?workNo=40, 2020-07-07 11:10:08.0, admin
+2020-07-08 01:04:00.248 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 41, 5e1d45f2-92f4-4964-9bb3-a50fe80d1191_images (1), /api/v1/kfashion/img/getByteImage?workNo=41, 2020-07-07 11:10:24.0, admin
+2020-07-08 01:04:00.248 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 42, 10010e0b-8a6e-43ab-bf8a-9acfc2b802c2_images (1), /api/v1/kfashion/img/getByteImage?workNo=42, 2020-07-07 11:15:06.0, admin
+2020-07-08 01:04:00.249 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 43, 6fe22536-9e75-4315-87a5-4966f56f6bab_images (1), /api/v1/kfashion/img/getByteImage?workNo=43, 2020-07-07 11:15:19.0, admin
+2020-07-08 01:04:00.249 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 44, 9fee3159-cfb0-453f-b8f7-2a9e4276fb3c_images (1), /api/v1/kfashion/img/getByteImage?workNo=44, 2020-07-07 11:17:13.0, admin
+2020-07-08 01:04:00.249 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 45, 98c39b1f-cf5c-4e90-85ff-9543ae114c7b_images, /api/v1/kfashion/img/getByteImage?workNo=45, 2020-07-07 11:21:46.0, admin
+2020-07-08 01:04:00.249 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 47, 5a04d968-bc3d-43b7-821e-47ca3e9e89e9_송해나, /api/v1/kfashion/img/getByteImage?workNo=47, 2020-07-07 11:22:32.0, admin
+2020-07-08 01:04:00.249 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 49, 4dcefb2c-4f09-4d05-b229-f56b425351f6_26030264-흰색-배경에-3d-반짝이-빨간-숫자-x28-5-x29-, /api/v1/kfashion/img/getByteImage?workNo=49, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:04:00.250 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 50, a23d5ff2-5b5a-4727-8728-3974bce942db_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2, /api/v1/kfashion/img/getByteImage?workNo=50, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:04:00.250 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 51, a416e8e4-de83-4a7a-ac8e-d137b8648d86_모델, /api/v1/kfashion/img/getByteImage?workNo=51, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:04:00.250 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 52, 252b4ba1-3b60-4837-aeb7-0ca59ad69a1c_송해나, /api/v1/kfashion/img/getByteImage?workNo=52, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:04:00.250 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 53, 882865b4-f8f8-4c29-b710-77f7e469f40b_애기모델, /api/v1/kfashion/img/getByteImage?workNo=53, 2020-07-07 11:26:08.0, admin
+2020-07-08 01:04:00.250 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 54, b4496703-5e85-462c-b920-d470e068af8b_images, /api/v1/kfashion/img/getByteImage?workNo=54, 2020-07-07 11:58:36.0, admin
+2020-07-08 01:04:00.251 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 55, 7949eb02-a7f2-46da-87f2-215309b702a7_images, /api/v1/kfashion/img/getByteImage?workNo=55, 2020-07-07 11:59:17.0, admin
+2020-07-08 01:04:00.251 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 56, 54e3fc6c-e1d3-4be7-b5d4-2da1c5eccaf7_images, /api/v1/kfashion/img/getByteImage?workNo=56, 2020-07-07 11:59:33.0, admin
+2020-07-08 01:04:00.251 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 57, 02411ac1-ff77-434b-aa5c-a716ae4dd348_images, /api/v1/kfashion/img/getByteImage?workNo=57, 2020-07-07 12:00:05.0, admin
+2020-07-08 01:04:00.251 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 58, 94931839-4d41-418a-8acb-c77ee994a6f7_images, /api/v1/kfashion/img/getByteImage?workNo=58, 2020-07-07 12:05:15.0, admin
+2020-07-08 01:04:00.251 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 59, abcc5000-220b-427b-8c6c-c993e5fc1a66_images (1), /api/v1/kfashion/img/getByteImage?workNo=59, 2020-07-07 12:09:07.0, admin
+2020-07-08 01:04:00.252 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 60, a0ff345f-c607-46a3-8ada-2e55694bb881_images (1), /api/v1/kfashion/img/getByteImage?workNo=60, 2020-07-07 12:10:02.0, admin
+2020-07-08 01:04:00.252 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 61, b51bf16d-87d8-462b-be94-51110e74ed22_images, /api/v1/kfashion/img/getByteImage?workNo=61, 2020-07-07 12:20:49.0, admin
+2020-07-08 01:04:00.252 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 62, 95060183-1ca5-491e-a9d6-674e1e0d97eb_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=62, 2020-07-07 12:21:29.0, admin
+2020-07-08 01:04:00.252 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 63, 016e322f-a90e-4ed9-af30-f3cd54b1866e_images, /api/v1/kfashion/img/getByteImage?workNo=63, 2020-07-07 12:21:56.0, admin
+2020-07-08 01:04:00.252 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 64, 7dccaaf7-b2ef-41b1-b36b-3ab3bf020513_스크린샷 2020-06-15 오후 3, /api/v1/kfashion/img/getByteImage?workNo=64, 2020-07-07 12:23:09.0, admin
+2020-07-08 01:04:00.253 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 65, 8d6da7bb-bbd0-4544-93ab-b56a0637e27b_images, /api/v1/kfashion/img/getByteImage?workNo=65, 2020-07-07 12:23:41.0, admin
+2020-07-08 01:04:00.253 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 66, 587119e6-f11b-4f2d-8c99-a0058a5a3984_images, /api/v1/kfashion/img/getByteImage?workNo=66, 2020-07-07 12:26:13.0, admin
+2020-07-08 01:04:00.253 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 67, 59802538-334a-478b-98e7-877fe5e241ea_images, /api/v1/kfashion/img/getByteImage?workNo=67, 2020-07-07 12:26:58.0, admin
+2020-07-08 01:04:00.253 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 68, 1619146a-aac7-41f9-a712-1e46c2c59c20_송해나, /api/v1/kfashion/img/getByteImage?workNo=68, 2020-07-07 12:27:24.0, admin
+2020-07-08 01:04:00.253 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 69, 3da0cc37-b1da-44f4-8596-f12a25c445c0_images, /api/v1/kfashion/img/getByteImage?workNo=69, 2020-07-07 12:28:15.0, admin
+2020-07-08 01:04:00.254 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 70, f228de2a-a8d8-47bb-93ec-9b07a33dc31f_모델, /api/v1/kfashion/img/getByteImage?workNo=70, 2020-07-07 12:28:24.0, admin
+2020-07-08 01:04:00.254 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 71, 7cb33c60-8674-4055-b9ec-42479fd50895_images, /api/v1/kfashion/img/getByteImage?workNo=71, 2020-07-07 12:29:22.0, admin
+2020-07-08 01:04:00.254 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 72, 9f435b8c-7c68-4d31-a188-73d3397f6d4c_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=72, 2020-07-07 12:29:39.0, admin
+2020-07-08 01:04:00.254 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 73, 87147135-dada-4e3e-a953-fd0d94c1b00f_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=73, 2020-07-07 12:30:27.0, admin
+2020-07-08 01:04:00.254 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 74, 4c7d9d86-14be-4582-a986-d266e0f137cd_모델, /api/v1/kfashion/img/getByteImage?workNo=74, 2020-07-07 12:30:36.0, admin
+2020-07-08 01:04:00.255 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 75, 9bf8c3c8-4fcc-4d4c-9ad9-3f5471aab2ee_송해나, /api/v1/kfashion/img/getByteImage?workNo=75, 2020-07-07 12:31:33.0, admin
+2020-07-08 01:04:00.255 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 76, cd7caa78-e728-44f0-8798-a2cd63614f42_송해나, /api/v1/kfashion/img/getByteImage?workNo=76, 2020-07-07 12:32:09.0, admin
+2020-07-08 01:04:00.255 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 77, 5e87f254-69db-4721-931d-a718187f6b37_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=77, 2020-07-07 12:32:57.0, admin
+2020-07-08 01:04:00.255 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 78, afcf340c-bbce-4d50-8e09-61dede984402_티셔츠444, /api/v1/kfashion/img/getByteImage?workNo=78, 2020-07-07 12:33:50.0, admin
+2020-07-08 01:04:00.255 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 79, 8b04bd7d-c495-4dab-a03a-c77f1242fd37_images, /api/v1/kfashion/img/getByteImage?workNo=79, 2020-07-07 12:34:49.0, admin
+2020-07-08 01:04:00.256 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 80, b7a92828-de14-46f8-8cd5-6fa57593ebb1_모델, /api/v1/kfashion/img/getByteImage?workNo=80, 2020-07-07 12:36:05.0, admin
+2020-07-08 01:04:00.256 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 81, a91ab20b-3d18-45b6-bedb-63c8150b6ce5_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=81, 2020-07-07 12:37:07.0, admin
+2020-07-08 01:04:00.256 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 82, d3ab0700-092e-4727-959f-e7d3f548ab3a_애기모델, /api/v1/kfashion/img/getByteImage?workNo=82, 2020-07-07 12:37:33.0, admin
+2020-07-08 01:04:00.256 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 83, cfa461e7-3543-4520-8fc6-3e6b251d7384_송해나, /api/v1/kfashion/img/getByteImage?workNo=83, 2020-07-07 12:40:02.0, admin
+2020-07-08 01:04:00.256 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 84, cb57ff86-21f2-4831-8ba0-6d1a97bd4949_images, /api/v1/kfashion/img/getByteImage?workNo=84, 2020-07-07 12:40:41.0, admin
+2020-07-08 01:04:00.257 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 85, 32d03584-10cd-442b-abc6-6ce25df927c2_스크린샷 2020-06-15 오후 3, /api/v1/kfashion/img/getByteImage?workNo=85, 2020-07-07 12:42:53.0, admin
+2020-07-08 01:04:00.257 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 86, 68e805b0-d5d2-4481-a71a-83516c965451_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=86, 2020-07-07 13:09:27.0, admin
+2020-07-08 01:04:00.257 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 87, 31abfb37-968f-46fd-8bb2-7cbd6b6195f1_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=87, 2020-07-07 13:10:25.0, admin
+2020-07-08 01:04:00.257 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 88, 78cdd313-16e3-42bf-96ff-0aea4297b2d7_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=88, 2020-07-07 13:12:04.0, admin
+2020-07-08 01:04:00.257 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 89, ef71f8e5-5087-4783-b0ee-9d5f1751d3ea_images (1), /api/v1/kfashion/img/getByteImage?workNo=89, 2020-07-07 13:13:30.0, admin
+2020-07-08 01:04:00.258 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 90, 0808bfa1-233e-4a48-be0b-175f452d753a_img, /api/v1/kfashion/img/getByteImage?workNo=90, 2020-07-07 13:14:30.0, admin
+2020-07-08 01:04:00.258 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 91, 04325379-795e-4fb4-adce-02252df119a8_모델, /api/v1/kfashion/img/getByteImage?workNo=91, 2020-07-07 14:03:26.0, admin
+2020-07-08 01:04:00.258 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 92, 0fe735d7-b8b6-44ff-a797-3d58b7ff24d5_images, /api/v1/kfashion/img/getByteImage?workNo=92, 2020-07-07 14:03:36.0, admin
+2020-07-08 01:04:00.258 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 93, 2f981241-90d6-44a8-8749-2e3dc3f7d53a_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=93, 2020-07-07 14:03:56.0, admin
+2020-07-08 01:04:00.258 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 94, d88a2526-59bd-4034-b8c3-258eecf7bb8c_images (1), /api/v1/kfashion/img/getByteImage?workNo=94, 2020-07-07 15:20:23.0, admin
+2020-07-08 01:04:00.259 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 95, 6765df69-0797-4cf7-a97d-4c26ec90dd99_images (1), /api/v1/kfashion/img/getByteImage?workNo=95, 2020-07-07 15:28:28.0, admin
+2020-07-08 01:04:00.259 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 96, d02fcbfa-a9fa-47a2-83c5-aeea77907262_images, /api/v1/kfashion/img/getByteImage?workNo=96, 2020-07-07 15:51:04.0, admin
+2020-07-08 01:04:00.259 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 97, 52aee2ee-1793-48d5-86d6-8a104d1f5245_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=97, 2020-07-07 16:03:56.0, admin
+2020-07-08 01:04:00.259 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 98, 2235ecb4-8d0b-4c01-bea5-cc9943ffcd09_images (1), /api/v1/kfashion/img/getByteImage?workNo=98, 2020-07-07 16:05:08.0, admin
+2020-07-08 01:04:00.259 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 99, 1886ff83-705b-4578-b0cd-99f4f0b754f9_images, /api/v1/kfashion/img/getByteImage?workNo=99, 2020-07-07 16:05:55.0, admin
+2020-07-08 01:04:00.259 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 100, 4021e853-bd29-41da-add1-bb1f4137e8c1_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=100, 2020-07-07 16:06:46.0, admin
+2020-07-08 01:04:00.260 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 101, 24da207e-2990-47fa-a88c-2f51e93855f4_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=101, 2020-07-07 16:08:45.0, admin
+2020-07-08 01:04:00.260 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 102, 3b6c078f-ba71-478c-963c-dd678b4231c8_images, /api/v1/kfashion/img/getByteImage?workNo=102, 2020-07-07 16:09:18.0, admin
+2020-07-08 01:04:00.260 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 103, 84f82a3a-1888-44db-8c3a-f05a685efa6b_images, /api/v1/kfashion/img/getByteImage?workNo=103, 2020-07-07 16:10:56.0, admin
+2020-07-08 01:04:00.260 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 104, 40aa6608-01b9-48d9-8aaf-b87c34cd9d23_images, /api/v1/kfashion/img/getByteImage?workNo=104, 2020-07-07 16:11:46.0, admin
+2020-07-08 01:04:00.260 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 105, e51e836d-a149-465b-96e5-2a3cbd4894fa_images, /api/v1/kfashion/img/getByteImage?workNo=105, 2020-07-07 16:12:01.0, admin
+2020-07-08 01:04:00.261 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 106, 1893c55a-5e0c-4d67-a977-831a0d57841d_KakaoTalk_Photo_2020-06-15-16-04-31, /api/v1/kfashion/img/getByteImage?workNo=106, 2020-07-07 16:13:33.0, admin
+2020-07-08 01:04:00.261 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 107, f6153034-f893-4fb6-9207-65a6acc4bcf4_images, /api/v1/kfashion/img/getByteImage?workNo=107, 2020-07-07 16:24:45.0, admin
+2020-07-08 01:04:00.261 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 108, ff7fc0b5-3180-43fa-9766-e12b3a2085e9_images (1), /api/v1/kfashion/img/getByteImage?workNo=108, 2020-07-07 16:24:57.0, admin
+2020-07-08 01:04:00.261 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 109, 197aa39e-bce5-4b55-a624-3859627867a8_images, /api/v1/kfashion/img/getByteImage?workNo=109, 2020-07-07 16:39:04.0, admin
+2020-07-08 01:04:00.261 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 110, b9bcaf95-a6b0-4d95-866f-9d0d1d0f395d_images, /api/v1/kfashion/img/getByteImage?workNo=110, 2020-07-07 16:39:32.0, admin
+2020-07-08 01:04:00.262 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 111, e1394436-1c99-4be4-a17f-746e15a79ce8_hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=111, 2020-07-07 16:40:29.0, admin
+2020-07-08 01:04:00.262 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 112, b48d4771-ac23-4d8d-a69c-fcb3aaa77604_스크린샷 2020-06-29 오후 6, /api/v1/kfashion/img/getByteImage?workNo=112, 2020-07-07 18:32:45.0, admin
+2020-07-08 01:04:00.262 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 113, 9f1ed807-2770-470b-89ea-05168545a81b_모델, /api/v1/kfashion/img/getByteImage?workNo=113, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:04:00.262 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 114, 981651c8-8d05-4960-9468-1106030fa6be_송해나, /api/v1/kfashion/img/getByteImage?workNo=114, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:04:00.262 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 115, next, /api/v1/kfashion/img/getByteImage?workNo=115, 2020-07-07 20:41:02.0, admin
+2020-07-08 01:04:00.262 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 116, asddfkff, /api/v1/kfashion/img/getByteImage?workNo=116, 2020-07-07 22:08:03.0, admin
+2020-07-08 01:04:00.263 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 117, images, /api/v1/kfashion/img/getByteImage?workNo=117, 2020-07-07 22:08:03.0, admin
+2020-07-08 01:04:00.263 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 126, images (1), /api/v1/kfashion/img/getByteImage?workNo=126, 2020-07-07 22:51:12.0, admin
+2020-07-08 01:04:00.263 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 127, images, /api/v1/kfashion/img/getByteImage?workNo=127, 2020-07-07 22:51:12.0, admin
+2020-07-08 01:04:00.263 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 128, hot-air-balloons-4381674_1920, /api/v1/kfashion/img/getByteImage?workNo=128, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:04:00.263 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 129, images (1), /api/v1/kfashion/img/getByteImage?workNo=129, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:04:00.263 29138 [8080-exec-41] - TRACE           i.a.k.w.r.m.K.selectBoundaryList  165 : <==        Row: 130, images, /api/v1/kfashion/img/getByteImage?workNo=130, 2020-07-07 23:58:26.0, admin
+2020-07-08 01:04:00.264 29138 [8080-exec-41] - DEBUG           i.a.k.w.r.m.K.selectBoundaryList  159 : <==      Total: 102
+2020-07-08 01:04:00.374 29138 [8080-exec-42] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.375 29138 [8080-exec-42] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 19(Integer)
+2020-07-08 01:04:00.377 29138 [8080-exec-43] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.377 29138 [8080-exec-43] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 20(Integer)
+2020-07-08 01:04:00.379 29138 [8080-exec-44] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.379 29138 [8080-exec-44] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 21(Integer)
+2020-07-08 01:04:00.381 29138 [8080-exec-45] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.382 29138 [8080-exec-45] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 22(Integer)
+2020-07-08 01:04:00.383 29138 [8080-exec-42] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.383 29138 [8080-exec-42] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.383 29138 [8080-exec-42] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.384 29138 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.385 29138 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 23(Integer)
+2020-07-08 01:04:00.451 29138 [8080-exec-43] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.451 29138 [8080-exec-44] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.452 29138 [8080-exec-43] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.452 29138 [8080-exec-45] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.452 29138 [8080-exec-44] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.452 29138 [8080-exec-46] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.453 29138 [8080-exec-45] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.453 29138 [8080-exec-43] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.453 29138 [8080-exec-46] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.453 29138 [8080-exec-44] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.453 29138 [8080-exec-45] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.453 29138 [8080-exec-46] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.798 29138 [8080-exec-47] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:00.799 29138 [8080-exec-47] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 19(Integer)
+2020-07-08 01:04:00.919 29138 [8080-exec-47] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:00.919 29138 [8080-exec-47] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:00.920 29138 [8080-exec-47] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:00.931 29138 [8080-exec-48] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : ==>  Preparing: SELECT DISTINCT kfashion_image.work_no, SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name, CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name, kfashion_work.created_datetime, kfashion_work_history.created_id FROM kfashion_image LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no WHERE kfashion_work_history.created_id = ? AND kfashion_work.work_state = 2 ORDER BY kfashion_image.work_no 
+2020-07-08 01:04:00.931 29138 [8080-exec-48] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : ==> Parameters: admin(String)
+2020-07-08 01:04:00.936 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==    Columns: work_no, work_name, file_name, created_datetime, created_id
+2020-07-08 01:04:00.936 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 1, fab80c9a-c5ce-4eb3-99d8-be009a84f4d7_모델, /api/v1/kfashion/img/getByteImage?workNo=1, 2020-07-07 02:54:00.0, admin
+2020-07-08 01:04:00.937 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 2, bdd6833e-fa0d-4bc4-8c88-a295753a1f52_image-1, /api/v1/kfashion/img/getByteImage?workNo=2, 2020-07-07 02:55:39.0, admin
+2020-07-08 01:04:00.937 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 3, 3312a20f-6eef-4101-b234-745f21c9df24_image-1, /api/v1/kfashion/img/getByteImage?workNo=3, 2020-07-07 03:14:12.0, admin
+2020-07-08 01:04:00.937 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 9, 8b5a5696-842a-4cf1-8cef-cb80985e4bfe_송해나, /api/v1/kfashion/img/getByteImage?workNo=9, 2020-07-07 05:32:59.0, admin
+2020-07-08 01:04:00.938 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 11, 26665aaa-8a5d-42fc-a5ec-8a2b290b8175_모델, /api/v1/kfashion/img/getByteImage?workNo=11, 2020-07-07 06:29:51.0, admin
+2020-07-08 01:04:00.938 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 13, 618fc9b6-e95c-45ca-8fb4-5a8d285ab5c4_애기모델, /api/v1/kfashion/img/getByteImage?workNo=13, 2020-07-07 06:29:52.0, admin
+2020-07-08 01:04:00.938 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 14, 166bf536-f8eb-42a7-86da-f214fe9071fb_26697968-흰색-배경에-3d-반짝이-빨간색-숫자-4, /api/v1/kfashion/img/getByteImage?workNo=14, 2020-07-07 08:43:03.0, admin
+2020-07-08 01:04:00.938 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 15, 9c261a15-e71c-4f5f-af22-3cf6ac0100cf_26030267-3d-흰색-배경에-반짝이-빨간-숫자-2, /api/v1/kfashion/img/getByteImage?workNo=15, 2020-07-07 10:11:39.0, admin
+2020-07-08 01:04:00.939 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 16, 2b81f18c-36d6-40b4-a86f-618faa16e3c0_images, /api/v1/kfashion/img/getByteImage?workNo=16, 2020-07-07 10:20:11.0, admin
+2020-07-08 01:04:00.939 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 17, cab9ac27-4b25-4184-ad86-6b7a75c91995_images, /api/v1/kfashion/img/getByteImage?workNo=17, 2020-07-07 10:26:27.0, admin
+2020-07-08 01:04:00.939 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 18, 8e163ee9-6a76-41b1-89a4-aa55f3d51de9_images (1), /api/v1/kfashion/img/getByteImage?workNo=18, 2020-07-07 10:28:05.0, admin
+2020-07-08 01:04:00.940 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 46, 8ff671c8-21ad-4a87-9fbc-4359205a4ab5_모델, /api/v1/kfashion/img/getByteImage?workNo=46, 2020-07-07 11:22:32.0, admin
+2020-07-08 01:04:00.940 29138 [8080-exec-48] - TRACE               i.a.k.w.r.m.K.selectRectList  165 : <==        Row: 131, image-1, /api/v1/kfashion/img/getByteImage?workNo=131, 2020-07-08 00:16:34.0, admin
+2020-07-08 01:04:00.940 29138 [8080-exec-48] - DEBUG               i.a.k.w.r.m.K.selectRectList  159 : <==      Total: 13
+2020-07-08 01:04:01.044 29138 [8080-exec-49] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:01.044 29138 [8080-exec-49] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 1(Integer)
+2020-07-08 01:04:01.047 29138 [8080-exec-50] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:01.048 29138 [8080-exec-50] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 2(Integer)
+2020-07-08 01:04:01.076 29138 [8080-exec-52] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:01.075 29138 [8080-exec-53] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:01.075 29138 [8080-exec-51] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==>  Preparing: SELECT img_data FROM kfashion_image WHERE work_no = ? 
+2020-07-08 01:04:01.076 29138 [8080-exec-52] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 9(Integer)
+2020-07-08 01:04:01.076 29138 [8080-exec-53] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 11(Integer)
+2020-07-08 01:04:01.076 29138 [8080-exec-51] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : ==> Parameters: 3(Integer)
+2020-07-08 01:04:01.153 29138 [8080-exec-49] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:01.154 29138 [8080-exec-49] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:01.155 29138 [8080-exec-49] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:01.254 29138 [8080-exec-50] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:01.254 29138 [8080-exec-50] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:01.255 29138 [8080-exec-50] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:01.272 29138 [8080-exec-53] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:01.272 29138 [8080-exec-52] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:01.272 29138 [8080-exec-51] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==    Columns: img_data
+2020-07-08 01:04:01.272 29138 [8080-exec-53] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:01.272 29138 [8080-exec-51] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:01.272 29138 [8080-exec-52] - TRACE                 i.a.k.w.r.m.K.getByteImage  165 : <==        Row: <<BLOB>>
+2020-07-08 01:04:01.273 29138 [8080-exec-52] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:01.273 29138 [8080-exec-53] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1
+2020-07-08 01:04:01.273 29138 [8080-exec-51] - DEBUG                 i.a.k.w.r.m.K.getByteImage  159 : <==      Total: 1

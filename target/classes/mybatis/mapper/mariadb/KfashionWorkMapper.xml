@@ -46,6 +46,13 @@
         WHERE no = #{no}
     </update>
 
+    <select id="selectFileExtension" parameterType="KfashionWork" resultType="String">
+        SELECT
+        SUBSTRING_INDEX(work_name,'.',-1) work_name
+        FROM kfashion_work
+        WHERE no=#{no}
+    </select>
+
 
 
 </mapper>
