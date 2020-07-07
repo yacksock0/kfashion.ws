@@ -188,7 +188,7 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={12} lg={6}>
                             <div style={{marginRight:15}}>
-                                <img src={this.state.imgData} style={{display:"inline-block" , width:'100%', height:'77vh'}}/>
+                                <img src={this.state.imgData} style={{display:"inline-block" , width:'750', height:'77vh'}}/>
                             </div>
                         </Grid>
                         <Grid item xs={12} lg={6}>

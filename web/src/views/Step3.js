@@ -7,35 +7,78 @@ import {inject, observer} from "mobx-react";
 import CategoryComponent from "./step3/CategoryComponent";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-const styles = theme => ({
+import {fabric} from "fabric";
+const styles = theme => ({   root: {
+        width: "100%",
+        marginTop: theme.spacing.unit * 3,
+        overflowX: "auto"
+    },
+    table: {
+        minWidth: 500,
+    },
+
     mainContainer: {
         flexGrow: 1,
-        maxWidth:'70%',
+        marginTop:20,
+        maxWidth:'80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
-        marginTop: theme.spacing(1),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
     toolbar: {
         width: '100%',
-    },
-    content:{
-        marginTop: 15,
-        marginRight: 15,
-        display: 'flex',
-        flexDirection: 'column',
+        padding:0,
     },
     buttonType1:{
-        width: '100%',
-        height: 50,
+        width: 100,
+        marginRight: theme.spacing(2),
     },
     buttonType2:{
-        width: '100%',
-        height: 50,
+        width: 150,
+        float:'right',
 
+    },
+    toolButton:{
+        border:'1px solid black',
+        height:50,
+        width:'100%',
+    },
+    test:{
+        border:'1px solid black',
+        height: '50%',
+    },
+    toolBox:{
+        border:'1px solid black',
+        marginRight: 1,
+        height:'100%',
+    },
+    fileText: {
+        paddingTop: 32,
+        paddingRight: theme.spacing(2),
+        textAlign: 'left'
+    },
+    filebox: {
+        paddingTop: 35,
+        marginRight: theme.spacing(1),
+        marginLeft: theme.spacing(1),
+    },
+    fileSelection: {
+        position: 'absolute',
+        width: 1,
+        height: 1,
+        padding: 0,
+        margin: -1,
+        overflow: 'hidden',
+        clip: 'rect(0,0,0,0)',
+        border: 0,
+        borderRadius: 12,
+    },
+
+    divStyle: {
+        display: 'inline',
     },
 });
 
@@ -51,6 +94,14 @@ class Step3 extends React.Component {
     }
 
     componentDidMount() {
+        this.canvas = new fabric.Canvas('c');
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 750,
+            height: 850,
+            originX: 'left',
+            originY: 'top'
+        });
+
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("Step3", {
@@ -92,6 +143,18 @@ class Step3 extends React.Component {
             workNo: this.props.imageStore.workNo
         })
     }
+
+    handleClickItem = (workNo, imageData) => {
+        this.props.rectStore.LoadRectLocation(workNo);
+        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
+        this.props.imageStore.changeWorkNo(workNo);
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 750,
+            height: 850,
+            originX: 'left',
+            originY: 'top'
+        });
+    }
     render() {
         const {classes} = this.props;
 
@@ -100,8 +163,10 @@ class Step3 extends React.Component {
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
                         <Grid container spacing={3}>
-                            <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                                <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
+                            <Grid item xs={12} lg={5} style={{margin:"auto"}}>
+                                <div style ={{ backgroundColor : "#13264E"}}>
+                                    <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
+                                </div>
                             </Grid>
                                 <Grid item xs={12} lg={6} >
                                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>

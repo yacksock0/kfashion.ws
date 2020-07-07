@@ -114,7 +114,7 @@ class Polygon extends React.Component {
         buttonDis3 : false,
         buttonDis4 : false,
         buttonDis5 : false,
-        tabIndex: 0,
+        tabIndex: 1,
     }
     save1 = false;
     save2 = false;
@@ -161,10 +161,8 @@ class Polygon extends React.Component {
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width : 650,
-            height : 800,
+            width: 750,
+            height: 850,
             originX: 'left',
             originY: 'top'
         });
@@ -271,7 +269,7 @@ class Polygon extends React.Component {
                 evented : false,
             });
             this.canvas.add(rect);
-            this.canvas.setActiveObject(rect);
+
         }else{alert("rect정보가 존재하지 않습니다.")}
         // this.polygonIndex +=1;
         this.onOff = 'lineUse';
@@ -441,29 +439,20 @@ class Polygon extends React.Component {
         }else{
             alert("저장되었습니다.");
             this.state.savebtn = false;
+            this.props.polygonStore.objGet(this.polygon);
+            this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
+            this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
+            this.props.polygonStore.doPolygonLocationUp();
+            window.location.reload();
         }
-
-        this.props.polygonStore.objGet(this.polygon);
-        this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
-        this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
-        this.props.polygonStore.doPolygonLocationUp();
-
-        window.location.reload();
     }
-
-
-
-
-
     handleClickItem = (workNo, imageData) => {
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width : 600,
-            height : 800,
+            width: 750,
+            height: 850,
             originX: 'left',
             originY: 'top'
         });
@@ -478,15 +467,15 @@ class Polygon extends React.Component {
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display: "block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width={600} height={800} className={classes.canvas}>  </canvas>
+                                <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
                             </div>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                 <TabList>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={1}><h3>영역지정</h3></Tab>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={0}><h3>이미지 리스트</h3></Tab>
+                                    <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
+                                    <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                                 </TabList>
 
                                 <TabPanel value={this.state.value} index={0}>
@@ -495,11 +484,11 @@ class Polygon extends React.Component {
                                             <TableHead>
                                                 <TableRow>
                                                     <TableCell>영역</TableCell>
-                                                    <TableCell>poly start</TableCell>
-                                                    <TableCell>poly finish</TableCell>
-                                                    <TableCell>delete One</TableCell>
-                                                    <TableCell>delete All</TableCell>
-                                                    <TableCell>save</TableCell>
+                                                    <TableCell>시작</TableCell>
+                                                    <TableCell>종료</TableCell>
+                                                    <TableCell>삭제</TableCell>
+                                                    <TableCell>전부삭제</TableCell>
+                                                    <TableCell>저장</TableCell>
                                                 </TableRow>
                                             </TableHead>
 
@@ -551,17 +540,11 @@ class Polygon extends React.Component {
                                                         </Button>
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button
-                                                            id="5"
-                                                            type="submit"
-                                                            className={classes.buttonType1}
-                                                            variant="outlined"
-                                                            title="Delete All"
-                                                            onClick={() => this.doSave(1) }
-                                                            startIcon={<SaveIcon />}
-                                                            disabled={this.state.buttonDis1}>
-                                                            save
-                                                        </Button>
+                                                        <Tooltip title="Save">
+                                                            <IconButton aria-label="save" onClick={() => this.doSave(1)} disabled={this.state.buttonDis1}>
+                                                                save <SaveIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
@@ -610,15 +593,11 @@ class Polygon extends React.Component {
                                                         </Button>
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button
-                                                            type="submit"
-                                                            className={classes.buttonType1}
-                                                            variant="outlined"
-                                                            title="Delete All"
-                                                            onClick={() => this.doSave(2) }
-                                                            disabled={this.state.buttonDis2}>
-                                                            save
-                                                        </Button>
+                                                        <Tooltip title="Save">
+                                                            <IconButton aria-label="save" onClick={() => this.doSave(2)} disabled={this.state.buttonDis2}>
+                                                                save <SaveIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
@@ -667,15 +646,11 @@ class Polygon extends React.Component {
                                                         </Button>
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button
-                                                            type="submit"
-                                                            className={classes.buttonType1}
-                                                            variant="outlined"
-                                                            title="Delete All"
-                                                            onClick={() => this.doSave(3) }
-                                                            disabled={this.state.buttonDis3} >
-                                                            save
-                                                        </Button>
+                                                        <Tooltip title="Save">
+                                                            <IconButton aria-label="save" onClick={() => this.doSave(3)} disabled={this.state.buttonDis3}>
+                                                                save <SaveIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
@@ -724,15 +699,11 @@ class Polygon extends React.Component {
                                                         </Button>
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button
-                                                            type="submit"
-                                                            className={classes.buttonType1}
-                                                            variant="outlined"
-                                                            title="Delete All"
-                                                            onClick={() => this.doSave(4) }
-                                                            disabled={this.state.buttonDis4}>
-                                                            save
-                                                        </Button>
+                                                        <Tooltip title="Save">
+                                                            <IconButton aria-label="save" onClick={() => this.doSave(4)} disabled={this.state.buttonDis4}>
+                                                                save <SaveIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
@@ -781,15 +752,11 @@ class Polygon extends React.Component {
                                                         </Button>
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button
-                                                            type="submit"
-                                                            className={classes.buttonType1}
-                                                            variant="outlined"
-                                                            title="Delete All"
-                                                            onClick={() => this.doSave(5) }
-                                                            disabled={this.state.buttonDis5}>
-                                                            save
-                                                        </Button>
+                                                        <Tooltip title="Save">
+                                                            <IconButton aria-label="save" onClick={() => this.doSave()} disabled={this.state.buttonDis5}>
+                                                                save <SaveIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
@@ -798,7 +765,7 @@ class Polygon extends React.Component {
 
                                     <div style={{backgroundColor: 'grey'}}>
                                         <div align="center">
-                                            <Button onClick={() => this.submit()}>submit </Button>
+                                            <Button onClick={this.submit}  style={{color:'white', minHeight:70,  fontSize:20, width:'100%', height:'100%' }} >작업 완료 </Button>
                                         </div>
                                     </div>
 
@@ -814,8 +781,7 @@ class Polygon extends React.Component {
                 </div>
 
                 {/*Stepper*/}
-                <div style={{marginTop:70}}>
-                </div>
+
                 <div>
                     <hr></hr>
                     <Button
