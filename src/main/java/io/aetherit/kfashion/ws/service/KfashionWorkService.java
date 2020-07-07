@@ -27,4 +27,8 @@ public class KfashionWorkService {
     public void updateWorkName(KfashionWork work) {
         repository.updateWorkName(work);
     }
+
+    public String selectFileExtension(KfashionWork work) {
+        return repository.selectFileExtension(work);
+    }
 }

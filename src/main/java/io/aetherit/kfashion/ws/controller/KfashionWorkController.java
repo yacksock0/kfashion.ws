@@ -23,6 +23,9 @@ public class KfashionWorkController {
 
         @PutMapping(value="updateWorkName")
         public ResponseEntity<Object> updateWorkName(HttpServletRequest httpRequest, @RequestBody KfashionWork work) {
+            String fileExtension =kfashionWorkService.selectFileExtension(work);
+
+            work.setWorkName(work.getWorkName()+"."+fileExtension);
             kfashionWorkService.updateWorkName(work);
             return new ResponseEntity<Object>("success", HttpStatus.OK);
         }
