@@ -29,7 +29,7 @@ function TabPanel(props) {
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        maxWidth:'100%',
+        maxWidth:'70%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -48,12 +48,12 @@ const styles = theme => ({
         flexDirection: 'column',
     },
     buttonType1:{
-        width: 100,
-        marginRight: theme.spacing(2),
+        width: '100%',
+        height: 50,
     },
     buttonType2:{
-        width: 150,
-        float:'right',
+        width: '100%',
+        height: 50,
 
     },
     test:{
@@ -91,6 +91,31 @@ class Step3 extends React.Component {
 
     handleTabChange = (event, newValue) => {
         this.setState({ value: newValue });
+    }
+    handlePrevious(){
+        this.setState({
+            count: this.state.count-1
+        });
+        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            : alert("첫번째 이미지 입니다.")
+        }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
+    }
+    handleNext() {
+        this.setState({
+            count: this.state.count+1
+        });
+        {this.state.count < this.state.boundaryList.length ?
+            this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+            :alert("마지막 이미지 입니다.")
+        }
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            workNo: this.props.imageStore.workNo
+        })
     }
     render() {
         const {classes} = this.props;
@@ -140,33 +165,43 @@ class Step3 extends React.Component {
                                 </TabPanel>
                                 </Grid>
                             </Grid>
+                    <hr></hr>
                     </div>
                     <hr></hr>
+                    <Grid container>
+                        <Grid item xs={3} lg={1} style={{marginRight:10}}>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleSubmitForm}>
+                        onClick={this.handlePrevious.bind(this)}
+                    >
                         Previous
                     </Button>
+                        </Grid>
+                        <Grid item xs={3} lg={1}>
                     <Button
                         type="submit"
                         className={classes.buttonType1}
                         variant="outlined"
-                        onClick={this.handleClickSubmit}>
+                        onClick={this.handleNext.bind(this)}
+                    >
                         Next
                     </Button>
+                        </Grid>
+                        <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                     <Button
-                        type="submit"
+                        type="button"
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={this.handleClickSubmit}>
+                    >
                         Next Step
                     </Button>
+                        </Grid>
+                    </Grid>
                 </Container>
             );
         }
-
     };
 export default withSnackbar(withRouter(withStyles(styles) (Step3)));
