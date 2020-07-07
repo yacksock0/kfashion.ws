@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <copy todir="/Users/youngrackchoi/kfashion.ws/target/classes/static">
-    <fileset dir="/Users/youngrackchoi/kfashion.ws/web/build"/>
-  </copy>
-</target>
-</project>
