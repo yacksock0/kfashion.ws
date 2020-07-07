@@ -53,6 +53,11 @@
         WHERE no=#{no}
     </select>
 
+    <delete id="deleteWork" parameterType="Long">
+        DELETE
+        FROM kfashion_work
+        WHERE no=#{workNo}
+    </delete>
 
 
 </mapper>

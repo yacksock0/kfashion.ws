@@ -38,4 +38,8 @@ public class KfashionImageService {
     public List<KfashionImage> selectRectList(String createdId) {
         return  repository.selectRectList(createdId);
     }
+
+    public void deleteImage(Long workNo) {
+        repository.deleteImage(workNo);
+    }
 }
