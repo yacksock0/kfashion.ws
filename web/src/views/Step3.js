@@ -4,27 +4,10 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import CategoryComponent from "./step3/CategoryComponent";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
-function TabPanel(props) {
-    const { children, value, index } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-        >
-            {value === index && (
-                <Typography>{children}</Typography>
-            )}
-        </div>
-    );
-}
 
 const styles = theme => ({
     mainContainer: {
@@ -67,10 +50,10 @@ class Step3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value:0,
             createdId: '',
         }
     }
+
     componentDidMount() {
         this.props.authStore.checkLogin();
         const id = this.props.authStore.loginUser.id;
@@ -89,9 +72,6 @@ class Step3 extends React.Component {
         this.props.professionalLabelStore.doProfessionalLabelUp();
     }
 
-    handleTabChange = (event, newValue) => {
-        this.setState({ value: newValue });
-    }
     handlePrevious(){
         this.setState({
             count: this.state.count-1
@@ -129,40 +109,20 @@ class Step3 extends React.Component {
                                 <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                             </Grid>
                             <Grid item xs={12} lg={6} >
-                                <AppBar position="static">
-                                    <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example" >
-                                        <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>
-                                        <Tab label="하의" value={1} style={{minWidth:'20%'}}/>
-                                        <Tab label="신발" value={2} style={{minWidth:'20%'}}/>
-                                        <Tab label="가방" value={3} style={{minWidth:'20%'}}/>
-                                        <Tab label="악세서리" value={4} style={{minWidth:'20%'}}/>
-                                    </Tabs>
-                                </AppBar>
-                                <TabPanel value={this.state.value} index={0}>
-                                <Grid container item xs={12} lg={12}>
-                                    <CategoryComponent />
-                                </Grid>
-                                </TabPanel>
-                                <TabPanel value={this.state.value} index={1}>
-                                    <Grid container item xs={12} lg={12}>
-                                        <CategoryComponent />
-                                    </Grid>
-                                </TabPanel>
-                                <TabPanel value={this.state.value} index={2}>
-                                    <Grid container item xs={12} lg={12}>
-                                        <CategoryComponent />
-                                    </Grid>
-                                </TabPanel>
-                                <TabPanel value={this.state.value} index={3}>
-                                    <Grid container item xs={12} lg={12}>
-                                        <CategoryComponent />
-                                    </Grid>
-                                </TabPanel>
-                                <TabPanel value={this.state.value} index={4}>
-                                    <Grid container item xs={12} lg={12}>
-                                        <CategoryComponent />
-                                    </Grid>
-                                </TabPanel>
+                                <Tabs>
+                                    <TabList>
+                                        <Tab >상의</Tab>
+                                        <Tab >Tab 2</Tab>
+                                    </TabList>
+                                    <TabPanel>
+                                        <h2>content 1</h2>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <h2>content 2</h2>
+                                    </TabPanel>
+                                </Tabs>
+
+                                            <CategoryComponent />
                                 </Grid>
                             </Grid>
                     <hr></hr>
