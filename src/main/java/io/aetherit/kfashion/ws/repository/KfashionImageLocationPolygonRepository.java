@@ -21,7 +21,4 @@ public class KfashionImageLocationPolygonRepository {
         mapper.insertLocationPolygon(polygon);
         return msg;
     }
-    public List<KfashionImageLocationPolygon> selectPolygonList(String createdId) {
-        return mapper.selectPolygonList(createdId);
-    }
 }

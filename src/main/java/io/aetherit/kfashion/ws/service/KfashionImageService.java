@@ -30,4 +30,12 @@ public class KfashionImageService {
     public Map<String, Object> getByteImage(int workNo) {
       return repository.getByteImage(workNo);
     }
+
+    public List<KfashionImage> selectPolygonList(String createdId) {
+        return repository.selectPolygonList(createdId);
+    }
+
+    public List<KfashionImage> selectRectList(String createdId) {
+        return  repository.selectRectList(createdId);
+    }
 }

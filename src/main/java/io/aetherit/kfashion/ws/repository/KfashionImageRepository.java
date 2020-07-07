@@ -28,4 +28,12 @@ public class KfashionImageRepository {
     public Map<String, Object> getByteImage(int workNo) {
         return mapper.getByteImage(workNo);
     }
+
+    public List<KfashionImage> selectPolygonList(String createdId) {
+        return mapper.selectPolygonList(createdId);
+    }
+
+    public List<KfashionImage> selectRectList(String createdId) {
+        return mapper.selectRectList(createdId);
+    }
 }

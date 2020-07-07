@@ -38,32 +38,31 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore')
+@inject('authStore','imageStore','rectStore')
 @observer
  class PolygonList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            polygonList: [],
+            rectList: [],
             count: 0,
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: '등록일 ', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
+        this.props.rectStore.LoadRectImage(createdId)
+    }
 
-        axios.get('/api/v1/kfashion/polygon/polygonList?createdId='+createdId)
-            .then(response => {
-                this.setState({ polygonList : response.data.polygonList.filter(b =>b !==null)})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+    componentWillUnmount() {
+        this.props.rectStore.initStore();
     }
 
     handleClick = (workNo, imageData) => {
@@ -72,12 +71,20 @@ const tableIcons = {
         }
     }
     render() {
-        const {polygonList} = this.state;
         return (
             <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
-                data={polygonList}
+                data={!!this.props.rectStore.rectList ?
+                    this.props.rectStore.rectList.map((item) => {
+                        return {
+                            workNo: item.workNo,
+                            fileName: item.fileName,
+                            workName: item.workName,
+                            createdId: item.createdId,
+                            createdDatetime: item.createdDatetime,
+                        }
+                    }) : []}
                 title="이미지 리스트"
                 editable={{
                     onRowDelete: oldData =>

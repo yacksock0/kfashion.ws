@@ -1,13 +1,7 @@
 package io.aetherit.kfashion.ws.controller;
 
-import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygon;
-import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygonPoint;
-import io.aetherit.kfashion.ws.model.KfashionWork;
-import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
-import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonPointService;
-import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonService;
-import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
-import io.aetherit.kfashion.ws.service.KfashionWorkService;
+import io.aetherit.kfashion.ws.model.*;
+import io.aetherit.kfashion.ws.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,29 +20,32 @@ public class KfashionImageLocationPolygonController {
         private KfashionWorkHistoryService kfashionWorkHistoryService;
         private KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService;
         private KfashionWorkService kfashionWorkService;
+        private KfashionImageService kfashionImageService;
 
         @Autowired
         public KfashionImageLocationPolygonController(KfashionImageLocationPolygonService kfashionImageLocationPolygonService,
                                                       KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService,
                                                       KfashionWorkHistoryService kfashionWorkHistoryService,
-                                                      KfashionWorkService kfashionWorkService) {
+                                                      KfashionWorkService kfashionWorkService,
+                                                      KfashionImageService kfashionImageService) {
             this.kfashionImageLocationPolygonService = kfashionImageLocationPolygonService;
             this.kfashionImageLocationPolygonPointService = kfashionImageLocationPolygonPointService;
             this.kfashionWorkHistoryService = kfashionWorkHistoryService;
             this.kfashionWorkService = kfashionWorkService;
+            this.kfashionImageService = kfashionImageService;
         }
 
 
+
+
+
         /**
-         * 렉트 인서트
+         * 폴리곤 인서트
          * @param httpServletRequest
          * @param polygonList
          * @return String
          * @throws Exception
          */
-
-
-
 
         @PostMapping(value="/location")
         public ResponseEntity<String> insertLocationPolygon(HttpServletRequest httpServletRequest,
@@ -101,23 +98,21 @@ public class KfashionImageLocationPolygonController {
             return new ResponseEntity<String>(msg, HttpStatus.OK);
         }
 
+
+    /**
+     * 폴리곤 이미지 리스트
+     * @param httpRequest
+     * @param createdId
+     * @return polygonList
+     * @throws Exception
+     */
     @GetMapping(value="/polygonList")
     public ResponseEntity<Object> polygonList(HttpServletRequest httpRequest,
                                            @RequestParam(value="createdId")String createdId) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImageLocationPolygon> polygonList = kfashionImageLocationPolygonService.selectPolygonList(createdId);
+        List<KfashionImage> polygonList = kfashionImageService.selectPolygonList(createdId);
         resultMap.put("polygonList", polygonList);
-        System.out.println(polygonList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
-//    @GetMapping(value="/polygonPointList")
-//    public ResponseEntity<Object> polygonPointList(HttpServletRequest httpRequest,
-//                                              @RequestParam(value="createdId")String createdId) {
-//        HashMap<String, Object> resultMap = new HashMap<String, Object>();
-//        List<KfashionImageLocationPolygon> polygonList = kfashionImageLocationPolygonService.selectPolygonList(createdId);
-//        resultMap.put("polygonList", polygonList);
-//        System.out.println(polygonList);
-//        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
-//    }
 }
