@@ -14,9 +14,6 @@ const WorkNo = {
     workNo : '',
 }
 
-const BoundaryList ={
-    boundaryList:[],
-}
 
 const AddState = {
     Closed: 'Closed',
@@ -38,6 +35,7 @@ const UpdateState = {
     UploadFailed: 'UploadFailed',
 };
 export default class ImageStore {
+    @observable boundaryList = [];
     @observable files = [];
     @observable uploadFile = '';
     @observable addState = AddState.Closed;
@@ -45,6 +43,10 @@ export default class ImageStore {
     @observable state = State.Ready;
     @observable workNo = {...WorkNo};
 
+
+    @action initStore = () => {
+        this.boundaryList = [];
+    }
 
     @action changeWorkNo = (workNo) => {
         this.workNo = workNo;
@@ -56,6 +58,7 @@ export default class ImageStore {
         this.state = State.Ready;
     }
 
+
     @computed get isWorkNo() {
         return this.workNo;
     }
@@ -65,14 +68,14 @@ export default class ImageStore {
     }
 
     LoadImage = flow(function* loadImage(createdId) {
+        this.boundaryList = [];
         try {
           const response = yield axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
-          const boundaryList = response.data.boundaryList;
-          this.boundaryList=boundaryList;
+          this.boundaryList = response.data.boundaryList;
           const workNo = this.boundaryList[0].workNo;
           this.workNo = workNo;
+          return this.boundaryList;
         } catch (e) {
-            this.loginState = State.Failed;
             this.imageData = Object.assign({}, WorkNo);
         }
     });

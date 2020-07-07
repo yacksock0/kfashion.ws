@@ -137,10 +137,11 @@ class ImageUpload extends React.Component {
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
             workNo: this.props.imageStore.workNo,
-            boundaryList : this.props.imageStore.isBoundaryList,
         })
     }
-
+    componentWillUnmount() {
+        this.props.imageStore.initStore();
+    }
 
     handlePrevious(){
         this.setState({
@@ -193,9 +194,17 @@ class ImageUpload extends React.Component {
                             <MaterialTable style={{height:'77vh'}}
                                 icons={tableIcons}
                                 columns={this.state.columns}
-                                data={this.state.boundaryList}
+                                data={!!this.props.imageStore.boundaryList ?
+                                    this.props.imageStore.boundaryList.map((item) => {
+                                        return {
+                                            workNo: item.workNo,
+                                            fileName: item.fileName,
+                                            workName: item.workName,
+                                            createdId: item.createdId,
+                                            createdDatetime: item.createdDatetime,
+                                        }
+                                    }) : []}
                                 title="이미지 리스트"
-                                onChange={this.handelChagneBoundaryList}
                                 editable={{
                                     onRowDelete: oldData =>
                                         new Promise((resolve, reject) => {
