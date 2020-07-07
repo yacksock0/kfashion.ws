@@ -18,6 +18,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
+import CheckIcon from '@material-ui/icons/Check';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -39,7 +40,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('authStore','imageStore','polygonStore')
+@inject('fileUploadStore','authStore','imageStore','polygonStore')
 @observer
 class BasicImageList extends React.Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class BasicImageList extends React.Component {
                 {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                {title: '등록일 ', field: 'createdDatetime', type: 'date'},
+                {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
@@ -65,13 +66,13 @@ class BasicImageList extends React.Component {
     componentWillUnmount() {
         this.props.polygonStore.initStore();
     }
-
     handleClick = (workNo, imageData) => {
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData);
         }
     }
     render() {
+        const {basicLabelList} = this.state;
         return (
             <MaterialTable
                 icons={tableIcons}
@@ -93,7 +94,7 @@ class BasicImageList extends React.Component {
 
                 actions={[
                     {
-                        icon: Edit,
+                        icon: CheckIcon,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                     }

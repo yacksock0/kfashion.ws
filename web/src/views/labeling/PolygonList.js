@@ -17,6 +17,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
+import CheckIcon from '@material-ui/icons/Check';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -40,7 +41,7 @@ const tableIcons = {
 
 @inject('authStore','imageStore','rectStore')
 @observer
- class PolygonList extends React.Component {
+class PolygonList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -89,9 +90,23 @@ const tableIcons = {
                 options={{
                     actionsColumnIndex: -1,
                 }}
+                editable={{
+                    onRowDelete: oldData =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                {
+                                    let data = this.state.data;
+                                    const index = data.indexOf(oldData);
+                                    data.splice(index, 1);
+                                    this.setState({ data }, () => resolve());
+                                }
+                                resolve();
+                            }, 1000);
+                        }),
+                }}
                 actions={[
                     {
-                        icon: Edit,
+                        icon: CheckIcon,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                     }

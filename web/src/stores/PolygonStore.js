@@ -103,8 +103,10 @@ export default class PolygonStore {
             } else {
             }
         } catch (e) {
-            console.log('error')
+            console.log('error');
         }
     });
+
+
 
 }
