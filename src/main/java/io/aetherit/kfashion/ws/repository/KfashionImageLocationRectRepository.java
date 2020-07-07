@@ -24,4 +24,7 @@ public class KfashionImageLocationRectRepository {
     public List<KfashionCategoryItem> selectRectList(KfashionImageLocationRect rect) {
         return mapper.selectRectList(rect);
     }
+    public List<KfashionImageLocationRect> selectLocationRectList(String workNo) {
+        return mapper.selectLocationRectList(workNo);
+    }
 }

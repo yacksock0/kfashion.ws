@@ -110,4 +110,14 @@ public class KfashionImageLocationPolygonController {
         System.out.println(polygonList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
+
+//    @GetMapping(value="/polygonPointList")
+//    public ResponseEntity<Object> polygonPointList(HttpServletRequest httpRequest,
+//                                              @RequestParam(value="createdId")String createdId) {
+//        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+//        List<KfashionImageLocationPolygon> polygonList = kfashionImageLocationPolygonService.selectPolygonList(createdId);
+//        resultMap.put("polygonList", polygonList);
+//        System.out.println(polygonList);
+//        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+//    }
 }

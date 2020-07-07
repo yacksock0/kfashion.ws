@@ -9,4 +9,5 @@ public interface KfashionImageLocationRectMapper {
     void insertLocationRect(KfashionImageLocationRect rect);
 
     List<KfashionCategoryItem> selectRectList(KfashionImageLocationRect rect);
+    List<KfashionImageLocationRect> selectLocationRectList(String workNo);
 }

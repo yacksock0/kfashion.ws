@@ -92,8 +92,13 @@ const tableIcons = {
                         icon: Edit,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => {
-                            this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
+                            this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo});
                             this.props.imageStore.changeWorkNo(rowData.workNo);
+
+                            // this.setState({rectList : "/api/v1/kfashion/rect/locationRectList?workNo="+rowData.workNo})
+                            // const rectList = `/api/v1/kfashion/rect/locationRectList?workNo="+${rowData.workNo}`;
+                            // console.log(rectList);
+                            //console.log(this.state.rectList);
                         }
                     }
                 ]}
