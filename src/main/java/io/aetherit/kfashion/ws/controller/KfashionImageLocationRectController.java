@@ -67,6 +67,14 @@ public class KfashionImageLocationRectController {
         return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
 
-
+    @GetMapping(value="/locationRectList")
+    public ResponseEntity<Object> locationRectList(HttpServletRequest httpRequest,
+                                              @RequestParam(value="workNo")String workNo) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImageLocationRect> locationRectList = kfashionImageLocationRectService.selectLocationRectList(workNo);
+        resultMap.put("locationRectList", locationRectList);
+        System.out.println(locationRectList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
 
 }

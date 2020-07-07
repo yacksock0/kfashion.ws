@@ -142,13 +142,14 @@ class Polygon extends React.Component {
     polygon = [{
         polyNo : '',
         points: [{
-            index : 0,
             x: 0,
             y: 0,
         }
         ]
 
     }];
+
+    rectList=[]
 
     canvas;
     polyNo;
@@ -174,11 +175,20 @@ class Polygon extends React.Component {
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            imgData : `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            rectList : `/api/v1/kfashion/rect/locationRectList?workNo="+${this.props.imageStore.isWorkNo}`,
         })
 
         // canvas Drawing
-
+        this.canvas = new fabric.Canvas('c');
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
 
         this.canvas.on('selection:created', function (e) {
             const asd = e.target;
@@ -191,9 +201,6 @@ class Polygon extends React.Component {
         this.canvas.on('mouse:down', (e) => {
             console.log('polyNo : ' + this.polyNo);
 
-            // if (this.polyNo ==  ){
-            //
-            // }
             if (this.onOff == 'lineUse') {
                 this.canvas.selection = false;
                 this.polyPointX[this.polyCounter] = e.pointer.x;
@@ -378,7 +385,6 @@ class Polygon extends React.Component {
                 for(let i in this.polyPointX) {
                     const x = this.polyPointX[i];
                     const y = this.polyPointY[i];
-
                     newPolygon.points.push({x: x, y: y});
                 }
                 this.polygon.push(newPolygon);
@@ -422,23 +428,17 @@ class Polygon extends React.Component {
 
 
     submit = () =>{
-        this.props.polygonStore.objGet(this.polygon);
-        this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
-        this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
-        this.props.polygonStore.doPolygonLocationUp();
+
+        console.log(this.state.rectList);
+        // this.props.polygonStore.objGet(this.polygon);
+        // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
+        // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
+        // this.props.polygonStore.doPolygonLocationUp();
     }
     render() {
         const { classes } = this.props;
         const {workNo} = this.props.imageStore;
-        this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width : 700,
-            height : 800,
-            originX: 'left',
-            originY: 'top'
-        });
+
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
