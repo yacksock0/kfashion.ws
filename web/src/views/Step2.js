@@ -9,6 +9,8 @@ import {inject, observer} from "mobx-react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import {fabric} from "fabric";
+import BasicImageList from "./step2/BasicImageList";
 
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -30,6 +32,7 @@ function TabPanel(props) {
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -68,6 +71,7 @@ class Step2 extends React.Component {
         super(props);
         this.state = {
             value: 0,
+            number:1,
             createdId: '',
         }
     }
@@ -82,6 +86,18 @@ class Step2 extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
         this.props.basicLabelStore.changeNewBasicLabelWorkNo(this.props.imageStore.isWorkNo);
+
+
+        // -- fabric.js canvas SET
+        this.canvas = this.__canvas = new fabric.Canvas('c');
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 700,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
     }
 
     handleClickOK = () => {
@@ -92,6 +108,9 @@ class Step2 extends React.Component {
     handleTabChange = (event, newValue) => {
         this.setState({ value: newValue });
     }
+    handleTabChangeTop= (event, newNumber) => {
+        this.setState({ number: newNumber });
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -100,9 +119,16 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                         <img src={this.state.imgData} alt="" style={{display:"block" , width:'100%', height:'100%'}}></img>
+                         <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
+                         <AppBar position="static">
+                             <Tabs value={this.state.number} onChange={this.handleTabChangeTop} aria-label="simple tabs example" >
+                                 <Tab label="라벨링" number={0}  style={{minWidth:'50%'}}/>
+                                 <Tab label="이미지 리스트" number={1} style={{minWidth:'50%'}}/>
+                             </Tabs>
+                         </AppBar>
+                         <TabPanel value={this.state.number} index={0}>
                                  <AppBar position="static">
                                      <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example" >
                                          <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>
@@ -259,6 +285,10 @@ class Step2 extends React.Component {
                                  </div>
                                  <SleeveLength />
                              </div>
+                         </TabPanel>
+                         </TabPanel>
+                         <TabPanel value={this.state.number} index={1}>
+                            <BasicImageList />
                          </TabPanel>
                      </Grid>
                  </Grid>

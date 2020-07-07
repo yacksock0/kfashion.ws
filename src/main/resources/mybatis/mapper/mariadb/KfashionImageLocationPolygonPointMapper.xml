@@ -4,19 +4,19 @@
         <id property="workNo"                       column="work_no" />
         <result property="workStep"                 column="work_step" />
         <result property="rectNo"                   column="rect_no" />
-        <result property="polyNo"                       column="poly_no" />
-        <result property="no"                           column="no" />
-        <result property="locationX"                       column="location_x" />
-        <result property="locationY"                       column="location_y" />
-        <result property="locationSeq"                       column="location_seq" />
+        <result property="polyNo"                   column="poly_no" />
+        <result property="no"                       column="no" />
+        <result property="locationX"                column="location_x" />
+        <result property="locationY"                column="location_y" />
+        <result property="locationSeq"              column="location_seq" />
         <result property="createdDatetime"          column="created_datetime" />
         <result property="updatedDatetime"          column="updated_datetime" />
     </resultMap>
 
 
-    <insert id="insertLocationPolygonPoint" parameterType="KfashionImageLocationPolygon">
+    <insert id="insertLocationPolygonPoint" parameterType="KfashionImageLocationPolygonPoint">
         INSERT
-        INTO kfashion_image_location_polygon (
+        INTO kfashion_image_location_polygon_point (
         work_no,
         work_step,
         rect_no,

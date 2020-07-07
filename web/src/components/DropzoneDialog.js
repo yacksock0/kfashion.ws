@@ -35,22 +35,19 @@ class DropzoneDialogExample extends Component {
             files: [],
         };
     }
-    componentDidMount() {
-
-    }
-
     handleClose() {
         this.setState({
             open: false
         });
     }
-    handleSave(file){
+    handleSave(file) {
         this.setState({
             open: false,
-            files:file
+            files: file
         });
-        const userId=this.props.authStore.isUserId;
-        this.props.fileUploadStore.fileupload(file,userId);
+        const userId = this.props.authStore.isUserId;
+        this.props.fileUploadStore.fileupload(file, userId);
+        this.props.imageStore.LoadImage(userId)
     }
 
     handleOpen() {
@@ -58,7 +55,6 @@ class DropzoneDialogExample extends Component {
             open: true,
         });
     }
-
     render() {
         const { classes } = this.props;
         return (

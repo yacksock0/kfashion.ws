@@ -2,8 +2,7 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import axios from "axios";
-import {Container, Toolbar, Typography, Button} from "@material-ui/core";
+import {Typography, Button} from "@material-ui/core";
 
 
 const styles = theme => ({

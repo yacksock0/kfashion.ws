@@ -88,7 +88,7 @@ class App extends React.Component {
             <div className={classes.root}>
                 <Router>
                     <CssBaseline />
-                    <Route path="/" component={ScrollToTop}>
+                    <Route path="/" component={Home}>
                         <TopBar mobileOpen={this.state.mobileOpen}
                                 setMobileOpen={this.setMobileOpen}
                                 isLoggedIn={loginState === store.State.Authenticated}

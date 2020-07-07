@@ -1,9 +1,7 @@
 package io.aetherit.kfashion.ws.controller;
 
-import io.aetherit.kfashion.ws.model.KfashionImageLocationRect;
-import io.aetherit.kfashion.ws.model.KfashionRectList;
-import io.aetherit.kfashion.ws.model.KfashionWork;
-import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
+import io.aetherit.kfashion.ws.model.*;
+import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonService;
 import io.aetherit.kfashion.ws.service.KfashionImageLocationRectService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import io.aetherit.kfashion.ws.service.KfashionWorkService;
@@ -13,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -32,6 +31,7 @@ public class KfashionImageLocationRectController {
         this.kfashionImageLocationRectService = kfashionImageLocationRectService;
         this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         this.kfashionWorkService = kfashionWorkService;
+
     }
 
     @PostMapping(value="/location")
@@ -64,8 +64,17 @@ public class KfashionImageLocationRectController {
             rect.setScaleY(rectList.get(i).getScaleY());
             msg = kfashionImageLocationRectService.insertLocationRect(rect);
         }
-
         return new ResponseEntity<String>(msg, HttpStatus.OK);
+    }
+
+    @GetMapping(value="/locationRectList")
+    public ResponseEntity<Object> locationRectList(HttpServletRequest httpRequest,
+                                              @RequestParam(value="workNo")String workNo) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImageLocationRect> locationRectList = kfashionImageLocationRectService.selectLocationRectList(workNo);
+        resultMap.put("locationRectList", locationRectList);
+        System.out.println(locationRectList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
 }

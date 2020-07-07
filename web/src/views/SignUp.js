@@ -16,9 +16,6 @@ import {
     Typography
 } from "@material-ui/core";
 import ErrorIcon from "@material-ui/icons/Error";
-import axios from "axios";
-
-
 
 const style = theme => ({
     appBarSpacer: theme.mixins.toolbar,

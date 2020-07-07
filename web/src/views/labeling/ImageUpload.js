@@ -121,7 +121,7 @@ class ImageUpload extends React.Component {
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: '등록일 ', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
@@ -132,12 +132,10 @@ class ImageUpload extends React.Component {
         const createdId = this.props.authStore.isUserId;
         this.props.imageStore.LoadImage(createdId)
         this.setState({
-            boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
             workNo: this.props.imageStore.workNo
         })
     }
-
 
     handlePrevious(){
         this.setState({
@@ -164,6 +162,7 @@ class ImageUpload extends React.Component {
             workNo: this.props.imageStore.workNo
         })
     }
+
     render() {
         const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;
@@ -211,7 +210,6 @@ class ImageUpload extends React.Component {
                                         tooltip: 'Select Image',
                                         onClick: (event, rowData) => {
                                             this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                                            /*this.setState({count:rowData.indexOf()})*/
                                             this.props.imageStore.changeWorkNo(rowData.workNo);
                                         }
                                     }

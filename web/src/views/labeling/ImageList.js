@@ -38,7 +38,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore')
+@inject('fileUploadStore','authStore','imageStore')
 @observer
 class ImageList extends React.Component {
     constructor(props) {
@@ -67,34 +67,33 @@ class ImageList extends React.Component {
     }
     render() {
         const {boundaryList} = this.state;
-        const {classes} = this.props;
         return (
                 <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
                 data={boundaryList}
                 title="이미지 리스트"
-                editable={{
-                    onRowDelete: oldData =>
-                    new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                    {
-                    let data = this.state.data;
-                    const index = data.indexOf(oldData);
-                    data.splice(index, 1);
-                    this.setState({ data }, () => resolve());
-                    }
-                    resolve();
-                    }, 1000);
-                    }),
-                    }}
+                // editable={{
+                //     onRowDelete: oldData =>
+                //     new Promise((resolve, reject) => {
+                //     setTimeout(() => {
+                //     {
+                //     let data = this.state.data;
+                //     const index = data.indexOf(oldData);
+                //     data.splice(index, 1);
+                //     this.setState({ data }, () => resolve());
+                //     }
+                //     resolve();
+                //     }, 1000);
+                //     }),
+                //     }}
                     actions={[
                         {
                         icon: Edit,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => {
-                        this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                        console.log(rowData);
+                            this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo});
+                            this.props.imageStore.changeWorkNo(rowData.workNo);
                         }
                      }
                     ]}
