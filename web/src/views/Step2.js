@@ -10,6 +10,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import {fabric} from "fabric";
+import BasicImageList from "./step2/BasicImageList";
 
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -70,6 +71,7 @@ class Step2 extends React.Component {
         super(props);
         this.state = {
             value: 0,
+            number:1,
             createdId: '',
         }
     }
@@ -106,6 +108,9 @@ class Step2 extends React.Component {
     handleTabChange = (event, newValue) => {
         this.setState({ value: newValue });
     }
+    handleTabChangeTop= (event, newNumber) => {
+        this.setState({ number: newNumber });
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -117,6 +122,13 @@ class Step2 extends React.Component {
                          <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
+                         <AppBar position="static">
+                             <Tabs value={this.state.number} onChange={this.handleTabChangeTop} aria-label="simple tabs example" >
+                                 <Tab label="라벨링" number={0}  style={{minWidth:'50%'}}/>
+                                 <Tab label="이미지 리스트" number={1} style={{minWidth:'50%'}}/>
+                             </Tabs>
+                         </AppBar>
+                         <TabPanel value={this.state.number} index={0}>
                                  <AppBar position="static">
                                      <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example" >
                                          <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>
@@ -273,6 +285,10 @@ class Step2 extends React.Component {
                                  </div>
                                  <SleeveLength />
                              </div>
+                         </TabPanel>
+                         </TabPanel>
+                         <TabPanel value={this.state.number} index={1}>
+                            <BasicImageList />
                          </TabPanel>
                      </Grid>
                  </Grid>

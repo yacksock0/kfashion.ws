@@ -169,6 +169,4 @@ public class KfashionLabelController {
                 System.out.println(basicLabelList);
                 return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
-
-
 }
