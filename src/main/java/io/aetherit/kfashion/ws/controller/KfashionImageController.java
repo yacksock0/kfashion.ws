@@ -102,7 +102,6 @@ public class KfashionImageController {
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value="userId", required = true) String userId,
                                                         @RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
-        System.out.println(files.length);
 
         return Arrays.asList(files)
                 .stream()
@@ -173,6 +172,21 @@ public class KfashionImageController {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+    }
+
+    /**
+     * 이미지 삭제
+     * @param workNo
+     * @return ResponseEntity
+     * @throws
+     */
+
+    @DeleteMapping(value="/deleteImage")
+    public ResponseEntity<Object> deleteImage(@RequestParam(value="workNo")Long workNo) {
+        kfashionWorkHistoryService.deleteWorkHistory(workNo);
+        kfashionImageService.deleteImage(workNo);
+        kfashionWorkService.deleteWork(workNo);
+        return new ResponseEntity<Object>("success", HttpStatus.OK);
     }
 
 }

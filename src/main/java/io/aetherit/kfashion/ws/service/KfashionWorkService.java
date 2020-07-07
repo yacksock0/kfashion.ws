@@ -31,4 +31,8 @@ public class KfashionWorkService {
     public String selectFileExtension(KfashionWork work) {
         return repository.selectFileExtension(work);
     }
+
+    public void deleteWork(Long workNo) {
+        repository.deleteWork(workNo);
+    }
 }

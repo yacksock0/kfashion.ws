@@ -26,6 +26,12 @@
         )
     </insert>
 
+    <delete id="deleteWorkHistory" parameterType="Long">
+        DELETE
+        FROM kfashion_work_history
+        WHERE work_no = #{workNo}
+    </delete>
+
 
 
 </mapper>
