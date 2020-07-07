@@ -68,14 +68,15 @@ export default class PolygonStore {
     });
 
 
-    LoadRectLocation = flow(function* LoadRectLocation(workNo) {
-        this.locationRectList = [];
+    LoadPolygonLocation = flow(function* LoadPolygonLocation(workNo) {
+        this.locationPolygonList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/rect/locationRectList?workNo='+workNo)
-            this.locationRectList = response.data.locationRectList;
-            console.log(this.locationRectList);
+            const response = yield axios.get('/api/v1/kfashion/polygon/locationPolygonList?workNo='+workNo)
+            console.log(response);
+            this.locationPolygonList = response.data.locationPolygonList;
+            console.log(this.locationPolygonList);
         } catch (e) {
-            console.log('error')
+            console.log('error');
         }
     });
 

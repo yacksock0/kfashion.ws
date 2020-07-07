@@ -141,7 +141,7 @@ public class KfashionImageLocationPolygonController {
                 locationPolygonList.addAll(kfashionImageLocationPolygonPointService.selectLocationPolygonList(polygon));
             }
             System.out.println(locationPolygonList);
-            resultMap.put("locationRectList", locationPolygonList);
+            resultMap.put("locationPolygonList", locationPolygonList);
         }
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
