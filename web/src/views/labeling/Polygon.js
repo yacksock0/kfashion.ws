@@ -53,7 +53,7 @@ const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'100%',
+        maxWidth:'80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -181,8 +181,8 @@ class Polygon extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 200,
-            height : 200,
+            width : 650,
+            height : 800,
             originX: 'left',
             originY: 'top'
         });
@@ -437,8 +437,8 @@ class Polygon extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 200,
-            height : 200,
+            width : 600,
+            height : 800,
             originX: 'left',
             originY: 'top'
         });
@@ -452,8 +452,7 @@ class Polygon extends React.Component {
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-
-                        <Grid item xs={12} lg={5} style={{margin:"auto"}}>
+                        <Grid item xs={12} lg={5} style={{margin:"auto", display: "block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
                                 <canvas id="c" width={600} height={800} className={classes.canvas}>  </canvas>
                             </div>

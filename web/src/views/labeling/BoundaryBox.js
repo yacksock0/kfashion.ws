@@ -44,7 +44,7 @@ const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'100%',
+        maxWidth:'80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -163,8 +163,8 @@ class BoundaryBox extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 200,
-            height : 200,
+            width : 650,
+            height : 800,
             originX: 'left',
             originY: 'top'
         });
@@ -327,7 +327,7 @@ class BoundaryBox extends React.Component {
             left: 25,
             top: 25,
             width : 600,
-            height : 650,
+            height : 800,
             originX: 'left',
             originY: 'top'
         });
@@ -344,7 +344,7 @@ class BoundaryBox extends React.Component {
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width={600} height={800} className={classes.canvas}>  </canvas>
+                                <canvas id="c" width={650} height={850} className={classes.canvas}>  </canvas>
                             </div>
                         </Grid>
 

@@ -195,6 +195,7 @@ class ImageUpload extends React.Component {
                                 columns={this.state.columns}
                                 data={this.state.boundaryList}
                                 title="이미지 리스트"
+                                rowsPerPageOptions={10}
                                 actions={[
                                     {
                                         icon: Edit,

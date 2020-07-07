@@ -130,7 +130,7 @@ class Step2 extends React.Component {
         })
     }
     render() {
-        const { classes } = this.props;
+        const { classes,history} = this.props;
         const {isWorkNo} = this.props.imageStore;
         return (
             <Container component="main" className={classes.mainContainer}>
@@ -162,14 +162,6 @@ class Step2 extends React.Component {
                                      <Typography variant="h5" component="h2">
                                          색상
                                      </Typography>
-                                     {/* <Button
-                                 variant="outlined"
-                                 color="primary"
-                                 className={classes.insertButton}
-                                 startIcon={<AddIcon />}
-                             >
-                                 항목추가
-                             </Button>*/}
                                      <div>
                                          <hr></hr>
                                      </div>
@@ -310,6 +302,7 @@ class Step2 extends React.Component {
                     className={classes.buttonType2}
                     color="primary"
                     variant="outlined"
+                    onClick={()=>history.push('/step3')}
                 >
                     Next Step
                 </Button>
