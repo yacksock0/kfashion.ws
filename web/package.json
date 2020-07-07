@@ -34,6 +34,7 @@
     "react-select": "^3.1.0",
     "react-swipeable-views": "^0.13.9",
     "react-tabs": "^3.1.1",
+    "react-tap": "^0.0.11",
     "react-tiny-tabs": "^0.1.2",
     "yarn": "^1.22.4"
   },

@@ -8,7 +8,7 @@
         <result property="updatedDatetime"            column="updated_datetime" />
     </resultMap>
 
-    <insert id="insertWork" parameterType="KfashionWork">
+    <insert id="insertWork" parameterType="KfashionWork" useGeneratedKeys="true" keyProperty="no" keyColumn="no">
         INSERT
         INTO kfashion_work
         (
@@ -22,12 +22,15 @@
         NOW(),
         NOW()
         )
+        <selectKey resultType="java.lang.Long" keyProperty="no" order="AFTER">
+            SELECT LAST_INSERT_ID() AS no
+        </selectKey>
     </insert>
 
     <update id="updateWork" parameterType="KfashionWork">
         UPDATE kfashion_work
-        SET work_state=${workState}
-        WHERE NO = ${no}
+        SET work_state=#{workState}
+        WHERE no = #{no}
 
     </update>
 
@@ -36,6 +39,12 @@
         FROM kfashion_work
         WHERE work_name=#{work_name}
     </select>
+
+    <update id="updateWorkName" parameterType="KfashionWork">
+        UPDATE kfashion_work
+        SET work_name =#{workName}
+        WHERE no = #{no}
+    </update>
 
 
 

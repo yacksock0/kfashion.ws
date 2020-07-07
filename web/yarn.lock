@@ -9940,6 +9940,11 @@ react-tabs@^3.1.1:
     clsx "^1.1.0"
     prop-types "^15.5.0"
 
+react-tap@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/react-tap/-/react-tap-0.0.11.tgz#93af554a272b1e67733f9c87f0e414f9027c21e8"
+  integrity sha1-k69VSicrHmdzP5yH8OQU+QJ8Ieg=
+
 react-tiny-tabs@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/react-tiny-tabs/-/react-tiny-tabs-0.1.2.tgz#45ee63071c07857700eab7dcb07216863bc3a2fb"

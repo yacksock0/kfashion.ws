@@ -15,10 +15,16 @@ public class KfashionWorkService {
     }
 
 
-    public void insertWork(KfashionWork work) { repository.insertWork(work); }
+    public Long insertWork(KfashionWork work) {
+        return repository.insertWork(work);
+    }
     public void updateWork(KfashionWork work) { repository.updateWork(work); }
 
     public Long selectWorkNo(String workName) {
         return repository.selectWorkNo(workName);
+    }
+
+    public void updateWorkName(KfashionWork work) {
+        repository.updateWorkName(work);
     }
 }

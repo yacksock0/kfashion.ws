@@ -14,10 +14,15 @@ public class KfashionWorkRepository {
         this.mapper = mapper;
     }
 
-    public void insertWork(KfashionWork work) { mapper.insertWork(work); }
+    public Long insertWork(KfashionWork work) {
+        return mapper.insertWork(work); }
     public void updateWork(KfashionWork work) { mapper.updateWork(work); }
 
     public Long selectWorkNo(String workName) {
         return mapper.selectWorkNo(workName);
+    }
+
+    public void updateWorkName(KfashionWork work) {
+        mapper.updateWorkName(work);
     }
 }
