@@ -70,10 +70,8 @@ export default class PolygonStore {
     LoadPolygonLocation = flow(function* LoadPolygonLocation(workNo) {
         this.locationPolygonList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/polygon/locationPolygonList?workNo='+workNo)
-            console.log(response);
+            const response = yield axios.get('/api/v1/kfashion/polygon/locationPolygonList?workNo='+workNo);
             this.locationPolygonList = response.data.locationPolygonList;
-            console.log(this.locationPolygonList);
         } catch (e) {
             console.log('error');
         }
@@ -105,10 +103,8 @@ export default class PolygonStore {
             } else {
             }
         } catch (e) {
-            console.log('error');
+            console.log('error')
         }
     });
-
-
 
 }

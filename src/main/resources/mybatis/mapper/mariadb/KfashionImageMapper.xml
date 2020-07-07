@@ -37,7 +37,7 @@
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work.work_state = 1
-        ORDER BY kfashion_image.work_no
+        ORDER BY kfashion_image.work_no DESC
     </select>
 
     <select id="selectRectList" resultMap="kfashionImageResultMap" parameterType="String">
@@ -52,7 +52,7 @@
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work.work_state = 2
-        ORDER BY kfashion_image.work_no
+        ORDER BY kfashion_image.work_no DESC
     </select>
 
     <select id="selectPolygonList" resultMap="kfashionImageResultMap" parameterType="String">
@@ -67,7 +67,7 @@
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work.work_state = 3
-        ORDER BY kfashion_image.work_no
+        ORDER BY kfashion_image.work_no DESC
     </select>
 
     <select id="getByteImage" parameterType="int" resultType="java.util.Map">
@@ -76,6 +76,12 @@
         WHERE work_no = #{workNo}
     </select>
 
+
+    <delete id="deleteImage" parameterType="Long">
+        DELETE
+        FROM kfashion_image
+        WHERE work_no=#{workNo}
+    </delete>
 
 
 

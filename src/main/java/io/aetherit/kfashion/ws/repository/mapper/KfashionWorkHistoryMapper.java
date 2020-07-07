@@ -4,4 +4,6 @@ import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
 
 public interface KfashionWorkHistoryMapper {
     void insertWorkHistory(KfashionWorkHistory workHistory);
+
+    void deleteWorkHistory(Long workNo);
 }

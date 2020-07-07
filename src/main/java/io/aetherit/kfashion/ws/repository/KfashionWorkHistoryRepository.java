@@ -17,4 +17,8 @@ public class KfashionWorkHistoryRepository {
     public void insertWorkHistory(KfashionWorkHistory workHistory) {
         mapper.insertWorkHistory(workHistory);
     }
+
+    public void deleteWorkHistory(Long workNo) {
+        mapper.deleteWorkHistory(workNo);
+    }
 }

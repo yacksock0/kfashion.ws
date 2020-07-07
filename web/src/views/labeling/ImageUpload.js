@@ -211,7 +211,6 @@ class ImageUpload extends React.Component {
                                            options={{
                                                actionsColumnIndex: -1,
                                                editCellStyle:'',
-
                                            }}
                                            editable={{
                                                onRowUpdate: rowData =>
@@ -227,7 +226,6 @@ class ImageUpload extends React.Component {
                                                                this.props.imageStore.LoadImage(userId);
                                                                         }
                                                                        }
-
                                                                    )
                                                            }
                                                            resolve();
@@ -236,9 +234,8 @@ class ImageUpload extends React.Component {
                                                onRowDelete:rowData =>
                                                    new Promise((resolve, reject) => {
                                                        setTimeout(() => {
-                                                           {axios.delete(`/api/v1/kfashion/work/deleteWorkName`,  {
+                                                           {axios.delete(`/api/v1/kfashion/image/deleteImage`,  {
                                                                no: rowData.workNo,
-                                                               workName: rowData.workName,
                                                            })
                                                                .then(res => {
                                                                        if(res.status === 200) {
@@ -246,7 +243,6 @@ class ImageUpload extends React.Component {
                                                                            this.props.imageStore.LoadImage(userId);
                                                                        }
                                                                    }
-
                                                                )
                                                            }
                                                            resolve();

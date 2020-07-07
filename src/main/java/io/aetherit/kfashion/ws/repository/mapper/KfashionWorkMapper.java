@@ -10,4 +10,6 @@ public interface KfashionWorkMapper {
     void updateWorkName(KfashionWork work);
 
     String selectFileExtension(KfashionWork work);
+
+    void deleteWork(Long workNo);
 }

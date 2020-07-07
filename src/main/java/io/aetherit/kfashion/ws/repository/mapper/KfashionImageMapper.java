@@ -15,4 +15,6 @@ public interface KfashionImageMapper {
     List<KfashionImage> selectPolygonList(String createdId);
 
     List<KfashionImage> selectRectList(String createdId);
+
+    void deleteImage(Long workNo);
 }

@@ -18,4 +18,7 @@ public class KfashionWorkHistoryService {
         repository.insertWorkHistory(workHistory);
     }
 
+    public void deleteWorkHistory(Long workNo) {
+        repository.deleteWorkHistory(workNo);
+    }
 }

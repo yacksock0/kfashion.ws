@@ -36,4 +36,8 @@ public class KfashionImageRepository {
     public List<KfashionImage> selectRectList(String createdId) {
         return mapper.selectRectList(createdId);
     }
+
+    public void deleteImage(Long workNo) {
+        mapper.deleteImage(workNo);
+    }
 }

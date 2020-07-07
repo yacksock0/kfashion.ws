@@ -29,4 +29,8 @@ public class KfashionWorkRepository {
     public String selectFileExtension(KfashionWork work) {
         return mapper.selectFileExtension(work);
     }
+
+    public void deleteWork(Long workNo) {
+        mapper.deleteWork(workNo);
+    }
 }
