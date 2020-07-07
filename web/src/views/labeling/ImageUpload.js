@@ -218,7 +218,7 @@ class ImageUpload extends React.Component {
                                                    new Promise((resolve, reject) => {
                                                        setTimeout(() => {
                                                            {axios.put(`/api/v1/kfashion/work/updateWorkName`,  {
-                                                                   workNo: rowData.workNo,
+                                                                   no: rowData.workNo,
                                                                    workName: rowData.workName,
                                                                })
                                                                    .then(response => response.data)
