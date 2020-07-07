@@ -176,12 +176,12 @@ public class KfashionImageController {
 
     /**
      * 이미지 삭제
-     * @param workNo
+     * @param KfashionImage
      * @return ResponseEntity
      * @throws
      */
 
-    @DeleteMapping(value="/deleteImage")
+    @DeleteMapping(value="/deleteImage/{workNo}")
     public ResponseEntity<Void> deleteImage(@RequestBody KfashionImage workImage) {
         kfashionWorkHistoryService.deleteWorkHistory(workImage);
         kfashionImageService.deleteImage(workImage);
