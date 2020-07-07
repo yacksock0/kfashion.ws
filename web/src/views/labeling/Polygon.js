@@ -100,7 +100,7 @@ const styles = theme => ({
 
 
 
-@inject('fileUploadStore','imageStore', 'polygonStore','authStore')
+@inject('rectStore','imageStore', 'polygonStore','authStore')
 @observer
 class Polygon extends React.Component {
     state = {
@@ -428,8 +428,8 @@ class Polygon extends React.Component {
         // this.props.polygonStore.doPolygonLocationUp();
     }
     handleClickItem = (workNo, imageData) => {
-        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-        this.props.polygonStore.LoadRectLocation(workNo);
+        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
+        this.props.rectStore.LoadRectLocation(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,

@@ -21,7 +21,7 @@ export default class PolygonStore {
     @observable List = [];
     @observable polygonInsertList= [];
     @observable polygonList= [];
-    @observable locationRectList = [];
+    @observable locationPolygonList = [];
 
     @action objGet = (obj) => {
 
@@ -29,7 +29,7 @@ export default class PolygonStore {
     }
 
     @action initStore = () => {
-        this.locationRectList = [];
+        this.locationPolygonList = [];
         this.polygonList = [];
     }
 
