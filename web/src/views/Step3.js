@@ -7,8 +7,6 @@ import {inject, observer} from "mobx-react";
 import CategoryComponent from "./step3/CategoryComponent";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-
-
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
@@ -39,16 +37,13 @@ const styles = theme => ({
         height: 50,
 
     },
-    test:{
-        border: '1px solid black'
-    }
 });
 
 @inject('professionalLabelStore','authStore', 'imageStore')
 @observer
 class Step3 extends React.Component {
     constructor(props) {
-        super(props);
+        super(...arguments);
         this.state = {
             createdId: '',
         }
@@ -108,21 +103,42 @@ class Step3 extends React.Component {
                             <Grid item xs={12} lg={6} style={{margin:"auto"}}>
                                 <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                             </Grid>
-                            <Grid item xs={12} lg={6} >
-                                <Tabs>
-                                    <TabList>
-                                        <Tab >상의</Tab>
-                                        <Tab >Tab 2</Tab>
-                                    </TabList>
-                                    <TabPanel>
-                                        <h2>content 1</h2>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        <h2>content 2</h2>
-                                    </TabPanel>
-                                </Tabs>
+                                <Grid item xs={12} lg={6} >
+                                    <Tabs>
+                                        <TabList>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>
+                                        </TabList>
 
-                                            <CategoryComponent />
+                                        <TabPanel>
+                                            <Grid items xs={12} lg={12}>
+                                                <CategoryComponent />
+                                            </Grid>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <Grid items xs={12} lg={12}>
+                                                <CategoryComponent />
+                                            </Grid>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <Grid items xs={12} lg={12}>
+                                                <CategoryComponent />
+                                            </Grid>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <Grid items xs={12} lg={12}>
+                                                <CategoryComponent />
+                                            </Grid>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <Grid items xs={12} lg={12}>
+                                                <CategoryComponent />
+                                            </Grid>
+                                        </TabPanel>
+                                    </Tabs>
                                 </Grid>
                             </Grid>
                     <hr></hr>

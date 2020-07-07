@@ -9,7 +9,6 @@ import {inject, observer} from "mobx-react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import {fabric} from "fabric";
 import BasicImageList from "./step2/BasicImageList";
 
 function TabPanel(props) {
@@ -149,7 +148,7 @@ class Step2 extends React.Component {
                          </AppBar>
                          <TabPanel value={this.state.number} index={0}>
                                  <AppBar position="static">
-                                     <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example" >
+                                     <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
                                          <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>
                                          <Tab label="하의" value={1} style={{minWidth:'20%'}}/>
                                          <Tab label="신발" value={2} style={{minWidth:'20%'}}/>
