@@ -9,6 +9,8 @@ import {inject, observer} from "mobx-react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import BasicImageList from "./step2/BasicImageList";
+import {fabric} from "fabric";
+import {toJS} from "mobx";
 
 const styles = theme => ({
     mainContainer: {
@@ -69,6 +71,15 @@ class Step2 extends React.Component {
             boundaryList: this.props.imageStore.boundaryList,
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
+        this.canvas = new fabric.Canvas('c');
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 650,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
     }
 
     handleClickOK = () => {
@@ -83,10 +94,17 @@ class Step2 extends React.Component {
         this.setState({ number: newNumber});
     }
     handleClickItem = (workNo, imageData) => {
-        this.props.polygonStore.LoadPolygonLocation(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 600,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
     }
     handlePrevious(){
         this.setState({
@@ -114,9 +132,31 @@ class Step2 extends React.Component {
         })
     }
 
-    onSelectTab(event) {
-        console.log('111111111111');
+    onSelectTab(tabIndex) {
+        console.log("onSelectTab 들어왔어");
+        this.canvas.remove(this.canvas.item(0));
+       let polyNo = tabIndex+1;
+
+        const { locationPolygonList } = this.props.polygonStore;
+        const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
+        console.log(selectedPoly);
+
+        if(selectedPoly){
+            let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
+            for (let i = 1; i < selectedPoly.length; i++) {
+                makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
+            }
+            makePath += ' z';
+            let path = new fabric.Path(makePath);
+            path.opacity = 0.5;
+
+            console.log(makePath);
+            this.canvas.add(path);
+
+        }else{alert("poly정보가 존재하지 않습니다.")}
+
     };
+
 
     render() {
         const { classes,history} = this.props;
@@ -127,7 +167,9 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={6} style={{margin:"auto"}}>
-                         <img src={`/api/v1/kfashion/img/getByteImage?workNo=${isWorkNo}`} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
+                         <div style ={{ backgroundColor : "#13264E"}}>
+                             <canvas id="c" width={600} height={800} className={classes.canvas}>  </canvas>
+                         </div>
                      </Grid>
                      <Grid item xs={12} lg={6}>
                          <Tabs>
@@ -137,13 +179,13 @@ class Step2 extends React.Component {
                              </TabList>
 
                          <TabPanel>
-                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                             <Tabs onSelect={tabIndex => this.onSelectTab(tabIndex)}>
                              <TabList>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={1}><h3 id={1}>상의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={2}><h3 id={2}>하의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={3}><h3 id={3}>신발</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={4}><h3 id={4}>가방</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={5}><h3 id={5}>악세서리</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={1}>상의</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={2}>하의</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={3}>신발</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={4}>가방</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={5}>악세서리</h3></Tab>
                              </TabList>
 
 
