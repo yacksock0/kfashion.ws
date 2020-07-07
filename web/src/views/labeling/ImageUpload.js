@@ -47,7 +47,7 @@ const tableIcons = {
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        maxWidth:'70%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -137,10 +137,11 @@ class ImageUpload extends React.Component {
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
             workNo: this.props.imageStore.workNo,
-            boundaryList : this.props.imageStore.isBoundaryList,
         })
     }
-
+    componentWillUnmount() {
+        this.props.imageStore.initStore();
+    }
 
     handlePrevious(){
         this.setState({
@@ -172,7 +173,7 @@ class ImageUpload extends React.Component {
         const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;
         return (
-            <Container component="main" className={classes.mainContainer} style={{height:'90vh'}}>
+            <Container component="main" className={classes.mainContainer} style={{height:'100vh'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
@@ -185,17 +186,39 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={12} lg={6}>
                             <div style={{marginRight:15}}>
-                                <img src={this.state.imgData} style={{display:"inline-block" , width:'100%', height:'80vh'}}/>
+                                <img src={this.state.imgData} style={{display:"inline-block" , width:'100%', height:'77vh'}}/>
                             </div>
                         </Grid>
                         <Grid item xs={12} lg={6}>
                             <div>
-                            <MaterialTable style={{height:'80vh'}}
+                            <MaterialTable style={{height:'77vh'}}
                                 icons={tableIcons}
                                 columns={this.state.columns}
-                                data={this.state.boundaryList}
+                                data={!!this.props.imageStore.boundaryList ?
+                                    this.props.imageStore.boundaryList.map((item) => {
+                                        return {
+                                            workNo: item.workNo,
+                                            fileName: item.fileName,
+                                            workName: item.workName,
+                                            createdId: item.createdId,
+                                            createdDatetime: item.createdDatetime,
+                                        }
+                                    }) : []}
                                 title="이미지 리스트"
-                                rowsPerPageOptions={10}
+                                editable={{
+                                    onRowDelete: oldData =>
+                                        new Promise((resolve, reject) => {
+                                            setTimeout(() => {
+                                                {
+                                                    let data = this.state.data;
+                                                    const index = data.indexOf(oldData);
+                                                    data.splice(index, 1);
+                                                    this.setState({ data }, () => resolve());
+                                                }
+                                                resolve();
+                                            }, 1000);
+                                        }),
+                                }}
                                 actions={[
                                     {
                                         icon: Edit,
@@ -206,11 +229,8 @@ class ImageUpload extends React.Component {
                                         }
                                     }
                                 ]}
-                                options={{
-                                actionsColumnIndex: -1,
-                                rowsPerPage:10,
-                                }}
                             />
+
                             </div>
                         </Grid>
                     </Grid>
@@ -255,4 +275,5 @@ class ImageUpload extends React.Component {
         );
     }
 };
+
 export default withSnackbar(withRouter(withStyles(styles) (ImageUpload)));
