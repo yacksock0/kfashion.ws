@@ -208,6 +208,22 @@ class ImageUpload extends React.Component {
                                            options={{
                                                actionsColumnIndex: -1,
                                            }}
+                                           editable={{
+                                               onRowUpdate: rowData =>
+                                                   new Promise((resolve, reject) => {
+                                                       setTimeout(() => {
+                                                           {
+                                                               axios.get('/api/v1/kfashion/users/userList')
+                                                                   .then(response => response.data)
+                                                                   .then(res => {
+                                                                       this.setState({ userList : res, loading: false})
+                                                                   })
+                                                           }
+                                                           resolve();
+                                                       }, 1000);
+                                                   })
+                                           }
+                                           }
                                 actions={[
                                     {
                                         icon: Edit,
