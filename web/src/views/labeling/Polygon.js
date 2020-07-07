@@ -18,9 +18,27 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import SaveIcon from '@material-ui/icons/Save';
 import {inject, observer} from "mobx-react";
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import AppBar from '@material-ui/core/AppBar';
 import PolygonList from "./PolygonList";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+
+function TabPanel(props) {
+    const { children, value, index } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+        >
+            {value === index && (
+                <Typography>{children}</Typography>
+            )}
+        </div>
+    );
+}
 
 const styles = theme => ({
     root: {
@@ -100,7 +118,7 @@ const styles = theme => ({
 
 
 
-@inject('fileUploadStore','imageStore', 'polygonStore','authStore')
+@inject('fileUploadStore','imageStore', 'rectStore','authStore')
 @observer
 class Polygon extends React.Component {
     state = {
@@ -130,6 +148,8 @@ class Polygon extends React.Component {
         ]
 
     }];
+
+
 
     rectList=[]
     canvas;
@@ -253,6 +273,29 @@ class Polygon extends React.Component {
     }
 
     startPoly = (polyNo) => {
+        const { locationRectList } = this.props.rectStore;
+        const selectedRect = locationRectList.find(rect => rect.workNo === polyNo);
+        console.log(locationRectList);
+        console.log(selectedRect);
+
+
+        const rect = new fabric.Rect({
+            id: selectedRect.workNo,
+            left: selectedRect.locationX,
+            top: selectedRect.locationY,
+            width: selectedRect.locationWidth,
+            height: selectedRect.locationHeight,
+            scaleX : selectedRect.scaleX,
+            scaleY : selectedRect.scaleY,
+            opacity: 0.2,
+            strokeWidth: 2,
+            stroke: "#880E4F",
+            selectable: false,
+            evented : false,
+        });
+        this.canvas.add(rect);
+        this.canvas.setActiveObject(rect);
+
         // this.polygonIndex +=1;
         this.onOff = 'lineUse';
         this.polyNo = polyNo;
@@ -313,13 +356,13 @@ class Polygon extends React.Component {
             this.buttonState();
         }
 
-            let objList = [];
-            this.canvas.getObjects().forEach(function (o) {
-                objList.push(o);
-            })
-            for (let i = 0; i <= objList.length; i++) {
-                this.canvas.remove(objList[i]);
-            }
+        let objList = [];
+        this.canvas.getObjects().forEach(function (o) {
+            objList.push(o);
+        })
+        for (let i = 0; i <= objList.length; i++) {
+            this.canvas.remove(objList[i]);
+        }
 
     }
 
@@ -345,6 +388,7 @@ class Polygon extends React.Component {
             }
             makePath += ' z';
             let path = new fabric.Path(makePath);
+            path.opacity = 0.5;
             this.deleteAll(-1);
             this.canvas.add(path);
             this.state.finishbtn = true;
@@ -427,6 +471,7 @@ class Polygon extends React.Component {
         // this.props.polygonStore.doPolygonLocationUp();
     }
     handleClickItem = (workNo, imageData) => {
+        this.props.rectStore.LoadRectLocation(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
@@ -453,14 +498,14 @@ class Polygon extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
-                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
-                                <TabList>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={0}><h3>영역지정</h3></Tab>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={1}><h3>이미지 리스트</h3></Tab>
-                                </TabList>
-
-                        <TabPanel value={this.state.value} index={0}>
-                            <div className={classes.mainContent}>
+                            <AppBar position="static">
+                                <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
+                                    <Tab label="영역지정" value={0} style={{minWidth:'50%'}}/>
+                                    <Tab label="이미지 리스트" value={1} style={{minWidth:'50%'}}/>
+                                </Tabs>
+                            </AppBar>
+                            <TabPanel value={this.state.value} index={0}>
+                                <div className={classes.mainContent}>
                                     <Table className={classes.table}>
                                         <TableHead>
                                             <TableRow>
@@ -764,15 +809,15 @@ class Polygon extends React.Component {
                                             </TableRow>
                                         </TableBody>
                                     </Table>
-                            </div>
-
-                            <div style={{backgroundColor: 'grey'}}>
-                                <div align="center">
-                                    <Button onClick={() => this.submit()}>submit </Button>
                                 </div>
-                            </div>
 
-                        </TabPanel>
+                                <div style={{backgroundColor: 'grey'}}>
+                                    <div align="center">
+                                        <Button onClick={() => this.submit()}>submit </Button>
+                                    </div>
+                                </div>
+
+                            </TabPanel>
                             <TabPanel value={this.state.value} index={1}>
                                 <PolygonList onClick={this.handleClickItem} />
                             </TabPanel>

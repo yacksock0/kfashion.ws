@@ -41,7 +41,7 @@ const tableIcons = {
 
 @inject('authStore','imageStore','rectStore')
 @observer
- class PolygonList extends React.Component {
+class PolygonList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

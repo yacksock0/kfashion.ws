@@ -74,7 +74,7 @@ class ImageList extends React.Component {
     }
     render() {
         return (
-                <MaterialTable
+            <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
                 data={!!this.props.imageStore.boundaryList ?
@@ -88,18 +88,17 @@ class ImageList extends React.Component {
                         }
                     }) : []}
                 title="이미지 리스트"
-
                 options={{
                     actionsColumnIndex: -1,
                 }}
-                    actions={[
-                        {
+                actions={[
+                    {
                         icon: CheckIcon,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
-                     }
-                    ]}
-                />
+                    }
+                ]}
+            />
         );
     }
 };

@@ -15,9 +15,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import AppBar from '@material-ui/core/AppBar';
 import ImageList from "./ImageList";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
 import SaveIcon from "@material-ui/icons/Save";
 
 
@@ -107,12 +108,27 @@ const styles = theme => ({
         borderRadius: 12,
     },
 });
+function TabPanel(props) {
+    const { children, value, index } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+        >
+            {value === index && (
+                <Typography>{children}</Typography>
+            )}
+        </div>
+    );
+}
 
 
 @inject('fileUploadStore','imageStore','rectStore','authStore')
 @observer
 class BoundaryBox extends React.Component {
-
     i=0;
     width;
     height;
@@ -268,7 +284,6 @@ class BoundaryBox extends React.Component {
     }
 
     addRect = (rectNo) => {
-        this.id = rectNo;
         let obj = 0;
         this.canvas.getObjects().forEach(function( o) {
             if(o.id == rectNo) {
@@ -368,6 +383,7 @@ class BoundaryBox extends React.Component {
         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
         this.props.rectStore.doRectLocationUp();
     }
+
     handlePrevious(){
         this.setState({
             count: this.state.count-1
@@ -400,22 +416,22 @@ class BoundaryBox extends React.Component {
             result = window.confirm("다른작업을 하시겠습니까?");
         }
         if (result) {
-        this.props.imageStore.changeWorkNo(workNo);
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width: 700,
-            height: 800,
-            originX: 'left',
-            originY: 'top'
-        });
+            this.props.imageStore.changeWorkNo(workNo);
+            this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+                left: 25,
+                top: 25,
+                width: 700,
+                height: 800,
+                originX: 'left',
+                originY: 'top'
+            });
             this.objectList.length =0;
             this.save1 = false;
             this.save2 = false;
             this.save3 = false;
             this.save4 = false;
             this.save5 = false;
-    }
+        }
     }
 
     render() {
@@ -429,16 +445,18 @@ class BoundaryBox extends React.Component {
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width={650} height={850} className={classes.canvas}>  </canvas>
+                                <canvas id="c" width= "750" height= "850"  >  </canvas>
                             </div>
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
                             <div className={classes.root}>
+                                <AppBar position="static">
                                     <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
                                         <Tab label="영역지정" value={0} style={{minWidth:'50%'}}/>
                                         <Tab label="이미지 리스트" value={1} style={{minWidth:'50%'}}/>
                                     </Tabs>
+                                </AppBar>
                                 <TabPanel value={this.state.value} index={0}>
                                     <Table className={classes.table}>
                                         <TableHead>
@@ -465,8 +483,15 @@ class BoundaryBox extends React.Component {
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(1)}>
+                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis1}>
                                                             <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Save">
+                                                        <IconButton aria-label="save" onClick={() => this.doSave(1)} disabled={this.state.buttonDis1}>
+                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -480,14 +505,22 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(2) } >
+                                                        onClick={() => this.addRect(2) }
+                                                        disabled={this.state.buttonDis2}>
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(2)}>
+                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis2}>
                                                             <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Save">
+                                                        <IconButton aria-label="save" onClick={() => this.doSave(2)} disabled={this.state.buttonDis2}>
+                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -501,14 +534,21 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(3) } >
+                                                        onClick={() => this.addRect(3) } disabled={this.state.buttonDis3}>
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(3)}>
+                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis3}>
                                                             <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Save">
+                                                        <IconButton aria-label="save" onClick={() => this.doSave(3)} disabled={this.state.buttonDis3}>
+                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -522,14 +562,21 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(4) } >
+                                                        onClick={() => this.addRect(4) } disabled={this.state.buttonDis4}>
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(4)}>
+                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis4}>
                                                             <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Save">
+                                                        <IconButton aria-label="save" onClick={() => this.doSave(4)} disabled={this.state.buttonDis4}>
+                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -543,13 +590,13 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(5) } >
+                                                        onClick={() => this.addRect(5) } disabled={this.state.buttonDis5}>
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(5)}>
+                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis5}>
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>
@@ -566,17 +613,18 @@ class BoundaryBox extends React.Component {
                                         </TableBody>
                                     </Table>
 
-                            <div style={{backgroundColor: 'grey'}}>
-                                <div align="center">
-                                    <Button onClick={this.submit} >submit </Button>
-                                </div>
-                            </div>
-                        </TabPanel>
 
-                                <TabPanel value={this.state.value} index={1}>
-                                    <ImageList onClick={this.handleClickItem} />
+
+                                    <div style={{backgroundColor: 'grey'}}>
+                                        <div align="center">
+                                            <Button onClick={this.submit} color={'#999999'}>submit </Button>
+                                        </div>
+                                    </div>
                                 </TabPanel>
                             </div>
+                            <TabPanel value={this.state.value} index={1}>
+                                <ImageList onClick={this.handleClickItem} />
+                            </TabPanel>
                         </Grid>
                     </Grid>
                 </div>
