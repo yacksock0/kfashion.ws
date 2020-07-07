@@ -41,4 +41,19 @@
         )
     </insert>
 
+    <select id="selectPolyNoList" parameterType="Long" resultMap="kfashionImageLocationPolygonPointResultMap">
+        SELECT *
+        FROM kfashion_image_location_polygon_point
+        WHERE work_no =#{workNo}
+    </select>
+
+    <select id="selectLocationPolygonList" parameterType="KfashionImageLocationPolygonPoint" resultMap="kfashionImageLocationPolygonPointResultMap">
+        SELECT *
+        FROM kfashion_image_location_polygon_point
+        WHERE work_no =#{workNo}
+        AND rect_no =#{rectNo}
+        AND poly_no =#{polyNo}
+        AND no =#{no}
+    </select>
+
 </mapper>
