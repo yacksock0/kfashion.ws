@@ -18,27 +18,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import SaveIcon from '@material-ui/icons/Save';
 import {inject, observer} from "mobx-react";
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import AppBar from '@material-ui/core/AppBar';
 import PolygonList from "./PolygonList";
-
-function TabPanel(props) {
-    const { children, value, index } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-        >
-            {value === index && (
-                <Typography>{children}</Typography>
-            )}
-        </div>
-    );
-}
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const styles = theme => ({
     root: {
@@ -118,7 +100,7 @@ const styles = theme => ({
 
 
 
-@inject('fileUploadStore','imageStore', 'rectStore','authStore')
+@inject('rectStore','imageStore', 'polygonStore','authStore')
 @observer
 class Polygon extends React.Component {
     state = {
@@ -132,6 +114,7 @@ class Polygon extends React.Component {
         buttonDis3 : false,
         buttonDis4 : false,
         buttonDis5 : false,
+        tabIndex: 0,
     }
     save1 = false;
     save2 = false;
@@ -148,8 +131,6 @@ class Polygon extends React.Component {
         ]
 
     }];
-
-
 
     rectList=[]
     canvas;
@@ -273,26 +254,6 @@ class Polygon extends React.Component {
     }
 
     startPoly = (polyNo) => {
-        const { locationRectList } = this.props.rectStore;
-        const selectedRect = locationRectList.find(rect => rect.rectNo === polyNo);
-        if(selectedRect){
-            const rect = new fabric.Rect({
-                id: selectedRect.rectNo,
-                left: selectedRect.locationX,
-                top: selectedRect.locationY,
-                width: selectedRect.locationWidth,
-                height: selectedRect.locationHeight,
-                scaleX : selectedRect.scaleX,
-                scaleY : selectedRect.scaleY,
-                opacity: 0.5,
-                strokeWidth: 2,
-                stroke: "#880E4F",
-                selectable: false,
-                evented : false,
-            });
-            this.canvas.add(rect);
-            this.canvas.setActiveObject(rect);
-        }else{alert("rect정보가 존재하지 않습니다.")}
         // this.polygonIndex +=1;
         this.onOff = 'lineUse';
         this.polyNo = polyNo;
@@ -312,7 +273,6 @@ class Polygon extends React.Component {
             case 4 : console.log('4');this.setState({buttonDis4: false}); break;
             case 5 : console.log('5');this.setState({buttonDis5: false}); break;
         }
-
     }
 
     deleteOne = () => {
@@ -386,7 +346,6 @@ class Polygon extends React.Component {
             }
             makePath += ' z';
             let path = new fabric.Path(makePath);
-            path.opacity = 0.5;
             this.deleteAll(-1);
             this.canvas.add(path);
             this.state.finishbtn = true;
@@ -469,6 +428,7 @@ class Polygon extends React.Component {
         // this.props.polygonStore.doPolygonLocationUp();
     }
     handleClickItem = (workNo, imageData) => {
+        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
@@ -483,6 +443,7 @@ class Polygon extends React.Component {
     render() {
         const { classes } = this.props;
         const {isWorkNo} = this.props.imageStore;
+
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
@@ -495,329 +456,334 @@ class Polygon extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
-                            <AppBar position="static">
-                                <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
-                                    <Tab label="영역지정" value={0} style={{minWidth:'50%'}}/>
-                                    <Tab label="이미지 리스트" value={1} style={{minWidth:'50%'}}/>
-                                </Tabs>
-                            </AppBar>
-                            <TabPanel value={this.state.value} index={0}>
-                                <div className={classes.mainContent}>
-                                    <Table className={classes.table}>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>영역</TableCell>
-                                                <TableCell>poly start</TableCell>
-                                                <TableCell>poly finish</TableCell>
-                                                <TableCell>delete One</TableCell>
-                                                <TableCell>delete All</TableCell>
-                                                <TableCell>save</TableCell>
-                                            </TableRow>
-                                        </TableHead>
+                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                                <TabList>
+                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={0}><h3>영역지정</h3></Tab>
+                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={1}><h3>이미지 리스트</h3></Tab>
+                                </TabList>
 
-                                        <TableBody>
-                                            <TableRow >
-                                                <TableCell>상의 영역</TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        id="1"
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Draw Polygon"
-                                                        onClick={() => this.startPoly(1) }
-                                                        disabled={this.state.buttonDis1}>
-                                                        start <AddIcon/>
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        id="2"
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="finish"
-                                                        onClick={() => this.finishPath() }
-                                                        disabled={this.state.buttonDis1}>
-                                                        finish
-                                                    </Button>
+                                <TabPanel value={this.state.value} index={0}>
+                                    <div className={classes.mainContent}>
+                                        <Table className={classes.table}>
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>영역</TableCell>
+                                                    <TableCell>poly start</TableCell>
+                                                    <TableCell>poly finish</TableCell>
+                                                    <TableCell>delete One</TableCell>
+                                                    <TableCell>delete All</TableCell>
+                                                    <TableCell>save</TableCell>
+                                                </TableRow>
+                                            </TableHead>
 
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Delete">
-                                                        <IconButton id="3" aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis1}>
-                                                            <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        id="4"
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.delete(1) }
-                                                        disabled={this.state.buttonDis1}>
-                                                        All<DeleteIcon />
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        id="5"
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.doSave(1) }
-                                                        startIcon={<SaveIcon />}
-                                                        disabled={this.state.buttonDis1}>
-                                                        save
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                        <TableBody >
-                                            <TableRow>
-                                                <TableCell>하의 영역</TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Draw Polygon"
-                                                        onClick={() => this.startPoly(2) }
-                                                        disabled={this.state.buttonDis2}>
-                                                        start <AddIcon/>
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="finish"
-                                                        onClick={() => this.finishPath() }
-                                                        disabled={this.state.buttonDis2}>
-                                                        finish
-                                                    </Button>
+                                            <TableBody>
+                                                <TableRow >
+                                                    <TableCell>상의 영역</TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            id="1"
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Draw Polygon"
+                                                            onClick={() => this.startPoly(1) }
+                                                            disabled={this.state.buttonDis1}>
+                                                            start <AddIcon/>
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            id="2"
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="finish"
+                                                            onClick={() => this.finishPath() }
+                                                            disabled={this.state.buttonDis1}>
+                                                            finish
+                                                        </Button>
 
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis2}>
-                                                            <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.delete(2) }
-                                                        disabled={this.state.buttonDis2}>
-                                                        All<DeleteIcon />
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.doSave(2) }
-                                                        disabled={this.state.buttonDis2}>
-                                                        save
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                        <TableBody>
-                                            <TableRow>
-                                                <TableCell>신발 영역</TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Draw Polygon"
-                                                        onClick={() => this.startPoly(3) }
-                                                        disabled={this.state.buttonDis3}>
-                                                        start <AddIcon/>
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="finish"
-                                                        onClick={() => this.finishPath() }
-                                                        disabled={this.state.buttonDis3}>
-                                                        finish
-                                                    </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Delete">
+                                                            <IconButton id="3" aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis1}>
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            id="4"
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.delete(1) }
+                                                            disabled={this.state.buttonDis1}>
+                                                            All<DeleteIcon />
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            id="5"
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.doSave(1) }
+                                                            startIcon={<SaveIcon />}
+                                                            disabled={this.state.buttonDis1}>
+                                                            save
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                            <TableBody >
+                                                <TableRow>
+                                                    <TableCell>하의 영역</TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Draw Polygon"
+                                                            onClick={() => this.startPoly(2) }
+                                                            disabled={this.state.buttonDis2}>
+                                                            start <AddIcon/>
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="finish"
+                                                            onClick={() => this.finishPath() }
+                                                            disabled={this.state.buttonDis2}>
+                                                            finish
+                                                        </Button>
 
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis3}>
-                                                            <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.delete(3) }
-                                                        disabled={this.state.buttonDis3} >
-                                                        All<DeleteIcon />
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.doSave(3) }
-                                                        disabled={this.state.buttonDis3} >
-                                                        save
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                        <TableBody>
-                                            <TableRow>
-                                                <TableCell>가방 영역</TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Draw Polygon"
-                                                        onClick={() => this.startPoly(4) }
-                                                        disabled={this.state.buttonDis4}>
-                                                        start <AddIcon/>
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="finish"
-                                                        onClick={() => this.finishPath() }
-                                                        disabled={this.state.buttonDis4} >
-                                                        finish
-                                                    </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Delete">
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis2}>
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.delete(2) }
+                                                            disabled={this.state.buttonDis2}>
+                                                            All<DeleteIcon />
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.doSave(2) }
+                                                            disabled={this.state.buttonDis2}>
+                                                            save
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                            <TableBody>
+                                                <TableRow>
+                                                    <TableCell>신발 영역</TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Draw Polygon"
+                                                            onClick={() => this.startPoly(3) }
+                                                            disabled={this.state.buttonDis3}>
+                                                            start <AddIcon/>
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="finish"
+                                                            onClick={() => this.finishPath() }
+                                                            disabled={this.state.buttonDis3}>
+                                                            finish
+                                                        </Button>
 
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis4}>
-                                                            <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.delete(4) }
-                                                        disabled={this.state.buttonDis4}>
-                                                        All<DeleteIcon />
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.doSave(4) }
-                                                        disabled={this.state.buttonDis4}>
-                                                        save
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                        <TableBody>
-                                            <TableRow >
-                                                <TableCell>악세사리 영역</TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Draw Polygon"
-                                                        onClick={() => this.startPoly(5) }
-                                                        disabled={this.state.buttonDis5} >
-                                                        start <AddIcon/>
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="finish"
-                                                        onClick={() => this.finishPath() }
-                                                        disabled={this.state.buttonDis5}>
-                                                        finish
-                                                    </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Delete">
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis3}>
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.delete(3) }
+                                                            disabled={this.state.buttonDis3} >
+                                                            All<DeleteIcon />
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.doSave(3) }
+                                                            disabled={this.state.buttonDis3} >
+                                                            save
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                            <TableBody>
+                                                <TableRow>
+                                                    <TableCell>가방 영역</TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Draw Polygon"
+                                                            onClick={() => this.startPoly(4) }
+                                                            disabled={this.state.buttonDis4}>
+                                                            start <AddIcon/>
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="finish"
+                                                            onClick={() => this.finishPath() }
+                                                            disabled={this.state.buttonDis4} >
+                                                            finish
+                                                        </Button>
 
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteOne()}  disabled={this.state.buttonDis5}>
-                                                            <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.delete(5) }
-                                                        disabled={this.state.buttonDis5}>
-                                                        All<DeleteIcon />
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Button
-                                                        type="submit"
-                                                        className={classes.buttonType1}
-                                                        variant="outlined"
-                                                        title="Delete All"
-                                                        onClick={() => this.doSave(5) }
-                                                        disabled={this.state.buttonDis5}>
-                                                        save
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
-                                </div>
-                                <div style={{backgroundColor: 'grey'}}>
-                                    <div align="center">
-                                        <Button onClick={() => this.submit()}>submit </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Delete">
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis4}>
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.delete(4) }
+                                                            disabled={this.state.buttonDis4}>
+                                                            All<DeleteIcon />
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.doSave(4) }
+                                                            disabled={this.state.buttonDis4}>
+                                                            save
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                            <TableBody>
+                                                <TableRow >
+                                                    <TableCell>악세사리 영역</TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Draw Polygon"
+                                                            onClick={() => this.startPoly(5) }
+                                                            disabled={this.state.buttonDis5} >
+                                                            start <AddIcon/>
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="finish"
+                                                            onClick={() => this.finishPath() }
+                                                            disabled={this.state.buttonDis5}>
+                                                            finish
+                                                        </Button>
+
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Delete">
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()}  disabled={this.state.buttonDis5}>
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.delete(5) }
+                                                            disabled={this.state.buttonDis5}>
+                                                            All<DeleteIcon />
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.doSave(5) }
+                                                            disabled={this.state.buttonDis5}>
+                                                            save
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
                                     </div>
-                                </div>
-                            </TabPanel>
-                            <TabPanel value={this.state.value} index={1}>
-                                <PolygonList onClick={this.handleClickItem} />
-                            </TabPanel>
+
+                                    <div style={{backgroundColor: 'grey'}}>
+                                        <div align="center">
+                                            <Button onClick={() => this.submit()}>submit </Button>
+                                        </div>
+                                    </div>
+
+                                </TabPanel>
+                                <TabPanel value={this.state.value} index={1}>
+                                    <PolygonList onClick={this.handleClickItem} />
+                                </TabPanel>
+                            </Tabs>
                         </Grid>
+
                     </Grid>
+
                 </div>
 
                 {/*Stepper*/}
