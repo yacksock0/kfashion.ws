@@ -36,7 +36,6 @@ export default class RectStore {
 
     @action initStore = () => {
         this.rectList = [];
-        this.locationRectList = [];
     }
 
     @action changeNewRectLocationWorkNo = (workNo) => {

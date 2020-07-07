@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SideMenu(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const { mobileOpen, setMobileOpen, isLoggedIn } = props;
+    const { mobileOpen, setMobileOpen, isLoggedIn, authrity } = props;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

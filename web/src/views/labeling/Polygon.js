@@ -274,28 +274,25 @@ class Polygon extends React.Component {
 
     startPoly = (polyNo) => {
         const { locationRectList } = this.props.rectStore;
-        const selectedRect = locationRectList.find(rect => rect.workNo === polyNo);
-        console.log(locationRectList);
-        console.log(selectedRect);
-
-
-        const rect = new fabric.Rect({
-            id: selectedRect.workNo,
-            left: selectedRect.locationX,
-            top: selectedRect.locationY,
-            width: selectedRect.locationWidth,
-            height: selectedRect.locationHeight,
-            scaleX : selectedRect.scaleX,
-            scaleY : selectedRect.scaleY,
-            opacity: 0.2,
-            strokeWidth: 2,
-            stroke: "#880E4F",
-            selectable: false,
-            evented : false,
-        });
-        this.canvas.add(rect);
-        this.canvas.setActiveObject(rect);
-
+        const selectedRect = locationRectList.find(rect => rect.rectNo === polyNo);
+        if(selectedRect){
+            const rect = new fabric.Rect({
+                id: selectedRect.rectNo,
+                left: selectedRect.locationX,
+                top: selectedRect.locationY,
+                width: selectedRect.locationWidth,
+                height: selectedRect.locationHeight,
+                scaleX : selectedRect.scaleX,
+                scaleY : selectedRect.scaleY,
+                opacity: 0.5,
+                strokeWidth: 2,
+                stroke: "#880E4F",
+                selectable: false,
+                evented : false,
+            });
+            this.canvas.add(rect);
+            this.canvas.setActiveObject(rect);
+        }else{alert("rect정보가 존재하지 않습니다.")}
         // this.polygonIndex +=1;
         this.onOff = 'lineUse';
         this.polyNo = polyNo;
@@ -315,6 +312,7 @@ class Polygon extends React.Component {
             case 4 : console.log('4');this.setState({buttonDis4: false}); break;
             case 5 : console.log('5');this.setState({buttonDis5: false}); break;
         }
+
     }
 
     deleteOne = () => {
@@ -485,7 +483,6 @@ class Polygon extends React.Component {
     render() {
         const { classes } = this.props;
         const {isWorkNo} = this.props.imageStore;
-
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
@@ -810,21 +807,17 @@ class Polygon extends React.Component {
                                         </TableBody>
                                     </Table>
                                 </div>
-
                                 <div style={{backgroundColor: 'grey'}}>
                                     <div align="center">
                                         <Button onClick={() => this.submit()}>submit </Button>
                                     </div>
                                 </div>
-
                             </TabPanel>
                             <TabPanel value={this.state.value} index={1}>
                                 <PolygonList onClick={this.handleClickItem} />
                             </TabPanel>
                         </Grid>
-
                     </Grid>
-
                 </div>
 
                 {/*Stepper*/}
