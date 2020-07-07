@@ -6,27 +6,9 @@ import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Color from "./step2/Color";
 import SleeveLength from "./step2/SleeveLength";
 import {inject, observer} from "mobx-react";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import BasicImageList from "./step2/BasicImageList";
-
-function TabPanel(props) {
-    const { children, value, index } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-        >
-            {value === index && (
-                <Typography>{children}</Typography>
-            )}
-        </div>
-    );
-}
 
 const styles = theme => ({
     mainContainer: {
@@ -140,23 +122,24 @@ class Step2 extends React.Component {
                          <img src={`/api/v1/kfashion/img/getByteImage?workNo=${isWorkNo}`} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>
-                         <AppBar position="static">
-                             <Tabs value={this.state.number} onChange={this.handleTabChangeTop} aria-label="simple tabs example" >
-                                 <Tab label="라벨링" number={0}  style={{minWidth:'50%'}}/>
-                                 <Tab label="이미지 리스트" number={1} style={{minWidth:'50%'}}/>
-                             </Tabs>
-                         </AppBar>
-                         <TabPanel value={this.state.number} index={0}>
-                                 <AppBar position="static">
-                                     <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
-                                         <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>
-                                         <Tab label="하의" value={1} style={{minWidth:'20%'}}/>
-                                         <Tab label="신발" value={2} style={{minWidth:'20%'}}/>
-                                         <Tab label="가방" value={3} style={{minWidth:'20%'}}/>
-                                         <Tab label="악세서리" value={4} style={{minWidth:'20%'}}/>
-                                     </Tabs>
-                                 </AppBar>
-                                 <TabPanel value={this.state.value} index={0}>
+                         <Tabs>
+                             <TabList>
+                                 <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
+                                 <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                             </TabList>
+
+                         <TabPanel>
+                             <Tabs>
+                             <TabList>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>
+                             </TabList>
+
+
+                             <TabPanel>
                                      <div className={classes.content}>
                                      <Typography variant="h5" component="h2">
                                          색상
@@ -178,7 +161,7 @@ class Step2 extends React.Component {
                                          <SleeveLength />
                                      </div>
                                  </TabPanel>
-                                 <TabPanel value={this.state.value} index={2}>
+                                 <TabPanel>
                                      <div className={classes.content}>
                                          <Typography variant="h5" component="h2">
                                              색상
@@ -200,7 +183,7 @@ class Step2 extends React.Component {
                                          <SleeveLength />
                                      </div>
                                  </TabPanel>
-                         <TabPanel value={this.state.value} index={3}>
+                                 <TabPanel>
                              <div className={classes.content}>
                                  <Typography variant="h5" component="h2">
                                      색상
@@ -222,7 +205,7 @@ class Step2 extends React.Component {
                                  <SleeveLength />
                              </div>
                          </TabPanel>
-                         <TabPanel value={this.state.value} index={4}>
+                                 <TabPanel>
                              <div className={classes.content}>
                                  <Typography variant="h5" component="h2">
                                      색상
@@ -244,7 +227,7 @@ class Step2 extends React.Component {
                                  <SleeveLength />
                              </div>
                          </TabPanel>
-                         <TabPanel value={this.state.value} index={1}>
+                                 <TabPanel>
                              <div className={classes.content}>
                                  <Typography variant="h5" component="h2">
                                      색상
@@ -265,14 +248,20 @@ class Step2 extends React.Component {
                                  </div>
                                  <SleeveLength />
                              </div>
+                                 </TabPanel>
+                             </Tabs>
                          </TabPanel>
-                         </TabPanel>
-                         <TabPanel value={this.state.number} index={1}>
+                             <TabPanel>
                             <BasicImageList onClick={this.handleClickItem}/>
-                         </TabPanel>
+                          </TabPanel>
+                         </Tabs>
+
                      </Grid>
+
                  </Grid>
+
                 </div>
+
                 <hr></hr>
                 <Grid container>
                     <Grid item xs={3} lg={1} style={{marginRight:10}}>

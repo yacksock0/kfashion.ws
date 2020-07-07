@@ -15,10 +15,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import AppBar from '@material-ui/core/AppBar';
 import ImageList from "./ImageList";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 
 const styles = theme => ({
@@ -107,23 +106,6 @@ const styles = theme => ({
         borderRadius: 12,
     },
 });
-function TabPanel(props) {
-    const { children, value, index } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-        >
-            {value === index && (
-                <Typography>{children}</Typography>
-            )}
-        </div>
-    );
-}
-
 
 @inject('fileUploadStore','imageStore','rectStore','authStore')
 @observer
@@ -349,13 +331,12 @@ class BoundaryBox extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
-                            <div className={classes.root}>
-                                <AppBar position="static">
-                                    <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
-                                        <Tab label="영역지정" value={0} style={{minWidth:'50%'}}/>
-                                        <Tab label="이미지 리스트" value={1} style={{minWidth:'50%'}}/>
-                                    </Tabs>
-                                </AppBar>
+                                <Tabs>
+                                    <TabList>
+                                        <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
+                                        <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                    </TabList>
+
                                 <TabPanel value={this.state.value} index={0}>
                                     <Table className={classes.table}>
                                         <TableHead>
@@ -478,10 +459,10 @@ class BoundaryBox extends React.Component {
                                 </div>
                             </div>
                         </TabPanel>
-                            </div>
                                 <TabPanel value={this.state.value} index={1}>
                                     <ImageList onClick={this.handleClickItem} />
                                 </TabPanel>
+                                </Tabs>
                         </Grid>
                     </Grid>
                 </div>
