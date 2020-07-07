@@ -40,7 +40,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore')
+@inject('fileUploadStore','authStore','imageStore','polygonStore')
 @observer
 class BasicImageList extends React.Component {
     constructor(props) {
@@ -51,6 +51,8 @@ class BasicImageList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
@@ -58,14 +60,11 @@ class BasicImageList extends React.Component {
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
+        this.props.polygonStore.LoadPolygonImage(createdId);
+    }
 
-        axios.get('/api/v1/kfashion/label/basicLabelList?createdId='+createdId)
-            .then(response => {
-                this.setState({ basicLabelList : response.data.basicLabelList})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+    componentWillUnmount() {
+        this.props.polygonStore.initStore();
     }
     handleClick = (workNo, imageData) => {
         if(this.props.onClick) {
@@ -78,25 +77,21 @@ class BasicImageList extends React.Component {
             <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
-                data={basicLabelList}
+                data={!!this.props.polygonStore.polygonList ?
+                    this.props.polygonStore.polygonList.map((item) => {
+                        return {
+                            workNo: item.workNo,
+                            fileName: item.fileName,
+                            workName: item.workName,
+                            createdId: item.createdId,
+                            createdDatetime: item.createdDatetime,
+                        }
+                    }) : []}
                 title="이미지 리스트"
                 options={{
                     actionsColumnIndex: -1,
                 }}
-                // editable={{
-                //     onRowDelete: oldData =>
-                //     new Promise((resolve, reject) => {
-                //     setTimeout(() => {
-                //     {
-                //     let data = this.state.data;
-                //     const index = data.indexOf(oldData);
-                //     data.splice(index, 1);
-                //     this.setState({ data }, () => resolve());
-                //     }
-                //     resolve();
-                //     }, 1000);
-                //     }),
-                //     }}
+
                 actions={[
                     {
                         icon: CheckIcon,

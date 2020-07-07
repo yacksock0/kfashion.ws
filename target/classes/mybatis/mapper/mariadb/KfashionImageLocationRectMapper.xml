@@ -52,5 +52,11 @@
         AND rect_no = #{rectNo}
     </select>
 
+    <select id="selectRectNoList" parameterType="Long" resultMap="kfashionImageLocationRectResultMap">
+        SELECT *
+        FROM kfashion_image_location_rect
+        WHERE work_no = #{workNo}
+    </select>
+
 
 </mapper>

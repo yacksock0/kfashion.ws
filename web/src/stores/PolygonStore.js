@@ -19,12 +19,20 @@ export default class PolygonStore {
     @observable state = State.Ready;
     @observable NewPolygonLocation = {...EmptyNewPolygonLocation};
     @observable List = [];
+    @observable polygonInsertList= [];
     @observable polygonList= [];
+    @observable locationRectList = [];
 
     @action objGet = (obj) => {
 
-        this.polygonList = obj;
+        this.polygonInsertList = obj;
     }
+
+    @action initStore = () => {
+        this.locationRectList = [];
+        this.polygonList = [];
+    }
+
     @action changeNewPolygonLocationWorkNo = (workNo) => {
         this.NewPolygonLocation.workNo = workNo;
     }
@@ -49,11 +57,34 @@ export default class PolygonStore {
     }
 
 
+    LoadPolygonImage = flow(function* LoadPolygonImage(createdId) {
+        this.polygonList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/polygon/polygonList?createdId='+createdId)
+            this.polygonList = response.data.polygonList;
+        } catch (e) {
+            console.log('error')
+        }
+    });
 
-    doPolygonLocationUp = flow(function* doPolygonLocationUp(doAction) {
+
+    LoadRectLocation = flow(function* LoadRectLocation(workNo) {
+        this.locationRectList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/rect/locationRectList?workNo='+workNo)
+            this.locationRectList = response.data.locationRectList;
+            console.log(this.locationRectList);
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+
+
+    doPolygonLocationUp = flow(function* doPolygonLocationUp() {
         this.state = State.Pending;
         try {
-            const kfashionPolygonList = this.polygonList.map(r => ({
+            const kfashionPolygonList = this.polygonInsertList.map(r => ({
                 workNo :this.NewPolygonLocation.workNo,
                 workStep : this.NewPolygonLocation.workStep,
                 createdId : this.NewPolygonLocation.createdId,
@@ -66,14 +97,13 @@ export default class PolygonStore {
             const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
             if (resp.status === 200) {
                 this.state = State.Success;
-                if (doAction !== undefined) doAction();
+                const createdId = this.NewPolygonLocation.createdId;
+                this.LoadPolygonImage(createdId);
             } else {
             }
         } catch (e) {
-            console.log('에러좀 나지 마라')
+            console.log('error')
         }
     });
-
-
 
 }

@@ -26,4 +26,8 @@ public class KfashionImageLocationRectService {
     public List<KfashionImageLocationRect> selectLocationRectList(KfashionImageLocationRect rect) {
         return repository.selectLocationRectList(rect);
     }
+
+    public List<KfashionImageLocationRect> selectRectNoList(Long workNo) {
+        return repository.selectRectNoList(workNo);
+    }
 }
