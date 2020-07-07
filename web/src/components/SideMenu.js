@@ -114,7 +114,7 @@ export default function SideMenu(props) {
                                 <ListItemIcon>
                                     <AspectRatioIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="네모영역 지정" />
+                                <ListItemText primary="사각형 지정" />
                             </ListItem>
                         </List>
                     </Collapse>
@@ -126,7 +126,7 @@ export default function SideMenu(props) {
                             <ListItemIcon>
                                 <FormatShapesIcon />
                             </ListItemIcon>
-                            <ListItemText primary="다각형 영역지정" />
+                            <ListItemText primary="다각형 지정" />
                         </ListItem>
                     </List>
                 </Collapse>
