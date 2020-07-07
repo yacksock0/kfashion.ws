@@ -221,16 +221,37 @@ class ImageUpload extends React.Component {
                                                                    no: rowData.workNo,
                                                                    workName: rowData.workName,
                                                                })
-                                                                   .then(response => response.data)
                                                                    .then(res => {
-                                                                       console.log('SUCCESS')
-                                                                   })
-                                                           }
+                                                                        if(res.status === 200) {
                                                                const userId = this.props.authStore.isUserId
                                                                this.props.imageStore.LoadImage(userId);
+                                                                        }
+                                                                       }
+
+                                                                   )
+                                                           }
                                                            resolve();
                                                        }, 1000);
-                                                   })
+                                                   }),
+                                               onRowDelete:rowData =>
+                                                   new Promise((resolve, reject) => {
+                                                       setTimeout(() => {
+                                                           {axios.delete(`/api/v1/kfashion/work/deleteWorkName`,  {
+                                                               no: rowData.workNo,
+                                                               workName: rowData.workName,
+                                                           })
+                                                               .then(res => {
+                                                                       if(res.status === 200) {
+                                                                           const userId = this.props.authStore.isUserId
+                                                                           this.props.imageStore.LoadImage(userId);
+                                                                       }
+                                                                   }
+
+                                                               )
+                                                           }
+                                                           resolve();
+                                                       }, 1000);
+                                                   }),
                                            }
                                          }
                             />

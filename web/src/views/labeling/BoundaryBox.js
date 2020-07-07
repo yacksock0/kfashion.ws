@@ -316,7 +316,7 @@ class BoundaryBox extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes,history } = this.props;
         const {workNo} = this.props.imageStore;
 
         return (
@@ -487,8 +487,8 @@ class BoundaryBox extends React.Component {
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
-                        Save and Next
+                        onClick={()=>history.push('/step/polygon')} >
+                        Next Step
                     </Button>
                 </div>
             </Container>
