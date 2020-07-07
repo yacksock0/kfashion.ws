@@ -18,27 +18,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import SaveIcon from '@material-ui/icons/Save';
 import {inject, observer} from "mobx-react";
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import AppBar from '@material-ui/core/AppBar';
 import PolygonList from "./PolygonList";
-
-function TabPanel(props) {
-    const { children, value, index } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-        >
-            {value === index && (
-                <Typography>{children}</Typography>
-            )}
-        </div>
-    );
-}
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const styles = theme => ({
     root: {
@@ -132,6 +114,7 @@ class Polygon extends React.Component {
         buttonDis3 : false,
         buttonDis4 : false,
         buttonDis5 : false,
+        tabIndex: 0,
     }
     save1 = false;
     save2 = false;
@@ -473,12 +456,12 @@ class Polygon extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
-                        <AppBar position="static">
-                            <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example">
-                                <Tab label="영역지정" value={0} style={{minWidth:'50%'}}/>
-                                <Tab label="이미지 리스트" value={1} style={{minWidth:'50%'}}/>
-                            </Tabs>
-                        </AppBar>
+                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                                <TabList>
+                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={0}><h3>영역지정</h3></Tab>
+                                    <Tab style={{width: '50%', height:60,textAlign:'center'}} index={1}><h3>이미지 리스트</h3></Tab>
+                                </TabList>
+
                         <TabPanel value={this.state.value} index={0}>
                             <div className={classes.mainContent}>
                                     <Table className={classes.table}>
@@ -796,6 +779,7 @@ class Polygon extends React.Component {
                             <TabPanel value={this.state.value} index={1}>
                                 <PolygonList onClick={this.handleClickItem} />
                             </TabPanel>
+                            </Tabs>
                         </Grid>
 
                     </Grid>
