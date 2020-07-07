@@ -83,6 +83,7 @@ class Step2 extends React.Component {
         this.setState({ number: newNumber});
     }
     handleClickItem = (workNo, imageData) => {
+        this.props.polygonStore.LoadPolygonLocation(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
@@ -112,6 +113,11 @@ class Step2 extends React.Component {
             workNo: this.props.imageStore.workNo
         })
     }
+
+    onSelectTab(event) {
+        console.log('111111111111');
+    };
+
     render() {
         const { classes,history} = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -131,13 +137,13 @@ class Step2 extends React.Component {
                              </TabList>
 
                          <TabPanel>
-                             <Tabs>
+                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                              <TabList>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={1}><h3 id={1}>상의</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={2}><h3 id={2}>하의</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={3}><h3 id={3}>신발</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={4}><h3 id={4}>가방</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}} index={5}><h3 id={5}>악세서리</h3></Tab>
                              </TabList>
 
 
