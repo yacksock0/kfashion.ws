@@ -29,7 +29,7 @@ function TabPanel(props) {
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        maxWidth:'100%',
+        maxWidth:'80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -100,10 +100,10 @@ class Step3 extends React.Component {
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
                         <Grid container spacing={3}>
-                            <Grid item xs={12} lg={6} style={{margin:"auto"}}>
+                            <Grid item xs={12} lg={5} style={{margin:"auto"}}>
                                 <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                             </Grid>
-                            <Grid item xs={12} lg={6} >
+                            <Grid item xs={12} lg={5} >
                                 <AppBar position="static">
                                     <Tabs value={this.state.value} onChange={this.handleTabChange} aria-label="simple tabs example" >
                                         <Tab label="상의" value={0}  style={{minWidth:'20%'}}/>

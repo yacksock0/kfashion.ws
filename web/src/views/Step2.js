@@ -32,7 +32,7 @@ function TabPanel(props) {
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        maxWidth:'100%',
+        maxWidth:'70%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -112,7 +112,7 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
-                     <Grid item xs={12} lg={6} style={{margin:"auto"}}>
+                     <Grid item xs={12} lg={5} style={{margin:"auto"}}>
                          <img src={`/api/v1/kfashion/img/getByteImage?workNo=${isWorkNo}`} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                      </Grid>
                      <Grid item xs={12} lg={6}>

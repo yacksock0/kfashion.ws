@@ -23,7 +23,7 @@ import ImageList from "./ImageList";
 
 const styles = theme => ({
     root: {
-        width: "100%",
+        width: "80%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
@@ -252,8 +252,8 @@ class BoundaryBox extends React.Component {
                 name : `${rectNo}`,
                 left: 100,
                 top: 100,
-                width: 600,
-                height: 800,
+                width: 100,
+                height: 100,
                 fill: grey,
                 opacity: 0.20
             });
@@ -326,8 +326,8 @@ class BoundaryBox extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 200,
-            height : 200,
+            width : 600,
+            height : 650,
             originX: 'left',
             originY: 'top'
         });
@@ -345,7 +345,6 @@ class BoundaryBox extends React.Component {
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
                                 <canvas id="c" width={600} height={800} className={classes.canvas}>  </canvas>
-
                             </div>
                         </Grid>
 
