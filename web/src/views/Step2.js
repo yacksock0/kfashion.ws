@@ -45,7 +45,7 @@ const styles = theme => ({
     },
 });
 
-@inject('basicLabelStore','authStore','imageStore','polygonStore')
+@inject('basicLabelStore','authStore','imageStore')
 @observer
 class Step2 extends React.Component {
     constructor(props) {
@@ -80,12 +80,10 @@ class Step2 extends React.Component {
         this.setState({ value: newValue });
     }
     handleTabChangeTop= (event, newNumber) => {
-        this.setState({ number: newNumber});
+        this.setState({ number: newNumber });
     }
     handleClickItem = (workNo, imageData) => {
         this.props.imageStore.changeWorkNo(workNo);
-        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-        this.props.polygonStore.LoadPolygonLocation(workNo);
     }
     handlePrevious(){
         this.setState({

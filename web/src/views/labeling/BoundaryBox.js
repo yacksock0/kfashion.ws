@@ -133,6 +133,7 @@ class BoundaryBox extends React.Component {
 
     objectList = [];
     state = {
+        tabIndex: 1,
         imgData :'',
         workNo:'',
         value:1,
@@ -146,8 +147,8 @@ class BoundaryBox extends React.Component {
         buttonDis4 : false,
         buttonDis5 : false,
     }
-    handleTabChange = (event, newValue) => {
-        this.setState({ value: newValue });
+    handleTabChange = (event, newIndex) => {
+        this.setState({ tapIndex: newIndex });
     }
     componentDidMount() {
         this.props.enqueueSnackbar("BoundaryBox Work", {
@@ -427,12 +428,12 @@ class BoundaryBox extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
-                            <Tabs>
+                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                 <TabList>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                    <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}} ><h3>영역지정</h3></Tab>
+                                    <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}} ><h3>이미지 리스트</h3></Tab>
                                 </TabList>
-                                <TabPanel value={this.state.value} index={0}>
+                                <TabPanel index={0}>
                                     <Table className={classes.table}>
                                         <TableHead>
                                             <TableRow>
@@ -593,7 +594,7 @@ class BoundaryBox extends React.Component {
                                         </div>
                                     </div>
                                 </TabPanel>
-                                <TabPanel value={this.state.value} index={1}>
+                                <TabPanel index={1}>
                                     <ImageList onClick={this.handleClickItem} />
                                 </TabPanel>
                             </Tabs>
