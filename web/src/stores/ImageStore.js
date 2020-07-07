@@ -80,6 +80,22 @@ export default class ImageStore {
         }
     });
 
+    deleteImg = flow(function* (rowData) {
+        console.log(rowData);
+        try {
+            yield axios.delete(`/api/v1/kfashion/image/deleteImage/${rowData.workNo}`, {
+                data:
+                    {
+                        workNo: rowData.workNo,
+                    }
+            });
+            this.LoadImage(rowData.createdId);
+        } catch (err) {
+            console.log(err);
+        }
+    })
+    
+    
     fileupload (file,userId){
         const formData = new FormData();
         for(let i=0; i < file.length; i++) {
