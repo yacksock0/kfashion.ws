@@ -17,9 +17,35 @@ const WorkNo = {
 const BoundaryList ={
     boundaryList:[],
 }
+
+const AddState = {
+    Closed: 'Closed',
+    Opened: 'Opened',
+    Adding: 'Adding',
+    Added: 'Added',
+    AddFailed: 'AddFailed',
+};
+const UpdateState = {
+    Closed: 'Closed',
+    Loading: 'Loading',
+    Loaded: 'Loaded',
+    LoadFailed: 'LoadFailed',
+    Updating: 'Updating',
+    Updated: 'Updated',
+    UpdateFailed: 'UpdateFailed',
+    Uploading: 'Uploading',
+    Uploaded: 'Uploaded',
+    UploadFailed: 'UploadFailed',
+};
 export default class ImageStore {
+    @observable files = [];
+    @observable uploadFile = '';
+    @observable addState = AddState.Closed;
+    @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable workNo = {...WorkNo};
+
+
     @action changeWorkNo = (workNo) => {
         this.workNo = workNo;
     }
@@ -50,4 +76,20 @@ export default class ImageStore {
             this.imageData = Object.assign({}, WorkNo);
         }
     });
+
+    fileupload (file,userId){
+        const formData = new FormData();
+        for(let i=0; i < file.length; i++) {
+            formData.append("files",file[i]);
+        }
+        formData.append('files', file);
+        formData.append("userId",userId);
+        const resp = axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') })
+            .then(res =>{
+                if(res.status === 200) {
+                    this.LoadImage(userId);
+                }else {
+                }
+            })
+    };
 }

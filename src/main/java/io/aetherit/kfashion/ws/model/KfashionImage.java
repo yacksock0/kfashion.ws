@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 public class KfashionImage implements Serializable {
 
     private Long workNo;
+    private String workName;
+    private String fileName;
     private byte[] imgData;
     private String createdId;
     private LocalDateTime createdDatetime;

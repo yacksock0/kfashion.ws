@@ -120,11 +120,14 @@ class ImageUpload extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '등록일 ', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
+
     componentDidMount() {
         this.props.enqueueSnackbar("Image Upload", {
             variant: 'info'
@@ -133,9 +136,11 @@ class ImageUpload extends React.Component {
         this.props.imageStore.LoadImage(createdId)
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
-            workNo: this.props.imageStore.workNo
+            workNo: this.props.imageStore.workNo,
+            boundaryList : this.props.imageStore.isBoundaryList,
         })
     }
+
 
     handlePrevious(){
         this.setState({
@@ -188,8 +193,9 @@ class ImageUpload extends React.Component {
                             <MaterialTable style={{height:'77vh'}}
                                 icons={tableIcons}
                                 columns={this.state.columns}
-                                data={boundaryList}
+                                data={this.state.boundaryList}
                                 title="이미지 리스트"
+                                onChange={this.handelChagneBoundaryList}
                                 editable={{
                                     onRowDelete: oldData =>
                                         new Promise((resolve, reject) => {
@@ -215,6 +221,7 @@ class ImageUpload extends React.Component {
                                     }
                                 ]}
                             />
+
                             </div>
                         </Grid>
                     </Grid>

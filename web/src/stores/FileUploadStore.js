@@ -1,4 +1,4 @@
-import {action, flow, observable} from "mobx";
+import {action, computed, flow, observable} from "mobx";
 import axios from "axios";
 import {State} from "./AuthStore";
 
@@ -21,12 +21,13 @@ const UpdateState = {
     Uploaded: 'Uploaded',
     UploadFailed: 'UploadFailed',
 };
+
 export default class FileUploadStore {
     @observable files = [];
     @observable uploadFile = '';
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
-    @observable state = State.Ready;
+
 /*
     @action fileUploadHandle = () => {
         this.fileUpload();
@@ -39,15 +40,41 @@ export default class FileUploadStore {
         console.log("this.uploadFile:", uploadFile);
     }
 
-    fileupload (file,userId){
-            const formData = new FormData();
-            for(let i=0; i < file.length; i++) {
-            formData.append("files",file[i]);
-            console.log(file[i]);
-        }
-            formData.append('files', file);
-            formData.append("userId",userId);
-            console.log("files:", userId);
-            axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') });
-    };
+    @action fileUpdateSuccess = (Uploaded) => {
+        this.updateState.Uploaded =  Uploaded;
+    }
+
+    @action fileUpdateFail = (closed) => {
+        this.updateState.Closed =  closed;
+    }
+
+    @computed get isFileUpSuccess() {
+        return this.updateState.Uploaded;
+    }
+
+    @computed get isFileUpFile() {
+        return this.updateState.Closed;
+    }
+
+
+    // fileupload (file,userId){
+    //         const formData = new FormData();
+    //         for(let i=0; i < file.length; i++) {
+    //         formData.append("files",file[i]);
+    //     }
+    //         formData.append('files', file);
+    //         formData.append("userId",userId);
+    //         const resp = axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') })
+    //         .then(res =>{
+    //             if(res.status === 200) {
+    //                     const response = axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
+    //                     const boundaryList = response.data.boundaryList;
+    //                     this.boundaryList=boundaryList;
+    //                     const workNo = this.boundaryList[0].workNo;
+    //                     this.workNo = workNo;
+    //             }else {
+    //             }
+    //         })
+    //
+    // };
 }
