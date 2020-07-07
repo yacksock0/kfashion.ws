@@ -183,7 +183,7 @@ CREATE TABLE kfashion_image_location_polygon (
 
 	PRIMARY KEY (work_no, work_step, rect_no, no),
 	CONSTRAINT fk_kfashion_image_location_polygon_work_no_work_step	FOREIGN KEY (work_no,work_step)
-																    REFERENCES 	kfashion_work_history (work_no, work_step),
+																    REFERENCES 	kfashion_work_history (work_no, work_step)
     CONSTRAINT fk_kfashion_image_location_polygon_rect_no 	        FOREIGN KEY (rect_no)
 																	REFERENCES 	kfashion_image_location_rect (rect_no)
 );
