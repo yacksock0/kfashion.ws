@@ -96,7 +96,6 @@ class App extends React.Component {
                         <SideMenu mobileOpen={this.state.mobileOpen}
                                   setMobileOpen={this.setMobileOpen}
                                   isLoggedIn={loginState === store.State.Authenticated} />
-
                         {loginState === store.State.Authenticated ? (
                             <React.Fragment>
                                 <Switch>

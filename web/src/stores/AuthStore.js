@@ -66,6 +66,9 @@ export default class AuthStore {
         this.login.password = password;
     };
 
+    @action changeLoginUserGroupNo = (groupNo) =>{
+        this.loginUser.workNo = groupNo;
+    };
     @action logOut = pathname => {
         // if(pathname.startsWith("/broadcast/")) {
         if (window.confirm("로그아웃 하시겠습니까?")) {
@@ -75,6 +78,9 @@ export default class AuthStore {
         //     this.doLogout();
         // }
     };
+    @computed get loginUserGroupNo(){
+        return this.loginUser.groupNo;
+    }
 
     @computed get isUserId() {
        return this.loginUser.id;
@@ -95,11 +101,8 @@ export default class AuthStore {
             const response = yield axios.post('/api/v1/kfashion/authentications/signin', param);
             const token = response.data.token;
             const user = response.data;
-
             localStorage.setItem(LocalStorageTokenKey, token);
-
             console.log('doLogin');
-
             this.loginState = State.Authenticated;
             this.loginToken = token;
             this.loginUser = user;
@@ -108,7 +111,6 @@ export default class AuthStore {
             this.loginState = State.Failed;
             this.loginToken = '';
             this.loginUser = Object.assign({}, EmptyUser);
-
         }
     });
 
@@ -125,7 +127,6 @@ export default class AuthStore {
                 this.loginToken = token;
                 this.loginUser = user;
                 console.log(this.loginUser)
-
             } catch(e) {
                 this.loginState = State.NotAuthenticated;
                 this.loginToken = '';
@@ -136,10 +137,8 @@ export default class AuthStore {
 
     doLogout = flow(function* doLogout() {
         localStorage.removeItem(LocalStorageTokenKey);
-
         try {
             yield axios.post('/api/v1/kfashion/authentications/signout');
-
             console.log(this);
             this.login = Object.assign({}, EmptyLogin);
             this.loginState = State.NotAuthenticated;

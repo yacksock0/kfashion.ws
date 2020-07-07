@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SideMenu(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const { mobileOpen, setMobileOpen, isLoggedIn, authrity } = props;
+    const { mobileOpen, setMobileOpen, isLoggedIn, authrity} = props;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -196,9 +196,9 @@ export default function SideMenu(props) {
                         }}
                 >
                     <Toolbar className={classes.toolbar}>
-                        <Link to='/' className={classes.link}>
-                            <img src="/images/aether_white.png" alt="AetherIT" className={classes.logo}/>
-                        </Link>
+                        {/*<Link to='/' className={classes.link}>*/}
+                        {/*    <img src="/images/aether_white.png" alt="AetherIT" className={classes.logo}/>*/}
+                        {/*</Link>*/}
                     </Toolbar>
                     {isLoggedIn ? (
                         drawer
@@ -216,9 +216,9 @@ export default function SideMenu(props) {
                         open
                 >
                     <Toolbar className={classes.toolbar}>
-                        <Link to='/' className={classes.link}>
-                            <img src="/images/aether_white.png" alt="AetherIT" className={classes.logo}/>
-                        </Link>
+                        {/*<Link to='/' className={classes.link}>*/}
+                        {/*    <img src="/images/aether_white.png" alt="AetherIT" className={classes.logo}/>*/}
+                        {/*</Link>*/}
                     </Toolbar>
                     {isLoggedIn ? (
                         drawer
