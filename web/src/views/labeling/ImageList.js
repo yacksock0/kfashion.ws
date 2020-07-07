@@ -17,6 +17,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
+import CheckIcon from '@material-ui/icons/Check';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -92,7 +93,7 @@ class ImageList extends React.Component {
                 }}
                     actions={[
                         {
-                        icon: Edit,
+                        icon: CheckIcon,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                      }

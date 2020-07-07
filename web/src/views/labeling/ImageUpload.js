@@ -205,6 +205,9 @@ class ImageUpload extends React.Component {
                                         }
                                     }) : []}
                                 title="이미지 리스트"
+                                           options={{
+                                               actionsColumnIndex: -1,
+                                           }}
                                 editable={{
                                     onRowDelete: oldData =>
                                         new Promise((resolve, reject) => {
@@ -230,7 +233,6 @@ class ImageUpload extends React.Component {
                                     }
                                 ]}
                             />
-
                             </div>
                         </Grid>
                     </Grid>

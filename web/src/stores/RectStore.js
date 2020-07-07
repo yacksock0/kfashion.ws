@@ -29,15 +29,13 @@ export default class RectStore {
     @observable rectList = [];
 
     @action objGet = (obj) => {
-        console.log(obj);
+        console.log("1차 : " + obj);
         this.rectInsertList = obj;
     }
-
 
     @action initStore = () => {
         this.rectList = [];
     }
-
 
     @action changeNewRectLocationWorkNo = (workNo) => {
         this.NewRectLocation.workNo = workNo;
@@ -75,7 +73,6 @@ export default class RectStore {
         this.NewRectLocation.scaleY = scaleY;
     }
 
-
     @computed get isPending() {
         return this.state === State.Pending;
     }
@@ -88,8 +85,6 @@ export default class RectStore {
         return this.state === State.Fail;
     }
 
-
-
     LoadRectImage = flow(function* LoadRectImage(createdId) {
         this.rectList = [];
         try {
@@ -100,8 +95,6 @@ export default class RectStore {
             console.log('error')
         }
     });
-
-
 
     doRectLocationUp = flow(function* doRectLocationUp(doAction) {
         this.state = State.Pending;
@@ -120,6 +113,7 @@ export default class RectStore {
                 workNo :this.NewRectLocation.workNo,
                 workStep : this.NewRectLocation.workStep
             }));
+            console.log(kfashionRectList);
             const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList);
             if (resp.status === 200) {
                 this.state = State.Success;
@@ -131,7 +125,4 @@ export default class RectStore {
             console.log('error')
         }
     });
-
-
-
 }

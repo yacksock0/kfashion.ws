@@ -215,7 +215,7 @@ class BoundaryBox extends React.Component {
                     top: upY,
                     width: width,
                     height: height,
-                    opacity: 0.0,
+                    opacity: 0,
                     strokeWidth: 2,
                     stroke: "#880E4F",
 
@@ -334,10 +334,10 @@ class BoundaryBox extends React.Component {
     }
 
     doSave = (rectNo) => {
-        let objList = [];
+        let objList;
         this.canvas.getObjects().forEach(function (o) {
             if(o.id == rectNo){
-                objList.push(o);
+                objList = o;
             }
         })
         this.objectList.push(objList);
@@ -378,7 +378,6 @@ class BoundaryBox extends React.Component {
     }
 
     submit = () => {
-        console.log("objectList : " + this.objectList);
         this.props.rectStore.objGet(this.objectList);
         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
         this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);

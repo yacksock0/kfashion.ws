@@ -17,6 +17,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
+import CheckIcon from '@material-ui/icons/Check';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -86,6 +87,9 @@ const tableIcons = {
                         }
                     }) : []}
                 title="이미지 리스트"
+                options={{
+                    actionsColumnIndex: -1,
+                }}
                 editable={{
                     onRowDelete: oldData =>
                         new Promise((resolve, reject) => {
@@ -102,7 +106,7 @@ const tableIcons = {
                 }}
                 actions={[
                     {
-                        icon: Edit,
+                        icon: CheckIcon,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                     }
