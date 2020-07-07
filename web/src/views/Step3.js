@@ -45,6 +45,7 @@ class Step3 extends React.Component {
     constructor(props) {
         super(...arguments);
         this.state = {
+            tapIndex: 0,
             createdId: '',
         }
     }
@@ -103,13 +104,13 @@ class Step3 extends React.Component {
                                 <img src={this.state.imgData} alt="" style={{display:"inline-block" , width:'100%', height:'77vh'}}></img>
                             </Grid>
                                 <Grid item xs={12} lg={6} >
-                                    <Tabs>
+                                    <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                         <TabList>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>
+                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
+                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
+                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>
+                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>
+                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>
                                         </TabList>
 
                                         <TabPanel>
