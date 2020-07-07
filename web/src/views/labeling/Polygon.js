@@ -100,7 +100,7 @@ const styles = theme => ({
 
 
 
-@inject('rectStore','imageStore', 'polygonStore','authStore')
+@inject('rectStore','imageStore', 'rectStore','authStore')
 @observer
 class Polygon extends React.Component {
     state = {
@@ -254,6 +254,26 @@ class Polygon extends React.Component {
     }
 
     startPoly = (polyNo) => {
+        const { locationRectList } = this.props.rectStore;
+        const selectedRect = locationRectList.find(rect => rect.rectNo === polyNo);
+        if(selectedRect){
+            const rect = new fabric.Rect({
+                id: selectedRect.rectNo,
+                left: selectedRect.locationX,
+                top: selectedRect.locationY,
+                width: selectedRect.locationWidth,
+                height: selectedRect.locationHeight,
+                scaleX : selectedRect.scaleX,
+                scaleY : selectedRect.scaleY,
+                opacity: 0.5,
+                strokeWidth: 2,
+                stroke: "#880E4F",
+                selectable: false,
+                evented : false,
+            });
+            this.canvas.add(rect);
+            this.canvas.setActiveObject(rect);
+        }else{alert("rect정보가 존재하지 않습니다.")}
         // this.polygonIndex +=1;
         this.onOff = 'lineUse';
         this.polyNo = polyNo;
@@ -346,6 +366,7 @@ class Polygon extends React.Component {
             }
             makePath += ' z';
             let path = new fabric.Path(makePath);
+            path.opacity = 0.5;
             this.deleteAll(-1);
             this.canvas.add(path);
             this.state.finishbtn = true;
@@ -428,8 +449,8 @@ class Polygon extends React.Component {
         // this.props.polygonStore.doPolygonLocationUp();
     }
     handleClickItem = (workNo, imageData) => {
-        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.rectStore.LoadRectLocation(workNo);
+        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
@@ -443,7 +464,6 @@ class Polygon extends React.Component {
     render() {
         const { classes } = this.props;
         const {isWorkNo} = this.props.imageStore;
-
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
