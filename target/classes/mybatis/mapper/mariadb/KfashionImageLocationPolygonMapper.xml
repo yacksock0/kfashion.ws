@@ -31,7 +31,7 @@
     </insert>
 
     <select id="selectPolygonList" resultMap="kfashionImageLocationPolygonResultMap" parameterType="String">
-          SELECT DISTINCT
+        SELECT DISTINCT
         kfashion_image.work_no,
         kfashion_work.work_name,
         kfashion_work_history.created_id,

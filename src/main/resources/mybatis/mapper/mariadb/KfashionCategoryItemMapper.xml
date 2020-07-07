@@ -11,81 +11,81 @@
     </resultMap>
 
     <select id="selectColorList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item kci
-        where category_no=3;
+        SELECT *
+        FROM kfashion_category_item kci
+        WHERE category_no=3;
     </select>
 
     <select id="selectSleeveLengthList" resultMap="kfashionCategoryItemResultMap">
-        select *
+        SELECT *
         from kfashion_category_item kci
-        where category_no=8;
+        WHERE category_no=8;
     </select>
 
     <select id="selectStyleList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
+        SELECT *
+        FROM kfashion_category_item
         where category_no=1;
     </select>
 
     <select id="selectCategoryList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=2;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=2;
     </select>
 
     <select id="selectDetailList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=4;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=4;
     </select>
 
     <select id="selectPrintList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=5;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=5;
     </select>
 
     <select id="selectTextureList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=6;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=6;
     </select>
 
     <select id="selectLengthList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=7;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=7;
     </select>
 
     <select id="selectNeckLineList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=9;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=9;
     </select>
 
     <select id="selectKaraList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=10;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=10;
     </select>
 
     <select id="selectFitList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=11;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=11;
     </select>
 
     <select id="selectSafeList" resultMap="kfashionCategoryItemResultMap">
-        select *
-        from kfashion_category_item
-        where category_no=12;
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=12;
     </select>
 
     <select id="selectSilhouetteList" resultMap="kfashionCategoryItemResultMap">
         select *
         from kfashion_category_item
-        where category_no=13;
+        WHERE category_no=13;
     </select>
 
 </mapper>

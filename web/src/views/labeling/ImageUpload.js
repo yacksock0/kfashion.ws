@@ -120,11 +120,14 @@ class ImageUpload extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '등록일 ', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
+
     componentDidMount() {
         this.props.enqueueSnackbar("Image Upload", {
             variant: 'info'
@@ -133,8 +136,11 @@ class ImageUpload extends React.Component {
         this.props.imageStore.LoadImage(createdId)
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
-            workNo: this.props.imageStore.workNo
+            workNo: this.props.imageStore.workNo,
         })
+    }
+    componentWillUnmount() {
+        this.props.imageStore.initStore();
     }
 
     handlePrevious(){
@@ -188,7 +194,16 @@ class ImageUpload extends React.Component {
                             <MaterialTable style={{height:'77vh'}}
                                 icons={tableIcons}
                                 columns={this.state.columns}
-                                data={boundaryList}
+                                data={!!this.props.imageStore.boundaryList ?
+                                    this.props.imageStore.boundaryList.map((item) => {
+                                        return {
+                                            workNo: item.workNo,
+                                            fileName: item.fileName,
+                                            workName: item.workName,
+                                            createdId: item.createdId,
+                                            createdDatetime: item.createdDatetime,
+                                        }
+                                    }) : []}
                                 title="이미지 리스트"
                                 editable={{
                                     onRowDelete: oldData =>
@@ -215,6 +230,7 @@ class ImageUpload extends React.Component {
                                     }
                                 ]}
                             />
+
                             </div>
                         </Grid>
                     </Grid>

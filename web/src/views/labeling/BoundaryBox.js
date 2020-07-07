@@ -19,12 +19,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import ImageList from "./ImageList";
-import SaveIcon from "@material-ui/icons/Save";
 
 
 const styles = theme => ({
     root: {
-        width: "100%",
+        width: "80%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
@@ -45,7 +44,7 @@ const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'100%',
+        maxWidth:'80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -110,6 +109,7 @@ const styles = theme => ({
 });
 function TabPanel(props) {
     const { children, value, index } = props;
+
     return (
         <div
             role="tabpanel"
@@ -124,15 +124,10 @@ function TabPanel(props) {
     );
 }
 
+
 @inject('fileUploadStore','imageStore','rectStore','authStore')
 @observer
 class BoundaryBox extends React.Component {
-    objectList = [];
-    downX;
-    downY;
-    upX;
-    upY;
-    onOff = '';
 
     i=0;
     width;
@@ -144,26 +139,13 @@ class BoundaryBox extends React.Component {
     y;
     id = []
 
-    save1 = false;
-    save2 = false;
-    save3 = false;
-    save4 = false;
-    save5 = false;
-    objectList = [];
-
     state = {
         imgData :'',
         workNo:'',
         value:1,
         count:0,
         winheight: 0,
-        winwidth: 0,
-
-        buttonDis1 : false,
-        buttonDis2 : false,
-        buttonDis3 : false,
-        buttonDis4 : false,
-        buttonDis5 : false,
+        winwidth: 0
     }
     handleTabChange = (event, newValue) => {
         this.setState({ value: newValue });
@@ -181,66 +163,26 @@ class BoundaryBox extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,
             top: 25,
-            width : 700,
+            width : 650,
             height : 800,
             originX: 'left',
             originY: 'top'
         });
-        this.canvas.selection = false;
-        fabric.Object.prototype.transparentCorners = false;
-        fabric.Object.prototype.cornerColor = 'blue';
-        fabric.Object.prototype.hasRotatingPoint = false;
 
-        this.canvas.on('mouse:down', function (e) {
-            this.downX = e.pointer.x;
-            this.downY = e.pointer.y
-            console.log("11111111 : " + e.pointer.x);
-            console.log(e.pointer.y);
+        this.canvas.on('object:moving', function (e) {
+            const asd = e.target;
+            console.log("name : "+asd.name);
+
         });
 
-        this.canvas.on('mouse:up', function(e) {
-            if (this.selection) {
-                console.log("222222222 : " + e.pointer.x);
-                console.log(e.pointer.y);
-                let upX = e.pointer.x;
-                let upY = e.pointer.y;
-                let width = (this.downX - upX);
-                let height = (this.downY - upY);
-                let id = this.id;
 
-                const rect = new fabric.Rect({
-                    id: id,
-                    left: upX,
-                    top: upY,
-                    width: width,
-                    height: height,
-                    opacity: 0.0,
-                    strokeWidth: 2,
-                    stroke: "#880E4F",
-
-                });
-
-                // rect.fill = 'yellow';
-                this.add(rect);
-                this.setActiveObject(rect);
-                this.selection = false;
-                console.log(rect);
-                // this.add(upX, upY, width, height);
+        this.canvas.on('mouse:move', (e) => {
+            console.log("mouse.x : " +e.pointer.x);
+            console.log("mouse.y : " +e.pointer.y);
+            if(e.pointer.x <700){
+                // e.pointer.x-10;
             }
         });
-
-        // this.canvas.on('object:moving', function (e) {
-        //     const asd = e.target;
-        //     console.log("name : "+asd.name);
-        // });
-        //
-        // this.canvas.on('mouse:move', (e) => {
-        //     console.log("mouse.x : " +e.pointer.x);
-        //     console.log("mouse.y : " +e.pointer.y);
-        //     if(e.pointer.x <700){
-        //         // e.pointer.x-10;
-        //     }
-        // });
 
         const maxScaleX = 3.2;
         const maxScaleY = 3.2;
@@ -297,6 +239,7 @@ class BoundaryBox extends React.Component {
     }
 
     addRect = (rectNo) => {
+        this.id = rectNo;
         let obj = 0;
         this.canvas.getObjects().forEach(function( o) {
             if(o.id == rectNo) {
@@ -304,90 +247,35 @@ class BoundaryBox extends React.Component {
             }
         })
         if(obj==0){
-            this.canvas.id= rectNo;
-            this.onOff = 'rectUse';
-            this.id = rectNo;
-            this.canvas.selection = true;
+            const rect = new fabric.Rect({
+                id : `${rectNo}`,
+                name : `${rectNo}`,
+                left: 100,
+                top: 100,
+                width: 100,
+                height: 100,
+                fill: grey,
+                opacity: 0.20
+            });
+
+            this.canvas.add(rect);
+            this.canvas.setActiveObject(rect);
         }else {
             alert('이미 존재합니다.');
         }
-        this.setState({
-            buttonDis1: true,
-            buttonDis2: true,
-            buttonDis3: true,
-            buttonDis4: true,
-            buttonDis5: true,
-        });
-        console.log(rectNo);
-        switch (rectNo) {
-            case 1 : console.log('1'); this.setState({buttonDis1: false}); break;
-            case 2 : console.log('2');this.setState({buttonDis2: false}); break;
-            case 3 : console.log('3');this.setState({buttonDis3: false}); break;
-            case 4 : console.log('4');this.setState({buttonDis4: false}); break;
-            case 5 : console.log('5');this.setState({buttonDis5: false}); break;
-        }
-    }
-    delete = () => {
-        let result = window.confirm("삭제하시겠습니까?");
-        if(result){
-            this.deleteAll();
-        }
     }
 
-    deleteAll = () =>{
-        let objList = [];
-        this.canvas.getObjects().forEach(function (o) {
-            objList.push(o);
-        })
-        for (let i = 0; i <= objList.length; i++) {
-            this.canvas.remove(objList[i]);
-        }
-        this.buttonState();
-    }
-
-    doSave = (rectNo) => {
-        let objList = [];
-        this.canvas.getObjects().forEach(function (o) {
-            if(o.id == rectNo){
-                objList.push(o);
+    deleteObject = (rectNo) => {
+        let obj = 0;
+        this.canvas.getObjects().forEach(function( o) {
+            console.log("o : " +o.id);
+            if(o.id == rectNo) {
+                obj = o;
             }
         })
-        this.objectList.push(objList);
-        this.deleteAll();
-        switch (rectNo) {
-            case 1 :
-                console.log('1');
-                this.save1 = true;
-                break;
-            case 2 :
-                console.log('2');
-                this.save2 = true;
-                break;
-            case 3 :
-                console.log('3');
-                this.save3 = true;
-                break;
-            case 4 :
-                console.log('4');
-                this.save4 = true;
-                break;
-            case 5 :
-                console.log('5');
-                this.save5 = true;
-                break;
-        }
-        this.buttonState();
+        this.canvas.remove(obj);
     }
 
-    buttonState = () => {
-        this.setState({
-            buttonDis1: this.save1,
-            buttonDis2: this.save2,
-            buttonDis3: this.save3,
-            buttonDis4: this.save4,
-            buttonDis5: this.save5,
-        });
-    }
     SelectObject = (j) => {
         let obj = 0;
         this.canvas.getObjects().forEach(function( o) {
@@ -400,14 +288,13 @@ class BoundaryBox extends React.Component {
         this.canvas.renderAll();
     }
 
-    submit = () => {
-        console.log("objectList : " + this.objectList);
-        // this.props.rectStore.objGet(this.objectList);
-        // this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-        // this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-        // this.props.rectStore.doRectLocationUp();
-    }
 
+    submit = () => {
+        this.props.rectStore.objGet(this.canvas.getObjects());
+        this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+        this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+        this.props.rectStore.doRectLocationUp();
+    }
     handlePrevious(){
         this.setState({
             count: this.state.count-1
@@ -434,16 +321,30 @@ class BoundaryBox extends React.Component {
         })
     }
 
+    handleClickItem = (workNo, imageData) => {
+        this.props.imageStore.changeWorkNo(workNo);
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            left: 25,
+            top: 25,
+            width : 600,
+            height : 800,
+            originX: 'left',
+            originY: 'top'
+        });
+    }
+
     render() {
         const { classes } = this.props;
+        const {workNo} = this.props.imageStore;
+
         return (
-            <Container component="main" className={classes.mainContainer} style={{height:'97vh', border: '1px solid black'}}>
+            <Container component="main" className={classes.mainContainer} style={{height:'97vh'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                             <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width= "750" height= "850"  >  </canvas>
+                                <canvas id="c" width={650} height={850} className={classes.canvas}>  </canvas>
                             </div>
                         </Grid>
 
@@ -462,7 +363,6 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>영역</TableCell>
                                                 <TableCell>추가버튼</TableCell>
                                                 <TableCell>삭제버튼</TableCell>
-                                                <TableCell>저장버튼</TableCell>
                                             </TableRow>
                                         </TableHead>
 
@@ -474,22 +374,14 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(1) }
-                                                        disabled={this.state.buttonDis1}>
+                                                        onClick={() => this.addRect(1) } >
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis1}>
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(1)}>
                                                             <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Save">
-                                                        <IconButton aria-label="save" onClick={() => this.doSave(1)} disabled={this.state.buttonDis1}>
-                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -503,22 +395,14 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(2) }
-                                                        disabled={this.state.buttonDis2}>
+                                                        onClick={() => this.addRect(2) } >
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis2}>
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(2)}>
                                                             <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Save">
-                                                        <IconButton aria-label="save" onClick={() => this.doSave(2)} disabled={this.state.buttonDis2}>
-                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -532,21 +416,14 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(3) } disabled={this.state.buttonDis3}>
+                                                        onClick={() => this.addRect(3) } >
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis3}>
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(3)}>
                                                             <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Save">
-                                                        <IconButton aria-label="save" onClick={() => this.doSave(3)} disabled={this.state.buttonDis3}>
-                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -560,21 +437,14 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(4) } disabled={this.state.buttonDis4}>
+                                                        onClick={() => this.addRect(4) } >
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis4}>
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(4)}>
                                                             <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Save">
-                                                        <IconButton aria-label="save" onClick={() => this.doSave(4)} disabled={this.state.buttonDis4}>
-                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -588,41 +458,57 @@ class BoundaryBox extends React.Component {
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(5) } disabled={this.state.buttonDis5}>
+                                                        onClick={() => this.addRect(5) } >
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
                                                 <TableCell>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis5}>
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteObject(5)}>
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
-                                                <TableCell>
-                                                    <Tooltip title="Save">
-                                                        <IconButton aria-label="save" onClick={() => this.doSave(5)} disabled={this.state.buttonDis5}>
-                                                            <SaveIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </TableCell>
-
                                             </TableRow>
                                         </TableBody>
                                     </Table>
-
-                                    <div style={{backgroundColor: 'grey'}}>
-                                        <div align="center">
-                                            <Button onClick={this.submit} color={'#999999'}>submit </Button>
-                                        </div>
-                                    </div>
-                                </TabPanel>
+                            <div style={{backgroundColor: 'grey'}}>
+                                <div align="center">
+                                    <Button onClick={this.submit} >submit </Button>
+                                </div>
                             </div>
-                            <TabPanel value={this.state.value} index={1}>
-                                <ImageList />
-                            </TabPanel>
+                        </TabPanel>
+                            </div>
+                                <TabPanel value={this.state.value} index={1}>
+                                    <ImageList onClick={this.handleClickItem} />
+                                </TabPanel>
                         </Grid>
                     </Grid>
+                </div>
+                <div>
+                    <hr></hr>
+                    <Button
+                        type="submit"
+                        className={classes.buttonType1}
+                        variant="outlined"
+                        onClick={this.handlePrevious.bind(this)} >
+                        Previous
+                    </Button>
+                    <Button
+                        type="submit"
+                        className={classes.buttonType1}
+                        variant="outlined"
+                        onClick={this.handleNext.bind(this)} >
+                        Next
+                    </Button>
+                    <Button
+                        type="submit"
+                        className={classes.buttonType2}
+                        color="primary"
+                        variant="outlined"
+                        onClick={this.handleSubmitForm} >
+                        Save and Next
+                    </Button>
                 </div>
             </Container>
         );
