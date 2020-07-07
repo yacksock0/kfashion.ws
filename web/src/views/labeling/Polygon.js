@@ -445,6 +445,8 @@ class Polygon extends React.Component {
         // this.props.polygonStore.doPolygonLocationUp();
     }
     handleClickItem = (workNo, imageData) => {
+        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+        this.props.polygonStore.LoadRectLocation(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             left: 25,

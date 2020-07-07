@@ -205,20 +205,9 @@ class ImageUpload extends React.Component {
                                         }
                                     }) : []}
                                 title="이미지 리스트"
-                                editable={{
-                                    onRowDelete: oldData =>
-                                        new Promise((resolve, reject) => {
-                                            setTimeout(() => {
-                                                {
-                                                    let data = this.state.data;
-                                                    const index = data.indexOf(oldData);
-                                                    data.splice(index, 1);
-                                                    this.setState({ data }, () => resolve());
-                                                }
-                                                resolve();
-                                            }, 1000);
-                                        }),
-                                }}
+                                           options={{
+                                               actionsColumnIndex: -1,
+                                           }}
                                 actions={[
                                     {
                                         icon: Edit,

@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1/kfashion/polygon/")
+@RequestMapping("/api/v1/kfashion/polygon")
 public class KfashionImageLocationPolygonController {
 
         private KfashionImageLocationPolygonService kfashionImageLocationPolygonService;
