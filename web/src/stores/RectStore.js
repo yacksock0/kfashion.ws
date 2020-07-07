@@ -25,11 +25,17 @@ export default class RectStore {
     @observable state = State.Ready;
     @observable NewRectLocation = {...EmptyNewRectLocation};
     @observable List = [];
-    @observable rectList= [];
+    @observable rectInsertList= [];
+    @observable rectList = [];
 
     @action objGet = (obj) => {
         console.log(obj);
-        this.rectList = obj;
+        this.rectInsertList = obj;
+    }
+
+
+    @action initStore = () => {
+        this.rectList = [];
     }
 
 
@@ -84,11 +90,24 @@ export default class RectStore {
 
 
 
+    LoadRectImage = flow(function* LoadRectImage(createdId) {
+        this.rectList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/rect/rectList?createdId='+createdId)
+            this.rectList = response.data.rectList;
+            return this.rectList;
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+
+
     doRectLocationUp = flow(function* doRectLocationUp(doAction) {
         this.state = State.Pending;
         try {
 
-            const kfashionRectList = this.rectList.map(r => ({
+            const kfashionRectList = this.rectInsertList.map(r => ({
                 id: r.id,
                 left: r.left,
                 top: r.top,
@@ -100,18 +119,16 @@ export default class RectStore {
                 createdId : this.NewRectLocation.createdId,
                 workNo :this.NewRectLocation.workNo,
                 workStep : this.NewRectLocation.workStep
-
             }));
-            console.log(kfashionRectList);
-
             const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList);
             if (resp.status === 200) {
                 this.state = State.Success;
-                if (doAction !== undefined) doAction();
+                const createdId = this.NewRectLocation.createdId;
+                this.LoadRectImage(createdId);
             } else {
             }
         } catch (e) {
-            console.log('에러좀 나지 마라')
+            console.log('error')
         }
     });
 

@@ -1,10 +1,7 @@
 package io.aetherit.kfashion.ws.controller;
 
 import io.aetherit.kfashion.ws.model.*;
-import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonService;
-import io.aetherit.kfashion.ws.service.KfashionImageLocationRectService;
-import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
-import io.aetherit.kfashion.ws.service.KfashionWorkService;
+import io.aetherit.kfashion.ws.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +19,30 @@ public class KfashionImageLocationRectController {
     private KfashionImageLocationRectService kfashionImageLocationRectService;
     private KfashionWorkHistoryService kfashionWorkHistoryService;
     private KfashionWorkService kfashionWorkService;
+    private KfashionImageService kfashionImageService;
 
     @Autowired
     public KfashionImageLocationRectController(KfashionImageLocationRectService kfashionImageLocationRectService,
                                                KfashionWorkHistoryService kfashionWorkHistoryService,
-                                               KfashionWorkService kfashionWorkService
+                                               KfashionWorkService kfashionWorkService,
+                                               KfashionImageService kfashionImageService
     ) {
         this.kfashionImageLocationRectService = kfashionImageLocationRectService;
         this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         this.kfashionWorkService = kfashionWorkService;
+        this.kfashionImageService = kfashionImageService;
 
     }
+
+
+    /**
+     * 렉트 인서트
+     * @param httpServletRequest
+     * @param rectList
+     * @return String
+     * @throws Exception
+     */
+
 
     @PostMapping(value="/location")
     public ResponseEntity<String> insertLocationRect(HttpServletRequest httpServletRequest,
@@ -67,13 +77,44 @@ public class KfashionImageLocationRectController {
         return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
 
+    /**
+     * 렉트 좌표값 리스트
+     * @param httpRequest
+     * @param workNo
+     * @param rectNo
+     * @return locationRectList
+     * @throws
+     */
+
     @GetMapping(value="/locationRectList")
     public ResponseEntity<Object> locationRectList(HttpServletRequest httpRequest,
-                                              @RequestParam(value="workNo")String workNo) {
+                                              @RequestParam(value="workNo")Long workNo,
+                                              @RequestParam(value="rectNo")int rectNo) {
+        KfashionImageLocationRect rect = KfashionImageLocationRect.builder()
+                .workNo(workNo)
+                .rectNo(rectNo)
+                .build();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImageLocationRect> locationRectList = kfashionImageLocationRectService.selectLocationRectList(workNo);
+        List<KfashionImageLocationRect> locationRectList = kfashionImageLocationRectService.selectLocationRectList(rect);
         resultMap.put("locationRectList", locationRectList);
-        System.out.println(locationRectList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+
+    /**
+     * 렉트 이미지 리스트
+     * @param httpRequest
+     * @param createdId
+     * @return rectList
+     * @throws
+     */
+
+    @GetMapping(value="/rectList")
+    public ResponseEntity<Object> polygonList(HttpServletRequest httpRequest,
+                                              @RequestParam(value="createdId")String createdId) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImage> rectList = kfashionImageService.selectRectList(createdId);
+        resultMap.put("rectList", rectList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 

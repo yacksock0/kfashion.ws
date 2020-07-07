@@ -23,11 +23,7 @@ public class KfashionImageLocationRectService {
         return msg;
     }
 
-    public List<KfashionCategoryItem> selectRectList(KfashionImageLocationRect rect) {
-        return repository.selectRectList(rect);
-    }
-
-    public List<KfashionImageLocationRect> selectLocationRectList(String workNo) {
-        return repository.selectLocationRectList(workNo);
+    public List<KfashionImageLocationRect> selectLocationRectList(KfashionImageLocationRect rect) {
+        return repository.selectLocationRectList(rect);
     }
 }

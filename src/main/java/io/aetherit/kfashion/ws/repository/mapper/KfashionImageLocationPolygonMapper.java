@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface KfashionImageLocationPolygonMapper {
     void insertLocationPolygon(KfashionImageLocationPolygon polygon);
-    List<KfashionImageLocationPolygon> selectPolygonList(String createdId);
 }

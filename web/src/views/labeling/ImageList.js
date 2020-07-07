@@ -49,22 +49,22 @@ class ImageList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: '등록일 ', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
-
-        axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
-            .then(response => {
-                this.setState({ boundaryList : response.data.boundaryList.filter(b =>b !==null)})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.props.imageStore.LoadImage(createdId)
     }
+
+    componentWillUnmount() {
+        this.props.imageStore.initStore();
+    }
+
 
     handleClick = (workNo, imageData) => {
         if(this.props.onClick) {
@@ -72,36 +72,29 @@ class ImageList extends React.Component {
         }
     }
     render() {
-        const {boundaryList} = this.state;
         return (
                 <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
-                data={boundaryList}
+                data={!!this.props.imageStore.boundaryList ?
+                    this.props.imageStore.boundaryList.map((item) => {
+                        return {
+                            workNo: item.workNo,
+                            fileName: item.fileName,
+                            workName: item.workName,
+                            createdId: item.createdId,
+                            createdDatetime: item.createdDatetime,
+                        }
+                    }) : []}
                 title="이미지 리스트"
-                // editable={{
-                //     onRowDelete: oldData =>
-                //     new Promise((resolve, reject) => {
-                //     setTimeout(() => {
-                //     {
-                //     let data = this.state.data;
-                //     const index = data.indexOf(oldData);
-                //     data.splice(index, 1);
-                //     this.setState({ data }, () => resolve());
-                //     }
-                //     resolve();
-                //     }, 1000);
-                //     }),
-                //     }}
+                options={{
+                    actionsColumnIndex: -1,
+                }}
                     actions={[
                         {
                         icon: Edit,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
-                        // onClick: (event, rowData) => {
-                        //     this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo});
-                        //     this.props.imageStore.changeWorkNo(rowData.workNo);
-                        // }
                      }
                     ]}
                 />
