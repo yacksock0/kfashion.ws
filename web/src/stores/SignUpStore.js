@@ -185,7 +185,6 @@ export default class SignUpStore {
         const isNotAvailId = responseId.data.result;
             console.log('isNotAvailId',isNotAvailId)
         if(!isNotAvailEmail && !isNotAvailId) {
-
             const param = toJS(this.newMember);
             delete param.passwordConfirm;
 

@@ -27,6 +27,7 @@ export default class RectStore {
     @observable List = [];
     @observable rectInsertList= [];
     @observable rectList = [];
+    @observable locationRectList = [];
 
     @action objGet = (obj) => {
         console.log(obj);
@@ -36,6 +37,7 @@ export default class RectStore {
 
     @action initStore = () => {
         this.rectList = [];
+        this.locationRectList = [];
     }
 
 
@@ -87,6 +89,17 @@ export default class RectStore {
     @computed get isSignUpFailed() {
         return this.state === State.Fail;
     }
+
+    LoadRectLocation = flow(function* LoadRectLocation(workNo) {
+        this.locationRectList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/rect/locationRectList?workNo='+workNo)
+            this.locationRectList = response.data.locationRectList;
+            console.log(this.locationRectList);
+        } catch (e) {
+            console.log('error')
+        }
+    });
 
 
 

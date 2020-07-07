@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -112,6 +113,36 @@ public class KfashionImageLocationPolygonController {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionImage> polygonList = kfashionImageService.selectPolygonList(createdId);
         resultMap.put("polygonList", polygonList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+    /**
+     * 폴리곤 좌표값 리스트
+     * @param httpRequest
+     * @param workNo
+     * @return locationPolygonList
+     * @throws
+     */
+
+    @GetMapping(value="/locationPolygonList")
+    public ResponseEntity<Object> locationPolygonList(HttpServletRequest httpRequest,
+                                                   @RequestParam(value="workNo")Long workNo){
+        List<KfashionImageLocationPolygonPoint> polyNoList = kfashionImageLocationPolygonPointService.selectPolyNoList(workNo);
+        System.out.println(polyNoList);
+        KfashionImageLocationPolygonPoint polygon = new KfashionImageLocationPolygonPoint();
+        List<KfashionImageLocationPolygonPoint> locationPolygonList = new ArrayList<>();
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        if(polyNoList != null) {
+            for(int i=0; i < polyNoList.size(); i++) {
+                polygon.setWorkNo(polyNoList.get(i).getWorkNo());
+                polygon.setRectNo(polyNoList.get(i).getRectNo());
+                polygon.setPolyNo(polyNoList.get(i).getPolyNo());
+                polygon.setNo(polyNoList.get(i).getNo());
+                locationPolygonList.addAll(kfashionImageLocationPolygonPointService.selectLocationPolygonList(polygon));
+            }
+            System.out.println(locationPolygonList);
+            resultMap.put("locationRectList", locationPolygonList);
+        }
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
