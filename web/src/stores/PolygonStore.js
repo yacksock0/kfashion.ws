@@ -29,6 +29,7 @@ export default class PolygonStore {
     }
 
     @action initStore = () => {
+        this.locationRectList = [];
         this.polygonList = [];
     }
 

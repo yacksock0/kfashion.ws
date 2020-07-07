@@ -98,13 +98,13 @@ public class KfashionImageLocationRectController {
             for(int i=0; i < rectNoList.size(); i++) {
                 rect.setWorkNo(rectNoList.get(i).getWorkNo());
                 rect.setRectNo(rectNoList.get(i).getRectNo());
-                locationRectList = kfashionImageLocationRectService.selectLocationRectList(rect);
+                locationRectList.addAll(kfashionImageLocationRectService.selectLocationRectList(rect));
             }
+            System.out.println(locationRectList);
             resultMap.put("locationRectList", locationRectList);
         }
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
-
 
     /**
      * 렉트 이미지 리스트
