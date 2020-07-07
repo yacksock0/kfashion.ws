@@ -443,11 +443,11 @@ class Polygon extends React.Component {
             this.state.savebtn = false;
         }
 
-        // this.props.polygonStore.objGet(this.polygon);
-        // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
-        // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
-        // this.props.polygonStore.doPolygonLocationUp();
-        //
+        this.props.polygonStore.objGet(this.polygon);
+        this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
+        this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
+        this.props.polygonStore.doPolygonLocationUp();
+
         window.location.reload();
     }
 

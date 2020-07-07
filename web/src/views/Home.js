@@ -43,7 +43,7 @@ class Home extends React.Component {
                 <div className={classes.mainContent}>
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h4" component="h2">
-                            Home 1024 x 720
+                            Kfashion에 오신걸 환영합니다.
                         </Typography>
                     </Toolbar>
 
