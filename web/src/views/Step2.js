@@ -134,7 +134,7 @@ class Step2 extends React.Component {
     onSelectTab(tabIndex) {
         console.log("onSelectTab 들어왔어");
         this.canvas.remove(this.canvas.item(0));
-       let polyNo = tabIndex+1;
+        let polyNo = tabIndex+1;
 
         const { locationPolygonList } = this.props.polygonStore;
         const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
@@ -153,9 +153,7 @@ class Step2 extends React.Component {
             this.canvas.add(path);
 
         }else{alert("poly정보가 존재하지 않습니다.")}
-
     };
-
 
     render() {
         const { classes,history} = this.props;
@@ -172,7 +170,7 @@ class Step2 extends React.Component {
                      </Grid>
                      <Grid item xs={12} lg={6}>
                          <Tabs>
-                             <TabList>
+                             <TabList onSelect={tabIndex => this.onSelectTab(tabIndex)}>
                                  <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
                                  <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                              </TabList>
