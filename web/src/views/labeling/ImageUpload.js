@@ -24,6 +24,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {toJS} from "mobx";
+import CheckIcon from "@material-ui/icons/Check";
 
 
 const tableIcons = {
@@ -231,25 +232,30 @@ class ImageUpload extends React.Component {
                                                            resolve();
                                                        }, 1000);
                                                    }),
-                                               onRowDelete:rowData =>
-                                                   new Promise((resolve, reject) => {
-                                                       setTimeout(() => {
-                                                           {axios.delete(`/api/v1/kfashion/image/deleteImage`,  {
-                                                               no: rowData.workNo,
-                                                           })
-                                                               .then(res => {
-                                                                       if(res.status === 200) {
-                                                                           const userId = this.props.authStore.isUserId
-                                                                           this.props.imageStore.LoadImage(userId);
-                                                                       }
-                                                                   }
-                                                               )
-                                                           }
-                                                           resolve();
-                                                       }, 1000);
-                                                   }),
+                                         //       onRowDelete:rowData =>
+                                         //           new Promise((resolve, reject) => {
+                                         //               setTimeout(() => {
+                                         //                   {axios.delete(`=${rowData.workNo}`)
+                                         //                       .then(res => {
+                                         //                               if(res.status === 200) {
+                                         //                                   const userId = this.props.authStore.isUserId
+                                         //                                   this.props.imageStore.LoadImage(userId);
+                                         //                               }
+                                         //                           }
+                                         //                       )
+                                         //                   }
+                                         //                   resolve();
+                                         //               }, 1000);
+                                         //           }),
                                            }
                                          }
+                                           actions={[
+                                               {
+                                                   icon: CheckIcon,
+                                                   tooltip: 'Delete Image',
+                                                   onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/image/deleteImage?workNo"+rowData.workNo)
+                                               }
+                                           ]}
                             />
                             </div>
                         </Grid>
