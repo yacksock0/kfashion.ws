@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -81,22 +82,26 @@ public class KfashionImageLocationRectController {
      * 렉트 좌표값 리스트
      * @param httpRequest
      * @param workNo
-     * @param rectNo
      * @return locationRectList
      * @throws
      */
 
     @GetMapping(value="/locationRectList")
     public ResponseEntity<Object> locationRectList(HttpServletRequest httpRequest,
-                                              @RequestParam(value="workNo")Long workNo,
-                                              @RequestParam(value="rectNo")int rectNo) {
-        KfashionImageLocationRect rect = KfashionImageLocationRect.builder()
-                .workNo(workNo)
-                .rectNo(rectNo)
-                .build();
+                                              @RequestParam(value="workNo")Long workNo){
+        List<KfashionImageLocationRect> rectNoList = kfashionImageLocationRectService.selectRectNoList(workNo);
+        System.out.println(rectNoList);
+        KfashionImageLocationRect rect = new KfashionImageLocationRect();
+        List<KfashionImageLocationRect> locationRectList = new ArrayList<>();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImageLocationRect> locationRectList = kfashionImageLocationRectService.selectLocationRectList(rect);
-        resultMap.put("locationRectList", locationRectList);
+        if(rectNoList != null) {
+            for(int i=0; i < rectNoList.size(); i++) {
+                rect.setWorkNo(rectNoList.get(i).getWorkNo());
+                rect.setRectNo(rectNoList.get(i).getRectNo());
+                locationRectList = kfashionImageLocationRectService.selectLocationRectList(rect);
+            }
+            resultMap.put("locationRectList", locationRectList);
+        }
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
