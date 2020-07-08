@@ -258,6 +258,15 @@ class Step2 extends React.Component {
                                              <hr></hr>
                                          </div>
                                          <SleeveLength />
+                                         <Button style={{marginTop: 20}}
+                                                 type="button"
+                                                 className={classes.buttonType2}
+                                                 color="primary"
+                                                 variant="outlined"
+                                                 onClick={()=>alert('저장 되었습니다.')}
+                                         >
+                                             저장
+                                         </Button>
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -280,6 +289,15 @@ class Step2 extends React.Component {
                                              <hr></hr>
                                          </div>
                                          <SleeveLength />
+                                         <Button style={{marginTop: 20}}
+                                                 type="button"
+                                                 className={classes.buttonType2}
+                                                 color="primary"
+                                                 variant="outlined"
+                                                 onClick={()=>alert('저장 되었습니다.')}
+                                         >
+                                             저장
+                                         </Button>
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -302,6 +320,15 @@ class Step2 extends React.Component {
                                      <hr></hr>
                                  </div>
                                  <SleeveLength />
+                                 <Button style={{marginTop: 20}}
+                                         type="button"
+                                         className={classes.buttonType2}
+                                         color="primary"
+                                         variant="outlined"
+                                         onClick={()=>alert('저장 되었습니다.')}
+                                 >
+                                     저장
+                                 </Button>
                              </div>
                          </TabPanel>
                                  <TabPanel>
@@ -324,6 +351,15 @@ class Step2 extends React.Component {
                                      <hr></hr>
                                  </div>
                                  <SleeveLength />
+                                 <Button style={{marginTop: 20}}
+                                         type="button"
+                                         className={classes.buttonType2}
+                                         color="primary"
+                                         variant="outlined"
+                                         onClick={()=>alert('저장 되었습니다.')}
+                                 >
+                                     저장
+                                 </Button>
                              </div>
                          </TabPanel>
                                  <TabPanel>
@@ -346,7 +382,17 @@ class Step2 extends React.Component {
                                      <hr></hr>
                                  </div>
                                  <SleeveLength />
+                                 <Button style={{marginTop: 20}}
+                                     type="button"
+                                     className={classes.buttonType2}
+                                     color="primary"
+                                     variant="outlined"
+                                         onClick={()=>alert('저장 되었습니다.')}
+                                 >
+                                     저장
+                                 </Button>
                              </div>
+
                                  </TabPanel>
                              </Tabs>
                          </TabPanel>
