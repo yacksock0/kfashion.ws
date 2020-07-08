@@ -169,7 +169,7 @@ class Step3 extends React.Component {
                                 </div>
                             </Grid>
                                 <Grid item xs={12} lg={6} >
-                                    <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                                    <Tabs selectedIndex={this.state.tabIndex} >
                                         <TabList>
                                             <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
                                             <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>

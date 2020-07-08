@@ -144,6 +144,7 @@ class Step2 extends React.Component {
         this.setState({ number: newNumber});
     }
     handleClickItem = (workNo, imageData) => {
+        this.state.tabIndex=0;
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
