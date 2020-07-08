@@ -12,10 +12,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
+import {inject, observer} from "mobx-react";
 
 const styles = theme => ({
 });
 
+
+@inject('groupStore')
+@observer
 class AddGroup extends React.Component {
     constructor(props) {
         super(props);
@@ -27,17 +31,15 @@ class AddGroup extends React.Component {
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this)
         this.handleValueChange = this.handleValueChange.bind(this)
-        this.addGroup = this.addGroup.bind(this)
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
     }
 
     handleFormSubmit(e) {
         e.preventDefault()
-        this.addGroup()
-            .then((response) => {
-                console.log(response.data);
-            })
+        this.props.groupStore.changeNewGroupName(this.state.groupName);
+        this.props.groupStore.changeNewAuthorityNo(this.state.authorityNo);
+        this.props.groupStore.AddGroup();
         this.setState({
             groupName: '',
             authorityNo: '',
@@ -50,23 +52,6 @@ class AddGroup extends React.Component {
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }
-
-
-
-    addGroup(){
-        const url = '/api/v1/kfashion/group/create';
-        const formData = new FormData();
-        formData.append('groupName', this.state.groupName)
-        formData.append('authorityNo', this.state.authorityNo)
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        }
-        return post(url, formData, config)
-    }
-
-
 
     handleClickOpen() {
         this.setState({

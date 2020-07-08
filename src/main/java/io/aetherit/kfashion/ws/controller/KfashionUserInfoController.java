@@ -2,6 +2,7 @@ package io.aetherit.kfashion.ws.controller;
 
 import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
+import io.aetherit.kfashion.ws.service.KfashionUserGroupAdminService;
 import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,15 +22,18 @@ public class KfashionUserInfoController {
 
     private KfashionUserInfoService kfashionUserInfoService;
     private JavaMailSender mailSender;
-
+    private KfashionUserGroupAdminService kfashionUserGroupAdminService;
 
 
 
 
     @Autowired
-    public KfashionUserInfoController(KfashionUserInfoService kfashionUserInfoService, JavaMailSender mailSender) {
+    public KfashionUserInfoController(KfashionUserInfoService kfashionUserInfoService,
+                                      JavaMailSender mailSender,
+                                      KfashionUserGroupAdminService kfashionUserGroupAdminService) {
         this.kfashionUserInfoService = kfashionUserInfoService;
         this.mailSender = mailSender;
+        this.kfashionUserGroupAdminService = kfashionUserGroupAdminService;
     }
 
     /**
@@ -121,7 +125,11 @@ public class KfashionUserInfoController {
     public ResponseEntity<Object> groupUserList(HttpServletRequest httpRequest,
                                                 @RequestParam(value="groupNo", required=true) int groupNo) throws Exception {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(groupNo);
+        String id = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
+        KfashionUserInfo user = new KfashionUserInfo();
+        user.setGroupNo(groupNo);
+        user.setId(id);
+        List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(user);
         resultMap.put("groupUserList", groupUserList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
@@ -163,7 +171,7 @@ public class KfashionUserInfoController {
      * @throws Exception
      */
 
-    @DeleteMapping("/deleteGroupAdminUser")
+    @DeleteMapping("/deleteGroupAdminUser/{userId}")
     public ResponseEntity<Object> deleteGroupAdminUser (HttpServletRequest httpRequest,
                                                    @RequestParam(value="userId")String id) {
         kfashionUserInfoService.deleteGroupAdminUser(id);

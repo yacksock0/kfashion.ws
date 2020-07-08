@@ -21,6 +21,7 @@ import {Button, Container, Grid} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import AddGroup from "./AddGroup";
+import {inject, observer} from "mobx-react";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -42,6 +43,8 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
+@inject('groupStore')
+@observer
 export default class CreateGroupDialog extends React.Component {
     constructor(props) {
         super(props);
@@ -62,15 +65,13 @@ export default class CreateGroupDialog extends React.Component {
         this.handleClose = this.handleClose.bind(this);
     }
     componentDidMount() {
-        this.setState({ open : false })
-        axios.get('/api/v1/kfashion/userGroupAuthority/userGroupAuthorityList')
-            .then(response => {
-                this.setState({ userGroupAuthorityList : response.data})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.props.groupStore.LoadUserGroupAuthorityList();
     }
+
+    componentWillUnmount() {
+        this.props.groupStore.initStore();
+    }
+
     handleClickOpen() {
         this.setState({
             open: true
@@ -83,7 +84,6 @@ export default class CreateGroupDialog extends React.Component {
         });
     }
     render() {
-        const {userGroupAuthorityList} = this.state.userGroupAuthorityList;
         return (
             <div style={{maxWidth:"100%"}}>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>그룹 관리</Button>
@@ -95,7 +95,16 @@ export default class CreateGroupDialog extends React.Component {
                     <MaterialTable
                         icons={tableIcons}
                         columns={this.state.columns}
-                        data={userGroupAuthorityList}
+                        data={!!this.props.groupStore.userGroupAuthorityList ?
+                            this.props.groupStore.userGroupAuthorityList.map((item) => {
+                                return {
+                                    groupNo: item.groupNo,
+                                    groupName: item.groupName,
+                                    authorityName: item.authorityName,
+                                    createdDatetime: item.createdDatetime,
+                                    updatedDatetime: item.updatedDatetime,
+                                }
+                            }) : []}
                         title="그룹 리스트"
                         /*editable={{
                             onRowDelete: oldData =>

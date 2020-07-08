@@ -91,23 +91,19 @@ class UserList extends React.Component {
     }
     componentDidMount() {
         const groupNo = this.props.authStore.loginUser.groupNo;
-        axios.get('/api/v1/kfashion/users/groupUserList?groupNo='+groupNo)
-            .then(response => response.data)
-            .then(res => {
-                this.setState({ groupUserList : res, loading: false})
-            })
-
-
+        const id = this.props.authStore.loginUser.id;
+        this.props.userListStore.LoadGroupUserList(groupNo);
         this.props.enqueueSnackbar("User List", {
             variant: 'info'
         });
         this.props.authStore.checkLogin();
     }
 
+
+
     render() {
         const { classes } = this.props;
         const groupNo = this.props.authStore.loginUser.groupNo;
-        const {groupUserList} = this.state.groupUserList;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -116,7 +112,15 @@ class UserList extends React.Component {
                         <MaterialTable
                             icons={tableIcons}
                             columns={this.state.columns}
-                            data={groupUserList}
+                            data={!!this.props.userListStore.groupUserList ?
+                                this.props.userListStore.groupUserList.map((item) => {
+                                    return {
+                                        id: item.id,
+                                        name: item.name,
+                                        password: item.password,
+                                        createdDatetime: item.createdDatetime,
+                                    }
+                                }) : []}
                             title="그룹 회원 리스트"
                             editable={{
                                 onRowAdd:rowData =>

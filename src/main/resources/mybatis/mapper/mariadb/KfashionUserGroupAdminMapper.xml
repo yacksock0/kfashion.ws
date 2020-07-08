@@ -22,4 +22,10 @@
             )
     </insert>
 
+
+    <select id="selectGroupAdminId" parameterType="int" resultType="String">
+        SELECT user_id
+        FROM kfashion_user_group_admin
+        WHERE group_no = #{groupNo}
+    </select>
 </mapper>
