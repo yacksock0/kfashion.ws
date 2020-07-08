@@ -156,7 +156,7 @@ class Step3 extends React.Component {
         });
     }
     render() {
-        const {classes} = this.props;
+        const {classes,history} = this.props;
 
             return (
                 <Container component="main" className={classes.mainContainer}>
@@ -209,38 +209,39 @@ class Step3 extends React.Component {
                     <hr></hr>
                     </div>
                     <hr></hr>
-                    <Grid container>
-                        <Grid item xs={3} lg={1} style={{marginRight:10}}>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handlePrevious.bind(this)}
-                    >
-                        Previous
-                    </Button>
-                        </Grid>
-                        <Grid item xs={3} lg={1}>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handleNext.bind(this)}
-                    >
-                        Next
-                    </Button>
-                        </Grid>
-                        <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
-                    <Button
-                        type="button"
-                        className={classes.buttonType2}
-                        color="primary"
-                        variant="outlined"
-                    >
-                        Next Step
-                    </Button>
-                        </Grid>
-                    </Grid>
+                    {/*<Grid container>*/}
+                    {/*    <Grid item xs={3} lg={1} style={{marginRight:10}}>*/}
+                    {/*/!*<Button*!/*/}
+                    {/*/!*    type="submit"*!/*/}
+                    {/*/!*    className={classes.buttonType1}*!/*/}
+                    {/*/!*    variant="outlined"*!/*/}
+                    {/*/!*    onClick={this.handlePrevious.bind(this)}*!/*/}
+                    {/*/!*>*!/*/}
+                    {/*/!*    Previous*!/*/}
+                    {/*/!*</Button>*!/*/}
+                    {/*/!*    </Grid>*!/*/}
+                    {/*/!*    <Grid item xs={3} lg={1}>*!/*/}
+                    {/*/!*<Button*!/*/}
+                    {/*/!*    type="submit"*!/*/}
+                    {/*/!*    className={classes.buttonType1}*!/*/}
+                    {/*/!*    variant="outlined"*!/*/}
+                    {/*/!*    onClick={this.handleNext.bind(this)}*!/*/}
+                    {/*/!*>*!/*/}
+                    {/*/!*    Next*!/*/}
+                    {/*/!*</Button>*!/*/}
+                    {/*    </Grid>*/}
+                    {/*    <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>*/}
+                    {/*        <Button*/}
+                    {/*            type="button"*/}
+                    {/*            className={classes.buttonType2}*/}
+                    {/*            color="primary"*/}
+                    {/*            variant="outlined"*/}
+                    {/*            onClick={()=>history.push('/step3')}*/}
+                    {/*        >*/}
+                    {/*            Next Step*/}
+                    {/*        </Button>*/}
+                    {/*    </Grid>*/}
+                    {/*</Grid>*/}
                 </Container>
             );
         }
