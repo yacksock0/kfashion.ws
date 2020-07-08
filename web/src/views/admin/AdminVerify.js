@@ -64,15 +64,11 @@ export default class AdminVerify extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ loading: true })
-        axios.get('/api/v1/kfashion/users/userList')
-            .then(response => response.data)
-            .then(res => {
-                this.setState({ userList : res, loading: false})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.props.adminAuthorityStore.LoadUserList();
+    }
+
+    componentWillUnmount() {
+        this.props.adminAuthorityStore.initStore();
     }
     onRowSelection(){
 
@@ -82,14 +78,23 @@ export default class AdminVerify extends React.Component {
         this.props.adminAuthorityStore.doAdminUp();
     }
     render() {
-        const {userList} = this.state.userList;
         return (
             <div>
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
                     icons={tableIcons}
                     columns={this.state.columns}
-                    data={userList}
+                    data={!!this.props.adminAuthorityStore.userList ?
+                        this.props.adminAuthorityStore.userList.map((item) => {
+                            return {
+                                id: item.id,
+                                email: item.email,
+                                name: item.name,
+                                phone: item.phone,
+                                value: item.value,
+                                createdDatetime: item.createdDatetime,
+                            }
+                        }) : []}
                     title="그룹 관리자 승인"
                     editable={{
                         onRowDelete: oldData =>

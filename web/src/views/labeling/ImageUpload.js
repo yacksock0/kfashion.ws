@@ -140,7 +140,6 @@ class ImageUpload extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
             workNo: this.props.imageStore.workNo,
         })
-        console.log('@@@@@', this.state.boundaryList)
     }
     componentWillUnmount() {
         this.props.imageStore.initStore();

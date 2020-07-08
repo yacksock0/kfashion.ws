@@ -17,4 +17,8 @@ public class KfashionUserGroupAdminRepository {
     public void insertUserAdminGroup(KfashionUserGroupAdmin groupAdmin) {
         mapper.insertUserAdminGroup(groupAdmin);
     }
+
+    public String selectGroupAdminId(int groupNo) {
+        return mapper.selectGroupAdminId(groupNo);
+    }
 }

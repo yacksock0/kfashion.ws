@@ -11,6 +11,7 @@ import UserListStore from "./UserListStore";
 import ImageStore from "./ImageStore";
 import RectStore from "./RectStore";
 import PolygonStore from "./PolygonStore";
+import GroupStore from "./GroupStore";
 
 
 export const stores = {
@@ -27,4 +28,5 @@ export const stores = {
     imageStore : new ImageStore(),
     rectStore : new RectStore(),
     polygonStore :  new PolygonStore(),
+    groupStore : new GroupStore(),
 };

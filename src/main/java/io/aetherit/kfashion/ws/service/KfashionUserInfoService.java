@@ -185,8 +185,8 @@ public class KfashionUserInfoService {
         repository.updateUserGroup(groupNo, id);
     }
 
-    public List<KfashionUserInfo> selectGroupUserList(int groupNo) {
-        return repository.selectGroupUserList(groupNo);
+    public List<KfashionUserInfo> selectGroupUserList(KfashionUserInfo user) {
+        return repository.selectGroupUserList(user);
     }
 
     public void createGroupUser(KfashionUserInfo user) {
