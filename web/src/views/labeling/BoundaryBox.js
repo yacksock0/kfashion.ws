@@ -610,20 +610,20 @@ class BoundaryBox extends React.Component {
                 </div>
                 <div>
                     <hr></hr>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handlePrevious.bind(this)} >
-                        Previous
-                    </Button>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handleNext.bind(this)} >
-                        Next
-                    </Button>
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    className={classes.buttonType1}*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={this.handlePrevious.bind(this)} >*/}
+                    {/*    Previous*/}
+                    {/*</Button>*/}
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    className={classes.buttonType1}*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={this.handleNext.bind(this)} >*/}
+                    {/*    Next*/}
+                    {/*</Button>*/}
                     <Button
                         type="submit"
                         className={classes.buttonType2}

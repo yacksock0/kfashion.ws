@@ -148,7 +148,7 @@ class UserList extends React.Component {
                             }}
                             options={{
                                 editCellStyle: {
-                                  textAlign:"center"
+                                  textAlign:"center",
                                 },
                                 /*padding:'dense',*/
                                 minBodyHeight: '77vh',

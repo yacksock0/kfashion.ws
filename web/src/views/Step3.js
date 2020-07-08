@@ -88,7 +88,7 @@ class Step3 extends React.Component {
     constructor(props) {
         super(...arguments);
         this.state = {
-            tapIndex: 0,
+            tapIndex: 1,
             createdId: '',
         }
     }
