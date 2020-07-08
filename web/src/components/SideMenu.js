@@ -96,16 +96,16 @@ export default function SideMenu(props) {
                     </ListItem>
                 </Link>
                 <Link to="/step/imageUpload" className={classes.link}>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <AspectRatioIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="이미지 업로드" />
-                        </ListItem>
-                    </List>
-                </Collapse>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <AspectRatioIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="이미지 업로드" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
                 </Link>
                 <Link to="/Step/boundaryBox" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -120,16 +120,16 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                 <Link to="/step/polygon" className={classes.link}>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <FormatShapesIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="다각형 지정" />
-                        </ListItem>
-                    </List>
-                </Collapse>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <FormatShapesIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="다각형 지정" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
                 </Link>
                 <Link to="/step2" className={classes.link}>
                     <ListItem button>

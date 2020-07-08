@@ -109,6 +109,7 @@ const styles = theme => ({
 @inject('fileUploadStore','imageStore','rectStore','authStore')
 @observer
 class BoundaryBox extends React.Component {
+
     i=0;
     width;
     height;
@@ -133,21 +134,22 @@ class BoundaryBox extends React.Component {
 
     objectList = [];
     state = {
+        tabIndex: 1,
         imgData :'',
         workNo:'',
         value:1,
         count:0,
         winheight: 0,
         winwidth: 0,
-
+        savebtn : true,
         buttonDis1 : false,
         buttonDis2 : false,
         buttonDis3 : false,
         buttonDis4 : false,
         buttonDis5 : false,
     }
-    handleTabChange = (event, newValue) => {
-        this.setState({ value: newValue });
+    handleTabChange = (event, newIndex) => {
+        this.setState({ tapIndex: newIndex });
     }
     componentDidMount() {
         this.props.enqueueSnackbar("BoundaryBox Work", {
@@ -160,10 +162,8 @@ class BoundaryBox extends React.Component {
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            left: 25,
-            top: 25,
-            width: 700,
-            height: 800,
+            width: 750,
+            height: 850,
             originX: 'left',
             originY: 'top'
         });
@@ -175,8 +175,6 @@ class BoundaryBox extends React.Component {
         this.canvas.on('mouse:down', function (e) {
             this.downX = e.pointer.x;
             this.downY = e.pointer.y
-            console.log("11111111 : " + e.pointer.x);
-            console.log(e.pointer.y);
         });
 
         this.canvas.on('mouse:up', function(e) {
@@ -261,6 +259,7 @@ class BoundaryBox extends React.Component {
     }
 
     addRect = (rectNo) => {
+        this.state.savebtn = true;
         let obj = 0;
         this.canvas.getObjects().forEach(function( o) {
             if(o.id == rectNo) {
@@ -318,6 +317,7 @@ class BoundaryBox extends React.Component {
             }
         })
         this.objectList.push(objList);
+        this.state.savebtn = false;
         this.deleteAll();
         switch (rectNo) {
             case 1 :
@@ -355,10 +355,19 @@ class BoundaryBox extends React.Component {
     }
 
     submit = () => {
-        this.props.rectStore.objGet(this.objectList);
-        this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-        this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-        this.props.rectStore.doRectLocationUp();
+        if(this.state.savebtn){
+            alert("save 눌러 작업을 마무리 하세요.");
+        }else{
+            alert("저장되었습니다.");
+            this.state.savebtn = false;
+            this.props.rectStore.objGet(this.objectList);
+            this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+            this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+            this.props.rectStore.doRectLocationUp();
+            window.location.reload();
+        }
+
+
     }
 
     handlePrevious(){
@@ -388,6 +397,7 @@ class BoundaryBox extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
+        this.state.tabIndex=0;
         let result = true;
         if (this.objectList.length != 0 && result) {
             result = window.confirm("다른작업을 하시겠습니까?");
@@ -395,10 +405,8 @@ class BoundaryBox extends React.Component {
         if (result) {
             this.props.imageStore.changeWorkNo(workNo);
             this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-                left: 25,
-                top: 25,
-                width: 700,
-                height: 800,
+                width: 750,
+                height: 850,
                 originX: 'left',
                 originY: 'top'
             });
@@ -427,12 +435,12 @@ class BoundaryBox extends React.Component {
                         </Grid>
 
                         <Grid item xs={12} lg={6}>
-                            <Tabs>
+                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                 <TabList>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
-                                    <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                    <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}} ><h3>영역지정</h3></Tab>
+                                    <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}} ><h3>이미지 리스트</h3></Tab>
                                 </TabList>
-                                <TabPanel value={this.state.value} index={0}>
+                                <TabPanel index={0}>
                                     <Table className={classes.table}>
                                         <TableHead>
                                             <TableRow>
@@ -466,7 +474,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(1)} disabled={this.state.buttonDis1}>
-                                                            <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -495,7 +503,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(2)} disabled={this.state.buttonDis2}>
-                                                            <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -523,7 +531,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(3)} disabled={this.state.buttonDis3}>
-                                                            <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -551,7 +559,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(4)} disabled={this.state.buttonDis4}>
-                                                            <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -579,7 +587,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(5)} disabled={this.state.buttonDis5}>
-                                                            <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -589,11 +597,11 @@ class BoundaryBox extends React.Component {
                                     </Table>
                                     <div style={{backgroundColor: 'grey'}}>
                                         <div align="center">
-                                            <Button onClick={this.submit} >submit </Button>
+                                            <Button onClick={this.submit}  style={{color:'white', minHeight:70,  fontSize:20, width:'100%', height:'100%' }} >작업 완료 </Button>
                                         </div>
                                     </div>
                                 </TabPanel>
-                                <TabPanel value={this.state.value} index={1}>
+                                <TabPanel index={1}>
                                     <ImageList onClick={this.handleClickItem} />
                                 </TabPanel>
                             </Tabs>
