@@ -384,15 +384,15 @@ class Step2 extends React.Component {
                 {/*</Button>*/}
                     </Grid>
                     <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
-                <Button
-                    type="button"
-                    className={classes.buttonType2}
-                    color="primary"
-                    variant="outlined"
-                    onClick={()=>history.push('/step3')}
-                >
-                    Next Step
-                </Button>
+                        <Button
+                            type="button"
+                            className={classes.buttonType2}
+                            color="primary"
+                            variant="outlined"
+                            onClick={()=>history.push('/step3')}
+                        >
+                            Next Step
+                        </Button>
                     </Grid>
                 </Grid>
             </Container>

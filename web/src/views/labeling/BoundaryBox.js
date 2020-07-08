@@ -625,11 +625,12 @@ class BoundaryBox extends React.Component {
                     {/*    Next*/}
                     {/*</Button>*/}
                     <Button
-                        type="submit"
+                        type="button"
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={()=>history.push('/step/polygon')} >
+                        onClick={()=>history.push('/step/polygon')}
+                    >
                         Next Step
                     </Button>
                 </div>
