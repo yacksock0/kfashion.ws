@@ -92,7 +92,7 @@ export default function SideMenu(props) {
                         <ListItemText primary="홈"></ListItemText>
                     </ListItem>
                 </Link>
-                <Link className={classes.link}>
+                <Link to="" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText button onClick={handleClick} primary="Area 레이블"></ListItemText>
@@ -137,7 +137,7 @@ export default function SideMenu(props) {
                 </Link>
 
 
-                <Link className={classes.link}>
+                <Link to="" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText button onClick={handleClick2} primary="Text 레이블"></ListItemText>
@@ -200,7 +200,7 @@ export default function SideMenu(props) {
             <Divider />
             {loginUser.isAdmin == 'Y'? (
                 <div>
-                    <Link className={classes.link}>
+                    <Link to="" className={classes.link}>
                         <ListItem button>
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
@@ -246,7 +246,7 @@ export default function SideMenu(props) {
                     </div>):''}
             {loginUser.groupAdmin === 1?(
                 <div>
-                    <Link className={classes.link}>
+                    <Link to="" className={classes.link}>
                         <ListItem button>
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
