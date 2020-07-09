@@ -58,7 +58,6 @@ export default function TopBar(props) {
                         K-FASHION
                     </Link>
                 </Typography>
-                <Stepper />
                 { isLoggedIn ? (
                     <IconButton color="inherit" onClick={doLogout}>
                         {loginUser.id}
