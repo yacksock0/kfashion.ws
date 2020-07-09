@@ -56,20 +56,22 @@ export default class UserListStore {
             try {
                 const response = yield axios.get('/api/v1/kfashion/users/groupUserList?groupNo='+groupNo)
                 this.groupUserList = response.data.groupUserList;
+                console.log(response);
             } catch (e) {
                 console.log('error')
             }
         });
 
 
-    addGroupUser = flow(function* addGroupUser() {
+    AddGroupUser = flow(function* addGroupUser() {
         this.state = State.Pending;
         try {
             const param = toJS(this.newMember);
             const response = axios.post('/api/v1/kfashion/users/createGroupUser', param)
                 if (response.status === 200) {
-                    this.LoadGroupUserList(this.newMember.groupNo);
-                    console.log(this.newMember.groupNo);
+                    let groupNo= this.newMember.groupNo;
+                    this.LoadGroupUserList(groupNo);
+                    console.log(groupNo);
                 }
         } catch (e) {
             console.log('에러좀 나지 마라')

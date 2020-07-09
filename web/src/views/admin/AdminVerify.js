@@ -50,12 +50,13 @@ export default class AdminVerify extends React.Component {
         this.state = {
         userList : [],
             id: '',
+            groupNo : '',
         columns: [
             { title: '아이디', field: 'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
             { title: '이메일', field: 'email',type: 'text'},
             { title: '이름', field: 'name', type: 'text'},
             { title: '연락처', field: 'phone', type: 'number'},
-            { title: '소속', field: 'value', type:'',render: rowData => <GroupList />},
+            { title: '소속', field: 'value', type:'',render: rowData => <GroupList onChange={this.handleClickOption(rowData.id)}/>},
             { title: '신청일', field: 'createdDatetime', type: 'date'},
             ],
         }
@@ -72,6 +73,10 @@ export default class AdminVerify extends React.Component {
     }
     onRowSelection(){
 
+    }
+    handleClickOption (id) {
+        console.log(id);
+        this.props.adminAuthorityStore.changeNewAdminId(id);
     }
     handleSubmit(){
         this.props.adminAuthorityStore.changeNewAdminId(this.state.id);
@@ -115,7 +120,7 @@ export default class AdminVerify extends React.Component {
                         sorting: false,
                         /*padding:'dense',*/
                         minBodyHeight: '70vh',
-                        selection: true,
+                        selection: false,
                         actionsColumnIndex: -1,
                         headerStyle: {
                             backgroundColor: '#01579b',

@@ -73,8 +73,6 @@ class UserList extends React.Component {
             id:'',
             name:'',
             password:'',
-            groupUserList:[],
-            newMember:[],
             columns: [
                 {
                     title: '아이디',
@@ -131,7 +129,7 @@ class UserList extends React.Component {
                                                 this.props.userListStore.changeNewMemberPassword(rowData.password)
                                                 this.props.userListStore.changeNewMemberUserName(rowData.name)
                                                 this.props.userListStore.changeNewMemberGroupNo(groupNo)
-                                                this.props.userListStore.addGroupUser();
+                                                this.props.userListStore.AddGroupUser();
                                             } catch (e) {
                                                 console.log('여기 에러 났음')
                                             }

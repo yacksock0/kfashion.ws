@@ -55,19 +55,6 @@
         ORDER BY created_datetime DESC
     </select>
 
-
-<!--    <select id="selectUser" parameterType="String" resultMap="kfashionUserInfoResultMap">-->
-<!--       SELECT id,-->
-<!--               password,-->
-<!--               name,-->
-<!--               is_admin,-->
-<!--               is_approved,-->
-<!--               created_datetime,-->
-<!--               updated_datetime-->
-<!--        FROM kfashion_user_info-->
-<!--        WHERE id = #{value}-->
-<!--    </select>-->
-
     <select id="selectUser" parameterType="String" resultMap="kfashionUserInfoResultMap">
         SELECT
        		   kfashion_user_info.id,

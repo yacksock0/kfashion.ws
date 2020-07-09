@@ -164,11 +164,14 @@ class Step3 extends React.Component {
                                 <Grid item xs={12} lg={6} >
                                     <Tabs selectedIndex={this.state.tabIndex} >
                                         <TabList>
+                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
+                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
                                             <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
                                             <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>
-                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>
-                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>
+                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>*/}
+                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>*/}
+                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>*/}
                                         </TabList>
 
                                         <TabPanel>
