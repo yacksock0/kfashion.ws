@@ -1,10 +1,9 @@
 import React from 'react';
-import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import {Button} from "@material-ui/core";
+import {Grid, Button, Typography} from "@material-ui/core";
 
 
 
@@ -55,9 +54,12 @@ export default class SelectTest extends React.Component {
     }
     render() {
         const { selectedOption } = this.state;
-        const colorList= this.state.colorList;
+        const {colorList}= this.state.colorList;
         return (
             <div>
+                <Typography variant="h5" component="h2">
+                    색상
+                </Typography>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>생삭 지정</Button>
             <Dialog open={this.state.open} onClose={this.handleClose}
                     maxWidth={"md"}
@@ -65,11 +67,13 @@ export default class SelectTest extends React.Component {
                     height={'100%'}
             >
             <DialogContent>
-                <div style={{height:'30vh'}}>
+                <div>
+                <Grid container>
+                    <Grid item xs={12} lg={12}>
             <div style={{border: '1px solid red', backgroundColor:"red", width: 50, height: 50}}>
             </div>
             <div>
-                빨간색(Red)
+                Red(빨간색)
             </div>
                     <div style={{border: '1px solid blue', backgroundColor:"blue", width: 50, height: 50}}>
                     </div>
@@ -81,10 +85,13 @@ export default class SelectTest extends React.Component {
                     <div>
                         Black(검정색)
                     </div>
+                    </Grid>
+                </Grid>
                 </div>
             </DialogContent>
             </Dialog>
             </div>
+
         );
     }
 }
