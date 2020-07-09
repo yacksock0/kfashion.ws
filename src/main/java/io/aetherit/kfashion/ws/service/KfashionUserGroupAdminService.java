@@ -18,7 +18,7 @@ public class KfashionUserGroupAdminService {
         repository.insertUserAdminGroup(groupAdmin);
     }
 
-    public String selectGroupAdminId(int groupNo) {
+    public String[] selectGroupAdminId(int groupNo) {
         return repository.selectGroupAdminId(groupNo);
     }
 }
