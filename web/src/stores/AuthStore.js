@@ -85,7 +85,6 @@ export default class AuthStore {
             this.loginState = State.Authenticated;
             this.loginToken = token;
             this.loginUser = user;
-            this.login = user.id;
         } catch (e) {
             this.loginState = State.Failed;
             this.loginToken = '';

@@ -57,8 +57,8 @@ public class KfashionUserInfoRepository {
         mapper.updateUserGroup(map);
     }
 
-    public List<KfashionUserInfo> selectGroupUserList(KfashionUserInfo user) {
-        return mapper.selectGroupUserList(user);
+    public List<KfashionUserInfo> selectGroupUserList(Map<String, Object> adminMap) {
+        return mapper.selectGroupUserList(adminMap);
 
     }
 

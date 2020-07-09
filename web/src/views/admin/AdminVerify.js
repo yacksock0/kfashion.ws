@@ -56,7 +56,7 @@ export default class AdminVerify extends React.Component {
             { title: '이메일', field: 'email',type: 'text'},
             { title: '이름', field: 'name', type: 'text'},
             { title: '연락처', field: 'phone', type: 'number'},
-            { title: '소속', field: 'value', type:'',render: rowData => <GroupList onChange={this.handleClickOption(rowData.id)}/>},
+            { title: '소속', field: 'value', type:'',render: rowData => <GroupList />},
             { title: '신청일', field: 'createdDatetime', type: 'date'},
             ],
         }
@@ -73,10 +73,6 @@ export default class AdminVerify extends React.Component {
     }
     onRowSelection(){
 
-    }
-    handleClickOption (id) {
-        console.log(id);
-        this.props.adminAuthorityStore.changeNewAdminId(id);
     }
     handleSubmit(){
         this.props.adminAuthorityStore.changeNewAdminId(this.state.id);
