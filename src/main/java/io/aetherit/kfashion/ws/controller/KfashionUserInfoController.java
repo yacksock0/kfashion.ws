@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/kfashion/users")
@@ -127,15 +128,13 @@ public class KfashionUserInfoController {
     public ResponseEntity<Object> groupUserList(HttpServletRequest httpRequest,
                                                 @RequestParam(value="groupNo", required=true) int groupNo) throws Exception {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        String[] adminId = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
-        KfashionUserInfo user = new KfashionUserInfo();
-        user.setGroupNo(groupNo);
-        if(adminId != null) {
-            for(int i=0; i < adminId.length; i++) {
-                user.setAdminId(adminId);
-            }
-        }
-        List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(user);
+        List<String> adminIdList = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
+        System.out.println(adminIdList);
+        Map<String,Object> adminMap =  new HashMap<>();
+        adminMap.put("groupNo", groupNo);
+        adminMap.put("adminIdList", adminIdList);
+
+        List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(adminMap);
         resultMap.put("groupUserList", groupUserList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }

@@ -5,6 +5,8 @@ import io.aetherit.kfashion.ws.repository.KfashionUserGroupAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class KfashionUserGroupAdminService {
     private KfashionUserGroupAdminRepository repository;
@@ -18,7 +20,7 @@ public class KfashionUserGroupAdminService {
         repository.insertUserAdminGroup(groupAdmin);
     }
 
-    public String[] selectGroupAdminId(int groupNo) {
+    public List<String> selectGroupAdminId(int groupNo) {
         return repository.selectGroupAdminId(groupNo);
     }
 }
