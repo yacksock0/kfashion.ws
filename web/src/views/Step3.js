@@ -95,13 +95,6 @@ class Step3 extends React.Component {
 
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
-            originX: 'left',
-            originY: 'top'
-        });
-
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("Step3", {

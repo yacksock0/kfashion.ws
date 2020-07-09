@@ -124,12 +124,6 @@ class Step2 extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width : 750,
-            height : 850,
-            originX: 'left',
-            originY: 'top'
-        });
     }
 
     handleClickOK = () => {

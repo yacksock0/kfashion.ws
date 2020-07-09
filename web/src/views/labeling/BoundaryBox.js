@@ -157,16 +157,9 @@ class BoundaryBox extends React.Component {
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
-            originX: 'left',
-            originY: 'top'
-        });
         this.canvas.selection = false;
         fabric.Object.prototype.transparentCorners = false;
         fabric.Object.prototype.cornerColor = 'blue';
