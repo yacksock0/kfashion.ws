@@ -157,7 +157,6 @@ class BoundaryBox extends React.Component {
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
