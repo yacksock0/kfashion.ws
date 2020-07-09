@@ -224,11 +224,13 @@ class Step2 extends React.Component {
                          <TabPanel>
                              <Tabs onSelect={tabIndex => this.onSelectTab(tabIndex)}>
                              <TabList>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={1}>상의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={2}>하의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={3}>신발</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={4}>가방</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={5}>악세서리</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
+                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
+                                 {/*<Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >신발</h3></Tab>*/}
+                                 {/*<Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >가방</h3></Tab>*/}
+                                 {/*<Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >악세서리</h3></Tab>*/}
                              </TabList>
 
                              <TabPanel>
