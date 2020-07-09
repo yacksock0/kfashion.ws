@@ -135,6 +135,18 @@ export default function SideMenu(props) {
                         </List>
                     </Collapse>
                 </Link>
+                <Link to="/step3" className={classes.link}>
+                    <Collapse in={open2} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <PlaylistAddCheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="최종 검수" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Link>
 
 
                 <Link className={classes.link}>
@@ -184,37 +196,18 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                 ):''}
-
-
-                {/*<Link className={classes.link}>*/}
-                {/*    <ListItem button>*/}
-                {/*        <ListItemIcon><WallpaperIcon /></ListItemIcon>*/}
-                {/*        <ListItemText button onClick={handleClick} primary="Text 레이블링"></ListItemText>*/}
-                {/*        {open ? <ExpandLess /> : <ExpandMore />}*/}
-                {/*    </ListItem>*/}
-                {/*</Link>*/}
-                {/*<Link to="/step2" className={classes.link}>*/}
-                {/*    <ListItem button>*/}
-                {/*        <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>*/}
-                {/*        <ListItemText primary="2단계 기본 레이블링"></ListItemText>*/}
-                {/*    </ListItem>*/}
-                {/*</Link>*/}
-                {/*{loginUser.authorityNo == 5 ? (*/}
-                {/*<Link to="/step3" className={classes.link}>*/}
-                {/*    <ListItem button>*/}
-                {/*        <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>*/}
-                {/*        <ListItemText primary="3단계 전문 레이블링"></ListItemText>*/}
-                {/*    </ListItem>*/}
-                {/*</Link>*/}
-                {/*):''}*/}
-                {/*{loginUser.isAdmin == 'Y'? (*/}
-                {/*    <Link to="/step3" className={classes.link}>*/}
-                {/*        <ListItem button>*/}
-                {/*            <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>*/}
-                {/*            <ListItemText primary="3단계 전문 레이블링"></ListItemText>*/}
-                {/*        </ListItem>*/}
-                {/*    </Link>*/}
-                {/*):''}*/}
+                <Link to="/step3" className={classes.link}>
+                    <Collapse in={open2} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <PlaylistAddCheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="최종 검수" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Link>
             </List>
             <Divider />
             {loginUser.isAdmin == 'Y'? (
