@@ -359,7 +359,7 @@ class BoundaryBox extends React.Component {
             this.props.rectStore.doRectLocationUp();
             this.setState({
                 tabIndex: 1,
-            })
+            });
         }
 
 
@@ -393,7 +393,7 @@ class BoundaryBox extends React.Component {
 
     handleClickItem = (workNo, imageData) => {
         this.setState({tabIndex:0,
-        })
+        });
         this.state.tabIndex=0;
         let result = true;
         if (this.objectList.length != 0 && result) {
