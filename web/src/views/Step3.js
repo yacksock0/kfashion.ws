@@ -96,8 +96,8 @@ class Step3 extends React.Component {
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
+            width: 700,
+            height: 800,
             originX: 'left',
             originY: 'top'
         });
@@ -149,15 +149,14 @@ class Step3 extends React.Component {
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
+            width: 700,
+            height: 800,
             originX: 'left',
             originY: 'top'
         });
     }
     render() {
         const {classes} = this.props;
-
             return (
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
@@ -165,10 +164,10 @@ class Step3 extends React.Component {
                         <Grid container spacing={3}>
                             <Grid item xs={12} lg={5} style={{margin:"auto"}}>
                                 <div style ={{ backgroundColor : "#13264E"}}>
-                                    <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
+                                    <canvas id="c" width={700} height={800} className={classes.canvas}>  </canvas>
                                 </div>
                             </Grid>
-                                <Grid item xs={12} lg={6} >
+                                <Grid item xs={12} lg={5} >
                                     <Tabs selectedIndex={this.state.tabIndex} >
                                         <TabList>
                                             <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>

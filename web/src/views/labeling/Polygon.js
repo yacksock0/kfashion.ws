@@ -151,6 +151,8 @@ class Polygon extends React.Component {
     }
 
     componentDidMount() {
+
+
         this.props.enqueueSnackbar("Polygon Work", {
             variant: 'info'
         });
@@ -182,7 +184,6 @@ class Polygon extends React.Component {
                 this.canvas.selection = false;
                 this.polyPointX[this.polyCounter] = e.pointer.x;
                 this.polyPointY[this.polyCounter] = e.pointer.y;
-
 
                 this.lineTwoPoint = [this.x, this.y, e.pointer.x, e.pointer.y];
                 this.x = e.pointer.x;
@@ -251,6 +252,7 @@ class Polygon extends React.Component {
     }
 
     startPoly = (polyNo) => {
+        const rectInfo = false;
         const { locationRectList } = this.props.rectStore;
         const selectedRect = locationRectList.find(rect => rect.rectNo === polyNo);
         if(selectedRect){
@@ -260,36 +262,46 @@ class Polygon extends React.Component {
                 top: selectedRect.locationY,
                 width: selectedRect.locationWidth,
                 height: selectedRect.locationHeight,
+                stroke: "#880E4F",
                 scaleX : selectedRect.scaleX,
                 scaleY : selectedRect.scaleY,
-                opacity: 0.5,
-                strokeWidth: 2,
-                stroke: "#880E4F",
+
+                opacity: 0.2,
                 selectable: false,
                 evented : false,
             });
+
             this.canvas.add(rect);
+            this.canvas.setActiveObject(rect);
 
+            this.canvas.renderAll(rect);
+            console.log(rect);
+
+
+            // this.polygonIndex +=1;
+            this.onOff = 'lineUse';
+            this.polyNo = polyNo;
+
+            this.setState({
+                buttonDis1: true,
+                buttonDis2: true,
+                buttonDis3: true,
+                buttonDis4: true,
+                buttonDis5: true,
+            });
+
+
+            console.log(polyNo);
+            switch (polyNo) {
+                case 1 : console.log('1'); this.setState({buttonDis1: false}); break;
+                case 2 : console.log('2');this.setState({buttonDis2: false}); break;
+                case 3 : console.log('3');this.setState({buttonDis3: false}); break;
+                case 4 : console.log('4');this.setState({buttonDis4: false}); break;
+                case 5 : console.log('5');this.setState({buttonDis5: false}); break;
+            }
         }else{alert("rect정보가 존재하지 않습니다.")}
-        // this.polygonIndex +=1;
-        this.onOff = 'lineUse';
-        this.polyNo = polyNo;
 
-        this.setState({
-            buttonDis1: true,
-            buttonDis2: true,
-            buttonDis3: true,
-            buttonDis4: true,
-            buttonDis5: true,
-        });
-        console.log(polyNo);
-        switch (polyNo) {
-            case 1 : console.log('1'); this.setState({buttonDis1: false}); break;
-            case 2 : console.log('2');this.setState({buttonDis2: false}); break;
-            case 3 : console.log('3');this.setState({buttonDis3: false}); break;
-            case 4 : console.log('4');this.setState({buttonDis4: false}); break;
-            case 5 : console.log('5');this.setState({buttonDis5: false}); break;
-        }
+
     }
 
     deleteOne = () => {
@@ -320,8 +332,6 @@ class Polygon extends React.Component {
         }
     }
     deleteAll = (b) =>{
-
-
         let objList = [];
         this.canvas.getObjects().forEach(function (o) {
             objList.push(o);
@@ -339,7 +349,6 @@ class Polygon extends React.Component {
             this.polyPointY.length =0;
             this.buttonState();
         }
-
     }
 
     buttonState = () => {
@@ -443,11 +452,15 @@ class Polygon extends React.Component {
             this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
             this.props.polygonStore.doPolygonLocationUp();
-            window.location.reload();
+            this.setState({
+                tadIndex:1,
+            })
         }
     }
+    setSavs = ()=> {
+
+};
     handleClickItem = (workNo, imageData) => {
-        this.state.tabIndex=0;
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
@@ -457,6 +470,9 @@ class Polygon extends React.Component {
             originX: 'left',
             originY: 'top'
         });
+        this.setState({
+            tadIndex:1,
+        })
     }
     render() {
         const { classes } = this.props;

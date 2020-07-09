@@ -144,7 +144,6 @@ class Step2 extends React.Component {
         this.setState({ number: newNumber});
     }
     handleClickItem = (workNo, imageData) => {
-        this.state.tabIndex=0;
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
@@ -154,6 +153,9 @@ class Step2 extends React.Component {
             originX: 'left',
             originY: 'top'
         });
+        this.setState({
+            tadIndex:1,
+        })
     }
     handlePrevious(){
         this.setState({
@@ -182,8 +184,6 @@ class Step2 extends React.Component {
     }
 
     onSelectTab(tabIndex) {
-
-
 
         this.canvas.remove(this.canvas.item(0));
         let polyNo = tabIndex+1;
@@ -236,7 +236,6 @@ class Step2 extends React.Component {
                                  <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={4}>가방</h3></Tab>
                                  <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 id={5}>악세서리</h3></Tab>
                              </TabList>
-
 
                              <TabPanel>
                                      <div className={classes.content}>
