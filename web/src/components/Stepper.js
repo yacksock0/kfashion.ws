@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['이미지 업로드', '영역지정', '세부영역', '기본 레이블링','전문 레이블링','연구용 레이블링'];
+    return ['이미지 업로드', '이미지 업로드', '사각형 지정', '다각형 지정','2단계 기본 레이블링','3단계 전문 레이블링'];
 }
 
 function getStepContent(step) {
