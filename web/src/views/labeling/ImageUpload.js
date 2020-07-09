@@ -260,24 +260,24 @@ class ImageUpload extends React.Component {
                     <hr></hr>
                     <Grid container>
                         <Grid item xs={3} lg={1} style={{marginRight:10}}>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handlePrevious.bind(this)}
-                         >
-                        Previous
-                    </Button>
-                        </Grid>
-                        <Grid item xs={3} lg={1}>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handleNext.bind(this)}
-                         >
-                        Next
-                    </Button>
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    className={classes.buttonType1}*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={this.handlePrevious.bind(this)}*/}
+                    {/*     >*/}
+                    {/*    Previous*/}
+                    {/*</Button>*/}
+                    {/*    </Grid>*/}
+                    {/*    <Grid item xs={3} lg={1}>*/}
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    className={classes.buttonType1}*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={this.handleNext.bind(this)}*/}
+                    {/*     >*/}
+                    {/*    Next*/}
+                    {/*</Button>*/}
                         </Grid>
                         <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                     <Button

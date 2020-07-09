@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SideMenu(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const { mobileOpen, setMobileOpen, isLoggedIn, authrity} = props;
+    const { mobileOpen, setMobileOpen, isLoggedIn, authrity, loginUser} = props;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -137,15 +137,26 @@ export default function SideMenu(props) {
                         <ListItemText primary="2단계 기본 레이블링"></ListItemText>
                     </ListItem>
                 </Link>
+                {loginUser.authorityNo == 5 ? (
                 <Link to="/step3" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
                         <ListItemText primary="3단계 전문 레이블링"></ListItemText>
                     </ListItem>
                 </Link>
+                ):''}
+                {loginUser.isAdmin == 'Y'? (
+                    <Link to="/step3" className={classes.link}>
+                        <ListItem button>
+                            <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
+                            <ListItemText primary="3단계 전문 레이블링"></ListItemText>
+                        </ListItem>
+                    </Link>
+                ):''}
             </List>
-
             <Divider />
+            {loginUser.isAdmin == 'Y'? (
+                <div>
             <Link className={classes.link}>
                 <ListItem button>
                     <ListItemIcon><WallpaperIcon /></ListItemIcon>
@@ -177,6 +188,30 @@ export default function SideMenu(props) {
                     </List>
                 </Collapse>
             </Link>
+                    </div>):''}
+            {loginUser.groupAdmin === 1?(
+                <div>
+                <Link className={classes.link}>
+                    <ListItem button>
+                        <ListItemIcon><WallpaperIcon /></ListItemIcon>
+                        <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
+                        {open1 ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                </Link>
+                <Link to="/admin/userList" className={classes.link}>
+                    <Collapse in={open1} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <AspectRatioIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="회원 리스트" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Link>
+                </div>
+            ):''}
         </div>
     );
 

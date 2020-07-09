@@ -475,7 +475,7 @@ class Polygon extends React.Component {
         })
     }
     render() {
-        const { classes } = this.props;
+        const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
         return (
             <Container component="main" className={classes.mainContainer}>
@@ -483,7 +483,7 @@ class Polygon extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display: "block"}}>
-                            <div style ={{ backgroundColor : "#13264E"}}>
+                            <div>
                                 <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
                             </div>
                         </Grid>
@@ -801,27 +801,28 @@ class Polygon extends React.Component {
 
                 <div>
                     <hr></hr>
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    className={classes.buttonType1}*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={this.handleSubmitForm} >*/}
+                    {/*    Previous*/}
+                    {/*</Button>*/}
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    className={classes.buttonType1}*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={this.handleSubmitForm} >*/}
+                    {/*    Next*/}
+                    {/*</Button>*/}
                     <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handleSubmitForm} >
-                        Previous
-                    </Button>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handleSubmitForm} >
-                        Next
-                    </Button>
-                    <Button
-                        type="submit"
+                        type="button"
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={this.handleSubmitForm} >
-                        Save and Next
+                        onClick={()=>history.push('/step2')}
+                    >
+                        Next Step
                     </Button>
                 </div>
             </Container>

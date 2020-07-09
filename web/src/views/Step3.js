@@ -88,7 +88,7 @@ class Step3 extends React.Component {
     constructor(props) {
         super(...arguments);
         this.state = {
-            tapIndex: 0,
+            tapIndex: 1,
             createdId: '',
         }
     }
@@ -96,8 +96,8 @@ class Step3 extends React.Component {
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 700,
-            height: 800,
+            width: 750,
+            height: 850,
             originX: 'left',
             originY: 'top'
         });
@@ -149,25 +149,26 @@ class Step3 extends React.Component {
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 700,
-            height: 800,
+            width: 750,
+            height: 850,
             originX: 'left',
             originY: 'top'
         });
     }
     render() {
-        const {classes} = this.props;
+        const {classes,history} = this.props;
+
             return (
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} lg={5} style={{margin:"auto"}}>
-                                <div style ={{ backgroundColor : "#13264E"}}>
-                                    <canvas id="c" width={700} height={800} className={classes.canvas}>  </canvas>
+                                <div>
+                                    <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
                                 </div>
                             </Grid>
-                                <Grid item xs={12} lg={5} >
+                                <Grid item xs={12} lg={6} >
                                     <Tabs selectedIndex={this.state.tabIndex} >
                                         <TabList>
                                             <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
@@ -208,38 +209,39 @@ class Step3 extends React.Component {
                     <hr></hr>
                     </div>
                     <hr></hr>
-                    <Grid container>
-                        <Grid item xs={3} lg={1} style={{marginRight:10}}>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handlePrevious.bind(this)}
-                    >
-                        Previous
-                    </Button>
-                        </Grid>
-                        <Grid item xs={3} lg={1}>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handleNext.bind(this)}
-                    >
-                        Next
-                    </Button>
-                        </Grid>
-                        <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
-                    <Button
-                        type="button"
-                        className={classes.buttonType2}
-                        color="primary"
-                        variant="outlined"
-                    >
-                        Next Step
-                    </Button>
-                        </Grid>
-                    </Grid>
+                    {/*<Grid container>*/}
+                    {/*    <Grid item xs={3} lg={1} style={{marginRight:10}}>*/}
+                    {/*/!*<Button*!/*/}
+                    {/*/!*    type="submit"*!/*/}
+                    {/*/!*    className={classes.buttonType1}*!/*/}
+                    {/*/!*    variant="outlined"*!/*/}
+                    {/*/!*    onClick={this.handlePrevious.bind(this)}*!/*/}
+                    {/*/!*>*!/*/}
+                    {/*/!*    Previous*!/*/}
+                    {/*/!*</Button>*!/*/}
+                    {/*/!*    </Grid>*!/*/}
+                    {/*/!*    <Grid item xs={3} lg={1}>*!/*/}
+                    {/*/!*<Button*!/*/}
+                    {/*/!*    type="submit"*!/*/}
+                    {/*/!*    className={classes.buttonType1}*!/*/}
+                    {/*/!*    variant="outlined"*!/*/}
+                    {/*/!*    onClick={this.handleNext.bind(this)}*!/*/}
+                    {/*/!*>*!/*/}
+                    {/*/!*    Next*!/*/}
+                    {/*/!*</Button>*!/*/}
+                    {/*    </Grid>*/}
+                    {/*    <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>*/}
+                    {/*        <Button*/}
+                    {/*            type="button"*/}
+                    {/*            className={classes.buttonType2}*/}
+                    {/*            color="primary"*/}
+                    {/*            variant="outlined"*/}
+                    {/*            onClick={()=>history.push('/step3')}*/}
+                    {/*        >*/}
+                    {/*            Next Step*/}
+                    {/*        </Button>*/}
+                    {/*    </Grid>*/}
+                    {/*</Grid>*/}
                 </Container>
             );
         }

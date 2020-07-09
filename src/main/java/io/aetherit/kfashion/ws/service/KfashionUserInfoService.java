@@ -68,7 +68,7 @@ public class KfashionUserInfoService {
 
             final KfashionUserInfo newAdmin = KfashionUserInfo.builder()
                     .id(DEFAULT_ADMIN_ID)
-                    .password(DEFAULT_ADMIN_PASSWORD)
+                    .password(passwordEncoder.encode(DEFAULT_ADMIN_PASSWORD))
                     .name(DEFAULT_ADMIN_NAME)
                     .isAdmin('Y')
                     .isApproved('Y')

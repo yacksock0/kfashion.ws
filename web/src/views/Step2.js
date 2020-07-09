@@ -216,7 +216,7 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                         <div style ={{ backgroundColor : "#13264E"}}>
+                         <div>
                              <canvas id="c" width="750" height="850">  </canvas>
                          </div>
                      </Grid>
@@ -257,6 +257,15 @@ class Step2 extends React.Component {
                                              <hr></hr>
                                          </div>
                                          <SleeveLength />
+                                         <Button style={{marginTop: 20}}
+                                                 type="button"
+                                                 className={classes.buttonType2}
+                                                 color="primary"
+                                                 variant="outlined"
+                                                 onClick={()=>alert('저장 되었습니다.')}
+                                         >
+                                             저장
+                                         </Button>
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -279,6 +288,15 @@ class Step2 extends React.Component {
                                              <hr></hr>
                                          </div>
                                          <SleeveLength />
+                                         <Button style={{marginTop: 20}}
+                                                 type="button"
+                                                 className={classes.buttonType2}
+                                                 color="primary"
+                                                 variant="outlined"
+                                                 onClick={()=>alert('저장 되었습니다.')}
+                                         >
+                                             저장
+                                         </Button>
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -301,6 +319,15 @@ class Step2 extends React.Component {
                                      <hr></hr>
                                  </div>
                                  <SleeveLength />
+                                 <Button style={{marginTop: 20}}
+                                         type="button"
+                                         className={classes.buttonType2}
+                                         color="primary"
+                                         variant="outlined"
+                                         onClick={()=>alert('저장 되었습니다.')}
+                                 >
+                                     저장
+                                 </Button>
                              </div>
                          </TabPanel>
                                  <TabPanel>
@@ -323,6 +350,15 @@ class Step2 extends React.Component {
                                      <hr></hr>
                                  </div>
                                  <SleeveLength />
+                                 <Button style={{marginTop: 20}}
+                                         type="button"
+                                         className={classes.buttonType2}
+                                         color="primary"
+                                         variant="outlined"
+                                         onClick={()=>alert('저장 되었습니다.')}
+                                 >
+                                     저장
+                                 </Button>
                              </div>
                          </TabPanel>
                                  <TabPanel>
@@ -345,7 +381,17 @@ class Step2 extends React.Component {
                                      <hr></hr>
                                  </div>
                                  <SleeveLength />
+                                 <Button style={{marginTop: 20}}
+                                     type="button"
+                                     className={classes.buttonType2}
+                                     color="primary"
+                                     variant="outlined"
+                                         onClick={()=>alert('저장 되었습니다.')}
+                                 >
+                                     저장
+                                 </Button>
                              </div>
+
                                  </TabPanel>
                              </Tabs>
                          </TabPanel>
@@ -363,35 +409,35 @@ class Step2 extends React.Component {
                 <hr></hr>
                 <Grid container>
                     <Grid item xs={3} lg={1} style={{marginRight:10}}>
-                <Button
-                    type="submit"
-                    className={classes.buttonType1}
-                    variant="outlined"
-                    onClick={this.handlePrevious.bind(this)}
-                >
-                    Previous
-                </Button>
-                    </Grid>
-                    <Grid item xs={3} lg={1}>
-                <Button
-                    type="submit"
-                    className={classes.buttonType1}
-                    variant="outlined"
-                    onClick={this.handleNext.bind(this)}
-                >
-                    Next
-                </Button>
+                {/*<Button*/}
+                {/*    type="submit"*/}
+                {/*    className={classes.buttonType1}*/}
+                {/*    variant="outlined"*/}
+                {/*    onClick={this.handlePrevious.bind(this)}*/}
+                {/*>*/}
+                {/*    Previous*/}
+                {/*</Button>*/}
+                {/*    </Grid>*/}
+                {/*    <Grid item xs={3} lg={1}>*/}
+                {/*<Button*/}
+                {/*    type="submit"*/}
+                {/*    className={classes.buttonType1}*/}
+                {/*    variant="outlined"*/}
+                {/*    onClick={this.handleNext.bind(this)}*/}
+                {/*>*/}
+                {/*    Next*/}
+                {/*</Button>*/}
                     </Grid>
                     <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
-                <Button
-                    type="button"
-                    className={classes.buttonType2}
-                    color="primary"
-                    variant="outlined"
-                    onClick={()=>history.push('/step3')}
-                >
-                    Next Step
-                </Button>
+                        <Button
+                            type="button"
+                            className={classes.buttonType2}
+                            color="primary"
+                            variant="outlined"
+                            onClick={()=>history.push('/step3')}
+                        >
+                            Next Step
+                        </Button>
                     </Grid>
                 </Grid>
             </Container>

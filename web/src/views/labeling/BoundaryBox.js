@@ -162,8 +162,8 @@ class BoundaryBox extends React.Component {
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 700,
-            height: 800,
+            width: 750,
+            height: 850,
             originX: 'left',
             originY: 'top'
         });
@@ -365,7 +365,7 @@ class BoundaryBox extends React.Component {
             this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
             this.props.rectStore.doRectLocationUp();
             this.setState({
-                tadIndex:1,
+                tabIndex: 1,
             })
         }
 
@@ -399,7 +399,9 @@ class BoundaryBox extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
-
+        this.setState({tabIndex:0,
+        })
+        this.state.tabIndex=0;
         let result = true;
         if (this.objectList.length != 0 && result) {
             result = window.confirm("다른작업을 하시겠습니까?");
@@ -407,8 +409,8 @@ class BoundaryBox extends React.Component {
         if (result) {
             this.props.imageStore.changeWorkNo(workNo);
             this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-                width: 700,
-                height: 800,
+                width: 750,
+                height: 850,
                 originX: 'left',
                 originY: 'top'
             });
@@ -419,9 +421,6 @@ class BoundaryBox extends React.Component {
             this.save4 = false;
             this.save5 = false;
         }
-        this.setState({
-            tadIndex:1,
-        })
     }
 
     render() {
@@ -433,13 +432,13 @@ class BoundaryBox extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                            <div style ={{ backgroundColor : "#13264E"}}>
-                                <canvas id="c" width= "700" height= "800"  >  </canvas>
+                        <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
+                            <div>
+                                <canvas id="c" width= "750" height= "850"  >  </canvas>
                             </div>
                         </Grid>
 
-                        <Grid item xs={12} lg={5}>
+                        <Grid item xs={12} lg={6}>
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                 <TabList>
                                     <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}} ><h3>영역지정</h3></Tab>
@@ -479,7 +478,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(1)} disabled={this.state.buttonDis1}>
-                                                            저장 <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -508,7 +507,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(2)} disabled={this.state.buttonDis2}>
-                                                            저장 <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -536,7 +535,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(3)} disabled={this.state.buttonDis3}>
-                                                            저장 <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -564,7 +563,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(4)} disabled={this.state.buttonDis4}>
-                                                            저장 <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -592,7 +591,7 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(5)} disabled={this.state.buttonDis5}>
-                                                            저장 <SaveIcon />
+                                                            save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -615,26 +614,27 @@ class BoundaryBox extends React.Component {
                 </div>
                 <div>
                     <hr></hr>
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    className={classes.buttonType1}*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={this.handlePrevious.bind(this)} >*/}
+                    {/*    Previous*/}
+                    {/*</Button>*/}
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    className={classes.buttonType1}*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={this.handleNext.bind(this)} >*/}
+                    {/*    Next*/}
+                    {/*</Button>*/}
                     <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handlePrevious.bind(this)} >
-                        Previous
-                    </Button>
-                    <Button
-                        type="submit"
-                        className={classes.buttonType1}
-                        variant="outlined"
-                        onClick={this.handleNext.bind(this)} >
-                        Next
-                    </Button>
-                    <Button
-                        type="submit"
+                        type="button"
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={()=>history.push('/step/polygon')} >
+                        onClick={()=>history.push('/step/polygon')}
+                    >
                         Next Step
                     </Button>
                 </div>
