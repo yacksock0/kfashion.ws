@@ -8,6 +8,11 @@ const State = {
     Success: 'Success',
     Fail: 'Fail',
 }
+const ListState = {
+    Loading: 'Loading',
+    Loaded: 'Loaded',
+    LoadFailed: 'LoadFailed',
+};
 
 const EmptyNewMember = {
     id: '',
@@ -24,6 +29,7 @@ export default class UserListStore {
     @observable state = State.Ready;
     @observable newMember = {...EmptyNewMember}
     @observable groupUserList = [];
+    @observable listState = ListState.Loaded;
 
     @action initStore = () => {
         this.groupUserList = [];
@@ -52,13 +58,15 @@ export default class UserListStore {
 
 
         LoadGroupUserList= flow(function* loadGroupUserList(groupNo) {
+            this.listState = ListState.Loading;
             this.groupUserList = [];
             try {
                 const response = yield axios.get('/api/v1/kfashion/users/groupUserList?groupNo='+groupNo)
                 this.groupUserList = response.data.groupUserList;
-                console.log(response);
+                this.listState = ListState.Loaded;
             } catch (e) {
                 console.log('error')
+                this.listState = ListState.LoadFailed;
             }
         });
 
@@ -67,12 +75,13 @@ export default class UserListStore {
         this.state = State.Pending;
         try {
             const param = toJS(this.newMember);
-            const response = axios.post('/api/v1/kfashion/users/createGroupUser', param)
-                if (response.status === 200) {
-                    let groupNo= this.newMember.groupNo;
-                    this.LoadGroupUserList(groupNo);
-                    console.log(groupNo);
-                }
+                axios.post('/api/v1/kfashion/users/createGroupUser', param)
+                .then(res =>{
+                    if (res.status === 200) {
+                        let groupNo= this.newMember.groupNo;
+                        this.LoadGroupUserList(groupNo);
+                    }
+                })
         } catch (e) {
             console.log('에러좀 나지 마라')
         }

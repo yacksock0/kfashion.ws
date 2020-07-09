@@ -150,7 +150,7 @@ public class KfashionUserInfoController {
     public ResponseEntity<Object> createGroupUser(HttpServletRequest httpServletRequest,
                                             @RequestBody KfashionUserInfo user) throws Exception{
         kfashionUserInfoService.createGroupUser(user);
-        return new ResponseEntity<Object>("success",HttpStatus.OK);
+        return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
     /**

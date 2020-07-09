@@ -141,6 +141,7 @@
         <foreach collection="adminIdList" item="adminIdList" index="index" separator="," open="(" close=")">
             (#{adminIdList})
         </foreach>
+        ORDER BY created_datetime DESC
      </select>
 
     <insert id="createGroupUser" parameterType="KfashionUserInfo">
