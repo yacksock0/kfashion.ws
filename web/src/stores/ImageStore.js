@@ -68,7 +68,6 @@ export default class ImageStore {
         try {
           const response = yield axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
           this.boundaryList = response.data.boundaryList;
-          this.workNo  = this.boundaryList[0].workNo;
         } catch (e) {
             console.log('error')
         }

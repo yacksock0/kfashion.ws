@@ -136,10 +136,6 @@ class ImageUpload extends React.Component {
         })
         const createdId = this.props.authStore.isUserId;
         this.props.imageStore.LoadImage(createdId)
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
-            workNo: this.props.imageStore.workNo,
-        })
     }
     componentWillUnmount() {
         this.props.imageStore.initStore();

@@ -113,23 +113,26 @@ class Polygon extends React.Component {
         buttonDis2 : false,
         buttonDis3 : false,
         buttonDis4 : false,
-        buttonDis5 : false,
+        buttonDis5 : true,
+        buttonDis6 : true,
+        buttonDis7 : true,
         tabIndex: 1,
     }
     save1 = false;
     save2 = false;
     save3 = false;
     save4 = false;
-    save5 = false;
+    save5 = true;
+    save6 = true;
+    save7 = true;
+
     polygonIndex = 0;
     polygon = [{
         polyNo : '',
         points: [{
             x: 0,
             y: 0,
-        }
-        ]
-
+        }]
     }];
 
     canvas;
@@ -151,6 +154,8 @@ class Polygon extends React.Component {
     }
 
     componentDidMount() {
+
+
         this.props.enqueueSnackbar("Polygon Work", {
             variant: 'info'
         });
@@ -160,12 +165,6 @@ class Polygon extends React.Component {
         })
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
-            originX: 'left',
-            originY: 'top'
-        });
 
         this.canvas.on('selection:created', function (e) {
             const asd = e.target;
@@ -182,7 +181,6 @@ class Polygon extends React.Component {
                 this.canvas.selection = false;
                 this.polyPointX[this.polyCounter] = e.pointer.x;
                 this.polyPointY[this.polyCounter] = e.pointer.y;
-
 
                 this.lineTwoPoint = [this.x, this.y, e.pointer.x, e.pointer.y];
                 this.x = e.pointer.x;
@@ -251,6 +249,7 @@ class Polygon extends React.Component {
     }
 
     startPoly = (polyNo) => {
+        const rectInfo = false;
         const { locationRectList } = this.props.rectStore;
         const selectedRect = locationRectList.find(rect => rect.rectNo === polyNo);
         if(selectedRect){
@@ -260,36 +259,44 @@ class Polygon extends React.Component {
                 top: selectedRect.locationY,
                 width: selectedRect.locationWidth,
                 height: selectedRect.locationHeight,
+                stroke: "#880E4F",
                 scaleX : selectedRect.scaleX,
                 scaleY : selectedRect.scaleY,
-                opacity: 0.5,
-                strokeWidth: 2,
-                stroke: "#880E4F",
+
+                opacity: 0.2,
                 selectable: false,
                 evented : false,
             });
+
             this.canvas.add(rect);
+            this.canvas.setActiveObject(rect);
 
+            this.canvas.renderAll(rect);
+            console.log(rect);
+
+
+            // this.polygonIndex +=1;
+            this.onOff = 'lineUse';
+            this.polyNo = polyNo;
+
+            this.setState({
+                buttonDis1: true,
+                buttonDis2: true,
+                buttonDis3: true,
+                buttonDis4: true,
+            });
+
+
+            console.log(polyNo);
+            switch (polyNo) {
+                case 1 : console.log('1'); this.setState({buttonDis1: false}); break;
+                case 2 : console.log('2');this.setState({buttonDis2: false}); break;
+                case 3 : console.log('3');this.setState({buttonDis3: false}); break;
+                case 4 : console.log('4');this.setState({buttonDis4: false}); break;
+            }
         }else{alert("rect정보가 존재하지 않습니다.")}
-        // this.polygonIndex +=1;
-        this.onOff = 'lineUse';
-        this.polyNo = polyNo;
 
-        this.setState({
-            buttonDis1: true,
-            buttonDis2: true,
-            buttonDis3: true,
-            buttonDis4: true,
-            buttonDis5: true,
-        });
-        console.log(polyNo);
-        switch (polyNo) {
-            case 1 : console.log('1'); this.setState({buttonDis1: false}); break;
-            case 2 : console.log('2');this.setState({buttonDis2: false}); break;
-            case 3 : console.log('3');this.setState({buttonDis3: false}); break;
-            case 4 : console.log('4');this.setState({buttonDis4: false}); break;
-            case 5 : console.log('5');this.setState({buttonDis5: false}); break;
-        }
+
     }
 
     deleteOne = () => {
@@ -320,8 +327,6 @@ class Polygon extends React.Component {
         }
     }
     deleteAll = (b) =>{
-
-
         let objList = [];
         this.canvas.getObjects().forEach(function (o) {
             objList.push(o);
@@ -339,7 +344,6 @@ class Polygon extends React.Component {
             this.polyPointY.length =0;
             this.buttonState();
         }
-
     }
 
     buttonState = () => {
@@ -348,7 +352,6 @@ class Polygon extends React.Component {
             buttonDis2: this.save2,
             buttonDis3: this.save3,
             buttonDis4: this.save4,
-            buttonDis5: this.save5,
         });
     }
 
@@ -413,13 +416,8 @@ class Polygon extends React.Component {
                         console.log('4');
                         this.save4 = true;
                         break;
-                    case 5 :
-                        console.log('5');
-                        this.save5 = true;
-                        break;
                 }
                 this.buttonState();
-
             } else {
                 alert("입력된 polygon이 존재하지 않습니다.");
             }
@@ -443,11 +441,17 @@ class Polygon extends React.Component {
             this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
             this.props.polygonStore.doPolygonLocationUp();
-            window.location.reload();
+            this.setState({
+                tabIndex: 1,
+            });
         }
     }
+    setSavs = ()=> {
+
+};
     handleClickItem = (workNo, imageData) => {
-        this.state.tabIndex=0;
+        this.setState({tabIndex:0,
+        });
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
@@ -457,6 +461,9 @@ class Polygon extends React.Component {
             originX: 'left',
             originY: 'top'
         });
+        this.setState({
+            tadIndex:1,
+        })
     }
     render() {
         const { classes,history } = this.props;
@@ -495,10 +502,9 @@ class Polygon extends React.Component {
 
                                             <TableBody>
                                                 <TableRow >
-                                                    <TableCell>상의 영역</TableCell>
+                                                    <TableCell><b>아우터 영역</b></TableCell>
                                                     <TableCell>
                                                         <Button
-                                                            id="1"
                                                             type="submit"
                                                             className={classes.buttonType1}
                                                             variant="outlined"
@@ -508,9 +514,9 @@ class Polygon extends React.Component {
                                                             start <AddIcon/>
                                                         </Button>
                                                     </TableCell>
+
                                                     <TableCell>
                                                         <Button
-                                                            id="2"
                                                             type="submit"
                                                             className={classes.buttonType1}
                                                             variant="outlined"
@@ -519,18 +525,18 @@ class Polygon extends React.Component {
                                                             disabled={this.state.buttonDis1}>
                                                             finish
                                                         </Button>
-
                                                     </TableCell>
+
                                                     <TableCell>
                                                         <Tooltip title="Delete">
-                                                            <IconButton id="3" aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis1}>
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis1}>
                                                                 <DeleteIcon />
                                                             </IconButton>
                                                         </Tooltip>
                                                     </TableCell>
+
                                                     <TableCell>
                                                         <Button
-                                                            id="4"
                                                             type="submit"
                                                             className={classes.buttonType1}
                                                             variant="outlined"
@@ -540,6 +546,7 @@ class Polygon extends React.Component {
                                                             All<DeleteIcon />
                                                         </Button>
                                                     </TableCell>
+
                                                     <TableCell>
                                                         <Tooltip title="Save">
                                                             <IconButton aria-label="save" onClick={() => this.doSave(1)} disabled={this.state.buttonDis1}>
@@ -549,9 +556,11 @@ class Polygon extends React.Component {
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
-                                            <TableBody >
-                                                <TableRow>
-                                                    <TableCell>하의 영역</TableCell>
+
+
+                                            <TableBody>
+                                                <TableRow >
+                                                    <TableCell><b>상의 영역</b></TableCell>
                                                     <TableCell>
                                                         <Button
                                                             type="submit"
@@ -577,7 +586,7 @@ class Polygon extends React.Component {
                                                     </TableCell>
                                                     <TableCell>
                                                         <Tooltip title="Delete">
-                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis2}>
+                                                            <IconButton  aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis2}>
                                                                 <DeleteIcon />
                                                             </IconButton>
                                                         </Tooltip>
@@ -589,7 +598,7 @@ class Polygon extends React.Component {
                                                             variant="outlined"
                                                             title="Delete All"
                                                             onClick={() => this.delete(2) }
-                                                            disabled={this.state.buttonDis2}>
+                                                            disabled={this.state.buttonDis1}>
                                                             All<DeleteIcon />
                                                         </Button>
                                                     </TableCell>
@@ -602,9 +611,9 @@ class Polygon extends React.Component {
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
-                                            <TableBody>
+                                            <TableBody >
                                                 <TableRow>
-                                                    <TableCell>신발 영역</TableCell>
+                                                    <TableCell><b>하의 영역</b></TableCell>
                                                     <TableCell>
                                                         <Button
                                                             type="submit"
@@ -642,7 +651,7 @@ class Polygon extends React.Component {
                                                             variant="outlined"
                                                             title="Delete All"
                                                             onClick={() => this.delete(3) }
-                                                            disabled={this.state.buttonDis3} >
+                                                            disabled={this.state.buttonDis3}>
                                                             All<DeleteIcon />
                                                         </Button>
                                                     </TableCell>
@@ -655,9 +664,10 @@ class Polygon extends React.Component {
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
+
                                             <TableBody>
-                                                <TableRow>
-                                                    <TableCell>가방 영역</TableCell>
+                                                <TableRow >
+                                                    <TableCell><b>원피스 영역</b></TableCell>
                                                     <TableCell>
                                                         <Button
                                                             type="submit"
@@ -676,10 +686,9 @@ class Polygon extends React.Component {
                                                             variant="outlined"
                                                             title="finish"
                                                             onClick={() => this.finishPath() }
-                                                            disabled={this.state.buttonDis4} >
+                                                            disabled={this.state.buttonDis4}>
                                                             finish
                                                         </Button>
-
                                                     </TableCell>
                                                     <TableCell>
                                                         <Tooltip title="Delete">
@@ -709,8 +718,8 @@ class Polygon extends React.Component {
                                                 </TableRow>
                                             </TableBody>
                                             <TableBody>
-                                                <TableRow >
-                                                    <TableCell>악세사리 영역</TableCell>
+                                                <TableRow>
+                                                    <TableCell>신발 영역</TableCell>
                                                     <TableCell>
                                                         <Button
                                                             type="submit"
@@ -718,7 +727,7 @@ class Polygon extends React.Component {
                                                             variant="outlined"
                                                             title="Draw Polygon"
                                                             onClick={() => this.startPoly(5) }
-                                                            disabled={this.state.buttonDis5} >
+                                                            disabled={this.state.buttonDis5}>
                                                             start <AddIcon/>
                                                         </Button>
                                                     </TableCell>
@@ -736,7 +745,7 @@ class Polygon extends React.Component {
                                                     </TableCell>
                                                     <TableCell>
                                                         <Tooltip title="Delete">
-                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()}  disabled={this.state.buttonDis5}>
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis5}>
                                                                 <DeleteIcon />
                                                             </IconButton>
                                                         </Tooltip>
@@ -748,13 +757,119 @@ class Polygon extends React.Component {
                                                             variant="outlined"
                                                             title="Delete All"
                                                             onClick={() => this.delete(5) }
-                                                            disabled={this.state.buttonDis5}>
+                                                            disabled={this.state.buttonDis5} >
                                                             All<DeleteIcon />
                                                         </Button>
                                                     </TableCell>
                                                     <TableCell>
                                                         <Tooltip title="Save">
-                                                            <IconButton aria-label="save" onClick={() => this.doSave()} disabled={this.state.buttonDis5}>
+                                                            <IconButton aria-label="save" onClick={() => this.doSave(5)} disabled={this.state.buttonDis5}>
+                                                                save <SaveIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                            <TableBody>
+                                                <TableRow>
+                                                    <TableCell>가방 영역</TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Draw Polygon"
+                                                            onClick={() => this.startPoly(6) }
+                                                            disabled={this.state.buttonDis6}>
+                                                            start <AddIcon/>
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="finish"
+                                                            onClick={() => this.finishPath() }
+                                                            disabled={this.state.buttonDis6} >
+                                                            finish
+                                                        </Button>
+
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Delete">
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis6}>
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.delete(6) }
+                                                            disabled={this.state.buttonDis6}>
+                                                            All<DeleteIcon />
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Save">
+                                                            <IconButton aria-label="save" onClick={() => this.doSave(6)} disabled={this.state.buttonDis6}>
+                                                                save <SaveIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                            <TableBody>
+                                                <TableRow >
+                                                    <TableCell>악세사리 영역</TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Draw Polygon"
+                                                            onClick={() => this.startPoly(7) }
+                                                            disabled={this.state.buttonDis7} >
+                                                            start <AddIcon/>
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="finish"
+                                                            onClick={() => this.finishPath() }
+                                                            disabled={this.state.buttonDis7}>
+                                                            finish
+                                                        </Button>
+
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Delete">
+                                                            <IconButton aria-label="delete" onClick={() => this.deleteOne()}  disabled={this.state.buttonDis7}>
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button
+                                                            type="submit"
+                                                            className={classes.buttonType1}
+                                                            variant="outlined"
+                                                            title="Delete All"
+                                                            onClick={() => this.delete(7) }
+                                                            disabled={this.state.buttonDis7}>
+                                                            All<DeleteIcon />
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Tooltip title="Save">
+                                                            <IconButton aria-label="save" onClick={() => this.doSave(7)} disabled={this.state.buttonDis7}>
                                                                 save <SaveIcon />
                                                             </IconButton>
                                                         </Tooltip>

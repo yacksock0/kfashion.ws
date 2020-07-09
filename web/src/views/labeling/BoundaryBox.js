@@ -131,6 +131,8 @@ class BoundaryBox extends React.Component {
     save3 = false;
     save4 = false;
     save5 = false;
+    save6 = false;
+    save7 = false;
 
     objectList = [];
     state = {
@@ -146,7 +148,9 @@ class BoundaryBox extends React.Component {
         buttonDis2 : false,
         buttonDis3 : false,
         buttonDis4 : false,
-        buttonDis5 : false,
+        buttonDis5 : true,
+        buttonDis6 : true,
+        buttonDis7 : true,
     }
     handleTabChange = (event, newIndex) => {
         this.setState({ tapIndex: newIndex });
@@ -157,16 +161,9 @@ class BoundaryBox extends React.Component {
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
 
         this.canvas = this.__canvas = new fabric.Canvas('c');
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
-            originX: 'left',
-            originY: 'top'
-        });
         this.canvas.selection = false;
         fabric.Object.prototype.transparentCorners = false;
         fabric.Object.prototype.cornerColor = 'blue';
@@ -181,17 +178,17 @@ class BoundaryBox extends React.Component {
             if (this.selection) {
                 let upX = e.pointer.x;
                 let upY = e.pointer.y;
-                let width = (this.downX - upX);
-                let height = (this.downY - upY);
+                let width = (upX- this.downX);
+                let height = (upY - this.downY);
                 let id = this.id;
 
                 const rect = new fabric.Rect({
                     id: id,
-                    left: upX,
-                    top: upY,
+                    left: this.downX,
+                    top:  this.downY,
                     width: width,
                     height: height,
-                    opacity: 0,
+                    opacity: 0.2,
                     strokeWidth: 2,
                     stroke: "#880E4F",
 
@@ -279,7 +276,6 @@ class BoundaryBox extends React.Component {
             buttonDis2: true,
             buttonDis3: true,
             buttonDis4: true,
-            buttonDis5: true,
         });
         console.log(rectNo);
         switch (rectNo) {
@@ -287,7 +283,6 @@ class BoundaryBox extends React.Component {
             case 2 : console.log('2');this.setState({buttonDis2: false}); break;
             case 3 : console.log('3');this.setState({buttonDis3: false}); break;
             case 4 : console.log('4');this.setState({buttonDis4: false}); break;
-            case 5 : console.log('5');this.setState({buttonDis5: false}); break;
         }
     }
 
@@ -336,10 +331,6 @@ class BoundaryBox extends React.Component {
                 console.log('4');
                 this.save4 = true;
                 break;
-            case 5 :
-                console.log('5');
-                this.save5 = true;
-                break;
         }
         this.buttonState();
     }
@@ -350,7 +341,6 @@ class BoundaryBox extends React.Component {
             buttonDis2: this.save2,
             buttonDis3: this.save3,
             buttonDis4: this.save4,
-            buttonDis5: this.save5,
         });
     }
 
@@ -366,10 +356,8 @@ class BoundaryBox extends React.Component {
             this.props.rectStore.doRectLocationUp();
             this.setState({
                 tabIndex: 1,
-            })
+            });
         }
-
-
     }
 
     handlePrevious(){
@@ -400,7 +388,7 @@ class BoundaryBox extends React.Component {
 
     handleClickItem = (workNo, imageData) => {
         this.setState({tabIndex:0,
-        })
+        });
         this.state.tabIndex=0;
         let result = true;
         if (this.objectList.length != 0 && result) {
@@ -419,7 +407,6 @@ class BoundaryBox extends React.Component {
             this.save2 = false;
             this.save3 = false;
             this.save4 = false;
-            this.save5 = false;
         }
     }
 
@@ -457,10 +444,10 @@ class BoundaryBox extends React.Component {
 
                                         <TableBody>
                                             <TableRow>
-                                                <TableCell>상의 영역</TableCell>
+                                                <TableCell><b>아우터 영역</b></TableCell>
                                                 <TableCell>
                                                     <Button
-                                                        type="submit"
+                                                        type="Add"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
                                                         onClick={() => this.addRect(1) }
@@ -486,7 +473,7 @@ class BoundaryBox extends React.Component {
                                         </TableBody>
                                         <TableBody>
                                             <TableRow>
-                                                <TableCell>하의 영역</TableCell>
+                                                <TableCell><b>상의 영역</b></TableCell>
                                                 <TableCell>
                                                     <Button
                                                         type="submit"
@@ -515,13 +502,14 @@ class BoundaryBox extends React.Component {
                                         </TableBody>
                                         <TableBody>
                                             <TableRow>
-                                                <TableCell>신발 영역</TableCell>
+                                                <TableCell><b>하의 영역</b></TableCell>
                                                 <TableCell>
                                                     <Button
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(3) } disabled={this.state.buttonDis3}>
+                                                        onClick={() => this.addRect(3) }
+                                                        disabled={this.state.buttonDis3}>
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
@@ -543,13 +531,14 @@ class BoundaryBox extends React.Component {
                                         </TableBody>
                                         <TableBody>
                                             <TableRow>
-                                                <TableCell>가방 영역</TableCell>
+                                                <TableCell><b>원피스 영역</b></TableCell>
                                                 <TableCell>
                                                     <Button
                                                         type="submit"
                                                         className={classes.buttonType1}
                                                         variant="outlined"
-                                                        onClick={() => this.addRect(4) } disabled={this.state.buttonDis4}>
+                                                        onClick={() => this.addRect(4) }
+                                                        disabled={this.state.buttonDis4}>
                                                         rect <AddIcon/>
                                                     </Button>
                                                 </TableCell>
@@ -571,7 +560,7 @@ class BoundaryBox extends React.Component {
                                         </TableBody>
                                         <TableBody>
                                             <TableRow>
-                                                <TableCell>악세사리 영역</TableCell>
+                                                <TableCell>신발 영역</TableCell>
                                                 <TableCell>
                                                     <Button
                                                         type="submit"
@@ -591,6 +580,62 @@ class BoundaryBox extends React.Component {
                                                 <TableCell>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(5)} disabled={this.state.buttonDis5}>
+                                                            save <SaveIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>가방 영역</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        type="submit"
+                                                        className={classes.buttonType1}
+                                                        variant="outlined"
+                                                        onClick={() => this.addRect(6) } disabled={this.state.buttonDis6}>
+                                                        rect <AddIcon/>
+                                                    </Button>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Delete">
+                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis6}>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Save">
+                                                        <IconButton aria-label="save" onClick={() => this.doSave(6)} disabled={this.state.buttonDis6}>
+                                                            save <SaveIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>악세사리 영역</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        type="submit"
+                                                        className={classes.buttonType1}
+                                                        variant="outlined"
+                                                        onClick={() => this.addRect(7) } disabled={this.state.buttonDis7}>
+                                                        rect <AddIcon/>
+                                                    </Button>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Delete">
+                                                        <IconButton aria-label="delete" onClick={() => this.delete()} disabled={this.state.buttonDis7}>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Tooltip title="Save">
+                                                        <IconButton aria-label="save" onClick={() => this.doSave(7)} disabled={this.state.buttonDis7}>
                                                             save <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
