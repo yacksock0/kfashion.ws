@@ -71,6 +71,13 @@ class BasicImageList extends React.Component {
             this.props.onClick(workNo, imageData);
         }
     }
+
+    handleClickReturn = () =>{
+        const retry = window.confirm("작업을 전단계로 되돌려 보내시겠습니까?");
+        if(retry){
+            //
+        }
+    }
     render() {
         const {basicLabelList} = this.state;
         return (
@@ -93,6 +100,11 @@ class BasicImageList extends React.Component {
                 }}
 
                 actions={[
+                    {
+                        icon: Clear,
+                        tooltip: 'return',
+                        onClick: (event, rowData) => this.handleClickReturn()
+                    },
                     {
                         icon: CheckIcon,
                         tooltip: 'Select Image',

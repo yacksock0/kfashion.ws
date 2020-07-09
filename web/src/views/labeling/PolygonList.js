@@ -71,6 +71,13 @@ class PolygonList extends React.Component {
             this.props.onClick(workNo, imageData);
         }
     }
+
+    handleClickReturn = () =>{
+        const retry = window.confirm("작업을 전단계로 되돌려 보내시겠습니까?");
+        if(retry){
+            //
+        }
+    }
     render() {
         return (
             <MaterialTable
@@ -90,21 +97,26 @@ class PolygonList extends React.Component {
                 options={{
                     actionsColumnIndex: -1,
                 }}
-                editable={{
-                    onRowDelete: oldData =>
-                        new Promise((resolve, reject) => {
-                            setTimeout(() => {
-                                {
-                                    let data = this.state.data;
-                                    const index = data.indexOf(oldData);
-                                    data.splice(index, 1);
-                                    this.setState({ data }, () => resolve());
-                                }
-                                resolve();
-                            }, 1000);
-                        }),
-                }}
+                // editable={{
+                //     onRowDelete: oldData =>
+                //         new Promise((resolve, reject) => {
+                //             setTimeout(() => {
+                //                 {
+                //                     let data = this.state.data;
+                //                     const index = data.indexOf(oldData);
+                //                     data.splice(index, 1);
+                //                     this.setState({ data }, () => resolve());
+                //                 }
+                //                 resolve();
+                //             }, 1000);
+                //         }),
+                // }}
                 actions={[
+                    {
+                        icon: Clear,
+                        tooltip: 'return',
+                        onClick: (event, rowData) => this.handleClickReturn()
+                    },
                     {
                         icon: CheckIcon,
                         tooltip: 'Select Image',
