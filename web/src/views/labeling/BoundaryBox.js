@@ -174,17 +174,17 @@ class BoundaryBox extends React.Component {
             if (this.selection) {
                 let upX = e.pointer.x;
                 let upY = e.pointer.y;
-                let width = (this.downX - upX);
-                let height = (this.downY - upY);
+                let width = (upX- this.downX);
+                let height = (upY - this.downY);
                 let id = this.id;
 
                 const rect = new fabric.Rect({
                     id: id,
-                    left: upX,
-                    top: upY,
+                    left: this.downX,
+                    top:  this.downY,
                     width: width,
                     height: height,
-                    opacity: 0,
+                    opacity: 0.2,
                     strokeWidth: 2,
                     stroke: "#880E4F",
 
