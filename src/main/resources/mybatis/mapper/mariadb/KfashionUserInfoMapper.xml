@@ -55,7 +55,6 @@
         ORDER BY created_datetime DESC
     </select>
 
-
     <select id="selectUser" parameterType="String" resultMap="kfashionUserInfoResultMap">
         SELECT
        		   kfashion_user_info.id,
