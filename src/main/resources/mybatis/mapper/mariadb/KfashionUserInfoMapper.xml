@@ -150,7 +150,7 @@
         SELECT *
         FROM kfashion_user_info
         WHERE group_no= #{groupNo}
-        AND id NOT IN(#{id})
+
     </select>
 
     <insert id="createGroupUser" parameterType="KfashionUserInfo">

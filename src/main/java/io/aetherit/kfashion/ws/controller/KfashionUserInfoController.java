@@ -125,10 +125,10 @@ public class KfashionUserInfoController {
     public ResponseEntity<Object> groupUserList(HttpServletRequest httpRequest,
                                                 @RequestParam(value="groupNo", required=true) int groupNo) throws Exception {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        String id = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
+//        String id = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
         KfashionUserInfo user = new KfashionUserInfo();
         user.setGroupNo(groupNo);
-        user.setId(id);
+//        user.setId(id);
         List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(user);
         resultMap.put("groupUserList", groupUserList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
