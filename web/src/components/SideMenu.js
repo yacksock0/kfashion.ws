@@ -135,18 +135,6 @@ export default function SideMenu(props) {
                         </List>
                     </Collapse>
                 </Link>
-                <Link to="/step3" className={classes.link}>
-                    <Collapse in={open2} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <PlaylistAddCheckIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="최종 검수" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
 
 
                 <Link className={classes.link}>

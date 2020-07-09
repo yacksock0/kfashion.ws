@@ -447,14 +447,16 @@ class Polygon extends React.Component {
             this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
             this.props.polygonStore.doPolygonLocationUp();
             this.setState({
-                tadIndex:1,
-            })
+                tabIndex: 1,
+            });
         }
     }
     setSavs = ()=> {
 
 };
     handleClickItem = (workNo, imageData) => {
+        this.setState({tabIndex:0,
+        });
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
