@@ -68,11 +68,15 @@ export default function SideMenu(props) {
         setMobileOpen(!mobileOpen);
 
     };
-    const [open1, setOpen1] = React.useState(true);
-    const [open, setOpen] = React.useState(true);
+    const [open1, setOpen1] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
 
     const handleClick = () => {
         setOpen(!open);
+    };
+    const handleClick2 = () => {
+        setOpen2(!open2);
     };
     const handleClickAdmin = () => {
         setOpen1(!open1);
@@ -91,7 +95,7 @@ export default function SideMenu(props) {
                 <Link className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
-                        <ListItemText button onClick={handleClick} primary="1단계 영역지정"></ListItemText>
+                        <ListItemText button onClick={handleClick} primary="Area 레이블"></ListItemText>
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                 </Link>
@@ -102,7 +106,7 @@ export default function SideMenu(props) {
                                 <ListItemIcon>
                                     <AspectRatioIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="이미지 업로드" />
+                                <ListItemText primary="이미지 리스트" />
                             </ListItem>
                         </List>
                     </Collapse>
@@ -131,85 +135,167 @@ export default function SideMenu(props) {
                         </List>
                     </Collapse>
                 </Link>
-                <Link to="/step2" className={classes.link}>
-                    <ListItem button>
-                        <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>
-                        <ListItemText primary="2단계 기본 레이블링"></ListItemText>
-                    </ListItem>
-                </Link>
-                {loginUser.authorityNo == 5 ? (
-                <Link to="/step3" className={classes.link}>
-                    <ListItem button>
-                        <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
-                        <ListItemText primary="3단계 전문 레이블링"></ListItemText>
-                    </ListItem>
-                </Link>
-                ):''}
-                {loginUser.isAdmin == 'Y'? (
-                    <Link to="/step3" className={classes.link}>
-                        <ListItem button>
-                            <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>
-                            <ListItemText primary="3단계 전문 레이블링"></ListItemText>
-                        </ListItem>
-                    </Link>
-                ):''}
-            </List>
-            <Divider />
-            {loginUser.isAdmin == 'Y'? (
-                <div>
-            <Link className={classes.link}>
-                <ListItem button>
-                    <ListItemIcon><WallpaperIcon /></ListItemIcon>
-                    <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
-                    {open1 ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-            </Link>
-            <Link to="/admin/createGroup" className={classes.link}>
-                <Collapse in={open1} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <AspectRatioIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="가입승인 & 그룹생성" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-            </Link>
-            <Link to="/admin/userList" className={classes.link}>
-                <Collapse in={open1} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <AspectRatioIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="회원 리스트" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-            </Link>
-                    </div>):''}
-            {loginUser.groupAdmin === 1?(
-                <div>
+
+
                 <Link className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
-                        <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
-                        {open1 ? <ExpandLess /> : <ExpandMore />}
+                        <ListItemText button onClick={handleClick2} primary="Text 레이블"></ListItemText>
+                        {open2 ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                 </Link>
-                <Link to="/admin/userList" className={classes.link}>
-                    <Collapse in={open1} timeout="auto" unmountOnExit>
+                <Link to="/step2" className={classes.link}>
+                    <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
-                                    <AspectRatioIcon />
+                                    <FormatListBulletedIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="회원 리스트" />
+                                <ListItemText primary="기본 레이블링" />
                             </ListItem>
                         </List>
                     </Collapse>
                 </Link>
+                {loginUser.authorityNo == 5 ? (
+                <Link to="/step3" className={classes.link}>
+                    <Collapse in={open2} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <PlaylistAddCheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="전문 레이블링" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Link>
+                ):''}
+                {loginUser.isAdmin == 'Y'? (
+                <Link to="/step3" className={classes.link}>
+                    <Collapse in={open2} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <PlaylistAddCheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="전문 레이블링" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Link>
+                ):''}
+
+
+                {/*<Link className={classes.link}>*/}
+                {/*    <ListItem button>*/}
+                {/*        <ListItemIcon><WallpaperIcon /></ListItemIcon>*/}
+                {/*        <ListItemText button onClick={handleClick} primary="Text 레이블링"></ListItemText>*/}
+                {/*        {open ? <ExpandLess /> : <ExpandMore />}*/}
+                {/*    </ListItem>*/}
+                {/*</Link>*/}
+                {/*<Link to="/step2" className={classes.link}>*/}
+                {/*    <ListItem button>*/}
+                {/*        <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>*/}
+                {/*        <ListItemText primary="2단계 기본 레이블링"></ListItemText>*/}
+                {/*    </ListItem>*/}
+                {/*</Link>*/}
+                {/*{loginUser.authorityNo == 5 ? (*/}
+                {/*<Link to="/step3" className={classes.link}>*/}
+                {/*    <ListItem button>*/}
+                {/*        <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>*/}
+                {/*        <ListItemText primary="3단계 전문 레이블링"></ListItemText>*/}
+                {/*    </ListItem>*/}
+                {/*</Link>*/}
+                {/*):''}*/}
+                {/*{loginUser.isAdmin == 'Y'? (*/}
+                {/*    <Link to="/step3" className={classes.link}>*/}
+                {/*        <ListItem button>*/}
+                {/*            <ListItemIcon><PlaylistAddCheckIcon /></ListItemIcon>*/}
+                {/*            <ListItemText primary="3단계 전문 레이블링"></ListItemText>*/}
+                {/*        </ListItem>*/}
+                {/*    </Link>*/}
+                {/*):''}*/}
+            </List>
+            <Divider />
+            {loginUser.isAdmin == 'Y'? (
+                <div>
+                    <Link className={classes.link}>
+                        <ListItem button>
+                            <ListItemIcon><WallpaperIcon /></ListItemIcon>
+                            <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
+                            {open1 ? <ExpandLess /> : <ExpandMore />}
+                        </ListItem>
+                    </Link>
+                    <Link to="/admin/createGroup" className={classes.link}>
+                        <Collapse in={open1} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <AspectRatioIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="가입승인 & 그룹생성" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </Link>
+                    <Link to="/admin/userList" className={classes.link}>
+                        <Collapse in={open1} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <AspectRatioIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="회원 리스트" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </Link>
+                    <Link to="/admin/userList" className={classes.link}>
+                        <Collapse in={open1} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <AspectRatioIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="작업 나눠주기" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </Link>
+                    </div>):''}
+            {loginUser.groupAdmin === 1?(
+                <div>
+                    <Link className={classes.link}>
+                        <ListItem button>
+                            <ListItemIcon><WallpaperIcon /></ListItemIcon>
+                            <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
+                            {open1 ? <ExpandLess /> : <ExpandMore />}
+                        </ListItem>
+                    </Link>
+                    <Link to="/admin/userList" className={classes.link}>
+                        <Collapse in={open1} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <AspectRatioIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="회원 리스트" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </Link>
+                    <Link to="/admin/userList" className={classes.link}>
+                        <Collapse in={open1} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <AspectRatioIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="작업 나눠주기" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </Link>
                 </div>
             ):''}
         </div>
