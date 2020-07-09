@@ -30,7 +30,7 @@
     "react-fabric": "^0.4.1",
     "react-ga": "^2.7.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0",
+    "react-scripts": "^3.4.1",
     "react-select": "^3.1.0",
     "react-swipeable-views": "^0.13.9",
     "react-tabs": "^3.1.1",
