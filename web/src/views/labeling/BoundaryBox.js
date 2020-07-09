@@ -364,7 +364,9 @@ class BoundaryBox extends React.Component {
             this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
             this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
             this.props.rectStore.doRectLocationUp();
-            window.location.reload();
+            this.setState({
+                tabIndex: 1,
+            })
         }
 
 
@@ -397,6 +399,8 @@ class BoundaryBox extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
+        this.setState({tabIndex:0,
+        })
         this.state.tabIndex=0;
         let result = true;
         if (this.objectList.length != 0 && result) {
@@ -428,8 +432,8 @@ class BoundaryBox extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                            <div style ={{ backgroundColor : "#13264E"}}>
+                        <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
+                            <div>
                                 <canvas id="c" width= "750" height= "850"  >  </canvas>
                             </div>
                         </Grid>

@@ -216,7 +216,7 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
-                         <div style ={{ backgroundColor : "#13264E"}}>
+                         <div>
                              <canvas id="c" width="750" height="850">  </canvas>
                          </div>
                      </Grid>
