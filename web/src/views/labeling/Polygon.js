@@ -441,10 +441,10 @@ class Polygon extends React.Component {
             this.state.savebtn = false;
 
             // -- RectLocation 저장
-            this.props.rectStore.objGet(this.objectList);
-            this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-            this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-            this.props.rectStore.doRectLocationUp();
+            // this.props.rectStore.objGet(this.objectList);
+            // this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+            // this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+            // this.props.rectStore.doRectLocationUp();
 
             // -- PolygonLocation 저장
             this.props.polygonStore.objGet(this.polygon);
@@ -490,7 +490,7 @@ class Polygon extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} style={{marginRight:5}}>
-                            <Stepper currentStep={2}/>
+                            <Stepper currentStep={1}/>
                         </Grid>
                     </Grid>
                     <Grid container spacing={3}>

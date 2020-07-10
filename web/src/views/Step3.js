@@ -9,7 +9,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
 import Stepper from "../components/Stepper";
-
 const styles = theme => ({   root: {
         width: "100%",
         marginTop: theme.spacing.unit * 3,
@@ -151,10 +150,6 @@ class Step3 extends React.Component {
         });
     }
 
-    handleStepView={
-
-    }
-
     render() {
         const {classes,history} = this.props;
 
@@ -164,7 +159,7 @@ class Step3 extends React.Component {
                     <div className={classes.mainContent}>
                         <Grid container>
                             <Grid item xs={12} style={{marginRight:5}}>
-                                <Stepper currentStep={4} />
+                                <Stepper currentStep={3} />
                             </Grid>
                         </Grid>
                         <Grid container spacing={3}>

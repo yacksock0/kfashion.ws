@@ -216,6 +216,13 @@ class ImageUpload extends React.Component {
                                                actionsColumnIndex: -1,
                                                editCellStyle:'',
                                            }}
+                                           actions={[
+                                               {
+                                                   icon: CheckIcon,
+                                                   tooltip: 'Select Image',
+                                                   // onClick: this.setState.imgData("/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
+                                               }
+                                           ]}
                                            editable={{
                                                onRowUpdate: rowData =>
                                                    new Promise((resolve, reject) => {

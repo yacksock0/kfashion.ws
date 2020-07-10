@@ -20,6 +20,7 @@ import Verify from "./views/verify";
 import ImageUpload from "./views/labeling/ImageUpload";
 import UserList from "./views/admin/UserList";
 import UserWork from "./views/admin/UserWork";
+import FinalCheckList from "./views/finalCheckList";
 
 
 const style = () => ({
@@ -108,6 +109,7 @@ class App extends React.Component {
                                     <Route exact path="/Step/ImageUpload" component={ImageUpload}/>
                                     <Route exact path="/Step/BoundaryBox" component={BoundaryBox} />
                                     <Route exact path="/Step/Polygon" component={Polygon} />
+                                    <Route exact path="/Step2/FinalCheckList" component={FinalCheckList} />
                                     <Route exact path="/admin/createGroup" component={AdminGroup} />
                                     <Route exact path="/admin/userList" component={UserList} />
                                     <Route exact path="/admin/userWork" component={UserWork} />
