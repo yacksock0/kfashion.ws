@@ -1,70 +1,116 @@
 import React from 'react';
-import axios from "axios";
-import {inject, observer} from "mobx-react";
-import {Grid, Button, Typography} from "@material-ui/core";
-import DialogContent from "@material-ui/core/DialogContent";
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
 
-export default class WorkedImg extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            workNo:0,
-            text: 'text',
-        }
-    }
-    componentDidMount() {
-    }
-    render() {
-        return (
-            <div style={{textAlign:'center'}}>
-            <Typography variant="h5" component="h2">
-                이전작업
-            </Typography>
-            <Grid container={12}>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-                <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                    <img src='http://placeimg.com/100/100/any' />
-                </Grid>
-            </Grid>
-            </div>
-        );
-    }
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+        width: 500,
+        height: 850,
+    },
+    icon: {
+        color: 'rgba(255, 255, 255, 0.54)',
+    },
+}));
+
+
+ const tileData = [
+       {
+             img: 'http://placeimg.com/80/80/any',
+             title: 'Image',
+             author: 'author',
+            featured: false,
+          },
+     {
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },
+     {
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },       {
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },       {
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },
+     {
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },
+     {
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },{
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },{
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },{
+         img: 'http://placeimg.com/80/80/any',
+         title: 'Image',
+         author: 'author',
+         featured: false,
+     },
+
+
+
+
+ ];
+
+export default function WorkedImg() {
+    const classes = useStyles();
+
+    return (
+        <div className={classes.root}>
+            <GridList cellHeight={150} className={classes.gridList}>
+                <GridListTile key="Subheader" cols={2} style={{ height: 75 }}>
+                    <ListSubheader style={{textAlign:'center', border:'1px solid black', borderRadius:5}}><h3 style={{fontWeight:"bold"}}>이전작업</h3></ListSubheader>
+                </GridListTile>
+                {tileData.map((tile) => (
+                    <GridListTile key={tile.img}>
+                        <img src={tile.img} alt={tile.title} />
+                        <GridListTileBar
+                            title={tile.title}
+                            subtitle={<span>by: {tile.author}</span>}
+                            actionIcon={
+                                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
+                                    <InfoIcon />
+                                </IconButton>
+                            }
+                        />
+                    </GridListTile>
+                ))}
+            </GridList>
+        </div>
+    );
 }

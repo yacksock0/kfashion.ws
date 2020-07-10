@@ -232,10 +232,10 @@ class Step2 extends React.Component {
                          <TabPanel>
                              <Tabs onSelect={tabIndex => this.onSelectTab(tabIndex)}>
                              <TabList>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
+                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
+                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
+                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
+                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
                              </TabList>
 
                              <TabPanel>
