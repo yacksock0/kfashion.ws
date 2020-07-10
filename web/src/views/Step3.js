@@ -2,12 +2,14 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Typography} from "@material-ui/core";
+import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import CategoryComponent from "./step3/CategoryComponent";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
+import Stepper from "../components/Stepper";
+
 const styles = theme => ({   root: {
         width: "100%",
         marginTop: theme.spacing.unit * 3,
@@ -148,6 +150,11 @@ class Step3 extends React.Component {
             originY: 'top'
         });
     }
+
+    handleStepView={
+
+    }
+
     render() {
         const {classes,history} = this.props;
 
@@ -155,6 +162,11 @@ class Step3 extends React.Component {
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
+                        <Grid container>
+                            <Grid item xs={12} style={{marginRight:5}}>
+                                <Stepper currentStep={4} />
+                            </Grid>
+                        </Grid>
                         <Grid container spacing={3}>
                             <Grid item xs={12} lg={5} style={{margin:"auto"}}>
                                 <div>

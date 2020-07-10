@@ -35,10 +35,12 @@ export default class GroupList extends React.Component {
     }
 
     handleChange = (selectedOption) => {
+        const id =this.props.rowDataId;
         this.setState(
             { selectedOption : selectedOption}
         );
         this.props.adminAuthorityStore.changeNewAdminGroupNo(selectedOption.groupNo);
+        this.props.adminAuthorityStore.changeNewAdminId(id);
     };
 
     render() {

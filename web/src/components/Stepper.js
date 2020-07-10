@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['이미지 업로드', '이미지 업로드', '사각형 지정', '다각형 지정','2단계 기본 레이블링','3단계 전문 레이블링'];
+    return ['이미지 리스트', '사각형 Area 지정', '다각형 Area 지정','기본 Text 레이블링','전문 Text 레이블링','최종 검수'];
 }
 
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return 'qkdnsejfl';
+            return '이미지 리스트';
         case 1:
             return '영역지정';
         case 2:
@@ -37,11 +37,17 @@ function getStepContent(step) {
     }
 }
 
-export default function HorizontalLinearStepper() {
+export default function HorizontalLinearStepper(props) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
     const steps = getSteps();
+
+    useEffect(() => {
+        setActiveStep(props.currentStep);
+        getStepContent(props.currentStep);
+
+    });
 
     const isStepOptional = (step) => {
         return step === 1;
@@ -85,6 +91,10 @@ export default function HorizontalLinearStepper() {
         setActiveStep(0);
     };
 
+    const handleTapClick = () => {
+        setActiveStep(0);
+    };
+
     return (
         <div className={classes.root}>
             <Stepper activeStep={activeStep}>
@@ -99,51 +109,53 @@ export default function HorizontalLinearStepper() {
                     }
                     return (
                         <Step key={label} {...stepProps}>
-                            <StepLabel {...labelProps}>{label}</StepLabel>
+                            <StepLabel>{label}</StepLabel>
                         </Step>
                     );
                 })}
             </Stepper>
             <div>
-                {activeStep === steps.length ? (
-                    <div>
-                        <Typography className={classes.instructions}>
-                            All steps completed - you&apos;re finished
-                        </Typography>
-                        <Button onClick={handleReset} className={classes.button}>
-                            Reset
-                        </Button>
-                    </div>
-                ) : (
-                    <div>
-                        <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-                        <div>
-                            <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                                Back
-                            </Button>
-                            {isStepOptional(activeStep) && (
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={handleSkip}
-                                    className={classes.button}
-                                >
-                                    Skip
-                                </Button>
-                            )}
-
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={handleNext}
-                                className={classes.button}
-                            >
-                                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                            </Button>
-                        </div>
-                    </div>
-                )}
+                <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
             </div>
+            {/*<div>*/}
+            {/*    {activeStep === steps.length ? (*/}
+            {/*        <div>*/}
+            {/*            <Typography className={classes.instructions}>*/}
+            {/*                All steps completed - you&apos;re finished*/}
+            {/*            </Typography>*/}
+            {/*            <Button onClick={handleReset} className={classes.button}>*/}
+            {/*                Reset*/}
+            {/*            </Button>*/}
+            {/*        </div>*/}
+            {/*    ) : (*/}
+            {/*        <div>*/}
+            {/*            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>*/}
+            {/*            <div>*/}
+            {/*                <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>*/}
+            {/*                    Back*/}
+            {/*                </Button>*/}
+            {/*                {isStepOptional(activeStep) && (*/}
+            {/*                    <Button*/}
+            {/*                        variant="contained"*/}
+            {/*                        color="primary"*/}
+            {/*                        onClick={handleSkip}*/}
+            {/*                        className={classes.button}*/}
+            {/*                    >*/}
+            {/*                        Skip*/}
+            {/*                    </Button>*/}
+            {/*                )}*/}
+            {/*                <Button*/}
+            {/*                    variant="contained"*/}
+            {/*                    color="primary"*/}
+            {/*                    onClick={handleNext}*/}
+            {/*                    className={classes.button}*/}
+            {/*                >*/}
+            {/*                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}*/}
+            {/*                </Button>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    )}*/}
+            {/*</div>*/}
         </div>
     );
 }
