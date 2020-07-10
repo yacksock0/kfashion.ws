@@ -57,12 +57,41 @@ class CategoryComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            lengthNo:0,
+            lengthName:'',
             categoryNo:0,
             categoryName:'',
+            detailNo:0,
+            detailName:'',
+            printNo:0,
+            printName:'',
+            textureNo:0,
+            textureName:'',
+            necklineNo:0,
+            necklineName:'',
+            karaNo:0,
+            karaName:'',
+            fitNo:0,
+            fitName:'',
+            safeNo:0,
+            safeName:'',
+            silhouetteNo:0,
+            silhouetteName:'',
             value:0,
             createdId: '',
         }
+
         this.handleDelete = this.handleDelete.bind(this)
+        this.handleDeleteCloth = this.handleDeleteCloth.bind(this)
+        this.handleDeleteDetail = this.handleDeleteDetail.bind(this)
+        this.handleDeletePrint = this.handleDeletePrint.bind(this)
+        this.handleDeleteNeckline = this.handleDeleteNeckline.bind(this)
+        this.handleDeleteTexture = this.handleDeleteTexture.bind(this)
+        this.handleDeleteKara = this.handleDeleteKara.bind(this)
+        this.handleDeleteFit = this.handleDeleteFit.bind(this)
+        this.handleDeleteSafe = this.handleDeleteSafe.bind(this)
+        this.handleDeleteSilhouette = this.handleDeleteSilhouette.bind(this)
+
     }
     componentDidMount() {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
@@ -73,10 +102,118 @@ class CategoryComponent extends React.Component {
             categoryName: category.categoryItemName,
         })
     }
+    handleClickDetail=(detail)=>{
+        this.setState({
+            detailNo: detail.no,
+            detailName: detail.categoryItemName,
+        })
+    }
+    handleClickPrint=(print)=>{
+        this.setState({
+            printNo: print.no,
+            printName: print.categoryItemName,
+        })
+    }
+    handleClickTexture=(texture)=>{
+        this.setState({
+            textureNo: texture.no,
+            textureName: texture.categoryItemName,
+        })
+    }
+    handleClickCloth=(length)=>{
+        this.setState({
+            lengthNo: length.no,
+            lengthName: length.categoryItemName,
+        })
+    }
+    handleClickNeckLine=(neckline)=>{
+        this.setState({
+            necklineNo: neckline.no,
+            necklineName: neckline.categoryItemName,
+        })
+    }
+    handleClickKara=(kara)=>{
+        this.setState({
+            karaNo: kara.no,
+            karaName: kara.categoryItemName,
+        })
+    }
+    handleClickFit=(fit)=>{
+        this.setState({
+            fitNo: fit.no,
+            fitName: fit.categoryItemName,
+        })
+    }
+    handleClickSafe=(safe)=>{
+        this.setState({
+            safeNo: safe.no,
+            safeName: safe.categoryItemName,
+        })
+    }
+    handleClickSilhouette=(silhouette)=>{
+        this.setState({
+            silhouetteNo: silhouette.no,
+            silhouetteName: silhouette.categoryItemName,
+        })
+    }
     handleDelete(){
         this.setState({
             categoryNo:0,
             categoryName:'',
+        })
+    }
+    handleDeleteCloth(){
+        this.setState({
+            lengthNo:0,
+            lengthName:'',
+        })
+    }
+    handleDeleteDetail(){
+        this.setState({
+            detailNo:0,
+            detailName:'',
+        })
+    }
+    handleDeletePrint(){
+        this.setState({
+            printNo:0,
+            printName:'',
+        })
+    }
+    handleDeleteNeckline(){
+        this.setState({
+            necklineNo:0,
+            necklineName:'',
+        })
+    }
+    handleDeleteTexture(){
+        this.setState({
+            textureNo:0,
+            textureName:'',
+        })
+    }
+    handleDeleteKara(){
+        this.setState({
+            karaNo:0,
+            karaName:'',
+        })
+    }
+    handleDeleteFit(){
+        this.setState({
+            fitNo:0,
+            fitName:'',
+        })
+    }
+    handleDeleteSafe(){
+        this.setState({
+            safeNo:0,
+            safeName:'',
+        })
+    }
+    handleDeleteSilhouette(){
+        this.setState({
+            silhouetteNo:0,
+            silhouetteName:'',
         })
     }
     render() {
@@ -123,10 +260,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 디테일
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.detailNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.detailName}
+                                                        onDelete={this.handleDeleteDetail}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Detail />
+                                            <Detail onClick={this.handleClickDetail}/>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -134,10 +281,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 프린트
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.printNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.printName}
+                                                        onDelete={this.handleDeletePrint}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Print />
+                                            <Print onClick={this.handleClickPrint}/>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -145,10 +302,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 소재감
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.textureNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.textureName}
+                                                        onDelete={this.handleDeleteTexture}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Texture />
+                                            <Texture onClick={this.handleClickTexture} />
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -156,10 +323,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 기장
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.lengthNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.lengthName}
+                                                        onDelete={this.handleDeleteCloth}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <ClothLength />
+                                            <ClothLength onClick={this.handleClickCloth}/>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -167,10 +344,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 넥라인
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.necklineNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.necklineName}
+                                                        onDelete={this.handleDeleteNeckline}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <NeckLine />
+                                            <NeckLine onClick={this.handleClickNeckLine}/>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -178,10 +365,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 칼라(카라)
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.karaNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.karaName}
+                                                        onDelete={this.handleDeleteKara}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <ColorKara />
+                                            <ColorKara onClick={this.handleClickKara}/>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -189,10 +386,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 핏
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.fitNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.fitName}
+                                                        onDelete={this.handleDeleteFit}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Fit />
+                                            <Fit onClick={this.handleClickFit}/>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -200,10 +407,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 세이프
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.safeNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.safeName}
+                                                        onDelete={this.handleDeleteSafe}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Safe />
+                                            <Safe onClick={this.handleClickSafe}/>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -211,10 +428,20 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 실루엣
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.silhouetteNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.silhouetteName}
+                                                        onDelete={this.handleDeleteSilhouette}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Silhouette />
+                                            <Silhouette onClick={this.handleClickSilhouette}/>
                                         </div>
                                     </Grid>
                                 </Grid>
