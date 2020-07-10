@@ -72,8 +72,6 @@ export default class SelectTest extends React.Component {
             sleeveList: [],
             selectedOption:null,
         }
-        this.handleClickOpen = this.handleClickOpen.bind(this)
-        this.handleClose = this.handleClose.bind(this);
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/basic/sleeve')
@@ -104,7 +102,6 @@ export default class SelectTest extends React.Component {
         const {classes} = this.props;
         const { selectedOption } = this.state;
         const sleeveList= this.state.sleeveList;
-
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>소매길이 지정</Button>
@@ -151,6 +148,7 @@ export default class SelectTest extends React.Component {
                             </TableBody>
                         </Table>
                     </TableContainer>
+                    />
                 </Paper>
                 </DialogContent>
                 </Dialog>
