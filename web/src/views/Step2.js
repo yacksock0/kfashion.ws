@@ -2,7 +2,7 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Color from "./step2/Color";
 import SleeveLength from "./step2/SleeveLength";
 import {inject, observer} from "mobx-react";
@@ -11,7 +11,7 @@ import 'react-tabs/style/react-tabs.css';
 import BasicImageList from "./step2/BasicImageList";
 import {fabric} from "fabric";
 import {toJS} from "mobx";
-import Stepper from "../components/Stepper";
+import WorkedImg from "./step2/WorkedImg";
 
 const styles = theme => ({
     root: {
@@ -98,6 +98,9 @@ const styles = theme => ({
         border: 0,
         borderRadius: 12,
     },
+    testBox:{
+        border: '1px solid black'
+    },
     });
 
 @inject('basicLabelStore','authStore','imageStore','polygonStore')
@@ -139,6 +142,9 @@ class Step2 extends React.Component {
         this.setState({ number: newNumber});
     }
     handleClickItem = (workNo, imageData) => {
+        this.setState({
+            tabIndex:0,
+        })
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
@@ -148,9 +154,7 @@ class Step2 extends React.Component {
             originX: 'left',
             originY: 'top'
         });
-        this.setState({
-            tadIndex:1,
-        })
+
     }
     handlePrevious(){
         this.setState({
@@ -202,11 +206,6 @@ class Step2 extends React.Component {
         }else{alert("poly정보가 존재하지 않습니다.")}
     };
 
-    handleStepView={
-
-    }
-
-
     render() {
         const { classes,history} = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -214,34 +213,29 @@ class Step2 extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
-                    <Grid container>
-                        <Grid item xs={12} style={{marginRight:5}}>
-                            <Stepper currentStep={3} />
-                        </Grid>
-                    </Grid>
                  <Grid container spacing={3}>
+                     <Grid item xs={12} lg={2}>
+                         <WorkedImg />
+                     </Grid>
                      <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                          <div>
                              <canvas id="c" width="750" height="850">  </canvas>
                          </div>
                      </Grid>
-                     <Grid item xs={12} lg={6}>
+                     <Grid item xs={12} lg={5}>
                          <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                              <TabList >
-                                 <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
-                                 <Tab style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                 <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
+                                 <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                              </TabList>
 
                          <TabPanel>
                              <Tabs onSelect={tabIndex => this.onSelectTab(tabIndex)}>
                              <TabList>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
-                                 <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
-                                 {/*<Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >신발</h3></Tab>*/}
-                                 {/*<Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >가방</h3></Tab>*/}
-                                 {/*<Tab style={{width: '20%', height:60,textAlign:'center'}}><h3 >악세서리</h3></Tab>*/}
+                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
+                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
+                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
+                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
                              </TabList>
 
                              <TabPanel>
