@@ -59,7 +59,7 @@ export default class Texture extends React.Component {
         const textureList= this.state.textureList;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>소재감</Button>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

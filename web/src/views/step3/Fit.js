@@ -60,7 +60,7 @@ export default class ColorKara extends React.Component {
         const fitList= this.state.fitList;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>핏</Button>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

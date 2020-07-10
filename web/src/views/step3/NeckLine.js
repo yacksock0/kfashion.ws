@@ -65,7 +65,7 @@ export default class NeckLine extends React.Component {
         const neckLineList= this.state.neckLineList;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>넥라인</Button>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

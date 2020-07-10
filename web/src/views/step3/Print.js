@@ -60,7 +60,7 @@ export default class Print extends React.Component {
         const printList= this.state.printList;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>프린트</Button>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

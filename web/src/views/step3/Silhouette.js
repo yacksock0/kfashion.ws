@@ -59,7 +59,7 @@ export default class Silhouette extends React.Component {
         const silhouetteList= this.state.silhouetteList;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>카테고리</Button>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

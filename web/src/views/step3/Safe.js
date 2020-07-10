@@ -60,7 +60,7 @@ export default class Safe extends React.Component {
         const safeList= this.state.safeList;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>세이프</Button>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

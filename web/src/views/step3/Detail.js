@@ -61,7 +61,7 @@ export default class Detail extends React.Component {
         const detailList= this.state.detailList;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>디테일</Button>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
