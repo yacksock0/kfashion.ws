@@ -24,7 +24,6 @@ public class KfashionUserInfo {
     private char isAdmin;
     private char isApproved;
 
-    private String adminId[];
 
     private int groupAdmin;
     private int authorityNo;

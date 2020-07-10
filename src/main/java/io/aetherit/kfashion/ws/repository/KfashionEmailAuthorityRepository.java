@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.repository;
 
 import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
+import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.repository.mapper.KfashionEmailAuthorityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,5 +25,9 @@ public class KfashionEmailAuthorityRepository {
 
     public void updateAuthority(KfashionEmailAuthority authMail) {
         mapper.updateAuthority(authMail);
+    }
+
+    public void deleteUserId(KfashionUserInfo user) {
+        mapper.deleteUserId(user);
     }
 }

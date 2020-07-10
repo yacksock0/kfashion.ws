@@ -373,15 +373,7 @@ class Polygon extends React.Component {
 
     doSave = (newPolyNo) => {
 
-        // const newRectangle = [{
-        //     rectNo : this.rect,
-        //     rectTop : '',
-        //     rectLeft : '',
-        //     rectWidth : '',
-        //     rectHeight : '',
-        //     rectScaleX : '',
-        //     rectScaleY : '',
-        // }];
+
         const newPolygon = {
             polyNo:'',
             points: [{
@@ -389,8 +381,16 @@ class Polygon extends React.Component {
         };
         if(this.state.finishbtn) {
             if (this.canvas.getObjects().length != 0) {
-                // newRectangle
-
+                const newRectangle = [{
+                    rectNo : this.polyNo,
+                    rectTop : this.rectTop,
+                    rectLeft : this.rectLeft,
+                    rectWidth : this.rectWidth,
+                    rectHeight : this.rectHeight,
+                    rectScaleX : this.rectScaleX,
+                    rectScaleY : this.rectScaleY,
+                }];
+                this.rectangle.push(newRectangle);
                 newPolygon.polyNo = newPolyNo;
                 for(let i in this.polyPointX) {
                     const x = this.polyPointX[i];
@@ -430,7 +430,7 @@ class Polygon extends React.Component {
         }
     }
 
-
+    // -- Location Data 저장
     submit = () =>{
         console.log(this.state.savebtn);
         if(this.onOff !=""){
@@ -438,15 +438,25 @@ class Polygon extends React.Component {
         }else if(this.state.savebtn){
             alert("save 눌러 작업을 마무리 하세요.");
         }else{
-            alert("저장되었습니다.");
             this.state.savebtn = false;
+
+            // -- RectLocation 저장
+            this.props.rectStore.objGet(this.objectList);
+            this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+            this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+            this.props.rectStore.doRectLocationUp();
+
+            // -- PolygonLocation 저장
             this.props.polygonStore.objGet(this.polygon);
             this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
             this.props.polygonStore.doPolygonLocationUp();
+
+            // -- Tap Menu List로 전환
             this.setState({
                 tabIndex: 1,
             });
+            alert("저장되었습니다.");
         }
     }
 

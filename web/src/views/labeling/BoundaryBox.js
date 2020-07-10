@@ -218,7 +218,6 @@ class BoundaryBox extends React.Component {
                 obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
                 obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
             }
-
             if(obj.scaleX > maxScaleX) {
                 obj.scaleX = maxScaleX;
                 obj.left = obj.lastGoodLeft;

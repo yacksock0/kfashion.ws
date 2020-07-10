@@ -4,6 +4,7 @@
         <id property="no"                            column="no" />
         <result property="categoryNo"                column="category_no" />
         <result property="categoryItemName"          column="category_item_name" />
+        <result property="categoryItemMemo"          column="category_item_memo" />
         <result property="createdId"                 column="created_id" />
         <result property="updatedId"                 column="updated_id" />
         <result property="createdDatetime"           column="created_datetime" />
