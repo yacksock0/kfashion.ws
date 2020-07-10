@@ -34,11 +34,8 @@ export default class SelectTest extends React.Component {
         axios.get('/api/v1/kfashion/category/item/basic/color')
             .then(response => {
                 const colorList = response.data.colorList;
-                this.setState({ colorList : colorList.map(color => {
-                        color.value = color.no;
-                        color.label = color.categoryItemName;
-                        return color
-                    })
+                this.setState({
+                    colorList:colorList,
                 })
             })
             .catch(error => {
@@ -61,14 +58,12 @@ export default class SelectTest extends React.Component {
             open: false
         });
     }
+    handledColor(){
+
+    }
     render() {
         const { selectedOption } = this.state;
-        const {colorList}= this.state.colorList;
-        const mapToComponent = data => {
-            return data.map((color, i) => {
-                return (<ColorInfo color={colorList} key={i}/>);
-            });
-        };
+        const {colorList}= this.state;
         return (
             <div>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>생삭 지정</Button>
@@ -82,7 +77,17 @@ export default class SelectTest extends React.Component {
                     색상
                 </Typography>
                 <div>
-                    {mapToComponent}
+                    {colorList.map((color) =>
+                     <Button key={color.no} onClick={this.handledColor} style={{}}>
+                         <div>
+                         <div style={{width: 80, height: 80,margin:'auto'}}>
+                         </div>
+                         <div style={{display:'inline-block'}}>{color.categoryItemName}
+                         </div>
+                         </div>
+                     </Button>
+                    )
+                    }
                 </div>
             </DialogContent>
             </Dialog>
