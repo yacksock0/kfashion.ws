@@ -29,6 +29,7 @@ export default class SelectTest extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
+        this.handledColor = this.handledColor.bind(this)
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/basic/color')
@@ -42,12 +43,6 @@ export default class SelectTest extends React.Component {
                 console.log(error)
             })
     }
-    handleChange = (selectedOption) => {
-        this.props.basicLabelStore.changeNewBasicLabelColor(selectedOption)
-        this.setState(
-            { selectedOption }
-        );
-    };
     handleClickOpen() {
         this.setState({
             open: true
@@ -58,29 +53,34 @@ export default class SelectTest extends React.Component {
             open: false
         });
     }
-    handledColor(){
-
+    handledColor(color){
+        if(this.props.onClick) {
+            this.props.onClick(color);
+        }
+        this.setState({
+            open: false
+        });
     }
     render() {
-        const { selectedOption } = this.state;
         const {colorList}= this.state;
+
         return (
             <div>
-            <Button variant="contained" color="primary" onClick={this.handleClickOpen}>생삭 지정</Button>
+            <Button variant="contained" color="primary" onClick={this.handleClickOpen} style={{marginRight:10}}>메인 색상</Button>
+            <Button variant="contained" color="primary" onClick={this.handleClickOpen}>서브 색상</Button>
             <Dialog open={this.state.open} onClose={this.handleClose}
-                    maxWidth={"md"}
-                    fullWidth={"100%"}
-                    height={'100%'}
+                    maxWidth={'sm'}
             >
             <DialogContent>
                 <Typography variant="h5" component="h2">
                     색상
                 </Typography>
-                <div>
+                <hr></hr>
+                <div style={{textAlign:'center'}}>
                     {colorList.map((color) =>
-                     <Button key={color.no} onClick={this.handledColor} style={{}}>
+                     <Button key={color.no} onClick={() => this.handledColor(color)}>
                          <div>
-                         <div style={{width: 80, height: 80,margin:'auto'}}>
+                         <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>
                          </div>
                          <div style={{display:'inline-block'}}>{color.categoryItemName}
                          </div>
