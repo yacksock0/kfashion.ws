@@ -18,6 +18,7 @@ import ImageList from "./ImageList";
 import SaveIcon from "@material-ui/icons/Save";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Stepper from "../../components/Stepper";
 
 const styles = theme => ({
     root: {
@@ -217,7 +218,6 @@ class BoundaryBox extends React.Component {
                 obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
                 obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
             }
-
             if(obj.scaleX > maxScaleX) {
                 obj.scaleX = maxScaleX;
                 obj.left = obj.lastGoodLeft;
@@ -410,6 +410,7 @@ class BoundaryBox extends React.Component {
         }
     }
 
+
     render() {
         const { classes,history } = this.props;
         const {workNo} = this.props.imageStore;
@@ -418,6 +419,11 @@ class BoundaryBox extends React.Component {
             <Container component="main" className={classes.mainContainer} style={{height:'97vh'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
+                    <Grid container>
+                        <Grid item xs={12} style={{marginRight:5}}>
+                            <Stepper currentStep={1} />
+                        </Grid>
+                    </Grid>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
                             <div>

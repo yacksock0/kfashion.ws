@@ -21,6 +21,7 @@ import {inject, observer} from "mobx-react";
 import PolygonList from "./PolygonList";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Stepper from "../../components/Stepper";
 
 const styles = theme => ({
     root: {
@@ -134,11 +135,27 @@ class Polygon extends React.Component {
             y: 0,
         }]
     }];
+    rectangle = [{
+        rectNo : '',
+        rectTop : '',
+        rectLeft : '',
+        rectWidth : '',
+        rectHeight : '',
+        rectScaleX : '',
+        rectScaleY : '',
+    }];
 
     canvas;
     polyNo;
     polyPointX = [];
     polyPointY = [];
+
+    rectTop;
+    rectLeft;
+    rectWidth;
+    rectHeight;
+    rectScaleX;
+    rectScaleY;
 
     x;
     y;
@@ -154,8 +171,6 @@ class Polygon extends React.Component {
     }
 
     componentDidMount() {
-
-
         this.props.enqueueSnackbar("Polygon Work", {
             variant: 'info'
         });
@@ -165,14 +180,6 @@ class Polygon extends React.Component {
         })
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
-
-        this.canvas.on('selection:created', function (e) {
-            const asd = e.target;
-        });
-
-        this.canvas.on('mouse:move', function (e) {
-            const asd = e.x;
-        });
 
         this.canvas.on('mouse:down', (e) => {
             console.log('polyNo : ' + this.polyNo);
@@ -249,44 +256,15 @@ class Polygon extends React.Component {
     }
 
     startPoly = (polyNo) => {
-        const rectInfo = false;
-        const { locationRectList } = this.props.rectStore;
-        const selectedRect = locationRectList.find(rect => rect.rectNo === polyNo);
-        if(selectedRect){
-            const rect = new fabric.Rect({
-                id: selectedRect.rectNo,
-                left: selectedRect.locationX,
-                top: selectedRect.locationY,
-                width: selectedRect.locationWidth,
-                height: selectedRect.locationHeight,
-                stroke: "#880E4F",
-                scaleX : selectedRect.scaleX,
-                scaleY : selectedRect.scaleY,
-
-                opacity: 0.2,
-                selectable: false,
-                evented : false,
-            });
-
-            this.canvas.add(rect);
-            this.canvas.setActiveObject(rect);
-
-            this.canvas.renderAll(rect);
-            console.log(rect);
-
-
             // this.polygonIndex +=1;
             this.onOff = 'lineUse';
             this.polyNo = polyNo;
-
             this.setState({
                 buttonDis1: true,
                 buttonDis2: true,
                 buttonDis3: true,
                 buttonDis4: true,
             });
-
-
             console.log(polyNo);
             switch (polyNo) {
                 case 1 : console.log('1'); this.setState({buttonDis1: false}); break;
@@ -294,9 +272,6 @@ class Polygon extends React.Component {
                 case 3 : console.log('3');this.setState({buttonDis3: false}); break;
                 case 4 : console.log('4');this.setState({buttonDis4: false}); break;
             }
-        }else{alert("rect정보가 존재하지 않습니다.")}
-
-
     }
 
     deleteOne = () => {
@@ -356,7 +331,6 @@ class Polygon extends React.Component {
     }
 
     finishPath = () => {
-
         if(this.canvas.getObjects().length !=0) {
             this.state.savebtn = false;
             console.log("여기는 피니시");
@@ -371,22 +345,52 @@ class Polygon extends React.Component {
             this.deleteAll(-1);
             this.canvas.add(path);
             this.state.finishbtn = true;
+
+            this.rectTop = path.top;
+            this.rectLeft = path.left;
+            this.rectHeight = path.height;
+            this.rectWidth = path.width;
+            this.rectScaleY = path.scaleY;
+            this.rectScaleX = path.scaleX;
+
+            const rect = new fabric.Rect({
+                id : this.polyNo,
+                left: path.left,
+                top:  path.top,
+                width: path.width,
+                height: path.height,
+                scaleY: path.scaleY,
+                scaleX: path.scaleX,
+                opacity: 0.2,
+                strokeWidth: 2,
+                stroke: "#880E4F",
+            });
+            this.canvas.add(rect);
         }else{
             alert("입력된 polygon이 존재하지 않습니다.");
         }
     }
 
     doSave = (newPolyNo) => {
+
+
         const newPolygon = {
             polyNo:'',
             points: [{
             }],
         };
-
-        console.log(newPolyNo);
-        console.log(this.i);
         if(this.state.finishbtn) {
             if (this.canvas.getObjects().length != 0) {
+                const newRectangle = [{
+                    rectNo : this.polyNo,
+                    rectTop : this.rectTop,
+                    rectLeft : this.rectLeft,
+                    rectWidth : this.rectWidth,
+                    rectHeight : this.rectHeight,
+                    rectScaleX : this.rectScaleX,
+                    rectScaleY : this.rectScaleY,
+                }];
+                this.rectangle.push(newRectangle);
                 newPolygon.polyNo = newPolyNo;
                 for(let i in this.polyPointX) {
                     const x = this.polyPointX[i];
@@ -394,7 +398,6 @@ class Polygon extends React.Component {
                     newPolygon.points.push({x: x, y: y});
                 }
                 this.polygon.push(newPolygon);
-
                 this.state.savebtn = false;
                 this.deleteAll(newPolyNo);
                 console.log(this.polygon);
@@ -427,7 +430,7 @@ class Polygon extends React.Component {
         }
     }
 
-
+    // -- Location Data 저장
     submit = () =>{
         console.log(this.state.savebtn);
         if(this.onOff !=""){
@@ -435,20 +438,28 @@ class Polygon extends React.Component {
         }else if(this.state.savebtn){
             alert("save 눌러 작업을 마무리 하세요.");
         }else{
-            alert("저장되었습니다.");
             this.state.savebtn = false;
+
+            // -- RectLocation 저장
+            this.props.rectStore.objGet(this.objectList);
+            this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+            this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+            this.props.rectStore.doRectLocationUp();
+
+            // -- PolygonLocation 저장
             this.props.polygonStore.objGet(this.polygon);
             this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
             this.props.polygonStore.doPolygonLocationUp();
+
+            // -- Tap Menu List로 전환
             this.setState({
                 tabIndex: 1,
             });
+            alert("저장되었습니다.");
         }
     }
-    setSavs = ()=> {
 
-};
     handleClickItem = (workNo, imageData) => {
         this.setState({tabIndex:0,
         });
@@ -465,6 +476,11 @@ class Polygon extends React.Component {
             tadIndex:1,
         })
     }
+
+    handleStepView = () =>{
+        console.log("stepView");
+    }
+
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -472,6 +488,11 @@ class Polygon extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
+                    <Grid container>
+                        <Grid item xs={12} style={{marginRight:5}}>
+                            <Stepper currentStep={2}/>
+                        </Grid>
+                    </Grid>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display: "block"}}>
                             <div>

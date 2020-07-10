@@ -5,8 +5,17 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import {Grid, Button, Typography} from "@material-ui/core";
 
-
-
+class ColorInfo extends React.Component {
+    render() {
+        return (
+            <div>
+                <span>번호 : {this.props.color.value}</span><br/>
+                <span>색상 : {this.props.color.label}</span><br/>
+                <hr/>
+            </div>
+        );
+    }
+}
 @inject('basicLabelStore','authStore')
 @observer
 export default class SelectTest extends React.Component {
@@ -55,6 +64,11 @@ export default class SelectTest extends React.Component {
     render() {
         const { selectedOption } = this.state;
         const {colorList}= this.state.colorList;
+        const mapToComponent = data => {
+            return data.map((color, i) => {
+                return (<ColorInfo color={colorList} key={i}/>);
+            });
+        };
         return (
             <div>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>생삭 지정</Button>
@@ -68,23 +82,7 @@ export default class SelectTest extends React.Component {
                     색상
                 </Typography>
                 <div>
-                <Grid container>
-                    <Grid item xs={12} lg={12}>
-            <div style={{border: '1px solid red', backgroundColor:"red", width: 50, height: 50}}>
-            </div>
-            <div>
-                Red(빨간색)
-            </div>
-                    <div style={{border: '1px solid blue', backgroundColor:"blue", width: 50, height: 50}}>
-                    </div>
-                    <div>
-                        Blue(파란색)
-                    </div>
-                    <div>
-                        Black(검정색)
-                    </div>
-                    </Grid>
-                </Grid>
+                    {mapToComponent}
                 </div>
             </DialogContent>
             </Dialog>

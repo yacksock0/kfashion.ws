@@ -25,6 +25,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {toJS} from "mobx";
 import CheckIcon from "@material-ui/icons/Check";
+import Stepper from "../../components/Stepper"
 
 
 const tableIcons = {
@@ -174,13 +175,21 @@ class ImageUpload extends React.Component {
             <Container component="main" className={classes.mainContainer} style={{height:'100vh'}}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
+
                     <Toolbar className={classes.toolbar}>
+                        <Grid container>
+                            <Grid item xs={12} style={{marginRight:5}}>
+                                <Stepper currentStep={0} />
+                            </Grid>
+                        </Grid>
+                    </Toolbar> <Toolbar className={classes.toolbar}>
                         <Grid container>
                             <Grid item xs={2} style={{marginRight:5}}>
                                 <DropzoneDialogExample />
                             </Grid>
                         </Grid>
                     </Toolbar>
+
                     <Grid container>
                         <Grid item xs={12} lg={6}>
                             <div style={{marginRight:15}}>
