@@ -80,7 +80,6 @@ export default class SelectTest extends React.Component {
                     <div>
                         Blue(파란색)
                     </div>
-                        <Button>{colorList.label}</Button>
                     <div>
                         Black(검정색)
                     </div>

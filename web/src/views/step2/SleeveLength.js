@@ -72,6 +72,8 @@ export default class SelectTest extends React.Component {
             sleeveList: [],
             selectedOption:null,
         }
+        this.handleClickOpen = this.handleClickOpen.bind(this)
+        this.handleClose = this.handleClose.bind(this);
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/basic/sleeve')
@@ -148,7 +150,6 @@ export default class SelectTest extends React.Component {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    />
                 </Paper>
                 </DialogContent>
                 </Dialog>
