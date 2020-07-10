@@ -18,6 +18,7 @@ const AddState = {
     Added: 'Added',
     AddFailed: 'AddFailed',
 };
+
 const UpdateState = {
     Closed: 'Closed',
     Loading: 'Loading',
@@ -38,8 +39,15 @@ export default class ImageStore {
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable workNo = '';
-    @observable count = '';
+    @observable count = 0;
 
+    @action countChange =()=>{
+        this.count= this.count+1
+    }
+
+    @action countReset = (num) => {
+        this.count = num;
+    }
 
     @action initStore = () => {
         this.boundaryList = [];
@@ -103,10 +111,9 @@ export default class ImageStore {
             .then(res =>{
                 console.log(res);
                 if(res.status === 200) {
-                    let count =+ 1
-                    console.log(count);
+                    this.countChange();
+                    console.log(this.count);
                     formData.delete("file");
-                    this.LoadImage(userId);
                 }
             })
         // formData.append('files', file);
