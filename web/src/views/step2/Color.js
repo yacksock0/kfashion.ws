@@ -6,7 +6,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import {Grid, Button, Typography} from "@material-ui/core";
 
 
-
 @inject('basicLabelStore','authStore')
 @observer
 export default class SelectTest extends React.Component {
@@ -70,14 +69,14 @@ export default class SelectTest extends React.Component {
                 <div>
                 <Grid container>
                     <Grid item xs={12} lg={12}>
-            <div style={{border: '1px solid red', backgroundColor:"red", width: 50, height: 50}}>
-            </div>
-            <div>
+                <div style={{border: '1px solid red', backgroundColor:"red", width: 50, height: 50}}>
+                </div>
+                <div>
                 Red(빨간색)
-            </div>
-                    <div style={{border: '1px solid blue', backgroundColor:"blue", width: 50, height: 50}}>
-                    </div>
-                    <div>
+                </div>
+                <div style={{border: '1px solid blue', backgroundColor:"blue", width: 50, height: 50}}>
+                </div>
+                <div>
                         Blue(파란색)
                     </div>
                     <div>
