@@ -15,6 +15,7 @@ import Fit from "../step3/Fit";
 import Safe from "../step3/Safe";
 import Silhouette from "../step3/Silhouette";
 import {inject, observer} from "mobx-react";
+import Chip from "@material-ui/core/Chip";
 
 const styles = theme => ({
     mainContainer: {
@@ -56,20 +57,28 @@ class CategoryComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            categoryNo:0,
+            categoryName:'',
             value:0,
             createdId: '',
         }
+        this.handleDelete = this.handleDelete.bind(this)
     }
     componentDidMount() {
-        this.props.authStore.checkLogin();
-        const id = this.props.authStore.loginUser.id;
-        this.setState({
-            createdId : id,
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
-
+    handleClickCategory=(category)=>{
+        this.setState({
+            categoryNo: category.no,
+            categoryName: category.categoryItemName,
+        })
+    }
+    handleDelete(){
+        this.setState({
+            categoryNo:0,
+            categoryName:'',
+        })
+    }
     render() {
         const {classes} = this.props;
 
@@ -91,10 +100,22 @@ class CategoryComponent extends React.Component {
                                             <Typography variant="h5" component="h5">
                                                 카테고리
                                             </Typography>
+                                            <div style={{display:'inline-block'}}>
+                                                {this.state.categoryNo > 0 ?
+                                                    (<Chip
+                                                        variant="outlined"
+                                                        label={this.state.categoryName}
+                                                        onDelete={this.handleDelete}
+                                                        color="primary"
+                                                    />) : ''
+                                                }
+                                            </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Category />
+                                            <Category onClick={this.handleClickCategory} />
+                                            <br></br>
+
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
