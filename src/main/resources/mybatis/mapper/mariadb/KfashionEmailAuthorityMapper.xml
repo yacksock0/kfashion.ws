@@ -38,6 +38,12 @@
        AND authKey=#{authKey}
     </update>
 
+    <delete id="deleteUserId" parameterType="KfashionUserInfo">
+        DELETE
+        FROM kfashion_email_authority
+        WHERE user_id =#{id}
+    </delete>
+
 
 
 </mapper>

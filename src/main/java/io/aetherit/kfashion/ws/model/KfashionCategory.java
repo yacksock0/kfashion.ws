@@ -14,11 +14,12 @@ import java.time.LocalDateTime;
 public class KfashionCategory {
 
     private int no;
+    private String categoryType;
     private String categoryName;
     private int categoryStep;
     private int groupNo;
     private String createdId;
-    private String updatedId;
     private LocalDateTime createdDatetime;
+    private String updatedId;
     private LocalDateTime updatedDatetime;
 }

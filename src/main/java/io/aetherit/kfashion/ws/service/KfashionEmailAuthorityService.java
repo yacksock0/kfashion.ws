@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.service;
 
+import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.repository.KfashionEmailAuthorityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,5 +12,9 @@ public class KfashionEmailAuthorityService {
     @Autowired
     public KfashionEmailAuthorityService(KfashionEmailAuthorityRepository repository) {
         this.repository = repository;
+    }
+
+    public void deleteUserId(KfashionUserInfo user) {
+        repository.deleteUserId(user);
     }
 }

@@ -15,7 +15,9 @@ public class KfashionCategoryItem {
 
     private int no;
     private int categoryNo;
+    private String categoryType;
     private String categoryItemName;
+    private String categoryItemMemo;
     private String createdId;
     private String updatedId;
     private LocalDateTime createdDatetime;

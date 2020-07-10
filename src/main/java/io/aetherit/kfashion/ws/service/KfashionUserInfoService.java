@@ -194,12 +194,12 @@ public class KfashionUserInfoService {
         repository.createGroupUser(user);
     }
 
-    public void deleteGroupUser(String id) {
-        repository.deleteGroupUser(id);
+    public void deleteGroupUser(KfashionUserInfo user) {
+        repository.deleteGroupUser(user);
     }
 
-    public void deleteGroupAdminUser(String id) {
-        repository.deleteGroupAdminUser(id);
+    public void deleteGroupAdminUser(KfashionUserInfo user) {
+        repository.deleteGroupAdminUser(user);
     }
 
 }

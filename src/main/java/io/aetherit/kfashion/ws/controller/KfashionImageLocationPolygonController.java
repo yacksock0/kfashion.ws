@@ -80,16 +80,15 @@ public class KfashionImageLocationPolygonController {
                     KfashionImageLocationPolygon polygon = new KfashionImageLocationPolygon();
                     polygon.setWorkNo(polygonList.get(i).getWorkNo());
                     polygon.setWorkStep(polygonList.get(i).getWorkStep());
-                    polygon.setRectNo(polygonList.get(i).getRectNo());
-                    polygon.setNo(polygonList.get(i).getPolyNo());
+                    polygon.setPolyNo(polygonList.get(i).getPolyNo());
                     kfashionImageLocationPolygonService.insertLocationPolygon(polygon);
 
 
                     KfashionImageLocationPolygonPoint polygonPoint = new KfashionImageLocationPolygonPoint();
                     polygonPoint.setWorkNo(polygonList.get(i).getWorkNo());
                     polygonPoint.setWorkStep(polygonList.get(i).getWorkStep());
-                    polygonPoint.setRectNo(polygonList.get(i).getRectNo());
                     polygonPoint.setPolyNo(polygonList.get(i).getPolyNo());
+                    polygonPoint.setNo(polygonList.get(i).getNo());
 
 
                     for (int j =1 ;j< polygonList.get(i).getPoints().size(); j++ ){
@@ -141,7 +140,6 @@ public class KfashionImageLocationPolygonController {
         if(polyNoList != null) {
             for(int i=0; i < polyNoList.size(); i++) {
                 polygon.setWorkNo(polyNoList.get(i).getWorkNo());
-                polygon.setRectNo(polyNoList.get(i).getRectNo());
                 polygon.setPolyNo(polyNoList.get(i).getPolyNo());
                 polygon.setNo(polyNoList.get(i).getNo());
                 locationPolygonList.addAll(kfashionImageLocationPolygonPointService.selectLocationPolygonList(polygon));

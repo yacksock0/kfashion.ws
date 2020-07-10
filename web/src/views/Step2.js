@@ -13,6 +13,7 @@ import {fabric} from "fabric";
 import {toJS} from "mobx";
 import WorkedImg from "./step2/WorkedImg";
 import Stepper from "../components/Stepper";
+import Chip from '@material-ui/core/Chip';
 
 const styles = theme => ({
     root: {
@@ -63,10 +64,6 @@ const styles = theme => ({
         height:50,
         width:'100%',
     },
-    test:{
-        border:'1px solid black',
-        height: '50%',
-    },
     toolBox:{
         border:'1px solid black',
         marginRight: 1,
@@ -110,6 +107,11 @@ class Step2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            no:0,
+            name:'',
+            memo:'',
+            sleeveNo:0,
+            sleeveName: '',
             tabIndex: 1,
             imgData :'',
             workNo:'',
@@ -117,6 +119,7 @@ class Step2 extends React.Component {
             number:1,
             createdId: '',
         }
+        this.handleDelete = this.handleDelete.bind(this)
     }
     componentDidMount() {
         const id = this.props.authStore.loginUser.id;
@@ -182,7 +185,26 @@ class Step2 extends React.Component {
             workNo: this.props.imageStore.workNo
         })
     }
+    handleClickColor=(color)=>{
+        this.setState({
+            no: color.no,
+            name: color.categoryItemName,
+            memo: color.categoryItemMemo,
+        })
+    }
 
+    handleClickSleeve=(sleeve)=>{
+        this.setState({
+            sleeveNo: sleeve.no,
+            sleeveName: sleeve.categoryItemName,
+        })
+    }
+    handleDelete(){
+        this.setState({
+            sleeveNo:0,
+            sleeveName:'',
+        })
+    }
     onSelectTab(tabIndex) {
 
         this.canvas.remove(this.canvas.item(0));
@@ -252,7 +274,14 @@ class Step2 extends React.Component {
                                      <div>
                                          <hr></hr>
                                      </div>
-                                     <Color />
+                                         <Color onClick={this.handleClickColor}/>
+                                         <div>
+                                             <br></br>
+                                         {this.state.no >0 ?
+                                             (<div style={{display:'inline-block',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo}`}}>
+                                     </div>) : ''
+                                             }
+                                     </div>
                                      </div>
                                      <div className={classes.content}>
                                          <div style={{display:"inline-flex"}}>
@@ -263,7 +292,16 @@ class Step2 extends React.Component {
                                          <div>
                                              <hr></hr>
                                          </div>
-                                         <SleeveLength />
+                                         <SleeveLength onClick={this.handleClickSleeve} />
+                                         <br></br>
+                                         {this.state.sleeveNo >0 ?
+                                             (<Chip
+                                                 variant="outlined"
+                                                 label={this.state.sleeveName}
+                                                 onDelete={this.handleDelete}
+                                                 color="primary"
+                                             />) : ''
+                                         }
                                          <Button style={{marginTop: 20}}
                                                  type="button"
                                                  className={classes.buttonType2}

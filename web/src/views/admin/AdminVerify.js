@@ -98,15 +98,19 @@ export default class AdminVerify extends React.Component {
                         }) : []}
                     title="그룹 관리자 승인"
                     editable={{
-                        onRowDelete: oldData =>
+                        onRowDelete: rowData =>
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     {
-                                        axios.get('/api/v1/kfashion/users/userList')
-                                            .then(response => response.data)
-                                            .then(res => {
-                                                this.setState({ userList : res, loading: false})
-                                            })
+                                        axios.delete(`/api/v1/kfashion/users/deleteGroupAdminUser/${rowData.id}`, {
+                                            data : {
+                                                id : rowData.id
+                                            }
+                                        }).then(res => {
+                                            if(res.status === 200) {
+                                                this.props.adminAuthorityStore.LoadUserList();
+                                            }
+                                        })
                                     }
                                     resolve();
                                 }, 1000);

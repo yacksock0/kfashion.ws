@@ -55,8 +55,7 @@ public class KfashionLabelController {
                 KfashionLabel basic = new KfashionLabel();
                 basic.setWorkNo(basicLabel.getWorkNo());
                 basic.setWorkStep(basicLabel.getWorkStep());
-                basic.setPolyNo(basicLabel.getPolyNo());
-                basic.setRectNo(basicLabel.getRectNo());
+                basic.setLabelNo(basicLabel.getLabelNo());
                 basic.setNo(1);
                 basic.setCategoryNo(basicLabel.getColor());
                 basic.setCategoryItemNo(basicLabel.getColorCategoryNo());
@@ -94,8 +93,7 @@ public class KfashionLabelController {
                 KfashionLabel professional = new KfashionLabel();
                 professional.setWorkNo(professionalLabel.getWorkNo());
                 professional.setWorkStep(professionalLabel.getWorkStep());
-                professional.setPolyNo(professionalLabel.getPolyNo());
-                professional.setRectNo(professionalLabel.getRectNo());
+                professional.setLabelNo(professionalLabel.getLabelNo());
                 professional.setNo(1);
                 professional.setCategoryNo(professionalLabel.getStyle());
                 professional.setCategoryItemNo(professionalLabel.getStyleCategoryNo());

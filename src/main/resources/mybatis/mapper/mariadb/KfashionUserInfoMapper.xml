@@ -165,12 +165,12 @@
         )
     </insert>
 
-    <delete id="deleteGroupAdminUser" parameterType="String">
+    <delete id="deleteGroupAdminUser" parameterType="KfashionUserInfo">
         DELETE FROM kfashion_user_info
         WHERE id=#{id}
     </delete>
 
-    <delete id="deleteGroupUser" parameterType="String">
+    <delete id="deleteGroupUser" parameterType="KfashionUserInfo">
         DELETE FROM kfashion_user_info
         WHERE id=#{id}
     </delete>

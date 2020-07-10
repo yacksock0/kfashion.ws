@@ -15,7 +15,6 @@ import java.util.List;
 public class KfashionImageLocationPolygonPoint {
     private Long workNo;
     private int workStep;
-    private int rectNo;
     private int polyNo;
     private int no;
     private float locationX;

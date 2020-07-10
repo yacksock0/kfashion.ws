@@ -19,8 +19,7 @@ public class BasicLabel {
    private int sleeveLengthCategoryNo;
    private Long workNo;
    private int workStep;
-   private int rectNo;
-   private int polyNo;
+   private int labelNo;
    private int no;
    private String createdId;
 

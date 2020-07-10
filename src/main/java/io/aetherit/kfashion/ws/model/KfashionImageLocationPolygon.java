@@ -15,8 +15,7 @@ public class KfashionImageLocationPolygon {
 
     private Long workNo;
     private int workStep;
-    private int rectNo;
-    private int no;
+    private int polyNo;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 
