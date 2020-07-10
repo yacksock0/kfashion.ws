@@ -12,16 +12,14 @@ const EmptyNewAdmin = {
 
 
 export default class AdminAuthorityStore {
-    @observable newAdmin = {...EmptyNewAdmin}
+    @observable newAdmin = {...EmptyNewAdmin};
     @observable userList = [];
 
     @action changeNewAdminId = (id) => {
         this.newAdmin.id = id;
-        console.log(id);
     }
     @action changeNewAdminGroupNo = (groupNo) => {
         this.newAdmin.groupNo = groupNo;
-        console.log(groupNo);
     }
 
     @action initStore = () => {

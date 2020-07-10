@@ -138,14 +138,19 @@ class UserList extends React.Component {
                                     }),
                                 onRowDelete: rowData =>
                                     new Promise((resolve, reject) => {
-                                        setTimeout(() => {
                                             {
-                                                console.log('userId:', rowData.id)
-                                                axios.delete(`/api/v1/kfashion/users/deleteGroupUser`, {data: {userId: rowData.id},
-                                                });
+                                                axios.delete(`/api/v1/kfashion/users/deleteGroupUser/${rowData.id}`, {
+                                                    data: {
+                                                        id: rowData.id
+                                                    }
+                                                }).then(res => {
+                                                    if(res.status === 200) {
+                                                        let groupNo=this.props.authStore.loginUser.groupNo;
+                                                        this.props.userListStore.LoadGroupUserList(groupNo);
+                                                    }
+                                                })
                                             }
                                             resolve();
-                                        }, 1000);
                                     })
                             }}
                             options={{

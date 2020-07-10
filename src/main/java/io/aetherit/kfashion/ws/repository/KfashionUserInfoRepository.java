@@ -66,11 +66,11 @@ public class KfashionUserInfoRepository {
         mapper.createGroupUser(user);
     }
 
-    public void deleteGroupAdminUser(String id) {
-        mapper.deleteGroupAdminUser(id);
+    public void deleteGroupAdminUser(KfashionUserInfo user) {
+        mapper.deleteGroupAdminUser(user);
     }
 
-    public void deleteGroupUser(String id) {
-        mapper.deleteGroupUser(id);
+    public void deleteGroupUser(KfashionUserInfo user) {
+        mapper.deleteGroupUser(user);
     }
 }
