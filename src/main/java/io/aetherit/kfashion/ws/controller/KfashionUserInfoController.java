@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.controller;
 
 import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
+import io.aetherit.kfashion.ws.model.KfashionUserGroupAdmin;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.service.KfashionUserGroupAdminService;
 import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/kfashion/users")
@@ -125,11 +128,13 @@ public class KfashionUserInfoController {
     public ResponseEntity<Object> groupUserList(HttpServletRequest httpRequest,
                                                 @RequestParam(value="groupNo", required=true) int groupNo) throws Exception {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        String id = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
-        KfashionUserInfo user = new KfashionUserInfo();
-        user.setGroupNo(groupNo);
-        user.setId(id);
-        List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(user);
+        List<String> adminIdList = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
+        System.out.println(adminIdList);
+        Map<String,Object> adminMap =  new HashMap<>();
+        adminMap.put("groupNo", groupNo);
+        adminMap.put("adminIdList", adminIdList);
+
+        List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(adminMap);
         resultMap.put("groupUserList", groupUserList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
@@ -145,7 +150,7 @@ public class KfashionUserInfoController {
     public ResponseEntity<Object> createGroupUser(HttpServletRequest httpServletRequest,
                                             @RequestBody KfashionUserInfo user) throws Exception{
         kfashionUserInfoService.createGroupUser(user);
-        return new ResponseEntity<Object>("success",HttpStatus.OK);
+        return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
     /**

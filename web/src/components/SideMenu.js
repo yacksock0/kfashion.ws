@@ -56,9 +56,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'inherit',
     },nested: {
         paddingLeft: theme.spacing(4),
-        backgroundColor : 'yellow',
     },
-
 }));
 
 export default function SideMenu(props) {
@@ -89,22 +87,22 @@ export default function SideMenu(props) {
                 <ListSubheader inset>Process</ListSubheader>
 
                 <Link to="/home" className={classes.link}>
-                    <ListItem button>
+                    <ListItem type="button">
                         <ListItemIcon><ComputerIcon /></ListItemIcon>
                         <ListItemText primary="홈"></ListItemText>
                     </ListItem>
                 </Link>
-                <Link className={classes.link}>
+                <Link to="" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
-                        <ListItemText button onClick={handleClick} primary="Area 레이블"></ListItemText>
+                        <ListItemText type="button" onClick={handleClick} primary="Area 레이블"></ListItemText>
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                 </Link>
                 <Link to="/step/imageUpload" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                            <ListItem type="button" className={classes.nested}>
                                 <ListItemIcon>
                                     <AspectRatioIcon />
                                 </ListItemIcon>
@@ -113,22 +111,22 @@ export default function SideMenu(props) {
                         </List>
                     </Collapse>
                 </Link>
-                {/*<Link to="/Step/boundaryBox" className={classes.link}>*/}
-                {/*    <Collapse in={open} timeout="auto" unmountOnExit>*/}
-                {/*        <List component="div" disablePadding>*/}
-                {/*            <ListItem button className={classes.nested}>*/}
-                {/*                <ListItemIcon>*/}
-                {/*                    <AspectRatioIcon />*/}
-                {/*                </ListItemIcon>*/}
-                {/*                <ListItemText primary="사각형 지정" />*/}
-                {/*            </ListItem>*/}
-                {/*        </List>*/}
-                {/*    </Collapse>*/}
-                {/*</Link>*/}
+                <Link to="/Step/boundaryBox" className={classes.link}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem type="button" className={classes.nested}>
+                                <ListItemIcon>
+                                    <AspectRatioIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="사각형 지정" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Link>
                 <Link to="/step/polygon" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                            <ListItem type="button" className={classes.nested}>
                                 <ListItemIcon>
                                     <FormatShapesIcon />
                                 </ListItemIcon>
@@ -139,17 +137,17 @@ export default function SideMenu(props) {
                 </Link>
 
 
-                <Link className={classes.link}>
+                <Link to="" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
-                        <ListItemText button onClick={handleClick2} primary="Text 레이블"></ListItemText>
+                        <ListItemText type="button" onClick={handleClick2} primary="Text 레이블"></ListItemText>
                         {open2 ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                 </Link>
                 <Link to="/step2" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                            <ListItem type="button" className={classes.nested}>
                                 <ListItemIcon>
                                     <FormatListBulletedIcon />
                                 </ListItemIcon>
@@ -162,7 +160,7 @@ export default function SideMenu(props) {
                 <Link to="/step3" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                            <ListItem type="button" className={classes.nested}>
                                 <ListItemIcon>
                                     <PlaylistAddCheckIcon />
                                 </ListItemIcon>
@@ -176,7 +174,7 @@ export default function SideMenu(props) {
                 <Link to="/step3" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                            <ListItem type="button" className={classes.nested}>
                                 <ListItemIcon>
                                     <PlaylistAddCheckIcon />
                                 </ListItemIcon>
@@ -189,7 +187,7 @@ export default function SideMenu(props) {
                 <Link to="/step3" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                            <ListItem type="button" className={classes.nested}>
                                 <ListItemIcon>
                                     <PlaylistAddCheckIcon />
                                 </ListItemIcon>
@@ -202,17 +200,17 @@ export default function SideMenu(props) {
             <Divider />
             {loginUser.isAdmin == 'Y'? (
                 <div>
-                    <Link className={classes.link}>
-                        <ListItem button>
+                    <Link to="" className={classes.link}>
+                        <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
-                            <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
+                            <ListItemText type="button" onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
                             {open1 ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
                     </Link>
                     <Link to="/admin/createGroup" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
-                                <ListItem button className={classes.nested}>
+                                <ListItem type="button" className={classes.nested}>
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
@@ -224,7 +222,7 @@ export default function SideMenu(props) {
                     <Link to="/admin/userList" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
-                                <ListItem button className={classes.nested}>
+                                <ListItem type="button" className={classes.nested}>
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
@@ -233,14 +231,14 @@ export default function SideMenu(props) {
                             </List>
                         </Collapse>
                     </Link>
-                    <Link to="/admin/userList" className={classes.link}>
+                    <Link to="/admin/userWork" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
-                                <ListItem button className={classes.nested}>
+                                <ListItem type="button" className={classes.nested}>
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="작업 나눠주기" />
+                                    <ListItemText primary="작업 지정" />
                                 </ListItem>
                             </List>
                         </Collapse>
@@ -248,8 +246,8 @@ export default function SideMenu(props) {
                     </div>):''}
             {loginUser.groupAdmin === 1?(
                 <div>
-                    <Link className={classes.link}>
-                        <ListItem button>
+                    <Link to="" className={classes.link}>
+                        <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
                             {open1 ? <ExpandLess /> : <ExpandMore />}
@@ -258,7 +256,7 @@ export default function SideMenu(props) {
                     <Link to="/admin/userList" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
-                                <ListItem button className={classes.nested}>
+                                <ListItem type="button" className={classes.nested}>
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
@@ -267,14 +265,14 @@ export default function SideMenu(props) {
                             </List>
                         </Collapse>
                     </Link>
-                    <Link to="/admin/userList" className={classes.link}>
+                    <Link to="/admin/userWork" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
-                                <ListItem button className={classes.nested}>
+                                <ListItem type="button" className={classes.nested}>
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="작업 나눠주기" />
+                                    <ListItemText primary="작업 지정" />
                                 </ListItem>
                             </List>
                         </Collapse>

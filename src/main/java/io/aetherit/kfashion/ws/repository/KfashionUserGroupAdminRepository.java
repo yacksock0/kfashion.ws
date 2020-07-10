@@ -5,6 +5,8 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionUserGroupAdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class KfashionUserGroupAdminRepository {
     private KfashionUserGroupAdminMapper mapper;
@@ -18,7 +20,7 @@ public class KfashionUserGroupAdminRepository {
         mapper.insertUserAdminGroup(groupAdmin);
     }
 
-    public String selectGroupAdminId(int groupNo) {
+    public List<String> selectGroupAdminId(int groupNo) {
         return mapper.selectGroupAdminId(groupNo);
     }
 }

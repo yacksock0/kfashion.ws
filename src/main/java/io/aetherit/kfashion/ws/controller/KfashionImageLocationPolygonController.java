@@ -37,9 +37,6 @@ public class KfashionImageLocationPolygonController {
         }
 
 
-
-
-
         /**
          * 폴리곤 인서트
          * @param httpServletRequest

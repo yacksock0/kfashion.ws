@@ -17,6 +17,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
+
 import {Button} from "@material-ui/core";
 import GroupList from "./GroupList";
 import {inject, observer} from "mobx-react";
@@ -50,12 +51,13 @@ export default class AdminVerify extends React.Component {
         this.state = {
         userList : [],
             id: '',
+            groupNo : '',
         columns: [
-            { title: '아이디', field: 'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
-            { title: '이메일', field: 'email',type: 'text'},
-            { title: '이름', field: 'name', type: 'text'},
-            { title: '연락처', field: 'phone', type: 'number'},
-            { title: '소속', field: 'value', type:'',render: rowData => <GroupList />},
+            { title: '아이디', field: 'id', type : 'text', value :'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
+            { title: '이메일', field: 'email',type: 'text', value: 'email'},
+            { title: '이름', field: 'name', type: 'text', value: 'name'},
+            { title: '연락처', field: 'phone', type: 'text', value: 'phone'},
+            { title: '소속', field: 'value', render: rowData => <GroupList rowDataId={rowData.id}/>},
             { title: '신청일', field: 'createdDatetime', type: 'date'},
             ],
         }
@@ -74,7 +76,6 @@ export default class AdminVerify extends React.Component {
 
     }
     handleSubmit(){
-        this.props.adminAuthorityStore.changeNewAdminId(this.state.id);
         this.props.adminAuthorityStore.doAdminUp();
     }
     render() {
@@ -115,7 +116,7 @@ export default class AdminVerify extends React.Component {
                         sorting: false,
                         /*padding:'dense',*/
                         minBodyHeight: '70vh',
-                        selection: true,
+                        selection: false,
                         actionsColumnIndex: -1,
                         headerStyle: {
                             backgroundColor: '#01579b',
@@ -126,8 +127,6 @@ export default class AdminVerify extends React.Component {
                             textAlign: 'center'
                         },
                     }}
-                    onSelectionChange={(rows,rowData) => {this.setState({id : rowData.id})}
-                    }
                 />
             </div>
                 <hr></hr>

@@ -2,8 +2,10 @@ package io.aetherit.kfashion.ws.repository.mapper;
 
 import io.aetherit.kfashion.ws.model.KfashionUserGroupAdmin;
 
+import java.util.List;
+
 public interface KfashionUserGroupAdminMapper {
     void insertUserAdminGroup(KfashionUserGroupAdmin groupAdmin);
 
-    String selectGroupAdminId(int groupNo);
+    List<String> selectGroupAdminId(int groupNo);
 }

@@ -57,9 +57,6 @@ export default class SelectTest extends React.Component {
         const {colorList}= this.state.colorList;
         return (
             <div>
-                <Typography variant="h5" component="h2">
-                    색상
-                </Typography>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>생삭 지정</Button>
             <Dialog open={this.state.open} onClose={this.handleClose}
                     maxWidth={"md"}
@@ -67,6 +64,9 @@ export default class SelectTest extends React.Component {
                     height={'100%'}
             >
             <DialogContent>
+                <Typography variant="h5" component="h2">
+                    색상
+                </Typography>
                 <div>
                 <Grid container>
                     <Grid item xs={12} lg={12}>
@@ -79,8 +79,6 @@ export default class SelectTest extends React.Component {
                     </div>
                     <div>
                         Blue(파란색)
-                    </div>
-                    <div style={{border: '1px solid black', backgroundColor:"black", width: 50, height: 50}}>
                     </div>
                     <div>
                         Black(검정색)

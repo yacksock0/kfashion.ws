@@ -10,6 +10,7 @@ export default class GroupList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id : '',
             text: 'text',
             userGroupAuthorityList: [],
             selectedOption:null,
@@ -21,7 +22,7 @@ export default class GroupList extends React.Component {
                 const userGroupAuthorityList = response.data.userGroupAuthorityList;
                 this.setState({
                     userGroupAuthorityList: userGroupAuthorityList.map(userGroupList => {
-                        userGroupList.value = userGroupList.no;
+                        userGroupList.value = userGroupList.groupNo;
                         userGroupList.label = userGroupList.groupName;
                         return userGroupList
                     })
@@ -32,18 +33,19 @@ export default class GroupList extends React.Component {
                 console.log(error)
             })
     }
+
     handleChange = (selectedOption) => {
+        const id =this.props.rowDataId;
         this.setState(
-            { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            { selectedOption : selectedOption}
         );
         this.props.adminAuthorityStore.changeNewAdminGroupNo(selectedOption.groupNo);
+        this.props.adminAuthorityStore.changeNewAdminId(id);
     };
 
     render() {
         const { selectedOption } = this.state;
-        const userGroupAuthorityList= this.state.userGroupAuthorityList;
-        console.log(userGroupAuthorityList);
+        const userGroupAuthorityList = this.state.userGroupAuthorityList;
         return (
             <Select
                 value={selectedOption}

@@ -64,7 +64,7 @@ const tableIcons = {
 
 @inject('authStore', 'userListStore')
 @observer
-class UserList extends React.Component {
+class UserWork extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -73,6 +73,8 @@ class UserList extends React.Component {
             id:'',
             name:'',
             password:'',
+            groupUserList:[],
+            newMember:[],
             columns: [
                 {
                     title: '아이디',
@@ -82,8 +84,7 @@ class UserList extends React.Component {
                     editPlaceholder: '아이디 입력'
                 },
                 {title: '이름', field: 'name', type: 'text'},
-                {title: '비밀번호', field: 'password', type: 'hidden'},
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: '작업진도', field: '', type: ''},
             ],
         }
     }
@@ -121,7 +122,7 @@ class UserList extends React.Component {
                                 }) : []}
                             title="그룹 회원 리스트"
                             editable={{
-                                onRowAdd:rowData =>
+                                onRowUpdate:rowData =>
                                     new Promise((resolve, reject) => {
                                         setTimeout(() => {
                                             try {
@@ -129,7 +130,7 @@ class UserList extends React.Component {
                                                 this.props.userListStore.changeNewMemberPassword(rowData.password)
                                                 this.props.userListStore.changeNewMemberUserName(rowData.name)
                                                 this.props.userListStore.changeNewMemberGroupNo(groupNo)
-                                                this.props.userListStore.AddGroupUser();
+                                                this.props.userListStore.addGroupUser();
                                             } catch (e) {
                                                 console.log('여기 에러 났음')
                                             }
@@ -150,7 +151,7 @@ class UserList extends React.Component {
                             }}
                             options={{
                                 editCellStyle: {
-                                  textAlign:"center",
+                                    textAlign:"center",
                                 },
                                 /*padding:'dense',*/
                                 minBodyHeight: '77vh',
@@ -176,4 +177,4 @@ class UserList extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (UserList)));
+export default withSnackbar(withRouter(withStyles(styles) (UserWork)));

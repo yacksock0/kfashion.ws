@@ -185,8 +185,8 @@ public class KfashionUserInfoService {
         repository.updateUserGroup(groupNo, id);
     }
 
-    public List<KfashionUserInfo> selectGroupUserList(KfashionUserInfo user) {
-        return repository.selectGroupUserList(user);
+    public List<KfashionUserInfo> selectGroupUserList(Map<String, Object> adminMap) {
+        return repository.selectGroupUserList(adminMap);
     }
 
     public void createGroupUser(KfashionUserInfo user) {
@@ -201,4 +201,5 @@ public class KfashionUserInfoService {
     public void deleteGroupAdminUser(String id) {
         repository.deleteGroupAdminUser(id);
     }
+
 }
