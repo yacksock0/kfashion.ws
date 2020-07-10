@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'inherit',
     },nested: {
         paddingLeft: theme.spacing(4),
+        backgroundColor: 'yellow',
     },
 }));
 
@@ -111,18 +112,18 @@ export default function SideMenu(props) {
                         </List>
                     </Collapse>
                 </Link>
-                <Link to="/Step/boundaryBox" className={classes.link}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem type="button" className={classes.nested}>
-                                <ListItemIcon>
-                                    <AspectRatioIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="사각형 지정" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
+                {/*<Link to="/Step/boundaryBox" className={classes.link}>*/}
+                {/*    <Collapse in={open} timeout="auto" unmountOnExit>*/}
+                {/*        <List component="div" disablePadding>*/}
+                {/*            <ListItem type="button" className={classes.nested}>*/}
+                {/*                <ListItemIcon>*/}
+                {/*                    <AspectRatioIcon />*/}
+                {/*                </ListItemIcon>*/}
+                {/*                <ListItemText primary="사각형 지정" />*/}
+                {/*            </ListItem>*/}
+                {/*        </List>*/}
+                {/*    </Collapse>*/}
+                {/*</Link>*/}
                 <Link to="/step/polygon" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
