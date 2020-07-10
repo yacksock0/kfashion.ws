@@ -16,9 +16,8 @@ public class KfashionLabel {
 
     private Long workNo;
     private int workStep;
+    private int labelNo;
     private int no;
-    private int rectNo;
-    private int polyNo;
     private int categoryNo;
     private int categoryItemNo;
     private String createdId;

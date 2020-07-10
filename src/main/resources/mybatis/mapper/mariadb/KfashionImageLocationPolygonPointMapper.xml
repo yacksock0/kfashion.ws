@@ -3,12 +3,12 @@
     <resultMap id="kfashionImageLocationPolygonPointResultMap" type="KfashionImageLocationPolygonPoint">
         <id property="workNo"                       column="work_no" />
         <result property="workStep"                 column="work_step" />
-        <result property="rectNo"                   column="rect_no" />
         <result property="polyNo"                   column="poly_no" />
         <result property="no"                       column="no" />
         <result property="locationX"                column="location_x" />
         <result property="locationY"                column="location_y" />
         <result property="locationSeq"              column="location_seq" />
+        <result property="createdId"                column="created_id" />
         <result property="createdDatetime"          column="created_datetime" />
         <result property="updatedDatetime"          column="updated_datetime" />
     </resultMap>
@@ -19,7 +19,6 @@
         INTO kfashion_image_location_polygon_point (
         work_no,
         work_step,
-        rect_no,
         poly_no,
         no,
         location_x,
@@ -30,7 +29,6 @@
         )VALUES(
         #{workNo},
         #{workStep},
-        #{rectNo},
         #{polyNo},
         #{no},
         #{locationX},
@@ -51,7 +49,6 @@
         SELECT *
         FROM kfashion_image_location_polygon_point
         WHERE work_no =#{workNo}
-        AND rect_no =#{rectNo}
         AND poly_no =#{polyNo}
         AND no =#{no}
     </select>

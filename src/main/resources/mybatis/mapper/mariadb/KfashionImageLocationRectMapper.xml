@@ -4,12 +4,12 @@
         <id property="workNo"                        column="work_no" />
         <result property="workStep"                  column="work_step" />
         <result property="rectNo"                        column="rect_no" />
-        <result property="locationX"                 column="location_X" />
-        <result property="locationY"                 column="location_Y" />
+        <result property="locationX"                 column="location_x" />
+        <result property="locationY"                 column="location_y" />
         <result property="locationWidth"             column="location_width" />
         <result property="locationHeight"            column="location_height" />
-        <result property="scaleX"                    column="scale_X" />
-        <result property="scaleY"                    column="scale_Y" />
+        <result property="scaleX"                    column="scale_x" />
+        <result property="scaleY"                    column="scale_y" />
         <result property="createdDatetime"           column="created_datetime" />
         <result property="updatedDatetime"           column="updated_datetime" />
     </resultMap>
@@ -21,12 +21,12 @@
         work_no,
         work_step,
         rect_no,
-        location_X,
-        location_Y,
+        location_x,
+        location_y,
         location_width,
         location_height,
-        scale_X,
-        scale_Y,
+        scale_x,
+        scale_y,
         created_datetime,
         updated_datetime
         ) VALUES(

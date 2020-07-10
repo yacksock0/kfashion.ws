@@ -6,6 +6,8 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import {inject, observer} from "mobx-react";
+import Dropzone from 'react-dropzone';
+import { getDroppedOrSelectedFiles } from 'html5-file-selector';
 
 const styles = theme => ({
     toolButton:{
@@ -21,7 +23,7 @@ const styles = theme => ({
 });
 DropzoneDialog.defaultProps = {
     clearOnUnmount: true,
-    filesLimit: 20,
+    filesLimit: 10000,
     initialFiles: [],
 };
 
@@ -45,8 +47,16 @@ class DropzoneDialogExample extends Component {
             open: false,
             files: file
         });
-        const userId = this.props.authStore.isUserId;
-        this.props.imageStore.fileupload(file, userId);
+        for(let i=0; i < file.length; i++) {
+            const userId = this.props.authStore.isUserId;
+            this.props.imageStore.fileupload(file[i], userId);
+        }
+    }
+
+    handelOnDrop(files) {
+        this.setState({
+            files
+        });
     }
 
     handleOpen() {
@@ -67,7 +77,7 @@ class DropzoneDialogExample extends Component {
                     onSave={this.handleSave.bind(this)}
                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
                     showPreviews={true}
-                    maxFileSize={5000000}
+                    maxFileSize={50000000000}
                     onClose={this.handleClose.bind(this)}
                 />
             </div>

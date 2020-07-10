@@ -2,6 +2,7 @@
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionCategoryMapper">
     <resultMap id="kfashionCategoryResultMap" type="KfashionCategory">
         <id property="no"                       column="no" />
+        <result property="categoryType"             column="category_type" />
         <result property="categoryName"             column="category_name" />
         <result property="categoryStep"                 column="category_step" />
         <result property="GroupNo"                 column="group_no" />
