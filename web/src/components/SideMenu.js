@@ -231,14 +231,14 @@ export default function SideMenu(props) {
                             </List>
                         </Collapse>
                     </Link>
-                    <Link to="/admin/userList" className={classes.link}>
+                    <Link to="/admin/userWork" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem type="button" className={classes.nested}>
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="작업 나눠주기" />
+                                    <ListItemText primary="작업 지정" />
                                 </ListItem>
                             </List>
                         </Collapse>
@@ -265,14 +265,14 @@ export default function SideMenu(props) {
                             </List>
                         </Collapse>
                     </Link>
-                    <Link to="/admin/userList" className={classes.link}>
+                    <Link to="/admin/userWork" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem type="button" className={classes.nested}>
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="작업 나눠주기" />
+                                    <ListItemText primary="작업 지정" />
                                 </ListItem>
                             </List>
                         </Collapse>

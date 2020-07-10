@@ -5,6 +5,7 @@ import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import Stepper from "./Stepper";
 
 const logoWidth = 120;
 
