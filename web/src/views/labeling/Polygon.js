@@ -21,6 +21,7 @@ import {inject, observer} from "mobx-react";
 import PolygonList from "./PolygonList";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Stepper from "../../components/Stepper";
 
 const styles = theme => ({
     root: {
@@ -446,9 +447,7 @@ class Polygon extends React.Component {
             });
         }
     }
-    setSavs = ()=> {
 
-};
     handleClickItem = (workNo, imageData) => {
         this.setState({tabIndex:0,
         });
@@ -465,6 +464,11 @@ class Polygon extends React.Component {
             tadIndex:1,
         })
     }
+
+    handleStepView = () =>{
+        console.log("stepView");
+    }
+
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -472,6 +476,11 @@ class Polygon extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
+                    <Grid container>
+                        <Grid item xs={12} style={{marginRight:5}}>
+                            <Stepper currentStep={2}/>
+                        </Grid>
+                    </Grid>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={5} style={{margin:"auto", display: "block"}}>
                             <div>

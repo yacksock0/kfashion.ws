@@ -2,7 +2,7 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Typography} from "@material-ui/core";
+import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
 import Color from "./step2/Color";
 import SleeveLength from "./step2/SleeveLength";
 import {inject, observer} from "mobx-react";
@@ -11,6 +11,7 @@ import 'react-tabs/style/react-tabs.css';
 import BasicImageList from "./step2/BasicImageList";
 import {fabric} from "fabric";
 import {toJS} from "mobx";
+import Stepper from "../components/Stepper";
 
 const styles = theme => ({
     root: {
@@ -201,6 +202,11 @@ class Step2 extends React.Component {
         }else{alert("poly정보가 존재하지 않습니다.")}
     };
 
+    handleStepView={
+
+    }
+
+
     render() {
         const { classes,history} = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -208,6 +214,11 @@ class Step2 extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
+                    <Grid container>
+                        <Grid item xs={12} style={{marginRight:5}}>
+                            <Stepper currentStep={3} />
+                        </Grid>
+                    </Grid>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
                          <div>
