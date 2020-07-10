@@ -12,6 +12,7 @@ import BasicImageList from "./step2/BasicImageList";
 import {fabric} from "fabric";
 import {toJS} from "mobx";
 import WorkedImg from "./step2/WorkedImg";
+import Stepper from "../components/Stepper";
 
 const styles = theme => ({
     root: {
@@ -213,6 +214,11 @@ class Step2 extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
+                    <Grid container>
+                        <Grid item xs={12} style={{marginRight:5}}>
+                            <Stepper currentStep={4} />
+                        </Grid>
+                    </Grid>
                  <Grid container spacing={3}>
                      <Grid item xs={12} lg={2}>
                          <WorkedImg />
