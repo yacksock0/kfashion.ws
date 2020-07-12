@@ -158,7 +158,7 @@ class UserList extends React.Component {
                                   textAlign:"center",
                                 },
                                 /*padding:'dense',*/
-                                minBodyHeight: '77vh',
+                                minBodyHeight: '70vh',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
                                     backgroundColor: '#01579b',
