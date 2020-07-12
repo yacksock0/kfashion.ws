@@ -24,7 +24,7 @@ export class ProgressBar extends Component {
     render() {
         const { percent, color } = this.state;
         const containerStyle = {
-            width: '250px',
+            width: '200px',
             display:'inline-block'
         };
         return (

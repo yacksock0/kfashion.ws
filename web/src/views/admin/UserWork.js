@@ -22,6 +22,8 @@ import Remove from "@material-ui/icons/Remove";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import {inject, observer} from "mobx-react";
 import {ProgressBar} from "../../components/ProgressBar";
+import CheckIcon from "@material-ui/icons/Check";
+import WorkDetail from "./WorkDetail";
 
 const styles = theme => ({
     mainContainer: {
@@ -78,6 +80,7 @@ class UserWork extends React.Component {
                 {title: '아이디',field: 'id', headerStyle:{minWidth: 150}, cellStyle: {minWidth: 150,textAlign: 'center'}},
                 {title: '이름', field: 'name', type: 'text',  headerStyle:{minWidth: 150,textAlign: 'center'}, cellStyle: {minWidth:150},textAlign: 'center'},
                 {title: '작업진도', field: 'progress', render: rowData => <ProgressBar rowDataId={rowData.id}/>},
+                {title: '작업지정', field: 'workDetail', render: rowData => <WorkDetail onClick={()=>this.handleClick(rowData.id)}/>},
             ],
         }
     }
@@ -90,8 +93,11 @@ class UserWork extends React.Component {
         });
         this.props.authStore.checkLogin();
     }
-
-
+    handleClick(selectedId){
+        if(this.props.onClick) {
+            this.props.selectedId(selectedId);
+        }
+    }
 
     render() {
         const { classes } = this.props;
@@ -115,21 +121,21 @@ class UserWork extends React.Component {
                                 }) : []}
                             title="그룹 회원 리스트"
                             editable={{
-                                onRowUpdate:rowData =>
-                                    new Promise((resolve, reject) => {
-                                        setTimeout(() => {
-                                            try {
-                                                this.props.userListStore.changeNewMemberId(rowData.id)
-                                                this.props.userListStore.changeNewMemberPassword(rowData.password)
-                                                this.props.userListStore.changeNewMemberUserName(rowData.name)
-                                                this.props.userListStore.changeNewMemberGroupNo(groupNo)
-                                                this.props.userListStore.addGroupUser();
-                                            } catch (e) {
-                                                console.log('여기 에러 났음')
-                                            }
-                                            resolve();
-                                        }, 1000);
-                                    }),
+                                // onRowUpdate:rowData =>
+                                //     new Promise((resolve, reject) => {
+                                //         setTimeout(() => {
+                                //             try {
+                                //                 this.props.userListStore.changeNewMemberId(rowData.id)
+                                //                 this.props.userListStore.changeNewMemberPassword(rowData.password)
+                                //                 this.props.userListStore.changeNewMemberUserName(rowData.name)
+                                //                 this.props.userListStore.changeNewMemberGroupNo(groupNo)
+                                //                 this.props.userListStore.addGroupUser();
+                                //             } catch (e) {
+                                //                 console.log('여기 에러 났음')
+                                //             }
+                                //             resolve();
+                                //         }, 1000);
+                                //     }),
                                 onRowDelete: rowData =>
                                     new Promise((resolve, reject) => {
                                         setTimeout(() => {
@@ -142,8 +148,15 @@ class UserWork extends React.Component {
                                         }, 1000);
                                     })
                             }}
+                            actions={[
+                                {
+                                    icon: CheckIcon,
+                                    tooltip: 'Select Image',
+                                    onClick: (event, rowData) => (<workDetail />,  '')
+                                }
+                            ]}
                             options={{
-                                minBodyHeight: '77vh',
+                                minBodyHeight: '70vh',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
                                     backgroundColor: '#01579b',
