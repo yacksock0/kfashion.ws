@@ -25,6 +25,7 @@
     "moment": "^2.24.0",
     "notistack": "^0.9.8",
     "randomcolor": "^0.5.4",
+    "rc-progress": "^3.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-draggable": "^4.4.2",

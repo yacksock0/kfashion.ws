@@ -14,6 +14,8 @@ import {toJS} from "mobx";
 import WorkedImg from "./step2/WorkedImg";
 import Stepper from "../components/Stepper";
 import Chip from '@material-ui/core/Chip';
+import Detail from "./step3/Detail";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const styles = theme => ({
     root: {
@@ -110,6 +112,9 @@ class Step2 extends React.Component {
             no:0,
             name:'',
             memo:'',
+            subNo:0,
+            subName:'',
+            subMemo:'',
             sleeveNo:0,
             sleeveName: '',
             tabIndex: 1,
@@ -120,6 +125,8 @@ class Step2 extends React.Component {
             createdId: '',
         }
         this.handleDelete = this.handleDelete.bind(this)
+        this.colorDelete = this.colorDelete.bind(this)
+        this.colorDeleteSub = this.colorDeleteSub.bind(this)
     }
     componentDidMount() {
         const id = this.props.authStore.loginUser.id;
@@ -158,7 +165,6 @@ class Step2 extends React.Component {
             originX: 'left',
             originY: 'top'
         });
-
     }
     handlePrevious(){
         this.setState({
@@ -192,7 +198,16 @@ class Step2 extends React.Component {
             memo: color.categoryItemMemo,
         })
     }
-
+    handleClickSubColor=(color)=>{
+        {!this.state.memo == 0 ?
+        this.setState({
+            subNo: color.no,
+            subName: color.categoryItemName,
+            subMemo: color.categoryItemMemo,
+        })
+            : alert('메인 색상을 먼저 선택해 주세요')
+        }
+    }
     handleClickSleeve=(sleeve)=>{
         this.setState({
             sleeveNo: sleeve.no,
@@ -203,6 +218,23 @@ class Step2 extends React.Component {
         this.setState({
             sleeveNo:0,
             sleeveName:'',
+        })
+    }
+    colorDelete(){
+        this.setState({
+            no:0,
+            name: '',
+            memo: '',
+            subNo:0,
+            subName: '',
+            subMemo: '',
+        })
+    }
+    colorDeleteSub(){
+        this.setState({
+            subNo:0,
+            subName: '',
+            subMemo: '',
         })
     }
     onSelectTab(tabIndex) {
@@ -267,32 +299,41 @@ class Step2 extends React.Component {
                              </TabList>
 
                              <TabPanel>
-                                     <div className={classes.content}>
-                                     <Typography variant="h5" component="h2">
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                     <Typography variant="h5" component="h2" style={{display:'inline'}}>
                                          색상
                                      </Typography>
+                                         &nbsp;&nbsp;{!this.state.no == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
+                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                 <Color onClick={this.handleClickColor} onClickSub={this.handleClickSubColor} style={{display:'inline', float:'right'}}/>
+                                             </div>
                                      <div>
                                          <hr></hr>
                                      </div>
-                                         <Color onClick={this.handleClickColor}/>
-                                         <div>
+                                     <div>
                                              <br></br>
                                          {this.state.no >0 ?
-                                             (<div style={{display:'inline-block',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo}`}}>
+                                             (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo}`}} onClick={this.colorDelete}>
+
                                      </div>) : ''
-                                             }
+                                         }
+                                         &nbsp;
+                                         {this.state.subNo >0 ?
+                                             (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo}`}} onClick={this.colorDeleteSub}>
+                                             </div>) : ''
+                                         }
                                      </div>
                                      </div>
-                                     <div className={classes.content}>
-                                         <div style={{display:"inline-flex"}}>
-                                             <Typography variant="h5" component="h2">
-                                                 소매 길이
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                             <Typography variant="h5" component="h5" style={{display:'inline'}} >
+                                                 소매길이
                                              </Typography>
-                                         </div>
+                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                 <SleeveLength onClick={this.handleClickSleeve} />
+                                             </div>
                                          <div>
                                              <hr></hr>
                                          </div>
-                                         <SleeveLength onClick={this.handleClickSleeve} />
                                          <br></br>
                                          {this.state.sleeveNo >0 ?
                                              (<Chip

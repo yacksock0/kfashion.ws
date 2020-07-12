@@ -220,234 +220,219 @@ class CategoryComponent extends React.Component {
         const {classes} = this.props;
 
         return (
-                    <Grid container spacing={3}>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
-                                                스타일
-                                            </Typography>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            <Style />
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                    <Grid container spacing={3} style={{marginTop: 30}}>
+                        <Grid item xs={12} lg={6}>
+                            <div className={classes.content}  style={{display:'inline'}} >
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}} >
                                                 카테고리
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.categoryNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.categoryName}
-                                                        onDelete={this.handleDelete}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <Category onClick={this.handleClickCategory} />
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Category onClick={this.handleClickCategory} />
-                                            <br></br>
-
+                                            {this.state.categoryNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.categoryName}
+                                                    onDelete={this.handleDelete}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline' }}>
                                                 디테일
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.detailNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.detailName}
-                                                        onDelete={this.handleDeleteDetail}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <Detail onClick={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Detail onClick={this.handleClickDetail}/>
+                                            {this.state.detailNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.detailName}
+                                                    onDelete={this.handleDeleteDetail}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 프린트
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.printNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.printName}
-                                                        onDelete={this.handleDeletePrint}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <Print onClick={this.handleClickPrint}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Print onClick={this.handleClickPrint}/>
+                                            {this.state.printNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.printName}
+                                                    onDelete={this.handleDeletePrint}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 소재감
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.textureNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.textureName}
-                                                        onDelete={this.handleDeleteTexture}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <Texture onClick={this.handleClickTexture} />
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Texture onClick={this.handleClickTexture} />
+                                            {this.state.textureNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.textureName}
+                                                    onDelete={this.handleDeleteTexture}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 기장
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.lengthNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.lengthName}
-                                                        onDelete={this.handleDeleteCloth}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <ClothLength onClick={this.handleClickCloth}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <ClothLength onClick={this.handleClickCloth}/>
+                                            {this.state.lengthNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.lengthName}
+                                                    onDelete={this.handleDeleteCloth}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 넥라인
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.necklineNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.necklineName}
-                                                        onDelete={this.handleDeleteNeckline}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <NeckLine onClick={this.handleClickNeckLine}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <NeckLine onClick={this.handleClickNeckLine}/>
+                                            {this.state.necklineNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.necklineName}
+                                                    onDelete={this.handleDeleteNeckline}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 칼라(카라)
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.karaNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.karaName}
-                                                        onDelete={this.handleDeleteKara}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <ColorKara onClick={this.handleClickKara}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <ColorKara onClick={this.handleClickKara}/>
+                                            {this.state.karaNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.karaName}
+                                                    onDelete={this.handleDeleteKara}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 핏
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.fitNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.fitName}
-                                                        onDelete={this.handleDeleteFit}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <Fit onClick={this.handleClickFit}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Fit onClick={this.handleClickFit}/>
+                                            {this.state.fitNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.fitName}
+                                                    onDelete={this.handleDeleteFit}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 세이프
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.safeNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.safeName}
-                                                        onDelete={this.handleDeleteSafe}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <Safe onClick={this.handleClickSafe}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Safe onClick={this.handleClickSafe}/>
+                                            {this.state.safeNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.safeName}
+                                                    onDelete={this.handleDeleteSafe}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
-                                        <div className={classes.content}>
-                                            <Typography variant="h5" component="h5">
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 실루엣
                                             </Typography>
-                                            <div style={{display:'inline-block'}}>
-                                                {this.state.silhouetteNo > 0 ?
-                                                    (<Chip
-                                                        variant="outlined"
-                                                        label={this.state.silhouetteName}
-                                                        onDelete={this.handleDeleteSilhouette}
-                                                        color="primary"
-                                                    />) : ''
-                                                }
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <Silhouette onClick={this.handleClickSilhouette}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Silhouette onClick={this.handleClickSilhouette}/>
+                                            {this.state.silhouetteNo > 0 ?
+                                                (<Chip
+                                                    variant="outlined"
+                                                    label={this.state.silhouetteName}
+                                                    onDelete={this.handleDeleteSilhouette}
+                                                    color="primary"
+                                                />) : ''
+                                            }
                                         </div>
                                     </Grid>
                                 </Grid>
         );
     }
-
 };
-
 export default withSnackbar(withRouter(withStyles(styles) (CategoryComponent)));

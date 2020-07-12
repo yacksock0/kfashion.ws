@@ -9,6 +9,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
 import Stepper from "../components/Stepper";
+import Style from "../views/step3/Style";
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -62,11 +63,6 @@ const styles = theme => ({   root: {
         paddingRight: theme.spacing(2),
         textAlign: 'left'
     },
-    filebox: {
-        paddingTop: 35,
-        marginRight: theme.spacing(1),
-        marginLeft: theme.spacing(1),
-    },
     fileSelection: {
         position: 'absolute',
         width: 1,
@@ -90,6 +86,10 @@ class Step3 extends React.Component {
     constructor(props) {
         super(...arguments);
         this.state = {
+            selectedNo:0,
+            selectedName:'',
+            selectedSubNo:0,
+            selectedSubName:'',
             tapIndex: 1,
             createdId: '',
         }
@@ -150,11 +150,14 @@ class Step3 extends React.Component {
             originY: 'top'
         });
     }
-
-    handleStepView={
-
+    handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
+        this.setState({
+            selectedMainNo:selectedMainNo,
+            selectedMainName:selectedMainName,
+            selectedSubNo:selectedSubNo,
+            selectedSubName:selectedSubName,
+        })
     }
-
     render() {
         const {classes,history} = this.props;
 
@@ -188,7 +191,7 @@ class Step3 extends React.Component {
 
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <Style onClick={this.handleClickStyle}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
