@@ -103,7 +103,7 @@ const styles = theme => ({
     },
     });
 
-@inject('basicLabelStore','authStore','imageStore','polygonStore')
+@inject('basicLabelStore','authStore','imageStore','polygonStore', 'currentStepStore')
 @observer
 class Step2 extends React.Component {
     constructor(props) {

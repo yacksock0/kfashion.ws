@@ -6,7 +6,6 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import BoundaryBox from "../views/labeling/BoundaryBox";
-import {inject, observer} from "mobx-react";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,12 +41,9 @@ function getStepContent(step) {
     }
 }
 
-// let currentStepStore = inject('currentStepStore');
-// currentStepStore = observer(HorizontalLinearStepper);
 export default function HorizontalLinearStepper(props) {
     const classes = useStyles();
-// const currentStep = props.currentStepStore.currentStep;
-    const [activeStep, setActiveStep] = React.useState();
+    const [activeStep, setActiveStep] = React.useState(props.setStep);
     const [skipped, setSkipped] = React.useState(new Set());
     const steps = getSteps();
 
@@ -82,8 +78,8 @@ export default function HorizontalLinearStepper(props) {
 
     const handleSkip = () => {
         if (!isStepOptional(activeStep)) {
-// You probably want to guard against something like this,
-// it should never occur unless someone's actively trying to break something.
+            // You probably want to guard against something like this,
+            // it should never occur unless someone's actively trying to break something.
             throw new Error("You can't skip a step that isn't optional.");
         }
 
@@ -123,46 +119,46 @@ export default function HorizontalLinearStepper(props) {
                 })}
             </Stepper>
             {/*<div>*/}
-            {/* <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>*/}
+            {/*    <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>*/}
             {/*</div>*/}
             {/*<div>*/}
-            {/* {activeStep === steps.length ? (*/}
-            {/* <div>*/}
-            {/* <Typography className={classes.instructions}>*/}
-            {/* All steps completed - you&apos;re finished*/}
-            {/* </Typography>*/}
-            {/* <Button onClick={handleReset} className={classes.button}>*/}
-            {/* Reset*/}
-            {/* </Button>*/}
-            {/* </div>*/}
-            {/* ) : (*/}
-            {/* <div>*/}
-            {/* <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>*/}
-            {/* <div>*/}
-            {/* <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>*/}
-            {/* Back*/}
-            {/* </Button>*/}
-            {/* {isStepOptional(activeStep) && (*/}
-            {/* <Button*/}
-            {/* variant="contained"*/}
-            {/* color="primary"*/}
-            {/* onClick={handleSkip}*/}
-            {/* className={classes.button}*/}
-            {/* >*/}
-            {/* Skip*/}
-            {/* </Button>*/}
-            {/* )}*/}
-            {/* <Button*/}
-            {/* variant="contained"*/}
-            {/* color="primary"*/}
-            {/* onClick={handleNext}*/}
-            {/* className={classes.button}*/}
-            {/* >*/}
-            {/* {activeStep === steps.length - 1 ? 'Finish' : 'Next'}*/}
-            {/* </Button>*/}
-            {/* </div>*/}
-            {/* </div>*/}
-            {/* )}*/}
+            {/*    {activeStep === steps.length ? (*/}
+            {/*        <div>*/}
+            {/*            <Typography className={classes.instructions}>*/}
+            {/*                All steps completed - you&apos;re finished*/}
+            {/*            </Typography>*/}
+            {/*            <Button onClick={handleReset} className={classes.button}>*/}
+            {/*                Reset*/}
+            {/*            </Button>*/}
+            {/*        </div>*/}
+            {/*    ) : (*/}
+            {/*        <div>*/}
+            {/*            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>*/}
+            {/*            <div>*/}
+            {/*                <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>*/}
+            {/*                    Back*/}
+            {/*                </Button>*/}
+            {/*                {isStepOptional(activeStep) && (*/}
+            {/*                    <Button*/}
+            {/*                        variant="contained"*/}
+            {/*                        color="primary"*/}
+            {/*                        onClick={handleSkip}*/}
+            {/*                        className={classes.button}*/}
+            {/*                    >*/}
+            {/*                        Skip*/}
+            {/*                    </Button>*/}
+            {/*                )}*/}
+            {/*                <Button*/}
+            {/*                    variant="contained"*/}
+            {/*                    color="primary"*/}
+            {/*                    onClick={handleNext}*/}
+            {/*                    className={classes.button}*/}
+            {/*                >*/}
+            {/*                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}*/}
+            {/*                </Button>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    )}*/}
             {/*</div>*/}
         </div>
     );

@@ -118,7 +118,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('professionalLabelStore','authStore', 'imageStore')
+@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore')
 @observer
 class Step3 extends React.Component {
     constructor(props) {
