@@ -171,6 +171,7 @@ class Polygon extends React.Component {
     }
 
     componentDidMount() {
+        this.props.currentStepStore.setStep(1);
         this.props.enqueueSnackbar("Polygon Work", {
             variant: 'info'
         });

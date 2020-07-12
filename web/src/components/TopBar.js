@@ -54,7 +54,7 @@ export default function TopBar(props) {
                     <MenuIcon />
                 </IconButton>
                 { isLoggedIn ? (
-                <Stepper />):''}
+                <Stepper currentStep = {4}/>):''}
                 { isLoggedIn ? (
                     <IconButton color="inherit" onClick={doLogout}>
                         {loginUser.id}
