@@ -20,9 +20,8 @@ import Search from "@material-ui/icons/Search";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Remove from "@material-ui/icons/Remove";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import GroupList from "./GroupList";
-import {toJS} from "mobx";
 import {inject, observer} from "mobx-react";
+import {ProgressBar} from "../../components/ProgressBar";
 
 const styles = theme => ({
     mainContainer: {
@@ -76,15 +75,9 @@ class UserWork extends React.Component {
             groupUserList:[],
             newMember:[],
             columns: [
-                {
-                    title: '아이디',
-                    field: 'id',
-                    filterPlaceholder: 'GroupNo filter',
-                    tooltip: 'GroupNo로 정렬',
-                    editPlaceholder: '아이디 입력'
-                },
-                {title: '이름', field: 'name', type: 'text'},
-                {title: '작업진도', field: '', type: ''},
+                {title: '아이디',field: 'id', headerStyle:{minWidth: 150}, cellStyle: {minWidth: 150,textAlign: 'center'}},
+                {title: '이름', field: 'name', type: 'text',  headerStyle:{minWidth: 150,textAlign: 'center'}, cellStyle: {minWidth:150},textAlign: 'center'},
+                {title: '작업진도', field: 'progress', render: rowData => <ProgressBar rowDataId={rowData.id}/>},
             ],
         }
     }
@@ -150,19 +143,13 @@ class UserWork extends React.Component {
                                     })
                             }}
                             options={{
-                                editCellStyle: {
-                                    textAlign:"center",
-                                },
-                                /*padding:'dense',*/
                                 minBodyHeight: '77vh',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
                                     backgroundColor: '#01579b',
                                     color: '#FFF',
                                     textAlign:'center',
-                                },
-                                cellStyle: {
-                                    textAlign: 'center'
+
                                 },
                                 actionsCellStyle: {
                                     textAlign: 'center'

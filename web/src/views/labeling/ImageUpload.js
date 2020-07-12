@@ -137,10 +137,6 @@ class ImageUpload extends React.Component {
         })
         const createdId = this.props.authStore.isUserId;
         this.props.imageStore.LoadImage(createdId)
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
-            workNo: this.props.imageStore.workNo,
-        })
     }
     componentWillUnmount() {
         this.props.imageStore.initStore();
@@ -171,7 +167,11 @@ class ImageUpload extends React.Component {
             workNo: this.props.imageStore.workNo
         })
     }
-
+    handleClick=(workNo, imgData)=>{
+        this.setState({
+            imgData:imgData,
+        })
+    }
     render() {
         const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;
@@ -195,14 +195,14 @@ class ImageUpload extends React.Component {
                     </Toolbar>
 
                     <Grid container>
-                        <Grid item xs={12} lg={6}>
+                        <Grid item xs={12} lg={5}>
                             <div style={{marginRight:15}}>
-                                <img src={this.state.imgData} style={{display:"inline-block" , width:'750', height:'77vh'}}/>
+                                <img src={this.state.imgData} style={{display:"inline-block" , width:'750', height:'60vh'}}/>
                             </div>
                         </Grid>
-                        <Grid item xs={12} lg={6}>
+                        <Grid item xs={12} lg={7}>
                             <div>
-                            <MaterialTable style={{height:'77vh'}}
+                            <MaterialTable style={{height:'60vh'}}
                                 icons={tableIcons}
                                 columns={this.state.columns}
                                 data={!!this.props.imageStore.boundaryList ?
@@ -220,16 +220,11 @@ class ImageUpload extends React.Component {
                                                actionsColumnIndex: -1,
                                                editCellStyle:'',
                                            }}
-
-
                                            actions={[
                                                {
                                                    icon: CheckIcon,
                                                    tooltip: 'Select Image',
-                                                   onClick: (event, rowData) => {
-                                                       this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
-                                                       this.props.imageStore.changeWorkNo(rowData.workNo);
-                                                   }
+                                                   onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                                                }
                                            ]}
                                            editable={{
