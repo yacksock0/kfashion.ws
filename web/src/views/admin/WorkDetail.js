@@ -52,6 +52,7 @@ class WorkDetail extends React.Component {
             open: false,
             selectedId:'',
             basicLabelList: [],
+            value:'',
             count: 0,
             data: [],
             columns: [
@@ -68,7 +69,11 @@ class WorkDetail extends React.Component {
         const createdId = this.props.authStore.isUserId;
         this.props.imageStore.LoadImage(createdId)
     }
-
+    selectedId=(selectedId)=>{
+        this.setState({
+            selectedId:selectedId,
+        })
+    }
     handleClickOpen(){
         this.setState({
             open: true,
@@ -84,9 +89,20 @@ class WorkDetail extends React.Component {
             selectedId: selectedId,
         })
     }
+   handleChange = (event) => {
+        this.setState({value: event.target.value});
+        console.log('value', this.state.value)
+    }
+    handleSubmit=()=>{
+        axios.get(`/api/v1/kfashion/work/history/assignment`, {
+            data: {
+                workId: this.props.rowDataId,
+                workCount: this.state.value,
+            }
+        })
+    }
     render() {
         const {basicLabelList} = this.state;
-        console.log('@@@@@@@@',this.state.selectedId)
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>작업지정</Button>
@@ -100,10 +116,9 @@ class WorkDetail extends React.Component {
                     작업지정
                 </Typography>
                 <hr></hr>
-                <form noValidate autoComplete="off">
-                    <TextField id="number" label="작업수량 입력" />
-                    <h3>작업자: {this.state.selectedId}</h3>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}  style={{marginTop:10}}>확인</Button>
+                <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+                    <TextField id="number" label="작업수량 입력" value={this.state.value} onChange={this.handleChange}/>
+                    <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleSubmit}>확인 </Button>
                 </form>
             </DialogContent>
             </Dialog>
