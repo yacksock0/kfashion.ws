@@ -59,8 +59,6 @@ class AddGroup extends React.Component {
         });
     }
 
-
-
     handleClose() {
         this.setState({
             groupName: '',
@@ -88,10 +86,8 @@ class AddGroup extends React.Component {
                             name='authorityNo'
                         >
                             <MenuItem value={1}>ImageUpload</MenuItem>
-                            <MenuItem value={2}>BoundaryBox</MenuItem>
-                            <MenuItem value={3}>Polygon</MenuItem>
-                            <MenuItem value={4}>Basic</MenuItem>
-                            <MenuItem value={5}>Professional</MenuItem>
+                            <MenuItem value={2}>Step1</MenuItem>
+                            <MenuItem value={3}>Step2</MenuItem>
                         </Select>
                             </FormControl>
                         </div>

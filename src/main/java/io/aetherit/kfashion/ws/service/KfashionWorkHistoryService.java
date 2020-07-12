@@ -6,6 +6,8 @@ import io.aetherit.kfashion.ws.repository.KfashionWorkHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class KfashionWorkHistoryService {
     private KfashionWorkHistoryRepository repository;
@@ -22,4 +24,6 @@ public class KfashionWorkHistoryService {
     public void deleteWorkHistory(KfashionImage workImage) {
         repository.deleteWorkHistory(workImage);
     }
+
+    public List<KfashionWorkHistory> selectWorkAssignment(int workCount) { return repository.selectWorkAssignment(workCount); }
 }
