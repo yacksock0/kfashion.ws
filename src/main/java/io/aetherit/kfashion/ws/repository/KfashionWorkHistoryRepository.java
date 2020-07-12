@@ -6,6 +6,8 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionWorkHistoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class KfashionWorkHistoryRepository {
     private KfashionWorkHistoryMapper mapper;
@@ -21,5 +23,9 @@ public class KfashionWorkHistoryRepository {
 
     public void deleteWorkHistory(KfashionImage workImage) {
         mapper.deleteWorkHistory(workImage);
+    }
+
+    public List<KfashionWorkHistory> selectWorkAssignment(int workCount) {
+        return mapper.selectWorkAssignment(workCount);
     }
 }

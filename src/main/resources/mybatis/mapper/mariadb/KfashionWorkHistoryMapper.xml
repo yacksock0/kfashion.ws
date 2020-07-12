@@ -32,6 +32,12 @@
         WHERE work_no = #{workNo}
     </delete>
 
-
+    <select id="selectWorkAssignment" parameterType="Int" resultType="KfashionWorkHistory">
+           SELECT work_no
+            FROM kfashion_work_history
+            WHERE work_no not in (SELECT work_no
+            FROM kfashion_work_history
+            WHERE work_no = 2 )  ORDER BY work_no ASC limit  #{workCount};
+    </select>
 
 </mapper>
