@@ -115,7 +115,7 @@ class WorkDetail extends React.Component {
                     작업지정
                 </Typography>
                 <hr></hr>
-                <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+                <form noValidate autoComplete="off">
                     <TextField id="number" label="작업수량 입력" value={this.state.value} onChange={this.handleChange}/>
                     <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleSubmit}>확인 </Button>
                 </form>
