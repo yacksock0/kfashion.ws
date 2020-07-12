@@ -37,20 +37,22 @@ public class KfashionWorkHistoryController {
                                                  @RequestParam(value="workId", required=true)String workId,
                                                  @RequestParam(value="workCount", required=true)int workCount
                                                  ) {
-            System.out.println(workId+workCount);
+//            System.out.println(workId+workCount);
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionWorkHistory> selectWorkAssignment = kfashionWorkHistoryService.selectWorkAssignment(workCount);
-//        for(int i = 0; i <selectWorkAssignment.size() ; i++){
-//            KfashionWork work = new KfashionWork();
-//            work.setNo(selectWorkAssignment.get(i).getWorkNo());
-//            work.setWorkState(2);
-//            kfashionWorkService.updateWork(work);
-//
-//            KfashionWorkHistory workHistory = new KfashionWorkHistory();
-//            workHistory.setWorkNo(selectWorkAssignment.get(i).getWorkNo());
-//            workHistory.setCreatedId(workId);
-//            workHistory.setWorkStep(2);
-//            kfashionWorkHistoryService.insertWorkHistory(workHistory);
+        List<Long> selectWorkAssignment = kfashionWorkHistoryService.selectWorkAssignment(workCount);
+
+        System.out.println(selectWorkAssignment);
+        for(int i = 0; i <selectWorkAssignment.size() ; i++){
+            KfashionWork work = new KfashionWork();
+            work.setNo(selectWorkAssignment.get(i));
+            work.setWorkState(2);
+            kfashionWorkService.updateWork(work);
+
+            KfashionWorkHistory workHistory = new KfashionWorkHistory();
+            workHistory.setWorkNo(selectWorkAssignment.get(i));
+            workHistory.setCreatedId(workId);
+            workHistory.setWorkStep(2);
+            kfashionWorkHistoryService.insertWorkHistory(workHistory);
         }
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
