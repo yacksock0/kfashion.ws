@@ -182,12 +182,6 @@ class ImageUpload extends React.Component {
 
                     <Toolbar className={classes.toolbar}>
                         <Grid container>
-                            <Grid item xs={12} style={{marginRight:5}}>
-                                <Stepper currentStep={0} />
-                            </Grid>
-                        </Grid>
-                    </Toolbar> <Toolbar className={classes.toolbar}>
-                        <Grid container>
                             <Grid item xs={2} style={{marginRight:5}}>
                                 <DropzoneDialogExample />
                             </Grid>

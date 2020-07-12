@@ -167,9 +167,6 @@ class Step3 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} style={{marginRight:5}}>
-                            <Stepper currentStep={4} />
-                        </Grid>
                         <Grid item xs={10} style={{margin:"auto"}}>
                             <MaterialTable
                                 icons={tableIcons
