@@ -28,4 +28,7 @@ public class KfashionWorkHistoryRepository {
     public List<KfashionWorkHistory> selectWorkAssignment(int workCount) {
         return mapper.selectWorkAssignment(workCount);
     }
+    public int selectWorkProgressRate(String createdId) {
+        return mapper.selectWorkProgressRate(createdId);
+    }
 }

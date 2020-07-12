@@ -26,4 +26,5 @@ public class KfashionWorkHistoryService {
     }
 
     public List<KfashionWorkHistory> selectWorkAssignment(int workCount) { return repository.selectWorkAssignment(workCount); }
+    public int selectWorkProgressRate(String createdId) { return repository.selectWorkProgressRate(createdId); }
 }

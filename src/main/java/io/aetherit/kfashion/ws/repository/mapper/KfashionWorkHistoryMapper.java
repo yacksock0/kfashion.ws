@@ -10,4 +10,5 @@ public interface KfashionWorkHistoryMapper {
 
     void deleteWorkHistory(KfashionImage workImage);
     List<KfashionWorkHistory> selectWorkAssignment(int workCount);
+    int selectWorkProgressRate(String createdId);
 }
