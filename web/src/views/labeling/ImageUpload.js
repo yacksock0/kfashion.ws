@@ -109,7 +109,7 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore','authStore','imageStore')
+@inject('fileUploadStore','authStore','imageStore', 'currentStepStore')
 @observer
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -132,6 +132,7 @@ class ImageUpload extends React.Component {
     }
 
     componentDidMount() {
+        this.props.currentStepStore.setStep(0);
         this.props.enqueueSnackbar("Image Upload", {
             variant: 'info'
         })

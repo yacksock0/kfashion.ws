@@ -6,6 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import BoundaryBox from "../views/labeling/BoundaryBox";
+import {inject, observer} from "mobx-react";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,9 +42,12 @@ function getStepContent(step) {
     }
 }
 
+// let currentStepStore = inject('currentStepStore');
+// currentStepStore = observer(HorizontalLinearStepper);
 export default function HorizontalLinearStepper(props) {
     const classes = useStyles();
-    const [activeStep, setActiveStep] = React.useState(0);
+    // const currentStep = props.currentStepStore.currentStep;
+    const [activeStep, setActiveStep] = React.useState();
     const [skipped, setSkipped] = React.useState(new Set());
     const steps = getSteps();
 

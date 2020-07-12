@@ -30,7 +30,7 @@ const style = () => ({
 });
 
 
-@inject('authStore')
+@inject('authStore', 'currentStepStore')
 @observer
 class App extends React.Component {
     constructor(props) {
@@ -94,7 +94,9 @@ class App extends React.Component {
                                 setMobileOpen={this.setMobileOpen}
                                 isLoggedIn={loginState === store.State.Authenticated}
                                 loginUser={loginUser}
-                                doLogout={() => this.props.authStore.doLogout()} />
+                                doLogout={() => this.props.authStore.doLogout()}
+                                // setStep={this.props.bind(curruntStep)}
+                        />
                         <SideMenu mobileOpen={this.state.mobileOpen}
                                   setMobileOpen={this.setMobileOpen}
                                   loginUser={loginUser}

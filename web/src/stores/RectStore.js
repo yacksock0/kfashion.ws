@@ -10,7 +10,7 @@ const State = {
 
 const EmptyNewRectLocation = {
     workNo : '',
-    workStep : 2,
+    workStep : 3,
     createdId : '',
     rectNo : '',
     locationX : '',

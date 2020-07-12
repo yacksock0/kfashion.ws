@@ -107,7 +107,7 @@ const styles = theme => ({
     },
 });
 
-@inject('fileUploadStore','imageStore','rectStore','authStore')
+@inject('fileUploadStore','imageStore','rectStore','authStore', 'currentStepStore')
 @observer
 class BoundaryBox extends React.Component {
 
@@ -157,6 +157,7 @@ class BoundaryBox extends React.Component {
         this.setState({ tapIndex: newIndex });
     }
     componentDidMount() {
+        this.props.currentStepStore.setStep(1);
         this.props.enqueueSnackbar("BoundaryBox Work", {
             variant: 'info'
         });
@@ -413,7 +414,7 @@ class BoundaryBox extends React.Component {
 
     render() {
         const { classes,history } = this.props;
-        const {workNo} = this.props.imageStore;
+        const { workNo } = this.props.imageStore;
 
         return (
             <Container component="main" className={classes.mainContainer} style={{height:'97vh'}}>

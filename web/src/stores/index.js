@@ -12,6 +12,8 @@ import ImageStore from "./ImageStore";
 import RectStore from "./RectStore";
 import PolygonStore from "./PolygonStore";
 import GroupStore from "./GroupStore";
+import CurrentStepStore from "./CurrentStepStore";
+
 
 
 export const stores = {
@@ -29,4 +31,5 @@ export const stores = {
     rectStore : new RectStore(),
     polygonStore :  new PolygonStore(),
     groupStore : new GroupStore(),
+    currentStepStore : new CurrentStepStore()
 };
