@@ -68,7 +68,7 @@ public class KfashionUserInfoController {
         KfashionEmailAuthority authMail = new KfashionEmailAuthority();
         authMail.setUserId(userId);
         authMail.setAuthKey(authKey);
-        response.sendRedirect("http://localhost:8080/sign/success");
+        response.sendRedirect("http://localhost:80/sign/success");
         return kfashionUserInfoService.signupAuthMailVerify(authMail);
     }
 
