@@ -31,5 +31,5 @@ export const stores = {
     rectStore : new RectStore(),
     polygonStore :  new PolygonStore(),
     groupStore : new GroupStore(),
-    currentStepStore : new CurrentStepStore(),
+    currentStepStore : new CurrentStepStore()
 };
