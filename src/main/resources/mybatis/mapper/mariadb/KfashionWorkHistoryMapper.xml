@@ -39,5 +39,14 @@
             FROM kfashion_work_history
             WHERE work_no = 2 )  ORDER BY work_no ASC limit  #{workCount};
     </select>
+    <select id="selectWorkProgressRate" parameterType="String" resultType="int">
+            SELECT count(*)
+            FROM kfashion_work_history
+            WHERE work_step = 6
+            AND created_datetime in (SELECT MAX(created_datetime)
+										FROM kfashion_work_history
+										WHERE work_step = 1
+                                        AND created_id = ${createdId} );
+    </select>
 
 </mapper>

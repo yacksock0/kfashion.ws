@@ -8,10 +8,7 @@ import io.aetherit.kfashion.ws.service.KfashionWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -23,30 +20,44 @@ import java.util.List;
 public class KfashionWorkHistoryController {
 
         private KfashionWorkHistoryService kfashionWorkHistoryService;
+    private KfashionWorkService kfashionWorkService;
 
         @Autowired
-        public KfashionWorkHistoryController(KfashionWorkHistoryService kfashionWorkHistoryService) {
+        public KfashionWorkHistoryController(KfashionWorkHistoryService kfashionWorkHistoryService,
+                                             KfashionWorkService kfashionWorkService) {
             this.kfashionWorkHistoryService = kfashionWorkHistoryService;
+            this.kfashionWorkService = kfashionWorkService;
         }
 
 
-    @GetMapping(value = "/assignment")
+    @PostMapping(value = "/assignment")
     public ResponseEntity<Object> workAssignment(HttpServletRequest httpRequest,
                                                  @RequestParam(value="workId")String workId,
                                                  @RequestParam(value="workCount")int workCount
                                                  ) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
-
         List<KfashionWorkHistory> selectWorkAssignment = kfashionWorkHistoryService.selectWorkAssignment(workCount);
-
         for(int i = 0; i <selectWorkAssignment.size() ; i++){
+            KfashionWork work = new KfashionWork();
+            work.setNo(selectWorkAssignment.get(i).getWorkNo());
+            work.setWorkState(2);
+            kfashionWorkService.updateWork(work);
+
             KfashionWorkHistory workHistory = new KfashionWorkHistory();
             workHistory.setWorkNo(selectWorkAssignment.get(i).getWorkNo());
             workHistory.setCreatedId(workId);
             workHistory.setWorkStep(2);
             kfashionWorkHistoryService.insertWorkHistory(workHistory);
         }
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/progressRate")
+    public ResponseEntity<Object> workProgressRate(HttpServletRequest httpRequest,
+                                                 @RequestParam(value="createdId")String createdId
+    ) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        int selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(createdId);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 }
