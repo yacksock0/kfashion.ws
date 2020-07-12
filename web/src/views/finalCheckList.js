@@ -144,7 +144,6 @@ class Step3 extends React.Component {
     }
 
     componentDidMount() {
-        this.props.currentStepStore.setStep(4);
         const createdId = this.props.authStore.isUserId;
         this.props.imageStore.LoadImage(createdId);
         const id = this.props.authStore.loginUser.id;

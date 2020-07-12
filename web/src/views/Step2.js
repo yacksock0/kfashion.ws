@@ -129,7 +129,6 @@ class Step2 extends React.Component {
         this.colorDeleteSub = this.colorDeleteSub.bind(this)
     }
     componentDidMount() {
-        this.props.currentStepStore.setStep(2);
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("Step2", {
