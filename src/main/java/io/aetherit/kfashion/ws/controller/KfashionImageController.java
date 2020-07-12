@@ -64,14 +64,13 @@ public class KfashionImageController {
      */
 
     @PostMapping("/uploadFile")
-    public UploadFileResponse uploadFile(@RequestParam(value="userId", required = true) String userId,
+    public ResponseEntity<Object> uploadFile(@RequestParam(value="userId", required = true) String userId,
                                          @RequestParam("file") MultipartFile file) {
         String workName = file.getOriginalFilename();
         KfashionWork work = new KfashionWork();
         work.setWorkName(workName);
         kfashionWorkService.insertWork(work);
         Long no = work.getNo();
-        System.out.println(no);
         try {
             KfashionImage kfashionImage = new KfashionImage();
             kfashionImage.setWorkNo(no);
@@ -93,8 +92,7 @@ public class KfashionImageController {
                 .path(fileName)
                 .toUriString();
 
-        return new UploadFileResponse(fileName, fileDownloadUri,
-                file.getContentType(), file.getSize());
+        return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
     /**
@@ -106,9 +104,9 @@ public class KfashionImageController {
      */
 
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam(value="userId", required = true) String userId,
+    public List<ResponseEntity<Object>> uploadMultipleFiles(@RequestParam(value="userId", required = true) String userId,
                                                         @RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
-
+        System.out.println("files"+files.length);
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(userId,file))

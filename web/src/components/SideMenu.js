@@ -65,9 +65,9 @@ export default function SideMenu(props) {
     const theme = useTheme();
     const { mobileOpen, setMobileOpen, isLoggedIn, authrity, loginUser} = props;
 
+    // const windowSet = () => { window.location.href; }
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
-
     };
     const [open1, setOpen1] = React.useState(false);
     const [open, setOpen] = React.useState(false);
@@ -93,7 +93,7 @@ export default function SideMenu(props) {
                         <ListItemText primary="홈"></ListItemText>
                     </ListItem>
                 </Link>
-                <Link to="" className={classes.link}>
+                <Link className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText type="button" onClick={handleClick} primary="Area 레이블"></ListItemText>
@@ -112,18 +112,18 @@ export default function SideMenu(props) {
                         </List>
                     </Collapse>
                 </Link>
-                {/*<Link to="/Step/boundaryBox" className={classes.link}>*/}
-                {/*    <Collapse in={open} timeout="auto" unmountOnExit>*/}
-                {/*        <List component="div" disablePadding>*/}
-                {/*            <ListItem type="button" className={classes.nested}>*/}
-                {/*                <ListItemIcon>*/}
-                {/*                    <AspectRatioIcon />*/}
-                {/*                </ListItemIcon>*/}
-                {/*                <ListItemText primary="사각형 지정" />*/}
-                {/*            </ListItem>*/}
-                {/*        </List>*/}
-                {/*    </Collapse>*/}
-                {/*</Link>*/}
+                <Link to="/Step/boundaryBox" className={classes.link}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem type="button" className={classes.nested}>
+                                <ListItemIcon>
+                                    <AspectRatioIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="사각형 지정" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Link>
                 <Link to="/step/polygon" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -138,7 +138,7 @@ export default function SideMenu(props) {
                 </Link>
 
 
-                <Link to="" className={classes.link}>
+                <Link className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText type="button" onClick={handleClick2} primary="Text 레이블"></ListItemText>
@@ -185,7 +185,7 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                 ):''}
-                <Link to="/step3" className={classes.link}>
+                <Link to="/Step2/FinalCheckList" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem type="button" className={classes.nested}>
@@ -201,7 +201,7 @@ export default function SideMenu(props) {
             <Divider />
             {loginUser.isAdmin == 'Y'? (
                 <div>
-                    <Link to="" className={classes.link}>
+                    <Link className={classes.link}>
                         <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText type="button" onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
@@ -247,7 +247,7 @@ export default function SideMenu(props) {
                     </div>):''}
             {loginUser.groupAdmin === 1?(
                 <div>
-                    <Link to="" className={classes.link}>
+                    <Link className={classes.link}>
                         <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>

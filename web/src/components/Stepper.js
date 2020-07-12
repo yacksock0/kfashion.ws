@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['이미지 리스트', '사각형 Area 지정', '다각형 Area 지정','기본 Text 레이블링','전문 Text 레이블링','최종 검수'];
+    return ['이미지 리스트', '다각형 Area 지정','기본 Text 레이블링','전문 Text 레이블링','최종 검수'];
 }
 
 function getStepContent(step) {
@@ -29,9 +29,13 @@ function getStepContent(step) {
         case 0:
             return '이미지 리스트';
         case 1:
-            return '영역지정';
+            return '다각형 Area 지정';
         case 2:
-            return '세부영역';
+            return '기본 Text 레이블링';
+        case 3:
+            return '전문 Text 레이블링';
+        case 4:
+            return '최종 검수';
         default:
             return 'Unknown step';
     }

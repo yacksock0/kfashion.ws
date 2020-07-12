@@ -4,6 +4,4 @@
         <id property="status_labeling_num"                       column="status_labeling_num" />
         <result property="labeling_status"             column="labeling_status" />
     </resultMap>
-
-
 </mapper>

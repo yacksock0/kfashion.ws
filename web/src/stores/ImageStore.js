@@ -1,6 +1,7 @@
 import {action, computed, flow, observable, toJS} from "mobx";
 import React from "react";
 import axios from "axios";
+import {formatMs} from "@material-ui/core";
 
 const State = {
     Ready: 'Ready',
@@ -17,6 +18,7 @@ const AddState = {
     Added: 'Added',
     AddFailed: 'AddFailed',
 };
+
 const UpdateState = {
     Closed: 'Closed',
     Loading: 'Loading',
@@ -37,7 +39,15 @@ export default class ImageStore {
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable workNo = '';
+    @observable count = 0;
 
+    @action countChange =()=>{
+        this.count= this.count+1
+    }
+
+    @action countReset = (num) => {
+        this.count = num;
+    }
 
     @action initStore = () => {
         this.boundaryList = [];
@@ -93,18 +103,27 @@ export default class ImageStore {
     
     
     fileupload (file,userId){
+        console.log(file);
         const formData = new FormData();
-        for(let i=0; i < file.length; i++) {
-            formData.append("files",file[i]);
-        }
-        formData.append('files', file);
         formData.append("userId",userId);
-        const resp = axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') })
+        formData.append("file",file);
+        axios.post('/api/v1/kfashion/img/uploadFile', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') })
             .then(res =>{
+                console.log(res);
                 if(res.status === 200) {
-                    this.LoadImage(userId);
-                }else {
+                    this.countChange();
+                    console.log(this.count);
+                    formData.delete("file");
                 }
             })
+        // formData.append('files', file);
+
+        // const resp = axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') })
+        //     .then(res =>{
+        //         if(res.status === 200) {
+        //             this.LoadImage(userId);
+        //         }else {
+        //         }
+        //     })
     };
 }

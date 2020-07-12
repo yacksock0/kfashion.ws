@@ -3,6 +3,7 @@
     <resultMap id="kfashionCategoryItemResultMap" type="KfashionCategoryItem">
         <id property="no"                            column="no" />
         <result property="categoryNo"                column="category_no" />
+        <result property="categoryType"                column="category_type" />
         <result property="categoryItemName"          column="category_item_name" />
         <result property="categoryItemMemo"          column="category_item_memo" />
         <result property="createdId"                 column="created_id" />
@@ -11,15 +12,16 @@
         <result property="updatedDatetime"           column="updated_datetime" />
     </resultMap>
 
+
     <select id="selectColorList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
-        FROM kfashion_category_item kci
+        FROM kfashion_category_item
         WHERE category_no=3;
     </select>
 
     <select id="selectSleeveLengthList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
-        from kfashion_category_item kci
+        from kfashion_category_item
         WHERE category_no=8;
     </select>
 
