@@ -9,6 +9,6 @@ public interface KfashionWorkHistoryMapper {
     void insertWorkHistory(KfashionWorkHistory workHistory);
 
     void deleteWorkHistory(KfashionImage workImage);
-    List<KfashionWorkHistory> selectWorkAssignment(int workCount);
+    List<Long> selectWorkAssignment(int workCount);
     int selectWorkProgressRate(String createdId);
 }

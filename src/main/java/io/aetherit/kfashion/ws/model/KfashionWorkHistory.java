@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class KfashionWorkHistory {
-    private Long workNo;
+    private long workNo;
     private int workStep;
     private int no;
     private String createdId;
