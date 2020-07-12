@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
-import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone'
+import {DropzoneDialog} from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button';
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import axios from "axios";
 import {inject, observer} from "mobx-react";
-import Dropzone from 'react-dropzone';
-import { getDroppedOrSelectedFiles } from 'html5-file-selector';
 
 const styles = theme => ({
     toolButton:{
         border:'1px solid black',
-        height:50,
+        height:40,
         width:'100%',
     },
     toolBox:{
