@@ -103,7 +103,7 @@ public class KfashionUserInfoService {
         sendMail.setSubject("[Kfashion] 회원가입 이메일 인증");
         sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
                 .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-                .append("<a href='http://localhost:8080/api/v1/kfashion/users/signup/confirm?userId=")
+                .append("<a href='http://localhost:80/api/v1/kfashion/users/signup/confirm?userId=")
                 .append(user.getId())
                 .append("&authKey=")
                 .append(authKey)
@@ -129,12 +129,12 @@ public class KfashionUserInfoService {
             if(id != null) {
                 kfashionEmailAuthorityRepository.updateAuthority(authMail);
                 repository.updateAuthUser(id);
-                URI redirectUri = new URI("http://localhost:3000/sign/success");
+                URI redirectUri = new URI("http://localhost:80/sign/success");
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.setLocation(redirectUri);
                 return new ResponseEntity<Object>(httpHeaders, HttpStatus.SEE_OTHER);
             }else {
-                URI redirectUri = new URI("http://localhost:3000/sign/fail");
+                URI redirectUri = new URI("http://localhost:80/sign/fail");
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.setLocation(redirectUri);
                 return new ResponseEntity<Object>(httpHeaders, HttpStatus.NOT_FOUND);
@@ -142,7 +142,7 @@ public class KfashionUserInfoService {
 
         }catch (Exception e) {
             e.printStackTrace();
-            URI redirectUri = new URI("http://localhost:3000/sign/fail");
+            URI redirectUri = new URI("http://localhost:80/sign/fail");
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setLocation(redirectUri);
             return new ResponseEntity<Object>(httpHeaders, HttpStatus.NOT_FOUND);

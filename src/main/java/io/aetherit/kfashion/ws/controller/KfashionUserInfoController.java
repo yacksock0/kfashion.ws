@@ -1,8 +1,6 @@
 package io.aetherit.kfashion.ws.controller;
 
 import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
-import io.aetherit.kfashion.ws.model.KfashionImage;
-import io.aetherit.kfashion.ws.model.KfashionUserGroupAdmin;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.service.KfashionEmailAuthorityService;
 import io.aetherit.kfashion.ws.service.KfashionUserGroupAdminService;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,7 +65,7 @@ public class KfashionUserInfoController {
         KfashionEmailAuthority authMail = new KfashionEmailAuthority();
         authMail.setUserId(userId);
         authMail.setAuthKey(authKey);
-        response.sendRedirect("http://localhost:8080/sign/success");
+        response.sendRedirect("http://localhost:80/sign/success");
         return kfashionUserInfoService.signupAuthMailVerify(authMail);
     }
 
