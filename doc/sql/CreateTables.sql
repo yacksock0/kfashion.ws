@@ -36,14 +36,14 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 
 
 
-CREATE TABLE `KFashion1`.`kfashion_user_group` (
+CREATE TABLE kfashion_user_group (
 	no						INT				NOT NULL 	AUTO_INCREMENT,
 	group_name				NVARCHAR(64) 	NOT NULL,
 	created_datetime		DATETIME		NOT NULL,
 	updated_datetime		DATETIME		NOT NULL,
   PRIMARY KEY (no)
 );
-CREATE TABLE `KFashion1`.`kfashion_user_authority` (
+CREATE TABLE kfashion_user_authority (
 	no						INT 			NOT NULL	AUTO_INCREMENT,
 	authority_name			NVARCHAR(64)	NOT NULL,
 	created_datetime		DATETIME		NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `KFashion1`.`kfashion_user_authority` (
 	PRIMARY KEY (no)
 );
 
-CREATE TABLE `KFashion1`.`kfashion_user_group_authority`(
+CREATE TABLE kfashion_user_group_authority(
 	authority_no			INT				NOT	NULL,	-- 외래키
 	group_no				INT				NOT NULL,	-- 외래키
 	created_datetime		DATETIME		NOT NULL,
@@ -60,11 +60,11 @@ CREATE TABLE `KFashion1`.`kfashion_user_group_authority`(
 
 	PRIMARY KEY (authority_no, group_no),
 	CONSTRAINT fk_kfashion_user_group_authority_authority_no 	FOREIGN KEY (authority_no)
-																REFERENCES 	`KFashion1`.`kfashion_user_authority` (no),
+																REFERENCES 	kfashion_user_authority (no),
 	CONSTRAINT fk_kfashion_user_group_authority_group_no 		FOREIGN KEY (group_no)
-																REFERENCES 	`KFashion1`.`kfashion_user_group` (no)
+																REFERENCES 	kfashion_user_group (no)
 );
-CREATE TABLE `KFashion1`.`kfashion_user_info` (
+CREATE TABLE kfashion_user_info (
 	id						NVARCHAR(64)	NOT NULL,
 	password				NVARCHAR(128)	NOT NULL,
 	name					NVARCHAR(64)	NOT NULL,
@@ -78,10 +78,10 @@ CREATE TABLE `KFashion1`.`kfashion_user_info` (
 
    PRIMARY KEY (id),
    CONSTRAINT fk_kfashion_user_info_group_no 			FOREIGN KEY (group_no)
-														REFERENCES 	`KFashion1`.`kfashion_user_group` (no)
+														REFERENCES 	kfashion_user_group (no)
 );
 
-CREATE TABLE `KFashion1`.`kfashion_user_group_admin` (
+CREATE TABLE kfashion_user_group_admin (
 	user_id					NVARCHAR(64)	NOT	NULL,	-- 외래키
 	group_no				INT				NOT NULL,	-- 외래키
 	created_datetime		DATETIME		NOT NULL,
@@ -89,12 +89,12 @@ CREATE TABLE `KFashion1`.`kfashion_user_group_admin` (
 
 	PRIMARY KEY (user_id, group_no),
 	CONSTRAINT fk_kfasion_user_group_admin_user_id 				FOREIGN KEY (user_id)
-																REFERENCES 	`KFashion1`.`kfashion_user_info` (id),
+																REFERENCES 	kfashion_user_info (id),
 	CONSTRAINT fk_kfasion_user_group_admin_group_no 			FOREIGN KEY (group_no)
-																REFERENCES 	`KFashion1`.`kfashion_user_group` (no)
+																REFERENCES 	kfashion_user_group (no)
 );
 
-CREATE TABLE `KFashion1`.`kfashion_email_authority` (
+CREATE TABLE kfashion_email_authority (
 	user_id					NVARCHAR(64)	NOT NULL,	-- 외래키*******
 	authkey					NVARCHAR(64)	NOT NULL,
 	expiration_datetime		DATETIME  		NOT NULL,
@@ -103,9 +103,9 @@ CREATE TABLE `KFashion1`.`kfashion_email_authority` (
 
 	PRIMARY KEY (user_id),
 	CONSTRAINT fk_kfashion_email_authrity_user_id 		FOREIGN KEY (user_id)
-														REFERENCES 	`KFashion1`.`kfashion_user_info` (id)
+														REFERENCES 	kfashion_user_info (id)
   );
-CREATE TABLE `KFashion1`.`kfashion_work` (
+CREATE TABLE kfashion_work (
 	no						BIGINT			NOT NULL	AUTO_INCREMENT,
 	work_name				NVARCHAR(128)	NOT NULL,
 	work_state				INT				NOT NULL,
@@ -115,16 +115,16 @@ CREATE TABLE `KFashion1`.`kfashion_work` (
   PRIMARY KEY (no)
 );
 
-CREATE TABLE `KFashion1`.`kfashion_image` (
+CREATE TABLE kfashion_image (
 	work_no					BIGINT			NOT NULL,
 	img_data				LONGBLOB		NOT NULL,
 	created_datetime		DATETIME		NOT NULL,
 	updated_datetime		DATETIME		NOT NULL,
   PRIMARY KEY (work_no),
   CONSTRAINT fk_kfashion_image_work_no 	FOREIGN KEY (work_no)
-										REFERENCES 	`KFashion1`.`kfashion_work` (no)
+										REFERENCES 	kfashion_work (no)
 );
-CREATE TABLE `KFashion1`.`kfashion_work_history` (
+CREATE TABLE kfashion_work_history (
 	work_no					BIGINT 			NOT NULL,	-- 외래키
 	work_step				INT				NOT NULL,   -- AUTO_INCREMENT
 	created_id				NVARCHAR(64)	NOT NULL,
@@ -133,9 +133,9 @@ CREATE TABLE `KFashion1`.`kfashion_work_history` (
 
 	PRIMARY KEY (work_no, work_step),
 	CONSTRAINT fk_kfashion_work_history_work_no 	FOREIGN KEY (work_no)
-													REFERENCES 	`KFashion1`.`kfashion_work` (no)
+													REFERENCES 	kfashion_work (no)
 );
-CREATE TABLE `KFashion1`.`kfashion_image_location_rect` (
+CREATE TABLE kfashion_image_location_rect (
 	work_no					BIGINT			NOT NULL,	-- 외래키
 	work_step				INT				NOT NULL,	-- 외래키
 	rect_no					INT				NOT NULL,
@@ -150,9 +150,9 @@ CREATE TABLE `KFashion1`.`kfashion_image_location_rect` (
 
   PRIMARY KEY (work_no, work_step, rect_no),
   CONSTRAINT fk_kfashion_image_location_rect_work_no_work_step	FOREIGN KEY (work_no,work_step)
-																REFERENCES 	`KFashion1`.`kfashion_work_history` (work_no, work_step)
+																REFERENCES 	kfashion_work_history (work_no, work_step)
 );
-CREATE TABLE `KFashion1`.`kfashion_image_location_polygon` (
+CREATE TABLE kfashion_image_location_polygon (
 	work_no					BIGINT			NOT NULL,	-- 외래키
 	work_step				INT				NOT NULL,	-- 외래키
 	poly_no					INT				NOT NULL,
@@ -161,10 +161,10 @@ CREATE TABLE `KFashion1`.`kfashion_image_location_polygon` (
 
 	PRIMARY KEY (work_no, work_step, poly_no),
 	CONSTRAINT fk_kfashion_image_location_polygon_work_no_work_step	FOREIGN KEY (work_no,work_step)
-																    REFERENCES 	`KFashion1`.`kfashion_work_history` (work_no, work_step)
+																    REFERENCES 	kfashion_work_history (work_no, work_step)
 );
 
-CREATE TABLE  `KFashion1`.`kfashion_image_location_polygon_point` (
+CREATE TABLE  kfashion_image_location_polygon_point (
 	work_no					BIGINT			NOT NULL,	-- 외래키
 	work_step				INT				NOT NULL,	-- 외래키
 	poly_no					INT				NOT NULL,	-- 외래키
@@ -177,10 +177,10 @@ CREATE TABLE  `KFashion1`.`kfashion_image_location_polygon_point` (
 
 	PRIMARY KEY (work_no, work_step, poly_no, no),
 	CONSTRAINT fk_kfashion_image_location_polygon_point_work_no_work_step	FOREIGN KEY (work_no, work_step, poly_no)
-																			REFERENCES 	 `KFashion1`.`kfashion_image_location_polygon` (work_no, work_step, poly_no)
+																			REFERENCES 	 kfashion_image_location_polygon (work_no, work_step, poly_no)
 );
 
-CREATE TABLE  `KFashion1`.`kfashion_category` (
+CREATE TABLE  kfashion_category (
 	no						INT				NOT NULL 	AUTO_INCREMENT,
 	category_type			NVARCHAR(64)	NOT NULL,
     category_name			NVARCHAR(64)	NOT NULL,
@@ -193,14 +193,14 @@ CREATE TABLE  `KFashion1`.`kfashion_category` (
 
 	PRIMARY KEY (no, category_type),
 	CONSTRAINT fk_kfashion_category_group_no 			FOREIGN KEY (group_no)
-														REFERENCES 	 `KFashion1`.`kfashion_user_group` (no),
+														REFERENCES 	kfashion_user_group (no),
 	CONSTRAINT fk_kfashion_category_created_id			FOREIGN KEY (created_id)
-														REFERENCES 	 `KFashion1`.`kfashion_user_info` (id),
+														REFERENCES 	 kfashion_user_info (id),
 	CONSTRAINT fk_kfashion_category_updated_id 			FOREIGN KEY (updated_id)
-														REFERENCES 	 `KFashion1`.`kfashion_user_info` (id)
+														REFERENCES 	 kfashion_user_info (id)
 );
 
-CREATE TABLE  `KFashion1`.`kfashion_category_item` (
+CREATE TABLE  kfashion_category_item (
 	no						INT				NOT NULL 	AUTO_INCREMENT,
     category_type			NVARCHAR(64)	NOT NULL,
 	category_no				INT 			NOT	NULL,	-- 외래키
@@ -213,14 +213,14 @@ CREATE TABLE  `KFashion1`.`kfashion_category_item` (
 
 	PRIMARY KEY (no, category_type, category_no),
 	CONSTRAINT fk_kfashion_category_item_category_no_category_type	FOREIGN KEY (category_no, category_type)
-																	REFERENCES 	 `KFashion1`.`kfashion_category` (no , category_type),
+																	REFERENCES 	 kfashion_category (no , category_type),
 	CONSTRAINT fk_kfashion_category_item_created_id					FOREIGN KEY (created_id)
-																	REFERENCES 	 `KFashion1`.`kfashion_user_info` (id),
+																	REFERENCES 	 kfashion_user_info (id),
 	CONSTRAINT fk_kfashion_category_item_updated_id 				FOREIGN KEY (updated_id)
-																	REFERENCES 	 `KFashion1`.`kfashion_user_info` (id)
+																	REFERENCES 	 kfashion_user_info (id)
 );
 
-CREATE TABLE  `KFashion1`.`kfashion_label` (
+CREATE TABLE  kfashion_label (
 	work_no					BIGINT			NOT NULL,
 	work_step				INT				NOT NULL,
 	label_no				INT				NOT NULL,	-- 1234...
@@ -233,9 +233,9 @@ CREATE TABLE  `KFashion1`.`kfashion_label` (
 
 	PRIMARY KEY (work_no, work_step, label_no, no),
 	CONSTRAINT fk_kfashion_label_work_no_work_step	                    FOREIGN KEY (work_no,work_step)
-													                    REFERENCES 	 `KFashion1`.`kfashion_work_history` (work_no, work_step),
+													                    REFERENCES 	kfashion_work_history (work_no, work_step),
     CONSTRAINT fk_kfashion_label_category_no 							FOREIGN KEY (category_no)
-																		REFERENCES 	 `KFashion1`.`kfashion_category` (no),
+																		REFERENCES 	kfashion_category (no),
 	CONSTRAINT fk_kfashion_label_category_item_no 						FOREIGN KEY (category_item_no)
-																		REFERENCES 	 `KFashion1`.`kfashion_category_item` (no)
+																		REFERENCES 	kfashion_category_item (no)
 );

@@ -137,6 +137,10 @@ class ImageUpload extends React.Component {
         })
         const createdId = this.props.authStore.isUserId;
         this.props.imageStore.LoadImage(createdId)
+        this.setState({
+            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.workNo}`,
+            workNo: this.props.imageStore.workNo,
+        })
     }
     componentWillUnmount() {
         this.props.imageStore.initStore();
@@ -216,11 +220,16 @@ class ImageUpload extends React.Component {
                                                actionsColumnIndex: -1,
                                                editCellStyle:'',
                                            }}
+
+
                                            actions={[
                                                {
                                                    icon: CheckIcon,
                                                    tooltip: 'Select Image',
-                                                   // onClick: this.setState.imgData("/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
+                                                   onClick: (event, rowData) => {
+                                                       this.setState({imgData : "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo})
+                                                       this.props.imageStore.changeWorkNo(rowData.workNo);
+                                                   }
                                                }
                                            ]}
                                            editable={{
