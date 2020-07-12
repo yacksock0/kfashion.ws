@@ -89,7 +89,7 @@ class WorkDetail extends React.Component {
         console.log('@@@@@@@@',this.state.selectedId)
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen} selectedId={this.handleClickId}>작업지정</Button>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>작업지정</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

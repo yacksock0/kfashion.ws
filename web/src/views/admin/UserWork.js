@@ -74,13 +74,14 @@ class UserWork extends React.Component {
             id:'',
             name:'',
             password:'',
+            selectedId:'',
             groupUserList:[],
             newMember:[],
             columns: [
                 {title: '아이디',field: 'id', headerStyle:{minWidth: 150}, cellStyle: {minWidth: 150,textAlign: 'center'}},
                 {title: '이름', field: 'name', type: 'text',  headerStyle:{minWidth: 150,textAlign: 'center'}, cellStyle: {minWidth:150},textAlign: 'center'},
                 {title: '작업진도', field: 'progress', render: rowData => <ProgressBar rowDataId={rowData.id}/>},
-                {title: '작업지정', field: 'workDetail', render: rowData => <WorkDetail onClick={()=>this.handleClick(rowData.id)}/>},
+                {title: '작업지정', field: 'workDetail', render: rowData => <WorkDetail onClickId={rowData}/>},
             ],
         }
     }
@@ -94,6 +95,7 @@ class UserWork extends React.Component {
         this.props.authStore.checkLogin();
     }
     handleClick(selectedId){
+        console.log('selectedId',selectedId)
         if(this.props.onClick) {
             this.props.selectedId(selectedId);
         }
