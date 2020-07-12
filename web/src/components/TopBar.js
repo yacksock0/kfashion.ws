@@ -53,11 +53,7 @@ export default function TopBar(props) {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" noWrap className={classes.title}>
-                    <Link to='/home' className={classes.link}>
-                        K-FASHION
-                    </Link>
-                </Typography>
+
                 { isLoggedIn ? (
                     <IconButton color="inherit" onClick={doLogout}>
                         {loginUser.id}
