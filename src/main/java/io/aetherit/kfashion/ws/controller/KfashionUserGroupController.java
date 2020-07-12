@@ -91,6 +91,9 @@ public class KfashionUserGroupController {
          public ResponseEntity<Object> updateUserGroup(HttpServletRequest httpServletRequest,
                                                        @RequestParam(value ="groupNo", required = true) int groupNo,
                                                        @RequestParam(value ="id", required = true) String id) throws Exception{
+
+             System.out.println(groupNo);
+             System.out.println(id);
              kfashionUserInfoService.updateUserGroup(groupNo,id);
              KfashionUserGroupAdmin groupAdmin = new KfashionUserGroupAdmin();
              groupAdmin.setGroupNo(groupNo);
