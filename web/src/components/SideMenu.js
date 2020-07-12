@@ -1,6 +1,17 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Divider, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Toolbar} from "@material-ui/core";
+import {
+    Divider,
+    Drawer,
+    Hidden,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    ListSubheader,
+    Toolbar,
+    Typography
+} from "@material-ui/core";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import ComputerIcon from '@material-ui/icons/Computer';
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
@@ -57,6 +68,15 @@ const useStyles = makeStyles((theme) => ({
     },nested: {
         paddingLeft: theme.spacing(4),
     },
+    title: {
+       textAlign:'center',
+        paddingLeft: theme.spacing(3),
+        flexGrow: 1,
+    },
+    link1: {
+        textDecoration: 'none',
+        color: 'white',
+    }
 }));
 
 export default function SideMenu(props) {
@@ -283,6 +303,7 @@ export default function SideMenu(props) {
     );
 
     return (
+
         <nav className={classes.drawer} aria-label="mailbox folders">
             <Hidden smUp implementation="css">
 
@@ -298,9 +319,11 @@ export default function SideMenu(props) {
                         }}
                 >
                     <Toolbar className={classes.toolbar}>
-                        {/*<Link to='/' className={classes.link}>*/}
-                        {/*    <img src="/images/aether_white.png" alt="AetherIT" className={classes.logo}/>*/}
-                        {/*</Link>*/}
+                        <Typography variant="h6" noWrap className={classes.title}>
+                            <Link to='/home' className={classes.link1}>
+                                K-FASHION
+                            </Link>
+                        </Typography>
                     </Toolbar>
                     {isLoggedIn ? (
                         drawer
@@ -318,9 +341,11 @@ export default function SideMenu(props) {
                         open
                 >
                     <Toolbar className={classes.toolbar}>
-                        {/*<Link to='/' className={classes.link}>*/}
-                        {/*    <img src="/images/aether_white.png" alt="AetherIT" className={classes.logo}/>*/}
-                        {/*</Link>*/}
+                        <Typography variant="h6" noWrap className={classes.title}>
+                            <Link to='/home' className={classes.link1}>
+                                K-FASHION
+                            </Link>
+                        </Typography>
                     </Toolbar>
                     {isLoggedIn ? (
                         drawer
