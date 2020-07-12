@@ -94,11 +94,10 @@ class WorkDetail extends React.Component {
         console.log('value', this.state.value)
     }
     handleSubmit=()=>{
-        axios.get(`/api/v1/kfashion/work/history/assignment`, {
-            data: {
-                workId: this.props.rowDataId,
-                workCount: this.state.value,
-            }
+        axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}`)
+        this.setState({
+            value:'',
+            open:false,
         })
     }
     render() {

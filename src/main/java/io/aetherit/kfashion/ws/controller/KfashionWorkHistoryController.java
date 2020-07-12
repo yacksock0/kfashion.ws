@@ -1,6 +1,5 @@
 package io.aetherit.kfashion.ws.controller;
 
-import io.aetherit.kfashion.ws.model.KfashionCategoryItem;
 import io.aetherit.kfashion.ws.model.KfashionWork;
 import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
@@ -8,7 +7,10 @@ import io.aetherit.kfashion.ws.service.KfashionWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -32,9 +34,10 @@ public class KfashionWorkHistoryController {
 
     @PostMapping(value = "/assignment")
     public ResponseEntity<Object> workAssignment(HttpServletRequest httpRequest,
-                                                 @RequestParam(value="workId")String workId,
-                                                 @RequestParam(value="workCount")int workCount
+                                                 @RequestParam(value="workId", required=true)String workId,
+                                                 @RequestParam(value="workCount", required=true)int workCount
                                                  ) {
+            System.out.println(workId+workCount);
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionWorkHistory> selectWorkAssignment = kfashionWorkHistoryService.selectWorkAssignment(workCount);
         for(int i = 0; i <selectWorkAssignment.size() ; i++){
