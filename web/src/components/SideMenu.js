@@ -176,7 +176,7 @@ export default function SideMenu(props) {
                         </List>
                     </Collapse>
                 </Link>
-                {loginUser.authorityNo == 5 ? (
+                {loginUser.authorityNo == 3 ? (
                 <Link to="/step3" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>

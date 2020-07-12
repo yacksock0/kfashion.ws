@@ -78,10 +78,10 @@ class UserWork extends React.Component {
             groupUserList:[],
             newMember:[],
             columns: [
-                {title: '아이디',field: 'id', headerStyle:{minWidth: 150}, cellStyle: {minWidth: 150,textAlign: 'center'}},
-                {title: '이름', field: 'name', type: 'text',  headerStyle:{minWidth: 150,textAlign: 'center'}, cellStyle: {minWidth:150},textAlign: 'center'},
-                {title: '작업진도', field: 'progress', render: rowData => <ProgressBar rowDataId={rowData.id}/>},
-                {title: '작업지정', field: 'workDetail',render: rowData => <WorkDetail rowDataId={rowData.id}/>},
+                {title: '아이디',field: 'id',cellStyle: {minWidth: 150,textAlign: 'center'}},
+                {title: '이름', field: 'name', type: 'text', cellStyle: {minWidth:100,textAlign: 'center'}},
+                {title: '작업진도', field: 'progress', cellStyle: {minWidth:500,textAlign: 'center'},render: rowData => <ProgressBar rowDataId={rowData.id}/>,},
+                {title: '작업지정', field: 'workDetail',cellStyle: {minWidth:100,textAlign: 'center'},render: rowData => <WorkDetail rowDataId={rowData.id}/>},
             ],
         }
     }
@@ -143,13 +143,6 @@ class UserWork extends React.Component {
                                         }, 1000);
                                     })
                             }}
-                            actions={[
-                                {
-                                    icon: CheckIcon,
-                                    tooltip: 'Select Image',
-                                    onClick: (event, rowData) => (<workDetail />,  '')
-                                }
-                            ]}
                             options={{
                                 minBodyHeight: '70vh',
                                 actionsColumnIndex: -1,
@@ -159,11 +152,7 @@ class UserWork extends React.Component {
                                     textAlign:'center',
 
                                 },
-                                actionsCellStyle: {
-                                    textAlign: 'center'
-                                },
                             }}
-
                         />
                     </Grid>
                 </div>
