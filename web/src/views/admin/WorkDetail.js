@@ -106,7 +106,7 @@ class WorkDetail extends React.Component {
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>작업지정</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"xs"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
