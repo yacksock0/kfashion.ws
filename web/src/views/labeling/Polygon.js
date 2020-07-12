@@ -619,7 +619,7 @@ class Polygon extends React.Component {
                                                             variant="outlined"
                                                             title="Delete All"
                                                             onClick={() => this.delete(2) }
-                                                            disabled={this.state.buttonDis1}>
+                                                            disabled={this.state.buttonDis2}>
                                                             All<DeleteIcon />
                                                         </Button>
                                                     </TableCell>

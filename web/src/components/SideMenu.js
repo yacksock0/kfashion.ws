@@ -201,7 +201,7 @@ export default function SideMenu(props) {
             <Divider />
             {loginUser.isAdmin == 'Y'? (
                 <div>
-                    <Link to="" className={classes.link}>
+                    <Link className={classes.link}>
                         <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText type="button" onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
@@ -247,7 +247,7 @@ export default function SideMenu(props) {
                     </div>):''}
             {loginUser.groupAdmin === 1?(
                 <div>
-                    <Link to="" className={classes.link}>
+                    <Link className={classes.link}>
                         <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText button onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>

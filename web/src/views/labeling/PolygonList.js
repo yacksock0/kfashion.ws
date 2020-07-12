@@ -97,20 +97,6 @@ class PolygonList extends React.Component {
                 options={{
                     actionsColumnIndex: -1,
                 }}
-                // editable={{
-                //     onRowDelete: oldData =>
-                //         new Promise((resolve, reject) => {
-                //             setTimeout(() => {
-                //                 {
-                //                     let data = this.state.data;
-                //                     const index = data.indexOf(oldData);
-                //                     data.splice(index, 1);
-                //                     this.setState({ data }, () => resolve());
-                //                 }
-                //                 resolve();
-                //             }, 1000);
-                //         }),
-                // }}
                 actions={[
                     {
                         icon: Clear,

@@ -24,6 +24,8 @@
             name,
             email,
             phone,
+            is_admin,
+            is_approved,
             created_datetime,
             updated_datetime
         ) VALUES (
@@ -32,6 +34,8 @@
             #{name},
             #{email},
             #{phone},
+            #{isAdmin},
+            #{isApproved},
             NOW(),
             NOW()
         )
