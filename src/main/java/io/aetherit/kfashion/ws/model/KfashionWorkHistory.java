@@ -19,4 +19,7 @@ public class KfashionWorkHistory {
     private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
+
+    private int totalWork;
+    private int finishWork;
 }

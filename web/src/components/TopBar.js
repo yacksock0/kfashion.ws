@@ -6,6 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import Stepper from "./Stepper";
+import {inject, observer} from "mobx-react";
 
 const logoWidth = 120;
 
@@ -32,10 +33,9 @@ const useStyles = makeStyles((theme) => ({
         color: 'inherit',
     }
 }));
-
 export default function TopBar(props) {
     const classes = useStyles();
-    const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser } = props;
+    const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser, setStep } = props;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -54,7 +54,7 @@ export default function TopBar(props) {
                     <MenuIcon />
                 </IconButton>
                 { isLoggedIn ? (
-                <Stepper currentStep = {4}/>):''}
+                <Stepper currentStep = {props.setStep}/>):''}
                 { isLoggedIn ? (
                     <IconButton color="inherit" onClick={doLogout}>
                         {loginUser.id}

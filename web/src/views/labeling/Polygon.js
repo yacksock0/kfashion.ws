@@ -101,7 +101,7 @@ const styles = theme => ({
 
 
 
-@inject('rectStore','imageStore', 'rectStore','authStore','polygonStore')
+@inject('rectStore','imageStore', 'rectStore','authStore','polygonStore', 'currentStepStore')
 @observer
 class Polygon extends React.Component {
     state = {

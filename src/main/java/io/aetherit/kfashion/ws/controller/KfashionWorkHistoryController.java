@@ -62,7 +62,8 @@ public class KfashionWorkHistoryController {
                                                  @RequestParam(value="createdId")String createdId
     ) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        int selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(createdId);
+        List<KfashionWorkHistory> selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(createdId);
+        resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 }

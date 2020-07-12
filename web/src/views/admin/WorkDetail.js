@@ -91,7 +91,6 @@ class WorkDetail extends React.Component {
     }
    handleChange = (event) => {
         this.setState({value: event.target.value});
-        console.log('value', this.state.value)
     }
     handleSubmit=()=>{
         axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}`)
@@ -116,7 +115,7 @@ class WorkDetail extends React.Component {
                 </Typography>
                 <hr></hr>
                 <form noValidate autoComplete="off">
-                    <TextField id="number" label="작업수량 입력" value={this.state.value} onChange={this.handleChange}/>
+                    <TextField id="number" label="작업수량 입력" onChange={this.handleChange}/>
                     <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleSubmit}>확인 </Button>
                 </form>
             </DialogContent>
