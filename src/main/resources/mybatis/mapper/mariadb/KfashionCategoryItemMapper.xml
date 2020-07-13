@@ -86,21 +86,21 @@
     </select>
 
 
-    <select id="selectLengthList0" resultMap="kfashionCategoryItemResultMap">
+    <select id="selectLengthList1" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
         WHERE category_no=6
         AND category_type=1
     </select>
 
-    <select id="selectLengthList0" resultMap="kfashionCategoryItemResultMap">
+    <select id="selectLengthList2" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
         WHERE category_no=16
         AND category_type=2
     </select>
 
-    <select id="selectLengthList0" resultMap="kfashionCategoryItemResultMap">
+    <select id="selectLengthList3" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
         WHERE category_no=33
@@ -120,10 +120,19 @@
         WHERE category_no=9
     </select>
 
-    <select id="selectFitList" resultMap="kfashionCategoryItemResultMap">
+    <select id="selectFitList0" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
         WHERE category_no=10
+        AND category_type=1
+    </select>
+
+
+    <select id="selectFitList3" resultMap="kfashionCategoryItemResultMap">
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no=27
+        AND category_type=3
     </select>
 
     <select id="selectSafeList" resultMap="kfashionCategoryItemResultMap">

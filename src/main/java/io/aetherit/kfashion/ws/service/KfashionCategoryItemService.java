@@ -71,8 +71,11 @@ public class KfashionCategoryItemService {
         return repository.selectKaraList();
     }
 
-    public List<KfashionCategoryItem> selectFitList() {
-        return repository.selectFitList();
+    public List<KfashionCategoryItem> selectFitList0() {
+        return repository.selectFitList0();
+    }
+    public List<KfashionCategoryItem> selectFitList3() {
+        return repository.selectFitList3();
     }
 
     public List<KfashionCategoryItem> selectSafeList() {
