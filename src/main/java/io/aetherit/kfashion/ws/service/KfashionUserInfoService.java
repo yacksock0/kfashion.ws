@@ -206,10 +206,6 @@ public class KfashionUserInfoService {
         repository.deleteGroupAdminUser(user);
     }
 
-    public int selectCheckAuthorityNo(String workId) {
-        return repository.selectCheckAuthorityNo(workId);
-    }
-
     public int getGroupUser(String userId) {
         return repository.getGroupUser(userId);
     }

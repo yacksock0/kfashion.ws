@@ -26,8 +26,6 @@ public class KfashionWorkHistoryService {
         repository.deleteWorkHistory(workImage);
     }
 
-    public List<Long> selectWorkAssignment(HashMap<String, Object> workMap) { return repository.selectWorkAssignment(workMap); }
-
     public  KfashionWorkHistory selectWorkProgressRate(String createdId) {
         return repository.selectWorkProgressRate(createdId);
     }

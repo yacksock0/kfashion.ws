@@ -94,7 +94,7 @@ class WorkDetail extends React.Component {
         this.setState({value: event.target.value});
     }
     handleSubmit=()=>{
-        axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}`)
+        axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
         this.setState({
             value:'',
             open:false,

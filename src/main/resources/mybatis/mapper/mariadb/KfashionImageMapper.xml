@@ -35,7 +35,7 @@
         FROM kfashion_image
         LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        AND kfashion_work.work_state = 1
+        WHERE kfashion_work.work_state = 1
         ORDER BY kfashion_image.work_no DESC
     </select>
 

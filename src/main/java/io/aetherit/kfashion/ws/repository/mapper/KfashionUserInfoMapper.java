@@ -33,7 +33,5 @@ public interface KfashionUserInfoMapper {
 
     void deleteGroupUser(KfashionUserInfo user);
 
-    int selectCheckAuthorityNo(String workId);
-
     int getGroupUser(String userId);
 }
