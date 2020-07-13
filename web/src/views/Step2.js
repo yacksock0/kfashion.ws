@@ -118,11 +118,15 @@ class Step2 extends React.Component {
             sleeveNo:0,
             sleeveName: '',
             tabIndex: 1,
+            tabIndex1: 0,
             imgData :'',
             workNo:'',
             value: 0,
             number:1,
             createdId: '',
+            data:[{tabIndex1:1,
+
+            }]
         }
         this.handleDelete = this.handleDelete.bind(this)
         this.colorDelete = this.colorDelete.bind(this)
@@ -213,10 +217,10 @@ class Step2 extends React.Component {
             subMemo: '',
         })
     }
-    onSelectTab(tabIndex) {
+    onSelectTab(tabIndex1) {
 
         this.canvas.remove(this.canvas.item(0));
-        let polyNo = tabIndex+1;
+        let polyNo = tabIndex1+1;
 
         const { locationPolygonList } = this.props.polygonStore;
         const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
@@ -261,12 +265,12 @@ class Step2 extends React.Component {
                              </TabList>
 
                          <TabPanel>
-                             <Tabs onSelect={tabIndex => this.onSelectTab(tabIndex)}>
+                             <Tabs onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                              <TabList>
-                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
-                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
-                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
-                                 <Tab style={{width: '25%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
+                                 <Tab tabIndex={0} style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
+                                 <Tab tabIndex={1} style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
+                                 <Tab tabIndex={2} style={{width: '25%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
+                                 <Tab tabIndex={3} style={{width: '25%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
                              </TabList>
 
                              <TabPanel>
@@ -326,25 +330,50 @@ class Step2 extends React.Component {
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
-                                     <div className={classes.content}>
-                                         <Typography variant="h5" component="h2">
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
                                              색상
                                          </Typography>
+                                         &nbsp;&nbsp;{!this.state.no == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
+                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                             <Color onClick={this.handleClickColor} onClickSub={this.handleClickSubColor} style={{display:'inline', float:'right'}}/>
+                                         </div>
                                          <div>
                                              <hr></hr>
                                          </div>
-                                         <Color />
+                                         <div>
+                                             <br></br>
+                                             {this.state.no >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo}`}} onClick={this.colorDelete}>
+
+                                                 </div>) : ''
+                                             }
+                                             &nbsp;
+                                             {this.state.subNo >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo}`}} onClick={this.colorDeleteSub}>
+                                                 </div>) : ''
+                                             }
+                                         </div>
                                      </div>
-                                     <div className={classes.content}>
-                                         <div style={{display:"inline-flex"}}>
-                                             <Typography variant="h5" component="h2">
-                                                 소매 길이
-                                             </Typography>
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                         <Typography variant="h5" component="h5" style={{display:'inline'}} >
+                                             소매길이
+                                         </Typography>
+                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                             <SleeveLength onClick={this.handleClickSleeve} />
                                          </div>
                                          <div>
                                              <hr></hr>
                                          </div>
-                                         <SleeveLength />
+                                         <br></br>
+                                         {this.state.sleeveNo >0 ?
+                                             (<Chip
+                                                 variant="outlined"
+                                                 label={this.state.sleeveName}
+                                                 onDelete={this.handleDelete}
+                                                 color="primary"
+                                             />) : ''
+                                         }
                                          <Button style={{marginTop: 20}}
                                                  type="button"
                                                  className={classes.buttonType2}
@@ -357,99 +386,118 @@ class Step2 extends React.Component {
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
-                             <div className={classes.content}>
-                                 <Typography variant="h5" component="h2">
-                                     색상
-                                 </Typography>
-                                 <div>
-                                     <hr></hr>
-                                 </div>
-                                 <Color />
-                             </div>
-                             <div className={classes.content}>
-                                 <div style={{display:"inline-flex"}}>
-                                     <Typography variant="h5" component="h2">
-                                         소매 길이
-                                     </Typography>
-                                 </div>
-                                 <div>
-                                     <hr></hr>
-                                 </div>
-                                 <SleeveLength />
-                                 <Button style={{marginTop: 20}}
-                                         type="button"
-                                         className={classes.buttonType2}
-                                         color="primary"
-                                         variant="outlined"
-                                         onClick={()=>alert('저장 되었습니다.')}
-                                 >
-                                     저장
-                                 </Button>
-                             </div>
-                         </TabPanel>
-                                 <TabPanel>
-                             <div className={classes.content}>
-                                 <Typography variant="h5" component="h2">
-                                     색상
-                                 </Typography>
-                                 <div>
-                                     <hr></hr>
-                                 </div>
-                                 <Color />
-                             </div>
-                             <div className={classes.content}>
-                                 <div style={{display:"inline-flex"}}>
-                                     <Typography variant="h5" component="h2">
-                                         소매 길이
-                                     </Typography>
-                                 </div>
-                                 <div>
-                                     <hr></hr>
-                                 </div>
-                                 <SleeveLength />
-                                 <Button style={{marginTop: 20}}
-                                         type="button"
-                                         className={classes.buttonType2}
-                                         color="primary"
-                                         variant="outlined"
-                                         onClick={()=>alert('저장 되었습니다.')}
-                                 >
-                                     저장
-                                 </Button>
-                             </div>
-                         </TabPanel>
-                                 <TabPanel>
-                             <div className={classes.content}>
-                                 <Typography variant="h5" component="h2">
-                                     색상
-                                 </Typography>
-                                 <div>
-                                     <hr></hr>
-                                 </div>
-                                 <Color />
-                             </div>
-                             <div className={classes.content}>
-                                 <div style={{display:"inline-flex"}}>
-                                     <Typography variant="h5" component="h2">
-                                         소매 길이
-                                     </Typography>
-                                 </div>
-                                 <div>
-                                     <hr></hr>
-                                 </div>
-                                 <SleeveLength />
-                                 <Button style={{marginTop: 20}}
-                                     type="button"
-                                     className={classes.buttonType2}
-                                     color="primary"
-                                     variant="outlined"
-                                         onClick={()=>alert('저장 되었습니다.')}
-                                 >
-                                     저장
-                                 </Button>
-                             </div>
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
+                                             색상
+                                         </Typography>
+                                         &nbsp;&nbsp;{!this.state.no == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
+                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                             <Color onClick={this.handleClickColor} onClickSub={this.handleClickSubColor} style={{display:'inline', float:'right'}}/>
+                                         </div>
+                                         <div>
+                                             <hr></hr>
+                                         </div>
+                                         <div>
+                                             <br></br>
+                                             {this.state.no >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo}`}} onClick={this.colorDelete}>
 
+                                                 </div>) : ''
+                                             }
+                                             &nbsp;
+                                             {this.state.subNo >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo}`}} onClick={this.colorDeleteSub}>
+                                                 </div>) : ''
+                                             }
+                                         </div>
+                                     </div>
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                         <Typography variant="h5" component="h5" style={{display:'inline'}} >
+                                             소매길이
+                                         </Typography>
+                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                             <SleeveLength onClick={this.handleClickSleeve} />
+                                         </div>
+                                         <div>
+                                             <hr></hr>
+                                         </div>
+                                         <br></br>
+                                         {this.state.sleeveNo >0 ?
+                                             (<Chip
+                                                 variant="outlined"
+                                                 label={this.state.sleeveName}
+                                                 onDelete={this.handleDelete}
+                                                 color="primary"
+                                             />) : ''
+                                         }
+                                         <Button style={{marginTop: 20}}
+                                                 type="button"
+                                                 className={classes.buttonType2}
+                                                 color="primary"
+                                                 variant="outlined"
+                                                 onClick={()=>alert('저장 되었습니다.')}
+                                         >
+                                             저장
+                                         </Button>
+                                     </div>
                                  </TabPanel>
+                                 <TabPanel>
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
+                                             색상
+                                         </Typography>
+                                         &nbsp;&nbsp;{!this.state.no == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
+                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                             <Color onClick={this.handleClickColor} onClickSub={this.handleClickSubColor} style={{display:'inline', float:'right'}}/>
+                                         </div>
+                                         <div>
+                                             <hr></hr>
+                                         </div>
+                                         <div>
+                                             <br></br>
+                                             {this.state.no >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo}`}} onClick={this.colorDelete}>
+
+                                                 </div>) : ''
+                                             }
+                                             &nbsp;
+                                             {this.state.subNo >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo}`}} onClick={this.colorDeleteSub}>
+                                                 </div>) : ''
+                                             }
+                                         </div>
+                                     </div>
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                         <Typography variant="h5" component="h5" style={{display:'inline'}} >
+                                             소매길이
+                                         </Typography>
+                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                             <SleeveLength onClick={this.handleClickSleeve} />
+                                         </div>
+                                         <div>
+                                             <hr></hr>
+                                         </div>
+                                         <br></br>
+                                         {this.state.sleeveNo >0 ?
+                                             (<Chip
+                                                 variant="outlined"
+                                                 label={this.state.sleeveName}
+                                                 onDelete={this.handleDelete}
+                                                 color="primary"
+                                             />) : ''
+                                         }
+                                         <Button style={{marginTop: 20}}
+                                                 type="button"
+                                                 className={classes.buttonType2}
+                                                 color="primary"
+                                                 variant="outlined"
+                                                 onClick={()=>alert('저장 되었습니다.')}
+                                         >
+                                             저장
+                                         </Button>
+                                     </div>
+                                 </TabPanel>
+
                              </Tabs>
                          </TabPanel>
                              <TabPanel>

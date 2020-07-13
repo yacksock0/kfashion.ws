@@ -105,12 +105,12 @@ export default class RectStore {
         }
     });
 
-    LoadRectImage = flow(function* LoadRectImage(createdId) {
+    LoadRectImage = flow(function* LoadRectImage(createdId, handleListChange) {
         this.rectList = [];
         try {
             const response = yield axios.get('/api/v1/kfashion/rect/rectList?createdId='+createdId)
             this.rectList = response.data.rectList;
-            return this.rectList;
+            handleListChange(this.rectList.length);
         } catch (e) {
             console.log('error')
         }
