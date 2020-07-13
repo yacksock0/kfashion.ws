@@ -210,6 +210,7 @@ class Step2 extends React.Component {
             no: color.no,
             name: color.categoryItemName,
             memo: color.categoryItemMemo,
+            colorCategoryNo: color.categoryNo,
         })
     }
     handleClickColor1 = (color) => {
@@ -217,6 +218,7 @@ class Step2 extends React.Component {
             no1: color.no,
             name1: color.categoryItemName,
             memo1: color.categoryItemMemo,
+            colorCategoryNo: color.categoryNo,
         })
     }
     handleClickColor2 = (color) => {
@@ -224,6 +226,7 @@ class Step2 extends React.Component {
             no2: color.no,
             name2: color.categoryItemName,
             memo2: color.categoryItemMemo,
+            colorCategoryNo: color.categoryNo,
         })
     }
     handleClickColor3 = (color) => {
@@ -231,6 +234,7 @@ class Step2 extends React.Component {
             no3: color.no,
             name3: color.categoryItemName,
             memo3: color.categoryItemMemo,
+            colorCategoryNo: color.categoryNo,
         })
     }
     handleClickSubColor = (color) => {
@@ -264,6 +268,7 @@ class Step2 extends React.Component {
                     subNo2: color.no,
                     subName2: color.categoryItemName,
                     subMemo2: color.categoryItemMemo,
+                    colorCategoryNo: color.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
@@ -275,6 +280,7 @@ class Step2 extends React.Component {
                     subNo3: color.no,
                     subName3: color.categoryItemName,
                     subMemo3: color.categoryItemMemo,
+                    colorCategoryNo: color.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
@@ -297,12 +303,14 @@ class Step2 extends React.Component {
         this.setState({
             sleeveNo2: sleeve.no,
             sleeveName2: sleeve.categoryItemName,
+            sleeveLengthCategoryNo: sleeve.categoryNo
         })
     }
     handleClickSleeve3 = (sleeve) => {
         this.setState({
             sleeveNo3: sleeve.no,
             sleeveName3: sleeve.categoryItemName,
+            sleeveLengthCategoryNo: sleeve.categoryNo
         })
     }
 
@@ -435,62 +443,46 @@ class Step2 extends React.Component {
     };
 
     handleSave = () => {
-        const res = axios.post('/api/v1/kfashion/label/basicLabel', {data: {
-                workNo: this.props.imageStore.isWorkNo,
-                workStep:4,
-                no:2,
-                labelNo:this.props.polygonStore.polyInfo,
-                color:this.state.no,
-                color1:this.state.no1,
-                color2:this.state.no2,
-                color3:this.state.no3,
-                colorCategoryNo: this.state.colorCategoryNo,
-                subColor:this.state.subNo,
-                subColor1:this.state.subNo1,
-                subColor2:this.state.subNo2,
-                subColor3:this.state.subNo3,
-                sleeveLength:this.state.sleeveNo,
-                sleeveLength1:this.state.sleeveNo1,
-                sleeveLength2:this.state.sleeveNo2,
-                sleeveLength3:this.state.sleeveNo3,
-                sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
-                createdId:this.props.authStore.loginUser.id,
-            },
-        });
-        console.log('workNo',this.props.imageStore.isWorkNo)
-        console.log('labelNo',this.props.polygonStore.polyInfo)
-        console.log('color',this.state.no)
-        console.log('color1',this.state.no1)
-        console.log('color2',this.state.no2)
-        console.log('color3',this.state.no3)
-        console.log('colorCategoryNo',this.state.colorCategoryNo)
-        console.log('subColor',this.state.subNo)
-        console.log('subColor1',this.state.subNo1)
-        console.log('subColor2',this.state.subNo2)
-        console.log('subColor3',this.state.subNo3)
-        console.log('sleeveLength',this.state.sleeveNo)
-        console.log('sleeveLength1',this.state.sleeveNo1)
-        console.log('sleeveLength2',this.state.sleeveNo2)
-        console.log('sleeveLength3',this.state.sleeveNo3)
-        console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
-        console.log('createdId',this.props.authStore.loginUser.id)
-        this.setState({
-            tabIndex:0,
-            workNo: 0,
-            no:0,
-            color:0,
-            color1:0,
-            color2:0,
-            color3:0,
-            subColor:0,
-            subColor1:0,
-            subColor2:0,
-            subColor3:0,
-            sleeveLength:0,
-            sleeveLength1:0,
-            sleeveLength2:0,
-            sleeveLength3:0,
-        })
+        const param = toJS({
+            workNo: this.props.imageStore.isWorkNo,
+            workStep:4,
+            color:this.state.no,
+            color1:this.state.no1,
+            color2:this.state.no2,
+            color3:this.state.no3,
+            colorCategoryNo: this.state.colorCategoryNo,
+            subColor:this.state.subNo,
+            subColor1:this.state.subNo1,
+            subColor2:this.state.subNo2,
+            subColor3:this.state.subNo3,
+            sleeveLength:this.state.sleeveNo,
+            sleeveLength1:this.state.sleeveNo1,
+            sleeveLength2:this.state.sleeveNo2,
+            sleeveLength3:this.state.sleeveNo3,
+            sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
+            createdId:this.props.authStore.loginUser.id,});
+        const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
+                if(res.status === 200) {
+                    this.setState({
+                        tabIndex:1,
+                        workNo: 0,
+                        no:0,
+                        color:0,
+                        color1:0,
+                        color2:0,
+                        color3:0,
+                        subColor:0,
+                        subColor1:0,
+                        subColor2:0,
+                        subColor3:0,
+                        sleeveLength:0,
+                        sleeveLength1:0,
+                        sleeveLength2:0,
+                        sleeveLength3:0,
+                    })
+                }else {
+                    console.log("error");
+                }
     }
     render() {
         const { classes,history} = this.props;
