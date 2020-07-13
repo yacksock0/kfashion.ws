@@ -32,4 +32,8 @@ public class KfashionImageLocationPolygonPointService {
     public List<KfashionImageLocationPolygonPoint> selectLocationPolygonList(KfashionImageLocationPolygonPoint polygon) {
         return repository.selectLocationPolygonList(polygon);
     }
+
+    public List<Integer> selectPolyNo(Long workNo) {
+        return repository.selectPolyNo(workNo);
+    }
 }

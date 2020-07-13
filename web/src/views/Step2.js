@@ -99,7 +99,7 @@ const styles = theme => ({
     },
     });
 
-@inject('basicLabelStore','authStore','imageStore','polygonStore', 'currentStepStore','basicLabelingStore')
+@inject('basicLabelStore','authStore','imageStore','polygonStore', 'currentStepStore')
 @observer
 class Step2 extends React.Component {
     constructor(props) {
@@ -188,12 +188,15 @@ class Step2 extends React.Component {
         this.setState({ number: newNumber});
     }
     handleClickItem = (workNo, imageData) => {
-        this.setState({
-            tabIndex:0,
-        })
+
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
+        console.log(this.props.polygonStore.tabIndex1);
+        this.setState({
+            tabIndex:0,
+            tabIndex1:this.props.polygonStore.tabIndex1,
+        })
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width : 750,
             height : 850,
@@ -432,7 +435,7 @@ class Step2 extends React.Component {
                              </TabList>
 
                          <TabPanel>
-                             <Tabs onSelect={tabIndex => this.onSelectTab(tabIndex)}>
+                             <Tabs onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                              <TabList>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
