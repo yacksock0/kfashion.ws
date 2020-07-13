@@ -245,15 +245,15 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
-                     <Grid item xs={12} lg={2}>
-                         <WorkedImg />
-                     </Grid>
-                     <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
+                     {/*<Grid item xs={12} lg={2}>*/}
+                     {/*    <WorkedImg />*/}
+                     {/*</Grid>*/}
+                     <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
                          <div>
                              <canvas id="c" width="750" height="850">  </canvas>
                          </div>
                      </Grid>
-                     <Grid item xs={12} lg={5}>
+                     <Grid item xs={12} lg={6}>
                          <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                              <TabList >
                                  <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
