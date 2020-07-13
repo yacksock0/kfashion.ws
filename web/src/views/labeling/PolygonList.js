@@ -103,11 +103,11 @@ class PolygonList extends React.Component {
                     actionsColumnIndex: -1,
                 }}
                 actions={[
-                    {
-                        icon: Clear,
-                        tooltip: 'return',
-                        onClick: (event, rowData) => this.handleClickReturn()
-                    },
+                    // {
+                    //     icon: Clear,
+                    //     tooltip: 'return',
+                    //     onClick: (event, rowData) => this.handleClickReturn()
+                    // },
                     {
                         icon: CheckIcon,
                         tooltip: 'Select Image',
