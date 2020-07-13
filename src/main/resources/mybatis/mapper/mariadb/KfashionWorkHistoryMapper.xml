@@ -34,15 +34,6 @@
         WHERE work_no = #{workNo}
     </delete>
 
-
-    <select id="selectWorkAssignment" resultType="Long">
-           SELECT work_no
-            FROM kfashion_work_history
-            WHERE work_no not in (SELECT work_no
-            FROM kfashion_work_history
-            WHERE work_step = #{authorityNo} )  ORDER BY work_no ASC limit  #{workCount}
-    </select>
-
     <select id="selectWorkProgressRate" parameterType="String" resultMap="kfashionWorkHistoryResultMap">
          SELECT created_id
             , count(*) AS finish_work

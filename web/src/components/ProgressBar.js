@@ -22,8 +22,6 @@ export class ProgressBar extends Component {
         axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
             .then(response => {
                 const selectWorkProgressRate = response.data.selectWorkProgressRate;
-                console.log(selectWorkProgressRate.totalWork);
-                console.log(selectWorkProgressRate.finishWork);
                 const total = selectWorkProgressRate.totalWork;
                 const complete = selectWorkProgressRate.finishWork;
 

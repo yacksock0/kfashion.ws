@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 DropzoneDialog.defaultProps = {
     clearOnUnmount: true,
-    filesLimit: 10000,
+    filesLimit: 1000,
     initialFiles: [],
 };
 
@@ -65,6 +65,7 @@ class DropzoneDialogExample extends Component {
             open: true,
         });
     }
+
     render() {
         const { classes } = this.props;
         const {count} = this.props.imageStore;
@@ -79,8 +80,9 @@ class DropzoneDialogExample extends Component {
                     onSave={this.handleSave.bind(this)}
                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
                     showPreviews={true}
-                    maxFileSize={50000000000}
+                    maxFileSize={5000000000}
                     onClose={this.handleClose.bind(this)}
+                    showAlerts={false}
                 />
             </div>
         );

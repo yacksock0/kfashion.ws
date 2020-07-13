@@ -40,4 +40,8 @@ public class KfashionImageRepository {
     public void deleteImage(KfashionImage workImage) {
         mapper.deleteImage(workImage);
     }
+
+    public List<KfashionImage> selectProfessionalList(String createdId) {
+        return mapper.selectProfessionalList(createdId);
+    }
 }

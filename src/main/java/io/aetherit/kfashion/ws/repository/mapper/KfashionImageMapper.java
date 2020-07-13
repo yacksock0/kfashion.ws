@@ -17,4 +17,6 @@ public interface KfashionImageMapper {
     List<KfashionImage> selectRectList(String createdId);
 
     void deleteImage(KfashionImage workNo);
+
+    List<KfashionImage> selectProfessionalList(String createdId);
 }

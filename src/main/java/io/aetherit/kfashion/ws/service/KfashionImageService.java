@@ -42,4 +42,8 @@ public class KfashionImageService {
     public void deleteImage(KfashionImage workImage) {
         repository.deleteImage(workImage);
     }
+
+    public List<KfashionImage> selectProfessionalList(String createdId) {
+        return repository.selectProfessionalList(createdId);
+    }
 }

@@ -59,5 +59,18 @@
         WHERE no=#{workNo}
     </delete>
 
+    <select id="selectWorkAssignment" resultType="Long">
+        SELECT no
+        FROM kfashion_work
+        WHERE work_state = #{authorityNo}
+        ORDER BY no ASC limit  #{workCount};
+    </select>
+
+
+    <select id="selectWorkQuantity" resultType="int">
+        SELECT COUNT(*)
+        FROM kfashion_work
+        WHERE work_state = #{workState};
+    </select>
 
 </mapper>

@@ -43,7 +43,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore','polygonStore')
+@inject('authStore','workStore')
 @observer
 class WorkDetail extends React.Component {
     constructor(props) {
@@ -66,6 +66,8 @@ class WorkDetail extends React.Component {
         this.handleClickId = this.handleClickId.bind(this)
     }
     componentDidMount() {
+        const authorityNo = this.props.authStore.loginUser.authorityNo;
+        this.props.workStore.LoadWorkQuantity(authorityNo);
 
     }
 
@@ -94,7 +96,7 @@ class WorkDetail extends React.Component {
         this.setState({value: event.target.value});
     }
     handleSubmit=()=>{
-        axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}`)
+        axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
         this.setState({
             value:'',
             open:false,
@@ -111,7 +113,7 @@ class WorkDetail extends React.Component {
                 >
             <DialogContent>
                 <Typography variant="h5" component="h2">
-                    작업지정
+                    작업지정  (남은 작업: {this.props.workStore.workQuantity})
                 </Typography>
                 <hr></hr>
                 <form noValidate autoComplete="off">

@@ -39,40 +39,41 @@ public class KfashionWorkHistoryController {
     @PostMapping(value = "/assignment")
     public ResponseEntity<Object> workAssignment(HttpServletRequest httpRequest,
                                                  @RequestParam(value="workId", required=true)String workId,
-                                                 @RequestParam(value="workCount", required=true)int workCount
+                                                 @RequestParam(value="workCount", required=true)int workCount,
+                                                 @RequestParam(value="authorityNo", required=true)int authorityNo
                                                  ) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
-        int authorityNo = kfashionUserInfoService.selectCheckAuthorityNo(workId);
         HashMap<String, Object> workMap = new HashMap<String, Object>();
-        workMap.put("authorityNo",authorityNo);
-        workMap.put("workCount",workCount);
         if(authorityNo == 3) {
-            List<Long> selectWorkAssignment = kfashionWorkHistoryService.selectWorkAssignment(workMap);
-            for(int i = 0; i <selectWorkAssignment.size() ; i++){
+            workMap.put("authorityNo",4);
+            workMap.put("workCount",workCount);
+            List<Long> WorkAssignment = kfashionWorkService.selectWorkAssignment(workMap);
+            for(int i = 0; i <WorkAssignment.size() ; i++){
                 KfashionWork work = new KfashionWork();
-                work.setNo(selectWorkAssignment.get(i));
-                work.setWorkState(3);
+                work.setNo(WorkAssignment.get(i));
+                work.setWorkState(5);
                 kfashionWorkService.updateWork(work);
 
                 KfashionWorkHistory workHistory = new KfashionWorkHistory();
-                workHistory.setWorkNo(selectWorkAssignment.get(i));
+                workHistory.setWorkNo(WorkAssignment.get(i));
                 workHistory.setCreatedId(workId);
-                workHistory.setWorkStep(3);
+                workHistory.setWorkStep(5);
 
                 kfashionWorkHistoryService.insertWorkHistory(workHistory);
             }
         }else {
-            List<Long> selectWorkAssignment = kfashionWorkHistoryService.selectWorkAssignment(workMap);
+            workMap.put("authorityNo",1);
+            workMap.put("workCount",workCount);
+            List<Long> WorkAssignment = kfashionWorkService.selectWorkAssignment(workMap);
 
-            for(int i = 0; i <selectWorkAssignment.size() ; i++){
+            for(int i = 0; i <WorkAssignment.size() ; i++){
                 KfashionWork work = new KfashionWork();
-                work.setNo(selectWorkAssignment.get(i));
+                work.setNo(WorkAssignment.get(i));
                 work.setWorkState(2);
                 kfashionWorkService.updateWork(work);
 
                 KfashionWorkHistory workHistory = new KfashionWorkHistory();
-                workHistory.setWorkNo(selectWorkAssignment.get(i));
+                workHistory.setWorkNo(WorkAssignment.get(i));
                 workHistory.setCreatedId(workId);
                 workHistory.setWorkStep(2);
                 kfashionWorkHistoryService.insertWorkHistory(workHistory);
@@ -90,17 +91,8 @@ public class KfashionWorkHistoryController {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         KfashionWorkHistory selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(createdId);
 
-        System.out.println(selectWorkProgressRate.getCreatedId());
-        System.out.println(selectWorkProgressRate.getFinishWork());
-        System.out.println(selectWorkProgressRate.getTotalWork());
-        resultMap.put("createdId", selectWorkProgressRate.getCreatedId());
-        resultMap.put("finishWork", selectWorkProgressRate.getFinishWork());
-        resultMap.put("totalWork", selectWorkProgressRate.getTotalWork());
-
-//        selectWorkProgressRate.setCreatedId(createdId);
-//        System.out.println(selectWorkProgressRate);
-//        resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
-//        return null;
+        selectWorkProgressRate.setCreatedId(createdId);
+        resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 }

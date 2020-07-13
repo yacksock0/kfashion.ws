@@ -40,13 +40,13 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore','polygonStore')
+@inject('professionalListStore','authStore')
 @observer
-class ProImageList extends React.Component {
+export default class ProImageList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            basicLabelList: [],
+            professionalList: [],
             count: 0,
             data: [],
             columns: [
@@ -60,12 +60,13 @@ class ProImageList extends React.Component {
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
-        this.props.polygonStore.LoadPolygonImage(createdId);
+        this.props.professionalListStore.LoadProfessionalList(createdId);
     }
 
     componentWillUnmount() {
-        this.props.polygonStore.initStore();
+        this.props.professionalListStore.initStore();
     }
+
     handleClick = (workNo, imageData) => {
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData);
@@ -79,13 +80,12 @@ class ProImageList extends React.Component {
         }
     }
     render() {
-        const {basicLabelList} = this.state;
         return (
             <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
-                data={!!this.props.polygonStore.polygonList ?
-                    this.props.polygonStore.polygonList.map((item) => {
+                data={!!this.props.professionalListStore.professionalList ?
+                    this.props.professionalListStore.professionalList.map((item) => {
                         return {
                             workNo: item.workNo,
                             fileName: item.fileName,
@@ -113,5 +113,4 @@ class ProImageList extends React.Component {
             />
         );
     }
-};
-export default ProImageList;
+}

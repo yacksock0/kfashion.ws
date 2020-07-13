@@ -10,6 +10,9 @@ import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
 import Stepper from "../components/Stepper";
 import Style from "../views/step3/Style";
+import ProImageList from "../views/step3/ProImageList";
+import {toJS} from "mobx";
+
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -80,7 +83,7 @@ const styles = theme => ({   root: {
     },
 });
 
-@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore')
+@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','polygonStore')
 @observer
 class Step3 extends React.Component {
     constructor(props) {
@@ -116,16 +119,20 @@ class Step3 extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
-        this.props.rectStore.LoadRectLocation(workNo);
-        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
+        this.setState({
+            tabIndex:0,
+        })
         this.props.imageStore.changeWorkNo(workNo);
+        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+        this.props.polygonStore.LoadPolygonLocation(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
+            width : 750,
+            height : 850,
             originX: 'left',
             originY: 'top'
         });
     }
+
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
         this.setState({
             selectedMainNo:selectedMainNo,
@@ -134,6 +141,31 @@ class Step3 extends React.Component {
             selectedSubName:selectedSubName,
         })
     }
+
+    onSelectTab(tabIndex1) {
+
+        this.canvas.remove(this.canvas.item(0));
+        let polyNo = tabIndex1+1;
+
+        const { locationPolygonList } = this.props.polygonStore;
+        const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
+        console.log(selectedPoly);
+
+        if(selectedPoly.length!=0){
+            let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
+            for (let i = 1; i < selectedPoly.length; i++) {
+                makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
+            }
+            makePath += ' z';
+            let path = new fabric.Path(makePath);
+            path.opacity = 0.5;
+
+            console.log(makePath);
+            this.canvas.add(path);
+
+        }else{alert("poly정보가 존재하지 않습니다.")}
+    };
+
     render() {
         const {classes,history} = this.props;
 
@@ -156,7 +188,7 @@ class Step3 extends React.Component {
 
                                         <TabPanel>
 
-                                    <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.setState({ tabIndex1 })}>
+                                            <Tabs onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
                                             <Tab tabIndex1={0} style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
                                             <Tab tabIndex1={1} style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
@@ -197,7 +229,7 @@ class Step3 extends React.Component {
                                         </TabPanel>
                                      <TabPanel>
 
-
+                                    <ProImageList onClick={this.handleClickItem} />
                                     </TabPanel>
                                     </Tabs>
                                 </Grid>

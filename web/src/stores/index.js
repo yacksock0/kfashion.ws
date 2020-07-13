@@ -13,7 +13,9 @@ import RectStore from "./RectStore";
 import PolygonStore from "./PolygonStore";
 import GroupStore from "./GroupStore";
 import CurrentStepStore from "./CurrentStepStore";
-import BasicLabelingStore from "./BasicLabelingStore";
+import ProfessionalListStore from "./ProfessionalListStore";
+import WorkStore from "./WorkStore";
+
 
 
 export const stores = {
@@ -32,5 +34,6 @@ export const stores = {
     polygonStore :  new PolygonStore(),
     groupStore : new GroupStore(),
     currentStepStore : new CurrentStepStore(),
-    basicLabelingStore : new BasicLabelingStore()
+    professionalListStore : new ProfessionalListStore(),
+    workStore : new WorkStore(),
 };

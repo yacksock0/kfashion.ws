@@ -86,12 +86,10 @@ class UserWork extends React.Component {
     }
     componentDidMount() {
         const groupNo = this.props.authStore.loginUser.groupNo;
-        const id = this.props.authStore.loginUser.id;
         this.props.userListStore.LoadGroupUserList(groupNo);
         this.props.enqueueSnackbar("User List", {
             variant: 'info'
         });
-        this.props.authStore.checkLogin();
     }
     render() {
         const { classes } = this.props;
@@ -109,8 +107,6 @@ class UserWork extends React.Component {
                                     return {
                                         id: item.id,
                                         name: item.name,
-                                        password: item.password,
-                                        createdDatetime: item.createdDatetime,
                                     }
                                 }) : []}
                             title="그룹 회원 리스트"

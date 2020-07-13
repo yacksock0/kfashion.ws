@@ -78,10 +78,6 @@ public class KfashionUserInfoRepository {
         mapper.deleteGroupUser(user);
     }
 
-    public int selectCheckAuthorityNo(String workId) {
-        return mapper.selectCheckAuthorityNo(workId);
-    }
-
     public int getGroupUser(String userId) {
         return mapper.getGroupUser(userId);
     }
