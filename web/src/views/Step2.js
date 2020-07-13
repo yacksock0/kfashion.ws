@@ -435,9 +435,30 @@ class Step2 extends React.Component {
     };
 
     handleSave = () => {
-
-        const res = axios.post('/api/v1/kfashion/label/basicLabel',param);
+        const res = axios.post('/api/v1/kfashion/label/basicLabel', {data: {
+                workNo: this.props.imageStore.isWorkNo,
+                workStep:4,
+                no:2,
+                labelNo:this.props.polygonStore.polyInfo,
+                color:this.state.no,
+                color1:this.state.no1,
+                color2:this.state.no2,
+                color3:this.state.no3,
+                colorCategoryNo: this.state.colorCategoryNo,
+                subColor:this.state.subNo,
+                subColor1:this.state.subNo1,
+                subColor2:this.state.subNo2,
+                subColor3:this.state.subNo3,
+                sleeveLength:this.state.sleeveNo,
+                sleeveLength1:this.state.sleeveNo1,
+                sleeveLength2:this.state.sleeveNo2,
+                sleeveLength3:this.state.sleeveNo3,
+                sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
+                createdId:this.props.authStore.loginUser.id,
+            },
+        });
         console.log('workNo',this.props.imageStore.isWorkNo)
+        console.log('labelNo',this.props.polygonStore.polyInfo)
         console.log('color',this.state.no)
         console.log('color1',this.state.no1)
         console.log('color2',this.state.no2)
@@ -455,12 +476,27 @@ class Step2 extends React.Component {
         console.log('createdId',this.props.authStore.loginUser.id)
         this.setState({
             tabIndex:0,
+            workNo: 0,
+            no:0,
+            color:0,
+            color1:0,
+            color2:0,
+            color3:0,
+            subColor:0,
+            subColor1:0,
+            subColor2:0,
+            subColor3:0,
+            sleeveLength:0,
+            sleeveLength1:0,
+            sleeveLength2:0,
+            sleeveLength3:0,
         })
     }
     render() {
         const { classes,history} = this.props;
         const {isWorkNo} = this.props.imageStore;
-
+        const {lastIndex} = this.props.polygonStore.polyInfo;
+        console.log('lastIndex',lastIndex)
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -591,15 +627,15 @@ class Step2 extends React.Component {
                                                  color="primary"
                                              />) : ''
                                          }
-                                         <Button style={{marginTop: 20}}
-                                                 type="button"
-                                                 className={classes.buttonType2}
-                                                 color="primary"
-                                                 variant="outlined"
-                                                 onClick={()=>this.handleSave()}
-                                         >
-                                             저장
-                                         </Button>
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={()=>(this.handleSave())}
+                                             >
+                                                 저장
+                                             </Button>
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -647,15 +683,17 @@ class Step2 extends React.Component {
                                                  color="primary"
                                              />) : ''
                                          }
-                                         <Button style={{marginTop: 20}}
-                                                 type="button"
-                                                 className={classes.buttonType2}
-                                                 color="primary"
-                                                 variant="outlined"
-                                                 onClick={()=>this.handleSave()}
-                                         >
-                                             저장
-                                         </Button>
+                                         {lastIndex == 3 ? (
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={()=>(this.handleSave())}
+                                             >
+                                                 저장
+                                             </Button>
+                                         ):'' }
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -703,15 +741,17 @@ class Step2 extends React.Component {
                                                  color="primary"
                                              />) : ''
                                          }
-                                         <Button style={{marginTop: 20}}
-                                                 type="button"
-                                                 className={classes.buttonType2}
-                                                 color="primary"
-                                                 variant="outlined"
-                                                 onClick={()=>this.handleSave()}
-                                         >
-                                             저장
-                                         </Button>
+                                         {lastIndex == 4 ? (
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={()=>(this.handleSave())}
+                                             >
+                                                 저장
+                                             </Button>
+                                         ):'' }
                                      </div>
                                  </TabPanel>
 
