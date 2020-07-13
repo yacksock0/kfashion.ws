@@ -4,8 +4,8 @@ import { Line } from 'rc-progress';
 import axios from "axios";
 
 export class ProgressBar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             percent: 0,
             total: 0,
@@ -18,9 +18,8 @@ export class ProgressBar extends Component {
         const totalWork = 0;
         const finishWork = 0;
 
-        console.log('id', this.props.rowDataId)
 
-        axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
+        axios.get(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
             .then(response => {
                 const selectWorkProgressRate = response.data.selectWorkProgressRate;
                 console.log(selectWorkProgressRate.totalWork);
