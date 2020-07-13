@@ -16,6 +16,7 @@ import Safe from "../step3/Safe";
 import Silhouette from "../step3/Silhouette";
 import {inject, observer} from "mobx-react";
 import Chip from "@material-ui/core/Chip";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const styles = theme => ({
     mainContainer: {
@@ -233,12 +234,7 @@ class CategoryComponent extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.categoryNo > 0 ?
-                                                (<Chip
-                                                    variant="outlined"
-                                                    label={this.state.categoryName}
-                                                    onDelete={this.handleDelete}
-                                                    color="primary"
-                                                />) : ''
+                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.categoryName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -254,12 +250,7 @@ class CategoryComponent extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.detailNo > 0 ?
-                                                (<Chip
-                                                    variant="outlined"
-                                                    label={this.state.detailName}
-                                                    onDelete={this.handleDeleteDetail}
-                                                    color="primary"
-                                                />) : ''
+                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {this.state.detailName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -275,12 +266,7 @@ class CategoryComponent extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.printNo > 0 ?
-                                                (<Chip
-                                                    variant="outlined"
-                                                    label={this.state.printName}
-                                                    onDelete={this.handleDeletePrint}
-                                                    color="primary"
-                                                />) : ''
+                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {this.state.printName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -296,12 +282,7 @@ class CategoryComponent extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.textureNo > 0 ?
-                                                (<Chip
-                                                    variant="outlined"
-                                                    label={this.state.textureName}
-                                                    onDelete={this.handleDeleteTexture}
-                                                    color="primary"
-                                                />) : ''
+                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {this.state.textureName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -317,12 +298,7 @@ class CategoryComponent extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.lengthNo > 0 ?
-                                                (<Chip
-                                                    variant="outlined"
-                                                    label={this.state.lengthName}
-                                                    onDelete={this.handleDeleteCloth}
-                                                    color="primary"
-                                                />) : ''
+                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {this.state.lengthName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -338,12 +314,7 @@ class CategoryComponent extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.necklineNo > 0 ?
-                                                (<Chip
-                                                    variant="outlined"
-                                                    label={this.state.necklineName}
-                                                    onDelete={this.handleDeleteNeckline}
-                                                    color="primary"
-                                                />) : ''
+                                            (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -359,12 +330,7 @@ class CategoryComponent extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.karaNo > 0 ?
-                                                (<Chip
-                                                    variant="outlined"
-                                                    label={this.state.karaName}
-                                                    onDelete={this.handleDeleteKara}
-                                                    color="primary"
-                                                />) : ''
+                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -380,12 +346,7 @@ class CategoryComponent extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.fitNo > 0 ?
-                                                (<Chip
-                                                    variant="outlined"
-                                                    label={this.state.fitName}
-                                                    onDelete={this.handleDeleteFit}
-                                                    color="primary"
-                                                />) : ''
+                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }
                                         </div>
                                         <Button style={{marginTop: 50}}
