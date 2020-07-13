@@ -16,13 +16,13 @@
     <select id="selectColorList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=3;
+        WHERE category_no=2;
     </select>
 
     <select id="selectSleeveLengthList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         from kfashion_category_item
-        WHERE category_no=8;
+        WHERE category_no=7;
     </select>
 
     <select id="selectStyleList" resultMap="kfashionCategoryItemResultMap">
@@ -34,49 +34,49 @@
     <select id="selectCategoryList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=2;
+        WHERE category_no=1;
     </select>
 
     <select id="selectDetailList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=4;
+        WHERE category_no=3;
     </select>
 
     <select id="selectPrintList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=5;
+        WHERE category_no=4;
     </select>
 
     <select id="selectTextureList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=6;
+        WHERE category_no=5;
     </select>
 
     <select id="selectLengthList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=7;
+        WHERE category_no=6;
     </select>
 
     <select id="selectNeckLineList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=9;
+        WHERE category_no=8;
     </select>
 
     <select id="selectKaraList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=10;
+        WHERE category_no=9;
     </select>
 
     <select id="selectFitList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=11;
+        WHERE category_no=10;
     </select>
 
     <select id="selectSafeList" resultMap="kfashionCategoryItemResultMap">

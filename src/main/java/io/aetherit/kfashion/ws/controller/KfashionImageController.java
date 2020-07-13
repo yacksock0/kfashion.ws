@@ -148,16 +148,15 @@ public class KfashionImageController {
 
     /**
      * 이미지업로드 리스트
-     * @param createdId
+     * @param
      * @return ResponseEntity
      * @throws
      */
 
     @GetMapping(value="/boundaryList")
-    public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest,
-                                               @RequestParam(value="createdId")String createdId) {
+    public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList(createdId);
+        List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList();
         resultMap.put("boundaryList", boundaryList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }

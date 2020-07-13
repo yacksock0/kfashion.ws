@@ -136,8 +136,7 @@ class ImageUpload extends React.Component {
         this.props.enqueueSnackbar("Image Upload", {
             variant: 'info'
         })
-        const createdId = this.props.authStore.isUserId;
-        this.props.imageStore.LoadImage(createdId)
+        this.props.imageStore.LoadImage()
     }
     componentWillUnmount() {
         this.props.imageStore.initStore();

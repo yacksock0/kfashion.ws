@@ -8,7 +8,7 @@ import java.util.Map;
 public interface KfashionImageMapper {
     void insertImgUpload(KfashionImage kfashionImage);
 
-    List<KfashionImage> selectBoundaryList(String createdId);
+    List<KfashionImage> selectBoundaryList();
 
     Map<String, Object> getByteImage(int workNo);
 
