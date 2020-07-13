@@ -73,10 +73,10 @@ export default class ImageStore {
         return this.boundaryList;
     }
 
-    LoadImage = flow(function* loadImage(createdId) {
+    LoadImage = flow(function* loadImage() {
         this.boundaryList = [];
         try {
-          const response = yield axios.get('/api/v1/kfashion/img/boundaryList?createdId='+createdId)
+          const response = yield axios.get('/api/v1/kfashion/img/boundaryList')
           this.boundaryList = response.data.boundaryList;
         } catch (e) {
             console.log('error')
@@ -85,7 +85,6 @@ export default class ImageStore {
 
     deleteImg = flow(function* (oldData) {
         console.log(oldData);
-        const createdId = oldData.createdId;
         try {
             const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${oldData.workNo}`, {
                 data:
@@ -94,7 +93,7 @@ export default class ImageStore {
                     }
             })
                 if(resp.status === 200) {
-                    this.LoadImage(createdId);
+                    this.LoadImage();
                 }
         } catch (err) {
             console.log(err);

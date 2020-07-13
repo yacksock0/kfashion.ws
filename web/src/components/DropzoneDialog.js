@@ -51,7 +51,7 @@ class DropzoneDialogExample extends Component {
             this.props.imageStore.countReset(0);
             this.props.imageStore.fileupload(file[i], userId);
         }
-        this.props.imageStore.LoadImage(userId);
+        this.props.imageStore.LoadImage();
     }
 
     handelOnDrop(files) {
