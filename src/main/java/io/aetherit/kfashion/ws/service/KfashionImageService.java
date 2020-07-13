@@ -23,8 +23,8 @@ public class KfashionImageService {
         repository.insertImgUpload(kfashionImage);
     }
 
-    public List<KfashionImage> selectBoundaryList(String createdId) {
-        return repository.selectBoundaryList(createdId);
+    public List<KfashionImage> selectBoundaryList() {
+        return repository.selectBoundaryList();
     }
 
     public Map<String, Object> getByteImage(int workNo) {

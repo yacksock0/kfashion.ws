@@ -21,8 +21,8 @@ public class KfashionImageRepository {
         mapper.insertImgUpload(kfashionImage);
     }
 
-    public List<KfashionImage> selectBoundaryList(String createdId) {
-        return mapper.selectBoundaryList(createdId);
+    public List<KfashionImage> selectBoundaryList() {
+        return mapper.selectBoundaryList();
     }
 
     public Map<String, Object> getByteImage(int workNo) {
