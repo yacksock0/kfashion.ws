@@ -136,13 +136,13 @@ class Polygon extends React.Component {
         }]
     }];
     rectangle = [{
-        rectNo : '',
-        rectTop : '',
-        rectLeft : '',
-        rectWidth : '',
-        rectHeight : '',
-        rectScaleX : '',
-        rectScaleY : '',
+        id : '',
+        left : '',
+        top : '',
+        width : '',
+        height : '',
+        scaleX : '',
+        scaleY : '',
     }];
 
     canvas;
@@ -171,6 +171,7 @@ class Polygon extends React.Component {
     }
 
     componentDidMount() {
+        this.props.currentStepStore.setStep(1);
         this.props.enqueueSnackbar("Polygon Work", {
             variant: 'info'
         });
@@ -353,6 +354,8 @@ class Polygon extends React.Component {
             this.rectScaleY = path.scaleY;
             this.rectScaleX = path.scaleX;
 
+
+
             const rect = new fabric.Rect({
                 id : this.polyNo,
                 left: path.left,
@@ -379,18 +382,26 @@ class Polygon extends React.Component {
             points: [{
             }],
         };
+        const newRectangle = [{
+            id : 0,
+            left : 0,
+            top : 0,
+            width : 0,
+            height : 0,
+            scaleX : 0,
+            scaleY : 0,
+        }];
         if(this.state.finishbtn) {
             if (this.canvas.getObjects().length != 0) {
-                const newRectangle = [{
-                    rectNo : this.polyNo,
-                    rectTop : this.rectTop,
-                    rectLeft : this.rectLeft,
-                    rectWidth : this.rectWidth,
-                    rectHeight : this.rectHeight,
-                    rectScaleX : this.rectScaleX,
-                    rectScaleY : this.rectScaleY,
-                }];
-                this.rectangle.push(newRectangle);
+                this.rectangle.push({
+                    id: this.polyNo,
+                    left: this.rectLeft,
+                    top: this.rectTop,
+                    width: this.rectWidth,
+                    height: this.rectHeight,
+                    scaleX:  this.rectScaleX,
+                    scaleY:  this.rectScaleY,
+                });
                 newPolygon.polyNo = newPolyNo;
                 for(let i in this.polyPointX) {
                     const x = this.polyPointX[i];
@@ -400,7 +411,7 @@ class Polygon extends React.Component {
                 this.polygon.push(newPolygon);
                 this.state.savebtn = false;
                 this.deleteAll(newPolyNo);
-                console.log(this.polygon);
+                // console.log(this.polygon);
 
                 switch (newPolyNo) {
                     case 1 :
@@ -441,16 +452,16 @@ class Polygon extends React.Component {
             this.state.savebtn = false;
 
             // -- RectLocation 저장
-            // this.props.rectStore.objGet(this.objectList);
-            // this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-            // this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-            // this.props.rectStore.doRectLocationUp();
+            this.props.rectStore.objGet(this.rectangle, this.polygon);
+            this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+            this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+            this.props.rectStore.doRectLocationUp();
 
             // -- PolygonLocation 저장
-            this.props.polygonStore.objGet(this.polygon);
-            this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
-            this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
-            this.props.polygonStore.doPolygonLocationUp();
+            // this.props.polygonStore.objGet(this.polygon);
+            // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
+            // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
+            // this.props.polygonStore.doPolygonLocationUp();
 
             // -- Tap Menu List로 전환
             this.setState({
@@ -461,8 +472,7 @@ class Polygon extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
-        this.setState({tabIndex:0,
-        });
+        this.setState({tabIndex:0 });
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);

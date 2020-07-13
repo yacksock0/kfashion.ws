@@ -3,6 +3,7 @@ package io.aetherit.kfashion.ws.repository.mapper;
 import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
 
+import java.util.Date;
 import java.util.List;
 
 public interface KfashionWorkHistoryMapper {
@@ -10,5 +11,5 @@ public interface KfashionWorkHistoryMapper {
 
     void deleteWorkHistory(KfashionImage workImage);
     List<Long> selectWorkAssignment(int workCount);
-    List<KfashionWorkHistory> selectWorkProgressRate(String createdId);
+    KfashionWorkHistory selectWorkProgressRate(String createdId);
 }

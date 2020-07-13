@@ -6,6 +6,7 @@ import io.aetherit.kfashion.ws.repository.KfashionWorkHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,5 +28,7 @@ public class KfashionWorkHistoryService {
 
     public List<Long> selectWorkAssignment(int workCount) { return repository.selectWorkAssignment(workCount); }
 
-    public  List<KfashionWorkHistory> selectWorkProgressRate(String createdId) { return repository.selectWorkProgressRate(createdId); }
+    public  KfashionWorkHistory selectWorkProgressRate(String createdId) {
+        return repository.selectWorkProgressRate(createdId);
+    }
 }

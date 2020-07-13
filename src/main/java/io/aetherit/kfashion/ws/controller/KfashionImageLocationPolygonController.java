@@ -49,6 +49,7 @@ public class KfashionImageLocationPolygonController {
         public ResponseEntity<String> insertLocationPolygon(HttpServletRequest httpServletRequest,
                                                             @RequestBody List<KfashionImageLocationPolygonPoint> polygonList
                                                             )throws Exception {
+            System.out.println("111111111111111111111111111");
             System.out.println(polygonList);
             String msg= "";
 
@@ -68,6 +69,7 @@ public class KfashionImageLocationPolygonController {
                     polygon.setWorkNo(polygonList.get(i).getWorkNo());
                     polygon.setWorkStep(polygonList.get(i).getWorkStep());
                     polygon.setPolyNo(polygonList.get(i).getPolyNo());
+                    System.out.println("polygon" + polygon);
                     kfashionImageLocationPolygonService.insertLocationPolygon(polygon);
 
 
@@ -83,6 +85,7 @@ public class KfashionImageLocationPolygonController {
                         polygonPoint.setLocationX(polygonList.get(i).getPoints().get(j).getX());
                         polygonPoint.setLocationY(polygonList.get(i).getPoints().get(j).getY());
                         polygonPoint.setLocationSeq(j);
+                        System.out.println("polygonPoint" + polygonPoint);
                         msg=kfashionImageLocationPolygonPointService.insertLocationPolygonPoint(polygonPoint);
                     }
 
