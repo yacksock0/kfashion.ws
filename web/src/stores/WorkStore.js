@@ -30,15 +30,26 @@ const UpdateState = {
     Uploaded: 'Uploaded',
     UploadFailed: 'UploadFailed',
 };
+
 export default class WorkStore {
     @observable workQuantity= 0;
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
+    @observable authorityNo = 0;
+    @observable WorkProgressRate = [];
+    @observable total =0;
+    @observable complete =0;
+    @observable percent=0;
 
     @action initStore = () => {
         this.professionalList = 0;
     }
+
+    @action changeAuthorityNo = (authorityNo) => {
+        this.authorityNo = authorityNo;
+    }
+
 
     LoadWorkQuantity = flow(function* workQuantity(authorityNo) {
         this.workQuantity = 0;
@@ -51,26 +62,22 @@ export default class WorkStore {
     });
 
 
-    // doProfessionalUp = flow(function* doProfessionalUp() {
+    // LoadProgressList = flow(function* loadProgressList(rowDataId) {
     //     this.state = State.Pending;
+    //     let authorityNo = this.authorityNo;
     //     try {
-    //         const kfashionPolygonList = this.polygonInsertList.map(r => ({
-    //             workNo :this.NewRectLocation.workNo,
-    //             workStep : this.NewRectLocation.workStep,
-    //             createdId : this.NewRectLocation.createdId,
-    //             rectNo: r.polyNo,
-    //             polyNo: r.polyNo,
-    //             points : r.points,
-    //         }));
-    //         const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
-    //         if (resp.status === 200) {
-    //             this.state = State.Success;
-    //             const createdId = this.NewPolygonLocation.createdId;
-    //             this.LoadPolygonImage(createdId);
-    //         } else {
-    //         }
-    //     } catch (e) {
-    //         console.log('error')
+    //         const response = yield axios.get('/api/v1/kfashion/work/history/progressRate?createdId=' + rowDataId + '&authorityNo=' + authorityNo)
+    //             this.WorkProgressRate = response.data.selectWorkProgressRate;
+    //             this.total = this.WorkProgressRate.totalWork;
+    //             this.complete = this.WorkProgressRate.finishWork;
+    //             this.percent = (this.complete/this.total)*100;
+    //
+    //             console.log(this.total)
+    //             console.log(this.complete)
+    //             console.log(this.percent)
+    //
+    //     }catch (e) {
+    //         console.log("error LoadProgressList", e);
     //     }
-    // });
+    // })
 }

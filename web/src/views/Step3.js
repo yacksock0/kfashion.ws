@@ -109,8 +109,10 @@ class Step3 extends React.Component {
         });
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+            tabIndex1 : this.props.polygonStore.tabIndex1,
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
+
     }
 
     handleClickSubmit = () => {
@@ -125,6 +127,11 @@ class Step3 extends React.Component {
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
+        console.log(this.props.polygonStore.tabIndex1);
+        this.setState({
+            tabIndex1:this.props.polygonStore.tabIndex1,
+            tabIndex:0,
+        })
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width : 750,
             height : 850,
@@ -188,7 +195,7 @@ class Step3 extends React.Component {
 
                                         <TabPanel>
 
-                                            <Tabs onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
+                                            <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
                                             <Tab tabIndex1={0} style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
                                             <Tab tabIndex1={1} style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>

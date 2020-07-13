@@ -187,6 +187,7 @@ class Step2 extends React.Component {
     handleTabChangeTop= (event, newNumber) => {
         this.setState({ number: newNumber});
     }
+
     handleClickItem = (workNo, imageData) => {
 
         this.props.imageStore.changeWorkNo(workNo);
@@ -194,8 +195,8 @@ class Step2 extends React.Component {
         this.props.polygonStore.LoadPolygonLocation(workNo);
         console.log(this.props.polygonStore.tabIndex1);
         this.setState({
-            tabIndex:0,
             tabIndex1:this.props.polygonStore.tabIndex1,
+            tabIndex:0,
         })
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width : 750,
@@ -403,8 +404,6 @@ class Step2 extends React.Component {
             makePath += ' z';
             let path = new fabric.Path(makePath);
             path.opacity = 0.5;
-
-            console.log(makePath);
             this.canvas.add(path);
         }else{
             alert("poly정보가 존재하지 않습니다.")
@@ -414,6 +413,7 @@ class Step2 extends React.Component {
     render() {
         const { classes,history} = this.props;
         const {isWorkNo} = this.props.imageStore;
+        const {tabIndex1} = this.props.polygonStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -435,7 +435,7 @@ class Step2 extends React.Component {
                              </TabList>
 
                          <TabPanel>
-                             <Tabs onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
+                             <Tabs selectedIndex={tabIndex1-1} onSelect={tabIndex1 => this.setState({ tabIndex1 })}>
                              <TabList>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>

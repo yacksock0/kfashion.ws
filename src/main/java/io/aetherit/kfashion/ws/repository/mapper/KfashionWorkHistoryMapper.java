@@ -11,5 +11,5 @@ public interface KfashionWorkHistoryMapper {
     void insertWorkHistory(KfashionWorkHistory workHistory);
 
     void deleteWorkHistory(KfashionImage workImage);
-    KfashionWorkHistory selectWorkProgressRate(String createdId);
+    KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId);
 }
