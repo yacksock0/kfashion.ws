@@ -74,7 +74,7 @@ export default class Silhouette extends React.Component {
                             {silhouetteList.map((silhouette) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={silhouette.no} onClick={() => this.handledDetail(silhouette)}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={silhouette.no} onClick={() => this.handleClick(silhouette)}>
                                             <h2>{silhouette.categoryItemName}</h2>
                                         </Button>
                                     </div>

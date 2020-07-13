@@ -75,7 +75,7 @@ export default class ColorKara extends React.Component {
                             {fitList.map((fit) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={fit.no} onClick={() => this.handledDetail(fit)}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
                                             <h2>{fit.categoryItemName}</h2>
                                         </Button>
                                     </div>

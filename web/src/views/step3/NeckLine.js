@@ -80,7 +80,7 @@ export default class NeckLine extends React.Component {
                             {neckLineList.map((neckLine) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={neckLine.no} onClick={() => this.handledDetail(neckLine)}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={neckLine.no} onClick={() => this.handleClick(neckLine)}>
                                             <h2>{neckLine.categoryItemName}</h2>
                                         </Button>
                                     </div>

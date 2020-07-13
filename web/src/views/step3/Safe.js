@@ -75,7 +75,7 @@ export default class Safe extends React.Component {
                             {safeList.map((safe) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={safe.no} onClick={() => this.handledDetail(safe)}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={safe.no} onClick={() => this.handleClick(safe)}>
                                             <h2>{safe.categoryItemName}</h2>
                                         </Button>
                                     </div>
