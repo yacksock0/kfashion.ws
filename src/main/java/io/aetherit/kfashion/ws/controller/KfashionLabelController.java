@@ -57,12 +57,8 @@ public class KfashionLabelController {
                 workHistory.setWorkStep(basicLabel.getWorkStep());
                 workHistory.setCreatedId(basicLabel.getCreatedId());
                 kfashionWorkHistoryService.insertWorkHistory(workHistory);
-                int color = basicLabel.getColor();
-                int color1 = basicLabel.getColor1();
-                int color2 = basicLabel.getColor2();
-                int color3 = basicLabel.getColor3();
-                KfashionLabel basic = new KfashionLabel();
-                if(color < 0) {
+
+                        KfashionLabel basic = new KfashionLabel();
                         basic.setWorkNo(basicLabel.getWorkNo());
                         basic.setWorkStep(basicLabel.getWorkStep());
                         basic.setLabelNo(1);
@@ -79,7 +75,6 @@ public class KfashionLabelController {
                         basic.setCategoryNo(basicLabel.getSleeveLength());
                         basic.setCategoryItemNo(basicLabel.getSleeveLengthCategoryNo());
                         kfashionLabelService.insertBasicLabel(basic);
-                }else if(color1 < 0) {
                         basic.setWorkNo(basicLabel.getWorkNo());
                         basic.setWorkStep(basicLabel.getWorkStep());
                         basic.setLabelNo(2);
@@ -96,7 +91,6 @@ public class KfashionLabelController {
                         basic.setCategoryNo(basicLabel.getSleeveLength1());
                         basic.setCategoryItemNo(basicLabel.getSleeveLengthCategoryNo());
                         kfashionLabelService.insertBasicLabel(basic);
-                }else if(color2 < 0) {
                         basic.setWorkNo(basicLabel.getWorkNo());
                         basic.setWorkStep(basicLabel.getWorkStep());
                         basic.setLabelNo(3);
@@ -113,7 +107,6 @@ public class KfashionLabelController {
                         basic.setCategoryNo(basicLabel.getSleeveLength2());
                         basic.setCategoryItemNo(basicLabel.getSleeveLengthCategoryNo());
                         kfashionLabelService.insertBasicLabel(basic);
-                } else if(color3 < 0) {
                         basic.setWorkNo(basicLabel.getWorkNo());
                         basic.setWorkStep(basicLabel.getWorkStep());
                         basic.setLabelNo(4);
@@ -130,7 +123,6 @@ public class KfashionLabelController {
                         basic.setCategoryNo(basicLabel.getSleeveLength3());
                         basic.setCategoryItemNo(basicLabel.getSleeveLengthCategoryNo());
                         kfashionLabelService.insertBasicLabel(basic);
-                }
 
                 return new ResponseEntity<Object>("success", HttpStatus.OK);
         }

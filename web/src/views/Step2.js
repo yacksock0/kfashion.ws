@@ -435,28 +435,8 @@ class Step2 extends React.Component {
     };
 
     handleSave = () => {
-        const res = axios.post('/api/v1/kfashion/label/basicLabel', {data: {
-                workNo: this.props.imageStore.isWorkNo,
-                workStep:4,
-                no:2,
-                labelNo:1,
-                color:this.state.no,
-                color1:this.state.no1,
-                color2:this.state.no2,
-                color3:this.state.no3,
-                colorCategoryNo: this.state.colorCategoryNo,
-                subColor:this.state.subNo,
-                subColor1:this.state.subNo1,
-                subColor2:this.state.subNo2,
-                subColor3:this.state.subNo3,
-                sleeveLength:this.state.sleeveNo,
-                sleeveLength1:this.state.sleeveNo1,
-                sleeveLength2:this.state.sleeveNo2,
-                sleeveLength3:this.state.sleeveNo3,
-                sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
-                createdId:this.props.authStore.loginUser.id,
-            },
-        });
+
+        const res = axios.post('/api/v1/kfashion/label/basicLabel',param);
         console.log('workNo',this.props.imageStore.isWorkNo)
         console.log('color',this.state.no)
         console.log('color1',this.state.no1)
