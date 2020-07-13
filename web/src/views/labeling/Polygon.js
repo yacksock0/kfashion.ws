@@ -463,11 +463,18 @@ class Polygon extends React.Component {
             // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
             // this.props.polygonStore.doPolygonLocationUp();
 
+
+            this.save1 = false;
+            this.save2 = false;
+            this.save3 = false;
+            this.save4 = false;
+            this.buttonState();
             // -- Tap Menu List로 전환
             this.setState({
                 tabIndex: 1,
             });
             alert("저장되었습니다.");
+
         }
     }
 
