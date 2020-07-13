@@ -34,12 +34,13 @@
         WHERE work_no = #{workNo}
     </delete>
 
-    <select id="selectWorkAssignment" parameterType="Int" resultType="Long">
+
+    <select id="selectWorkAssignment" resultType="Long">
            SELECT work_no
             FROM kfashion_work_history
             WHERE work_no not in (SELECT work_no
             FROM kfashion_work_history
-            WHERE work_step = 2 )  ORDER BY work_no ASC limit  #{workCount};
+            WHERE work_step = #{authorityNo} )  ORDER BY work_no ASC limit  #{workCount}
     </select>
 
     <select id="selectWorkProgressRate" parameterType="String" resultMap="kfashionWorkHistoryResultMap">
@@ -58,7 +59,7 @@
                     SELECT MAX(created_datetime)
                                                 FROM kfashion_work_history
                                                 WHERE work_step = 2
-                                                 AND created_id = #{createdId} ));
+                                                 AND created_id = #{createdId} ))
     </select>
 
 </mapper>

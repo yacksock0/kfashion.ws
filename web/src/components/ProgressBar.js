@@ -5,7 +5,7 @@ import axios from "axios";
 
 export class ProgressBar extends Component {
     constructor(props) {
-        super(props);
+        super();
         this.state = {
             percent: 0,
             total: 0,
@@ -19,7 +19,7 @@ export class ProgressBar extends Component {
         const finishWork = 0;
 
 
-        axios.get(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
+        axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
             .then(response => {
                 const selectWorkProgressRate = response.data.selectWorkProgressRate;
                 console.log(selectWorkProgressRate.totalWork);
@@ -28,8 +28,8 @@ export class ProgressBar extends Component {
                 const complete = selectWorkProgressRate.finishWork;
 
                 this.setState({
-                    total: selectWorkProgressRate.totalWork,
-                    complete: selectWorkProgressRate.finishWork,
+                    total: total,
+                    complete: complete,
                     percent : (complete / total) *100
                 });
             })
@@ -54,7 +54,6 @@ export class ProgressBar extends Component {
             display:'inline-block'
         };
         const {total, complete} = this.state;
-
         return (
             <div style={{display:'inline'}}>
                 <div style={containerStyle}>

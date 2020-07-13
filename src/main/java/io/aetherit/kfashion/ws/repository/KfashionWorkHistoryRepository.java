@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -26,8 +27,8 @@ public class KfashionWorkHistoryRepository {
         mapper.deleteWorkHistory(workImage);
     }
 
-    public List<Long> selectWorkAssignment(int workCount) {
-        return mapper.selectWorkAssignment(workCount);
+    public List<Long> selectWorkAssignment(HashMap<String, Object> workMap) {
+        return mapper.selectWorkAssignment(workMap);
     }
 
     public  KfashionWorkHistory selectWorkProgressRate(String createdId) {

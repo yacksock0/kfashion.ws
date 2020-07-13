@@ -155,6 +155,10 @@ public class KfashionUserInfoService {
         return repository.selectUser(id);
     }
 
+    public KfashionUserInfo getAdmin(String userId) {
+        return repository.selectAdmin(userId);
+    }
+
     private boolean isNotAcceptableId(String id) {
         boolean isNotAcceptable = false;
 
@@ -201,5 +205,14 @@ public class KfashionUserInfoService {
     public void deleteGroupAdminUser(KfashionUserInfo user) {
         repository.deleteGroupAdminUser(user);
     }
+
+    public int selectCheckAuthorityNo(String workId) {
+        return repository.selectCheckAuthorityNo(workId);
+    }
+
+    public int getGroupUser(String userId) {
+        return repository.getGroupUser(userId);
+    }
+
 
 }
