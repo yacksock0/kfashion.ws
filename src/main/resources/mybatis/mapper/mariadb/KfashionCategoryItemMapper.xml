@@ -22,14 +22,14 @@
     <select id="selectSleeveLengthList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         from kfashion_category_item
-        WHERE category_no=39
-        AND category_type=0
+        WHERE category_no=7
     </select>
 
     <select id="selectStyleList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        where category_no=1
+        WHERE category_no=39
+        AND category_type=0
     </select>
 
     <select id="selectCategoryList0" resultMap="kfashionCategoryItemResultMap">
@@ -130,7 +130,7 @@
 
 
     <select id="selectFitList3" resultMap="kfashionCategoryItemResultMap">
-        SELECT *
+         SELECT *
         FROM kfashion_category_item
         WHERE category_no=27
         AND category_type=3
