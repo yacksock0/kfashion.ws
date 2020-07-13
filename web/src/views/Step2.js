@@ -13,6 +13,7 @@ import {fabric} from "fabric";
 import {toJS} from "mobx";
 import Chip from '@material-ui/core/Chip';
 import axios from "axios";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const styles = theme => ({
     root: {
@@ -461,6 +462,8 @@ class Step2 extends React.Component {
             sleeveLength3:this.state.sleeveNo3,
             sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
             createdId:this.props.authStore.loginUser.id,});
+        console.log('colorCategoryNo',this.state.colorCategoryNo)
+        console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
         const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
                 if(res.status === 200) {
                     this.setState({
@@ -486,9 +489,8 @@ class Step2 extends React.Component {
     }
     render() {
         const { classes,history} = this.props;
+        const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
-        const {lastIndex} = this.props.polygonStore.polyInfo;
-        console.log('lastIndex',lastIndex)
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -556,12 +558,7 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.state.sleeveNo >0 ?
-                                             (<Chip
-                                                 variant="outlined"
-                                                 label={this.state.sleeveName}
-                                                 onDelete={this.handleDelete}
-                                                 color="primary"
-                                             />) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.sleeveName} </Button> ) : ''
                                          }
                                          <Button style={{marginTop: 20}}
                                                  type="button"
@@ -612,12 +609,7 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.state.sleeveNo1 >0 ?
-                                             (<Chip
-                                                 variant="outlined"
-                                                 label={this.state.sleeveName1}
-                                                 onDelete={this.handleDelete1}
-                                                 color="primary"
-                                             />) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
                                          }
                                              <Button style={{marginTop: 20}}
                                                      type="button"
@@ -668,14 +660,8 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.state.sleeveNo2 >0 ?
-                                             (<Chip
-                                                 variant="outlined"
-                                                 label={this.state.sleeveName2}
-                                                 onDelete={this.handleDelete2}
-                                                 color="primary"
-                                             />) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.state.sleeveName2} </Button> ) : ''
                                          }
-                                         {lastIndex == 3 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -685,7 +671,6 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
-                                         ):'' }
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -726,14 +711,8 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.state.sleeveNo3 >0 ?
-                                             (<Chip
-                                                 variant="outlined"
-                                                 label={this.state.sleeveName3}
-                                                 onDelete={this.handleDelete3}
-                                                 color="primary"
-                                             />) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete3} endIcon={<DeleteIcon />} > {this.state.sleeveName3} </Button> ) : ''
                                          }
-                                         {lastIndex == 4 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -743,7 +722,6 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
-                                         ):'' }
                                      </div>
                                  </TabPanel>
 
@@ -753,11 +731,8 @@ class Step2 extends React.Component {
                             <BasicImageList onClick={this.handleClickItem} />
                           </TabPanel>
                          </Tabs>
-
                      </Grid>
-
                  </Grid>
-
                 </div>
 
                 <hr></hr>
@@ -782,6 +757,7 @@ class Step2 extends React.Component {
                 {/*    Next*/}
                 {/*</Button>*/}
                     </Grid>
+                    {authorityNo > 3 ? (
                     <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                         <Button
                             type="button"
@@ -793,6 +769,7 @@ class Step2 extends React.Component {
                             Next Step
                         </Button>
                     </Grid>
+                        ): ''}
                 </Grid>
             </Container>
         );

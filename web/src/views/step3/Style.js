@@ -1,18 +1,10 @@
 import React from 'react';
-import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableHeader from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
 import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
-import Category from "./Category";
+import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from "@material-ui/core/Chip";
 
 @inject('professionalLabelStore','authStore')
@@ -110,22 +102,12 @@ export default class SelectTest extends React.Component {
                         </div>
                         <div style={{display:"inline-block", marginRight:10}}>
                         {this.state.selectedNo > 0 ?
-                            (<Chip
-                                variant="outlined"
-                                label={this.state.selectedName}
-                                onDelete={this.handleDelete}
-                                color="primary"
-                            />) : ''
+                            (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.selectedName} </Button> ) : ''
                         }
                         </div>
                         <div style={{display:"inline-block"}}>
                             {this.state.selectedSubNo > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={this.state.selectedSubName}
-                                    onDelete={this.handleDeleteSub}
-                                    color="primary"
-                                />) : ''
+                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteSub} endIcon={<DeleteIcon />} > {this.state.selectedSubName} </Button> ) : ''
                             }
                         </div>
                     </div>
@@ -156,9 +138,9 @@ export default class SelectTest extends React.Component {
                                 <Grid container>
                                     {styleList.map((style) =>
                                         <Grid item xs={3}>
-                                            <div style={{textAlign:'center', margin:10}}>
+                                            <div style={{textAlign:'center', margin:5}}>
                                                 <Button style={{width:'100%', height:60}} variant="outlined" key={style.no} onClick={() => this.handleClick(style)}>
-                                                    <h2>{style.categoryItemName}</h2>
+                                                    <h3>{style.categoryItemName}</h3>
                                                 </Button>
                                             </div>
                                         </Grid>
@@ -166,7 +148,8 @@ export default class SelectTest extends React.Component {
                                     }
                                 </Grid>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={1}></Grid>
+                            <Grid item xs={5}>
                                 <Typography variant="h5" component="h2">
                                     서브 스타일
                                 </Typography>
@@ -175,9 +158,9 @@ export default class SelectTest extends React.Component {
                                 <Grid container>
                                     {styleList.map((style) =>
                                         <Grid item xs={3}>
-                                            <div style={{textAlign:'center', margin:10}}>
+                                            <div style={{textAlign:'center', margin:5}}>
                                                 <Button style={{width:'100%', height:60}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
-                                                    <h2>{style.categoryItemName}</h2>
+                                                    <h3>{style.categoryItemName}</h3>
                                                 </Button>
                                             </div>
                                         </Grid>

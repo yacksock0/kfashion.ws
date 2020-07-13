@@ -465,6 +465,10 @@ class Polygon extends React.Component {
 
             // -- Tap Menu List로 전환
             this.setState({
+                buttonDis1: false,
+                buttonDis2: false,
+                buttonDis3: false,
+                buttonDis4: false,
                 tabIndex: 1,
             });
             alert("저장되었습니다.");

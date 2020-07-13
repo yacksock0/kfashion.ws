@@ -109,10 +109,7 @@ class Step3 extends React.Component {
         });
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            tabIndex1 : this.props.polygonStore.tabIndex1,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
-
     }
 
     handleClickSubmit = () => {
@@ -122,7 +119,7 @@ class Step3 extends React.Component {
 
     handleClickItem = (workNo, imageData) => {
         this.setState({
-            tabIndex:0,
+            tabIndex:1,
         })
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
@@ -150,17 +147,14 @@ class Step3 extends React.Component {
     }
 
     onSelectTab(tabIndex1) {
-        this.setState({
-            tabIndex1:tabIndex1,
-        })
         this.canvas.remove(this.canvas.item(0));
-        let polyNo = tabIndex1+1;
-
+        let polyNo = tabIndex1;
         const { locationPolygonList } = this.props.polygonStore;
         const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
         console.log(selectedPoly);
 
         if(selectedPoly.length!=0){
+            this.canvas.remove(this.canvas.item(0));
             let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
             for (let i = 1; i < selectedPoly.length; i++) {
                 makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
@@ -171,8 +165,15 @@ class Step3 extends React.Component {
 
             console.log(makePath);
             this.canvas.add(path);
-
-        }else{alert("poly정보가 존재하지 않습니다.")}
+            this.setState({
+                tabIndex1:tabIndex1,
+            })
+        }else if(tabIndex1 ==0) {
+            this.setState({
+                tabIndex1:tabIndex1,
+            })
+        }else{
+            alert("poly정보가 존재하지 않습니다.")}
     };
 
     render() {
