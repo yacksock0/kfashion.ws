@@ -297,6 +297,7 @@ class Step2 extends React.Component {
         this.setState({
             sleeveNo2: sleeve.no,
             sleeveName2: sleeve.categoryItemName,
+
         })
     }
     handleClickSleeve3 = (sleeve) => {
@@ -495,8 +496,6 @@ class Step2 extends React.Component {
     render() {
         const { classes,history} = this.props;
         const {isWorkNo} = this.props.imageStore;
-        const {lastIndex} = this.props.polygonStore.polyInfo;
-        console.log('lastIndex',lastIndex)
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -683,7 +682,6 @@ class Step2 extends React.Component {
                                                  color="primary"
                                              />) : ''
                                          }
-                                         {lastIndex == 3 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -693,7 +691,6 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
-                                         ):'' }
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -741,7 +738,6 @@ class Step2 extends React.Component {
                                                  color="primary"
                                              />) : ''
                                          }
-                                         {lastIndex == 4 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -751,7 +747,6 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
-                                         ):'' }
                                      </div>
                                  </TabPanel>
 

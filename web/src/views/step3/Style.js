@@ -166,8 +166,7 @@ export default class SelectTest extends React.Component {
                                     }
                                 </Grid>
                             </Grid>
-                            <Grid item xs={1}></Grid>
-                            <Grid item xs={5}>
+                            <Grid item xs={6}>
                                 <Typography variant="h5" component="h2">
                                     서브 스타일
                                 </Typography>
