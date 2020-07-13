@@ -79,10 +79,10 @@ class UserList extends React.Component {
                     field: 'id',
                     filterPlaceholder: 'GroupNo filter',
                     tooltip: 'GroupNo로 정렬',
-                    editPlaceholder: '아이디 입력'
+                    editPlaceholder: '아이디 입력',
                 },
                 {title: '이름', field: 'name', type: 'text'},
-                {title: '비밀번호', field: 'password', type: 'hidden'},
+                {title: '비밀번호', field: 'password'},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
         }
@@ -109,6 +109,7 @@ class UserList extends React.Component {
                     <Grid item xs={12} lg={12}>
                         <MaterialTable
                             icons={tableIcons}
+                            localization={{ body: { editRow: { deleteText: '정말 삭제 하시겠습니까?'} } }}
                             columns={this.state.columns}
                             data={!!this.props.userListStore.groupUserList ?
                                 this.props.userListStore.groupUserList.map((item) => {
@@ -121,6 +122,7 @@ class UserList extends React.Component {
                                 }) : []}
                             title="그룹 회원 리스트"
                             editable={{
+                                isEditHidden: rowData => rowData.name === "createdDatetime",
                                 onRowAdd:rowData =>
                                     new Promise((resolve, reject) => {
                                         setTimeout(() => {
@@ -154,6 +156,11 @@ class UserList extends React.Component {
                                     })
                             }}
                             options={{
+                                maxBodyHeight:'70vh',
+                                sorting: false,
+                                rowStyle:{
+                                  textAlign:'center'
+                                },
                                 editCellStyle: {
                                   textAlign:"center",
                                 },
