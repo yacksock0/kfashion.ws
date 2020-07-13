@@ -43,10 +43,12 @@ export default class PolygonStore {
     @action changeNewPolygonLocationRectNo = (rectNo) => {
         this.NewPolygonLocation.rectNo =rectNo;
     }
+    @computed get rectNo() {
+        return this.NewPolygonLocation.rectNo;
+    }
     @computed get isPending() {
         return this.state === State.Pending;
     }
-
     @computed get isSignUpSuccess() {
         return this.state === State.Success;
     }

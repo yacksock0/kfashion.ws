@@ -145,6 +145,7 @@ class Step2 extends React.Component {
             sleeveNo3:0,
             sleeveName3: '',
         }
+
         this.handleDelete = this.handleDelete.bind(this)
         this.colorDelete = this.colorDelete.bind(this)
         this.colorDeleteSub = this.colorDeleteSub.bind(this)
@@ -161,6 +162,7 @@ class Step2 extends React.Component {
         this.handleDelete3 = this.handleDelete3.bind(this)
         this.colorDelete3 = this.colorDelete3.bind(this)
         this.colorDeleteSub3 = this.colorDeleteSub3.bind(this)
+        this.handleClickItem = this.handleClickItem.bind(this)
     }
     componentDidMount() {
         this.props.currentStepStore.setStep(2);
@@ -181,22 +183,14 @@ class Step2 extends React.Component {
         this.props.basicLabelStore.doBasicLabelUp();
     }
 
-    handleTabChange = (event, newValue) => {
-        this.setState({ value: newValue });
-    }
-    handleTabChangeTop= (event, newNumber) => {
-        this.setState({ number: newNumber});
-    }
-
-    handleClickItem = (workNo, imageData) => {
+    handleClickItem = (workNo, imageData, polyNo) => {
 
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
         console.log(this.props.polygonStore.tabIndex1);
         this.setState({
-            tabIndex1:this.props.polygonStore.tabIndex1,
-            tabIndex:0,
+            tabIndex1:polyNo,
         })
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width : 750,
@@ -204,6 +198,9 @@ class Step2 extends React.Component {
             originX: 'left',
             originY: 'top'
         });
+        this.setState({
+            tabIndex:0,
+        })
     }
     handleClickColor=(color)=>{
             this.setState({
@@ -297,6 +294,7 @@ class Step2 extends React.Component {
             sleeveName3: sleeve.categoryItemName,
         })
     }
+
     handleDelete(){
         this.setState({
             sleeveNo:0,
@@ -391,20 +389,25 @@ class Step2 extends React.Component {
         })
     }
 
-    onSelectTab(tabIndex) {
-        this.canvas.remove(this.canvas.item(0));
-        let polyNo = tabIndex+1;
+    onSelectTab(tabIndex1) {
+        let polyNo = tabIndex1+1;
         const { locationPolygonList } = this.props.polygonStore;
         const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
-        if(selectedPoly.length!=0){
+        if(selectedPoly.length!==0){
+            this.canvas.remove(this.canvas.item(0));
             let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
             for (let i = 1; i < selectedPoly.length; i++) {
                 makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
             }
             makePath += ' z';
             let path = new fabric.Path(makePath);
-            path.opacity = 0.5;
+            path.opacity = 0.3;
+            path.borderColor = 'red';
+            console.log(makePath);
             this.canvas.add(path);
+            this.setState({
+                tabIndex1:tabIndex1,
+            })
         }else{
             alert("poly정보가 존재하지 않습니다.")
         }
@@ -413,7 +416,7 @@ class Step2 extends React.Component {
     render() {
         const { classes,history} = this.props;
         const {isWorkNo} = this.props.imageStore;
-        const {tabIndex1} = this.props.polygonStore;
+        const tabIndex1 = this.props.polygonStore.tabIndex1-1;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -435,7 +438,7 @@ class Step2 extends React.Component {
                              </TabList>
 
                          <TabPanel>
-                             <Tabs selectedIndex={tabIndex1-1} onSelect={tabIndex1 => this.setState({ tabIndex1 })}>
+                             <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                              <TabList>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
@@ -671,7 +674,7 @@ class Step2 extends React.Component {
                              </Tabs>
                          </TabPanel>
                              <TabPanel>
-                            <BasicImageList onClick={this.handleClickItem}/>
+                            <BasicImageList onClick={this.handleClickItem} />
                           </TabPanel>
                          </Tabs>
 

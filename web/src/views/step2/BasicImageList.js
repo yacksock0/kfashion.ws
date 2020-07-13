@@ -19,6 +19,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
+import {toJS} from "mobx";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -66,9 +67,11 @@ class BasicImageList extends React.Component {
     componentWillUnmount() {
         this.props.polygonStore.initStore();
     }
-    handleClick = (workNo, imageData) => {
+    handleClick = (workNo, imageData,polyNo) => {
+
         if(this.props.onClick) {
-            this.props.onClick(workNo, imageData);
+            this.props.onClick(workNo, imageData,polyNo);
+            console.log('selectedPoly@@@@@@',polyNo)
         }
 
     }
@@ -81,6 +84,7 @@ class BasicImageList extends React.Component {
     }
     render() {
         const {basicLabelList} = this.state;
+        const polyNo = this.props.polygonStore.tabIndex1-1;
         return (
             <MaterialTable
                 icons={tableIcons}
@@ -103,7 +107,7 @@ class BasicImageList extends React.Component {
                     {
                         icon: CheckIcon,
                         tooltip: 'Select Image',
-                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
+                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo,polyNo)
                     },
                     // {
                     //     icon: Clear,
