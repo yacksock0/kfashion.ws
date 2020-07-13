@@ -27,8 +27,17 @@ public class KfashionCategoryItemService {
         return repository.selectStyleList();
     }
 
-    public List<KfashionCategoryItem> selectCategoryList() {
-        return repository.selectCategoryList();
+    public List<KfashionCategoryItem> selectCategoryList0() {
+        return repository.selectCategoryList0();
+    }
+    public List<KfashionCategoryItem> selectCategoryList1() {
+        return repository.selectCategoryList1();
+    }
+    public List<KfashionCategoryItem> selectCategoryList2() {
+        return repository.selectCategoryList2();
+    }
+    public List<KfashionCategoryItem> selectCategoryList3() {
+        return repository.selectCategoryList3();
     }
 
     public List<KfashionCategoryItem> selectDetailList() {
@@ -66,4 +75,5 @@ public class KfashionCategoryItemService {
     public List<KfashionCategoryItem> selectSilhouetteList() {
         return repository.selectSilhouetteList();
     }
+
 }

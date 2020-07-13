@@ -29,8 +29,17 @@ public class KfashionCategoryItemRepository {
         return mapper.selectStyleList();
     }
 
-    public List<KfashionCategoryItem> selectCategoryList() {
-        return mapper.selectCategoryList();
+    public List<KfashionCategoryItem> selectCategoryList0() {
+        return mapper.selectCategoryList0();
+    }
+    public List<KfashionCategoryItem> selectCategoryList1() {
+        return mapper.selectCategoryList1();
+    }
+    public List<KfashionCategoryItem> selectCategoryList2() {
+        return mapper.selectCategoryList2();
+    }
+    public List<KfashionCategoryItem> selectCategoryList3() {
+        return mapper.selectCategoryList3();
     }
 
     public List<KfashionCategoryItem> selectDetailList() {

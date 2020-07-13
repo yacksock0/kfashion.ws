@@ -10,7 +10,10 @@ public interface KfashionCategoryItemMapper {
 
     List<KfashionCategoryItem> selectStyleList();
 
-    List<KfashionCategoryItem> selectCategoryList();
+    List<KfashionCategoryItem> selectCategoryList0();
+    List<KfashionCategoryItem> selectCategoryList1();
+    List<KfashionCategoryItem> selectCategoryList2();
+    List<KfashionCategoryItem> selectCategoryList3();
 
     List<KfashionCategoryItem> selectDetailList();
 

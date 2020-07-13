@@ -22,8 +22,10 @@ export default class SelectTest extends React.Component {
         this.state = {
             text: 'text',
             open: false,
-            categoryList: [
-                ],
+            categoryList0: [],
+            categoryList1: [],
+            categoryList2: [],
+            categoryList3: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -33,8 +35,18 @@ export default class SelectTest extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/category')
             .then(response => {
-                const categoryList = response.data.categoryList;
-                this.setState({categoryList:categoryList})
+                console.log(response.data.categoryList0);
+                console.log(response.data.categoryList1);
+                console.log(response.data.categoryList2);
+                console.log(response.data.categoryList3);
+                const categoryList0 = response.data.categoryList0;
+                const categoryList1 = response.data.categoryList1;
+                const categoryList2 = response.data.categoryList2;
+                const categoryList3 = response.data.categoryList3;
+                this.setState({categoryList0:categoryList0,
+                                    categoryList1: categoryList1,
+                                    categoryList2: categoryList2,
+                                    categoryList3: categoryList3})
             })
             .catch(error => {
                 console.log(error)
@@ -62,7 +74,7 @@ export default class SelectTest extends React.Component {
     }
 
     render() {
-        const categoryList= this.state.categoryList;
+        const categoryList0= this.state.categoryList0;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -80,7 +92,7 @@ export default class SelectTest extends React.Component {
                             <TableContainer>
                                 <Table stickyHeader aria-label="sticky table">
                                     <TableBody>
-                                        {categoryList.map((category) => (
+                                        {categoryList0.map((category) => (
                                             <TableRow onClick={()=>this.handleClick(category)} hover>
                                                 <TableCell key={category.no}>
                                                     {category.categoryItemName}
