@@ -243,7 +243,7 @@ class Step3 extends React.Component {
                                 className={classes.buttonType2}
                                 color="primary"
                                 variant="outlined"
-                                onClick={()=>history.push('/Step2/FinalCheckList')}
+                                onClick={()=>history.push('/step3')}
                             >
                                 Next Step
                             </Button>

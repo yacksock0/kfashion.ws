@@ -132,7 +132,7 @@ export default class SelectTest extends React.Component {
                 </Grid>
 
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"md"}
+                        maxWidth={"lg"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
@@ -153,19 +153,18 @@ export default class SelectTest extends React.Component {
                                 }
                                 </div>
                         <hr></hr>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {styleList.map((style) => (
-                                            <TableRow onClick={()=>this.handleClick(style)} hover>
-                                                <TableCell key={style.no}>
-                                                    {style.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                                <Grid container>
+                                    {styleList.map((style) =>
+                                        <Grid item xs={3}>
+                                            <div style={{textAlign:'center', margin:10}}>
+                                                <Button style={{width:'100%', height:60}} variant="outlined" key={style.no} onClick={() => this.handleClick(style)}>
+                                                    <h2>{style.categoryItemName}</h2>
+                                                </Button>
+                                            </div>
+                                        </Grid>
+                                    )
+                                    }
+                                </Grid>
                             </Grid>
                             <Grid item xs={1}></Grid>
                             <Grid item xs={5}>
@@ -173,21 +172,20 @@ export default class SelectTest extends React.Component {
                                     서브 스타일
                                 </Typography>
                                 <hr></hr>
-                                <TableContainer>
-                                    <Table stickyHeader aria-label="sticky table">
-                                        {!this.state.selectedNo == 0 ?
-                                        <TableBody>
-                                            {styleList.map((style) =>(
-                                                <TableRow onClick={()=>this.handleClickSub(style)} hover>
-                                                    <TableCell key={style.no}>
-                                                        {style.categoryItemName}
-                                                    </TableCell>
-                                                </TableRow>
-                                                ))}
-                                        </TableBody>
-                                        : ''}
-                                    </Table>
-                                </TableContainer>
+                                {!this.state.selectedNo == 0 ?
+                                <Grid container>
+                                    {styleList.map((style) =>
+                                        <Grid item xs={3}>
+                                            <div style={{textAlign:'center', margin:10}}>
+                                                <Button style={{width:'100%', height:60}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
+                                                    <h2>{style.categoryItemName}</h2>
+                                                </Button>
+                                            </div>
+                                        </Grid>
+                                    )
+                                    }
+                                </Grid>
+                                :''}
                             </Grid>
                         </Grid>
                     </DialogContent>
