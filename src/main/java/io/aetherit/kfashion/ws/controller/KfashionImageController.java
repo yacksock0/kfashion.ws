@@ -192,4 +192,13 @@ public class KfashionImageController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
+    @GetMapping(value="/professionalList")
+    public ResponseEntity<Object> professionalList(HttpServletRequest httpRequest,
+                                                   @RequestParam(value="createdId")String createdId) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImage> professionalList = kfashionImageService.selectProfessionalList(createdId);
+        resultMap.put("professionalList", professionalList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
 }

@@ -10,6 +10,8 @@ import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
 import Stepper from "../components/Stepper";
 import Style from "../views/step3/Style";
+import ProImageList from "../views/step3/ProImageList";
+
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -223,7 +225,7 @@ class Step3 extends React.Component {
                                         </TabPanel>
                                      <TabPanel>
 
-
+                                    <ProImageList ></ProImageList>
                                     </TabPanel>
                                     </Tabs>
                                 </Grid>
