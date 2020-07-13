@@ -150,7 +150,9 @@ class Step3 extends React.Component {
     }
 
     onSelectTab(tabIndex1) {
-
+        this.setState({
+            tabIndex1:tabIndex1,
+        })
         this.canvas.remove(this.canvas.item(0));
         let polyNo = tabIndex1+1;
 
