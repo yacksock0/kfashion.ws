@@ -18,4 +18,6 @@ public interface KfashionWorkMapper {
     void deleteWork(KfashionImage workImage);
 
     List<Long> selectWorkAssignment(HashMap<String, Object> workMap);
+
+    int selectWorkQuantity(int workState);
 }

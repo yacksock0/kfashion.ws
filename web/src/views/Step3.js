@@ -82,7 +82,7 @@ const styles = theme => ({   root: {
     },
 });
 
-@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore')
+@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','polygonStore')
 @observer
 class Step3 extends React.Component {
     constructor(props) {
@@ -144,16 +144,20 @@ class Step3 extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
-        this.props.rectStore.LoadRectLocation(workNo);
-        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
+        this.setState({
+            tabIndex:0,
+        })
         this.props.imageStore.changeWorkNo(workNo);
+        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+        this.props.polygonStore.LoadPolygonLocation(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
+            width : 750,
+            height : 850,
             originX: 'left',
             originY: 'top'
         });
     }
+
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
         this.setState({
             selectedMainNo:selectedMainNo,
@@ -225,7 +229,7 @@ class Step3 extends React.Component {
                                         </TabPanel>
                                      <TabPanel>
 
-                                    <ProImageList ></ProImageList>
+                                    <ProImageList onClick={this.handleClickItem} />
                                     </TabPanel>
                                     </Tabs>
                                 </Grid>

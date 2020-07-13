@@ -41,4 +41,8 @@ public class KfashionWorkRepository {
     public List<Long> selectWorkAssignment(HashMap<String, Object> workMap) {
         return mapper.selectWorkAssignment(workMap);
     }
+
+    public int selectWorkQuantity(int workState) {
+        return mapper.selectWorkQuantity(workState);
+    }
 }
