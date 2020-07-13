@@ -294,7 +294,7 @@ class ImageUpload extends React.Component {
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={()=>history.push('/step/boundaryBox')}
+                        onClick={()=>history.push('/Step/Polygon')}
                         >
                         Next Step
                     </Button>

@@ -5,20 +5,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import {Grid, Button, Typography} from "@material-ui/core";
 
-class ColorInfo extends React.Component {
-    render() {
-        return (
-            <div>
-                <span>번호 : {this.props.color.value}</span><br/>
-                <span>색상 : {this.props.color.label}</span><br/>
-                <hr/>
-            </div>
-        );
-    }
-}
 @inject('basicLabelStore','authStore')
 @observer
-export default class SelectTest extends React.Component {
+export default class Color extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

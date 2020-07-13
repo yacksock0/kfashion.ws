@@ -167,31 +167,6 @@ class Step2 extends React.Component {
             originY: 'top'
         });
     }
-    handlePrevious(){
-        this.setState({
-            count: this.state.count-1
-        });
-        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
-            : alert("첫번째 이미지 입니다.")
-        }
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.workNo
-        })
-    }
-    handleNext() {
-        this.setState({
-            count: this.state.count+1
-        });
-        {this.state.count < this.state.boundaryList.length ?
-            this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
-            :alert("마지막 이미지 입니다.")
-        }
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.workNo
-        })
-    }
     handleClickColor=(color)=>{
         this.setState({
             no: color.no,
@@ -200,7 +175,7 @@ class Step2 extends React.Component {
         })
     }
     handleClickSubColor=(color)=>{
-        {!this.state.memo == 0 ?
+        {!this.state.no == 0 ?
         this.setState({
             subNo: color.no,
             subName: color.categoryItemName,
@@ -270,15 +245,15 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
-                     <Grid item xs={12} lg={2}>
-                         <WorkedImg />
-                     </Grid>
-                     <Grid item xs={12} lg={5} style={{margin:"auto", display:"block"}}>
+                     {/*<Grid item xs={12} lg={2}>*/}
+                     {/*    <WorkedImg />*/}
+                     {/*</Grid>*/}
+                     <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
                          <div>
                              <canvas id="c" width="750" height="850">  </canvas>
                          </div>
                      </Grid>
-                     <Grid item xs={12} lg={5}>
+                     <Grid item xs={12} lg={6}>
                          <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                              <TabList >
                                  <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
