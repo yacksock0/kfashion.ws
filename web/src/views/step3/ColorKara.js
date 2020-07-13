@@ -61,7 +61,7 @@ export default class ColorKara extends React.Component {
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"md"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >

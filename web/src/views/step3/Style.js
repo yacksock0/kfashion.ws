@@ -132,7 +132,7 @@ export default class SelectTest extends React.Component {
                 </Grid>
 
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"md"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
