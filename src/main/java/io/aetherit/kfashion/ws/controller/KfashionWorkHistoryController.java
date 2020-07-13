@@ -84,15 +84,28 @@ public class KfashionWorkHistoryController {
 
     @PostMapping(value = "/progressRate")
     public ResponseEntity<Object> workProgressRate(HttpServletRequest httpRequest,
-                                                 @RequestParam(value="createdId")String createdId
-    ) {
+                                                 @RequestParam(value="createdId")String createdId,
+                                                 @RequestParam(value="authorityNo", required=true)int authorityNo) {
 
-            System.out.println(createdId);
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        KfashionWorkHistory selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(createdId);
+        HashMap<String, Object> workHistoryMap = new HashMap<String, Object>();
+        if(authorityNo == 3) {
+            workHistoryMap.put("authorityNo", 5);
+            workHistoryMap.put("workStep", 6);
+            workHistoryMap.put("createdId", createdId);
+            KfashionWorkHistory selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(workHistoryMap);
+            selectWorkProgressRate.setCreatedId(createdId);
+            resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
 
-        selectWorkProgressRate.setCreatedId(createdId);
-        resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
+        }else {
+            workHistoryMap.put("authorityNo", 2);
+            workHistoryMap.put("workStep", 4);
+            workHistoryMap.put("createdId", createdId);
+            KfashionWorkHistory selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(workHistoryMap);
+            selectWorkProgressRate.setCreatedId(createdId);
+            resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
+        }
+
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 }

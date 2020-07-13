@@ -34,22 +34,19 @@
         WHERE work_no = #{workNo}
     </delete>
 
-    <select id="selectWorkProgressRate" parameterType="String" resultMap="kfashionWorkHistoryResultMap">
+    <select id="selectWorkProgressRate" resultMap="kfashionWorkHistoryResultMap">
          SELECT created_id
             , count(*) AS finish_work
-            , (SELECT count(*) FROM kfashion_work_history WHERE created_datetime =(
-                    SELECT MAX(created_datetime)
-                                                FROM kfashion_work_history
-                                                WHERE work_step = 2
-                                                 AND created_id = #{createdId} )) AS total_work
+            , (SELECT count(*) FROM kfashion_work_history WHERE work_step = #{authorityNo}
+                                                 AND created_id = #{createdId}) AS total_work
                     FROM kfashion_work_history
-                    WHERE work_step = 6
+                    WHERE work_step = #{workStep}
                     AND work_no IN (
 
                     SELECT work_no FROM kfashion_work_history WHERE created_datetime =(
                     SELECT MAX(created_datetime)
                                                 FROM kfashion_work_history
-                                                WHERE work_step = 2
+                                                WHERE work_step = #{authorityNo}
                                                  AND created_id = #{createdId} ))
     </select>
 

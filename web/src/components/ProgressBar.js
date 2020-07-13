@@ -2,7 +2,11 @@ import 'rc-progress/assets/index.css';
 import React, { Component } from 'react';
 import { Line } from 'rc-progress';
 import axios from "axios";
+import {inject, observer} from "mobx-react";
 
+
+@inject('authStore')
+@observer
 export class ProgressBar extends Component {
     constructor(props) {
         super();
@@ -18,8 +22,7 @@ export class ProgressBar extends Component {
         const totalWork = 0;
         const finishWork = 0;
 
-
-        axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
+        axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
             .then(response => {
                 const selectWorkProgressRate = response.data.selectWorkProgressRate;
                 const total = selectWorkProgressRate.totalWork;

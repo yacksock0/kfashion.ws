@@ -27,7 +27,7 @@ public class KfashionWorkHistoryRepository {
         mapper.deleteWorkHistory(workImage);
     }
 
-    public  KfashionWorkHistory selectWorkProgressRate(String createdId) {
+    public  KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId) {
         return mapper.selectWorkProgressRate(createdId);
     }
 }
