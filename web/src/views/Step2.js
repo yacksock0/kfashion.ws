@@ -187,14 +187,16 @@ class Step2 extends React.Component {
     handleTabChangeTop= (event, newNumber) => {
         this.setState({ number: newNumber});
     }
-    handleClickItem = (workNo, imageData,rectNo) => {
-        this.setState({
-            tabIndex:0,
-            tabIndex1:rectNo,
-        })
+    handleClickItem = (workNo, imageData) => {
+
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
+        console.log(this.props.polygonStore.tabIndex1);
+        this.setState({
+            tabIndex:0,
+            tabIndex1:this.props.polygonStore.tabIndex1,
+        })
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width : 750,
             height : 850,
@@ -388,12 +390,12 @@ class Step2 extends React.Component {
         })
     }
 
-    onSelectTab(tabIndex1) {
+    onSelectTab(tabIndex) {
         this.canvas.remove(this.canvas.item(0));
-        let polyNo = tabIndex1+1;
+        let polyNo = tabIndex+1;
         const { locationPolygonList } = this.props.polygonStore;
         const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
-        if(selectedPoly.length!==0){
+        if(selectedPoly.length!=0){
             let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
             for (let i = 1; i < selectedPoly.length; i++) {
                 makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
@@ -433,7 +435,7 @@ class Step2 extends React.Component {
                              </TabList>
 
                          <TabPanel>
-                             <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
+                             <Tabs onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                              <TabList>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>

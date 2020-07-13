@@ -73,6 +73,7 @@ class BasicImageList extends React.Component {
             this.props.onClick(workNo, imageData,rectNo);
             console.log('selectedPoly@@@@@@',rectNo)
         }
+
     }
 
     handleClickReturn = () =>{
