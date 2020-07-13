@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     gridList: {
         width: 500,
-        height: 850,
+        height: 600,
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -92,9 +92,9 @@ export default function WorkedImg() {
 
     return (
         <div className={classes.root}>
-            <GridList cellHeight={150} className={classes.gridList}>
-                <GridListTile key="Subheader" cols={2} style={{ height: 75 }}>
-                    <ListSubheader style={{textAlign:'center', border:'1px solid black', borderRadius:5}}><h3 style={{fontWeight:"bold"}}>이전작업</h3></ListSubheader>
+            <GridList cellHeight={100} className={classes.gridList}>
+                <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                    <ListSubheader style={{textAlign:'center', border:'1px solid black', borderRadius:5, height:60}}><h3 style={{fontWeight:"bold", marginTop: 5}}>이전작업</h3></ListSubheader>
                 </GridListTile>
                 {tileData.map((tile) => (
                     <GridListTile key={tile.img}>

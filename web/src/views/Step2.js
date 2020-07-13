@@ -166,31 +166,6 @@ class Step2 extends React.Component {
             originY: 'top'
         });
     }
-    handlePrevious(){
-        this.setState({
-            count: this.state.count-1
-        });
-        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
-            : alert("첫번째 이미지 입니다.")
-        }
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.workNo
-        })
-    }
-    handleNext() {
-        this.setState({
-            count: this.state.count+1
-        });
-        {this.state.count < this.state.boundaryList.length ?
-            this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
-            :alert("마지막 이미지 입니다.")
-        }
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.workNo
-        })
-    }
     handleClickColor=(color)=>{
         this.setState({
             no: color.no,

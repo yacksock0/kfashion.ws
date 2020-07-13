@@ -43,14 +43,14 @@
     </select>
     <select id="selectWorkProgressRate" parameterType="String" resultType="KfashionWorkHistory">
             SELECT count(*) AS finish_work
-                ,(SELECT count(*) FROM kfashion_work_history  WHERE work_step = 1 AND created_id = ${createdId}) AS total_work
+                ,(SELECT count(*) FROM kfashion_work_history  WHERE work_step = 1 AND created_id = #{createdId}) AS total_work
 
             FROM kfashion_work_history
             WHERE work_step = 6
             AND created_datetime in (SELECT MAX(created_datetime)
 										FROM kfashion_work_history
 										WHERE work_step = 1
-                                        AND created_id = ${createdId} );
+                                        AND created_id = #{createdId} );
     </select>
 
 </mapper>

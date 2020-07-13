@@ -18,13 +18,14 @@ export class ProgressBar extends Component {
         console.log('id', this.props.rowDataId)
         axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
             .then(response => {
-                const workLoadList = response.data.selectWorkProgressRate;
-                this.setState({
-                    selectWorkProgressRate: workLoadList.map(workLoad => {
-                        this.state.total = workLoad.totalWork;
-                        this.state.complete = workLoad.finishWork;
+                const selectWorkProgressRate = response.data;
+                console.log('data@@@@@@@@@',selectWorkProgressRate)
+                    selectWorkProgressRate: selectWorkProgressRate.map(workLoad => {
+                        this.setState({
+                            total: workLoad.totalWork,
+                            complete:workLoad.finishWork
+                        })
                     })
-                })
                 console.log(response.data)
             })
             .catch(error => {
