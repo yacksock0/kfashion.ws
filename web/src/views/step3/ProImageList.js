@@ -1,3 +1,4 @@
+
 import React, {forwardRef} from "react";
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
@@ -39,13 +40,13 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('authStore','imageStore','rectStore')
+@inject('fileUploadStore','authStore','imageStore','polygonStore')
 @observer
-class PolygonList extends React.Component {
+class ProImageList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rectList: [],
+            basicLabelList: [],
             count: 0,
             data: [],
             columns: [
@@ -53,19 +54,18 @@ class PolygonList extends React.Component {
                 {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                {title: '등록일 ', field: 'createdDatetime', type: 'date'},
+                {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
-        this.props.rectStore.LoadRectImage(createdId, this.handleListChange)
+        this.props.polygonStore.LoadPolygonImage(createdId);
     }
 
     componentWillUnmount() {
-        this.props.rectStore.initStore();
+        this.props.polygonStore.initStore();
     }
-
     handleClick = (workNo, imageData) => {
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData);
@@ -78,18 +78,14 @@ class PolygonList extends React.Component {
             //
         }
     }
-    handleListChange=(listIndex)=>{
-        if(this.props.onChange){
-            this.props.onChange(listIndex);
-        }
-    }
     render() {
+        const {basicLabelList} = this.state;
         return (
             <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
-                data={!!this.props.rectStore.rectList ?
-                    this.props.rectStore.rectList.map((item) => {
+                data={!!this.props.polygonStore.polygonList ?
+                    this.props.polygonStore.polygonList.map((item) => {
                         return {
                             workNo: item.workNo,
                             fileName: item.fileName,
@@ -104,18 +100,18 @@ class PolygonList extends React.Component {
                 }}
                 actions={[
                     {
-                        icon: Clear,
-                        tooltip: 'return',
-                        onClick: (event, rowData) => this.handleClickReturn()
-                    },
-                    {
                         icon: CheckIcon,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
+                    },
+                    {
+                        icon: Clear,
+                        tooltip: 'return',
+                        onClick: (event, rowData) => this.handleClickReturn()
                     }
                 ]}
             />
         );
     }
 };
-export default PolygonList;
+export default ProImageList;
