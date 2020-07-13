@@ -491,6 +491,8 @@ class Step2 extends React.Component {
         const { classes,history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
+        const {polyLast} = this.props.polygonStore;
+        console.log('@@@@@@@@',polyLast)
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -560,6 +562,7 @@ class Step2 extends React.Component {
                                          {this.state.sleeveNo >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.sleeveName} </Button> ) : ''
                                          }
+                                         {polyLast+1 === this.state.tabIndex1 ? (
                                          <Button style={{marginTop: 20}}
                                                  type="button"
                                                  className={classes.buttonType2}
@@ -569,6 +572,7 @@ class Step2 extends React.Component {
                                          >
                                              저장
                                          </Button>
+                                         ):''}
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -611,6 +615,7 @@ class Step2 extends React.Component {
                                          {this.state.sleeveNo1 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
                                          }
+                                         {polyLast+1 === this.state.tabIndex1 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -620,6 +625,7 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
+                                         ):''}
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -662,6 +668,7 @@ class Step2 extends React.Component {
                                          {this.state.sleeveNo2 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.state.sleeveName2} </Button> ) : ''
                                          }
+                                         {polyLast+1 === this.state.tabIndex1 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -671,6 +678,7 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
+                                             ):''}
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -713,6 +721,7 @@ class Step2 extends React.Component {
                                          {this.state.sleeveNo3 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete3} endIcon={<DeleteIcon />} > {this.state.sleeveName3} </Button> ) : ''
                                          }
+                                         {polyLast+1 === this.state.tabIndex1 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -722,6 +731,7 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
+                                             ):''}
                                      </div>
                                  </TabPanel>
 

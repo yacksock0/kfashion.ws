@@ -175,10 +175,14 @@ class Step3 extends React.Component {
         }else{
             alert("poly정보가 존재하지 않습니다.")}
     };
-
+    handleChange=(polyLast)=>{
+        if(this.props.onChange){
+            this.props.onChange(polyLast)
+        }
+    }
     render() {
         const {classes,history} = this.props;
-
+        const {polyLast} = this.props.polygonStore;
             return (
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
@@ -212,27 +216,27 @@ class Step3 extends React.Component {
 
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <Style onClick={this.handleClickStyle}/>
+                                                <Style onClick={this.handleClickStyle} />
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <CategoryComponent polyLast={polyLast+2} tabIndex1={this.state.tabIndex1}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1} />
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
                                             </Grid>
                                         </TabPanel>
                                     </Tabs>

@@ -80,6 +80,8 @@ class CategoryComponent extends React.Component {
             silhouetteName:'',
             value:0,
             createdId: '',
+            polyLast:0,
+            tabIndex1:0,
         }
 
         this.handleDelete = this.handleDelete.bind(this)
@@ -217,9 +219,13 @@ class CategoryComponent extends React.Component {
             silhouetteName:'',
         })
     }
+    handleSubmit=()=>{
+
+    }
     render() {
         const {classes} = this.props;
-
+        console.log('lastIndex', this.props.polyLast)
+        console.log('tabIndex1', this.props.tabIndex1)
         return (
                     <Grid container spacing={3} style={{marginTop: 10}}>
                         <Grid item xs={12} lg={6}>
@@ -349,15 +355,17 @@ class CategoryComponent extends React.Component {
                                                 (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }
                                         </div>
+                                        {this.props.polyLast === this.props.tabIndex ? (
                                         <Button style={{marginTop: 50}}
                                                 type="button"
                                                 className={classes.buttonType2}
                                                 color="primary"
                                                 variant="outlined"
-                                                onClick={()=>alert('저장 되었습니다.')}
+                                                onClick={()=>this.handleSubmit()}
                                         >
                                             저장
                                         </Button>
+                                        ):''}
                                     </Grid>
                                     {/*<Grid item xs={12} lg={6}>*/}
                                     {/*    <div className={classes.content} style={{display:'inline'}}>*/}

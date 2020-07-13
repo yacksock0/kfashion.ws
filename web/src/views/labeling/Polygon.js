@@ -502,6 +502,7 @@ class Polygon extends React.Component {
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
+
             console.log('sdakfjsdkfjklsdf', this.state.listIndex);
         return (
             <Container component="main" className={classes.mainContainer}>
