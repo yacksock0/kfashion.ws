@@ -95,7 +95,7 @@ class App extends React.Component {
                                 isLoggedIn={loginState === store.State.Authenticated}
                                 loginUser={loginUser}
                                 doLogout={() => this.props.authStore.doLogout()}
-                                 setStep={this.props.currentStepStore.currentStep}
+                                setStep={this.props.currentStepStore.currentStep}
                         />
                         <SideMenu mobileOpen={this.state.mobileOpen}
                                   setMobileOpen={this.setMobileOpen}

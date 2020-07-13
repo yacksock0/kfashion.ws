@@ -72,7 +72,7 @@ export default class PolygonStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/polygon/locationPolygonList?workNo='+workNo);
             this.locationPolygonList = response.data.locationPolygonList;
-            console.log(toJS(this.locationPolygonList));
+            console.log("111111111111111111111"+toJS(this.locationPolygonList));
         } catch (e) {
             console.log('error');
         }

@@ -96,6 +96,7 @@ class Step3 extends React.Component {
     }
 
     componentDidMount() {
+        this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});

@@ -15,14 +15,20 @@ export class ProgressBar extends Component {
         this.changeState = this.changeState.bind(this);
     }
     componentDidMount() {
+        const totalWork = 0;
+        const finishWork = 0;
+
         console.log('id', this.props.rowDataId)
-        axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
+
+        const workCount = axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
             .then(response => {
                 const workLoadList = response.data.selectWorkProgressRate;
                 this.setState({
-                    selectWorkProgressRate: workLoadList.map(workLoad => {
-                        this.state.total = workLoad.totalWork;
-                        this.state.complete = workLoad.finishWork;
+                    selectWorkProgressRate: workLoadList(workLoad => {
+                        this.totalWork=workLoad.totalWork;
+                        this.finishWork=workLoad.finishWork;
+                        console.log(workLoad.totalWork);
+                        console.log(workLoad.finishWork);
                     })
                 })
                 console.log(response.data)
@@ -30,6 +36,9 @@ export class ProgressBar extends Component {
             .catch(error => {
                 console.log(error)
             })
+
+        console.log(this.totalWork);
+        console.log(this.finishWork);
     }
 
     changeState() {

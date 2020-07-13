@@ -21,21 +21,28 @@ const EmptyNewRectLocation = {
     scaleY : '',
 }
 
+
+
 export default class RectStore {
     @observable state = State.Ready;
-    @observable NewRectLocation = {...EmptyNewRectLocation};
     @observable List = [];
+    @observable NewRectLocation = {...EmptyNewRectLocation};
     @observable rectInsertList= [];
     @observable rectList = [];
     @observable locationRectList = [];
+    @observable polygonInsertList= [];
+    @observable polygonList= [];
+    @observable locationPolygonList = [];
 
-    @action objGet = (obj) => {
-        console.log("1차 : " + obj);
-        this.rectInsertList = obj;
+    @action objGet = (rectangle, polygon) => {
+        this.rectInsertList = rectangle;
+        this.polygonInsertList = polygon;
+
     }
 
     @action initStore = () => {
         this.rectList = [];
+
     }
 
     @action changeNewRectLocationWorkNo = (workNo) => {
@@ -73,6 +80,7 @@ export default class RectStore {
     @action changeNewRectLocationScaleY = (scaleY) => {
         this.NewRectLocation.scaleY = scaleY;
     }
+
 
     @computed get isPending() {
         return this.state === State.Pending;
@@ -131,10 +139,37 @@ export default class RectStore {
                 this.state = State.Success;
                 const createdId = this.NewRectLocation.createdId;
                 this.LoadRectImage(createdId);
+            };
+
+            this.doPolygonLocationUp();
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+    doPolygonLocationUp = flow(function* doPolygonLocationUp() {
+        this.state = State.Pending;
+        try {
+            const kfashionPolygonList = this.polygonInsertList.map(r => ({
+                workNo :this.NewRectLocation.workNo,
+                workStep : this.NewRectLocation.workStep,
+                createdId : this.NewRectLocation.createdId,
+                rectNo: r.polyNo,
+                polyNo: r.polyNo,
+                points : r.points,
+            }));
+            const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
+            if (resp.status === 200) {
+                this.state = State.Success;
+                const createdId = this.NewPolygonLocation.createdId;
+                this.LoadPolygonImage(createdId);
             } else {
             }
         } catch (e) {
             console.log('error')
         }
     });
+
+
+
 }

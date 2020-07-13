@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -61,9 +63,22 @@ public class KfashionWorkHistoryController {
     public ResponseEntity<Object> workProgressRate(HttpServletRequest httpRequest,
                                                  @RequestParam(value="createdId")String createdId
     ) {
+
+            System.out.println(createdId);
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionWorkHistory> selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(createdId);
-        resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
+        KfashionWorkHistory selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(createdId);
+
+        System.out.println(selectWorkProgressRate.getCreatedId());
+        System.out.println(selectWorkProgressRate.getFinishWork());
+        System.out.println(selectWorkProgressRate.getTotalWork());
+        resultMap.put("createdId", selectWorkProgressRate.getCreatedId());
+        resultMap.put("finishWork", selectWorkProgressRate.getFinishWork());
+        resultMap.put("totalWork", selectWorkProgressRate.getTotalWork());
+
+//        selectWorkProgressRate.setCreatedId(createdId);
+//        System.out.println(selectWorkProgressRate);
+//        resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
+//        return null;
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 }
