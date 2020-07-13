@@ -11,9 +11,8 @@ const State = {
 const EmptyNewBasicLabel= {
     workNo : '',
     workStep : 4,
-    rectNo : 1,
-    polyNo : 1,
     no : 1,
+    labelNo: '',
     color: '',
     colorCategoryNo: '',
     sleeveLength: '',
@@ -30,6 +29,9 @@ export default class BasicLabelStore {
         this.newBasicLabel.colorCategoryNo = color.categoryNo;
     }
 
+    @action changeNewBasicLabelLabelNo = (labelNo) => {
+        this.newBasicLabel.labelNo = labelNo;
+    }
     @action changeNewBasicLabelWorkNo = (workNo) => {
         this.newBasicLabel.workNo = workNo;
     }
