@@ -34,23 +34,24 @@
     <select id="selectCategoryList0" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
+        WHERE category_no=21
+        AND category_type=3
+    </select>
+
+    <select id="selectCategoryList1" resultMap="kfashionCategoryItemResultMap">
+        SELECT *
+        FROM kfashion_category_item
         WHERE category_no=1
         AND category_type=1
     </select>
 
-    <select id="selectCategoryList1" resultMap="kfashionCategoryItemResultMap">
+    <select id="selectCategoryList2" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
         WHERE category_no=11
         AND category_type=2
     </select>
 
-    <select id="selectCategoryList2" resultMap="kfashionCategoryItemResultMap">
-        SELECT *
-        FROM kfashion_category_item
-        WHERE category_no=21
-        AND category_type=3
-    </select>
 
     <select id="selectCategoryList3" resultMap="kfashionCategoryItemResultMap">
         SELECT *
