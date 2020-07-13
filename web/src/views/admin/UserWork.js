@@ -22,7 +22,6 @@ import Remove from "@material-ui/icons/Remove";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import {inject, observer} from "mobx-react";
 import {ProgressBar} from "../../components/ProgressBar";
-import CheckIcon from "@material-ui/icons/Check";
 import WorkDetail from "./WorkDetail";
 
 const styles = theme => ({

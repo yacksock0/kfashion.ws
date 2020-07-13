@@ -66,9 +66,10 @@ class WorkDetail extends React.Component {
         this.handleClickId = this.handleClickId.bind(this)
     }
     componentDidMount() {
-        const createdId = this.props.authStore.isUserId;
-        this.props.imageStore.LoadImage(createdId)
+
     }
+
+
     selectedId=(selectedId)=>{
         this.setState({
             selectedId:selectedId,
@@ -100,7 +101,6 @@ class WorkDetail extends React.Component {
         })
     }
     render() {
-        const {basicLabelList} = this.state;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>작업지정</Button>
