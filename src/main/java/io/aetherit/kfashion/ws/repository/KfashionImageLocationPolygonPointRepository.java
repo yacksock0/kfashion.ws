@@ -32,4 +32,8 @@ public class KfashionImageLocationPolygonPointRepository {
     public List<Integer> selectPolyNo(Long workNo) {
         return mapper.selectPolyNo(workNo);
     }
+
+    public int[] selectLabelNo(Long workNo) {
+        return mapper.selectLabelNo(workNo);
+    }
 }
