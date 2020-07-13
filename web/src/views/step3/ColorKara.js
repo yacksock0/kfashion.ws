@@ -70,8 +70,6 @@ export default class ColorKara extends React.Component {
                             카라
                         </Typography>
                         <hr></hr>
-
-                        <Paper>
                             <TableContainer>
                                 <Table stickyHeader aria-label="sticky table">
                                     <TableBody>
@@ -85,7 +83,6 @@ export default class ColorKara extends React.Component {
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                        </Paper>
                     </DialogContent>
                 </Dialog>
             </div>
