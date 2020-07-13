@@ -120,7 +120,7 @@ const tableIcons = {
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore')
 @observer
-class Step3 extends React.Component {
+class finalCheckList extends React.Component {
     constructor(props) {
         super(...arguments , props);
         this.state = {
@@ -149,7 +149,7 @@ class Step3 extends React.Component {
         this.props.imageStore.LoadImage(createdId);
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
-        this.props.enqueueSnackbar("Step3", {
+        this.props.enqueueSnackbar("FinalCheck", {
             variant: 'info'
         });
         this.setState({
@@ -157,7 +157,6 @@ class Step3 extends React.Component {
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
-
 
     render() {
         const {classes,history} = this.props;
@@ -168,7 +167,7 @@ class Step3 extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={10} style={{margin:"auto"}}>
-                            <MaterialTable
+                            <MaterialTable style={{height:'100%'}}
                                 icons={tableIcons
                                 }
                                 columns={this.state.columns}
@@ -208,4 +207,4 @@ class Step3 extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(styles) (Step3)));
+export default withSnackbar(withRouter(withStyles(styles) (finalCheckList)));

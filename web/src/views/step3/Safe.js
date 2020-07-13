@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Paper from "@material-ui/core/Paper";
@@ -62,7 +62,7 @@ export default class Safe extends React.Component {
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"md"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
@@ -71,21 +71,18 @@ export default class Safe extends React.Component {
                             세이프
                         </Typography>
                         <hr></hr>
-                        <Paper>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {safeList.map((safe) => (
-                                            <TableRow onClick={()=>this.handleClick(safe)} hover>
-                                                <TableCell key={safe.no}>
-                                                    {safe.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
+                        <Grid container>
+                            {safeList.map((safe) =>
+                                <Grid item xs={3}>
+                                    <div style={{textAlign:'center', margin:10}}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={safe.no} onClick={() => this.handleClick(safe)}>
+                                            <h2>{safe.categoryItemName}</h2>
+                                        </Button>
+                                    </div>
+                                </Grid>
+                            )
+                            }
+                        </Grid>
                     </DialogContent>
                 </Dialog>
             </div>

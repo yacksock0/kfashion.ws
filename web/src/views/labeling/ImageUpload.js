@@ -196,7 +196,7 @@ class ImageUpload extends React.Component {
                         </Grid>
                         <Grid item xs={12} lg={7}>
                             <div>
-                            <MaterialTable style={{height:'60vh'}}
+                            <MaterialTable
                                 icons={tableIcons}
                                 columns={this.state.columns}
                                 data={!!this.props.imageStore.boundaryList ?
