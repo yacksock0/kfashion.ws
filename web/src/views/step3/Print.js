@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Paper from "@material-ui/core/Paper";
@@ -71,21 +71,18 @@ export default class Print extends React.Component {
                             프린트
                         </Typography>
                         <hr></hr>
-                        <Paper>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {printList.map((print) => (
-                                            <TableRow onClick={()=>this.handleClick(print)} hover>
-                                                <TableCell key={print.no}>
-                                                    {print.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
+                        <Grid container>
+                            {printList.map((print) =>
+                                <Grid item xs={3}>
+                                    <div style={{textAlign:'center', margin:10}}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={print.no} onClick={() => this.handledDetail(print)}>
+                                            <h2>{print.categoryItemName}</h2>
+                                        </Button>
+                                    </div>
+                                </Grid>
+                            )
+                            }
+                        </Grid>
                     </DialogContent>
                 </Dialog>
             </div>

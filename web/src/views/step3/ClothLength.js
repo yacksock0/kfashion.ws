@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Paper from "@material-ui/core/Paper";
@@ -70,21 +70,18 @@ export default class ClothLength extends React.Component {
                             기장
                         </Typography>
                         <hr></hr>
-                        <Paper>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {lengthList.map((length) => (
-                                            <TableRow onClick={()=>this.handleClick(length)} hover>
-                                                <TableCell key={length.no}>
-                                                    {length.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
+                        <Grid container>
+                            {lengthList.map((length) =>
+                                <Grid item xs={3}>
+                                    <div style={{textAlign:'center', margin:10}}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={length.no} onClick={() => this.handledDetail(length)}>
+                                            <h2>{length.categoryItemName}</h2>
+                                        </Button>
+                                    </div>
+                                </Grid>
+                            )
+                            }
+                        </Grid>
                     </DialogContent>
                 </Dialog>
             </div>

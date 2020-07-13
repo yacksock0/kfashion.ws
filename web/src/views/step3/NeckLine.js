@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Paper from "@material-ui/core/Paper";
@@ -76,21 +76,18 @@ export default class NeckLine extends React.Component {
                            넥라인
                         </Typography>
                         <hr></hr>
-                        <Paper>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {neckLineList.map((neckLine) => (
-                                            <TableRow onClick={()=>this.handleClick(neckLine)} hover>
-                                                <TableCell key={neckLine.no}>
-                                                    {neckLine.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
+                        <Grid container>
+                            {neckLineList.map((neckLine) =>
+                                <Grid item xs={3}>
+                                    <div style={{textAlign:'center', margin:10}}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={neckLine.no} onClick={() => this.handledDetail(neckLine)}>
+                                            <h2>{neckLine.categoryItemName}</h2>
+                                        </Button>
+                                    </div>
+                                </Grid>
+                            )
+                            }
+                        </Grid>
                     </DialogContent>
                 </Dialog>
             </div>
