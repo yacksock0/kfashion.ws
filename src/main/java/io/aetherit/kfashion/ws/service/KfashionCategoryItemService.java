@@ -52,9 +52,16 @@ public class KfashionCategoryItemService {
         return repository.selectTextureList();
     }
 
-    public List<KfashionCategoryItem> selectLengthList() {
-        return repository.selectLengthList();
+    public List<KfashionCategoryItem> selectLengthList0() {
+        return repository.selectLengthList0();
     }
+    public List<KfashionCategoryItem> selectLengthList1() {
+        return repository.selectLengthList1();
+    }
+    public List<KfashionCategoryItem> selectLengthList2() {
+        return repository.selectLengthList2();
+    }
+    public List<KfashionCategoryItem> selectLengthList3() { return repository.selectLengthList3(); }
 
     public List<KfashionCategoryItem> selectNeckLineList() {
         return repository.selectNeckLineList();

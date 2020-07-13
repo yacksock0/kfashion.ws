@@ -21,7 +21,10 @@ public interface KfashionCategoryItemMapper {
 
     List<KfashionCategoryItem> selectTextureList();
 
-    List<KfashionCategoryItem> selectLengthList();
+    List<KfashionCategoryItem> selectLengthList0();
+    List<KfashionCategoryItem> selectLengthList1();
+    List<KfashionCategoryItem> selectLengthList2();
+    List<KfashionCategoryItem> selectLengthList3();
 
     List<KfashionCategoryItem> selectNeckLineList();
 

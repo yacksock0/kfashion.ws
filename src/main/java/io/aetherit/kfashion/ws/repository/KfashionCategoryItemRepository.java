@@ -54,8 +54,17 @@ public class KfashionCategoryItemRepository {
         return mapper.selectTextureList();
     }
 
-    public List<KfashionCategoryItem> selectLengthList() {
-        return mapper.selectLengthList();
+    public List<KfashionCategoryItem> selectLengthList0() {
+        return mapper.selectLengthList0();
+    }
+    public List<KfashionCategoryItem> selectLengthList1() {
+        return mapper.selectLengthList1();
+    }
+    public List<KfashionCategoryItem> selectLengthList2() {
+        return mapper.selectLengthList2();
+    }
+    public List<KfashionCategoryItem> selectLengthList3() {
+        return mapper.selectLengthList3();
     }
 
     public List<KfashionCategoryItem> selectNeckLineList() {
