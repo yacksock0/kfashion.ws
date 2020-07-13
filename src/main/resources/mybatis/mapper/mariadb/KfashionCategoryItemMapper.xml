@@ -22,7 +22,8 @@
     <select id="selectSleeveLengthList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         from kfashion_category_item
-        WHERE category_no=7
+        WHERE category_no=39
+        AND category_type=0
     </select>
 
     <select id="selectStyleList" resultMap="kfashionCategoryItemResultMap">
