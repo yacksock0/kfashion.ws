@@ -51,7 +51,7 @@
                                                 WHERE work_step = 2
                                                  AND created_id = #{createdId} )) AS total_work
                     FROM kfashion_work_history
-                    WHERE work_step = 3
+                    WHERE work_step = 6
                     AND work_no IN (
 
                     SELECT work_no FROM kfashion_work_history WHERE created_datetime =(
