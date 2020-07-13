@@ -91,7 +91,4 @@ export default class BasicLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
-
-
-
 }

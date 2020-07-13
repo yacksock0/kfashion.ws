@@ -20,6 +20,7 @@ export default class PolygonStore {
     @observable NewPolygonLocation = {...EmptyNewPolygonLocation};
     @observable List = [];
     @observable tabIndex1 =0;
+    @observable polyInfo=[];
     @observable polygonInsertList= [];
     @observable polygonList= [];
     @observable locationPolygonList = [];
@@ -75,6 +76,8 @@ export default class PolygonStore {
             const response = yield axios.get('/api/v1/kfashion/polygon/locationPolygonList?workNo='+workNo);
             this.locationPolygonList = response.data.locationPolygonList;
             this.tabIndex1 = response.data.polyNo[0];
+            this.polyInfo = response.data.polyNo;
+            console.log(this.polyInfo);
             console.log(this.tabIndex1);
         } catch (e) {
             console.log('error');

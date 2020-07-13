@@ -192,7 +192,6 @@ class Step2 extends React.Component {
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
-        console.log(this.props.polygonStore.tabIndex1);
         this.setState({
             tabIndex1: polyNo,
         })
@@ -437,7 +436,7 @@ class Step2 extends React.Component {
 
     handleSave = () => {
         const res = axios.post('/api/v1/kfashion/label/basicLabel', {data: {
-                workNo: this.state.workNo,
+                workNo: this.props.imageStore.isWorkNo,
                 workStep:4,
                 no:2,
                 labelNo:1,
@@ -457,8 +456,23 @@ class Step2 extends React.Component {
                 sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
                 createdId:this.props.authStore.loginUser.id,
             },
-
         });
+        console.log('workNo',this.props.imageStore.isWorkNo)
+        console.log('color',this.state.no)
+        console.log('color1',this.state.no1)
+        console.log('color2',this.state.no2)
+        console.log('color3',this.state.no3)
+        console.log('colorCategoryNo',this.state.colorCategoryNo)
+        console.log('subColor',this.state.subNo)
+        console.log('subColor1',this.state.subNo1)
+        console.log('subColor2',this.state.subNo2)
+        console.log('subColor3',this.state.subNo3)
+        console.log('sleeveLength',this.state.sleeveNo)
+        console.log('sleeveLength1',this.state.sleeveNo1)
+        console.log('sleeveLength2',this.state.sleeveNo2)
+        console.log('sleeveLength3',this.state.sleeveNo3)
+        console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
+        console.log('createdId',this.props.authStore.loginUser.id)
         this.setState({
             tabIndex:0,
         })

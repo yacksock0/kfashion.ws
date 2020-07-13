@@ -139,7 +139,8 @@ class UserWork extends React.Component {
                                     })
                             }}
                             options={{
-                                minBodyHeight: '70vh',
+                                sorting: false,
+                                minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
                                     backgroundColor: '#01579b',
