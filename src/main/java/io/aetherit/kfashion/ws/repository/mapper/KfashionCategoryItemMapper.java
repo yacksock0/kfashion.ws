@@ -30,7 +30,8 @@ public interface KfashionCategoryItemMapper {
 
     List<KfashionCategoryItem> selectKaraList();
 
-    List<KfashionCategoryItem> selectFitList();
+    List<KfashionCategoryItem> selectFitList0();
+    List<KfashionCategoryItem> selectFitList3();
 
     List<KfashionCategoryItem> selectSafeList();
 

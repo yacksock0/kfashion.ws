@@ -75,8 +75,11 @@ public class KfashionCategoryItemRepository {
         return mapper.selectKaraList();
     }
 
-    public List<KfashionCategoryItem> selectFitList() {
-        return mapper.selectFitList();
+    public List<KfashionCategoryItem> selectFitList0() {
+        return mapper.selectFitList0();
+    }
+    public List<KfashionCategoryItem> selectFitList3() {
+        return mapper.selectFitList3();
     }
 
     public List<KfashionCategoryItem> selectSafeList() {

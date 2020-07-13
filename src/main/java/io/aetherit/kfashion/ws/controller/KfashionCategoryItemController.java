@@ -186,8 +186,10 @@ public class KfashionCategoryItemController {
         @GetMapping (value = "/professional/fit")
         public ResponseEntity<Object> fitList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionCategoryItem> fitList = kfashionCategoryItemService.selectFitList();
-            resultMap.put("fitList", fitList);
+            List<KfashionCategoryItem> fitList0 = kfashionCategoryItemService.selectFitList0();
+            List<KfashionCategoryItem> fitList3 = kfashionCategoryItemService.selectFitList3();
+            resultMap.put("fitList0", fitList0);
+            resultMap.put("fitList3", fitList3);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
