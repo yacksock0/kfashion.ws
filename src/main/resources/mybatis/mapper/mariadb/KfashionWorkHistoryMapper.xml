@@ -41,13 +41,6 @@
                                                  AND created_id = #{createdId}) AS total_work
                     FROM kfashion_work_history
                     WHERE work_step = #{workStep}
-                    AND work_no IN (
-
-                    SELECT work_no FROM kfashion_work_history WHERE created_datetime =(
-                    SELECT MAX(created_datetime)
-                                                FROM kfashion_work_history
-                                                WHERE work_step = #{authorityNo}
-                                                 AND created_id = #{createdId} ))
+                    AND created_id=#{createdId}
     </select>
-
 </mapper>
