@@ -175,7 +175,7 @@ class Step2 extends React.Component {
         })
     }
     handleClickSubColor=(color)=>{
-        {!this.state.memo == 0 ?
+        {!this.state.no == 0 ?
         this.setState({
             subNo: color.no,
             subName: color.categoryItemName,
