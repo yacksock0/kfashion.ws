@@ -218,7 +218,7 @@ export default function SideMenu(props) {
                     </Link>
                 ):''}
 
-                {loginUser.authorityNo > 1 && loginUser.groupAdmin !== 1? (
+                {loginUser.authorityNo == 1 && loginUser.groupAdmin !== 1? (
                 <Link to="/step2" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -232,6 +232,20 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                     ):''}
+                {loginUser.authorityNo == 2 && loginUser.groupAdmin !== 1? (
+                    <Link to="/step2" className={classes.link}>
+                        <Collapse in={open2} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem type="button" className={classes.nested}>
+                                    <ListItemIcon>
+                                        <FormatListBulletedIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="기본 레이블링" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </Link>
+                ):''}
 
                 {loginUser.authorityNo == 3 &&  loginUser.groupAdmin !== 1 ? (
                 <Link to="/step3" className={classes.link}>
@@ -276,6 +290,20 @@ export default function SideMenu(props) {
                 </Link>
                     ):''}
                 {loginUser.groupAdmin == 1 &&  loginUser.authorityNo > 1 ? (
+                    <Link to="/Step2/FinalCheckList" className={classes.link}>
+                        <Collapse in={open2} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem type="button" className={classes.nested}>
+                                    <ListItemIcon>
+                                        <PlaylistAddCheckIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="검수" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </Link>
+                ):''}
+                {loginUser.groupAdmin !== 1 &&  loginUser.authorityNo == 3 ? (
                     <Link to="/Step2/FinalCheckList" className={classes.link}>
                         <Collapse in={open2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
