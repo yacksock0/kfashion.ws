@@ -185,7 +185,7 @@ class Step3 extends React.Component {
     }
     render() {
         const {classes,history} = this.props;
-        const {polyLast} = this.props.polygonStore;
+        const polyLast = this.props.polygonStore;
             return (
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
@@ -207,11 +207,11 @@ class Step3 extends React.Component {
 
                                             <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
-                                            <Tab tabIndex1={0} style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
-                                            <Tab tabIndex1={1} style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
-                                            <Tab tabIndex1={2} style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                            <Tab tabIndex1={3} style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                            <Tab tabIndex1={4} style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
+                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
                                             {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>*/}
                                             {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>*/}
                                             {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>*/}
