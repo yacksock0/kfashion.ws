@@ -23,6 +23,7 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import GroupList from "./GroupList";
 import {toJS} from "mobx";
 import {inject, observer} from "mobx-react";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const styles = theme => ({
     mainContainer: {
@@ -82,8 +83,9 @@ class UserList extends React.Component {
                     editPlaceholder: '아이디 입력',
                 },
                 {title: '이름', field: 'name', type: 'text'},
-                {title: '비밀번호', field: 'password'},
+                {title: '비밀번호', field: 'password', hidden: true},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: '비고', field: 'etc', type: 'text'},
             ],
         }
     }
@@ -123,7 +125,7 @@ class UserList extends React.Component {
                                         createdDatetime: item.createdDatetime,
                                     }
                                 }) : []}
-                            title="그룹 회원 리스트"
+                            title="작업자 리스트"
                             editable={{
                                 isEditHidden: rowData => rowData.name === "createdDatetime",
                                 onRowAdd:rowData =>
@@ -159,7 +161,7 @@ class UserList extends React.Component {
                                     })
                             }}
                             options={{
-                                maxBodyHeight:'70vh',
+                                maxBodyHeight:'65vh',
                                 sorting: false,
                                 rowStyle:{
                                   textAlign:'center'
@@ -168,7 +170,7 @@ class UserList extends React.Component {
                                   textAlign:"center",
                                 },
                                 /*padding:'dense',*/
-                                minBodyHeight: '70vh',
+                                minBodyHeight: '65vh',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
                                     backgroundColor: '#01579b',
@@ -186,6 +188,10 @@ class UserList extends React.Component {
                         />
                     </Grid>
                 </div>
+                <ErrorIcon/>
+                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                    우측상단 + 버튼을 통해 작업자 추가 / 작업 리스트의 액션버튼을 통해 작업자 삭제
+                </Typography>
             </Container>
         );
     }

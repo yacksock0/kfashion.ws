@@ -33,6 +33,7 @@ const UpdateState = {
 };
 export default class ImageStore {
     @observable boundaryList = [];
+    @observable inspectionList = [];
     @observable files = [];
     @observable uploadFile = '';
     @observable addState = AddState.Closed;
@@ -82,6 +83,19 @@ export default class ImageStore {
             console.log('error')
         }
     });
+
+
+    LoadInspectionList = flow(function* loadInspectionList() {
+        this.inspectionList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/img/inspectionList')
+            this.inspectionList = response.data.inspectionList;
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+
 
     deleteImg = flow(function* (oldData) {
         console.log(oldData);

@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['이미지 리스트', '영역지정','기본 레이블링','전문 레이블링','검수'];
+    return ['이미지 등록', '영역지정','기본 레이블링','전문 레이블링','검수'];
 }
 
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return '이미지 리스트';
+            return '이미지 등록';
         case 1:
             return '영역지정';
         case 2:

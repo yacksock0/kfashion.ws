@@ -306,8 +306,8 @@ class ImageUpload extends React.Component {
                 </div>
                 <div style={{display:'inline'}}>
                 <ErrorIcon/>
-                <Typography variant="h5" component="h2" style={{display:'inline'}}>
-                설명을 적어보자
+                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                좌측상단에 ADD IMAGE 버튼을 통해 업로드 진행 / 이미지 리스트의 액션버튼을 통해 이미지 선택, 파일이름 변경, 이미지 삭제
                 </Typography>
                 </div>
             </Container>

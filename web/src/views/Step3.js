@@ -15,6 +15,7 @@ import Stepper from "../components/Stepper";
 import Style from "../views/step3/Style";
 import ProImageList from "../views/step3/ProImageList";
 import {toJS} from "mobx";
+import ErrorIcon from "@material-ui/icons/Error";
 
 
 const styles = theme => ({   root: {
@@ -287,6 +288,10 @@ class Step3 extends React.Component {
                             </Button>
                         </Grid>
                     {/*</Grid>*/}
+                    <ErrorIcon/>
+                    <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                        우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 / 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭
+                    </Typography>
                 </Container>
             );
         }

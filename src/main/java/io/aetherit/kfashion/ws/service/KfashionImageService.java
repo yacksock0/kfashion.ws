@@ -46,4 +46,8 @@ public class KfashionImageService {
     public List<KfashionImage> selectProfessionalList(String createdId) {
         return repository.selectProfessionalList(createdId);
     }
+
+    public List<KfashionImage> selectInspectionList() {
+        return repository.selectInspectionList();
+    }
 }

@@ -23,6 +23,7 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import {inject, observer} from "mobx-react";
 import {ProgressBar} from "../../components/ProgressBar";
 import WorkDetail from "./WorkDetail";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const styles = theme => ({
     mainContainer: {
@@ -126,17 +127,17 @@ class UserWork extends React.Component {
                                 //             resolve();
                                 //         }, 1000);
                                 //     }),
-                                onRowDelete: rowData =>
-                                    new Promise((resolve, reject) => {
-                                        setTimeout(() => {
-                                            {
-                                                console.log('userId:', rowData.id)
-                                                axios.delete(`/api/v1/kfashion/users/deleteGroupUser`, {data: {userId: rowData.id},
-                                                });
-                                            }
-                                            resolve();
-                                        }, 1000);
-                                    })
+                                // onRowDelete: rowData =>
+                                //     new Promise((resolve, reject) => {
+                                //         setTimeout(() => {
+                                //             {
+                                //                 console.log('userId:', rowData.id)
+                                //                 axios.delete(`/api/v1/kfashion/users/deleteGroupUser`, {data: {userId: rowData.id},
+                                //                 });
+                                //             }
+                                //             resolve();
+                                //         }, 1000);
+                                //     })
                             }}
                             options={{
                                 sorting: false,
@@ -152,6 +153,10 @@ class UserWork extends React.Component {
                         />
                     </Grid>
                 </div>
+                <ErrorIcon/>
+                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                   그룹 회원 리스트의 작업지정 버튼을 통해 해당 작업자에게 작업분배
+                </Typography>
             </Container>
         );
     }
