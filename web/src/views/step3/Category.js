@@ -13,10 +13,12 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
 
+class textFiled extends React.Component{
+}
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class SelectTest extends React.Component {
+export default class SelectTest extends React.Component {d
     constructor(props) {
         super(props);
         this.state = {

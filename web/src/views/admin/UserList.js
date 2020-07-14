@@ -109,7 +109,10 @@ class UserList extends React.Component {
                     <Grid item xs={12} lg={12}>
                         <MaterialTable
                             icons={tableIcons}
-                            localization={{ body: { editRow: { deleteText: '정말 삭제 하시겠습니까?'} } }}
+                            localization={{ body: { editRow: { deleteText: '정말 삭제 하시겠습니까?'} } ,pagination: {
+                                    labelDisplayedRows: '10',
+                                    labelRowsPerPage: '5'
+                                }}}
                             columns={this.state.columns}
                             data={!!this.props.userListStore.groupUserList ?
                                 this.props.userListStore.groupUserList.map((item) => {

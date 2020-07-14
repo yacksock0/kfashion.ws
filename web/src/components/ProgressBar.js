@@ -27,7 +27,6 @@ export class ProgressBar extends Component {
                 const selectWorkProgressRate = response.data.selectWorkProgressRate;
                 const total = selectWorkProgressRate.totalWork;
                 const complete = selectWorkProgressRate.finishWork;
-
                 this.setState({
                     total: total,
                     complete: complete,
@@ -38,7 +37,6 @@ export class ProgressBar extends Component {
                 console.log(error)
             })
     }
-
     changeState() {
         const colorMap = ['#3FC7FA', '#85D262', '#FE8C6A'];
         const value = parseInt(100, 10);

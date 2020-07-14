@@ -246,6 +246,7 @@ class finalCheckList extends React.Component {
                             <MaterialTable
                                 icons={tableIcons
                                 }
+
                                 columns={this.state.columns}
                                 data={!!this.props.imageStore.boundaryList ?
                                     this.props.imageStore.boundaryList.map((item) => {
