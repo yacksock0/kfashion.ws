@@ -10,18 +10,10 @@ const State = {
 
 const EmptyNewProfessionalLabel = {
     workNo : '',
-    workStep : 5,
+    workStep : 6,
     createId : '',
-    styleNoList: [],
-    styleCategoryNoList: [],
     style : '',
-    style1 : '',
-    style2 : '',
-    style3 : '',
     styleSub : '',
-    styleSub1 : '',
-    styleSub2 : '',
-    styleSub3 : '',
     styleCategoryNo : '',
     styleCategorySubNo : '',
     category : '',
@@ -70,53 +62,15 @@ export default class ProfessionalLabelStore {
     @observable state = State.Ready;
     @observable newProfessionalLabel = {...EmptyNewProfessionalLabel}
 
-    @action changeNewProfessionalLabelStyle = (style) => {
-        if(style) {
-            for(let i=0; i < style.length; i++) {
-                this.newProfessionalLabel.styleNoList[i] = style[i].no;
-                this.newProfessionalLabel.styleCategoryNoList[i] = style[i].categoryNo;
-            }
-            console.log(this.newProfessionalLabel.styleNoList);
-            console.log(this.newProfessionalLabel.styleCategoryNoList);
-            this.newProfessionalLabel.style = this.newProfessionalLabel.styleNoList[0]
-            this.newProfessionalLabel.styleCategoryNo = this.newProfessionalLabel.styleCategoryNoList[0]
-            this.newProfessionalLabel.styleSub = this.newProfessionalLabel.styleNoList[1]
-            this.newProfessionalLabel.styleCategorySubNo = this.newProfessionalLabel.styleCategoryNoList[1]
-        }
-    }
 
     @action changeNewProfessionalLabelStyle = (style) => {
         this.newProfessionalLabel.style = style.no;
         this.newProfessionalLabel.styleCategoryNo = style.categoryNo;
     }
-    @action changeNewProfessionalLabelStyle1 = (style1) => {
-        this.newProfessionalLabel.style1 = style1.no;
-        this.newProfessionalLabel.styleCategoryNo1 = style1.categoryNo;
-    }
-    @action changeNewProfessionalLabelStyle2 = (style2) => {
-        this.newProfessionalLabel.style2 = style2.no;
-        this.newProfessionalLabel.styleCategoryNo2 = style2.categoryNo;
-    }
-    @action changeNewProfessionalLabelStyle3 = (style3) => {
-        this.newProfessionalLabel.style3 = style3.no;
-        this.newProfessionalLabel.styleCategoryNo3 = style3.categoryNo;
-    }
 
     @action changeNewProfessionalLabelStyleSub = (styleSub) => {
         this.newProfessionalLabel.styleSub = styleSub.no;
         this.newProfessionalLabel.styleCategorySubNo = styleSub.categoryNo;
-    }
-    @action changeNewProfessionalLabelStyleSub1 = (styleSub1) => {
-        this.newProfessionalLabel.styleSub1 = styleSub1.no;
-        this.newProfessionalLabel.styleCategorySubNo1 = styleSub1.categoryNo;
-    }
-    @action changeNewProfessionalLabelStyleSub2 = (styleSub2) => {
-        this.newProfessionalLabel.styleSub2 = styleSub2.no;
-        this.newProfessionalLabel.styleCategorySubNo2 = styleSub2.categoryNo;
-    }
-    @action changeNewProfessionalLabelStyleSub3 = (styleSub3) => {
-        this.newProfessionalLabel.styleSub3 = styleSub3.no;
-        this.newProfessionalLabel.styleCategorySubNo3 = styleSub3.categoryNo;
     }
 
     @action changeNewProfessionalLabelCategory = (category) => {

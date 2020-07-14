@@ -253,13 +253,13 @@ public class KfashionLabelController {
                                         professional1.setLabelNo(2);
                                         professional1.setNo(1);
                                         professional1.setCategoryNo(professionalLabel.getStyleCategoryNo());
-                                        professional1.setCategoryItemNo(professionalLabel.getStyle1());
+                                        professional1.setCategoryItemNo(professionalLabel.getStyle());
                                         professional1.setCreatedId(professionalLabel.getCreatedId());
                                         kfashionLabelService.insertProfessionalLabel(professional1);
 
                                         professional1.setNo(2);
                                         professional1.setCategoryNo(professionalLabel.getStyleCategorySubNo());
-                                        professional1.setCategoryItemNo(professionalLabel.getStyleSub1());
+                                        professional1.setCategoryItemNo(professionalLabel.getStyleSub());
                                         kfashionLabelService.insertProfessionalLabel(professional1);
 
                                         professional1.setNo(3);
@@ -310,13 +310,13 @@ public class KfashionLabelController {
                                         professional2.setLabelNo(3);
                                         professional2.setNo(1);
                                         professional2.setCategoryNo(professionalLabel.getStyleCategoryNo());
-                                        professional2.setCategoryItemNo(professionalLabel.getStyle2());
+                                        professional2.setCategoryItemNo(professionalLabel.getStyle());
                                         professional2.setCreatedId(professionalLabel.getCreatedId());
                                         kfashionLabelService.insertProfessionalLabel(professional2);
 
                                         professional2.setNo(2);
                                         professional2.setCategoryNo(professionalLabel.getStyleCategorySubNo());
-                                        professional2.setCategoryItemNo(professionalLabel.getStyleSub2());
+                                        professional2.setCategoryItemNo(professionalLabel.getStyleSub());
                                         kfashionLabelService.insertProfessionalLabel(professional2);
 
                                         professional2.setNo(3);
@@ -367,13 +367,13 @@ public class KfashionLabelController {
                                         professional3.setLabelNo(4);
                                         professional3.setNo(1);
                                         professional3.setCategoryNo(professionalLabel.getStyleCategoryNo());
-                                        professional3.setCategoryItemNo(professionalLabel.getStyle3());
+                                        professional3.setCategoryItemNo(professionalLabel.getStyle());
                                         professional3.setCreatedId(professionalLabel.getCreatedId());
                                         kfashionLabelService.insertProfessionalLabel(professional3);
 
                                         professional3.setNo(2);
                                         professional3.setCategoryNo(professionalLabel.getStyleCategorySubNo());
-                                        professional3.setCategoryItemNo(professionalLabel.getStyleSub3());
+                                        professional3.setCategoryItemNo(professionalLabel.getStyleSub());
                                         kfashionLabelService.insertProfessionalLabel(professional3);
 
                                         professional3.setNo(3);
