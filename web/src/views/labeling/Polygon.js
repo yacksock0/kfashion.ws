@@ -21,6 +21,7 @@ import {inject, observer} from "mobx-react";
 import PolygonList from "./PolygonList";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import ErrorIcon from "@material-ui/icons/Error";
 
 const styles = theme => ({
     root: {
@@ -961,6 +962,10 @@ class Polygon extends React.Component {
                         Next Step
                     </Button>
                 </div>
+                <ErrorIcon/>
+                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                    우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 각 영역 별 START버튼을 통해 영역지정 완료 후 FINISH 버튼 클릭 (삭제 버튼을 통해 한 점씩, 또는 전부삭제 버튼을 클릭해 삭제가능) / 필요한 영역의 작업이 모두 완료되면 작업완료 버튼 클릭
+                </Typography>
             </Container>
         );
     }

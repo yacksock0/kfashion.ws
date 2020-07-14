@@ -14,6 +14,7 @@ import {toJS} from "mobx";
 import Chip from '@material-ui/core/Chip';
 import axios from "axios";
 import DeleteIcon from "@material-ui/icons/Delete";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const styles = theme => ({
     root: {
@@ -507,9 +508,9 @@ class Step2 extends React.Component {
                          </div>
                      </Grid>
                      <Grid item xs={12} lg={6}>
-                         <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                         <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => (this.setState({ tabIndex }))}>
                              <TabList >
-                                 <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
+                                 <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>기본 레이블링</h3></Tab>
                                  <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                              </TabList>
 
@@ -781,6 +782,10 @@ class Step2 extends React.Component {
                     </Grid>
                         ): ''}
                 </Grid>
+                <ErrorIcon/>
+                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                    우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 색상 및 소매길이 선택 후 다음 탭으로 이동 / 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭
+                </Typography>
             </Container>
         );
     }

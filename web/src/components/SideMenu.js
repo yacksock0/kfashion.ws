@@ -104,8 +104,16 @@ export default function SideMenu(props) {
     const drawer = (
         <div className={classes.menu}>
             <List>
-                <ListSubheader inset>Process</ListSubheader>
-
+                {loginUser.isAdmin =='Y' ? (
+                <ListSubheader style={{textAlign: 'center'}}><h3>마스터 관리자</h3></ListSubheader>):''}
+                {loginUser.groupAdmin == 1 && loginUser.authorityNo !== 1? (
+                    <ListSubheader style={{textAlign: 'center'}}><h3>그룹 관리자</h3></ListSubheader>):''}
+                {loginUser.authorityNo == 1 ? (
+                    <ListSubheader style={{textAlign: 'center'}}><h3>업로드 작업자</h3></ListSubheader>):''}
+                {loginUser.authorityNo == 2 && loginUser.groupAdmin == 0? (
+                    <ListSubheader style={{textAlign: 'center'}}><h3>기초 작업자</h3></ListSubheader>):''}
+                {loginUser.authorityNo == 3 && loginUser.groupAdmin == 0? (
+                    <ListSubheader inset><h3>전문 작업자</h3></ListSubheader>):''}
                 <Link to="/home" className={classes.link}>
                     <ListItem type="button">
                         <ListItemIcon><ComputerIcon /></ListItemIcon>
@@ -138,7 +146,7 @@ export default function SideMenu(props) {
                                 <ListItemIcon>
                                     <AspectRatioIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="이미지 리스트" />
+                                <ListItemText primary="이미지 등록" />
                             </ListItem>
                         </List>
                     </Collapse>
@@ -311,7 +319,7 @@ export default function SideMenu(props) {
                                     <ListItemIcon>
                                         <PlaylistAddCheckIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="검수" />
+                                    <ListItemText primary="작업내용 상호간체크" />
                                 </ListItem>
                             </List>
                         </Collapse>
@@ -347,7 +355,7 @@ export default function SideMenu(props) {
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="회원 리스트" />
+                                    <ListItemText primary="작업자 등록" />
                                 </ListItem>
                             </List>
                         </Collapse>
@@ -381,7 +389,7 @@ export default function SideMenu(props) {
                                     <ListItemIcon>
                                         <AspectRatioIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="회원 리스트" />
+                                    <ListItemText primary="작업자 등록" />
                                 </ListItem>
                             </List>
                         </Collapse>
