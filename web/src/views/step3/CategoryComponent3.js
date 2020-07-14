@@ -54,7 +54,7 @@ const styles = theme => ({
 
 @inject('professionalLabelStore','authStore', 'imageStore')
 @observer
-class CategoryComponent extends React.Component {
+class CategoryComponent3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -100,32 +100,32 @@ class CategoryComponent extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
     handleClickCategory=(category)=>{
-           this.props.professionalLabelStore.changeNewProfessionalLabelCategory(category);
+        this.props.professionalLabelStore.changeNewProfessionalLabelCategory3(category);
     }
 
     handleClickDetail=(detail)=>{
-        this.props.professionalLabelStore.changeNewProfessionalLabelDetail(detail);
+        this.props.professionalLabelStore.changeNewProfessionalLabelDetail3(detail);
     }
 
     handleClickPrint=(print)=>{
-        this.props.professionalLabelStore.changeNewProfessionalLabelPrint(print);
+        this.props.professionalLabelStore.changeNewProfessionalLabelPrint3(print);
     }
 
     handleClickTexture=(texture)=>{
-       this.props.professionalLabelStore.changeNewProfessionalLabelTexture(texture);
+       this.props.professionalLabelStore.changeNewProfessionalLabelTexture3(texture);
     }
     handleClickCloth=(length)=>{
-        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength(length);
+        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength3(length);
     }
     handleClickNeckLine=(neckline)=>{
-      this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine(neckline);
+      this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine3(neckline);
     }
 
     handleClickKara=(kara)=>{
-       this.props.professionalLabelStore.changeNewProfessionalLabelKara(kara);
+       this.props.professionalLabelStore.changeNewProfessionalLabelKara3(kara);
     }
     handleClickFit=(fit)=>{
-       this.props.professionalLabelStore.changeNewProfessionalLabelFit(fit);
+       this.props.professionalLabelStore.changeNewProfessionalLabelFit3(fit);
     }
 
     handleDelete(){
@@ -193,7 +193,7 @@ class CategoryComponent extends React.Component {
     }
     render() {
         const {classes} = this.props;
-        console.log('lastIndex', this.props.polyLast.polyLast)
+        console.log('lastIndex', this.props.polyLast)
         console.log('tabIndex1', this.props.tabIndex1)
         return (
                     <Grid container spacing={3} style={{marginTop: 10}}>
@@ -324,7 +324,7 @@ class CategoryComponent extends React.Component {
                                                 (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }
                                         </div>
-                                        {this.props.polyLast+1 == this.props.tabIndex ? (
+                                        {this.props.polyLast === this.props.tabIndex ? (
                                         <Button style={{marginTop: 50}}
                                                 type="button"
                                                 className={classes.buttonType2}
@@ -383,4 +383,4 @@ class CategoryComponent extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(styles) (CategoryComponent)));
+export default withSnackbar(withRouter(withStyles(styles) (CategoryComponent3)));

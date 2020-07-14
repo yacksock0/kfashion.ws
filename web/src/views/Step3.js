@@ -5,6 +5,9 @@ import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import CategoryComponent from "./step3/CategoryComponent";
+import CategoryComponent1 from "./step3/CategoryComponent1";
+import CategoryComponent2 from "./step3/CategoryComponent2";
+import CategoryComponent3 from "./step3/CategoryComponent3";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
@@ -226,17 +229,17 @@ class Step3 extends React.Component {
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
+                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1} />
+                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} />
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
+                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
                                             </Grid>
                                         </TabPanel>
                                     </Tabs>
