@@ -48,13 +48,15 @@ export default class SelectTest extends React.Component {
             selectedNo:style.no,
             selectedName:style.categoryItemName
         })
+        this.props.professionalLabelStore.changeNewProfessionalLabelStyle(style);
     };
-    handleClickSub = (style) =>{
+    handleClickSub = (styleSub) =>{
         this.setState({
-            selectedSubNo:style.no,
-            selectedSubName:style.categoryItemName,
+            selectedSubNo:styleSub.no,
+            selectedSubName:styleSub.categoryItemName,
             open:false,
         })
+        this.props.professionalLabelStore.changeNewProfessionalLabelStyleSub(styleSub);
         // if(this.props.onClick) {
         //     this.props.onClick(this.state.selectedNo,this.state.selectedName,
         //         this.state.selectedSubNo,

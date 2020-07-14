@@ -100,32 +100,61 @@ class CategoryComponent extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
     handleClickCategory=(category)=>{
-           this.props.professionalLabelStore.changeNewProfessionalLabelCategory(category);
+        this.setState({
+            categoryNo: category.no,
+            categoryName: category.categoryItemName,
+        })
+        this.props.professionalLabelStore.changeNewProfessionalLabelCategory(category);
     }
 
     handleClickDetail=(detail)=>{
+        this.setState({
+            detailNo: detail.no,
+            detailName: detail.categoryItemName,
+        })
         this.props.professionalLabelStore.changeNewProfessionalLabelDetail(detail);
     }
-
     handleClickPrint=(print)=>{
+        this.setState({
+            printNo: print.no,
+            printName: print.categoryItemName,
+        })
         this.props.professionalLabelStore.changeNewProfessionalLabelPrint(print);
     }
-
     handleClickTexture=(texture)=>{
-       this.props.professionalLabelStore.changeNewProfessionalLabelTexture(texture);
+        this.setState({
+            textureNo: texture.no,
+            textureName: texture.categoryItemName,
+        })
+        this.props.professionalLabelStore.changeNewProfessionalLabelTexture(texture);
     }
     handleClickCloth=(length)=>{
+        this.setState({
+            lengthNo: length.no,
+            lengthName: length.categoryItemName,
+        })
         this.props.professionalLabelStore.changeNewProfessionalLabelClothLength(length);
     }
     handleClickNeckLine=(neckline)=>{
-      this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine(neckline);
+        this.setState({
+            necklineNo: neckline.no,
+            necklineName: neckline.categoryItemName,
+        })
+        this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine(neckline);
     }
-
     handleClickKara=(kara)=>{
-       this.props.professionalLabelStore.changeNewProfessionalLabelKara(kara);
+        this.setState({
+            karaNo: kara.no,
+            karaName: kara.categoryItemName,
+        })
+        this.props.professionalLabelStore.changeNewProfessionalLabelKara(kara);
     }
     handleClickFit=(fit)=>{
-       this.props.professionalLabelStore.changeNewProfessionalLabelFit(fit);
+        this.setState({
+            fitNo: fit.no,
+            fitName: fit.categoryItemName,
+        })
+        this.props.professionalLabelStore.changeNewProfessionalLabelFit(fit);
     }
 
     handleDelete(){
@@ -189,7 +218,9 @@ class CategoryComponent extends React.Component {
         })
     }
     handleSubmit=()=>{
-
+        const createdId=this.props.authStore.loginUser.id;
+        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
+        this.props.professionalLabelStore.doProfessionalLabelUp();
     }
     render() {
         const {classes} = this.props;
@@ -324,7 +355,7 @@ class CategoryComponent extends React.Component {
                                                 (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }
                                         </div>
-                                        {this.props.polyLast === this.props.tabIndex ? (
+
                                         <Button style={{marginTop: 50}}
                                                 type="button"
                                                 className={classes.buttonType2}
@@ -334,7 +365,7 @@ class CategoryComponent extends React.Component {
                                         >
                                             저장
                                         </Button>
-                                        ):''}
+
                                     </Grid>
                                     {/*<Grid item xs={12} lg={6}>*/}
                                     {/*    <div className={classes.content} style={{display:'inline'}}>*/}

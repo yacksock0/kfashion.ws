@@ -18,14 +18,8 @@ public class ProfessionalLabel {
     private int labelNo;
     private int no;
     private int style;
-    private int style1;
-    private int style2;
-    private int style3;
     private int styleCategoryNo;
     private int styleSub;
-    private int styleSub1;
-    private int styleSub2;
-    private int styleSub3;
     private int styleCategorySubNo;
     private int category;
     private int category1;
