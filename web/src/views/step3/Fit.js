@@ -14,7 +14,7 @@ import TableCell from "@material-ui/core/TableCell";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class ColorKara extends React.Component {
+export default class Fit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -139,8 +139,9 @@ class finalCheckList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
-                {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
+                {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
         }
     }
@@ -151,8 +152,7 @@ class finalCheckList extends React.Component {
 
     componentDidMount() {
         this.props.currentStepStore.setStep(4);
-        const createdId = this.props.authStore.isUserId;
-        this.props.imageStore.LoadImage(createdId);
+        this.props.imageStore.LoadInspectionList();
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("FinalCheck", {
@@ -167,6 +167,7 @@ class finalCheckList extends React.Component {
         this.setState({
             imgData:imgData,
         })
+
     }
     handleClickReturn=()=>{
 
@@ -248,13 +249,12 @@ class finalCheckList extends React.Component {
                                 }
 
                                 columns={this.state.columns}
-                                data={!!this.props.imageStore.boundaryList ?
-                                    this.props.imageStore.boundaryList.map((item) => {
+                                data={!!this.props.imageStore.inspectionList ?
+                                    this.props.imageStore.inspectionList.map((item) => {
                                         return {
                                             workNo: item.workNo,
                                             fileName: item.fileName,
                                             workName: item.workName,
-                                            createdId: item.createdId,
                                             createdDatetime: item.createdDatetime,
                                         }
                                     }) : []}

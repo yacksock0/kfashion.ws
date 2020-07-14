@@ -3,12 +3,12 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
-import Category from "../step3/Category";
+import Category3 from "../step3/Category3";
 import Style from "../step3/Style";
 import Detail from "../step3/Detail";
 import Print from "../step3/Print";
 import Texture from "../step3/Texture";
-import ClothLength from "../step3/ClothLength";
+import ClothLength3 from "../step3/ClothLength3";
 import NeckLine from "../step3/NeckLine";
 import ColorKara from "../step3/ColorKara";
 import Fit from "../step3/Fit";
@@ -234,7 +234,7 @@ class CategoryComponent3 extends React.Component {
                                                 카테고리
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Category onClick={this.handleClickCategory} />
+                                                <Category3 onClick={this.handleClickCategory} />
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -298,7 +298,7 @@ class CategoryComponent3 extends React.Component {
                                                 기장
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <ClothLength onClick={this.handleClickCloth}/>
+                                                <ClothLength3 onClick={this.handleClickCloth}/>
                                             </div>
                                             <div>
                                                 <hr></hr>

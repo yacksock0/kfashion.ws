@@ -98,6 +98,18 @@
     </select>
 
 
+    <select id="selectInspectionList" resultMap="kfashionImageResultMap">
+         SELECT DISTINCT
+            kfashion_image.work_no,
+            SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name,
+            CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
+            kfashion_work_history.created_datetime
+         FROM kfashion_image
+             LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+             RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+         WHERE kfashion_work.work_state = 6
+         GROUP BY kfashion_image.work_no
+    </select>
 
 
 </mapper>
