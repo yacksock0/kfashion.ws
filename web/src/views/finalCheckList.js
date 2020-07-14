@@ -157,7 +157,9 @@ class finalCheckList extends React.Component {
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
+    handleClickReturn=()=>{
 
+    }
     render() {
         const {classes,history} = this.props;
 
@@ -188,14 +190,14 @@ class finalCheckList extends React.Component {
                                 }}
                                 actions={[
                                     {
-                                        icon: Edit,
-                                        tooltip: 'return',
-                                        // onClick: (event, rowData) => this.handleClickReturn()
-                                    },
-                                    {
                                         icon: CheckIcon,
                                         tooltip: 'Select Image',
                                         // onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
+                                    },
+                                    {
+                                        icon: Clear,
+                                        tooltip: 'return',
+                                        onClick: (event, rowData) => this.handleClickReturn(rowData.id)
                                     }
                                 ]}
                             />

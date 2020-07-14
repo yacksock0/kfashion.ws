@@ -224,7 +224,7 @@ class CategoryComponent extends React.Component {
     }
     render() {
         const {classes} = this.props;
-        console.log('lastIndex', this.props.polyLast)
+        console.log('lastIndex', this.props.polyLast.polyLast)
         console.log('tabIndex1', this.props.tabIndex1)
         return (
                     <Grid container spacing={3} style={{marginTop: 10}}>
@@ -355,7 +355,7 @@ class CategoryComponent extends React.Component {
                                                 (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }
                                         </div>
-                                        {this.props.polyLast === this.props.tabIndex ? (
+                                        {this.props.polyLast+1 == this.props.tabIndex ? (
                                         <Button style={{marginTop: 50}}
                                                 type="button"
                                                 className={classes.buttonType2}
