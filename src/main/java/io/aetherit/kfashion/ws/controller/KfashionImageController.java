@@ -192,6 +192,12 @@ public class KfashionImageController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * 전문가 작업리스트
+     * @param createdId
+     * @return ResponseEntity
+     * @throws
+     */
 
     @GetMapping(value="/professionalList")
     public ResponseEntity<Object> professionalList(HttpServletRequest httpRequest,
@@ -199,6 +205,20 @@ public class KfashionImageController {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionImage> professionalList = kfashionImageService.selectProfessionalList(createdId);
         resultMap.put("professionalList", professionalList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+    /**
+     * 최종검수 리스트
+     * @return ResponseEntity
+     * @throws
+     */
+
+    @GetMapping(value="inspectionList")
+    public ResponseEntity<Object> inspectionList(HttpServletRequest httpRequest) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList();
+        resultMap.put("inspectionList", inspectionList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 }
