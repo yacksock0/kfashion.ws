@@ -1,18 +1,10 @@
 import React from 'react';
-import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableHeader from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
 import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
-import Category from "./Category";
+import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from "@material-ui/core/Chip";
 
 @inject('professionalLabelStore','authStore')
@@ -56,13 +48,15 @@ export default class SelectTest extends React.Component {
             selectedNo:style.no,
             selectedName:style.categoryItemName
         })
+        this.props.professionalLabelStore.changeNewProfessionalLabelStyle(style);
     };
-    handleClickSub = (style) =>{
+    handleClickSub = (styleSub) =>{
         this.setState({
-            selectedSubNo:style.no,
-            selectedSubName:style.categoryItemName,
+            selectedSubNo:styleSub.no,
+            selectedSubName:styleSub.categoryItemName,
             open:false,
         })
+        this.props.professionalLabelStore.changeNewProfessionalLabelStyleSub(styleSub);
         // if(this.props.onClick) {
         //     this.props.onClick(this.state.selectedNo,this.state.selectedName,
         //         this.state.selectedSubNo,
@@ -110,29 +104,19 @@ export default class SelectTest extends React.Component {
                         </div>
                         <div style={{display:"inline-block", marginRight:10}}>
                         {this.state.selectedNo > 0 ?
-                            (<Chip
-                                variant="outlined"
-                                label={this.state.selectedName}
-                                onDelete={this.handleDelete}
-                                color="primary"
-                            />) : ''
+                            (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.selectedName} </Button> ) : ''
                         }
                         </div>
                         <div style={{display:"inline-block"}}>
                             {this.state.selectedSubNo > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={this.state.selectedSubName}
-                                    onDelete={this.handleDeleteSub}
-                                    color="primary"
-                                />) : ''
+                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteSub} endIcon={<DeleteIcon />} > {this.state.selectedSubName} </Button> ) : ''
                             }
                         </div>
                     </div>
                 </Grid>
 
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"lg"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
@@ -153,19 +137,18 @@ export default class SelectTest extends React.Component {
                                 }
                                 </div>
                         <hr></hr>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {styleList.map((style) => (
-                                            <TableRow onClick={()=>this.handleClick(style)} hover>
-                                                <TableCell key={style.no}>
-                                                    {style.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                                <Grid container>
+                                    {styleList.map((style) =>
+                                        <Grid item xs={3}>
+                                            <div style={{textAlign:'center', margin:5}}>
+                                                <Button style={{width:'100%', height:60}} variant="outlined" key={style.no} onClick={() => this.handleClick(style)}>
+                                                    <h3>{style.categoryItemName}</h3>
+                                                </Button>
+                                            </div>
+                                        </Grid>
+                                    )
+                                    }
+                                </Grid>
                             </Grid>
                             <Grid item xs={1}></Grid>
                             <Grid item xs={5}>
@@ -173,21 +156,20 @@ export default class SelectTest extends React.Component {
                                     서브 스타일
                                 </Typography>
                                 <hr></hr>
-                                <TableContainer>
-                                    <Table stickyHeader aria-label="sticky table">
-                                        {!this.state.selectedNo == 0 ?
-                                        <TableBody>
-                                            {styleList.map((style) =>(
-                                                <TableRow onClick={()=>this.handleClickSub(style)} hover>
-                                                    <TableCell key={style.no}>
-                                                        {style.categoryItemName}
-                                                    </TableCell>
-                                                </TableRow>
-                                                ))}
-                                        </TableBody>
-                                        : ''}
-                                    </Table>
-                                </TableContainer>
+                                {!this.state.selectedNo == 0 ?
+                                <Grid container>
+                                    {styleList.map((style) =>
+                                        <Grid item xs={3}>
+                                            <div style={{textAlign:'center', margin:5}}>
+                                                <Button style={{width:'100%', height:60}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
+                                                    <h3>{style.categoryItemName}</h3>
+                                                </Button>
+                                            </div>
+                                        </Grid>
+                                    )
+                                    }
+                                </Grid>
+                                :''}
                             </Grid>
                         </Grid>
                     </DialogContent>

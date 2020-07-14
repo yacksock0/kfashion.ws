@@ -79,21 +79,18 @@ export default class SelectTest extends React.Component {
                         소매기장
                     </Typography>
                     <hr></hr>
-                <Paper>
-                    <TableContainer>
-                        <Table stickyHeader aria-label="sticky table">
-                            <TableBody>
-                                    {sleeveList.map((sleeve) => (
-                                <TableRow onClick={()=>this.handleClick(sleeve)} hover>
-                                        <TableCell key={sleeve.no}>
-                                            {sleeve.categoryItemName}
-                                        </TableCell>
-                                </TableRow>
-                                    ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Paper>
+                    <Grid container>
+                        {sleeveList.map((sleeve) =>
+                            <Grid item xs={3}>
+                                <div style={{textAlign:'center', margin:10}}>
+                                    <Button style={{width:'100%', height:60}} variant="outlined" key={sleeve.no} onClick={() => this.handleClick(sleeve)}>
+                                        <h2>{sleeve.categoryItemName}</h2>
+                                    </Button>
+                                </div>
+                            </Grid>
+                        )
+                        }
+                    </Grid>
                 </DialogContent>
                 </Dialog>
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Paper from "@material-ui/core/Paper";
@@ -20,7 +20,10 @@ export default class ClothLength extends React.Component {
         this.state = {
             text: 'text',
             open: false,
-            lengthList: [],
+            lengthList0: [],
+            lengthList1: [],
+            lengthList2: [],
+            lengthList3: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -30,8 +33,18 @@ export default class ClothLength extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/length')
             .then(response => {
-                const lengthList = response.data.lengthList;
-                this.setState({lengthList:lengthList})
+                console.log(response.data.lengthList0);
+                console.log(response.data.lengthList1);
+                console.log(response.data.lengthList2);
+                console.log(response.data.lengthList3);
+                const lengthList0 = response.data.lengthList0;
+                const lengthList1 = response.data.lengthList1;
+                const lengthList2 = response.data.lengthList2;
+                const lengthList3 = response.data.lengthList3;
+                this.setState({lengthList0:lengthList0,
+                    lengthList1: lengthList1,
+                    lengthList2: lengthList2,
+                    lengthList3: lengthList3})
             })
             .catch(error => {
                 console.log(error)
@@ -56,12 +69,12 @@ export default class ClothLength extends React.Component {
         })
     }
     render() {
-        const lengthList= this.state.lengthList;
+        const lengthList0= this.state.lengthList0;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"md"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
@@ -70,21 +83,18 @@ export default class ClothLength extends React.Component {
                             기장
                         </Typography>
                         <hr></hr>
-                        <Paper>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {lengthList.map((length) => (
-                                            <TableRow onClick={()=>this.handleClick(length)} hover>
-                                                <TableCell key={length.no}>
-                                                    {length.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
+                        <Grid container>
+                            {lengthList0.map((length) =>
+                                <Grid item xs={3}>
+                                    <div style={{textAlign:'center', margin:10}}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>
+                                            <h2>{length.categoryItemName}</h2>
+                                        </Button>
+                                    </div>
+                                </Grid>
+                            )
+                            }
+                        </Grid>
                     </DialogContent>
                 </Dialog>
             </div>

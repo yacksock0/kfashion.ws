@@ -53,4 +53,19 @@
         AND no =#{no}
     </select>
 
+
+    <select id="selectPolyNo" parameterType="Long" resultType="int">
+        SELECT
+        DISTINCT poly_no
+        FROM kfashion_image_location_polygon_point
+        WHERE work_no = #{workNo}
+    </select>
+
+    <select id="selectLabelNo" parameterType="Long" resultType="int">
+        SELECT
+        DISTINCT poly_no
+        FROM kfashion_image_location_polygon_point
+        WHERE work_no = #{workNo}
+    </select>
+
 </mapper>

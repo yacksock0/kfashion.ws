@@ -5,11 +5,17 @@ import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import CategoryComponent from "./step3/CategoryComponent";
+import CategoryComponent1 from "./step3/CategoryComponent1";
+import CategoryComponent2 from "./step3/CategoryComponent2";
+import CategoryComponent3 from "./step3/CategoryComponent3";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
 import Stepper from "../components/Stepper";
 import Style from "../views/step3/Style";
+import ProImageList from "../views/step3/ProImageList";
+import {toJS} from "mobx";
+
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -80,7 +86,7 @@ const styles = theme => ({   root: {
     },
 });
 
-@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore')
+@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','polygonStore')
 @observer
 class Step3 extends React.Component {
     constructor(props) {
@@ -90,7 +96,8 @@ class Step3 extends React.Component {
             selectedName:'',
             selectedSubNo:0,
             selectedSubName:'',
-            tapIndex: 1,
+            tabIndex: 1,
+            tabIndex1:0,
             createdId: '',
         }
     }
@@ -106,7 +113,6 @@ class Step3 extends React.Component {
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
 
     handleClickSubmit = () => {
@@ -114,43 +120,26 @@ class Step3 extends React.Component {
         this.props.professionalLabelStore.doProfessionalLabelUp();
     }
 
-    handlePrevious(){
-        this.setState({
-            count: this.state.count-1
-        });
-        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
-            : alert("첫번째 이미지 입니다.")
-        }
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.workNo
-        })
-    }
-    handleNext() {
-        this.setState({
-            count: this.state.count+1
-        });
-        {this.state.count < this.state.boundaryList.length ?
-            this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
-            :alert("마지막 이미지 입니다.")
-        }
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.workNo
-        })
-    }
-
     handleClickItem = (workNo, imageData) => {
-        this.props.rectStore.LoadRectLocation(workNo);
-        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
+        this.setState({
+            tabIndex:1,
+        })
         this.props.imageStore.changeWorkNo(workNo);
+        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+        this.props.polygonStore.LoadPolygonLocation(workNo);
+        console.log(this.props.polygonStore.tabIndex1);
+        this.setState({
+            tabIndex1:this.props.polygonStore.tabIndex1,
+            tabIndex:0,
+        })
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
+            width : 750,
+            height : 850,
             originX: 'left',
             originY: 'top'
         });
     }
+
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
         this.setState({
             selectedMainNo:selectedMainNo,
@@ -159,9 +148,44 @@ class Step3 extends React.Component {
             selectedSubName:selectedSubName,
         })
     }
+
+    onSelectTab(tabIndex1) {
+        this.canvas.remove(this.canvas.item(0));
+        let polyNo = tabIndex1;
+        const { locationPolygonList } = this.props.polygonStore;
+        const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
+        console.log(selectedPoly);
+
+        if(selectedPoly.length!=0){
+            this.canvas.remove(this.canvas.item(0));
+            let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
+            for (let i = 1; i < selectedPoly.length; i++) {
+                makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
+            }
+            makePath += ' z';
+            let path = new fabric.Path(makePath);
+            path.opacity = 0.5;
+
+            console.log(makePath);
+            this.canvas.add(path);
+            this.setState({
+                tabIndex1:tabIndex1,
+            })
+        }else if(tabIndex1 ==0) {
+            this.setState({
+                tabIndex1:tabIndex1,
+            })
+        }else{
+            alert("poly정보가 존재하지 않습니다.")}
+    };
+    handleChange=(polyLast)=>{
+        if(this.props.onChange){
+            this.props.onChange(polyLast)
+        }
+    }
     render() {
         const {classes,history} = this.props;
-
+        const {polyLast} = this.props.polygonStore;
             return (
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
@@ -175,50 +199,55 @@ class Step3 extends React.Component {
                                 <Grid item xs={12} lg={6} >
                                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                         <TabList >
-                                            <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
+                                            <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>레이블링</h3></Tab>
                                             <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                                         </TabList>
 
                                         <TabPanel>
-                                            <Tabs onSelect={tabIndex => this.onSelectTab(tabIndex)}>
+
+                                            <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
-                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
-                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
-                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                            <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                            <Tab tabIndex1={0} style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
+                                            <Tab tabIndex1={1} style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
+                                            <Tab tabIndex1={2} style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
+                                            <Tab tabIndex1={3} style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
+                                            <Tab tabIndex1={4} style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
                                             {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>*/}
                                             {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>*/}
                                             {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>*/}
                                         </TabList>
-                                            </Tabs>
-                                        </TabPanel>
 
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <Style onClick={this.handleClickStyle}/>
+                                                <Style onClick={this.handleClickStyle} />
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} />
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent />
+                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1}/>
                                             </Grid>
                                         </TabPanel>
+                                    </Tabs>
+                                        </TabPanel>
+                                     <TabPanel>
+
+                                    <ProImageList onClick={this.handleClickItem} />
+                                    </TabPanel>
                                     </Tabs>
                                 </Grid>
                             </Grid>
@@ -252,7 +281,7 @@ class Step3 extends React.Component {
                                 className={classes.buttonType2}
                                 color="primary"
                                 variant="outlined"
-                                onClick={()=>history.push('/Step2/FinalCheckList')}
+                                onClick={()=>history.push('/step3')}
                             >
                                 Next Step
                             </Button>

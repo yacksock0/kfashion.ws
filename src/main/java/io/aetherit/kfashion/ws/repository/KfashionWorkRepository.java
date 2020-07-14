@@ -6,6 +6,9 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionWorkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.List;
+
 @Repository
 public class KfashionWorkRepository {
     private KfashionWorkMapper mapper;
@@ -33,5 +36,13 @@ public class KfashionWorkRepository {
 
     public void deleteWork(KfashionImage workImage) {
         mapper.deleteWork(workImage);
+    }
+
+    public List<Long> selectWorkAssignment(HashMap<String, Object> workMap) {
+        return mapper.selectWorkAssignment(workMap);
+    }
+
+    public int selectWorkQuantity(int workState) {
+        return mapper.selectWorkQuantity(workState);
     }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Typography} from "@material-ui/core";
+import {Button, Typography, Grid} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Paper from "@material-ui/core/Paper";
@@ -57,13 +57,21 @@ export default class Detail extends React.Component {
         })
 
     }
+    handledDetail=(detail)=>{
+        if(this.props.onClick) {
+            this.props.onClick(detail);
+        }
+        this.setState({
+            open: false
+        });
+    }
     render() {
         const detailList= this.state.detailList;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"lg"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
@@ -72,21 +80,18 @@ export default class Detail extends React.Component {
                             디테일
                         </Typography>
                         <hr></hr>
-                        <Paper>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {detailList.map((detail) => (
-                                            <TableRow onClick={()=>this.handleClick(detail)} hover>
-                                                <TableCell key={detail.no}>
-                                                    {detail.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
+                            <Grid container>
+                                        {detailList.map((detail) =>
+                                <Grid item xs={3}>
+                                    <div style={{textAlign:'center', margin:10}}>
+                                            <Button style={{width:'100%', height:60}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
+                                                <h2>{detail.categoryItemName}</h2>
+                                            </Button>
+                                    </div>
+                                </Grid>
+                                        )
+                                        }
+                            </Grid>
                     </DialogContent>
                 </Dialog>
             </div>

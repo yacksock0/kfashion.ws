@@ -19,6 +19,11 @@ export default class PolygonStore {
     @observable state = State.Ready;
     @observable NewPolygonLocation = {...EmptyNewPolygonLocation};
     @observable List = [];
+    @observable tabIndex1 =0;
+    @observable polyInfo1=[];
+    @observable polyInfo2=[];
+    @observable polyInfo3=[];
+    @observable polyInfo4=[];
     @observable polygonInsertList= [];
     @observable polygonList= [];
     @observable locationPolygonList = [];
@@ -28,7 +33,6 @@ export default class PolygonStore {
     }
 
     @action initStore = () => {
-
         this.polygonList = [];
     }
 
@@ -43,10 +47,12 @@ export default class PolygonStore {
     @action changeNewPolygonLocationRectNo = (rectNo) => {
         this.NewPolygonLocation.rectNo =rectNo;
     }
+    @computed get rectNo() {
+        return this.NewPolygonLocation.rectNo;
+    }
     @computed get isPending() {
         return this.state === State.Pending;
     }
-
     @computed get isSignUpSuccess() {
         return this.state === State.Success;
     }
@@ -72,7 +78,11 @@ export default class PolygonStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/polygon/locationPolygonList?workNo='+workNo);
             this.locationPolygonList = response.data.locationPolygonList;
-            console.log("111111111111111111111"+toJS(this.locationPolygonList));
+            this.tabIndex1 = response.data.polyNo[0];
+            this.polyInfo = response.data.polyNo;
+            this.polyLast = (response.data.polyNo.length-1)+2;
+            console.log('polyLast',this.polyLast);
+            console.log(this.tabIndex1);
         } catch (e) {
             console.log('error');
         }

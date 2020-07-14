@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Paper from "@material-ui/core/Paper";
@@ -20,7 +20,8 @@ export default class ColorKara extends React.Component {
         this.state = {
             open:false,
             text: 'text',
-            fitList: [],
+            fitList0: [],
+            fitList3:[],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -30,8 +31,13 @@ export default class ColorKara extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/fit')
             .then(response => {
-                const fitList = response.data.fitList;
-                this.setState({ fitList : fitList})
+                console.log(response.data.fitList0);
+                console.log(response.data.fitList3);
+                const fitList0 = response.data.fitList0;
+                const fitList3 = response.data.fitList3;
+                this.setState({fitList0:fitList0,
+                    fitList3: fitList3,
+                    })
             })
             .catch(error => {
                 console.log(error)
@@ -57,12 +63,12 @@ export default class ColorKara extends React.Component {
 
     }
     render() {
-        const fitList= this.state.fitList;
+        const fitList0= this.state.fitList0;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"md"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
@@ -71,21 +77,18 @@ export default class ColorKara extends React.Component {
                             핏
                         </Typography>
                         <hr></hr>
-                        <Paper>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {fitList.map((fit) => (
-                                            <TableRow onClick={()=>this.handleClick(fit)} hover>
-                                                <TableCell key={fit.no}>
-                                                    {fit.categoryItemName}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
+                        <Grid container>
+                            {fitList0.map((fit) =>
+                                <Grid item xs={3}>
+                                    <div style={{textAlign:'center', margin:10}}>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
+                                            <h2>{fit.categoryItemName}</h2>
+                                        </Button>
+                                    </div>
+                                </Grid>
+                            )
+                            }
+                        </Grid>
                     </DialogContent>
                 </Dialog>
             </div>

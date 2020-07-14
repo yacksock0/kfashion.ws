@@ -26,6 +26,10 @@ public class KfashionUserInfoRepository {
         return mapper.selectUser(id);
     }
 
+    public KfashionUserInfo selectAdmin(String userId) {
+        return mapper.selectAdmin(userId);
+    }
+
     public int checkUser(KfashionUserInfo user) {
         return mapper.checkUser(user);
     }
@@ -73,4 +77,9 @@ public class KfashionUserInfoRepository {
     public void deleteGroupUser(KfashionUserInfo user) {
         mapper.deleteGroupUser(user);
     }
+
+    public int getGroupUser(String userId) {
+        return mapper.getGroupUser(userId);
+    }
+
 }

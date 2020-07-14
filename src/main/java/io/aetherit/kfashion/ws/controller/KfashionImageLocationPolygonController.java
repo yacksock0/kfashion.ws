@@ -134,7 +134,8 @@ public class KfashionImageLocationPolygonController {
                 polygon.setNo(polyNoList.get(i).getNo());
                 locationPolygonList.addAll(kfashionImageLocationPolygonPointService.selectLocationPolygonList(polygon));
             }
-            System.out.println(locationPolygonList);
+            List<Integer> polyNo = kfashionImageLocationPolygonPointService.selectPolyNo(workNo);
+            resultMap.put("polyNo",polyNo);
             resultMap.put("locationPolygonList", locationPolygonList);
         }
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);

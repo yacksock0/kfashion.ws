@@ -37,26 +37,53 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         final String userId = (String) request.getPrincipal();
         final String password = (String) request.getCredentials();
 
-        final KfashionUserInfo user = kfashionUserInfoService.getUser(userId);
-        if(user == null) {
-            throw new UsernameNotFoundException("Username not found : " + userId);
+        final int groupAdmin = kfashionUserInfoService.getGroupUser(userId);
+
+        if(groupAdmin == 1) {
+            final KfashionUserInfo user = kfashionUserInfoService.getAdmin(userId);
+            if(user == null) {
+                throw new UsernameNotFoundException("Username not found : " + userId);
+            }
+
+            if(user.getIsApproved() == 'N') {
+                throw new DisabledException("User is not enabled : " + userId);
+            }
+
+            if ((password != null) && (password.length() > 0) && (passwordEncoder.matches(password, user.getPassword()))) {
+                final List<GrantedAuthority> authorities = new ArrayList<>();
+
+
+                result = new UsernamePasswordAuthenticationToken(userId, password, authorities);
+                result.setDetails(getSimpleUser(user));
+            } else {
+                throw new BadCredentialsException("Bad credentials");
+            }
+
+            return result;
+        }else {
+            final KfashionUserInfo user = kfashionUserInfoService.getUser(userId);
+            if(user == null) {
+                throw new UsernameNotFoundException("Username not found : " + userId);
+            }
+
+            if(user.getIsApproved() == 'N') {
+                throw new DisabledException("User is not enabled : " + userId);
+            }
+
+            if ((password != null) && (password.length() > 0) && (passwordEncoder.matches(password, user.getPassword()))) {
+                final List<GrantedAuthority> authorities = new ArrayList<>();
+
+
+                result = new UsernamePasswordAuthenticationToken(userId, password, authorities);
+                result.setDetails(getSimpleUser(user));
+            } else {
+                throw new BadCredentialsException("Bad credentials");
+            }
+
+            return result;
         }
 
-        if(user.getIsApproved() == 'N') {
-            throw new DisabledException("User is not enabled : " + userId);
-        }
 
-        if ((password != null) && (password.length() > 0) && (passwordEncoder.matches(password, user.getPassword()))) {
-            final List<GrantedAuthority> authorities = new ArrayList<>();
-
-
-            result = new UsernamePasswordAuthenticationToken(userId, password, authorities);
-            result.setDetails(getSimpleUser(user));
-        } else {
-            throw new BadCredentialsException("Bad credentials");
-        }
-
-        return result;
     }
 
     @Override

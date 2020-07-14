@@ -21,7 +21,6 @@ import {inject, observer} from "mobx-react";
 import PolygonList from "./PolygonList";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Stepper from "../../components/Stepper";
 
 const styles = theme => ({
     root: {
@@ -118,6 +117,7 @@ class Polygon extends React.Component {
         buttonDis6 : true,
         buttonDis7 : true,
         tabIndex: 1,
+        listIndex:0,
     }
     save1 = false;
     save2 = false;
@@ -471,6 +471,10 @@ class Polygon extends React.Component {
             this.buttonState();
             // -- Tap Menu List로 전환
             this.setState({
+                buttonDis1: false,
+                buttonDis2: false,
+                buttonDis3: false,
+                buttonDis4: false,
                 tabIndex: 1,
             });
             alert("저장되었습니다.");
@@ -497,10 +501,16 @@ class Polygon extends React.Component {
     handleStepView = () =>{
         console.log("stepView");
     }
-
+    handleListChange=(listIndex)=>{
+        this.setState({
+            listIndex:listIndex,
+        })
+    }
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
+
+            console.log('sdakfjsdkfjklsdf', this.state.listIndex);
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
@@ -920,7 +930,7 @@ class Polygon extends React.Component {
 
                                 </TabPanel>
                                 <TabPanel value={this.state.value} index={1}>
-                                    <PolygonList onClick={this.handleClickItem} />
+                                    <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange}/>
                                 </TabPanel>
                             </Tabs>
                         </Grid>
@@ -947,12 +957,13 @@ class Polygon extends React.Component {
                     {/*    onClick={this.handleSubmitForm} >*/}
                     {/*    Next*/}
                     {/*</Button>*/}
+
                     <Button
                         type="button"
                         className={classes.buttonType2}
                         color="primary"
                         variant="outlined"
-                        onClick={()=>history.push('/step2')}
+                        onClick={()=>{this.state.listIndex === 0 ? (history.push('/step2')) :alert('리스트에 남은 작업이 있습니다.')} }
                     >
                         Next Step
                     </Button>

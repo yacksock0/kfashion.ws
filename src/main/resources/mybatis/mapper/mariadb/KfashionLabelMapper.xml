@@ -72,7 +72,7 @@
         LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
-        AND kfashion_work.work_state = 3
+        AND kfashion_work.work_state = 4
         GROUP BY kfashion_image.work_no
     </select>
 </mapper>

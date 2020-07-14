@@ -54,7 +54,7 @@ const styles = theme => ({
 
 @inject('professionalLabelStore','authStore', 'imageStore')
 @observer
-class CategoryComponent extends React.Component {
+class CategoryComponent2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -104,7 +104,7 @@ class CategoryComponent extends React.Component {
             categoryNo: category.no,
             categoryName: category.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelCategory(category);
+        this.props.professionalLabelStore.changeNewProfessionalLabelCategory2(category);
     }
 
     handleClickDetail=(detail)=>{
@@ -112,49 +112,49 @@ class CategoryComponent extends React.Component {
             detailNo: detail.no,
             detailName: detail.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelDetail(detail);
+        this.props.professionalLabelStore.changeNewProfessionalLabelDetail2(detail);
     }
     handleClickPrint=(print)=>{
         this.setState({
             printNo: print.no,
             printName: print.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelPrint(print);
+        this.props.professionalLabelStore.changeNewProfessionalLabelPrint2(print);
     }
     handleClickTexture=(texture)=>{
         this.setState({
             textureNo: texture.no,
             textureName: texture.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelTexture(texture);
+        this.props.professionalLabelStore.changeNewProfessionalLabelTexture2(texture);
     }
     handleClickCloth=(length)=>{
         this.setState({
             lengthNo: length.no,
             lengthName: length.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength(length);
+        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength2(length);
     }
     handleClickNeckLine=(neckline)=>{
         this.setState({
             necklineNo: neckline.no,
             necklineName: neckline.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine(neckline);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine2(neckline);
     }
     handleClickKara=(kara)=>{
         this.setState({
             karaNo: kara.no,
             karaName: kara.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelKara(kara);
+        this.props.professionalLabelStore.changeNewProfessionalLabelKara2(kara);
     }
     handleClickFit=(fit)=>{
         this.setState({
             fitNo: fit.no,
             fitName: fit.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelFit(fit);
+        this.props.professionalLabelStore.changeNewProfessionalLabelFit2(fit);
     }
 
     handleDelete(){
@@ -355,7 +355,6 @@ class CategoryComponent extends React.Component {
                                                 (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }
                                         </div>
-
                                         <Button style={{marginTop: 50}}
                                                 type="button"
                                                 className={classes.buttonType2}
@@ -365,7 +364,6 @@ class CategoryComponent extends React.Component {
                                         >
                                             저장
                                         </Button>
-
                                     </Grid>
                                     {/*<Grid item xs={12} lg={6}>*/}
                                     {/*    <div className={classes.content} style={{display:'inline'}}>*/}
@@ -414,4 +412,4 @@ class CategoryComponent extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(styles) (CategoryComponent)));
+export default withSnackbar(withRouter(withStyles(styles) (CategoryComponent2)));

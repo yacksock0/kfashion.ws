@@ -29,8 +29,17 @@ public class KfashionCategoryItemRepository {
         return mapper.selectStyleList();
     }
 
-    public List<KfashionCategoryItem> selectCategoryList() {
-        return mapper.selectCategoryList();
+    public List<KfashionCategoryItem> selectCategoryList0() {
+        return mapper.selectCategoryList0();
+    }
+    public List<KfashionCategoryItem> selectCategoryList1() {
+        return mapper.selectCategoryList1();
+    }
+    public List<KfashionCategoryItem> selectCategoryList2() {
+        return mapper.selectCategoryList2();
+    }
+    public List<KfashionCategoryItem> selectCategoryList3() {
+        return mapper.selectCategoryList3();
     }
 
     public List<KfashionCategoryItem> selectDetailList() {
@@ -45,8 +54,17 @@ public class KfashionCategoryItemRepository {
         return mapper.selectTextureList();
     }
 
-    public List<KfashionCategoryItem> selectLengthList() {
-        return mapper.selectLengthList();
+    public List<KfashionCategoryItem> selectLengthList0() {
+        return mapper.selectLengthList0();
+    }
+    public List<KfashionCategoryItem> selectLengthList1() {
+        return mapper.selectLengthList1();
+    }
+    public List<KfashionCategoryItem> selectLengthList2() {
+        return mapper.selectLengthList2();
+    }
+    public List<KfashionCategoryItem> selectLengthList3() {
+        return mapper.selectLengthList3();
     }
 
     public List<KfashionCategoryItem> selectNeckLineList() {
@@ -57,8 +75,11 @@ public class KfashionCategoryItemRepository {
         return mapper.selectKaraList();
     }
 
-    public List<KfashionCategoryItem> selectFitList() {
-        return mapper.selectFitList();
+    public List<KfashionCategoryItem> selectFitList0() {
+        return mapper.selectFitList0();
+    }
+    public List<KfashionCategoryItem> selectFitList3() {
+        return mapper.selectFitList3();
     }
 
     public List<KfashionCategoryItem> selectSafeList() {

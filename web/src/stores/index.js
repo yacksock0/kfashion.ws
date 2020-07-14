@@ -13,6 +13,8 @@ import RectStore from "./RectStore";
 import PolygonStore from "./PolygonStore";
 import GroupStore from "./GroupStore";
 import CurrentStepStore from "./CurrentStepStore";
+import ProfessionalListStore from "./ProfessionalListStore";
+import WorkStore from "./WorkStore";
 
 
 
@@ -31,5 +33,7 @@ export const stores = {
     rectStore : new RectStore(),
     polygonStore :  new PolygonStore(),
     groupStore : new GroupStore(),
-    currentStepStore : new CurrentStepStore()
+    currentStepStore : new CurrentStepStore(),
+    professionalListStore : new ProfessionalListStore(),
+    workStore : new WorkStore(),
 };

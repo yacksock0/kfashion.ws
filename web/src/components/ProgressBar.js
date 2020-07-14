@@ -2,9 +2,13 @@ import 'rc-progress/assets/index.css';
 import React, { Component } from 'react';
 import { Line } from 'rc-progress';
 import axios from "axios";
+import {inject, observer} from "mobx-react";
 
+
+@inject('authStore')
+@observer
 export class ProgressBar extends Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             percent: 0,
@@ -18,17 +22,15 @@ export class ProgressBar extends Component {
         const totalWork = 0;
         const finishWork = 0;
 
-        console.log('id', this.props.rowDataId)
-
-        axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}`)
+        axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
             .then(response => {
                 const selectWorkProgressRate = response.data.selectWorkProgressRate;
                 const total = selectWorkProgressRate.totalWork;
                 const complete = selectWorkProgressRate.finishWork;
 
                 this.setState({
-                    total: selectWorkProgressRate.totalWork,
-                    complete: selectWorkProgressRate.finishWork,
+                    total: total,
+                    complete: complete,
                     percent : (complete / total) *100
                 });
             })
@@ -53,7 +55,6 @@ export class ProgressBar extends Component {
             display:'inline-block'
         };
         const {total, complete} = this.state;
-
         return (
             <div style={{display:'inline'}}>
                 <div style={containerStyle}>

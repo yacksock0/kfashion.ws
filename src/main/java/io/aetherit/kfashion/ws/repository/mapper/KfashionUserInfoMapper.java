@@ -9,6 +9,8 @@ public interface KfashionUserInfoMapper {
 
     KfashionUserInfo selectUser(String id);
 
+    KfashionUserInfo selectAdmin(String userId);
+
     int checkUser(KfashionUserInfo user);
 
     List<KfashionUserInfo> selectUsersWhereType(char isAdmin);
@@ -30,4 +32,6 @@ public interface KfashionUserInfoMapper {
     void deleteGroupAdminUser(KfashionUserInfo user);
 
     void deleteGroupUser(KfashionUserInfo user);
+
+    int getGroupUser(String userId);
 }

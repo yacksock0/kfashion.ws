@@ -43,7 +43,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore','polygonStore')
+@inject('authStore','workStore')
 @observer
 class WorkDetail extends React.Component {
     constructor(props) {
@@ -66,9 +66,12 @@ class WorkDetail extends React.Component {
         this.handleClickId = this.handleClickId.bind(this)
     }
     componentDidMount() {
-        const createdId = this.props.authStore.isUserId;
-        this.props.imageStore.LoadImage(createdId)
+        const authorityNo = this.props.authStore.loginUser.authorityNo;
+        this.props.workStore.LoadWorkQuantity(authorityNo);
+
     }
+
+
     selectedId=(selectedId)=>{
         this.setState({
             selectedId:selectedId,
@@ -93,14 +96,13 @@ class WorkDetail extends React.Component {
         this.setState({value: event.target.value});
     }
     handleSubmit=()=>{
-        axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}`)
+        axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
         this.setState({
             value:'',
             open:false,
         })
     }
     render() {
-        const {basicLabelList} = this.state;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>작업지정</Button>
@@ -111,7 +113,7 @@ class WorkDetail extends React.Component {
                 >
             <DialogContent>
                 <Typography variant="h5" component="h2">
-                    작업지정
+                    작업지정  (남은 작업: {this.props.workStore.workQuantity})
                 </Typography>
                 <hr></hr>
                 <form noValidate autoComplete="off">

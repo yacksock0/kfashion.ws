@@ -8,14 +8,18 @@ const State = {
     Fail: 'Fail',
 }
 
+const Count={
+    labelCount:0,
+}
 const EmptyNewBasicLabel= {
     workNo : '',
     workStep : 4,
-    rectNo : 1,
-    polyNo : 1,
     no : 1,
+    labelNo: '',
     color: '',
     colorCategoryNo: '',
+    subColor:'',
+    subColorCategoryNo:'',
     sleeveLength: '',
     sleeveLengthCategoryNo : '',
     createdId : '',
@@ -24,18 +28,25 @@ const EmptyNewBasicLabel= {
 export default class BasicLabelStore {
     @observable state = State.Ready;
     @observable newBasicLabel = {...EmptyNewBasicLabel}
+    @observable count = {...Count}
 
     @action changeNewBasicLabelColor = (color) => {
+        console.log('실횅됨??')
         this.newBasicLabel.color = color.no;
         this.newBasicLabel.colorCategoryNo = color.categoryNo;
     }
-
+    @action changeNewBasicLabelLabelNo = (labelNo) => {
+        this.newBasicLabel.labelNo = labelNo;
+    }
+    @action changeNewBasicLabelLabelCount = (labelCount) => {
+        this.newBasicLabel.labelCount = labelCount;
+    }
+    @action changeNewBasicLabelSubColor = (subColor) => {
+        this.newBasicLabel.subColor = subColor.no;
+        this.newBasicLabel.subColorCategoryNo = subColor.categoryNo;
+    }
     @action changeNewBasicLabelWorkNo = (workNo) => {
         this.newBasicLabel.workNo = workNo;
-    }
-
-    @computed get isWorkNo() {
-        return this.newBasicLabel.workNo;
     }
 
     @action changeNewBasicLabelCreatedId = (createdId) => {
@@ -45,6 +56,10 @@ export default class BasicLabelStore {
     @action changeNewBasicLabelSleeveLength = (sleeveLength) => {
         this.newBasicLabel.sleeveLength = sleeveLength.no;
         this.newBasicLabel.sleeveLengthCategoryNo = sleeveLength.categoryNo;
+    }
+
+    @computed get isWorkNo() {
+        return this.newBasicLabel.workNo;
     }
 
     @computed get isPending() {
@@ -76,7 +91,4 @@ export default class BasicLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
-
-
-
 }

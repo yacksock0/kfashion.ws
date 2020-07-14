@@ -10,7 +10,10 @@ public interface KfashionCategoryItemMapper {
 
     List<KfashionCategoryItem> selectStyleList();
 
-    List<KfashionCategoryItem> selectCategoryList();
+    List<KfashionCategoryItem> selectCategoryList0();
+    List<KfashionCategoryItem> selectCategoryList1();
+    List<KfashionCategoryItem> selectCategoryList2();
+    List<KfashionCategoryItem> selectCategoryList3();
 
     List<KfashionCategoryItem> selectDetailList();
 
@@ -18,13 +21,17 @@ public interface KfashionCategoryItemMapper {
 
     List<KfashionCategoryItem> selectTextureList();
 
-    List<KfashionCategoryItem> selectLengthList();
+    List<KfashionCategoryItem> selectLengthList0();
+    List<KfashionCategoryItem> selectLengthList1();
+    List<KfashionCategoryItem> selectLengthList2();
+    List<KfashionCategoryItem> selectLengthList3();
 
     List<KfashionCategoryItem> selectNeckLineList();
 
     List<KfashionCategoryItem> selectKaraList();
 
-    List<KfashionCategoryItem> selectFitList();
+    List<KfashionCategoryItem> selectFitList0();
+    List<KfashionCategoryItem> selectFitList3();
 
     List<KfashionCategoryItem> selectSafeList();
 

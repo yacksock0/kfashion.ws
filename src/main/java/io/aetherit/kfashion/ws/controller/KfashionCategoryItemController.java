@@ -76,8 +76,14 @@ public class KfashionCategoryItemController {
         @GetMapping(value = "/professional/category")
         public ResponseEntity<Object> categoryList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionCategoryItem> categoryList = kfashionCategoryItemService.selectCategoryList();
-            resultMap.put("categoryList", categoryList);
+            List<KfashionCategoryItem> categoryList0 = kfashionCategoryItemService.selectCategoryList0();
+            List<KfashionCategoryItem> categoryList1 = kfashionCategoryItemService.selectCategoryList1();
+            List<KfashionCategoryItem> categoryList2 = kfashionCategoryItemService.selectCategoryList2();
+            List<KfashionCategoryItem> categoryList3 = kfashionCategoryItemService.selectCategoryList3();
+            resultMap.put("categoryList0", categoryList0);
+            resultMap.put("categoryList1", categoryList1);
+            resultMap.put("categoryList2", categoryList2);
+            resultMap.put("categoryList3", categoryList3);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
@@ -132,8 +138,14 @@ public class KfashionCategoryItemController {
         @GetMapping (value = "/professional/length")
         public ResponseEntity<Object> lengthList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionCategoryItem> lengthList = kfashionCategoryItemService.selectLengthList();
-            resultMap.put("lengthList", lengthList);
+            List<KfashionCategoryItem> lengthList0 = kfashionCategoryItemService.selectLengthList0();
+            List<KfashionCategoryItem> lengthList1 = kfashionCategoryItemService.selectLengthList1();
+            List<KfashionCategoryItem> lengthList2 = kfashionCategoryItemService.selectLengthList2();
+            List<KfashionCategoryItem> lengthList3 = kfashionCategoryItemService.selectLengthList3();
+            resultMap.put("lengthList0", lengthList0);
+            resultMap.put("lengthList1", lengthList1);
+            resultMap.put("lengthList2", lengthList2);
+            resultMap.put("lengthList3", lengthList3);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
@@ -174,8 +186,10 @@ public class KfashionCategoryItemController {
         @GetMapping (value = "/professional/fit")
         public ResponseEntity<Object> fitList(HttpServletRequest httpRequest) {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionCategoryItem> fitList = kfashionCategoryItemService.selectFitList();
-            resultMap.put("fitList", fitList);
+            List<KfashionCategoryItem> fitList0 = kfashionCategoryItemService.selectFitList0();
+            List<KfashionCategoryItem> fitList3 = kfashionCategoryItemService.selectFitList3();
+            resultMap.put("fitList0", fitList0);
+            resultMap.put("fitList3", fitList3);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 

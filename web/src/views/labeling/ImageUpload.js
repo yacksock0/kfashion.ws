@@ -2,7 +2,7 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {Link, withRouter, Router, Route} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Container, Toolbar, Typography, Button, Grid,} from "@material-ui/core";
+import {Container, Toolbar, Typography, Button, Grid, List,} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import DropzoneDialogExample from "../../components/DropzoneDialog";
 import MaterialTable from 'material-table';
@@ -23,10 +23,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
-import {toJS} from "mobx";
 import CheckIcon from "@material-ui/icons/Check";
-import Stepper from "../../components/Stepper"
-
+import ErrorIcon from "@material-ui/icons/Error";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -137,6 +135,7 @@ class ImageUpload extends React.Component {
             variant: 'info'
         })
         this.props.imageStore.LoadImage()
+
     }
     componentWillUnmount() {
         this.props.imageStore.initStore();
@@ -175,6 +174,7 @@ class ImageUpload extends React.Component {
     render() {
         const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;
+        const loginUser = this.props.authStore.isUserId;
         return (
             <Container component="main" className={classes.mainContainer} style={{height:'100vh'}}>
                 <div className={classes.appBarSpacer} />
@@ -196,7 +196,7 @@ class ImageUpload extends React.Component {
                         </Grid>
                         <Grid item xs={12} lg={7}>
                             <div>
-                            <MaterialTable style={{height:'60vh'}}
+                            <MaterialTable
                                 icons={tableIcons}
                                 columns={this.state.columns}
                                 data={!!this.props.imageStore.boundaryList ?
@@ -267,6 +267,7 @@ class ImageUpload extends React.Component {
                 </div>
                 <div>
                     <hr></hr>
+                    {loginUser.authorityNo > 1 ? (
                     <Grid container>
                         <Grid item xs={3} lg={1} style={{marginRight:10}}>
                     {/*<Button*/}
@@ -288,6 +289,7 @@ class ImageUpload extends React.Component {
                     {/*    Next*/}
                     {/*</Button>*/}
                         </Grid>
+
                         <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                     <Button
                         type="button"
@@ -300,6 +302,13 @@ class ImageUpload extends React.Component {
                     </Button>
                     </Grid>
                     </Grid>
+                        ):''}
+                </div>
+                <div style={{display:'inline'}}>
+                <ErrorIcon/>
+                <Typography variant="h5" component="h2" style={{display:'inline'}}>
+                설명을 적어보자
+                </Typography>
                 </div>
             </Container>
         );

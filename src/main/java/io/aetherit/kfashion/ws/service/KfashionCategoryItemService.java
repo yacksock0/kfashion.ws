@@ -27,8 +27,17 @@ public class KfashionCategoryItemService {
         return repository.selectStyleList();
     }
 
-    public List<KfashionCategoryItem> selectCategoryList() {
-        return repository.selectCategoryList();
+    public List<KfashionCategoryItem> selectCategoryList0() {
+        return repository.selectCategoryList0();
+    }
+    public List<KfashionCategoryItem> selectCategoryList1() {
+        return repository.selectCategoryList1();
+    }
+    public List<KfashionCategoryItem> selectCategoryList2() {
+        return repository.selectCategoryList2();
+    }
+    public List<KfashionCategoryItem> selectCategoryList3() {
+        return repository.selectCategoryList3();
     }
 
     public List<KfashionCategoryItem> selectDetailList() {
@@ -43,9 +52,16 @@ public class KfashionCategoryItemService {
         return repository.selectTextureList();
     }
 
-    public List<KfashionCategoryItem> selectLengthList() {
-        return repository.selectLengthList();
+    public List<KfashionCategoryItem> selectLengthList0() {
+        return repository.selectLengthList0();
     }
+    public List<KfashionCategoryItem> selectLengthList1() {
+        return repository.selectLengthList1();
+    }
+    public List<KfashionCategoryItem> selectLengthList2() {
+        return repository.selectLengthList2();
+    }
+    public List<KfashionCategoryItem> selectLengthList3() { return repository.selectLengthList3(); }
 
     public List<KfashionCategoryItem> selectNeckLineList() {
         return repository.selectNeckLineList();
@@ -55,8 +71,11 @@ public class KfashionCategoryItemService {
         return repository.selectKaraList();
     }
 
-    public List<KfashionCategoryItem> selectFitList() {
-        return repository.selectFitList();
+    public List<KfashionCategoryItem> selectFitList0() {
+        return repository.selectFitList0();
+    }
+    public List<KfashionCategoryItem> selectFitList3() {
+        return repository.selectFitList3();
     }
 
     public List<KfashionCategoryItem> selectSafeList() {
@@ -66,4 +85,5 @@ public class KfashionCategoryItemService {
     public List<KfashionCategoryItem> selectSilhouetteList() {
         return repository.selectSilhouetteList();
     }
+
 }

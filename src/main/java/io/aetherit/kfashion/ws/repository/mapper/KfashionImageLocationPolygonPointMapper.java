@@ -10,4 +10,8 @@ public interface KfashionImageLocationPolygonPointMapper {
     List<KfashionImageLocationPolygonPoint> selectPolyNoList(Long workNo);
 
     List<KfashionImageLocationPolygonPoint> selectLocationPolygonList(KfashionImageLocationPolygonPoint polygon);
+
+    List<Integer> selectPolyNo(Long workNo);
+
+    int[] selectLabelNo(Long workNo);
 }
