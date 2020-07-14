@@ -16,7 +16,7 @@ import TableCell from "@material-ui/core/TableCell";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class SelectTest extends React.Component {
+export default class Category extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
