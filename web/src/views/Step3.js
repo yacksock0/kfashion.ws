@@ -173,7 +173,14 @@ class Step3 extends React.Component {
                                 </div>
                             </Grid>
                                 <Grid item xs={12} lg={6} >
-                                    <Tabs selectedIndex={this.state.tabIndex} >
+                                    <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                                        <TabList >
+                                            <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
+                                            <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                        </TabList>
+
+                                        <TabPanel>
+                                            <Tabs onSelect={tabIndex => this.onSelectTab(tabIndex)}>
                                         <TabList>
                                             <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
                                             <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
@@ -184,6 +191,8 @@ class Step3 extends React.Component {
                                             {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>*/}
                                             {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>*/}
                                         </TabList>
+                                            </Tabs>
+                                        </TabPanel>
 
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
