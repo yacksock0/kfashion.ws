@@ -12,20 +12,18 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
-
-
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Category extends React.Component {
+export default class ClothLength3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             text: 'text',
             open: false,
-            categoryList0: [],
-            categoryList1: [],
-            categoryList2: [],
-            categoryList3: [],
+            lengthList0: [],
+            lengthList1: [],
+            lengthList2: [],
+            lengthList3: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -33,26 +31,25 @@ export default class Category extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/category')
+        axios.get('/api/v1/kfashion/category/item/professional/length')
             .then(response => {
-                console.log(response.data.categoryList0);
-                console.log(response.data.categoryList1);
-                console.log(response.data.categoryList2);
-                console.log(response.data.categoryList3);
-                const categoryList0 = response.data.categoryList0;
-                const categoryList1 = response.data.categoryList1;
-                const categoryList2 = response.data.categoryList2;
-                const categoryList3 = response.data.categoryList3;
-                this.setState({categoryList0:categoryList0,
-                                    categoryList1: categoryList1,
-                                    categoryList2: categoryList2,
-                                    categoryList3: categoryList3})
+                console.log(response.data.lengthList0);
+                console.log(response.data.lengthList1);
+                console.log(response.data.lengthList2);
+                console.log(response.data.lengthList3);
+                const lengthList0 = response.data.lengthList0;
+                const lengthList1 = response.data.lengthList1;
+                const lengthList2 = response.data.lengthList2;
+                const lengthList3 = response.data.lengthList3;
+                this.setState({lengthList0:lengthList0,
+                    lengthList1: lengthList1,
+                    lengthList2: lengthList2,
+                    lengthList3: lengthList3})
             })
             .catch(error => {
                 console.log(error)
             })
     }
-
     handleClickOpen() {
         this.setState({
             open: true
@@ -63,37 +60,35 @@ export default class Category extends React.Component {
             open: false
         });
     }
-    handleClick(category){
-        if(this.props.onClick) {
-            this.props.onClick(category);
+    handleClick(length) {
+        if (this.props.onClick) {
+            this.props.onClick(length);
         }
         this.setState({
-            open:false,
+            open: false,
         })
-
     }
-
     render() {
-        const categoryList0= this.state.categoryList0;
+        const lengthList3= this.state.lengthList3;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"sm"}
+                        maxWidth={"md"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            카테고리
+                            기장
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {categoryList0.map((category) =>
+                            {lengthList3.map((length) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>
-                                            <h2>{category.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>
+                                            <h2>{length.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

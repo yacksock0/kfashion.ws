@@ -74,7 +74,7 @@ export default class Category extends React.Component {
     }
 
     render() {
-        const categoryList0= this.state.categoryList0;
+        const categoryList1= this.state.categoryList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -89,7 +89,7 @@ export default class Category extends React.Component {
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {categoryList0.map((category) =>
+                            {categoryList1.map((category) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
                                         <Button style={{width:'100%', height:60}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>

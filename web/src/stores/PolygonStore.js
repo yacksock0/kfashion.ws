@@ -80,7 +80,7 @@ export default class PolygonStore {
             this.locationPolygonList = response.data.locationPolygonList;
             this.tabIndex1 = response.data.polyNo[0];
             this.polyInfo = response.data.polyNo;
-            this.polyLast = (response.data.polyNo.length-1)+2;
+            this.polyLast = response.data.polyNo.length-1;
             console.log('polyLast',this.polyLast);
             console.log(this.tabIndex1);
         } catch (e) {
