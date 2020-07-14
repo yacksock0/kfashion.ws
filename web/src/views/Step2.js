@@ -189,7 +189,7 @@ class Step2 extends React.Component {
     }
 
     handleClickItem = (workNo, imageData, polyNo) => {
-
+        this.deleteAll();
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
@@ -486,6 +486,16 @@ class Step2 extends React.Component {
                 }else {
                     console.log("error");
                 }
+    }
+
+    deleteAll = () =>{
+        let objList = [];
+        this.canvas.getObjects().forEach(function (o) {
+            objList.push(o);
+        })
+        for (let i = 0; i <= objList.length; i++) {
+            this.canvas.remove(objList[i]);
+        }
     }
     render() {
         const { classes,history} = this.props;

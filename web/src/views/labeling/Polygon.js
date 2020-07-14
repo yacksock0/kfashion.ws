@@ -259,6 +259,7 @@ class Polygon extends React.Component {
     startPoly = (polyNo) => {
             // this.polygonIndex +=1;
             this.onOff = 'lineUse';
+        this.state.savebtn = true;
             this.polyNo = polyNo;
             this.setState({
                 buttonDis1: true,
@@ -333,7 +334,7 @@ class Polygon extends React.Component {
 
     finishPath = () => {
         if(this.canvas.getObjects().length !=0) {
-            this.state.savebtn = false;
+
             console.log("여기는 피니시");
             this.onOff = '';
             let makePath = 'M' + this.polyPointX[0] + ' ' + this.polyPointY[0];
@@ -375,8 +376,6 @@ class Polygon extends React.Component {
     }
 
     doSave = (newPolyNo) => {
-
-
         const newPolygon = {
             polyNo:'',
             points: [{
@@ -449,7 +448,6 @@ class Polygon extends React.Component {
         }else if(this.state.savebtn){
             alert("save 눌러 작업을 마무리 하세요.");
         }else{
-            this.state.savebtn = false;
 
             // -- RectLocation 저장
             this.props.rectStore.objGet(this.rectangle, this.polygon);
@@ -463,7 +461,7 @@ class Polygon extends React.Component {
             // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
             // this.props.polygonStore.doPolygonLocationUp();
 
-
+            this.deleteAll(1);
             this.save1 = false;
             this.save2 = false;
             this.save3 = false;
@@ -471,10 +469,6 @@ class Polygon extends React.Component {
             this.buttonState();
             // -- Tap Menu List로 전환
             this.setState({
-                buttonDis1: false,
-                buttonDis2: false,
-                buttonDis3: false,
-                buttonDis4: false,
                 tabIndex: 1,
             });
             alert("저장되었습니다.");
@@ -483,6 +477,8 @@ class Polygon extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
+
+
         this.setState({tabIndex:0 });
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
@@ -496,6 +492,13 @@ class Polygon extends React.Component {
         this.setState({
             tadIndex:1,
         })
+
+        this.deleteAll(1);
+        this.save1 = false;
+        this.save2 = false;
+        this.save3 = false;
+        this.save4 = false;
+        this.buttonState();
     }
 
     handleStepView = () =>{
