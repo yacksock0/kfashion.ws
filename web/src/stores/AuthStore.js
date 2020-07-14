@@ -128,5 +128,6 @@ export default class AuthStore {
             this.loginToken = '';
             this.loginUser = Object.assign({}, EmptyUser);
         }
+        window.location.reload();
     });
 }
