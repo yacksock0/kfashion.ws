@@ -131,7 +131,7 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.category2 = category2.no;
         this.newProfessionalLabel.categoryCategoryNo2 = category2.categoryNo;
     }
-    @action changeNewProfessionalLabelCategory = (category3) => {
+    @action changeNewProfessionalLabelCategory3 = (category3) => {
         this.newProfessionalLabel.category3 = category3.no;
         this.newProfessionalLabel.categoryCategoryNo3 = category3.categoryNo;
     }

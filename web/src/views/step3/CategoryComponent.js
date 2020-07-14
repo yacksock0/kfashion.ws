@@ -100,65 +100,34 @@ class CategoryComponent extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
     handleClickCategory=(category)=>{
-        this.setState({
-            categoryNo: category.no,
-            categoryName: category.categoryItemName,
-        })
+           this.props.professionalLabelStore.changeNewProfessionalLabelCategory(category);
     }
+
     handleClickDetail=(detail)=>{
-        this.setState({
-            detailNo: detail.no,
-            detailName: detail.categoryItemName,
-        })
+        this.props.professionalLabelStore.changeNewProfessionalLabelDetail(detail);
     }
+
     handleClickPrint=(print)=>{
-        this.setState({
-            printNo: print.no,
-            printName: print.categoryItemName,
-        })
+        this.props.professionalLabelStore.changeNewProfessionalLabelPrint(print);
     }
+
     handleClickTexture=(texture)=>{
-        this.setState({
-            textureNo: texture.no,
-            textureName: texture.categoryItemName,
-        })
+       this.props.professionalLabelStore.changeNewProfessionalLabelTexture(texture);
     }
     handleClickCloth=(length)=>{
-        this.setState({
-            lengthNo: length.no,
-            lengthName: length.categoryItemName,
-        })
+        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength(length);
     }
     handleClickNeckLine=(neckline)=>{
-        this.setState({
-            necklineNo: neckline.no,
-            necklineName: neckline.categoryItemName,
-        })
+      this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine(neckline);
     }
+
     handleClickKara=(kara)=>{
-        this.setState({
-            karaNo: kara.no,
-            karaName: kara.categoryItemName,
-        })
+       this.props.professionalLabelStore.changeNewProfessionalLabelKara(kara);
     }
     handleClickFit=(fit)=>{
-        this.setState({
-            fitNo: fit.no,
-            fitName: fit.categoryItemName,
-        })
+       this.props.professionalLabelStore.changeNewProfessionalLabelFit(fit);
     }
-    handleClickSafe=(safe)=>{
-        this.setState({
-            safeNo: safe.no,
-            safeName: safe.categoryItemName,
-        })
-    }
-    handleClickSilhouette=(silhouette)=>{
-        this.setState({
-            silhouetteNo: silhouette.no,
-            silhouetteName: silhouette.categoryItemName,
-        })
-    }
+
     handleDelete(){
         this.setState({
             categoryNo:0,
