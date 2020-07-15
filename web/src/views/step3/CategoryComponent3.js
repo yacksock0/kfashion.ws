@@ -105,6 +105,7 @@ class CategoryComponent3 extends React.Component {
             categoryName: category.categoryItemName,
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory3(category);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo4(4);
     }
 
     handleClickDetail=(detail)=>{
@@ -162,6 +163,7 @@ class CategoryComponent3 extends React.Component {
             categoryNo:0,
             categoryName:'',
         })
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo4(0);
     }
     handleDeleteCloth(){
         this.setState({

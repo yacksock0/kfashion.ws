@@ -126,12 +126,22 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore')
+@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore')
 @observer
 class finalCheckList extends React.Component {
     constructor(props) {
         super(...arguments , props);
         this.state = {
+            styleItemName :'',
+            styleSubItemName : '',
+            categoryItemName : '',
+            detailItemName : '',
+            printItemName : '',
+            textureItemName : '' ,
+            clothLengthItemName : '',
+            neckLineItemName : '',
+            karaItemName : '',
+            fitItemName : '',
             tapIndex: 0,
             createdId: '',
             boundaryList: [],
@@ -165,6 +175,7 @@ class finalCheckList extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
     handleClick=(workNo, imgData)=>{
+        this.props.workStore.LoadReviewLabelList(workNo);
         this.setState({
             imgData:imgData,
         })
@@ -172,6 +183,73 @@ class finalCheckList extends React.Component {
     }
     handleClickReturn=()=>{
 
+    }
+
+    onSelectTab(tabIndex) {
+        if(tabIndex === 0) {
+            if(this.props.workStore.outerReviewLabel !== null) {
+                this.setState({
+                    styleItemName: this.props.workStore.outerReviewLabel.styleItemName,
+                    styleSubItemName: this.props.workStore.outerReviewLabel.styleSubItemName,
+                    categoryItemName: this.props.workStore.outerReviewLabel.categoryItemName,
+                    detailItemName: this.props.workStore.outerReviewLabel.detailItemName,
+                    printItemName: this.props.workStore.outerReviewLabel.printItemName,
+                    textureItemName: this.props.workStore.outerReviewLabel.textureItemName,
+                    clothLengthItemName: this.props.workStore.outerReviewLabel.clothLengthItemName,
+                    neckLineItemName: this.props.workStore.outerReviewLabel.neckLineItemName,
+                    karaItemName: this.props.workStore.outerReviewLabel.karaItemName,
+                    fitItemName: this.props.workStore.outerReviewLabel.fitItemName,
+                })
+            }
+        }
+        if(tabIndex === 1) {
+            if(this.props.workStore.topReviewLabel !== null){
+                this.setState({
+                    styleItemName : this.props.workStore.topReviewLabel.styleItemName,
+                    styleSubItemName : this.props.workStore.topReviewLabel.styleSubItemName,
+                    categoryItemName : this.props.workStore.topReviewLabel.categoryItemName,
+                    detailItemName : this.props.workStore.topReviewLabel.detailItemName,
+                    printItemName : this.props.workStore.topReviewLabel.printItemName,
+                    textureItemName : this.props.workStore.topReviewLabel.textureItemName,
+                    clothLengthItemName : this.props.workStore.topReviewLabel.clothLengthItemName,
+                    neckLineItemName : this.props.workStore.topReviewLabel.neckLineItemName,
+                    karaItemName : this.props.workStore.topReviewLabel.karaItemName,
+                    fitItemName : this.props.workStore.topReviewLabel.fitItemName,
+                })
+            }
+        }
+        if(tabIndex === 2) {
+            if(this.props.workStore.pantsReviewLabel !== null) {
+                this.setState({
+                    styleItemName: this.props.workStore.pantsReviewLabel.styleItemName,
+                    styleSubItemName: this.props.workStore.pantsReviewLabel.styleSubItemName,
+                    categoryItemName: this.props.workStore.pantsReviewLabel.categoryItemName,
+                    detailItemName: this.props.workStore.pantsReviewLabel.detailItemName,
+                    printItemName: this.props.workStore.pantsReviewLabel.printItemName,
+                    textureItemName: this.props.workStore.pantsReviewLabel.textureItemName,
+                    clothLengthItemName: this.props.workStore.pantsReviewLabel.clothLengthItemName,
+                    neckLineItemName: this.props.workStore.pantsReviewLabel.neckLineItemName,
+                    karaItemName: this.props.workStore.pantsReviewLabel.karaItemName,
+                    fitItemName: this.props.workStore.pantsReviewLabel.fitItemName,
+                })
+            }
+        }
+        if(tabIndex === 3) {
+            if(this.props.workStore.onePieceReviewLabel !== null) {
+                this.setState({
+                    styleItemName: this.props.workStore.onePieceReviewLabel.styleItemName,
+                    styleSubItemName: this.props.workStore.onePieceReviewLabel.styleSubItemName,
+                    categoryItemName: this.props.workStore.onePieceReviewLabel.categoryItemName,
+                    detailItemName: this.props.workStore.onePieceReviewLabel.detailItemName,
+                    printItemName: this.props.workStore.onePieceReviewLabel.printItemName,
+                    textureItemName: this.props.workStore.onePieceReviewLabel.textureItemName,
+                    clothLengthItemName: this.props.workStore.onePieceReviewLabel.clothLengthItemName,
+                    neckLineItemName: this.props.workStore.onePieceReviewLabel.neckLineItemName,
+                    karaItemName: this.props.workStore.onePieceReviewLabel.karaItemName,
+                    fitItemName: this.props.workStore.onePieceReviewLabel.fitItemName,
+                })
+            }
+        }
     }
     render() {
         const {classes} = this.props;
@@ -186,7 +264,7 @@ class finalCheckList extends React.Component {
                         </Grid>
                         <Grid item xs={3} style={{marginRight:20}}>
                             <div component={Paper}>
-                                    <Tabs onSelect={tabIndex => (this.setState({ tabIndex }))}>
+                                    <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTab(tabIndex)}>
                                         <TabList >
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
@@ -196,7 +274,7 @@ class finalCheckList extends React.Component {
                                         <TabPanel>
                                         <TableContainer  style={{height:'60vh'}}>
 
-                                    <Table className={classes.table} aria-label="simple table">
+                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell align="center">항목</TableCell>
@@ -206,59 +284,198 @@ class finalCheckList extends React.Component {
                                         <TableBody>
                                                 <TableRow>
                                                     <TableCell align="center">스타일</TableCell>
-                                                    <TableCell align="center"></TableCell>
+                                                    <TableCell align="center">메인 : {this.state.styleItemName} 서브 : {this.state.styleSubItemName}</TableCell>
                                                 </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">카테고리</TableCell>
-                                                <TableCell align="center"></TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">컬러</TableCell>
-                                                <TableCell align="center"></TableCell>
+                                                <TableCell align="center">{this.state.categoryItemName}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">디테일</TableCell>
-                                                <TableCell align="center"></TableCell>
+                                                <TableCell align="center">{this.state.detailItemName}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">프린트</TableCell>
-                                                <TableCell align="center"></TableCell>
+                                                <TableCell align="center">{this.state.printItemName}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">소재</TableCell>
-                                                <TableCell align="center"></TableCell>
+                                                <TableCell align="center">{this.state.textureItemName}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">기장</TableCell>
-                                                <TableCell align="center"></TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">소매기장</TableCell>
-                                                <TableCell align="center"></TableCell>
+                                                <TableCell align="center">{this.state.clothLengthItemName}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">넥라인</TableCell>
-                                                <TableCell align="center"></TableCell>
+                                                <TableCell align="center">{this.state.neckLineItemName}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">칼라</TableCell>
-                                                <TableCell align="left"></TableCell>
+                                                <TableCell align="center">{this.state.karaItemName}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">핏</TableCell>
-                                                <TableCell align="left"></TableCell>
+                                                <TableCell align="center">{this.state.fitItemName}</TableCell>
                                             </TableRow>
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
                                     </TabPanel>
+
                                         <TabPanel>
+                                            <TableContainer  style={{height:'60vh'}}>
+
+                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <TableCell align="center">항목</TableCell>
+                                                            <TableCell align="center">레이블링</TableCell>
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
+                                                        <TableRow>
+                                                            <TableCell align="center">스타일</TableCell>
+                                                            <TableCell align="center">메인 : {this.state.styleItemName} 서브 : {this.state.styleSubItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">카테고리</TableCell>
+                                                            <TableCell align="center">{this.state.categoryItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">디테일</TableCell>
+                                                            <TableCell align="center">{this.state.detailItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">프린트</TableCell>
+                                                            <TableCell align="center">{this.state.printItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">소재</TableCell>
+                                                            <TableCell align="center">{this.state.textureItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">기장</TableCell>
+                                                            <TableCell align="center">{this.state.clothLengthItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">넥라인</TableCell>
+                                                            <TableCell align="center">{this.state.neckLineItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">칼라</TableCell>
+                                                            <TableCell align="center">{this.state.karaItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">핏</TableCell>
+                                                            <TableCell align="center">{this.state.fitItemName}</TableCell>
+                                                        </TableRow>
+                                                    </TableBody>
+                                                </Table>
+                                            </TableContainer>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <TableContainer  style={{height:'60vh'}}>
+
+                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <TableCell align="center">항목</TableCell>
+                                                            <TableCell align="center">레이블링</TableCell>
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
+                                                        <TableRow>
+                                                            <TableCell align="center">스타일</TableCell>
+                                                            <TableCell align="center">메인 : {this.state.styleItemName} 서브 : {this.state.styleSubItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">카테고리</TableCell>
+                                                            <TableCell align="center">{this.state.categoryItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">디테일</TableCell>
+                                                            <TableCell align="center">{this.state.detailItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">프린트</TableCell>
+                                                            <TableCell align="center">{this.state.printItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">소재</TableCell>
+                                                            <TableCell align="center">{this.state.textureItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">기장</TableCell>
+                                                            <TableCell align="center">{this.state.clothLengthItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">넥라인</TableCell>
+                                                            <TableCell align="center">{this.state.neckLineItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">칼라</TableCell>
+                                                            <TableCell align="center">{this.state.karaItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">핏</TableCell>
+                                                            <TableCell align="center">{this.state.fitItemName}</TableCell>
+                                                        </TableRow>
+                                                    </TableBody>
+                                                </Table>
+                                            </TableContainer>
 
                                         </TabPanel>
                                         <TabPanel>
+                                            <TableContainer  style={{height:'60vh'}}>
 
-                                        </TabPanel>
-                                        <TabPanel>
+                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <TableCell align="center">항목</TableCell>
+                                                            <TableCell align="center">레이블링</TableCell>
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
+                                                        <TableRow>
+                                                            <TableCell align="center">스타일</TableCell>
+                                                            <TableCell align="center">메인 : {this.state.styleItemName} 서브 : {this.state.styleSubItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">카테고리</TableCell>
+                                                            <TableCell align="center">{this.state.categoryItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">디테일</TableCell>
+                                                            <TableCell align="center">{this.state.detailItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">프린트</TableCell>
+                                                            <TableCell align="center">{this.state.printItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">소재</TableCell>
+                                                            <TableCell align="center">{this.state.textureItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">기장</TableCell>
+                                                            <TableCell align="center">{this.state.clothLengthItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">넥라인</TableCell>
+                                                            <TableCell align="center">{this.state.neckLineItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">칼라</TableCell>
+                                                            <TableCell align="center">{this.state.karaItemName}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell align="center">핏</TableCell>
+                                                            <TableCell align="center">{this.state.fitItemName}</TableCell>
+                                                        </TableRow>
+                                                    </TableBody>
+                                                </Table>
+                                            </TableContainer>
 
                                         </TabPanel>
                                     </Tabs>

@@ -43,7 +43,6 @@ public class KfashionImageController {
 
     @Autowired
     private CommonUtil commonUtil;
-
     @Autowired
     public KfashionImageController(KfashionImageService kfashionImageService,
                                    KfashionWorkService kfashionWorkService,
