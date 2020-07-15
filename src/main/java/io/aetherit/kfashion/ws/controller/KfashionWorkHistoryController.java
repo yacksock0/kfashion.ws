@@ -35,19 +35,23 @@ public class KfashionWorkHistoryController {
             this.kfashionUserInfoService = kfashionUserInfoService;
         }
 
-
+    //작업 지정 모달 창에서 확인 버튼 후 동작.
     @PostMapping(value = "/assignment")
     public ResponseEntity<Object> workAssignment(HttpServletRequest httpRequest,
                                                  @RequestParam(value="workId", required=true)String workId,
                                                  @RequestParam(value="workCount", required=true)int workCount,
                                                  @RequestParam(value="authorityNo", required=true)int authorityNo
                                                  ) {
+
+
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         HashMap<String, Object> workMap = new HashMap<String, Object>();
-        if(authorityNo == 3) {
-            workMap.put("authorityNo",4);
+
+        if(authorityNo == 3) { //Univ admin이 작업을 지정한 경우
+            workMap.put("currentNo",1);
+            workMap.put("authorityNo",5);
             workMap.put("workCount",workCount);
-            List<Long> WorkAssignment = kfashionWorkService.selectWorkAssignment(workMap);
+            List<Long> WorkAssignment = kfashionWorkService.selectWorkAssignment(workMap); //
             for(int i = 0; i <WorkAssignment.size() ; i++){
                 KfashionWork work = new KfashionWork();
                 work.setNo(WorkAssignment.get(i));
@@ -61,8 +65,9 @@ public class KfashionWorkHistoryController {
 
                 kfashionWorkHistoryService.insertWorkHistory(workHistory);
             }
-        }else {
-            workMap.put("authorityNo",1);
+        }else { //High admin이 작업을 지정한 경우
+            workMap.put("currentNo",1);
+            workMap.put("authorityNo",2);
             workMap.put("workCount",workCount);
             List<Long> WorkAssignment = kfashionWorkService.selectWorkAssignment(workMap);
 

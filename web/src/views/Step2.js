@@ -443,18 +443,18 @@ class Step2 extends React.Component {
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
 
-                let circle = new fabric.Circle({
-                    type: 'circle',
-                    id: this.polyCounter,
-                    radius: 6,
-                    fill: 'green',
-                    left: selectedPoly[i].locationX - 3.5,
-                    top: selectedPoly[i].locationY - 3.5,
-                    selectable: false,
-                    evented: false,
-                });
-                this.canvas.add(circle);
-                this.canvas.bringToFront(circle)
+                // let circle = new fabric.Circle({
+                //     type: 'circle',
+                //     id: this.polyCounter,
+                //     radius: 6,
+                //     fill: 'green',
+                //     left: selectedPoly[i].locationX - 3.5,
+                //     top: selectedPoly[i].locationY - 3.5,
+                //     selectable: false,
+                //     evented: false,
+                // });
+                // this.canvas.add(circle);
+                // this.canvas.bringToFront(circle)
 
 
                 if(i !=0) {
@@ -484,7 +484,7 @@ class Step2 extends React.Component {
                             type: 'line',
                             fill: 'red',
                             stroke: 'red',
-                            strokeWidth: 1,
+                            strokeWidth: 5,
                             padding: 1,
                             // selectable: false,
                             // evented: false,
@@ -521,10 +521,10 @@ class Step2 extends React.Component {
                     type: 'line',
                     fill: 'red',
                     stroke: 'red',
-                    strokeWidth: 1,
+                    strokeWidth: 5,
                     padding: 1,
-                    // selectable: false,
-                    // evented: false,
+                    selectable: false,
+                    evented: false,
                     left: x1,
                     top: y1,
                 });
@@ -553,51 +553,51 @@ class Step2 extends React.Component {
         const {polyInfo} = this.props.polygonStore;
         let savebtn = true;
         console.log(polyInfo);
-        // for(let i = 0 ; i < polyInfo.length ; i++){
-        //     console.log("!!!!!!" + polyInfo[i]);
-        //     switch (polyInfo[i]) {
-        //         case 1 :
-        //             if(this.state.no == 0){
-        //                 alert("아우터의 메인색상을 선택해주세요");
-        //                 savebtn = false; i = polyInfo.length;
-        //                 break;
-        //             }else if(this.state.sleeveNo == ""){
-        //                 alert("아우터의 소매길이를 선택해주세요");
-        //                 savebtn = false; i = polyInfo.length;
-        //                 break;
-        //             } break;
-        //         case 2 :
-        //              if(this.state.no1 == 0){
-        //                 alert("상의의 메인색상을 선택해주세요");
-        //                  savebtn = false; i = polyInfo.length;
-        //                  break;
-        //              }else if(this.state.sleeveNo1 == ""){
-        //                  alert("상의의 소매길이를 선택해주세요");
-        //                  savebtn = false; i = polyInfo.length;
-        //                  break;
-        //              } break;
-        //         case 3 :
-        //             if(this.state.no2 == 0){
-        //                 alert("하의의 메인색상을 선택해주세요");
-        //                 savebtn = false; i = polyInfo.length;
-        //                 break;
-        //             }else if(this.state.sleeveNo2 == ""){
-        //                 alert("하의의 소매길이를 선택해주세요");
-        //                 savebtn = false; i = polyInfo.length;
-        //                 break;
-        //             } break;
-        //         case 4 :
-        //             if(this.state.no3 == 0){
-        //                 alert("원피스의 메인색상을 선택해주세요");
-        //                 savebtn = false; i = polyInfo.length;
-        //                 break;
-        //             }else if(this.state.sleeveNo3 == ""){
-        //                 alert("원피의 소매길이를 선택해주세요");
-        //                 savebtn = false; i = polyInfo.length;
-        //                 break;
-        //             } break;
-        //     }
-        // }
+        for(let i = 0 ; i < polyInfo.length ; i++){
+            console.log("!!!!!!" + polyInfo[i]);
+            switch (polyInfo[i]) {
+                case 1 :
+                    if(this.state.no == 0){
+                        alert("아우터의 메인색상을 선택해주세요");
+                        savebtn = false; i = polyInfo.length;
+                        break;
+                    }else if(this.state.sleeveNo == ""){
+                        alert("아우터의 소매길이를 선택해주세요");
+                        savebtn = false; i = polyInfo.length;
+                        break;
+                    } break;
+                case 2 :
+                     if(this.state.no1 == 0){
+                        alert("상의의 메인색상을 선택해주세요");
+                         savebtn = false; i = polyInfo.length;
+                         break;
+                     }else if(this.state.sleeveNo1 == ""){
+                         alert("상의의 소매길이를 선택해주세요");
+                         savebtn = false; i = polyInfo.length;
+                         break;
+                     } break;
+                case 3 :
+                    if(this.state.no2 == 0){
+                        alert("하의의 메인색상을 선택해주세요");
+                        savebtn = false; i = polyInfo.length;
+                        break;
+                    }else if(this.state.sleeveNo2 == ""){
+                        alert("하의의 소매길이를 선택해주세요");
+                        savebtn = false; i = polyInfo.length;
+                        break;
+                    } break;
+                case 4 :
+                    if(this.state.no3 == 0){
+                        alert("원피스의 메인색상을 선택해주세요");
+                        savebtn = false; i = polyInfo.length;
+                        break;
+                    }else if(this.state.sleeveNo3 == ""){
+                        alert("원피의 소매길이를 선택해주세요");
+                        savebtn = false; i = polyInfo.length;
+                        break;
+                    } break;
+            }
+        }
      if(savebtn){
          console.log(savebtn);
             const param = toJS({
@@ -667,8 +667,7 @@ class Step2 extends React.Component {
                 tabIndex1 = (polyInfo[i+1]-1);
                 this.setState({tabIndex1 : tabIndex1});
             }
-
-        }
+        }this.onSelectTab(tabIndex1);
     }
     render() {
         const { classes,history} = this.props;

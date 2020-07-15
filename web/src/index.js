@@ -11,6 +11,7 @@ import {SnackbarProvider} from "notistack";
 import {stores} from "./stores";
 import configureTheme from "./configureTheme";
 
+
 configure({enforceActions: "always"});
 
 const theme = configureTheme();
