@@ -80,10 +80,27 @@ export default class WorkStore {
     LoadReviewLabelList = flow(function* loadReviewLabelList(workNo) {
         try {
             const response = yield axios.get('/api/v1/kfashion/label/reviewLabelList?workNo='+workNo)
-            this.outerReviewLabel = response.data.outerReviewLabel;
-            this.topReviewLabel = response.data.topReviewLabel;
-            this.pantsReviewLabel = response.data.pantsReviewLabel;
-            this.onePieceReviewLabel = response.data.onePieceReviewLabel;
+            console.log(response.data);
+            if(response.data.outerReviewLabel != null) {
+                this.outerReviewLabel = response.data.outerReviewLabel;
+            }else {
+                this.outerReviewLabel= [];
+            }
+            if(response.data.topReviewLabel != null) {
+                this.topReviewLabel = response.data.topReviewLabel;
+            }else {
+                this.topReviewLabel = [];
+            }
+            if(response.data.pantsReviewLabel != null) {
+                this.pantsReviewLabel = response.data.pantsReviewLabel;
+            }else {
+                this.pantsReviewLabel = [];
+            }
+            if(response.data.onePieceReviewLabel != null) {
+                this.onePieceReviewLabel = response.data.onePieceReviewLabel;
+            }else {
+                this.onePieceReviewLabel = [];
+            }
         } catch (e) {
             console.log('error')
         }
