@@ -122,6 +122,7 @@ class Step3 extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
+        this.deleteAll();
         this.setState({
             tabIndex:1,
         })
@@ -150,6 +151,15 @@ class Step3 extends React.Component {
         })
     }
 
+    deleteAll = () =>{
+        let objList = [];
+        this.canvas.getObjects().forEach(function (o) {
+            objList.push(o);
+        })
+        for (let i = 0; i <= objList.length; i++) {
+            this.canvas.remove(objList[i]);
+        }
+    }
     onSelectTab(tabIndex1) {
         this.canvas.remove(this.canvas.item(0));
         let polyNo = tabIndex1;

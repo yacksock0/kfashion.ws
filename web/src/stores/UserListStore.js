@@ -74,6 +74,10 @@ export default class UserListStore {
     AddGroupUser = flow(function* addGroupUser() {
         this.state = State.Pending;
         try {
+            // console.log("id : "+ this.newMember.id);
+            // console.log("pw : "+ this.newMember.password);
+            // console.log("name : "+ this.newMember.name);
+            // console.log("groupNo : "+ this.newMember.groupNo);
             const param = toJS(this.newMember);
                 axios.post('/api/v1/kfashion/users/createGroupUser', param)
                 .then(res =>{

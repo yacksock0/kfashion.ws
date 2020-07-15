@@ -30,8 +30,13 @@ export class ProgressBar extends Component {
                 this.setState({
                     total: total,
                     complete: complete,
-                    percent : (complete / total) *100
+                    percent : ((complete / total) *100).toFixed(1)
                 });
+                if(complete ==0 && total==0 ){
+                    this.setState({
+                        percent :   100
+                    });
+                }
             })
             .catch(error => {
                 console.log(error)

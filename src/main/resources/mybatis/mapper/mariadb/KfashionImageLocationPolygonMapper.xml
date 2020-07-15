@@ -10,7 +10,7 @@
         <result property="updatedDatetime"          column="updated_datetime" />
     </resultMap>
 
-    <insert id="insertLocationPolygon" parameterType="KfashionImageLocationPolygon">
+    <insert id="insertLocationPolygon" parameterType="KfashionImageLocationPolygon" >
         INSERT
         INTO kfashion_image_location_polygon (
         work_no,

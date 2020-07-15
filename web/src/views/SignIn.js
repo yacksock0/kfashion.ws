@@ -38,6 +38,8 @@ const style = theme => ({
 @inject('authStore')
 @observer
 class SignIn extends React.Component {
+
+    
     handleChangeId = (e) => {
         this.props.authStore.changeLoginId(e.target.value);
     }
@@ -54,6 +56,7 @@ class SignIn extends React.Component {
 
     handleSubmitForm = (e) => {
         this.props.authStore.doLogin();
+        this.props.history.push("/home");
     }
 
     render() {

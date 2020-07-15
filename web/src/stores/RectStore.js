@@ -160,6 +160,7 @@ export default class RectStore {
             }));
             const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
             if (resp.status === 200) {
+                alert("작업이 저장되었습니다.")
                 this.state = State.Success;
                 const createdId = this.NewPolygonLocation.createdId;
                 this.LoadPolygonImage(createdId);

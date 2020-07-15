@@ -30,6 +30,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {fabric} from "fabric";
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -128,9 +129,11 @@ const tableIcons = {
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore')
 @observer
 class finalCheckList extends React.Component {
+    canvas;
     constructor(props) {
         super(...arguments , props);
         this.state = {
+
             tapIndex: 1,
             createdId: '',
             boundaryList: [],
@@ -162,11 +165,19 @@ class finalCheckList extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
+        this.canvas = new fabric.Canvas('c');
     }
     handleClick=(workNo, imgData)=>{
         this.setState({
             imgData:imgData,
         })
+
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 750,
+            height: 850,
+            originX: 'left',
+            originY: 'top'
+        });
 
     }
     handleClickReturn=()=>{
@@ -181,7 +192,9 @@ class finalCheckList extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={5}>
-                            <img src={this.state.imgData} style={{display:"inline-block" , width:650, height:'60vh'}}/>
+                            <div>
+                                <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
+                            </div>
                         </Grid>
                         <Grid item xs={3} style={{marginRight:10}}>
                             <div>
