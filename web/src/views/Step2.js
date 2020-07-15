@@ -443,18 +443,18 @@ class Step2 extends React.Component {
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
 
-                let circle = new fabric.Circle({
-                    type: 'circle',
-                    id: this.polyCounter,
-                    radius: 6,
-                    fill: 'green',
-                    left: selectedPoly[i].locationX - 3.5,
-                    top: selectedPoly[i].locationY - 3.5,
-                    selectable: false,
-                    evented: false,
-                });
-                this.canvas.add(circle);
-                this.canvas.bringToFront(circle)
+                // let circle = new fabric.Circle({
+                //     type: 'circle',
+                //     id: this.polyCounter,
+                //     radius: 6,
+                //     fill: 'green',
+                //     left: selectedPoly[i].locationX - 3.5,
+                //     top: selectedPoly[i].locationY - 3.5,
+                //     selectable: false,
+                //     evented: false,
+                // });
+                // this.canvas.add(circle);
+                // this.canvas.bringToFront(circle)
 
 
                 if(i !=0) {
@@ -484,7 +484,7 @@ class Step2 extends React.Component {
                             type: 'line',
                             fill: 'red',
                             stroke: 'red',
-                            strokeWidth: 1,
+                            strokeWidth: 5,
                             padding: 1,
                             // selectable: false,
                             // evented: false,
@@ -521,10 +521,10 @@ class Step2 extends React.Component {
                     type: 'line',
                     fill: 'red',
                     stroke: 'red',
-                    strokeWidth: 1,
+                    strokeWidth: 5,
                     padding: 1,
-                    // selectable: false,
-                    // evented: false,
+                    selectable: false,
+                    evented: false,
                     left: x1,
                     top: y1,
                 });
