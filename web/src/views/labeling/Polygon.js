@@ -198,10 +198,10 @@ class Polygon extends React.Component {
                 let circle = new fabric.Circle({
                     type: 'circle',
                     id: this.polyCounter,
-                    radius: 8,
+                    radius: 6,
                     fill: 'green',
-                    left: e.pointer.x - 5,
-                    top: e.pointer.y - 5,
+                    left: e.pointer.x - 3.5,
+                    top: e.pointer.y - 3.5,
                     selectable: false,
                     evented: false,
                 });
@@ -335,7 +335,6 @@ class Polygon extends React.Component {
 
     finishPath = () => {
         if(this.canvas.getObjects().length !=0) {
-
             console.log("여기는 피니시");
             this.onOff = '';
             let makePath = 'M' + this.polyPointX[0] + ' ' + this.polyPointY[0];
