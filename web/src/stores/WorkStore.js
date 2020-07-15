@@ -31,16 +31,32 @@ const UpdateState = {
     UploadFailed: 'UploadFailed',
 };
 
+const ReviewLabel = {
+    styleItemName :'',
+    styleSubItemName : '',
+    categoryItemName : '',
+    detailItemName : '',
+    printItemName : '',
+    textureItemName : '' ,
+    clothLengthItemName : '',
+    neckLineItemName : '',
+    karaItemName : '',
+    fitItemName : '',
+}
+
+
+
 export default class WorkStore {
     @observable workQuantity= 0;
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable authorityNo = 0;
+    @observable outerReviewLabel = {...ReviewLabel};
+    @observable topReviewLabel = {...ReviewLabel};
+    @observable pantsReviewLabel = {...ReviewLabel};
+    @observable onePieceReviewLabel = {...ReviewLabel};
     @observable WorkProgressRate = [];
-    @observable total =0;
-    @observable complete =0;
-    @observable percent=0;
 
     @action initStore = () => {
         this.professionalList = 0;
@@ -51,11 +67,23 @@ export default class WorkStore {
     }
 
 
-    LoadWorkQuantity = flow(function* workQuantity(authorityNo) {
+    LoadWorkQuantity = flow(function* loadWorkQuantity(authorityNo) {
         this.workQuantity = 0;
         try {
             const response = yield axios.get('/api/v1/kfashion/work/workQuantity?authorityNo='+authorityNo)
             this.workQuantity = response.data.workQuantity;
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+    LoadReviewLabelList = flow(function* loadReviewLabelList(workNo) {
+        try {
+            const response = yield axios.get('/api/v1/kfashion/label/reviewLabelList?workNo='+workNo)
+            this.outerReviewLabel = response.data.outerReviewLabel;
+            this.topReviewLabel = response.data.topReviewLabel;
+            this.pantsReviewLabel = response.data.pantsReviewLabel;
+            this.onePieceReviewLabel = response.data.onePieceReviewLabel;
         } catch (e) {
             console.log('error')
         }

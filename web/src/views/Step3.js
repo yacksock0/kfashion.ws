@@ -16,6 +16,7 @@ import Style from "../views/step3/Style";
 import ProImageList from "../views/step3/ProImageList";
 import {toJS} from "mobx";
 import ErrorIcon from "@material-ui/icons/Error";
+import WorkedImg from "./step2/WorkedImg";
 
 
 const styles = theme => ({   root: {
@@ -56,10 +57,6 @@ const styles = theme => ({   root: {
         height:50,
         width:'100%',
     },
-    test:{
-        border:'1px solid black',
-        height: '50%',
-    },
     toolBox:{
         border:'1px solid black',
         marginRight: 1,
@@ -81,7 +78,6 @@ const styles = theme => ({   root: {
         border: 0,
         borderRadius: 12,
     },
-
     divStyle: {
         display: 'inline',
     },
@@ -299,10 +295,15 @@ class Step3 extends React.Component {
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
                         <Grid container>
-                            <Grid item xs={12} lg={6}>
-                                    <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
+                            <Grid item xs={12} lg={1}>
+                                <WorkedImg />
                             </Grid>
-                            <Grid item xs={12} lg={6}>
+                            <Grid item xs={12} lg={5} style={{margin:'auto'}}>
+                                <div>
+                                    <canvas id="c" width={750} height={850} className={classes.canvas} style={{display:'contain'}}>  </canvas>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} lg={5}>
                                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                         <TabList >
                                             <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>레이블링</h3></Tab>

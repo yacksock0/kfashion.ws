@@ -29,4 +29,24 @@ public class KfashionLabelService {
     public  List<KfashionLabel> selectBasicLabelList(String createdId) {
         return repository.selectBasicLabelList(createdId);
     }
+
+    public List<KfashionLabel> selectOuterReviewLabelList(Long workNo) {
+        return repository.selectOuterReviewLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectTopReviewLabelList(Long workNo) {
+        return repository.selectTopReviewLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectPantsReviewLabelList(Long workNo) {
+        return repository.selectPantsReviewLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectOnePieceReviewLabelList(Long workNo) {
+        return repository.selectOnePieceReviewLabelList(workNo);
+    }
+
+    public int[] selectLabelList(Long workNo) {
+        return repository.selectLabelList(workNo);
+    }
 }
