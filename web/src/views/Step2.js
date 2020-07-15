@@ -582,9 +582,7 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container spacing={3}>
-                     {/*<Grid item xs={12} lg={2}>*/}
-                     {/*    <WorkedImg />*/}
-                     {/*</Grid>*/}
+
                      <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
                          <div>
                              <canvas id="c" width="750" height="850">  </canvas>

@@ -85,7 +85,7 @@ export default class Detail extends React.Component {
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
                                             <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
-                                                <h2>{detail.categoryItemName}</h2>
+                                                <h3>{detail.categoryItemName}</h3>
                                             </Button>
                                     </div>
                                 </Grid>

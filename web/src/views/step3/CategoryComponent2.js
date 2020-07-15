@@ -240,7 +240,7 @@ class CategoryComponent2 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.categoryNo > 0 ?
-                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.categoryName} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.categoryName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -256,7 +256,7 @@ class CategoryComponent2 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.detailNo > 0 ?
-                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {this.state.detailName} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {this.state.detailName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -272,7 +272,7 @@ class CategoryComponent2 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.printNo > 0 ?
-                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {this.state.printName} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {this.state.printName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -288,7 +288,7 @@ class CategoryComponent2 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.textureNo > 0 ?
-                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {this.state.textureName} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {this.state.textureName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -304,7 +304,7 @@ class CategoryComponent2 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.lengthNo > 0 ?
-                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {this.state.lengthName} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {this.state.lengthName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -320,7 +320,7 @@ class CategoryComponent2 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.necklineNo > 0 ?
-                                            (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
+                                            (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -336,7 +336,7 @@ class CategoryComponent2 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.karaNo > 0 ?
-                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -352,7 +352,7 @@ class CategoryComponent2 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {this.state.fitNo > 0 ?
-                                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }
                                         </div>
                                         <Button style={{marginTop: 50}}
