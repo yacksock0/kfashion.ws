@@ -39,11 +39,14 @@ public class KfashionWorkController {
             HashMap<String, Object> resultMap = new HashMap<String, Object>();
             int workState = 0;
             if(authorityNo == 3) {
-                workState = 4;
+                //대학생들 작업지정 후에 work_history : step = 5로 이동
+                workState = 5;  //work_history : step = 1에 해당되는 row들은 다 가져오되 step = 5에 해당되는 row들은 제외 해줄꺼야.
+
                 int workQuantity = kfashionWorkService.selectWorkQuantity(workState);
                 resultMap.put("workQuantity", workQuantity);
             }else {
-                workState = 1;
+                //고등학생들 작업지정 후에 work_history : 2로 이동
+                workState = 2;  //work_history : step = 1에 해당되는 row들은 다 가져오되 step = 2에 해당되는 row들은 제외 해줄꺼야.
                 int workQuantity = kfashionWorkService.selectWorkQuantity(workState);
                 resultMap.put("workQuantity", workQuantity);
             }

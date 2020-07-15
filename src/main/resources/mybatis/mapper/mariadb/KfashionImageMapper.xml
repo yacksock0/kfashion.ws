@@ -50,8 +50,12 @@
         LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
-        AND kfashion_work.work_state = 2
+        AND kfashion_work_history.work_step = 2
+        AND kfashion_work_history.work_no not in(SELECT kfashion_work_history.work_no
+                                                    FROM kfashion_work_history
+                                                    WHERE kfashion_work_history.work_step = 3)
         ORDER BY kfashion_image.work_no DESC
+
     </select>
 
     <select id="selectPolygonList" resultMap="kfashionImageResultMap" parameterType="String">
@@ -65,7 +69,10 @@
         LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
-        AND kfashion_work.work_state = 3
+        AND kfashion_work_history.work_step = 3
+        AND kfashion_work_history.work_no not in(SELECT kfashion_work_history.work_no
+                                                    FROM kfashion_work_history
+                                                    WHERE kfashion_work_history.work_step = 4)
         ORDER BY kfashion_image.work_no DESC
     </select>
 
@@ -93,7 +100,10 @@
         LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
-        AND kfashion_work.work_state = 5
+       AND kfashion_work_history.work_step = 5
+        AND kfashion_work_history.work_no not in(SELECT kfashion_work_history.work_no
+                                                    FROM kfashion_work_history
+                                                    WHERE kfashion_work_history.work_step = 6)
         ORDER BY kfashion_image.work_no DESC
     </select>
 

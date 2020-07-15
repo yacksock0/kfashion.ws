@@ -60,16 +60,23 @@
 
     <select id="selectWorkAssignment" resultType="Long">
         SELECT no
-        FROM kfashion_work
-        WHERE work_state = #{authorityNo}
+        FROM kfashion_work_history
+        WHERE work_step = #{currentNo}
+        AND work_no not in(SELECT work_no
+						    FROM kfashion_work_history
+							WHERE work_step = #{authorityNo});
         ORDER BY no ASC limit  #{workCount};
     </select>
 
 
     <select id="selectWorkQuantity" resultType="int">
-        SELECT COUNT(*)
-        FROM kfashion_work
-        WHERE work_state = #{workState};
+          SELECT COUNT(*)
+          FROM kfashion_work_history
+          WHERE work_step =1
+          AND work_no not in(SELECT work_no
+								  FROM kfashion_work_history
+								  WHERE work_step = #{workState});
     </select>
+
 
 </mapper>
