@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BasicLabel {
 
+
+
    private int color;
    private int color1;
    private int color2;
@@ -33,7 +35,10 @@ public class BasicLabel {
 
    private Long workNo;
    private int workStep;
-   private int labelNo;
+   private int labelNo1;
+   private int labelNo2;
+   private int labelNo3;
+   private int labelNo4;
    private int no;
    private String createdId;
 

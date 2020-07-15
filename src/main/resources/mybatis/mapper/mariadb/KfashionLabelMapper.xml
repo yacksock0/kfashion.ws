@@ -7,6 +7,8 @@
         <result property="no"                       column="no" />
         <result property="categoryNo"               column="category_no" />
         <result property="categoryItemNo"           column="category_item_no" />
+        <result property="categoryName"           column="category_name" />
+        <result property="categoryItemName"           column="category_item_name" />
         <result property="createdId"                column="created_id" />
         <result property="createdDatetime"          column="created_datetime" />
         <result property="updatedDatetime"          column="updated_datetime" />
@@ -73,6 +75,73 @@
         RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work.work_state = 4
-        GROUP BY kfashion_image.work_no
+    </select>
+
+
+    <select id="selectOuterReviewLabelList" resultMap="kfashionLabelResultMap" parameterType="Long">
+        SELECT DISTINCT
+            kfashion_label.category_item_no,
+            kfashion_label.category_no,
+            kfashion_category.category_name,
+            kfashion_category_item.category_item_name
+        FROM kfashion_label
+                 LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
+                 RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
+        WHERE work_no = #{workNo}
+          AND kfashion_label.label_no=1
+          AND kfashion_label.work_step=6
+          ORDER BY kfashion_label.no
+    </select>
+
+    <select id="selectTopReviewLabelList" resultMap="kfashionLabelResultMap" parameterType="Long">
+        SELECT DISTINCT
+            kfashion_label.category_item_no,
+            kfashion_label.category_no,
+            kfashion_category.category_name,
+            kfashion_category_item.category_item_name
+        FROM kfashion_label
+                 LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
+                 RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
+        WHERE work_no = #{workNo}
+          AND kfashion_label.label_no=2
+          AND kfashion_label.work_step=6
+          ORDER BY kfashion_label.no
+    </select>
+    <select id="selectPantsReviewLabelList" resultMap="kfashionLabelResultMap" parameterType="Long">
+        SELECT DISTINCT
+            kfashion_label.category_item_no,
+            kfashion_label.category_no,
+            kfashion_category.category_name,
+            kfashion_category_item.category_item_name
+        FROM kfashion_label
+                 LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
+                 RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
+        WHERE work_no = #{workNo}
+          AND kfashion_label.label_no=3
+          AND kfashion_label.work_step=6
+          ORDER BY kfashion_label.no
+    </select>
+
+    <select id="selectOnePieceReviewLabelList" resultMap="kfashionLabelResultMap" parameterType="Long">
+        SELECT DISTINCT
+            kfashion_label.category_item_no,
+            kfashion_label.category_no,
+            kfashion_category.category_name,
+            kfashion_category_item.category_item_name
+        FROM kfashion_label
+                 LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
+                 RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
+        WHERE work_no = #{workNo}
+          AND kfashion_label.label_no=4
+          AND kfashion_label.work_step=6
+          ORDER BY kfashion_label.no
+    </select>
+
+    <select id="selectLabelList" parameterType="Long" resultType="int">
+        SELECT DISTINCT
+            kfashion_label.label_no
+        FROM kfashion_label
+        WHERE work_no = #{workNo}
+        ORDER BY kfashion_label.no DESC;
     </select>
 </mapper>

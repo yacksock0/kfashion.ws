@@ -500,49 +500,49 @@ class Step2 extends React.Component {
         }
      if(savebtn){
          console.log(savebtn);
-            // const param = toJS({
-            //     workNo: this.props.imageStore.isWorkNo,
-            //     workStep:4,
-            //     color:this.state.no,
-            //     color1:this.state.no1,
-            //     color2:this.state.no2,
-            //     color3:this.state.no3,
-            //     colorCategoryNo: this.state.colorCategoryNo,
-            //     subColor:this.state.subNo,
-            //     subColor1:this.state.subNo1,
-            //     subColor2:this.state.subNo2,
-            //     subColor3:this.state.subNo3,
-            //     sleeveLength:this.state.sleeveNo,
-            //     sleeveLength1:this.state.sleeveNo1,
-            //     sleeveLength2:this.state.sleeveNo2,
-            //     sleeveLength3:this.state.sleeveNo3,
-            //     sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
-            //     createdId:this.props.authStore.loginUser.id,});
-            // console.log('colorCategoryNo',this.state.colorCategoryNo)
-            // console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
-            // const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
-            // if(res.status === 200) {
-            //     alert("작업을 저장하였습니다.");
-            //     this.setState({
-            //         tabIndex:1,
-            //         workNo: 0,
-            //         no:0,
-            //         color:0,
-            //         color1:0,
-            //         color2:0,
-            //         color3:0,
-            //         subColor:0,
-            //         subColor1:0,
-            //         subColor2:0,
-            //         subColor3:0,
-            //         sleeveLength:0,
-            //         sleeveLength1:0,
-            //         sleeveLength2:0,
-            //         sleeveLength3:0,
-            //     })
-            // }else {
-            //     console.log("error");
-            // }
+            const param = toJS({
+                workNo: this.props.imageStore.isWorkNo,
+                workStep:4,
+                color:this.state.no,
+                color1:this.state.no1,
+                color2:this.state.no2,
+                color3:this.state.no3,
+                colorCategoryNo: this.state.colorCategoryNo,
+                subColor:this.state.subNo,
+                subColor1:this.state.subNo1,
+                subColor2:this.state.subNo2,
+                subColor3:this.state.subNo3,
+                sleeveLength:this.state.sleeveNo,
+                sleeveLength1:this.state.sleeveNo1,
+                sleeveLength2:this.state.sleeveNo2,
+                sleeveLength3:this.state.sleeveNo3,
+                sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
+                createdId:this.props.authStore.loginUser.id,});
+            console.log('colorCategoryNo',this.state.colorCategoryNo)
+            console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
+            const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
+            if(res.status === 200) {
+                alert("작업을 저장하였습니다.");
+                this.setState({
+                    tabIndex:1,
+                    workNo: 0,
+                    no:0,
+                    color:0,
+                    color1:0,
+                    color2:0,
+                    color3:0,
+                    subColor:0,
+                    subColor1:0,
+                    subColor2:0,
+                    subColor3:0,
+                    sleeveLength:0,
+                    sleeveLength1:0,
+                    sleeveLength2:0,
+                    sleeveLength3:0,
+                })
+            }else {
+                console.log("error");
+            }
         }
     }
 
