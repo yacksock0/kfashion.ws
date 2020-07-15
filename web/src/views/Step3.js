@@ -165,20 +165,117 @@ class Step3 extends React.Component {
         let polyNo = tabIndex1;
         const { locationPolygonList } = this.props.polygonStore;
         const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
-        console.log(selectedPoly);
 
-        if(selectedPoly.length!=0){
-            this.canvas.remove(this.canvas.item(0));
-            let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
-            for (let i = 1; i < selectedPoly.length; i++) {
-                makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
+        if (selectedPoly.length !== 0) {
+            this.deleteAll();
+
+            for(let i = 0 ; i <selectedPoly.length; i++) {
+                console.log( this.lineTwoPoint);
+                this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
+                this.x = selectedPoly[i].locationX;
+                this.y = selectedPoly[i].locationY;
+
+                let circle = new fabric.Circle({
+                    type: 'circle',
+                    id: this.polyCounter,
+                    radius: 6,
+                    fill: 'green',
+                    left: selectedPoly[i].locationX - 3.5,
+                    top: selectedPoly[i].locationY - 3.5,
+                    selectable: false,
+                    evented: false,
+                });
+                this.canvas.add(circle);
+                this.canvas.bringToFront(circle)
+
+
+                if(i !=0) {
+                    let x1 = this.lineTwoPoint[0];
+                    let x2 = this.lineTwoPoint[2];
+                    let x3 = 0;
+                    let y1 = this.lineTwoPoint[1];
+                    let y2 = this.lineTwoPoint[3];
+                    let y3 = 0;
+                    if (x2 < x1) {
+                        x3 = x1;
+                        x1 = x2;
+                        x2 = x3;
+                    }
+                    if (y2 < y1) {
+                        y3 = y1;
+                        y1 = y2;
+                        y2 = y3;
+                    }
+
+                    let polyline = new fabric.Line(
+                        [this.lineTwoPoint[0],
+                            this.lineTwoPoint[1],
+                            this.lineTwoPoint[2],
+                            this.lineTwoPoint[3]], {
+                            id: this.lineCounter,
+                            type: 'line',
+                            fill: 'red',
+                            stroke: 'red',
+                            strokeWidth: 1,
+                            padding: 1,
+                            // selectable: false,
+                            // evented: false,
+                            left: x1,
+                            top: y1,
+                        });
+                    this.canvas.add(polyline);
+                    this.canvas.sendToBack(polyline);
+                }
             }
-            makePath += ' z';
-            let path = new fabric.Path(makePath);
-            path.opacity = 0.5;
+            let x1 = selectedPoly[selectedPoly.length-1].locationX;
+            let x2 = selectedPoly[0].locationX;
+            let x3 = 0;
+            let y1 = selectedPoly[selectedPoly.length-1].locationY;
+            let y2 = selectedPoly[0].locationY;
+            let y3 = 0;
+            this.lineTwoPoint = [x1, y1, x2, y2];
+            if (x2 < x1) {
+                x3 = x1;
+                x1 = x2;
+                x2 = x3;
+            }
+            if (y2 < y1) {
+                y3 = y1;
+                y1 = y2;
+                y2 = y3;
+            }
+            let polyline = new fabric.Line(
+                [this.lineTwoPoint[0],
+                    this.lineTwoPoint[1],
+                    this.lineTwoPoint[2],
+                    this.lineTwoPoint[3]], {
+                    id: this.lineCounter,
+                    type: 'line',
+                    fill: 'red',
+                    stroke: 'red',
+                    strokeWidth: 1,
+                    padding: 1,
+                    // selectable: false,
+                    // evented: false,
+                    left: x1,
+                    top: y1,
+                });
+            this.canvas.add(polyline);
+            this.canvas.sendToBack(polyline);
 
-            console.log(makePath);
-            this.canvas.add(path);
+
+            // let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
+            // for (let i = 1; i < selectedPoly.length; i++) {
+            //     makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
+            // }
+            // makePath += ' z';
+            // let path = new fabric.Path(makePath);
+            // path.opacity = 0.5;
+            // console.log(makePath);
+            // this.canvas.add(path);
+            //
+
+
             this.setState({
                 tabIndex1:tabIndex1,
             })
