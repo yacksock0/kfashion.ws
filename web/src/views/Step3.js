@@ -191,13 +191,11 @@ class Step3 extends React.Component {
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12} lg={5} style={{margin:"auto"}}>
-                                <div>
+                        <Grid container>
+                            <Grid item xs={12} lg={6}>
                                     <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
-                                </div>
                             </Grid>
-                                <Grid item xs={12} lg={6} >
+                            <Grid item xs={12} lg={6}>
                                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                         <TabList >
                                             <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>레이블링</h3></Tab>
@@ -251,10 +249,7 @@ class Step3 extends React.Component {
                                     </TabPanel>
                                     </Tabs>
                                 </Grid>
-                            </Grid>
-                    <hr></hr>
-                    </div>
-                    <hr></hr>
+                        </Grid>
                     {/*<Grid container>*/}
                     {/*    <Grid item xs={3} lg={1} style={{marginRight:10}}>*/}
                     {/*/!*<Button*!/*/}
@@ -276,6 +271,9 @@ class Step3 extends React.Component {
                     {/*/!*    Next*!/*/}
                     {/*</Button>*/}
                     {/* </Grid>*/}
+                        <div>
+                        <hr></hr>
+                        </div>
                         <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                             <Button
                                 type="button"
@@ -288,6 +286,7 @@ class Step3 extends React.Component {
                             </Button>
                         </Grid>
                     {/*</Grid>*/}
+                    </div>
                     <ErrorIcon/>
                     <Typography variant="h6" component="h4" style={{display:'inline'}}>
                         우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 / 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭
