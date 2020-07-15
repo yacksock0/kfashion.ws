@@ -154,128 +154,132 @@ class Step3 extends React.Component {
     onSelectTab(tabIndex1) {
         this.canvas.remove(this.canvas.item(0));
         let polyNo = tabIndex1;
-        const { locationPolygonList } = this.props.polygonStore;
-        const selectedPoly=(toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
+        const {locationPolygonList} = this.props.polygonStore;
+        console.log(locationPolygonList);
+        console.log(locationPolygonList.length);
+        if (locationPolygonList.length >= 1) {
+            const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
+            if (selectedPoly.length !== 0) {
+                this.deleteAll();
+                for (let i = 0; i < selectedPoly.length; i++) {
+                    console.log(this.lineTwoPoint);
+                    this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
+                    this.x = selectedPoly[i].locationX;
+                    this.y = selectedPoly[i].locationY;
+                    // let circle = new fabric.Circle({
+                    //     type: 'circle',
+                    //     id: this.polyCounter,
+                    //     radius: 6,
+                    //     fill: 'green',
+                    //     left: selectedPoly[i].locationX - 3.5,
+                    //     top: selectedPoly[i].locationY - 3.5,
+                    //     selectable: false,
+                    //     evented: false,
+                    // });
+                    // this.canvas.add(circle);
+                    // this.canvas.bringToFront(circle)
 
-        if (selectedPoly.length !== 0) {
-            this.deleteAll();
-
-            for(let i = 0 ; i <selectedPoly.length; i++) {
-                console.log( this.lineTwoPoint);
-                this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
-                this.x = selectedPoly[i].locationX;
-                this.y = selectedPoly[i].locationY;
-
-                let circle = new fabric.Circle({
-                    type: 'circle',
-                    id: this.polyCounter,
-                    radius: 6,
-                    fill: 'green',
-                    left: selectedPoly[i].locationX - 3.5,
-                    top: selectedPoly[i].locationY - 3.5,
-                    selectable: false,
-                    evented: false,
-                });
-                this.canvas.add(circle);
-                this.canvas.bringToFront(circle)
-
-
-                if(i !=0) {
-                    let x1 = this.lineTwoPoint[0];
-                    let x2 = this.lineTwoPoint[2];
-                    let x3 = 0;
-                    let y1 = this.lineTwoPoint[1];
-                    let y2 = this.lineTwoPoint[3];
-                    let y3 = 0;
-                    if (x2 < x1) {
-                        x3 = x1;
-                        x1 = x2;
-                        x2 = x3;
+                    if (i != 0) {
+                        let x1 = this.lineTwoPoint[0];
+                        let x2 = this.lineTwoPoint[2];
+                        let x3 = 0;
+                        let y1 = this.lineTwoPoint[1];
+                        let y2 = this.lineTwoPoint[3];
+                        let y3 = 0;
+                        if (x2 < x1) {
+                            x3 = x1;
+                            x1 = x2;
+                            x2 = x3;
+                        }
+                        if (y2 < y1) {
+                            y3 = y1;
+                            y1 = y2;
+                            y2 = y3;
+                        }
+                        let polyline = new fabric.Line(
+                            [this.lineTwoPoint[0],
+                                this.lineTwoPoint[1],
+                                this.lineTwoPoint[2],
+                                this.lineTwoPoint[3]], {
+                                id: this.lineCounter,
+                                type: 'line',
+                                fill: 'red',
+                                stroke: 'red',
+                                strokeWidth: 5,
+                                padding: 1,
+                                selectable: false,
+                                evented: false,
+                                left: x1,
+                                top: y1,
+                            });
+                        this.canvas.add(polyline);
+                        this.canvas.sendToBack(polyline);
                     }
-                    if (y2 < y1) {
-                        y3 = y1;
-                        y1 = y2;
-                        y2 = y3;
-                    }
-
-                    let polyline = new fabric.Line(
-                        [this.lineTwoPoint[0],
-                            this.lineTwoPoint[1],
-                            this.lineTwoPoint[2],
-                            this.lineTwoPoint[3]], {
-                            id: this.lineCounter,
-                            type: 'line',
-                            fill: 'red',
-                            stroke: 'red',
-                            strokeWidth: 1,
-                            padding: 1,
-                            // selectable: false,
-                            // evented: false,
-                            left: x1,
-                            top: y1,
-                        });
-                    this.canvas.add(polyline);
-                    this.canvas.sendToBack(polyline);
                 }
+                let x1 = selectedPoly[selectedPoly.length - 1].locationX;
+                let x2 = selectedPoly[0].locationX;
+                let x3 = 0;
+                let y1 = selectedPoly[selectedPoly.length - 1].locationY;
+                let y2 = selectedPoly[0].locationY;
+                let y3 = 0;
+                this.lineTwoPoint = [x1, y1, x2, y2];
+                if (x2 < x1) {
+                    x3 = x1;
+                    x1 = x2;
+                    x2 = x3;
+                }
+                if (y2 < y1) {
+                    y3 = y1;
+                    y1 = y2;
+                    y2 = y3;
+                }
+                let polyline = new fabric.Line(
+                    [this.lineTwoPoint[0],
+                        this.lineTwoPoint[1],
+                        this.lineTwoPoint[2],
+                        this.lineTwoPoint[3]], {
+                        id: this.lineCounter,
+                        type: 'line',
+                        fill: 'red',
+                        stroke: 'red',
+                        strokeWidth: 5,
+                        padding: 1,
+                        selectable: false,
+                        evented: false,
+                        left: x1,
+                        top: y1,
+                    });
+                this.canvas.add(polyline);
+                this.canvas.sendToBack(polyline);
+
+
+                // let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
+                // for (let i = 1; i < selectedPoly.length; i++) {
+                //     makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
+                // }
+                // makePath += ' z';
+                // let path = new fabric.Path(makePath);
+                // path.opacity = 0.5;
+                // console.log(makePath);
+                // this.canvas.add(path);
+                //
+
+
+                this.setState({
+                    tabIndex1: tabIndex1,
+                })
+            } else if (tabIndex1 == 0) {
+                this.setState({
+                    tabIndex1: tabIndex1,
+                })
+            } else {
+                alert("poly정보가 존재하지 않습니다.")
             }
-            let x1 = selectedPoly[selectedPoly.length-1].locationX;
-            let x2 = selectedPoly[0].locationX;
-            let x3 = 0;
-            let y1 = selectedPoly[selectedPoly.length-1].locationY;
-            let y2 = selectedPoly[0].locationY;
-            let y3 = 0;
-            this.lineTwoPoint = [x1, y1, x2, y2];
-            if (x2 < x1) {
-                x3 = x1;
-                x1 = x2;
-                x2 = x3;
-            }
-            if (y2 < y1) {
-                y3 = y1;
-                y1 = y2;
-                y2 = y3;
-            }
-            let polyline = new fabric.Line(
-                [this.lineTwoPoint[0],
-                    this.lineTwoPoint[1],
-                    this.lineTwoPoint[2],
-                    this.lineTwoPoint[3]], {
-                    id: this.lineCounter,
-                    type: 'line',
-                    fill: 'red',
-                    stroke: 'red',
-                    strokeWidth: 1,
-                    padding: 1,
-                    // selectable: false,
-                    // evented: false,
-                    left: x1,
-                    top: y1,
-                });
-            this.canvas.add(polyline);
-            this.canvas.sendToBack(polyline);
-
-
-            // let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
-            // for (let i = 1; i < selectedPoly.length; i++) {
-            //     makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
-            // }
-            // makePath += ' z';
-            // let path = new fabric.Path(makePath);
-            // path.opacity = 0.5;
-            // console.log(makePath);
-            // this.canvas.add(path);
-            //
-
-
-            this.setState({
-                tabIndex1:tabIndex1,
-            })
-        }else if(tabIndex1 ==0) {
-            this.setState({
-                tabIndex1:tabIndex1,
-            })
         }else{
-            alert("poly정보가 존재하지 않습니다.")}
+            this.setState({
+                tabIndex1: tabIndex1,
+            })
+        }
     };
     handleChange=(polyLast)=>{
         if(this.props.onChange){
