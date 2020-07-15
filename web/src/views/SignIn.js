@@ -38,6 +38,8 @@ const style = theme => ({
 @inject('authStore')
 @observer
 class SignIn extends React.Component {
+
+    
     handleChangeId = (e) => {
         this.props.authStore.changeLoginId(e.target.value);
     }

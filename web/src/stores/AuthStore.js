@@ -90,6 +90,7 @@ export default class AuthStore {
             this.loginToken = '';
             this.loginUser = Object.assign({}, EmptyUser);
         }
+
     });
 
     checkLogin = flow(function* checkLogin() {
@@ -128,6 +129,5 @@ export default class AuthStore {
             this.loginToken = '';
             this.loginUser = Object.assign({}, EmptyUser);
         }
-        window.location.reload();
     });
 }

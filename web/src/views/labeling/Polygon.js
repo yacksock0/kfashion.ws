@@ -443,7 +443,7 @@ class Polygon extends React.Component {
 
     // -- Location Data 저장
     submit = () =>{
-        console.log(this.state.savebtn);
+        console.log(this.polygon);
         if(this.onOff !=""){
             alert("finish를 눌러 작업을 마무리 하세요.");
         }else if(this.state.savebtn){
@@ -472,14 +472,11 @@ class Polygon extends React.Component {
             this.setState({
                 tabIndex: 1,
             });
-            alert("저장되었습니다.");
 
         }
     }
 
     handleClickItem = (workNo, imageData) => {
-
-
         this.setState({tabIndex:0 });
         this.props.rectStore.LoadRectLocation(workNo);
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
@@ -493,7 +490,8 @@ class Polygon extends React.Component {
         this.setState({
             tadIndex:1,
         })
-
+        this.polygon.length = 0;
+        this.rectangle.length =0;
         this.deleteAll(1);
         this.save1 = false;
         this.save2 = false;

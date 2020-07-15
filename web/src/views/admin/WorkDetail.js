@@ -43,7 +43,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('authStore','workStore')
+@inject('authStore','workStore', 'userListStore')
 @observer
 class WorkDetail extends React.Component {
     constructor(props) {
@@ -70,7 +70,6 @@ class WorkDetail extends React.Component {
         this.props.workStore.LoadWorkQuantity(authorityNo);
 
     }
-
 
     selectedId=(selectedId)=>{
         this.setState({
@@ -101,6 +100,10 @@ class WorkDetail extends React.Component {
             value:'',
             open:false,
         })
+        const groupNo = this.props.authStore.loginUser.groupNo;
+        this.props.userListStore.LoadGroupUserList(groupNo);
+        alert("작업지정이 완료되었습니다.");
+
     }
     render() {
         return (

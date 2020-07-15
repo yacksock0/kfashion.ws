@@ -77,6 +77,7 @@ export default class AdminVerify extends React.Component {
     }
     handleSubmit(){
         this.props.adminAuthorityStore.doAdminUp();
+        alert("승인처리가 완료되었습니다.");
     }
     render() {
         return (
