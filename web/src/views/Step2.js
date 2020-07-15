@@ -451,95 +451,98 @@ class Step2 extends React.Component {
 
     handleSave = () => {
         const {polyInfo} = this.props.polygonStore;
-        let savebtn = false;
+        let savebtn = true;
         console.log(polyInfo);
-        for(let i = 0 ; i<polyInfo.length && i != -1; i++){
+        for(let i = 0 ; i<polyInfo.length ; i++){
+            console.log("!!!!!!" + polyInfo[i]);
             switch (polyInfo[i]) {
                 case 1 :
                     if(this.state.no == 0){
                         alert("아우터의 메인색상을 선택해주세요");
-                        savebtn = true; i = -1;
+                        savebtn = false; i = polyInfo.length;
                         break;
                     }else if(this.state.sleeveNo == ""){
                         alert("아우터의 소매길이를 선택해주세요");
-                        savebtn = true; i = -1;
+                        savebtn = false; i = polyInfo.length;
                         break;
-                    }
+                    } break;
                 case 2 :
                      if(this.state.no1 == 0){
                         alert("상의의 메인색상을 선택해주세요");
-                         savebtn = true; i = -1;
+                         savebtn = false; i = polyInfo.length;
                          break;
                      }else if(this.state.sleeveNo1 == ""){
                          alert("상의의 소매길이를 선택해주세요");
-                         savebtn = true; i = -1;
+                         savebtn = false; i = polyInfo.length;
                          break;
-                     }
+                     } break;
                 case 3 :
                     if(this.state.no2 == 0){
                         alert("하의의 메인색상을 선택해주세요");
-                        savebtn = true; i = -1;
+                        savebtn = false; i = polyInfo.length;
                         break;
                     }else if(this.state.sleeveNo2 == ""){
                         alert("하의의 소매길이를 선택해주세요");
-                        savebtn = true; i = -1;
+                        savebtn = false; i = polyInfo.length;
                         break;
-                    }
+                    } break;
                 case 4 :
                     if(this.state.no3 == 0){
                         alert("원피스의 메인색상을 선택해주세요");
-                        savebtn = true; i = -1;
+                        savebtn = false; i = polyInfo.length;
                         break;
                     }else if(this.state.sleeveNo3 == ""){
                         alert("원피의 소매길이를 선택해주세요");
-                        savebtn = true; i = -1;
+                        savebtn = false; i = polyInfo.length;
                         break;
-                    }
+                    } break;
             }
         }
      if(savebtn){
-            const param = toJS({
-                workNo: this.props.imageStore.isWorkNo,
-                workStep:4,
-                color:this.state.no,
-                color1:this.state.no1,
-                color2:this.state.no2,
-                color3:this.state.no3,
-                colorCategoryNo: this.state.colorCategoryNo,
-                subColor:this.state.subNo,
-                subColor1:this.state.subNo1,
-                subColor2:this.state.subNo2,
-                subColor3:this.state.subNo3,
-                sleeveLength:this.state.sleeveNo,
-                sleeveLength1:this.state.sleeveNo1,
-                sleeveLength2:this.state.sleeveNo2,
-                sleeveLength3:this.state.sleeveNo3,
-                sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
-                createdId:this.props.authStore.loginUser.id,});
-            console.log('colorCategoryNo',this.state.colorCategoryNo)
-            console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
-            const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
-            if(res.status === 200) {
-                this.setState({
-                    tabIndex:1,
-                    workNo: 0,
-                    no:0,
-                    color:0,
-                    color1:0,
-                    color2:0,
-                    color3:0,
-                    subColor:0,
-                    subColor1:0,
-                    subColor2:0,
-                    subColor3:0,
-                    sleeveLength:0,
-                    sleeveLength1:0,
-                    sleeveLength2:0,
-                    sleeveLength3:0,
-                })
-            }else {
-                console.log("error");
-            }
+         console.log(savebtn);
+            // const param = toJS({
+            //     workNo: this.props.imageStore.isWorkNo,
+            //     workStep:4,
+            //     color:this.state.no,
+            //     color1:this.state.no1,
+            //     color2:this.state.no2,
+            //     color3:this.state.no3,
+            //     colorCategoryNo: this.state.colorCategoryNo,
+            //     subColor:this.state.subNo,
+            //     subColor1:this.state.subNo1,
+            //     subColor2:this.state.subNo2,
+            //     subColor3:this.state.subNo3,
+            //     sleeveLength:this.state.sleeveNo,
+            //     sleeveLength1:this.state.sleeveNo1,
+            //     sleeveLength2:this.state.sleeveNo2,
+            //     sleeveLength3:this.state.sleeveNo3,
+            //     sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
+            //     createdId:this.props.authStore.loginUser.id,});
+            // console.log('colorCategoryNo',this.state.colorCategoryNo)
+            // console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
+            // const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
+            // if(res.status === 200) {
+            //     alert("작업을 저장하였습니다.");
+            //     this.setState({
+            //         tabIndex:1,
+            //         workNo: 0,
+            //         no:0,
+            //         color:0,
+            //         color1:0,
+            //         color2:0,
+            //         color3:0,
+            //         subColor:0,
+            //         subColor1:0,
+            //         subColor2:0,
+            //         subColor3:0,
+            //         sleeveLength:0,
+            //         sleeveLength1:0,
+            //         sleeveLength2:0,
+            //         sleeveLength3:0,
+            //     })
+            // }else {
+            //     console.log("error");
+            // }
         }
     }
 
@@ -554,6 +557,18 @@ class Step2 extends React.Component {
     }
     onSelectTab2 =( tabIndex ) => {
         this.setState({tabIndex});
+    }
+    nextTab =() => {
+        const {polyInfo} = this.props.polygonStore;
+        const currentTap = this.state.tabIndex1;
+        let tabIndex1 =0;
+        for(let i=0;i < polyInfo.length; i++){
+            if(polyInfo[i] == this.state.tabIndex1+1 ){
+                tabIndex1 = (polyInfo[i+1]-1);
+                this.setState({tabIndex1 : tabIndex1});
+            }
+
+        }
     }
     render() {
         const { classes,history} = this.props;
@@ -648,7 +663,7 @@ class Step2 extends React.Component {
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
-                                                     // onClick={()=>(this.onSelectTab(this.state.tabIndex1 +1))}
+                                                     onClick={()=>(this.nextTab())}
                                              >
                                                  다음
                                              </Button>
@@ -706,7 +721,17 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
-                                         ):''}
+                                         ):(
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={()=>(this.nextTab())}
+                                             >
+                                                 다음
+                                             </Button>
+                                         )}
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -759,7 +784,17 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
-                                             ):''}
+                                             ):(
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={()=>(this.nextTab())}
+                                             >
+                                                 다음
+                                             </Button>
+                                         )}
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
