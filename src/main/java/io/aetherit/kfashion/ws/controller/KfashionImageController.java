@@ -4,7 +4,6 @@ package io.aetherit.kfashion.ws.controller;
 import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionWork;
 import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
-import io.aetherit.kfashion.ws.model.UploadFileResponse;
 import io.aetherit.kfashion.ws.service.FileStorageService;
 import io.aetherit.kfashion.ws.service.KfashionImageService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
@@ -218,6 +217,21 @@ public class KfashionImageController {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList();
         resultMap.put("inspectionList", inspectionList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+    /**
+     * 최근작업 이미지 리스트
+     * @param
+     * @return ResponseEntity
+     * @throws
+     */
+
+    @GetMapping(value="/recentlyImg")
+    public ResponseEntity<Object> recentlyImg(HttpServletRequest httpRequest,
+                                              @RequestParam(value="createdId", required=true)String createdId) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImage> recentlyImg = kfashionImageService.recentlyImg(createdId);
+        resultMap.put("recentlyImg", recentlyImg);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 }

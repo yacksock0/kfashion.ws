@@ -37,6 +37,8 @@ public class KfashionImageRepository {
         return mapper.selectRectList(createdId);
     }
 
+    public List<KfashionImage> recentlyImg(String createdId) {return mapper.recentlyImg(createdId);}
+
     public void deleteImage(KfashionImage workImage) {
         mapper.deleteImage(workImage);
     }

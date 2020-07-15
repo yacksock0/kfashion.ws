@@ -3,7 +3,6 @@ package io.aetherit.kfashion.ws.service;
 import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.repository.KfashionImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +37,8 @@ public class KfashionImageService {
     public List<KfashionImage> selectRectList(String createdId) {
         return  repository.selectRectList(createdId);
     }
+
+    public List<KfashionImage> recentlyImg(String createdId) { return repository.recentlyImg(createdId);}
 
     public void deleteImage(KfashionImage workImage) {
         repository.deleteImage(workImage);

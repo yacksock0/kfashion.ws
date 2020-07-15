@@ -84,6 +84,15 @@ export default class ImageStore {
         }
     });
 
+    LoadRecentImage = flow(function* loadRecetImage() {
+        this.boundaryList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/img/boundaryList')
+            this.boundaryList = response.data.boundaryList;
+        } catch (e) {
+            console.log('error')
+        }
+    });
 
     LoadInspectionList = flow(function* loadInspectionList() {
         this.inspectionList = [];

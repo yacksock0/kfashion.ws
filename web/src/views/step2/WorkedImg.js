@@ -1,8 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import {Grid, Button} from '@material-ui/core';
+import {inject, observer} from "mobx-react";
 
-const useStyles = makeStyles((theme) => ({
+const style = theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -27,48 +28,38 @@ const useStyles = makeStyles((theme) => ({
         margin:'auto',
         padding:3,
     }
-}));
+});
 
-export default function WorkedImg() {
-    const classes = useStyles();
+@inject('imageStore')
+@observer
+class WorkedImg extends React.Component  {
+    constructor(props) {
+        super(props);
+        this.state = {
+            boundaryList: [],
+        }
+    }
+    componentDidMount() {
+        this.props.imageStore.LoadImage()
+    }
 
-    return (
-        <div className={classes.root}>
-            <Grid item xs={12}>
-                <div className={classes.topBox}>
-                    <h2>이전작업</h2>
-                </div>
-                <Button className={classes.imgBox} onClick={()=>this.handleClick}>
-                <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-                <Button className={classes.imgBox}>
-                    <img src='https://placeimg.com/80/80/any'  style={{width:'100%', height:'100%'}}/>
-                </Button>
-            </Grid>
-        </div>
-    );
+    handleClick=()=>{
+
+    }
+    render() {
+        const {classes} = this.props;
+        return (
+            <div className={classes.root}>
+                <Grid item xs={12}>
+                    <div className={classes.topBox}>
+                        <h3>이전작업</h3>
+                    </div>
+                    <Button className={classes.imgBox} onClick={() => this.handleClick}>
+                        <img src='https://placeimg.com/80/80/any' style={{width: '100%', height: '100%'}}/>
+                    </Button>
+                </Grid>
+            </div>
+        );
+    }
 }
+export default withStyles(style) (WorkedImg);

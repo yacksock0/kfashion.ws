@@ -144,4 +144,6 @@
         WHERE work_no = #{workNo}
         ORDER BY kfashion_label.no DESC;
     </select>
+
+
 </mapper>
