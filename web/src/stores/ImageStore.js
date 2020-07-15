@@ -129,6 +129,7 @@ export default class ImageStore {
                     formData.delete("file");
                 }
             })
+        this.LoadImage();
         // formData.append('files', file);
 
         // const resp = axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') })
