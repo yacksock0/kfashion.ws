@@ -29,7 +29,7 @@ public class KfashionUserInfoService {
     private static final Logger logger = LoggerFactory.getLogger(KfashionUserInfoService.class);
 
     private static final String DEFAULT_ADMIN_ID = "admin";
-    private static final String DEFAULT_ADMIN_PASSWORD = "1234";
+    private static final String DEFAULT_ADMIN_PASSWORD = "fashion@1";
     private static final String DEFAULT_ADMIN_NAME = "administrator";
     private static final Map<String, Boolean> notAcceptableIdMap = new HashMap<>();
 

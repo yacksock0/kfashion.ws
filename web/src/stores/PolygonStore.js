@@ -27,6 +27,8 @@ export default class PolygonStore {
     @observable polygonInsertList= [];
     @observable polygonList= [];
     @observable locationPolygonList = [];
+    @observable polyLast = 0;
+    @observable polyInfo;
 
     @action objGet = (obj) => {
         this.polygonInsertList = obj;
@@ -80,8 +82,8 @@ export default class PolygonStore {
             this.locationPolygonList = response.data.locationPolygonList;
             this.tabIndex1 = response.data.polyNo[0];
             this.polyInfo = response.data.polyNo;
-            this.polyLast = response.data.polyNo.length-1;
-            console.log('polyLast',this.polyLast);
+            this.polyLast = response.data.polyNo[response.data.polyNo.length-1] - 1;
+            console.log('polyInfo',this.polyInfo);
             console.log(this.tabIndex1);
         } catch (e) {
             console.log('error');
@@ -91,7 +93,6 @@ export default class PolygonStore {
 
 
     doPolygonLocationUp = flow(function* doPolygonLocationUp() {
-        console.log("11111111111");
         this.state = State.Pending;
         try {
             const kfashionPolygonList = this.polygonInsertList.map(r => ({
