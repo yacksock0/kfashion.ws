@@ -61,8 +61,8 @@ export default class Safe extends React.Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"md"}
+                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
+                        maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
@@ -75,7 +75,7 @@ export default class Safe extends React.Component {
                             {safeList.map((safe) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={safe.no} onClick={() => this.handleClick(safe)}>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={safe.no} onClick={() => this.handleClick(safe)}>
                                             <h2>{safe.categoryItemName}</h2>
                                         </Button>
                                     </div>

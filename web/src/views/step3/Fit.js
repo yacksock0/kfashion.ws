@@ -67,8 +67,8 @@ export default class Fit extends React.Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose}
-                        maxWidth={"md"}
+                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
+                        maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
@@ -81,7 +81,7 @@ export default class Fit extends React.Component {
                             {fitList0.map((fit) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
                                             <h2>{fit.categoryItemName}</h2>
                                         </Button>
                                     </div>

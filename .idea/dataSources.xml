@@ -13,5 +13,11 @@
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mariadb://192.168.10.110:3306/kfashion</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="KFashion@192.168.111.90 [2]" uuid="45a7c604-5ed0-44fb-a09c-637221b17f64">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://192.168.111.90:3306/KFashion</jdbc-url>
+    </data-source>
   </component>
 </project>

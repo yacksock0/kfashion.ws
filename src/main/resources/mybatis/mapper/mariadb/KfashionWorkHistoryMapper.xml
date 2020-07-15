@@ -36,8 +36,8 @@
 
     <select id="selectWorkProgressRate" resultMap="kfashionWorkHistoryResultMap">
          SELECT created_id
-            , count(*) AS finish_work
-            , (SELECT count(*) FROM kfashion_work_history WHERE work_step = #{authorityNo}
+            , COUNT(*) AS finish_work
+            , (SELECT COUNT(*) FROM kfashion_work_history WHERE work_step = #{authorityNo}
                                                  AND created_id = #{createdId}) AS total_work
                     FROM kfashion_work_history
                     WHERE work_step = #{workStep}

@@ -6,10 +6,11 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from "@material-ui/core/Chip";
+import {withStyles} from "@material-ui/core/styles";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class SelectTest extends React.Component {
+export default class Style extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -115,14 +116,14 @@ export default class SelectTest extends React.Component {
                     </div>
                 </Grid>
 
-                <Dialog open={this.state.open} onClose={this.handleClose}
+                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"lg"}
                         fullWidth={"100%"}
                         height={'100%'}
                 >
                     <DialogContent>
-                        <Grid container style={{height:800}}>
-                            <Grid item xs={6}>
+                        <Grid container style={{height:'100%'}}>
+                            <Grid item xs={6} style={{padding:10}}>
                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
                             메인 스타일
                         </Typography>
@@ -141,7 +142,7 @@ export default class SelectTest extends React.Component {
                                     {styleList.map((style) =>
                                         <Grid item xs={3}>
                                             <div style={{textAlign:'center', margin:5}}>
-                                                <Button style={{width:'100%', height:60}} variant="outlined" key={style.no} onClick={() => this.handleClick(style)}>
+                                                <Button style={{width:'100%', height:60,padding:0}} variant="outlined" key={style.no} onClick={() => this.handleClick(style)}>
                                                     <h3>{style.categoryItemName}</h3>
                                                 </Button>
                                             </div>
@@ -150,8 +151,7 @@ export default class SelectTest extends React.Component {
                                     }
                                 </Grid>
                             </Grid>
-                            <Grid item xs={1}></Grid>
-                            <Grid item xs={5}>
+                            <Grid item xs={6} style={{padding:10}}>
                                 <Typography variant="h5" component="h2">
                                     서브 스타일
                                 </Typography>
@@ -161,7 +161,7 @@ export default class SelectTest extends React.Component {
                                     {styleList.map((style) =>
                                         <Grid item xs={3}>
                                             <div style={{textAlign:'center', margin:5}}>
-                                                <Button style={{width:'100%', height:60}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
+                                                <Button style={{width:'100%', height:60,padding:0}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
                                                     <h3>{style.categoryItemName}</h3>
                                                 </Button>
                                             </div>

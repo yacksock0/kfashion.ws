@@ -78,10 +78,11 @@ export default class Category extends React.Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose}
+                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
+                        marginLeft={'50%'}
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">

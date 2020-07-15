@@ -30,7 +30,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {fabric} from "fabric";
+import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -129,12 +129,10 @@ const tableIcons = {
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore')
 @observer
 class finalCheckList extends React.Component {
-    canvas;
     constructor(props) {
         super(...arguments , props);
         this.state = {
-
-            tapIndex: 1,
+            tapIndex: 0,
             createdId: '',
             boundaryList: [],
             imgData:'',
@@ -165,42 +163,41 @@ class finalCheckList extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
-        this.canvas = new fabric.Canvas('c');
     }
     handleClick=(workNo, imgData)=>{
         this.setState({
             imgData:imgData,
         })
 
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
-            originX: 'left',
-            originY: 'top'
-        });
-
     }
     handleClickReturn=()=>{
 
     }
     render() {
-        const {classes,history} = this.props;
+        const {classes} = this.props;
 
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={5}>
-                            <div>
-                                <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
-                            </div>
+                        <Grid item xs={4}>
+                            <img src={this.state.imgData} style={{display:"inline-block" , width:650, height:'60vh'}}/>
                         </Grid>
-                        <Grid item xs={3} style={{marginRight:10}}>
-                            <div>
-                                <TableContainer component={Paper} style={{height:'60vh'}}>
+                        <Grid item xs={3} style={{marginRight:20}}>
+                            <div component={Paper}>
+                                    <Tabs onSelect={tabIndex => (this.setState({ tabIndex }))}>
+                                        <TabList >
+                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
+                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
+                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
+                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                        </TabList>
+                                        <TabPanel>
+                                        <TableContainer  style={{height:'60vh'}}>
+
                                     <Table className={classes.table} aria-label="simple table">
-                                        <TableHead style={{backgroundColor:"primary"}}>
+                                        <TableHead>
                                             <TableRow>
                                                 <TableCell align="center">항목</TableCell>
                                                 <TableCell align="center">레이블링</TableCell>
@@ -254,9 +251,20 @@ class finalCheckList extends React.Component {
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
+                                    </TabPanel>
+                                        <TabPanel>
+
+                                        </TabPanel>
+                                        <TabPanel>
+
+                                        </TabPanel>
+                                        <TabPanel>
+
+                                        </TabPanel>
+                                    </Tabs>
                             </div>
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={4}>
                             <MaterialTable
                                 icons={tableIcons
                                 }
