@@ -10,6 +10,9 @@ import {ThemeProvider} from "@material-ui/core/styles";
 import {SnackbarProvider} from "notistack";
 import {stores} from "./stores";
 import configureTheme from "./configureTheme";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 configure({enforceActions: "always"});
 
