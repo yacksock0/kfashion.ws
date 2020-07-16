@@ -670,7 +670,7 @@ class Step2 extends React.Component {
         }this.onSelectTab(tabIndex1);
     }
     render() {
-        const { classes,history} = this.props;
+        const {classes,history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
         const {polyInfo} = this.props.polygonStore;
