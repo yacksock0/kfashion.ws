@@ -27,6 +27,7 @@ export default class Color1 extends React.Component {
             .then(response => {
                 const colorList1 = response.data.colorList1;
                 const colorList2 = response.data.colorList2;
+                const colorList2 = response.data.colorList2;
                 const colorList3 = response.data.colorList3;
                 const colorList4 = response.data.colorList4;
                 this.setState({
