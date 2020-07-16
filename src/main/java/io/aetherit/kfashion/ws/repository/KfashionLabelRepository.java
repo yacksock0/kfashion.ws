@@ -46,4 +46,28 @@ public class KfashionLabelRepository {
     public int[] selectLabelList(Long workNo) {
         return mapper.selectLabelList(workNo);
     }
+
+    public int[] selectHighLabelList(Long workNo) {
+        return mapper.selectHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectOuterReviewHighLabelList(Long workNo) {
+        return mapper.selectOuterReviewHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectTopReviewHighLabelList(Long workNo) {
+        return mapper.selectTopReviewHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectPantsReviewHighLabelList(Long workNo) {
+        return mapper.selectPantsReviewHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectOnePieceReviewHighLabelList(Long workNo) {
+        return mapper.selectOnePieceReviewHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectStyleReviewLabelList(Long workNo) {
+        return mapper.selectStyleReviewLabelList(workNo);
+    }
 }

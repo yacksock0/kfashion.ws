@@ -7,16 +7,13 @@ import DialogContent from "@material-ui/core/DialogContent";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class ClothLength2 extends React.Component {
+export default class Print extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            open:false,
             text: 'text',
-            open: false,
-            lengthList0: [],
-            lengthList1: [],
-            lengthList2: [],
-            lengthList3: [],
+            printList3: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -24,16 +21,10 @@ export default class ClothLength2 extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/length')
+        axios.get('/api/v1/kfashion/category/item/professional/print')
             .then(response => {
-                const lengthList1 = response.data.lengthList1;
-                const lengthList2 = response.data.lengthList2;
-                const lengthList3 = response.data.lengthList3;
-                const lengthList4 = response.data.lengthList4;
-                this.setState({lengthList1:lengthList1,
-                    lengthList2: lengthList2,
-                    lengthList3: lengthList3,
-                    lengthList4: lengthList4})
+                const printList3 = response.data.printList3;
+                this.setState({ printList3 : printList3})
             })
             .catch(error => {
                 console.log(error)
@@ -49,16 +40,17 @@ export default class ClothLength2 extends React.Component {
             open: false
         });
     }
-    handleClick(length) {
-        if (this.props.onClick) {
-            this.props.onClick(length);
+    handleClick(print){
+        if(this.props.onClick) {
+            this.props.onClick(print);
         }
         this.setState({
-            open: false,
+            open:false,
         })
+
     }
     render() {
-        const lengthList3= this.state.lengthList3;
+        const printList3= this.state.printList3;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -69,15 +61,15 @@ export default class ClothLength2 extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            기장
+                            프린트
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {lengthList3.map((length) =>
+                            {printList3.map((print) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>
-                                            <h2>{length.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
+                                            <h2>{print.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

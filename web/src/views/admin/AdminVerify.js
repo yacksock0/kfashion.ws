@@ -131,6 +131,8 @@ export default class AdminVerify extends React.Component {
                         cellStyle: {
                             textAlign: 'center'
                         },
+                        pageSize: 10,
+                        pageSizeOptions: [5,10,20]
                     }}
                 />
             </div>

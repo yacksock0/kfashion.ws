@@ -3,15 +3,19 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
-import Color from "./step2/Color";
-import SleeveLength from "./step2/SleeveLength";
+import Color1 from "./step2/Color1";
+import Color2 from "./step2/Color1";
+import Color3 from "./step2/Color1";
+import Color4 from "./step2/Color1";
+import SleeveLength1 from "./step2/SleeveLength1";
+import SleeveLength2 from "./step2/SleeveLength1";
+import SleeveLength4 from "./step2/SleeveLength1";
 import {inject, observer} from "mobx-react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import BasicImageList from "./step2/BasicImageList";
 import {fabric} from "fabric";
 import {toJS} from "mobx";
-import Chip from '@material-ui/core/Chip';
 import axios from "axios";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -112,14 +116,14 @@ class Step2 extends React.Component {
             labelNo2 : 0,
             labelNo3 : 0,
             labelNo4 : 0,
-            no: 0,
-            name: '',
-            memo: '',
-            subNo: 0,
-            subName: '',
-            subMemo: '',
-            sleeveNo: 0,
-            sleeveName: '',
+            no4: 0,
+            name4: '',
+            memo4: '',
+            subNo4: 0,
+            subName4: '',
+            subMemo4: '',
+            sleeveNo4: 0,
+            sleeveName4: '',
             tabIndex: 1,
             tabIndex1: 0,
             imgData: '',
@@ -149,15 +153,18 @@ class Step2 extends React.Component {
             subNo3: 0,
             subName3: '',
             subMemo3: '',
-            sleeveNo3: 0,
-            sleeveName3: '',
-            colorCategoryNo:0,
-            sleeveLengthCategoryNo:0,
+            colorCategoryNo1:0,
+            colorCategoryNo2:0,
+            colorCategoryNo3:0,
+            colorCategoryNo4:0,
+            subColorCategoryNo1:0,
+            subColorCategoryNo2:0,
+            subColorCategoryNo3:0,
+            subColorCategoryNo4:0,
+            sleeveLengthCategoryNo1:0,
+            sleeveLengthCategoryNo2:0,
+            sleeveLengthCategoryNo4:0,
         }
-
-        this.handleDelete = this.handleDelete.bind(this)
-        this.colorDelete = this.colorDelete.bind(this)
-        this.colorDeleteSub = this.colorDeleteSub.bind(this)
 
         this.handleDelete1 = this.handleDelete1.bind(this)
         this.colorDelete1 = this.colorDelete1.bind(this)
@@ -167,10 +174,12 @@ class Step2 extends React.Component {
         this.colorDelete2 = this.colorDelete2.bind(this)
         this.colorDeleteSub2 = this.colorDeleteSub2.bind(this)
 
-
-        this.handleDelete3 = this.handleDelete3.bind(this)
         this.colorDelete3 = this.colorDelete3.bind(this)
         this.colorDeleteSub3 = this.colorDeleteSub3.bind(this)
+
+        this.handleDelete4 = this.handleDelete4.bind(this)
+        this.colorDelete4 = this.colorDelete4.bind(this)
+        this.colorDeleteSub4 = this.colorDeleteSub4.bind(this)
         this.handleClickItem = this.handleClickItem.bind(this)
     }
 
@@ -212,123 +221,109 @@ class Step2 extends React.Component {
             tabIndex1:0,
         })
     }
-    handleClickColor = (color) => {
+    handleClickColor1 = (color1) => {
         this.setState({
-            no: color.no,
-            name: color.categoryItemName,
-            memo: color.categoryItemMemo,
-            colorCategoryNo: color.categoryNo,
+            no1: color1.no,
+            name1: color1.categoryItemName,
+            memo1: color1.categoryItemMemo,
+            colorCategoryNo1: color1.categoryNo,
             labelNo1 : 1,
         })
     }
-    handleClickColor1 = (color) => {
+    handleClickColor2 = (color2) => {
         this.setState({
-            no1: color.no,
-            name1: color.categoryItemName,
-            memo1: color.categoryItemMemo,
-            colorCategoryNo: color.categoryNo,
+            no2: color2.no,
+            name2: color2.categoryItemName,
+            memo2: color2.categoryItemMemo,
+            colorCategoryNo2: color2.categoryNo,
             labelNo2 : 2,
         })
     }
-    handleClickColor2 = (color) => {
+    handleClickColor3 = (color3) => {
         this.setState({
-            no2: color.no,
-            name2: color.categoryItemName,
-            memo2: color.categoryItemMemo,
-            colorCategoryNo: color.categoryNo,
+            no3: color3.no,
+            name3: color3.categoryItemName,
+            memo3: color3.categoryItemMemo,
+            colorCategoryNo3: color3.categoryNo,
             labelNo3 : 3,
         })
     }
-    handleClickColor3 = (color) => {
+    handleClickColor4 = (color4) => {
         this.setState({
-            no3: color.no,
-            name3: color.categoryItemName,
-            memo3: color.categoryItemMemo,
-            colorCategoryNo: color.categoryNo,
+            no4: color4.no,
+            name4: color4.categoryItemName,
+            memo4: color4.categoryItemMemo,
+            colorCategoryNo4: color4.categoryNo,
             labelNo4 : 4,
         })
     }
-    handleClickSubColor = (color) => {
-        {
-            !this.state.no == 0 ?
-                this.setState({
-                    subNo: color.no,
-                    subName: color.categoryItemName,
-                    subMemo: color.categoryItemMemo,
-                    colorCategoryNo: color.categoryNo,
-                })
-                : alert('메인 색상을 먼저 선택해 주세요')
-        }
-    }
-    handleClickSubColor1 = (color) => {
+    handleClickSubColor1 = (color1) => {
         {
             !this.state.no1 == 0 ?
                 this.setState({
-                    subNo1: color.no,
-                    subName1: color.categoryItemName,
-                    subMemo1: color.categoryItemMemo,
-                    colorCategoryNo: color.categoryNo,
+                    subNo1: color1.no,
+                    subName1: color1.categoryItemName,
+                    subMemo1: color1.categoryItemMemo,
+                    subColorCategoryNo1: color1.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
     }
-    handleClickSubColor2 = (color) => {
+    handleClickSubColor2 = (color2) => {
         {
             !this.state.no2 == 0 ?
                 this.setState({
-                    subNo2: color.no,
-                    subName2: color.categoryItemName,
-                    subMemo2: color.categoryItemMemo,
-                    colorCategoryNo: color.categoryNo,
+                    subNo2: color2.no,
+                    subName2: color2.categoryItemName,
+                    subMemo2: color2.categoryItemMemo,
+                    subColorCategoryNo2: color2.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
     }
-    handleClickSubColor3 = (color) => {
+    handleClickSubColor3= (color3) => {
         {
             !this.state.no3 == 0 ?
                 this.setState({
-                    subNo3: color.no,
-                    subName3: color.categoryItemName,
-                    subMemo3: color.categoryItemMemo,
-                    colorCategoryNo: color.categoryNo,
+                    subNo3: color3.no,
+                    subName3: color3.categoryItemName,
+                    subMemo3: color3.categoryItemMemo,
+                    subColorCategoryNo3: color3.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
     }
-    handleClickSleeve = (sleeve) => {
+    handleClickSubColor4 = (color4) => {
+        {
+            !this.state.no4 == 0 ?
+                this.setState({
+                    subNo4: color4.no,
+                    subName4: color4.categoryItemName,
+                    subMemo4: color4.categoryItemMemo,
+                    subColorCategoryNo4: color4.categoryNo,
+                })
+                : alert('메인 색상을 먼저 선택해 주세요')
+        }
+    }
+    handleClickSleeve1 = (sleeve1) => {
         this.setState({
-            sleeveNo: sleeve.no,
-            sleeveName: sleeve.categoryItemName,
-            sleeveLengthCategoryNo: sleeve.categoryNo
+            sleeveNo1: sleeve1.no,
+            sleeveName1: sleeve1.categoryItemName,
+            sleeveLengthCategoryNo1: sleeve1.categoryNo
         })
     }
-    handleClickSleeve1 = (sleeve) => {
+    handleClickSleeve2 = (sleeve2) => {
         this.setState({
-            sleeveNo1: sleeve.no,
-            sleeveName1: sleeve.categoryItemName,
-            sleeveLengthCategoryNo: sleeve.categoryNo
+            sleeveNo2: sleeve2.no,
+            sleeveName2: sleeve2.categoryItemName,
+            sleeveLengthCategoryNo2: sleeve2.categoryNo
         })
     }
-    handleClickSleeve2 = (sleeve) => {
+    handleClickSleeve4 = (sleeve4) => {
         this.setState({
-            sleeveNo2: sleeve.no,
-            sleeveName2: sleeve.categoryItemName,
-            sleeveLengthCategoryNo: sleeve.categoryNo
-        })
-    }
-    handleClickSleeve3 = (sleeve) => {
-        this.setState({
-            sleeveNo3: sleeve.no,
-            sleeveName3: sleeve.categoryItemName,
-            sleeveLengthCategoryNo: sleeve.categoryNo
-        })
-    }
-
-    handleDelete() {
-        this.setState({
-            sleeveNo: 0,
-            sleeveName: '',
+            sleeveNo4: sleeve4.no,
+            sleeveName4: sleeve4.categoryItemName,
+            sleeveLengthCategoryNo4: sleeve4.categoryNo
         })
     }
 
@@ -336,6 +331,7 @@ class Step2 extends React.Component {
         this.setState({
             sleeveNo1: 0,
             sleeveName1: '',
+            sleeveLengthCategoryNo1 : 0,
         })
     }
 
@@ -343,25 +339,15 @@ class Step2 extends React.Component {
         this.setState({
             sleeveNo2: 0,
             sleeveName2: '',
+            sleeveLengthCategoryNo2 : 0,
         })
     }
 
-    handleDelete3() {
+    handleDelete4() {
         this.setState({
-            sleeveNo3: 0,
-            sleeveName3: '',
-        })
-    }
-
-    colorDelete() {
-        this.setState({
-            no: 0,
-            name: '',
-            memo: '',
-            subNo: 0,
-            subName: '',
-            subMemo: '',
-            labelNo1 : 0,
+            sleeveNo4: 0,
+            sleeveName4: '',
+            sleeveLengthCategoryNo4 : 0,
         })
     }
 
@@ -373,7 +359,8 @@ class Step2 extends React.Component {
             subNo1: 0,
             subName1: '',
             subMemo1: '',
-            labelNo2 : 0,
+            labelNo1 : 0,
+            colorCategoryNo1 : 0,
         })
     }
 
@@ -385,7 +372,8 @@ class Step2 extends React.Component {
             subNo2: 0,
             subName2: '',
             subMemo2: '',
-            labelNo3 : 0,
+            labelNo2 : 0,
+            colorCategoryNo2 : 0,
         })
     }
 
@@ -397,15 +385,21 @@ class Step2 extends React.Component {
             subNo3: 0,
             subName3: '',
             subMemo3: '',
-            labelNo4 : 0,
+            labelNo3 : 0,
+            colorCategoryNo3 : 0,
         })
     }
 
-    colorDeleteSub() {
+    colorDelete4() {
         this.setState({
-            subNo: 0,
-            subName: '',
-            subMemo: '',
+            no4: 0,
+            name4: '',
+            memo4: '',
+            subNo4: 0,
+            subName4: '',
+            subMemo4: '',
+            labelNo4 : 0,
+            colorCategoryNo4 : 0,
         })
     }
 
@@ -414,6 +408,7 @@ class Step2 extends React.Component {
             subNo1: 0,
             subName1: '',
             subMemo1: '',
+            subColorCategoryNo1 : 0,
         })
     }
 
@@ -422,6 +417,7 @@ class Step2 extends React.Component {
             subNo2: 0,
             subName2: '',
             subMemo2: '',
+            subColorCategoryNo2 : 0,
         })
     }
 
@@ -430,24 +426,53 @@ class Step2 extends React.Component {
             subNo3: 0,
             subName3: '',
             subMemo3: '',
+            subColorCategoryNo3 : 0,
         })
     }
 
+    colorDeleteSub4() {
+        this.setState({
+            subNo4: 0,
+            subName4: '',
+            subMemo4: '',
+            subColorCategoryNo4 : 0,
+        })
+    }
 
     lineTwoPoint =[];
     x;
     y;
 
     onSelectTab(tabIndex1) {
+        console.log(tabIndex1);
+        console.log(this.props.polygonStore.polyLast);
+
+
         let polyNo = tabIndex1 + 1;
         const {locationPolygonList} = this.props.polygonStore;
         const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
+
         if (selectedPoly.length !== 0) {
             this.deleteAll();
             for(let i = 0 ; i <selectedPoly.length; i++) {
+                console.log( this.lineTwoPoint);
                 this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
+
+                // let circle = new fabric.Circle({
+                //     type: 'circle',
+                //     id: this.polyCounter,
+                //     radius: 6,
+                //     fill: 'green',
+                //     left: selectedPoly[i].locationX - 3.5,
+                //     top: selectedPoly[i].locationY - 3.5,
+                //     selectable: false,
+                //     evented: false,
+                // });
+                // this.canvas.add(circle);
+                // this.canvas.bringToFront(circle)
+
 
                 if(i !=0) {
                     let x1 = this.lineTwoPoint[0];
@@ -478,8 +503,8 @@ class Step2 extends React.Component {
                             stroke: 'red',
                             strokeWidth: 5,
                             padding: 1,
-                            selectable: false,
-                            evented: false,
+                            // selectable: false,
+                            // evented: false,
                             left: x1,
                             top: y1,
                         });
@@ -523,6 +548,16 @@ class Step2 extends React.Component {
             this.canvas.add(polyline);
             this.canvas.sendToBack(polyline);
 
+            // let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
+            // for (let i = 1; i < selectedPoly.length; i++) {
+            //     makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
+            // }
+            // makePath += ' z';
+            // let path = new fabric.Path(makePath);
+            // path.opacity = 0.3;
+            // console.log(makePath);
+            // this.canvas.add(path);
+
             this.setState({
                 tabIndex1: tabIndex1,
             })
@@ -539,41 +574,37 @@ class Step2 extends React.Component {
             console.log("!!!!!!" + polyInfo[i]);
             switch (polyInfo[i]) {
                 case 1 :
-                    if(this.state.no == 0){
+                    if(this.state.no1 == 0){
                         alert("아우터의 메인색상을 선택해주세요");
                         savebtn = false; i = polyInfo.length;
                         break;
-                    }else if(this.state.sleeveNo == ""){
+                    }else if(this.state.sleeveNo1 == ""){
                         alert("아우터의 소매길이를 선택해주세요");
                         savebtn = false; i = polyInfo.length;
                         break;
                     } break;
                 case 2 :
-                     if(this.state.no1 == 0){
+                     if(this.state.no2 == 0){
                         alert("상의의 메인색상을 선택해주세요");
                          savebtn = false; i = polyInfo.length;
                          break;
-                     }else if(this.state.sleeveNo1 == ""){
+                     }else if(this.state.sleeveNo2 == ""){
                          alert("상의의 소매길이를 선택해주세요");
                          savebtn = false; i = polyInfo.length;
                          break;
                      } break;
                 case 3 :
-                    if(this.state.no2 == 0){
+                    if(this.state.no3 == 0){
                         alert("하의의 메인색상을 선택해주세요");
-                        savebtn = false; i = polyInfo.length;
-                        break;
-                    }else if(this.state.sleeveNo2 == ""){
-                        alert("하의의 소매길이를 선택해주세요");
                         savebtn = false; i = polyInfo.length;
                         break;
                     } break;
                 case 4 :
-                    if(this.state.no3 == 0){
+                    if(this.state.no4 == 0){
                         alert("원피스의 메인색상을 선택해주세요");
                         savebtn = false; i = polyInfo.length;
                         break;
-                    }else if(this.state.sleeveNo3 == ""){
+                    }else if(this.state.sleeveNo4 == ""){
                         alert("원피의 소매길이를 선택해주세요");
                         savebtn = false; i = polyInfo.length;
                         break;
@@ -589,54 +620,77 @@ class Step2 extends React.Component {
                 labelNo2 : this.state.labelNo2,
                 labelNo3 : this.state.labelNo3,
                 labelNo4 : this.state.labelNo4,
-                color:this.state.no,
                 color1:this.state.no1,
                 color2:this.state.no2,
                 color3:this.state.no3,
-                colorCategoryNo: this.state.colorCategoryNo,
-                subColor:this.state.subNo,
+                color4:this.state.no4,
+                colorCategoryNo1: this.state.colorCategoryNo1,
+                colorCategoryNo2: this.state.colorCategoryNo2,
+                colorCategoryNo3: this.state.colorCategoryNo3,
+                colorCategoryNo4: this.state.colorCategoryNo4,
                 subColor1:this.state.subNo1,
                 subColor2:this.state.subNo2,
                 subColor3:this.state.subNo3,
-                sleeveLength:this.state.sleeveNo,
+                subColor4:this.state.subNo4,
+                subColorCategoryNo1 :this.state.subColorCategoryNo1,
+                subColorCategoryNo2 :this.state.subColorCategoryNo2,
+                subColorCategoryNo3 :this.state.subColorCategoryNo3,
+                subColorCategoryNo4 :this.state.subColorCategoryNo4,
                 sleeveLength1:this.state.sleeveNo1,
                 sleeveLength2:this.state.sleeveNo2,
-                sleeveLength3:this.state.sleeveNo3,
-                sleeveLengthCategoryNo:this.state.sleeveLengthCategoryNo,
+                sleeveLength4:this.state.sleeveNo4,
+                sleeveLengthCategoryNo1:this.state.sleeveLengthCategoryNo1,
+                sleeveLengthCategoryNo2:this.state.sleeveLengthCategoryNo2,
+                sleeveLengthCategoryNo4:this.state.sleeveLengthCategoryNo4,
                 createdId:this.props.authStore.loginUser.id,});
-            console.log('colorCategoryNo',this.state.colorCategoryNo)
-            console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
-            axios.post('/api/v1/kfashion/label/basicLabel', param)
-            .then(res =>{
-             if (res.status === 200) {
-                 alert("작업을 저장하였습니다.");
-                 this.setState({
-                     tabIndex:1,
-                     workNo: 0,
-                     no:0,
-                     labelNo1 : 0,
-                     labelNo2 : 0,
-                     labelNo3 : 0,
-                     labelNo4 : 0,
-                     color:0,
-                     color1:0,
-                     color2:0,
-                     color3:0,
-                     subColor:0,
-                     subColor1:0,
-                     subColor2:0,
-                     subColor3:0,
-                     sleeveLength:0,
-                     sleeveLength1:0,
-                     sleeveLength2:0,
-                     sleeveLength3:0,
-                 });
-
-                 this.deleteAll();
-             }else {
-                 console.log("error");
-             }
-         })
+            console.log('colorCategoryNo1',this.state.colorCategoryNo1)
+            console.log('colorCategoryNo2',this.state.colorCategoryNo2)
+            console.log('colorCategoryNo3',this.state.colorCategoryNo3)
+            console.log('colorCategoryNo4',this.state.colorCategoryNo4)
+            console.log('colorCategoryNo4',this.state.subColorCategoryNo1)
+            console.log('colorCategoryNo4',this.state.subColorCategoryNo2)
+            console.log('colorCategoryNo4',this.state.subColorCategoryNo3)
+            console.log('colorCategoryNo4',this.state.subColorCategoryNo4)
+            console.log('sleeveLengthCategoryNo1',this.state.sleeveLengthCategoryNo1)
+            console.log('sleeveLengthCategoryNo2',this.state.sleeveLengthCategoryNo2)
+            console.log('sleeveLengthCategoryNo4',this.state.sleeveLengthCategoryNo4)
+            const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
+            if(res.status === 200) {
+                alert("작업을 저장하였습니다.");
+                this.setState({
+                    tabIndex:1,
+                    workNo: 0,
+                    no:0,
+                    labelNo1 : 0,
+                    labelNo2 : 0,
+                    labelNo3 : 0,
+                    labelNo4 : 0,
+                    color1:0,
+                    color2:0,
+                    color3:0,
+                    color4:0,
+                    colorCategoryNo1 : 0,
+                    colorCategoryNo2 : 0,
+                    colorCategoryNo3 : 0,
+                    colorCategoryNo4 : 0,
+                    subColor1:0,
+                    subColor2:0,
+                    subColor3:0,
+                    subColor4:0,
+                    subColorCategoryNo1 : 0,
+                    subColorCategoryNo2 : 0,
+                    subColorCategoryNo3 : 0,
+                    subColorCategoryNo4 : 0,
+                    sleeveLength1:0,
+                    sleeveLength2:0,
+                    sleeveLength4:0,
+                    sleeveLengthCategoryNo1 : 0,
+                    sleeveLengthCategoryNo2 : 0,
+                    sleeveLengthCategoryNo4 : 0,
+                })
+            }else {
+                console.log("error");
+            }
         }
     }
 
@@ -650,11 +704,7 @@ class Step2 extends React.Component {
         }
     }
     onSelectTab2 =( tabIndex ) => {
-        if(this.props.imageStore.workNo == '' && tabIndex ==0 ){
-            alert("없어요");
-        }
         this.setState({tabIndex});
-
     }
     nextTab =() => {
         const {polyInfo} = this.props.polygonStore;
@@ -706,23 +756,23 @@ class Step2 extends React.Component {
                                      <Typography variant="h5" component="h2" style={{display:'inline'}}>
                                          색상
                                      </Typography>
-                                         &nbsp;&nbsp;{!this.state.no == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
+                                         &nbsp;&nbsp;{!this.state.no1 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
                                              <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                 <Color onClick={this.handleClickColor} onClickSub={this.handleClickSubColor} style={{display:'inline', float:'right'}}/>
+                                                 <Color1 onClick={this.handleClickColor1} onClickSub={this.handleClickSubColor1} style={{display:'inline', float:'right'}}/>
                                              </div>
                                      <div>
                                          <hr></hr>
                                      </div>
                                      <div>
                                              <br></br>
-                                         {this.state.no >0 ?
-                                             (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo}`}} onClick={this.colorDelete}>
+                                         {this.state.no1 >0 ?
+                                             (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo1}`}} onClick={this.colorDelete1}>
 
                                      </div>) : ''
                                          }
                                          &nbsp;
-                                         {this.state.subNo >0 ?
-                                             (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo}`}} onClick={this.colorDeleteSub}>
+                                         {this.state.subNo1 >0 ?
+                                             (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo1}`}} onClick={this.colorDeleteSub1}>
                                              </div>) : ''
                                          }
                                      </div>
@@ -732,15 +782,15 @@ class Step2 extends React.Component {
                                                  소매길이
                                              </Typography>
                                              <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                 <SleeveLength onClick={this.handleClickSleeve} />
+                                                 <SleeveLength1 onClick={this.handleClickSleeve1} />
                                              </div>
                                          <div>
                                              <hr></hr>
                                          </div>
 
                                          <br></br>
-                                         {this.state.sleeveNo >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.sleeveName} </Button> ) : ''
+                                         {this.state.sleeveNo1 >0 ?
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
                                          }
                                          {polyLast === this.state.tabIndex1 ? (
                                          <Button style={{marginTop: 20}}
@@ -771,22 +821,23 @@ class Step2 extends React.Component {
                                          <Typography variant="h5" component="h2" style={{display:'inline'}}>
                                              색상
                                          </Typography>
-                                         &nbsp;&nbsp;{!this.state.no1 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
+                                         &nbsp;&nbsp;{!this.state.no2 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color onClick={this.handleClickColor1} onClickSub={this.handleClickSubColor1} style={{display:'inline', float:'right'}}/>
+                                             <Color2 onClick={this.handleClickColor2} onClickSub={this.handleClickSubColor2} style={{display:'inline', float:'right'}}/>
                                          </div>
                                          <div>
                                              <hr></hr>
                                          </div>
                                          <div>
                                              <br></br>
-                                             {this.state.no1 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo1}`}} onClick={this.colorDelete1}>
+                                             {this.state.no2>0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo2}`}} onClick={this.colorDelete2}>
+
                                                  </div>) : ''
                                              }
                                              &nbsp;
-                                             {this.state.subNo1 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo1}`}} onClick={this.colorDeleteSub1}>
+                                             {this.state.subNo2 >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo2}`}} onClick={this.colorDeleteSub2}>
                                                  </div>) : ''
                                              }
                                          </div>
@@ -796,14 +847,14 @@ class Step2 extends React.Component {
                                              소매길이
                                          </Typography>
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <SleeveLength onClick={this.handleClickSleeve1} />
+                                             <SleeveLength2 onClick={this.handleClickSleeve2} />
                                          </div>
                                          <div>
                                              <hr></hr>
                                          </div>
                                          <br></br>
-                                         {this.state.sleeveNo1 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
+                                         {this.state.sleeveNo2 >0 ?
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.state.sleeveName2} </Button> ) : ''
                                          }
                                          {polyLast === this.state.tabIndex1 ? (
                                              <Button style={{marginTop: 20}}
@@ -833,78 +884,14 @@ class Step2 extends React.Component {
                                          <Typography variant="h5" component="h2" style={{display:'inline'}}>
                                              색상
                                          </Typography>
-                                         &nbsp;&nbsp;{!this.state.no2 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
-                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color onClick={this.handleClickColor2} onClickSub={this.handleClickSubColor2} style={{display:'inline', float:'right'}}/>
-                                         </div>
-                                         <div>
-                                             <hr></hr>
-                                         </div>
-                                         <div>
-                                             <br></br>
-                                             {this.state.no2 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo2}`}} onClick={this.colorDelete2}>
-
-                                                 </div>) : ''
-                                             }
-                                             &nbsp;
-                                             {this.state.subNo2 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo2}`}} onClick={this.colorDeleteSub2}>
-                                                 </div>) : ''
-                                             }
-                                         </div>
-                                     </div>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                         <Typography variant="h5" component="h5" style={{display:'inline'}} >
-                                             소매길이
-                                         </Typography>
-                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <SleeveLength onClick={this.handleClickSleeve2} />
-                                         </div>
-                                         <div>
-                                             <hr></hr>
-                                         </div>
-                                         <br></br>
-                                         {this.state.sleeveNo2 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.state.sleeveName2} </Button> ) : ''
-                                         }
-                                         {polyLast === this.state.tabIndex1 ? (
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     color="primary"
-                                                     variant="outlined"
-                                                     onClick={()=>(this.handleSave())}
-                                             >
-                                                 저장
-                                             </Button>
-                                             ):(
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     color="primary"
-                                                     variant="outlined"
-                                                     onClick={()=>(this.nextTab())}
-                                             >
-                                                 다음
-                                             </Button>
-                                         )}
-                                     </div>
-                                 </TabPanel>
-                                 <TabPanel>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
-                                             색상
-                                         </Typography>
                                          &nbsp;&nbsp;{!this.state.no3 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color onClick={this.handleClickColor3} onClickSub={this.handleClickSubColor3} style={{display:'inline', float:'right'}}/>
+                                             <Color3 onClick={this.handleClickColor3} onClickSub={this.handleClickSubColor3} style={{display:'inline', float:'right'}}/>
                                          </div>
                                          <div>
                                              <hr></hr>
                                          </div>
                                          <div>
-                                             <br></br>
                                              {this.state.no3 >0 ?
                                                  (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo3}`}} onClick={this.colorDelete3}>
 
@@ -916,20 +903,58 @@ class Step2 extends React.Component {
                                                  </div>) : ''
                                              }
                                          </div>
+                                         {polyLast === this.state.tabIndex1 ? (
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={()=>(this.handleSave())}
+                                             >
+                                                 저장
+                                             </Button>
+                                         ):''}
+                                     </div>
+                                 </TabPanel>
+                                 <TabPanel>
+                                     <div className={classes.content} style={{display:'inline'}}>
+                                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
+                                             색상
+                                         </Typography>
+                                         &nbsp;&nbsp;{!this.state.no4 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
+                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                             <Color4 onClick={this.handleClickColor4} onClickSub={this.handleClickSubColor4} style={{display:'inline', float:'right'}}/>
+                                         </div>
+                                         <div>
+                                             <hr></hr>
+                                         </div>
+                                         <div>
+                                             <br></br>
+                                             {this.state.no4 >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo4}`}} onClick={this.colorDelete4}>
+
+                                                 </div>) : ''
+                                             }
+                                             &nbsp;
+                                             {this.state.subNo4 >0 ?
+                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.subMemo4}`}} onClick={this.colorDeleteSub4}>
+                                                 </div>) : ''
+                                             }
+                                         </div>
                                      </div>
                                      <div className={classes.content} style={{display:'inline'}}>
                                          <Typography variant="h5" component="h5" style={{display:'inline'}} >
                                              소매길이
                                          </Typography>
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <SleeveLength onClick={this.handleClickSleeve3} />
+                                             <SleeveLength4 onClick={this.handleClickSleeve4} />
                                          </div>
                                          <div>
                                              <hr></hr>
                                          </div>
                                          <br></br>
-                                         {this.state.sleeveNo3 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete3} endIcon={<DeleteIcon />} > {this.state.sleeveName3} </Button> ) : ''
+                                         {this.state.sleeveNo4 >0 ?
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.state.sleeveName4} </Button> ) : ''
                                          }
                                          {polyLast === this.state.tabIndex1 ? (
                                              <Button style={{marginTop: 20}}

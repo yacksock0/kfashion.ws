@@ -42,6 +42,51 @@ const ReviewLabel = {
     neckLineItemName : '',
     karaItemName : '',
     fitItemName : '',
+
+    style : '',
+    styleSub : '',
+    styleCategoryNo : '',
+    styleCategorySubNo : '',
+    category : '',
+    category1 : '',
+    category2 : '',
+    category3 : '',
+    categoryCategoryNo : '',
+    detail : '',
+    detail1 : '',
+    detail2 : '',
+    detail3 : '',
+    detailCategoryNo : '',
+    print : '',
+    print1 : '',
+    print2 : '',
+    print3 : '',
+    printCategoryNo : '',
+    texture : '',
+    texture1 : '',
+    texture2 : '',
+    texture3 : '',
+    textureCategoryNo : '',
+    clothLength : '',
+    clothLength1 : '',
+    clothLength2 : '',
+    clothLength3 : '',
+    clothLengthCategoryNo : '',
+    neckLine : '',
+    neckLine1 : '',
+    neckLine2 : '',
+    neckLine3 : '',
+    neckLineCategoryNo : '',
+    kara : '',
+    kara1 : '',
+    kara2 : '',
+    kara3 : '',
+    karaCategoryNo : '',
+    fit : '',
+    fit1 : '',
+    fit2 : '',
+    fit3 : '',
+    fitCategoryNo : '',
 }
 
 
@@ -52,6 +97,7 @@ export default class WorkStore {
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable authorityNo = 0;
+    @observable styleReviewLabel = {...ReviewLabel};
     @observable outerReviewLabel = {...ReviewLabel};
     @observable topReviewLabel = {...ReviewLabel};
     @observable pantsReviewLabel = {...ReviewLabel};
@@ -60,6 +106,13 @@ export default class WorkStore {
 
     @action initStore = () => {
         this.professionalList = 0;
+    }
+
+    @action reSetCategoryItem=()=>{
+        this.outerReviewLabel = [];
+        this.topReviewLabel = [];
+        this.pantsReviewLabel = [];
+        this.onePieceReviewLabel = [];
     }
 
     @action changeAuthorityNo = (authorityNo) => {
@@ -100,7 +153,12 @@ export default class WorkStore {
                 this.onePieceReviewLabel = response.data.onePieceReviewLabel;
             }else {
                 this.onePieceReviewLabel = [];
+            }if(response.data.styleReviewLabel != null) {
+                this.styleReviewLabel = response.data.styleReviewLabel;
+            }else {
+                this.styleReviewLabel = [];
             }
+
         } catch (e) {
             console.log('error')
         }

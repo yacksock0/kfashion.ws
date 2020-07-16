@@ -1,26 +1,19 @@
 import React from 'react';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Grid, Typography} from "@material-ui/core";
+import {Button, Typography, Grid} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Print extends React.Component {
+export default class Detail1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open:false,
             text: 'text',
-            printList: [],
+            open: false,
+            detailList2: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -28,10 +21,18 @@ export default class Print extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/print')
+        axios.get('/api/v1/kfashion/category/item/professional/detail')
             .then(response => {
-                const printList = response.data.printList;
-                this.setState({ printList : printList})
+                const detailList1 = response.data.detailList1;
+                const detailList2 = response.data.detailList2;
+                const detailList3 = response.data.detailList3;
+                const detailList4 = response.data.detailList4;
+
+                this.setState({detailList1:detailList1,
+                    detailList2: detailList2,
+                    detailList3: detailList3,
+                    detailList4: detailList4
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -47,17 +48,25 @@ export default class Print extends React.Component {
             open: false
         });
     }
-    handleClick(print){
+    handleClick(detail){
         if(this.props.onClick) {
-            this.props.onClick(print);
+            this.props.onClick(detail);
         }
         this.setState({
             open:false,
         })
 
     }
+    handledDetail=(detail)=>{
+        if(this.props.onClick) {
+            this.props.onClick(detail);
+        }
+        this.setState({
+            open: false
+        });
+    }
     render() {
-        const printList= this.state.printList;
+        const detailList2= this.state.detailList2;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -68,21 +77,21 @@ export default class Print extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            프린트
+                            디테일
                         </Typography>
                         <hr></hr>
-                        <Grid container>
-                            {printList.map((print) =>
+                            <Grid container>
+                                        {detailList2.map((detail) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
-                                            <h2>{print.categoryItemName}</h2>
-                                        </Button>
+                                            <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
+                                                <h3>{detail.categoryItemName}</h3>
+                                            </Button>
                                     </div>
                                 </Grid>
-                            )
-                            }
-                        </Grid>
+                                        )
+                                        }
+                            </Grid>
                     </DialogContent>
                 </Dialog>
             </div>

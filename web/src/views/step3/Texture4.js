@@ -4,34 +4,26 @@ import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Safe extends React.Component {
+export default class Texture1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open:false,
             text: 'text',
-            safeList: [],
-            selectedOption:null,
+            textureList4: [],
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/safe')
+        axios.get('/api/v1/kfashion/category/item/professional/texture')
             .then(response => {
-                const safeList = response.data.safeList;
-                this.setState({ safeList : safeList})
+                const textureList4 = response.data.textureList4;
+                this.setState({ textureList4 : textureList4})
             })
             .catch(error => {
                 console.log(error)
@@ -47,9 +39,9 @@ export default class Safe extends React.Component {
             open: false
         });
     }
-    handleClick(safe){
+    handleClick(texture){
         if(this.props.onClick) {
-            this.props.onClick(safe);
+            this.props.onClick(texture);
         }
         this.setState({
             open:false,
@@ -57,7 +49,7 @@ export default class Safe extends React.Component {
 
     }
     render() {
-        const safeList= this.state.safeList;
+        const textureList4= this.state.textureList4;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -68,15 +60,15 @@ export default class Safe extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            세이프
+                            소재감
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {safeList.map((safe) =>
+                            {textureList4.map((texture) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={safe.no} onClick={() => this.handleClick(safe)}>
-                                            <h2>{safe.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClick(texture)}>
+                                            <h2>{texture.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

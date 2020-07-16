@@ -4,7 +4,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
-import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
+import {Container, Button, Grid} from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,7 +18,6 @@ import ImageList from "./ImageList";
 import SaveIcon from "@material-ui/icons/Save";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Stepper from "../../components/Stepper";
 
 const styles = theme => ({
     root: {

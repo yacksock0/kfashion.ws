@@ -7,16 +7,13 @@ import DialogContent from "@material-ui/core/DialogContent";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class ClothLength2 extends React.Component {
+export default class ColorKara2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'text',
             open: false,
-            lengthList0: [],
-            lengthList1: [],
-            lengthList2: [],
-            lengthList3: [],
+            text: 'text',
+            karaList: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -24,21 +21,20 @@ export default class ClothLength2 extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/length')
+        axios.get('/api/v1/kfashion/category/item/professional/kara')
             .then(response => {
-                const lengthList1 = response.data.lengthList1;
-                const lengthList2 = response.data.lengthList2;
-                const lengthList3 = response.data.lengthList3;
-                const lengthList4 = response.data.lengthList4;
-                this.setState({lengthList1:lengthList1,
-                    lengthList2: lengthList2,
-                    lengthList3: lengthList3,
-                    lengthList4: lengthList4})
+                const karaList1 = response.data.karaList1;
+                const karaList2 = response.data.karaList2;
+                const karaList4 = response.data.karaList4;
+                this.setState({ karaList1 : karaList1,
+                    karaList2 : karaList2,
+                    karaList4 : karaList4})
             })
             .catch(error => {
                 console.log(error)
             })
     }
+
     handleClickOpen() {
         this.setState({
             open: true
@@ -49,16 +45,17 @@ export default class ClothLength2 extends React.Component {
             open: false
         });
     }
-    handleClick(length) {
-        if (this.props.onClick) {
-            this.props.onClick(length);
+    handleClick(kara){
+        if(this.props.onClick) {
+            this.props.onClick(kara);
         }
         this.setState({
-            open: false,
+            open:false,
         })
-    }
+    };
+
     render() {
-        const lengthList3= this.state.lengthList3;
+        const karaList2= this.state.karaList2;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -69,15 +66,15 @@ export default class ClothLength2 extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            기장
+                            카라
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {lengthList3.map((length) =>
+                            {karaList2.map((kara) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>
-                                            <h2>{length.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={kara.no} onClick={() => this.handleClick(kara)}>
+                                            <h2>{kara.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

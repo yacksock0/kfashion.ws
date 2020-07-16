@@ -6,9 +6,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from "@material-ui/core/Chip";
-import {withStyles} from "@material-ui/core/styles";
 
-@inject('professionalLabelStore','authStore')
+@inject('professionalLabelStore','authStore', 'workStore')
 @observer
 export default class Style extends React.Component {
     constructor(props) {
@@ -50,6 +49,7 @@ export default class Style extends React.Component {
             selectedName:style.categoryItemName
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelStyle(style);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo5(5);
     };
     handleClickSub = (styleSub) =>{
         this.setState({
@@ -81,6 +81,7 @@ export default class Style extends React.Component {
             selectedSubNo:0,
             selectedSubName:'',
         })
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo5(0);
     }
     handleDeleteSub(){
         this.setState({
@@ -90,6 +91,7 @@ export default class Style extends React.Component {
     }
     render() {
         const styleList= this.state.styleList;
+        const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel} =this.props.workStore;
         return (
             <div>
                 <Grid item xs={12} lg={12}>

@@ -4,18 +4,14 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Category2 from "../step3/Category2";
-import Style from "../step3/Style";
-import Detail from "../step3/Detail";
-import Print from "../step3/Print";
-import Texture from "../step3/Texture";
+import Detail2 from "./Detail2";
+import Print2 from "../step3/Print2";
+import Texture2 from "./Texture2";
 import ClothLength2 from "../step3/ClothLength2";
-import NeckLine from "../step3/NeckLine";
-import ColorKara from "../step3/ColorKara";
-import Fit3 from "../step3/Fit3";
-import Safe from "../step3/Safe";
-import Silhouette from "../step3/Silhouette";
+import NeckLine2 from "./NeckLine2";
+import ColorKara2 from "./ColorKara2";
+import Fit2 from "./Fit2";
 import {inject, observer} from "mobx-react";
-import Chip from "@material-ui/core/Chip";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const styles = theme => ({
@@ -106,7 +102,7 @@ class CategoryComponent2 extends React.Component {
             categoryName: category.categoryItemName,
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory2(category);
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo3(3);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo2(2);
     }
 
     handleClickDetail=(detail)=>{
@@ -164,7 +160,7 @@ class CategoryComponent2 extends React.Component {
             categoryNo:0,
             categoryName:'',
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo3(0);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo2(0);
     }
     handleDeleteCloth(){
         this.setState({
@@ -256,7 +252,7 @@ class CategoryComponent2 extends React.Component {
                                                 디테일
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail onClick={this.handleClickDetail}/>
+                                                <Detail2 onClick={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -272,7 +268,7 @@ class CategoryComponent2 extends React.Component {
                                                 프린트
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Print onClick={this.handleClickPrint}/>
+                                                <Print2 onClick={this.handleClickPrint}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -288,7 +284,7 @@ class CategoryComponent2 extends React.Component {
                                                 소재감
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Texture onClick={this.handleClickTexture} />
+                                                <Texture2 onClick={this.handleClickTexture} />
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -317,42 +313,10 @@ class CategoryComponent2 extends React.Component {
                                     <Grid item xs={12} lg={6}>
                                         <div className={classes.content} style={{display:'inline'}}>
                                             <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                넥라인
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <NeckLine onClick={this.handleClickNeckLine}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {this.state.necklineNo > 0 ?
-                                            (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                칼라(카라)
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <ColorKara onClick={this.handleClickKara}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {this.state.karaNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 핏
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Fit3 onClick={this.handleClickFit}/>
+                                                <Fit2 onClick={this.handleClickFit}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -371,48 +335,6 @@ class CategoryComponent2 extends React.Component {
                                             저장
                                         </Button>
                                     </Grid>
-                                    {/*<Grid item xs={12} lg={6}>*/}
-                                    {/*    <div className={classes.content} style={{display:'inline'}}>*/}
-                                    {/*        <Typography variant="h5" component="h5" style={{display:'inline'}}>*/}
-                                    {/*            세이프*/}
-                                    {/*        </Typography>*/}
-                                    {/*        <div style={{display:'inline-block', float:'right', marginTop : -3}}>*/}
-                                    {/*            <Safe onClick={this.handleClickSafe}/>*/}
-                                    {/*        </div>*/}
-                                    {/*        <div>*/}
-                                    {/*            <hr></hr>*/}
-                                    {/*        </div>*/}
-                                    {/*        {this.state.safeNo > 0 ?*/}
-                                    {/*            (<Chip*/}
-                                    {/*                variant="outlined"*/}
-                                    {/*                label={this.state.safeName}*/}
-                                    {/*                onDelete={this.handleDeleteSafe}*/}
-                                    {/*                color="primary"*/}
-                                    {/*            />) : ''*/}
-                                    {/*        }*/}
-                                    {/*    </div>*/}
-                                    {/*</Grid>*/}
-                                    {/*<Grid item xs={12} lg={6}>*/}
-                                    {/*    <div className={classes.content} style={{display:'inline'}}>*/}
-                                    {/*        <Typography variant="h5" component="h5" style={{display:'inline'}}>*/}
-                                    {/*            실루엣*/}
-                                    {/*        </Typography>*/}
-                                    {/*        <div style={{display:'inline-block', float:'right', marginTop : -3}}>*/}
-                                    {/*            <Silhouette onClick={this.handleClickSilhouette}/>*/}
-                                    {/*        </div>*/}
-                                    {/*        <div>*/}
-                                    {/*            <hr></hr>*/}
-                                    {/*        </div>*/}
-                                    {/*        {this.state.silhouetteNo > 0 ?*/}
-                                    {/*            (<Chip*/}
-                                    {/*                variant="outlined"*/}
-                                    {/*                label={this.state.silhouetteName}*/}
-                                    {/*                onDelete={this.handleDeleteSilhouette}*/}
-                                    {/*                color="primary"*/}
-                                    {/*            />) : ''*/}
-                                    {/*        }*/}
-                                    {/*    </div>*/}
-                                    {/*</Grid>*/}
                                 </Grid>
 
         );

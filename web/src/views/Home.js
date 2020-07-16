@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import DropzoneDialogExample from "../components/DropzoneDialog";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";

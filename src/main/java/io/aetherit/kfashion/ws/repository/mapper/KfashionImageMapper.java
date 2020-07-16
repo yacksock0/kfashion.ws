@@ -24,4 +24,5 @@ public interface KfashionImageMapper {
 
     List<KfashionImage> recentlyImg(String createdId);
 
+    List<KfashionImage> selectInspectionHighList();
 }

@@ -4,33 +4,29 @@ import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Texture extends React.Component {
+export default class NeckLine1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open:false,
+            open: false,
             text: 'text',
-            textureList: [],
+            neckLineList2: [],
+            selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/texture')
+        axios.get('/api/v1/kfashion/category/item/professional/neckLine')
             .then(response => {
-                const textureList = response.data.textureList;
-                this.setState({ textureList : textureList})
+                const neckLineList2 = response.data.neckLineList2;
+                this.setState({
+                    neckLineList2: neckLineList2,
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -46,17 +42,18 @@ export default class Texture extends React.Component {
             open: false
         });
     }
-    handleClick(texture){
+    handleClick(neckLine){
         if(this.props.onClick) {
-            this.props.onClick(texture);
+            this.props.onClick(neckLine);
         }
         this.setState({
             open:false,
         })
 
     }
+
     render() {
-        const textureList= this.state.textureList;
+        const neckLineList2= this.state.neckLineList2;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -67,15 +64,15 @@ export default class Texture extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            소재감
+                           넥라인
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {textureList.map((texture) =>
+                            {neckLineList2.map((neckLine) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClick(texture)}>
-                                            <h2>{texture.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={neckLine.no} onClick={() => this.handleClick(neckLine)}>
+                                            <h2>{neckLine.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

@@ -3,18 +3,18 @@ import axios from "axios";
 import {inject, observer} from "mobx-react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import {Grid, Button, Typography} from "@material-ui/core";
+import {Button, Typography} from "@material-ui/core";
 
 @inject('basicLabelStore','authStore')
 @observer
-export default class Color extends React.Component {
+export default class Color2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open:false,
             open1:false,
             text: 'text',
-            colorList: [],
+            colorList2: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -25,9 +25,9 @@ export default class Color extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/basic/color')
             .then(response => {
-                const colorList = response.data.colorList;
+                const colorList2 = response.data.colorList2;
                 this.setState({
-                    colorList:colorList,
+                    colorList2:colorList2,
                 })
             })
             .catch(error => {
@@ -50,24 +50,24 @@ export default class Color extends React.Component {
             open1: false
         });
     }
-    handledColor(color){
+    handledColor(color2){
         if(this.props.onClick) {
-            this.props.onClick(color);
+            this.props.onClick(color2);
         }
         this.setState({
             open: false
         });
     }
-    handledColorSub(color){
+    handledColorSub(color2){
         if(this.props.onClick) {
-            this.props.onClickSub(color);
+            this.props.onClickSub(color2);
         }
         this.setState({
             open1: false
         });
     }
     render() {
-        const {colorList}= this.state;
+        const {colorList2}= this.state;
 
         return (
             <div>
@@ -82,12 +82,12 @@ export default class Color extends React.Component {
                 </Typography>
                 <hr></hr>
                 <div style={{textAlign:'center'}}>
-                    {colorList.map((color) =>
-                     <Button key={color.no} onClick={() => this.handledColor(color)}>
+                    {colorList2.map((color2) =>
+                     <Button key={color2.no} onClick={() => this.handledColor(color2)}>
                          <div>
-                         <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>
+                         <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color2.categoryItemMemo}`}}>
                          </div>
-                         <div style={{display:'inline-block'}}>{color.categoryItemName}
+                         <div style={{display:'inline-block'}}>{color2.categoryItemName}
                          </div>
                          </div>
                      </Button>
@@ -105,12 +105,12 @@ export default class Color extends React.Component {
                         </Typography>
                         <hr></hr>
                         <div style={{textAlign:'center'}}>
-                            {colorList.map((color) =>
-                                <Button key={color.no} onClick={() => this.handledColorSub(color)}>
+                            {colorList2.map((color2) =>
+                                <Button key={color2.no} onClick={() => this.handledColorSub(color2)}>
                                     <div>
-                                        <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>
+                                        <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color2.categoryItemMemo}`}}>
                                         </div>
-                                        <div style={{display:'inline-block'}}>{color.categoryItemName}
+                                        <div style={{display:'inline-block'}}>{color2.categoryItemName}
                                         </div>
                                     </div>
                                 </Button>

@@ -6,7 +6,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import Stepper from "./Stepper";
-import {inject, observer} from "mobx-react";
 
 const logoWidth = 120;
 

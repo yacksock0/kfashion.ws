@@ -50,4 +50,8 @@ public class KfashionImageRepository {
     public List<KfashionImage> selectInspectionList() {
         return mapper.selectInspectionList();
     }
+
+    public List<KfashionImage> selectInspectionHighList() {
+        return mapper.selectInspectionHighList();
+    }
 }

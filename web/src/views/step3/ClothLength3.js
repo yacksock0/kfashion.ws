@@ -1,16 +1,9 @@
 import React from 'react';
-import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
 
 @inject('professionalLabelStore','authStore')
 @observer
@@ -20,9 +13,6 @@ export default class ClothLength3 extends React.Component {
         this.state = {
             text: 'text',
             open: false,
-            lengthList0: [],
-            lengthList1: [],
-            lengthList2: [],
             lengthList3: [],
             selectedOption:null,
         }
@@ -33,18 +23,10 @@ export default class ClothLength3 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/length')
             .then(response => {
-                console.log(response.data.lengthList0);
-                console.log(response.data.lengthList1);
-                console.log(response.data.lengthList2);
-                console.log(response.data.lengthList3);
-                const lengthList0 = response.data.lengthList0;
-                const lengthList1 = response.data.lengthList1;
-                const lengthList2 = response.data.lengthList2;
                 const lengthList3 = response.data.lengthList3;
-                this.setState({lengthList0:lengthList0,
-                    lengthList1: lengthList1,
-                    lengthList2: lengthList2,
-                    lengthList3: lengthList3})
+                this.setState({
+                    lengthList3: lengthList3,
+                })
             })
             .catch(error => {
                 console.log(error)

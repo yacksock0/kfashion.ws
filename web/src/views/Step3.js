@@ -2,12 +2,12 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Button, Container, Grid, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
-import CategoryComponent from "./step3/CategoryComponent";
 import CategoryComponent1 from "./step3/CategoryComponent1";
 import CategoryComponent2 from "./step3/CategoryComponent2";
 import CategoryComponent3 from "./step3/CategoryComponent3";
+import CategoryComponent4 from "./step3/CategoryComponent4";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
@@ -117,6 +117,7 @@ class Step3 extends React.Component {
 
     handleClickItem = (workNo, imageData) => {
         this.deleteAll();
+        this.props.workStore.reSetCategoryItem();
         this.setState({
             tabIndex:0,
         })
@@ -150,16 +151,32 @@ class Step3 extends React.Component {
         }
     }
     onSelectTab(tabIndex1) {
+        this.canvas.remove(this.canvas.item(0));
         let polyNo = tabIndex1;
         const {locationPolygonList} = this.props.polygonStore;
+        console.log(locationPolygonList);
+        console.log(locationPolygonList.length);
         if (locationPolygonList.length >= 1) {
             const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
             if (selectedPoly.length !== 0) {
                 this.deleteAll();
                 for (let i = 0; i < selectedPoly.length; i++) {
+                    console.log(this.lineTwoPoint);
                     this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                     this.x = selectedPoly[i].locationX;
                     this.y = selectedPoly[i].locationY;
+                    // let circle = new fabric.Circle({
+                    //     type: 'circle',
+                    //     id: this.polyCounter,
+                    //     radius: 6,
+                    //     fill: 'green',
+                    //     left: selectedPoly[i].locationX - 3.5,
+                    //     top: selectedPoly[i].locationY - 3.5,
+                    //     selectable: false,
+                    //     evented: false,// });
+                    // this.canvas.add(circle);
+                    // this.canvas.bringToFront(circle)
+
                     if (i != 0) {
                         let x1 = this.lineTwoPoint[0];
                         let x2 = this.lineTwoPoint[2];
@@ -232,11 +249,24 @@ class Step3 extends React.Component {
                     });
                 this.canvas.add(polyline);
                 this.canvas.sendToBack(polyline);
+
+
+                // let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
+                // for (let i = 1; i < selectedPoly.length; i++) {
+                //     makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
+                // }
+                // makePath += ' z';
+                // let path = new fabric.Path(makePath);
+                // path.opacity = 0.5;
+                // console.log(makePath);
+                // this.canvas.add(path);
+                //
+
+
                 this.setState({
                     tabIndex1: tabIndex1,
                 })
             } else if (tabIndex1 == 0) {
-                this.deleteAll();
                 this.setState({
                     tabIndex1: tabIndex1,
                 })
@@ -249,7 +279,6 @@ class Step3 extends React.Component {
             })
         }
     };
-
     handleChange=(polyLast)=>{
         if(this.props.onChange){
             this.props.onChange(polyLast)
@@ -267,7 +296,6 @@ class Step3 extends React.Component {
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
-        const {outerReviewLabel,topReviewLabel,pantsReviewLabel,onePieceReviewLabel} = this.props.workStore;
 
             return (
                 <Container component="main" className={classes.mainContainer}>
@@ -290,7 +318,6 @@ class Step3 extends React.Component {
                                         </TabList>
 
                                         <TabPanel>
-
                                             <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
@@ -298,9 +325,6 @@ class Step3 extends React.Component {
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>*/}
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>*/}
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>*/}
                                         </TabList>
 
                                         <TabPanel>
@@ -310,22 +334,22 @@ class Step3 extends React.Component {
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1} outerReviewLabel={outerReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} topReviewLabel={topReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} pantsReviewLabel={pantsReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onePieceReviewLabel={onePieceReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent4 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                     </Tabs>
@@ -337,27 +361,6 @@ class Step3 extends React.Component {
                                     </Tabs>
                                 </Grid>
                         </Grid>
-                    {/*<Grid container>*/}
-                    {/*    <Grid item xs={3} lg={1} style={{marginRight:10}}>*/}
-                    {/*/!*<Button*!/*/}
-                    {/*/!*    type="submit"*!/*/}
-                    {/*/!*    className={classes.buttonType1}*!/*/}
-                    {/*/!*    variant="outlined"*!/*/}
-                    {/*/!*    onClick={this.handlePrevious.bind(this)}*!/*/}
-                    {/*/!*>*!/*/}
-                    {/*/!*    Previous*!/*/}
-                    {/*/!*</Button>*!/*/}
-                    {/*/!*    </Grid>*!/*/}
-                    {/*/!*    <Grid item xs={3} lg={1}>*!/*/}
-                    {/*/!*<Button*!/*/}
-                    {/*/!*    type="submit"*!/*/}
-                    {/*/!*    className={classes.buttonType1}*!/*/}
-                    {/*/!*    variant="outlined"*!/*/}
-                    {/*/!*    onClick={this.handleNext.bind(this)}*!/*/}
-                    {/*/!*>*!/*/}
-                    {/*/!*    Next*!/*/}
-                    {/*</Button>*/}
-                    {/* </Grid>*/}
                         <div>
                         <hr></hr>
                         </div>
@@ -372,7 +375,6 @@ class Step3 extends React.Component {
                                 Next Step
                             </Button>
                         </Grid>
-                    {/*</Grid>*/}
                     </div>
                     <ErrorIcon/>
                     <Typography variant="h6" component="h4" style={{display:'inline'}}>

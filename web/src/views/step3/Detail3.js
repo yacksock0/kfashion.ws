@@ -1,22 +1,19 @@
 import React from 'react';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Grid, Typography} from "@material-ui/core";
+import {Button, Typography, Grid} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class ClothLength2 extends React.Component {
+export default class Detail1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             text: 'text',
             open: false,
-            lengthList0: [],
-            lengthList1: [],
-            lengthList2: [],
-            lengthList3: [],
+            detailList3: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -24,16 +21,18 @@ export default class ClothLength2 extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/length')
+        axios.get('/api/v1/kfashion/category/item/professional/detail')
             .then(response => {
-                const lengthList1 = response.data.lengthList1;
-                const lengthList2 = response.data.lengthList2;
-                const lengthList3 = response.data.lengthList3;
-                const lengthList4 = response.data.lengthList4;
-                this.setState({lengthList1:lengthList1,
-                    lengthList2: lengthList2,
-                    lengthList3: lengthList3,
-                    lengthList4: lengthList4})
+                const detailList1 = response.data.detailList1;
+                const detailList2 = response.data.detailList2;
+                const detailList3 = response.data.detailList3;
+                const detailList4 = response.data.detailList4;
+
+                this.setState({detailList:detailList1,
+                    detailList2: detailList2,
+                    detailList3: detailList3,
+                    detailList4: detailList4
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -49,16 +48,25 @@ export default class ClothLength2 extends React.Component {
             open: false
         });
     }
-    handleClick(length) {
-        if (this.props.onClick) {
-            this.props.onClick(length);
+    handleClick(detail){
+        if(this.props.onClick) {
+            this.props.onClick(detail);
         }
         this.setState({
-            open: false,
+            open:false,
         })
+
+    }
+    handledDetail=(detail)=>{
+        if(this.props.onClick) {
+            this.props.onClick(detail);
+        }
+        this.setState({
+            open: false
+        });
     }
     render() {
-        const lengthList3= this.state.lengthList3;
+        const detailList3= this.state.detailList3;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -69,21 +77,21 @@ export default class ClothLength2 extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            기장
+                            디테일
                         </Typography>
                         <hr></hr>
-                        <Grid container>
-                            {lengthList3.map((length) =>
+                            <Grid container>
+                                        {detailList3.map((detail) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>
-                                            <h2>{length.categoryItemName}</h2>
-                                        </Button>
+                                            <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
+                                                <h3>{detail.categoryItemName}</h3>
+                                            </Button>
                                     </div>
                                 </Grid>
-                            )
-                            }
-                        </Grid>
+                                        )
+                                        }
+                            </Grid>
                     </DialogContent>
                 </Dialog>
             </div>
