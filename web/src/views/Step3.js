@@ -110,9 +110,14 @@ class Step3 extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
     }
-    handleClickSubmit = () => {
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(this.state.createdId);
+    handleSubmit = () => {
+        const createdId = this.props.authStore.isUserId;
+        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
         this.props.professionalLabelStore.doProfessionalLabelUp();
+        alert("저장 완료")
+        this.setState({
+            tabIndex:1,
+        })
     }
 
     handleClickItem = (workNo, imageData) => {
@@ -287,12 +292,7 @@ class Step3 extends React.Component {
     handleLabel=(item)=>{
         this.props.workStore.LoadReviewLabelList(item.workNo);
     }
-    handleSubmit=()=>{
-        alert("저장 완료")
-        this.setState({
-            tabIndex:1,
-        })
-    }
+
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
