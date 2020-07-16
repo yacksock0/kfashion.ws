@@ -59,13 +59,13 @@
     </delete>
 
     <select id="selectWorkAssignment" resultType="Long">
-        SELECT no
+        SELECT work_no
         FROM kfashion_work_history
         WHERE work_step = #{currentNo}
         AND work_no not in(SELECT work_no
 						    FROM kfashion_work_history
-							WHERE work_step = #{authorityNo});
-        ORDER BY no ASC limit  #{workCount};
+							WHERE work_step = #{authorityNo})
+        ORDER BY work_no ASC limit  #{workCount}
     </select>
 
 
