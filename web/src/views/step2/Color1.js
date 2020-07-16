@@ -26,16 +26,9 @@ export default class Color1 extends React.Component {
         axios.get('/api/v1/kfashion/category/item/basic/color')
             .then(response => {
                 const colorList1 = response.data.colorList1;
-                const colorList2 = response.data.colorList2;
-                const colorList3 = response.data.colorList3;
-                const colorList4 = response.data.colorList4;
                 this.setState({
                     colorList1:colorList1,
                 })
-                console.log("colorList1",colorList1);
-                console.log("colorList2",colorList2);
-                console.log("colorList3",colorList3);
-                console.log("colorList4",colorList4);
             })
             .catch(error => {
                 console.log(error)

@@ -9,7 +9,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Category extends React.Component {
+export default class Category1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
