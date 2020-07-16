@@ -439,35 +439,15 @@ class Step2 extends React.Component {
     y;
 
     onSelectTab(tabIndex1) {
-        console.log(tabIndex1);
-        console.log(this.props.polygonStore.polyLast);
-
-
         let polyNo = tabIndex1 + 1;
         const {locationPolygonList} = this.props.polygonStore;
         const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
-
         if (selectedPoly.length !== 0) {
             this.deleteAll();
             for(let i = 0 ; i <selectedPoly.length; i++) {
-                console.log( this.lineTwoPoint);
                 this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
-
-                // let circle = new fabric.Circle({
-                //     type: 'circle',
-                //     id: this.polyCounter,
-                //     radius: 6,
-                //     fill: 'green',
-                //     left: selectedPoly[i].locationX - 3.5,
-                //     top: selectedPoly[i].locationY - 3.5,
-                //     selectable: false,
-                //     evented: false,
-                // });
-                // this.canvas.add(circle);
-                // this.canvas.bringToFront(circle)
-
 
                 if(i !=0) {
                     let x1 = this.lineTwoPoint[0];
@@ -498,8 +478,8 @@ class Step2 extends React.Component {
                             stroke: 'red',
                             strokeWidth: 5,
                             padding: 1,
-                            // selectable: false,
-                            // evented: false,
+                            selectable: false,
+                            evented: false,
                             left: x1,
                             top: y1,
                         });
@@ -542,16 +522,6 @@ class Step2 extends React.Component {
                 });
             this.canvas.add(polyline);
             this.canvas.sendToBack(polyline);
-
-            // let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
-            // for (let i = 1; i < selectedPoly.length; i++) {
-            //     makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
-            // }
-            // makePath += ' z';
-            // let path = new fabric.Path(makePath);
-            // path.opacity = 0.3;
-            // console.log(makePath);
-            // this.canvas.add(path);
 
             this.setState({
                 tabIndex1: tabIndex1,
@@ -636,33 +606,37 @@ class Step2 extends React.Component {
                 createdId:this.props.authStore.loginUser.id,});
             console.log('colorCategoryNo',this.state.colorCategoryNo)
             console.log('sleeveLengthCategoryNo',this.state.sleeveLengthCategoryNo)
-            const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
-            if(res.status === 200) {
-                alert("작업을 저장하였습니다.");
-                this.setState({
-                    tabIndex:1,
-                    workNo: 0,
-                    no:0,
-                    labelNo1 : 0,
-                    labelNo2 : 0,
-                    labelNo3 : 0,
-                    labelNo4 : 0,
-                    color:0,
-                    color1:0,
-                    color2:0,
-                    color3:0,
-                    subColor:0,
-                    subColor1:0,
-                    subColor2:0,
-                    subColor3:0,
-                    sleeveLength:0,
-                    sleeveLength1:0,
-                    sleeveLength2:0,
-                    sleeveLength3:0,
-                })
-            }else {
-                console.log("error");
-            }
+            axios.post('/api/v1/kfashion/label/basicLabel', param)
+            .then(res =>{
+             if (res.status === 200) {
+                 alert("작업을 저장하였습니다.");
+                 this.setState({
+                     tabIndex:1,
+                     workNo: 0,
+                     no:0,
+                     labelNo1 : 0,
+                     labelNo2 : 0,
+                     labelNo3 : 0,
+                     labelNo4 : 0,
+                     color:0,
+                     color1:0,
+                     color2:0,
+                     color3:0,
+                     subColor:0,
+                     subColor1:0,
+                     subColor2:0,
+                     subColor3:0,
+                     sleeveLength:0,
+                     sleeveLength1:0,
+                     sleeveLength2:0,
+                     sleeveLength3:0,
+                 });
+
+                 this.deleteAll();
+             }else {
+                 console.log("error");
+             }
+         })
         }
     }
 
@@ -676,7 +650,11 @@ class Step2 extends React.Component {
         }
     }
     onSelectTab2 =( tabIndex ) => {
+        if(this.props.imageStore.workNo == '' && tabIndex ==0 ){
+            alert("없어요");
+        }
         this.setState({tabIndex});
+
     }
     nextTab =() => {
         const {polyInfo} = this.props.polygonStore;
@@ -804,7 +782,6 @@ class Step2 extends React.Component {
                                              <br></br>
                                              {this.state.no1 >0 ?
                                                  (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.state.memo1}`}} onClick={this.colorDelete1}>
-
                                                  </div>) : ''
                                              }
                                              &nbsp;

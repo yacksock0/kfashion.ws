@@ -121,22 +121,18 @@ export default function SideMenu(props) {
                     </ListItem>
                 </Link>
                 {loginUser.authorityNo <  3 && loginUser.groupAdmin !== 1? (
-                <Link to="" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText type="button" onClick={handleClick} primary="영역지정"></ListItemText>
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                </Link>
                     ):''}
                 {loginUser.authorityNo ==  1 && loginUser.groupAdmin == 1? (
-                    <Link to="" className={classes.link}>
                         <ListItem button>
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText type="button" onClick={handleClick} primary="영역지정"></ListItemText>
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
-                    </Link>
                 ):''}
                 {loginUser.authorityNo == 1 || loginUser.isAdmin == 'Y' ? (
                 <Link to="/step/imageUpload" className={classes.link}>
@@ -192,24 +188,19 @@ export default function SideMenu(props) {
                         </Collapse>
                     </Link>
                 ):''}
-
                 { loginUser.isAdmin == 'Y'?  (
-                    <Link to="" className={classes.link}>
                         <ListItem button>
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText type="button" onClick={handleClick2} primary="레이블링"></ListItemText>
                             {open2 ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
-                    </Link>
                 ):''}
                 {loginUser.authorityNo > 1 ? (
-                <Link to="" className={classes.link}>
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText type="button" onClick={handleClick2} primary="레이블링"></ListItemText>
                         {open2 ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                </Link>
                 ):''}
                 {loginUser.isAdmin == 'Y'? (
                     <Link to="/step2" className={classes.link}>
@@ -329,13 +320,11 @@ export default function SideMenu(props) {
             <Divider />
             {loginUser.isAdmin == 'Y' ? (
                 <div>
-                    <Link to="" className={classes.link}>
                         <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText type="button" onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
                             {open1 ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
-                    </Link>
                     <Link to="/admin/createGroup" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
@@ -375,13 +364,11 @@ export default function SideMenu(props) {
                     </div>):''}
             {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 1?(
                 <div>
-                    <Link to="" className={classes.link}>
                         <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText type="button" onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
                             {open1 ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
-                    </Link>
                     <Link to="/admin/userList" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>

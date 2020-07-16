@@ -48,7 +48,6 @@ public class KfashionLabelController {
         public ResponseEntity<Object> basicLabel(HttpServletRequest httpServletRequest,
                                                  @RequestBody BasicLabel basicLabel) throws Exception{
                 try {
-
                         System.out.println(basicLabel);
                         KfashionWork work = new KfashionWork();
                         work.setNo(basicLabel.getWorkNo());
