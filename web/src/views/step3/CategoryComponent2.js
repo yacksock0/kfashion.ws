@@ -249,7 +249,7 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {topReviewLabel.neckLineCategoryNo > 0 ?
+                                            {topReviewLabel.neckLineCategoryNo2 > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {topReviewLabel.neckLineItemName2} </Button> ) : ''
                                             }
                                         </div>
