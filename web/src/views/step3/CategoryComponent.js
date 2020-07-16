@@ -226,6 +226,7 @@ class CategoryComponent extends React.Component {
     }
     render() {
         const {classes} = this.props;
+        const {newProfessionalLabel} = this.props.professionalLabelStore;
         console.log('lastIndex', this.props.polyLast)
         console.log('tabIndex1', this.props.tabIndex1)
         return (

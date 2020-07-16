@@ -238,11 +238,11 @@ export default class ProfessionalLabelStore {
         return this.state === State.Pending;
     }
 
-    @computed get isSignUpSuccess() {
+    @computed get isLabelUpSuccess() {
         return this.state === State.Success;
     }
 
-    @computed get isSignUpFailed() {
+    @computed get isLabelUpFailed() {
         return this.state === State.Fail;
     }
 
@@ -256,6 +256,7 @@ export default class ProfessionalLabelStore {
                 if (resp.status === 200) {
                     this.state = State.Success;
                 } else {
+                    this.state = State.Fail;
                 }
         } catch (e) {
             console.log('에러좀 나지 마라')
