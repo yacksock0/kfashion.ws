@@ -110,6 +110,7 @@ class CategoryComponent extends React.Component {
     componentDidMount() {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
+
     handleClickCategory=(category)=>{
         this.setState({
             categoryNo: category.no,
@@ -249,12 +250,13 @@ class CategoryComponent extends React.Component {
                                                 카테고리
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Category onClick={this.handleClickCategory} />
+                                                <Category onClick={this.handleClickCategory}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                    <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.categoryItemName} </Button>
+                                {this.props.outerReviewLabel.categoryCategoryNo > 0 ?
+                                    (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.props.outerReviewLabel.categoryItemName} </Button>):''}
                                             {this.state.categoryNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.categoryName} </Button> ) : ''
                                             }

@@ -258,6 +258,7 @@ export default class ProfessionalLabelStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/img/professionalList?createdId='+createdId)
             this.professionalList = response.data.professionalList;
+            console.log(' this.professionalList', this.professionalList)
         } catch (e) {
             console.log('error')
         }

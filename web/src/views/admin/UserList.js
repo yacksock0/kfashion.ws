@@ -85,8 +85,8 @@ class UserList extends React.Component {
                     editPlaceholder: '아이디 입력',
                 },
                 {title: '이름', field: 'name', type: 'text'},
-                {title: '비밀번호', field: 'password' },
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: '비밀번호', field: 'password'  ,hidden: true},
+                {title: '생성일', field: 'createdDatetime', type: 'date', editable: 'never'},
                 {title: '비고', field: 'etc', type: 'text'},
             ],
         }
@@ -197,6 +197,8 @@ class UserList extends React.Component {
                                 actionsCellStyle: {
                                     textAlign: 'center'
                                 },
+                                pageSize: 10,
+                                pageSizeOptions: [5,10,20]
                             }}
 
                         />
