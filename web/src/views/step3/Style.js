@@ -158,7 +158,7 @@ export default class Style extends React.Component {
                                     서브 스타일
                                 </Typography>
                                 <hr></hr>
-                                {!this.state.selectedNo === 0 ?
+                                {!this.state.selectedNo == 0 ?
                                 <Grid container>
                                     {styleList.map((style) =>
                                         <Grid item xs={3}>
