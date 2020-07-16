@@ -108,6 +108,10 @@ class Step2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            labelNo1 : 0,
+            labelNo2 : 0,
+            labelNo3 : 0,
+            labelNo4 : 0,
             no: 0,
             name: '',
             memo: '',
@@ -214,6 +218,7 @@ class Step2 extends React.Component {
             name: color.categoryItemName,
             memo: color.categoryItemMemo,
             colorCategoryNo: color.categoryNo,
+            labelNo1 : 1,
         })
     }
     handleClickColor1 = (color) => {
@@ -222,6 +227,7 @@ class Step2 extends React.Component {
             name1: color.categoryItemName,
             memo1: color.categoryItemMemo,
             colorCategoryNo: color.categoryNo,
+            labelNo2 : 2,
         })
     }
     handleClickColor2 = (color) => {
@@ -230,6 +236,7 @@ class Step2 extends React.Component {
             name2: color.categoryItemName,
             memo2: color.categoryItemMemo,
             colorCategoryNo: color.categoryNo,
+            labelNo3 : 3,
         })
     }
     handleClickColor3 = (color) => {
@@ -238,6 +245,7 @@ class Step2 extends React.Component {
             name3: color.categoryItemName,
             memo3: color.categoryItemMemo,
             colorCategoryNo: color.categoryNo,
+            labelNo4 : 4,
         })
     }
     handleClickSubColor = (color) => {
@@ -353,6 +361,7 @@ class Step2 extends React.Component {
             subNo: 0,
             subName: '',
             subMemo: '',
+            labelNo1 : 0,
         })
     }
 
@@ -364,6 +373,7 @@ class Step2 extends React.Component {
             subNo1: 0,
             subName1: '',
             subMemo1: '',
+            labelNo2 : 0,
         })
     }
 
@@ -375,6 +385,7 @@ class Step2 extends React.Component {
             subNo2: 0,
             subName2: '',
             subMemo2: '',
+            labelNo3 : 0,
         })
     }
 
@@ -386,6 +397,7 @@ class Step2 extends React.Component {
             subNo3: 0,
             subName3: '',
             subMemo3: '',
+            labelNo4 : 0,
         })
     }
 
@@ -603,6 +615,10 @@ class Step2 extends React.Component {
             const param = toJS({
                 workNo: this.props.imageStore.isWorkNo,
                 workStep:4,
+                labelNo1 : this.state.labelNo1,
+                labelNo2 : this.state.labelNo2,
+                labelNo3 : this.state.labelNo3,
+                labelNo4 : this.state.labelNo4,
                 color:this.state.no,
                 color1:this.state.no1,
                 color2:this.state.no2,
@@ -627,6 +643,10 @@ class Step2 extends React.Component {
                     tabIndex:1,
                     workNo: 0,
                     no:0,
+                    labelNo1 : 0,
+                    labelNo2 : 0,
+                    labelNo3 : 0,
+                    labelNo4 : 0,
                     color:0,
                     color1:0,
                     color2:0,
