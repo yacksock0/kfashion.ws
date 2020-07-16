@@ -104,15 +104,15 @@ export default function SideMenu(props) {
     const drawer = (
         <div className={classes.menu}>
             <List>
-                {loginUser.isAdmin =='Y' ? (
+                {loginUser.isAdmin ==='Y' ? (
                 <ListSubheader style={{textAlign: 'center'}}><h3>마스터 관리자</h3></ListSubheader>):''}
-                {loginUser.groupAdmin == 1 && loginUser.authorityNo !== 1? (
+                {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 1? (
                     <ListSubheader style={{textAlign: 'center'}}><h3>그룹 관리자</h3></ListSubheader>):''}
-                {loginUser.authorityNo == 1 ? (
+                {loginUser.authorityNo === 1 ? (
                     <ListSubheader style={{textAlign: 'center'}}><h3>업로드 작업자</h3></ListSubheader>):''}
-                {loginUser.authorityNo == 2 && loginUser.groupAdmin == 0? (
+                {loginUser.authorityNo === 2 && loginUser.groupAdmin === 0? (
                     <ListSubheader style={{textAlign: 'center'}}><h3>기초 작업자</h3></ListSubheader>):''}
-                {loginUser.authorityNo == 3 && loginUser.groupAdmin == 0? (
+                {loginUser.authorityNo === 3 && loginUser.groupAdmin === 0? (
                     <ListSubheader inset><h3>전문 작업자</h3></ListSubheader>):''}
                 <Link to="/home" className={classes.link}>
                     <ListItem type="button">
@@ -129,7 +129,7 @@ export default function SideMenu(props) {
                     </ListItem>
                 </Link>
                     ):''}
-                {loginUser.authorityNo ==  1 && loginUser.groupAdmin == 1? (
+                {loginUser.authorityNo ===  1 && loginUser.groupAdmin === 1? (
                     <Link to="" className={classes.link}>
                         <ListItem button>
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
@@ -138,7 +138,7 @@ export default function SideMenu(props) {
                         </ListItem>
                     </Link>
                 ):''}
-                {loginUser.authorityNo == 1 || loginUser.isAdmin == 'Y' ? (
+                {loginUser.authorityNo === 1 || loginUser.isAdmin === 'Y' ? (
                 <Link to="/step/imageUpload" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -164,7 +164,7 @@ export default function SideMenu(props) {
                 {/*        </List>*/}
                 {/*    </Collapse>*/}
                 {/*</Link>*/}
-                {loginUser.authorityNo == 2 && loginUser.groupAdmin == 0? (
+                {loginUser.authorityNo === 2 && loginUser.groupAdmin === 0? (
                 <Link to="/step/polygon" className={classes.link}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -178,7 +178,7 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                 ):''}
-                {loginUser.isAdmin == 'Y'? (
+                {loginUser.isAdmin === 'Y'? (
                     <Link to="/step/polygon" className={classes.link}>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
@@ -193,7 +193,7 @@ export default function SideMenu(props) {
                     </Link>
                 ):''}
 
-                { loginUser.isAdmin == 'Y'?  (
+                { loginUser.isAdmin === 'Y'?  (
                     <Link to="" className={classes.link}>
                         <ListItem button>
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
@@ -211,7 +211,7 @@ export default function SideMenu(props) {
                     </ListItem>
                 </Link>
                 ):''}
-                {loginUser.isAdmin == 'Y'? (
+                {loginUser.isAdmin === 'Y'? (
                     <Link to="/step2" className={classes.link}>
                         <Collapse in={open2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
@@ -226,7 +226,7 @@ export default function SideMenu(props) {
                     </Link>
                 ):''}
 
-                {loginUser.authorityNo == 1 && loginUser.groupAdmin !== 1? (
+                {loginUser.authorityNo === 1 && loginUser.groupAdmin !== 1? (
                 <Link to="/step2" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -240,7 +240,7 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                     ):''}
-                {loginUser.authorityNo == 2 && loginUser.groupAdmin !== 1? (
+                {loginUser.authorityNo === 2 && loginUser.groupAdmin !== 1? (
                     <Link to="/step2" className={classes.link}>
                         <Collapse in={open2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
@@ -255,7 +255,7 @@ export default function SideMenu(props) {
                     </Link>
                 ):''}
 
-                {loginUser.authorityNo == 3 &&  loginUser.groupAdmin !== 1 ? (
+                {loginUser.authorityNo === 3 &&  loginUser.groupAdmin !== 1 ? (
                 <Link to="/step3" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -269,7 +269,7 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                 ):''}
-                {loginUser.isAdmin == 'Y'? (
+                {loginUser.isAdmin === 'Y'? (
                 <Link to="/step3" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -283,7 +283,7 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                 ):''}
-                {loginUser.isAdmin == 'Y' ? (
+                {loginUser.isAdmin === 'Y' ? (
                 <Link to="/Step2/FinalCheckList" className={classes.link}>
                     <Collapse in={open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -297,7 +297,7 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                     ):''}
-                {loginUser.groupAdmin == 1 &&  loginUser.authorityNo > 1 ? (
+                {loginUser.groupAdmin === 1 &&  loginUser.authorityNo > 1 ? (
                     <Link to="/Step2/FinalCheckList" className={classes.link}>
                         <Collapse in={open2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
@@ -311,7 +311,7 @@ export default function SideMenu(props) {
                         </Collapse>
                     </Link>
                 ):''}
-                {loginUser.groupAdmin !== 1 &&  loginUser.authorityNo == 3 ? (
+                {loginUser.groupAdmin !== 1 &&  loginUser.authorityNo === 3 ? (
                     <div>
                         <Link to="/Step2/FinalCheckList" className={classes.link}>
                             <Collapse in={open2} timeout="auto" unmountOnExit>
@@ -341,7 +341,7 @@ export default function SideMenu(props) {
                 ):''}
                     </List>
             <Divider />
-            {loginUser.isAdmin == 'Y' ? (
+            {loginUser.isAdmin === 'Y' ? (
                 <div>
                     <Link to="" className={classes.link}>
                         <ListItem type="button">

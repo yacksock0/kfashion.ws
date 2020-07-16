@@ -6,7 +6,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from "@material-ui/core/Chip";
-import {withStyles} from "@material-ui/core/styles";
 
 @inject('professionalLabelStore','authStore', 'workStore')
 @observer
@@ -159,7 +158,7 @@ export default class Style extends React.Component {
                                     서브 스타일
                                 </Typography>
                                 <hr></hr>
-                                {!this.state.selectedNo == 0 ?
+                                {!this.state.selectedNo === 0 ?
                                 <Grid container>
                                     {styleList.map((style) =>
                                         <Grid item xs={3}>
