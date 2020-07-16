@@ -270,7 +270,6 @@ export default class ProfessionalLabelStore {
     @computed get isLabelUpFailed() {
         return this.state === State.Fail;
     }
-
     LoadProfessionalList = flow(function* loadProfessionalList(createdId) {
         this.professionalList = [];
         try {
@@ -311,6 +310,39 @@ export default class ProfessionalLabelStore {
         }
     });
 
+    LoadLabelList = flow(function* LoadLabelList(workNo) {
+        try {
+            const response = yield axios.get('/api/v1/kfashion/label/reviewLabelList?workNo='+workNo)
+            console.log(response.data)
+            if(response.data.outerReviewLabel != null) {
+                this.outerReviewLabel = response.data.outerReviewLabel;
+            }else {
+                this.outerReviewLabel= [];
+            }
+            if(response.data.topReviewLabel != null) {
+                this.topReviewLabel = response.data.topReviewLabel;
+            }else {
+                this.topReviewLabel = [];
+            }
+            if(response.data.pantsReviewLabel != null) {
+                this.pantsReviewLabel = response.data.pantsReviewLabel;
+            }else {
+                this.pantsReviewLabel = [];
+            }
+            if(response.data.onePieceReviewLabel != null) {
+                this.onePieceReviewLabel = response.data.onePieceReviewLabel;
+            }else {
+                this.onePieceReviewLabel = [];
+            }if(response.data.styleReviewLabel != null) {
+                this.styleReviewLabel = response.data.styleReviewLabel;
+            }else {
+                this.styleReviewLabel = [];
+            }
+
+        } catch (e) {
+            console.log('error')
+        }
+    });
 
 
 

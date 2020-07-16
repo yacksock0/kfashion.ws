@@ -114,10 +114,10 @@ class Step3 extends React.Component {
         const createdId = this.props.authStore.isUserId;
         this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
         this.props.professionalLabelStore.doProfessionalLabelUp();
-        alert("저장 완료")
         this.setState({
             tabIndex:1,
         })
+        alert("저장 완료")
     }
 
     handleClickItem = (workNo, imageData) => {
