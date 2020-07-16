@@ -16,21 +16,19 @@ const style = theme => ({
     topBox:{
         borderBottom:'1px solid black',
         textAlign:'center',
-        width:80,
         display:'block',
         margin:'auto',
         padding:0
     },
     imgBox:{
-        width:80,
+        width:100,
         height:80,
         display:'block',
         margin:'auto',
-        padding:3,
     }
 });
 
-@inject('imageStore','authStore','workStore')
+@inject('professionalLabelStore','authStore','workStore')
 @observer
 class WorkedImg extends React.Component  {
     constructor(props) {
@@ -41,7 +39,7 @@ class WorkedImg extends React.Component  {
     }
     componentDidMount() {
         const id = this.props.authStore.loginUser.id;
-        this.props.imageStore.LoadRecentImage(id)
+        this.props.professionalLabelStore.LoadRecentImage(id)
     }
 
     handleClick=(item)=>{
@@ -50,7 +48,7 @@ class WorkedImg extends React.Component  {
         }
     }
     render() {
-        const {recentlyImg} = this.props.imageStore;
+        const {recentlyImg} = this.props.professionalLabelStore;
         const {classes} = this.props;
         return (
             <div className={classes.root}>
@@ -60,7 +58,7 @@ class WorkedImg extends React.Component  {
                     </div>
                     {recentlyImg.map((item) =>
                             <Button className={classes.imgBox} onClick={() => this.handleClick(item)}>
-                                <img src={item.fileName} style={{width: '100%', height: '100%'}}/>
+                                <img src={item.fileName} style={{width: '100%', height: 80}}/>
                             </Button>
                     )
                     }

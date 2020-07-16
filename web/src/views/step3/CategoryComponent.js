@@ -82,6 +82,17 @@ class CategoryComponent extends React.Component {
             createdId: '',
             polyLast:0,
             tabIndex1:0,
+            tabIndex:0,
+            styleItemName :'',
+            styleSubItemName : '',
+            categoryItemName : '',
+            detailItemName : '',
+            printItemName : '',
+            textureItemName : '' ,
+            clothLengthItemName : '',
+            neckLineItemName : '',
+            karaItemName : '',
+            fitItemName : '',
         }
 
         this.handleDelete = this.handleDelete.bind(this)
@@ -219,15 +230,16 @@ class CategoryComponent extends React.Component {
             silhouetteName:'',
         })
     }
-    handleSubmit=()=>{
+    handleSubmit(){
         const createdId=this.props.authStore.loginUser.id;
         this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
         this.props.professionalLabelStore.doProfessionalLabelUp();
+        if(this.props.onClick){
+            this.props.onClick();
+        }
     }
     render() {
         const {classes} = this.props;
-        console.log('lastIndex', this.props.polyLast)
-        console.log('tabIndex1', this.props.tabIndex1)
         return (
                     <Grid container spacing={3} style={{marginTop: 10}}>
                         <Grid item xs={12} lg={6}>

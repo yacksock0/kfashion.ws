@@ -65,6 +65,13 @@ const EmptyNewProfessionalLabel = {
 export default class ProfessionalLabelStore {
     @observable state = State.Ready;
     @observable newProfessionalLabel = {...EmptyNewProfessionalLabel}
+    @observable professionalList = [];
+    @observable recentlyImg=[];
+
+    @action initStore = () => {
+        this.professionalList = [];
+    }
+
 
     @action changeNewProfessionalLabelNo1 = (lableNo1) => {
         this.newProfessionalLabel.labelNo1 = lableNo1;
@@ -238,23 +245,45 @@ export default class ProfessionalLabelStore {
         return this.state === State.Pending;
     }
 
-    @computed get isSignUpSuccess() {
+    @computed get isLabelUpSuccess() {
         return this.state === State.Success;
     }
 
-    @computed get isSignUpFailed() {
+    @computed get isLabelUpFailed() {
         return this.state === State.Fail;
     }
 
+    LoadProfessionalList = flow(function* loadProfessionalList(createdId) {
+        this.professionalList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/img/professionalList?createdId='+createdId)
+            this.professionalList = response.data.professionalList;
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+    LoadRecentImage = flow(function* LoadRecentImage(createdId) {
+        this.recentlyImg = [];
+        try {
+            const response = yield axios.get(`/api/v1/kfashion/img/recentlyImg?createdId=`+createdId)
+            this.recentlyImg = response.data.recentlyImg;
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
     doProfessionalLabelUp = flow(function* doProfessionalLabelUp() {
         this.state = State.Pending;
-        console.log(this.newProfessionalLabel);
         try {
                 const param = toJS(this.newProfessionalLabel);
 
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
+                    const createdId =this.newProfessionalLabel.createdId;
                     this.state = State.Success;
+                    this.LoadProfessionalList(createdId);
+                    this.LoadRecentImage(createdId);
                 } else {
                 }
         } catch (e) {

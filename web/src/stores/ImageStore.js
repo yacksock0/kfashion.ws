@@ -41,7 +41,7 @@ export default class ImageStore {
     @observable state = State.Ready;
     @observable workNo = '';
     @observable count = 0;
-    @observable recentlyImg=[];
+
 
     @action countChange =()=>{
         this.count= this.count+1
@@ -63,6 +63,9 @@ export default class ImageStore {
         this.boundaryList = boundaryList;
     }
 
+    @action changeRecentlyImg=(recentlyImg)=>{
+        this.recentlyImg =  recentlyImg;
+    }
     @action clearState = () => {
         this.state = State.Ready;
     }
@@ -80,20 +83,13 @@ export default class ImageStore {
         try {
           const response = yield axios.get('/api/v1/kfashion/img/boundaryList')
           this.boundaryList = response.data.boundaryList;
+            this.changeRecentlyImg(this.boundaryList);
         } catch (e) {
             console.log('error')
         }
     });
 
-    LoadRecentImage = flow(function* LoadRecentImage(createdId) {
-        this.recentlyImg = [];
-        try {
-            const response = yield axios.get(`/api/v1/kfashion/img/recentlyImg?createdId=`+createdId)
-            this.recentlyImg = response.data.recentlyImg;
-        } catch (e) {
-            console.log('error')
-        }
-    });
+
 
     LoadInspectionList = flow(function* loadInspectionList() {
         this.inspectionList = [];
