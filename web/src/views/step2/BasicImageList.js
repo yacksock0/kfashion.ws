@@ -41,7 +41,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore','polygonStore')
+@inject('fileUploadStore','authStore','imageStore','polygonStore','basicCategoryStore')
 @observer
 class BasicImageList extends React.Component {
     constructor(props) {
@@ -62,6 +62,8 @@ class BasicImageList extends React.Component {
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
         this.props.polygonStore.LoadPolygonImage(createdId);
+        this.props.basicCategoryStore.LoadColorList();
+        this.props.basicCategoryStore.LoadSleeveList();
     }
 
     componentWillUnmount() {
