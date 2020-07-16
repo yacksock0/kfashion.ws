@@ -122,10 +122,6 @@ public class KfashionLabelController {
                                         basic2.setCategoryItemNo(basicLabel.getSubColor2());
                                         kfashionLabelService.insertBasicLabel(basic2);
                                 }
-                                basic2.setNo(3);
-                                basic2.setCategoryNo(basicLabel.getSleeveLengthCategoryNo());
-                                basic2.setCategoryItemNo(basicLabel.getSleeveLength2());
-                                kfashionLabelService.insertBasicLabel(basic2);
                         }
                         if(basicLabel.getLabelNo4() == 4) {
                                 System.out.println("case4실행한다");
