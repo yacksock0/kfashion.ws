@@ -4,24 +4,21 @@ import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
+
 
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Fit extends React.Component {
+export default class Category1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open:false,
             text: 'text',
-            fitList0: [],
-            fitList3:[],
+            open: false,
+            categoryList0: [],
+            categoryList1: [],
+            categoryList2: [],
+            categoryList3: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -29,20 +26,22 @@ export default class Fit extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/fit')
+        axios.get('/api/v1/kfashion/category/item/professional/category')
             .then(response => {
-                console.log(response.data.fitList0);
-                console.log(response.data.fitList3);
-                const fitList0 = response.data.fitList0;
-                const fitList3 = response.data.fitList3;
-                this.setState({fitList0:fitList0,
-                    fitList3: fitList3,
-                    })
+                const categoryList1 = response.data.categoryList1;
+                const categoryList2 = response.data.categoryList2;
+                const categoryList3 = response.data.categoryList3;
+                const categoryList4 = response.data.categoryList4;
+                this.setState({categoryList1:categoryList1,
+                                    categoryList2: categoryList2,
+                                    categoryList3: categoryList3,
+                                    categoryList4: categoryList4})
             })
             .catch(error => {
                 console.log(error)
             })
     }
+
     handleClickOpen() {
         this.setState({
             open: true
@@ -53,17 +52,18 @@ export default class Fit extends React.Component {
             open: false
         });
     }
-    handleClick(fit){
+    handleClick(category){
         if(this.props.onClick) {
-            this.props.onClick(fit);
+            this.props.onClick(category);
         }
         this.setState({
             open:false,
         })
 
     }
+
     render() {
-        const fitList0= this.state.fitList0;
+        const categoryList4= this.state.categoryList4;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -71,18 +71,19 @@ export default class Fit extends React.Component {
                         maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
+                        marginLeft={'50%'}
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            핏
+                            카테고리
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {fitList0.map((fit) =>
+                            {categoryList4.map((category) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
-                                            <h2>{fit.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>
+                                            <h2>{category.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

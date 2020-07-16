@@ -15,6 +15,7 @@ const EmptyNewProfessionalLabel = {
     labelNo2 : 0,
     labelNo3 : 0,
     labelNo4 : 0,
+    labelNo5 : 0,
     createId : '',
     style : '',
     styleSub : '',
@@ -84,6 +85,9 @@ export default class ProfessionalLabelStore {
     }
     @action changeNewProfessionalLabelNo4 = (lableNo4) => {
         this.newProfessionalLabel.labelNo4 = lableNo4;
+    }
+    @action changeNewProfessionalLabelNo5 = (lableNo5) => {
+        this.newProfessionalLabel.labelNo5 = lableNo5;
     }
 
     @action changeNewProfessionalLabelStyle = (style) => {

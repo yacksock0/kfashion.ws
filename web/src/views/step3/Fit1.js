@@ -1,27 +1,19 @@
 import React from 'react';
-import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {Button, Typography, Grid} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Detail extends React.Component {
+export default class Fit1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            open:false,
             text: 'text',
-            open: false,
-            detailList: [],
+            fitList1: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -29,10 +21,17 @@ export default class Detail extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/detail')
+        axios.get('/api/v1/kfashion/category/item/professional/fit')
             .then(response => {
-                const detailList = response.data.detailList;
-                this.setState({ detailList : detailList})
+                const fitList1 = response.data.fitList1;
+                const fitList2 = response.data.fitList2;
+                const fitList3 = response.data.fitList3;
+                const fitList4 = response.data.fitList4;
+                this.setState({fitList1:fitList1,
+                    fitList2: fitList2,
+                    fitList3: fitList3,
+                    fitList4: fitList4,
+                    })
             })
             .catch(error => {
                 console.log(error)
@@ -48,25 +47,17 @@ export default class Detail extends React.Component {
             open: false
         });
     }
-    handleClick(detail){
+    handleClick(fit){
         if(this.props.onClick) {
-            this.props.onClick(detail);
+            this.props.onClick(fit);
         }
         this.setState({
             open:false,
         })
 
     }
-    handledDetail=(detail)=>{
-        if(this.props.onClick) {
-            this.props.onClick(detail);
-        }
-        this.setState({
-            open: false
-        });
-    }
     render() {
-        const detailList= this.state.detailList;
+        const fitList1= this.state.fitList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -77,21 +68,21 @@ export default class Detail extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            디테일
+                            핏
                         </Typography>
                         <hr></hr>
-                            <Grid container>
-                                        {detailList.map((detail) =>
+                        <Grid container>
+                            {fitList1.map((fit) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                            <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
-                                                <h3>{detail.categoryItemName}</h3>
-                                            </Button>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
+                                            <h2>{fit.categoryItemName}</h2>
+                                        </Button>
                                     </div>
                                 </Grid>
-                                        )
-                                        }
-                            </Grid>
+                            )
+                            }
+                        </Grid>
                     </DialogContent>
                 </Dialog>
             </div>

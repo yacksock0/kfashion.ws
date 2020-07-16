@@ -5,13 +5,13 @@ import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Category2 from "../step3/Category2";
 import Style from "../step3/Style";
-import Detail from "../step3/Detail";
+import Detail1 from "./Detail1";
 import Print from "../step3/Print";
-import Texture from "../step3/Texture";
+import Texture1 from "./Texture1";
 import ClothLength2 from "../step3/ClothLength2";
-import NeckLine from "../step3/NeckLine";
-import ColorKara from "../step3/ColorKara";
-import Fit3 from "../step3/Fit3";
+import NeckLine1 from "./NeckLine1";
+import ColorKara1 from "./ColorKara1";
+import Fit4 from "./Fit4";
 import Safe from "../step3/Safe";
 import Silhouette from "../step3/Silhouette";
 import {inject, observer} from "mobx-react";
@@ -256,7 +256,7 @@ class CategoryComponent2 extends React.Component {
                                                 디테일
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail onClick={this.handleClickDetail}/>
+                                                <Detail1 onClick={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -288,7 +288,7 @@ class CategoryComponent2 extends React.Component {
                                                 소재감
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Texture onClick={this.handleClickTexture} />
+                                                <Texture1 onClick={this.handleClickTexture} />
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -320,7 +320,7 @@ class CategoryComponent2 extends React.Component {
                                                 핏
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Fit3 onClick={this.handleClickFit}/>
+                                                <Fit4 onClick={this.handleClickFit}/>
                                             </div>
                                             <div>
                                                 <hr></hr>

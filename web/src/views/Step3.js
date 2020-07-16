@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
-import CategoryComponent from "./step3/CategoryComponent";
+import CategoryComponent from "./step3/CategoryComponent1";
 import CategoryComponent1 from "./step3/CategoryComponent1";
 import CategoryComponent2 from "./step3/CategoryComponent2";
 import CategoryComponent3 from "./step3/CategoryComponent3";

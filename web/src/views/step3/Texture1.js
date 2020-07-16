@@ -4,34 +4,26 @@ import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Print extends React.Component {
+export default class Texture1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open:false,
             text: 'text',
-            printList: [],
-            selectedOption:null,
+            textureList: [],
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/print')
+        axios.get('/api/v1/kfashion/category/item/professional/texture')
             .then(response => {
-                const printList = response.data.printList;
-                this.setState({ printList : printList})
+                const textureList1 = response.data.textureList1;
+                this.setState({ textureList1 : textureList1})
             })
             .catch(error => {
                 console.log(error)
@@ -47,9 +39,9 @@ export default class Print extends React.Component {
             open: false
         });
     }
-    handleClick(print){
+    handleClick(texture){
         if(this.props.onClick) {
-            this.props.onClick(print);
+            this.props.onClick(texture);
         }
         this.setState({
             open:false,
@@ -57,7 +49,7 @@ export default class Print extends React.Component {
 
     }
     render() {
-        const printList= this.state.printList;
+        const textureList1= this.state.textureList;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -68,15 +60,15 @@ export default class Print extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            프린트
+                            소재감
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {printList.map((print) =>
+                            {textureList1.map((texture) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
-                                            <h2>{print.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClick(texture)}>
+                                            <h2>{texture.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

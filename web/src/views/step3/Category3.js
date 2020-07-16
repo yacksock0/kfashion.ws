@@ -1,18 +1,9 @@
 import React from 'react';
-import Select from 'react-select';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
-
 
 @inject('professionalLabelStore','authStore')
 @observer
@@ -35,18 +26,14 @@ export default class Category3 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/category')
             .then(response => {
-                console.log(response.data.categoryList0);
-                console.log(response.data.categoryList1);
-                console.log(response.data.categoryList2);
-                console.log(response.data.categoryList3);
-                const categoryList0 = response.data.categoryList0;
                 const categoryList1 = response.data.categoryList1;
                 const categoryList2 = response.data.categoryList2;
                 const categoryList3 = response.data.categoryList3;
-                this.setState({categoryList0:categoryList0,
-                                    categoryList1: categoryList1,
-                                    categoryList2: categoryList2,
-                                    categoryList3: categoryList3})
+                const categoryList4 = response.data.categoryList4;
+                this.setState({categoryList1:categoryList1,
+                    categoryList2: categoryList2,
+                    categoryList3: categoryList3,
+                    categoryList4: categoryList4})
             })
             .catch(error => {
                 console.log(error)

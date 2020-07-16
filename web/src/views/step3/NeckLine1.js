@@ -4,22 +4,16 @@ import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class NeckLine extends React.Component {
+export default class NeckLine1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open: false,
             text: 'text',
-            neckLineList: [],
+            neckLineList1: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -29,12 +23,9 @@ export default class NeckLine extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/neckLine')
             .then(response => {
-                const neckLineList = response.data.neckLineList;
-                this.setState({ neckLineList : neckLineList.map(neckLine => {
-                        neckLine.value = neckLine.no;
-                        neckLine.label = neckLine.categoryItemName;
-                        return neckLine
-                    })
+                const neckLineList1 = response.data.neckLineList1;
+                this.setState({
+                    neckLineList1: neckLineList1,
                 })
             })
             .catch(error => {
@@ -62,7 +53,7 @@ export default class NeckLine extends React.Component {
     }
 
     render() {
-        const neckLineList= this.state.neckLineList;
+        const neckLineList1= this.state.neckLineList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -77,7 +68,7 @@ export default class NeckLine extends React.Component {
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {neckLineList.map((neckLine) =>
+                            {neckLineList1.map((neckLine) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
                                         <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={neckLine.no} onClick={() => this.handleClick(neckLine)}>
