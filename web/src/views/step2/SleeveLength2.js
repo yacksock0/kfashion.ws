@@ -11,7 +11,7 @@ const columns = [
 
 @inject('basicLabelStore','authStore')
 @observer
-export default class SelectTest extends React.Component {
+export default class SleeveLength2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -2,9 +2,8 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Category1 from "./Category4";
-import Style from "../step3/Style";
 import Detail1 from "./Detail1";
 import Print1 from "../step3/Print1";
 import Texture1 from "./Texture1";
@@ -12,10 +11,7 @@ import ClothLength1 from "./ClothLength1";
 import NeckLine1 from "./NeckLine1";
 import ColorKara1 from "./ColorKara1";
 import Fit1 from "./Fit1";
-import Safe from "../step3/Safe";
-import Silhouette from "../step3/Silhouette";
 import {inject, observer} from "mobx-react";
-import Chip from "@material-ui/core/Chip";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const styles = theme => ({

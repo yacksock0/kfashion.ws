@@ -23,11 +23,8 @@ export default class ColorKara1 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/kara')
             .then(response => {
-                const karaList1 = response.data.karaList1;
-                const karaList2 = response.data.karaList2;
                 const karaList4 = response.data.karaList4;
-                this.setState({ karaList1 : karaList1,
-                    karaList2 : karaList2,
+                this.setState({
                     karaList4 : karaList4})
             })
             .catch(error => {
@@ -70,7 +67,7 @@ export default class ColorKara1 extends React.Component {
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {karaList1.map((kara) =>
+                            {karaList4.map((kara) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
                                         <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={kara.no} onClick={() => this.handleClick(kara)}>

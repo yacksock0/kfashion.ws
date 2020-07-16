@@ -4,18 +4,14 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Category2 from "../step3/Category2";
-import Style from "../step3/Style";
-import Detail1 from "./Detail1";
-import Print from "../step3/Print";
-import Texture1 from "./Texture1";
+import Detail2 from "./Detail2";
+import Print2 from "../step3/Print2";
+import Texture2 from "./Texture2";
 import ClothLength2 from "../step3/ClothLength2";
-import NeckLine1 from "./NeckLine1";
-import ColorKara1 from "./ColorKara1";
-import Fit4 from "./Fit4";
-import Safe from "../step3/Safe";
-import Silhouette from "../step3/Silhouette";
+import NeckLine2 from "./NeckLine2";
+import ColorKara2 from "./ColorKara2";
+import Fit2 from "./Fit2";
 import {inject, observer} from "mobx-react";
-import Chip from "@material-ui/core/Chip";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const styles = theme => ({
@@ -256,7 +252,7 @@ class CategoryComponent2 extends React.Component {
                                                 디테일
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail1 onClick={this.handleClickDetail}/>
+                                                <Detail2 onClick={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -272,7 +268,7 @@ class CategoryComponent2 extends React.Component {
                                                 프린트
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Print onClick={this.handleClickPrint}/>
+                                                <Print2 onClick={this.handleClickPrint}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -288,7 +284,7 @@ class CategoryComponent2 extends React.Component {
                                                 소재감
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Texture1 onClick={this.handleClickTexture} />
+                                                <Texture2 onClick={this.handleClickTexture} />
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -320,7 +316,7 @@ class CategoryComponent2 extends React.Component {
                                                 핏
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Fit4 onClick={this.handleClickFit}/>
+                                                <Fit2 onClick={this.handleClickFit}/>
                                             </div>
                                             <div>
                                                 <hr></hr>

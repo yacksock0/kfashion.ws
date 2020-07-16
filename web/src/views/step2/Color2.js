@@ -7,7 +7,7 @@ import {Button, Typography} from "@material-ui/core";
 
 @inject('basicLabelStore','authStore')
 @observer
-export default class Color extends React.Component {
+export default class Color2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -2,20 +2,14 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Category3 from "../step3/Category3";
-import Style from "../step3/Style";
-import Detail1 from "./Detail1";
-import Print from "../step3/Print";
-import Texture1 from "./Texture1";
+import Detail3 from "./Detail3";
+import Print3 from "../step3/Print3";
+import Texture3 from "./Texture3";
 import ClothLength3 from "../step3/ClothLength3";
-import NeckLine1 from "./NeckLine1";
-import ColorKara1 from "./ColorKara1";
-import Fit1 from "./Fit1";
-import Safe from "../step3/Safe";
-import Silhouette from "../step3/Silhouette";
+import Fit3 from "./Fit3";
 import {inject, observer} from "mobx-react";
-import Chip from "@material-ui/core/Chip";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const styles = theme => ({
@@ -255,7 +249,7 @@ class CategoryComponent3 extends React.Component {
                                                 디테일
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail1 onClick={this.handleClickDetail}/>
+                                                <Detail3 onClick={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -271,7 +265,7 @@ class CategoryComponent3 extends React.Component {
                                                 프린트
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Print onClick={this.handleClickPrint}/>
+                                                <Print3 onClick={this.handleClickPrint}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -287,7 +281,7 @@ class CategoryComponent3 extends React.Component {
                                                 소재감
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Texture1 onClick={this.handleClickTexture} />
+                                                <Texture3 onClick={this.handleClickTexture} />
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -316,42 +310,10 @@ class CategoryComponent3 extends React.Component {
                                     <Grid item xs={12} lg={6}>
                                         <div className={classes.content} style={{display:'inline'}}>
                                             <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                넥라인
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <NeckLine1 onClick={this.handleClickNeckLine}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {this.state.necklineNo > 0 ?
-                                            (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                칼라(카라)
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <ColorKara1 onClick={this.handleClickKara}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {this.state.karaNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 핏
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Fit1 onClick={this.handleClickFit}/>
+                                                <Fit3 onClick={this.handleClickFit}/>
                                             </div>
                                             <div>
                                                 <hr></hr>

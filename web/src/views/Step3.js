@@ -2,12 +2,12 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Button, Container, Grid, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
-import CategoryComponent from "./step3/CategoryComponent1";
 import CategoryComponent1 from "./step3/CategoryComponent1";
 import CategoryComponent2 from "./step3/CategoryComponent2";
 import CategoryComponent3 from "./step3/CategoryComponent3";
+import CategoryComponent4 from "./step3/CategoryComponent4";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
@@ -173,8 +173,7 @@ class Step3 extends React.Component {
                     //     left: selectedPoly[i].locationX - 3.5,
                     //     top: selectedPoly[i].locationY - 3.5,
                     //     selectable: false,
-                    //     evented: false,
-                    // });
+                    //     evented: false,// });
                     // this.canvas.add(circle);
                     // this.canvas.bringToFront(circle)
 
@@ -340,22 +339,22 @@ class Step3 extends React.Component {
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1} outerReviewLabel={outerReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} outerReviewLabel={outerReviewLabel} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} topReviewLabel={topReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} topReviewLabel={topReviewLabel} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} pantsReviewLabel={pantsReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} pantsReviewLabel={pantsReviewLabel} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onePieceReviewLabel={onePieceReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent4 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onePieceReviewLabel={onePieceReviewLabel} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                     </Tabs>
