@@ -46,9 +46,9 @@ export default class SleeveLength4 extends React.Component {
             open: false
         });
     }
-    handleClick(sleeve){
+    handleClick(sleeve4){
         if(this.props.onClick) {
-            this.props.onClick(sleeve);
+            this.props.onClick(sleeve4);
         }
         this.setState({
             open:false,
@@ -72,11 +72,11 @@ export default class SleeveLength4 extends React.Component {
                     </Typography>
                     <hr></hr>
                     <Grid container>
-                        {sleeveList4.map((sleeve) =>
+                        {sleeveList4.map((sleeve4) =>
                             <Grid item xs={3}>
                                 <div style={{textAlign:'center', margin:10}}>
-                                    <Button style={{width:'100%', height:60}} variant="outlined" key={sleeve.no} onClick={() => this.handleClick(sleeve)}>
-                                        <h2>{sleeve.categoryItemName}</h2>
+                                    <Button style={{width:'100%', height:60}} variant="outlined" key={sleeve4.no} onClick={() => this.handleClick(sleeve4)}>
+                                        <h2>{sleeve4.categoryItemName}</h2>
                                     </Button>
                                 </div>
                             </Grid>

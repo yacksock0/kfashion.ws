@@ -221,109 +221,109 @@ class Step2 extends React.Component {
             tabIndex1:0,
         })
     }
-    handleClickColor1 = (color) => {
+    handleClickColor1 = (color1) => {
         this.setState({
-            no1: color.no,
-            name1: color.categoryItemName,
-            memo1: color.categoryItemMemo,
-            colorCategoryNo1: color.categoryNo,
+            no1: color1.no,
+            name1: color1.categoryItemName,
+            memo1: color1.categoryItemMemo,
+            colorCategoryNo1: color1.categoryNo,
             labelNo1 : 1,
         })
     }
-    handleClickColor2 = (color) => {
+    handleClickColor2 = (color2) => {
         this.setState({
-            no2: color.no,
-            name2: color.categoryItemName,
-            memo2: color.categoryItemMemo,
-            colorCategoryNo2: color.categoryNo,
+            no2: color2.no,
+            name2: color2.categoryItemName,
+            memo2: color2.categoryItemMemo,
+            colorCategoryNo2: color2.categoryNo,
             labelNo2 : 2,
         })
     }
-    handleClickColor3 = (color) => {
+    handleClickColor3 = (color3) => {
         this.setState({
-            no3: color.no,
-            name3: color.categoryItemName,
-            memo3: color.categoryItemMemo,
-            colorCategoryNo3: color.categoryNo,
+            no3: color3.no,
+            name3: color3.categoryItemName,
+            memo3: color3.categoryItemMemo,
+            colorCategoryNo3: color3.categoryNo,
             labelNo3 : 3,
         })
     }
-    handleClickColor4 = (color) => {
+    handleClickColor4 = (color4) => {
         this.setState({
-            no4: color.no,
-            name4: color.categoryItemName,
-            memo4: color.categoryItemMemo,
-            colorCategoryNo4: color.categoryNo,
+            no4: color4.no,
+            name4: color4.categoryItemName,
+            memo4: color4.categoryItemMemo,
+            colorCategoryNo4: color4.categoryNo,
             labelNo4 : 4,
         })
     }
-    handleClickSubColor1 = (color) => {
+    handleClickSubColor1 = (color1) => {
         {
             !this.state.no1 == 0 ?
                 this.setState({
-                    subNo1: color.no,
-                    subName1: color.categoryItemName,
-                    subMemo1: color.categoryItemMemo,
-                    subColorCategoryNo1: color.categoryNo,
+                    subNo1: color1.no,
+                    subName1: color1.categoryItemName,
+                    subMemo1: color1.categoryItemMemo,
+                    subColorCategoryNo1: color1.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
     }
-    handleClickSubColor2 = (color) => {
+    handleClickSubColor2 = (color2) => {
         {
             !this.state.no2 == 0 ?
                 this.setState({
-                    subNo2: color.no,
-                    subName2: color.categoryItemName,
-                    subMemo2: color.categoryItemMemo,
-                    subColorCategoryNo2: color.categoryNo,
+                    subNo2: color2.no,
+                    subName2: color2.categoryItemName,
+                    subMemo2: color2.categoryItemMemo,
+                    subColorCategoryNo2: color2.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
     }
-    handleClickSubColor3= (color) => {
+    handleClickSubColor3= (color3) => {
         {
             !this.state.no3 == 0 ?
                 this.setState({
-                    subNo3: color.no,
-                    subName3: color.categoryItemName,
-                    subMemo3: color.categoryItemMemo,
-                    subColorCategoryNo3: color.categoryNo,
+                    subNo3: color3.no,
+                    subName3: color3.categoryItemName,
+                    subMemo3: color3.categoryItemMemo,
+                    subColorCategoryNo3: color3.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
     }
-    handleClickSubColor4 = (color) => {
+    handleClickSubColor4 = (color4) => {
         {
             !this.state.no4 == 0 ?
                 this.setState({
-                    subNo4: color.no,
-                    subName4: color.categoryItemName,
-                    subMemo4: color.categoryItemMemo,
-                    subColorCategoryNo4: color.categoryNo,
+                    subNo4: color4.no,
+                    subName4: color4.categoryItemName,
+                    subMemo4: color4.categoryItemMemo,
+                    subColorCategoryNo4: color4.categoryNo,
                 })
                 : alert('메인 색상을 먼저 선택해 주세요')
         }
     }
-    handleClickSleeve1 = (sleeve) => {
+    handleClickSleeve1 = (sleeve1) => {
         this.setState({
-            sleeveNo1: sleeve.no,
-            sleeveName1: sleeve.categoryItemName,
-            sleeveLengthCategoryNo1: sleeve.categoryNo
+            sleeveNo1: sleeve1.no,
+            sleeveName1: sleeve1.categoryItemName,
+            sleeveLengthCategoryNo1: sleeve1.categoryNo
         })
     }
-    handleClickSleeve2 = (sleeve) => {
+    handleClickSleeve2 = (sleeve2) => {
         this.setState({
-            sleeveNo2: sleeve.no,
-            sleeveName2: sleeve.categoryItemName,
-            sleeveLengthCategoryNo2: sleeve.categoryNo
+            sleeveNo2: sleeve2.no,
+            sleeveName2: sleeve2.categoryItemName,
+            sleeveLengthCategoryNo2: sleeve2.categoryNo
         })
     }
-    handleClickSleeve4 = (sleeve) => {
+    handleClickSleeve4 = (sleeve4) => {
         this.setState({
-            sleeveNo4: sleeve.no,
-            sleeveName4: sleeve.categoryItemName,
-            sleeveLengthCategoryNo4: sleeve.categoryNo
+            sleeveNo4: sleeve4.no,
+            sleeveName4: sleeve4.categoryItemName,
+            sleeveLengthCategoryNo4: sleeve4.categoryNo
         })
     }
 
