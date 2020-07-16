@@ -42,6 +42,10 @@ public class KfashionCategoryItemController {
             resultMap.put("colorList2", colorList2);
             resultMap.put("colorList3", colorList3);
             resultMap.put("colorList4", colorList4);
+            System.out.println("colorList1"+colorList1);
+            System.out.println("colorList2"+colorList2);
+            System.out.println("colorList3"+colorList3);
+            System.out.println("colorList4"+colorList4);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
@@ -60,6 +64,9 @@ public class KfashionCategoryItemController {
             resultMap.put("sleeveList1", sleeveList1);
             resultMap.put("sleeveList2", sleeveList2);
             resultMap.put("sleeveList4", sleeveList4);
+            System.out.println("sleeveList1"+sleeveList1);
+            System.out.println("sleeveList2"+sleeveList2);
+            System.out.println("sleeveList4"+sleeveList4);
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
