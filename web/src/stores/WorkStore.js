@@ -97,6 +97,7 @@ export default class WorkStore {
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable authorityNo = 0;
+    @observable styleReviewLabel = {...ReviewLabel};
     @observable outerReviewLabel = {...ReviewLabel};
     @observable topReviewLabel = {...ReviewLabel};
     @observable pantsReviewLabel = {...ReviewLabel};
@@ -152,7 +153,12 @@ export default class WorkStore {
                 this.onePieceReviewLabel = response.data.onePieceReviewLabel;
             }else {
                 this.onePieceReviewLabel = [];
+            }if(response.data.styleReviewLabel != null) {
+                this.styleReviewLabel = response.data.styleReviewLabel;
+            }else {
+                this.styleReviewLabel = [];
             }
+
         } catch (e) {
             console.log('error')
         }

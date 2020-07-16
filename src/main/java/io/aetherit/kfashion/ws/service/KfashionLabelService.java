@@ -69,4 +69,8 @@ public class KfashionLabelService {
     public List<KfashionLabel> selectOnePieceReviewHighLabelList(Long workNo) {
         return repository.selectOnePieceReviewHighLabelList(workNo);
     }
+
+    public List<KfashionLabel> selectStyleReviewLabelList(Long workNo) {
+        return repository.selectStyleReviewLabelList(workNo);
+    }
 }
