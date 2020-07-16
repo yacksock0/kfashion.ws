@@ -4,12 +4,12 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
 import Color1 from "./step2/Color1";
-import Color2 from "./step2/Color1";
-import Color3 from "./step2/Color1";
-import Color4 from "./step2/Color1";
+import Color2 from "./step2/Color2";
+import Color3 from "./step2/Color3";
+import Color4 from "./step2/Color4";
 import SleeveLength1 from "./step2/SleeveLength1";
-import SleeveLength2 from "./step2/SleeveLength1";
-import SleeveLength4 from "./step2/SleeveLength1";
+import SleeveLength2 from "./step2/SleeveLength2";
+import SleeveLength4 from "./step2/SleeveLength4";
 import {inject, observer} from "mobx-react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -106,7 +106,7 @@ const styles = theme => ({
     },
     });
 
-@inject('basicLabelStore','authStore','imageStore','polygonStore', 'currentStepStore')
+@inject('basicLabelStore','authStore','imageStore','polygonStore', 'currentStepStore','basicCategoryStore')
 @observer
 class Step2 extends React.Component {
     constructor(props) {
@@ -195,6 +195,9 @@ class Step2 extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
         this.canvas = new fabric.Canvas('c');
+        this.props.basicCategoryStore.LoadColorList();
+        this.props.basicCategoryStore.LoadSleeveList();
+
     }
 
     handleClickOK = () => {

@@ -5,7 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import {Button, Typography} from "@material-ui/core";
 
-@inject('basicLabelStore','authStore')
+@inject('basicLabelStore','authStore','basicCategoryStore')
 @observer
 export default class Color3 extends React.Component {
     constructor(props) {
@@ -23,16 +23,10 @@ export default class Color3 extends React.Component {
         this.handledColor = this.handledColor.bind(this)
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/basic/color')
-            .then(response => {
-                const colorList3 = response.data.colorList3;
-                this.setState({
-                    colorList3:colorList3,
-                })
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.props.basicCategoryStore.LoadColorList();
+        this.setState({
+            colorList3 : this.props.basicCategoryStore.colorList3,
+        })
     }
     handleClickOpen() {
         this.setState({
@@ -67,7 +61,7 @@ export default class Color3 extends React.Component {
         });
     }
     render() {
-        const {colorList3}= this.state;
+        const colorList3= this.props.basicCategoryStore.colorList3;
 
         return (
             <div>

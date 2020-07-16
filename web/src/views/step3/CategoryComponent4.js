@@ -99,9 +99,6 @@ class CategoryComponent4 extends React.Component {
         this.handleDeleteTexture = this.handleDeleteTexture.bind(this)
         this.handleDeleteKara = this.handleDeleteKara.bind(this)
         this.handleDeleteFit = this.handleDeleteFit.bind(this)
-        this.handleDeleteSafe = this.handleDeleteSafe.bind(this)
-        this.handleDeleteSilhouette = this.handleDeleteSilhouette.bind(this)
-
     }
     componentDidMount() {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
@@ -215,22 +212,7 @@ class CategoryComponent4 extends React.Component {
             fitName:'',
         })
     }
-    handleDeleteSafe(){
-        this.setState({
-            safeNo:0,
-            safeName:'',
-        })
-    }
-    handleDeleteSilhouette(){
-        this.setState({
-            silhouetteNo:0,
-            silhouetteName:'',
-        })
-    }
     handleSubmit(){
-        const createdId=this.props.authStore.loginUser.id;
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-        this.props.professionalLabelStore.doProfessionalLabelUp();
         if(this.props.onClick){
             this.props.onClick();
         }

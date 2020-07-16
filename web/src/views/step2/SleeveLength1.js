@@ -9,7 +9,7 @@ const columns = [
     { id: '항목', label: '항목', minWidth: 170 },
 ];
 
-@inject('basicLabelStore','authStore')
+@inject('basicLabelStore','authStore','basicCategoryStore')
 @observer
 export default class SleeveLength1 extends React.Component {
     constructor(props) {
@@ -28,23 +28,7 @@ export default class SleeveLength1 extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/basic/sleeve')
-            .then(response => {
-                const sleeveList1 = response.data.sleeveList1;
-                const sleeveList2 = response.data.sleeveList2;
-                const sleeveList4 = response.data.sleeveList4;
-                this.setState({
-                    sleeveList1: sleeveList1,
-                    sleeveList2: sleeveList2,
-                    sleeveList4: sleeveList4,
-                })
-                console.log("sleeveList1",sleeveList1)
-                console.log("sleeveList2",sleeveList2)
-                console.log("sleeveList4",sleeveList4)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+
     }
     handleClickOpen() {
         this.setState({
@@ -67,7 +51,7 @@ export default class SleeveLength1 extends React.Component {
     }
     render() {
         const {classes} = this.props;
-        const {sleeveList1}= this.state;
+        const {sleeveList1}= this.props.basicCategoryStore;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>소매기장</Button>

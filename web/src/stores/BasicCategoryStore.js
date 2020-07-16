@@ -28,11 +28,26 @@ export default class BasicCategoryStore {
 
     @observable state = State.Ready;
     @observable newMember = {...EmptyNewMember}
-    @observable groupUserList = [];
+    @observable colorList1 = [];
+    @observable colorList2 = [];
+    @observable colorList3 = [];
+    @observable colorList4 = [];
+
+    @observable sleeveList1 = [];
+    @observable sleeveList2 = [];
+    @observable sleeveList4 = [];
+
     @observable listState = ListState.Loaded;
 
     @action initStore = () => {
-        this.groupUserList = [];
+        this.colorList1 = [];
+        this.colorList2 = [];
+        this.colorList3 = [];
+        this.colorList4 = [];
+
+        this.sleeveList1 = [];
+        this.sleeveList2 = [];
+        this.sleeveList4 = [];
     }
 
     @action clearState = () => {
@@ -57,16 +72,36 @@ export default class BasicCategoryStore {
     }
 
 
-    LoadGroupUserList = flow(function* loadGroupUserList(groupNo) {
-        this.listState = ListState.Loading;
-        this.groupUserList = [];
+    LoadSleeveList = flow(function* loadSleeveList() {
         try {
-            const response = yield axios.get('/api/v1/kfashion/users/groupUserList?groupNo=' + groupNo)
-            this.groupUserList = response.data.groupUserList;
-            this.listState = ListState.Loaded;
+            const response = yield axios.get('/api/v1/kfashion/category/item/basic/sleeve')
+                const sleeveList1 = response.data.sleeveList1;
+                const sleeveList2 = response.data.sleeveList2;
+                const sleeveList4 = response.data.sleeveList4;
+
+                this.sleeveList1 = sleeveList1;
+                this.sleeveList2 = sleeveList2;
+                this.sleeveList4 = sleeveList4;
         } catch (e) {
             console.log('error')
-            this.listState = ListState.LoadFailed;
+        }
+    });
+
+
+    LoadColorList = flow(function* loadColorList() {
+        try {
+            const response = yield axios.get('/api/v1/kfashion/category/item/basic/color')
+                const colorList1 = response.data.colorList1;
+                const colorList2 = response.data.colorList2;
+                const colorList3 = response.data.colorList3;
+                const colorList4 = response.data.colorList4;
+
+                this.colorList1 = colorList1;
+                this.colorList2 = colorList2;
+                this.colorList3 = colorList3;
+                this.colorList4 = colorList4;
+        } catch (e) {
+            console.log('error')
         }
     });
 

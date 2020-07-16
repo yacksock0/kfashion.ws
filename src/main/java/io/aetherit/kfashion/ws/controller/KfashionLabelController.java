@@ -5,11 +5,9 @@ import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonPointService;
 import io.aetherit.kfashion.ws.service.KfashionLabelService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import io.aetherit.kfashion.ws.service.KfashionWorkService;
-import org.apache.ibatis.annotations.Case;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +45,7 @@ public class KfashionLabelController {
         @PostMapping(value = "/basicLabel")
         public ResponseEntity<Object> basicLabel(HttpServletRequest httpServletRequest,
                                                  @RequestBody BasicLabel basicLabel) throws Exception{
-                try {
-                        System.out.println(basicLabel);
+
                         KfashionWork work = new KfashionWork();
                         work.setNo(basicLabel.getWorkNo());
                         work.setWorkState(basicLabel.getWorkStep());
@@ -144,10 +141,7 @@ public class KfashionLabelController {
                                 basic3.setCategoryItemNo(basicLabel.getSleeveLength4());
                                 kfashionLabelService.insertBasicLabel(basic3);
                         }
-                }catch (Exception e) {
-                        e.printStackTrace();
-                }
-                return new ResponseEntity<Object>(HttpStatus.OK);
+                return new ResponseEntity<Object>("success",HttpStatus.OK);
         }
 
         /**
@@ -162,6 +156,7 @@ public class KfashionLabelController {
         @PostMapping(value = "/professionalLabel")
         public ResponseEntity<Object> professionalLabel(HttpServletRequest httpServletRequest,
                                       @RequestBody ProfessionalLabel professionalLabel) throws Exception {
+
                 KfashionWork work = new KfashionWork();
                 work.setNo(professionalLabel.getWorkNo());
                 work.setWorkState(professionalLabel.getWorkStep());
@@ -172,6 +167,7 @@ public class KfashionLabelController {
                 workHistory.setWorkStep(professionalLabel.getWorkStep());
                 workHistory.setCreatedId(professionalLabel.getCreatedId());
                 kfashionWorkHistoryService.insertWorkHistory(workHistory);
+
                 if(professionalLabel.getLabelNo5() == 5){
                         KfashionLabel professional5 = new KfashionLabel();
                         professional5.setWorkNo(professionalLabel.getWorkNo());
@@ -190,9 +186,9 @@ public class KfashionLabelController {
                         }
                 }
 
-
                 if(professionalLabel.getLabelNo1() == 1) {
                         KfashionLabel professional1 = new KfashionLabel();
+                        professional1.setCreatedId(professionalLabel.getCreatedId());
                         professional1.setWorkNo(professionalLabel.getWorkNo());
                         professional1.setWorkStep(professionalLabel.getWorkStep());
                         professional1.setLabelNo(professionalLabel.getLabelNo1());
@@ -239,6 +235,7 @@ public class KfashionLabelController {
                 }
                 if(professionalLabel.getLabelNo2() == 2) {
                         KfashionLabel professional2 = new KfashionLabel();
+                        professional2.setCreatedId(professionalLabel.getCreatedId());
                         professional2.setWorkNo(professionalLabel.getWorkNo());
                         professional2.setWorkStep(professionalLabel.getWorkStep());
                         professional2.setLabelNo(professionalLabel.getLabelNo2());
@@ -285,6 +282,7 @@ public class KfashionLabelController {
                 }
                 if(professionalLabel.getLabelNo3() == 3) {
                         KfashionLabel professional3 = new KfashionLabel();
+                        professional3.setCreatedId(professionalLabel.getCreatedId());
                         professional3.setWorkNo(professionalLabel.getWorkNo());
                         professional3.setWorkStep(professionalLabel.getWorkStep());
                         professional3.setLabelNo(professionalLabel.getLabelNo3());
@@ -321,6 +319,7 @@ public class KfashionLabelController {
                 }
                 if(professionalLabel.getLabelNo4() == 4) {
                         KfashionLabel professional4 = new KfashionLabel();
+                        professional4.setCreatedId(professionalLabel.getCreatedId());
                         professional4.setWorkNo(professionalLabel.getWorkNo());
                         professional4.setWorkStep(professionalLabel.getWorkStep());
                         professional4.setLabelNo(professionalLabel.getLabelNo4());
@@ -407,53 +406,32 @@ public class KfashionLabelController {
                         }
 
                 }
-                if(labelNo5 == 5) {
-                    List<KfashionLabel> styleReviewLabelList = kfashionLabelService.selectStyleReviewLabelList(workNo);
-                    if(styleReviewLabelList.size() == 2){
-                        ReviewLabel styleReviewLabel =  ReviewLabel.builder()
-                                .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
-                                .style(styleReviewLabelList.get(0).getCategoryItemNo())
-                                .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
-                                .styleCategorySubNo(styleReviewLabelList.get(1).getCategoryNo())
-                                .styleSub(styleReviewLabelList.get(1).getCategoryItemNo())
-                                .styleSubItemName(styleReviewLabelList.get(1).getCategoryItemName())
-                                .build();
-                        resultMap.put("styleReviewLabel", styleReviewLabel);
-                    }else {
-                            ReviewLabel styleReviewLabel =  ReviewLabel.builder()
-                                    .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
-                                    .style(styleReviewLabelList.get(0).getCategoryItemNo())
-                                    .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
-                                    .build();
-                            resultMap.put("styleReviewLabel", styleReviewLabel);
-                    }
-                }
 
                 if(labelNo1 == 1) {
                 List<KfashionLabel> outerReviewLabelList = kfashionLabelService.selectOuterReviewLabelList(workNo);
                         ReviewLabel outerReviewLabel =  ReviewLabel.builder()
-                                .categoryCategoryNo(outerReviewLabelList.get(0).getCategoryNo())
+                                .categoryCategoryNo1(outerReviewLabelList.get(0).getCategoryNo())
                                 .category1(outerReviewLabelList.get(0).getCategoryItemNo())
                                 .categoryItemName(outerReviewLabelList.get(0).getCategoryItemName())
-                                .detailCategoryNo(outerReviewLabelList.get(1).getCategoryNo())
+                                .detailCategoryNo1(outerReviewLabelList.get(1).getCategoryNo())
                                 .detail1(outerReviewLabelList.get(1).getCategoryItemNo())
                                 .detailItemName(outerReviewLabelList.get(1).getCategoryItemName())
-                                .printCategoryNo(outerReviewLabelList.get(2).getCategoryNo())
+                                .printCategoryNo1(outerReviewLabelList.get(2).getCategoryNo())
                                 .print1(outerReviewLabelList.get(2).getCategoryItemNo())
                                 .printItemName(outerReviewLabelList.get(2).getCategoryItemName())
-                                .textureCategoryNo(outerReviewLabelList.get(3).getCategoryNo())
+                                .textureCategoryNo1(outerReviewLabelList.get(3).getCategoryNo())
                                 .texture1(outerReviewLabelList.get(3).getCategoryItemNo())
                                 .textureItemName(outerReviewLabelList.get(3).getCategoryItemName())
-                                .clothLengthCategoryNo(outerReviewLabelList.get(4).getCategoryNo())
+                                .clothLengthCategoryNo1(outerReviewLabelList.get(4).getCategoryNo())
                                 .clothLength1(outerReviewLabelList.get(4).getCategoryItemNo())
                                 .clothLengthItemName(outerReviewLabelList.get(4).getCategoryItemName())
-                                .neckLineCategoryNo(outerReviewLabelList.get(5).getCategoryNo())
+                                .neckLineCategoryNo1(outerReviewLabelList.get(5).getCategoryNo())
                                 .neckLine1(outerReviewLabelList.get(5).getCategoryItemNo())
                                 .neckLineItemName(outerReviewLabelList.get(5).getCategoryItemName())
-                                .karaCategoryNo(outerReviewLabelList.get(6).getCategoryNo())
+                                .karaCategoryNo1(outerReviewLabelList.get(6).getCategoryNo())
                                 .kara1(outerReviewLabelList.get(6).getCategoryItemNo())
                                 .karaItemName(outerReviewLabelList.get(6).getCategoryItemName())
-                                .fitCategoryNo(outerReviewLabelList.get(7).getCategoryNo())
+                                .fitCategoryNo1(outerReviewLabelList.get(7).getCategoryNo())
                                 .fit1(outerReviewLabelList.get(7).getCategoryItemNo())
                                 .fitItemName(outerReviewLabelList.get(7).getCategoryItemName())
                                 .build();
@@ -463,28 +441,28 @@ public class KfashionLabelController {
                 if(labelNo2 == 2) {
                         List<KfashionLabel> topReviewLabelList = kfashionLabelService.selectTopReviewLabelList(workNo);
                                 ReviewLabel topReviewLabel =  ReviewLabel.builder()
-                                        .categoryCategoryNo(topReviewLabelList.get(0).getCategoryNo())
+                                        .categoryCategoryNo2(topReviewLabelList.get(0).getCategoryNo())
                                         .category2(topReviewLabelList.get(0).getCategoryItemNo())
                                         .categoryItemName(topReviewLabelList.get(0).getCategoryItemName())
-                                        .detailCategoryNo(topReviewLabelList.get(1).getCategoryNo())
+                                        .detailCategoryNo2(topReviewLabelList.get(1).getCategoryNo())
                                         .detail2(topReviewLabelList.get(1).getCategoryItemNo())
                                         .detailItemName(topReviewLabelList.get(1).getCategoryItemName())
-                                        .printCategoryNo(topReviewLabelList.get(2).getCategoryNo())
+                                        .printCategoryNo2(topReviewLabelList.get(2).getCategoryNo())
                                         .print2(topReviewLabelList.get(2).getCategoryItemNo())
                                         .printItemName(topReviewLabelList.get(2).getCategoryItemName())
-                                        .textureCategoryNo(topReviewLabelList.get(3).getCategoryNo())
+                                        .textureCategoryNo2(topReviewLabelList.get(3).getCategoryNo())
                                         .texture2(topReviewLabelList.get(3).getCategoryItemNo())
                                         .textureItemName(topReviewLabelList.get(3).getCategoryItemName())
-                                        .clothLengthCategoryNo(topReviewLabelList.get(4).getCategoryNo())
+                                        .clothLengthCategoryNo2(topReviewLabelList.get(4).getCategoryNo())
                                         .clothLength2(topReviewLabelList.get(4).getCategoryItemNo())
                                         .clothLengthItemName(topReviewLabelList.get(4).getCategoryItemName())
-                                        .neckLineCategoryNo(topReviewLabelList.get(5).getCategoryNo())
+                                        .neckLineCategoryNo2(topReviewLabelList.get(5).getCategoryNo())
                                         .neckLine2(topReviewLabelList.get(5).getCategoryItemNo())
                                         .neckLineItemName(topReviewLabelList.get(5).getCategoryItemName())
-                                        .karaCategoryNo(topReviewLabelList.get(6).getCategoryNo())
+                                        .karaCategoryNo2(topReviewLabelList.get(6).getCategoryNo())
                                         .kara2(topReviewLabelList.get(6).getCategoryItemNo())
                                         .karaItemName(topReviewLabelList.get(6).getCategoryItemName())
-                                        .fitCategoryNo(topReviewLabelList.get(7).getCategoryNo())
+                                        .fitCategoryNo2(topReviewLabelList.get(7).getCategoryNo())
                                         .fit2(topReviewLabelList.get(7).getCategoryItemNo())
                                         .fitItemName(topReviewLabelList.get(7).getCategoryItemName())
                                         .build();
@@ -494,30 +472,24 @@ public class KfashionLabelController {
                 if(labelNo3 == 3) {
                 List<KfashionLabel> pantsReviewLabelList = kfashionLabelService.selectPantsReviewLabelList(workNo);
                         ReviewLabel pantsReviewLabel =  ReviewLabel.builder()
-                                .categoryCategoryNo(pantsReviewLabelList.get(0).getCategoryNo())
+                                .categoryCategoryNo3(pantsReviewLabelList.get(0).getCategoryNo())
                                 .category3(pantsReviewLabelList.get(0).getCategoryItemNo())
                                 .categoryItemName(pantsReviewLabelList.get(0).getCategoryItemName())
-                                .detailCategoryNo(pantsReviewLabelList.get(1).getCategoryNo())
+                                .detailCategoryNo3(pantsReviewLabelList.get(1).getCategoryNo())
                                 .detail3(pantsReviewLabelList.get(1).getCategoryItemNo())
                                 .detailItemName(pantsReviewLabelList.get(1).getCategoryItemName())
-                                .printCategoryNo(pantsReviewLabelList.get(2).getCategoryNo())
+                                .printCategoryNo3(pantsReviewLabelList.get(2).getCategoryNo())
                                 .print3(pantsReviewLabelList.get(2).getCategoryItemNo())
                                 .printItemName(pantsReviewLabelList.get(2).getCategoryItemName())
-                                .textureCategoryNo(pantsReviewLabelList.get(3).getCategoryNo())
+                                .textureCategoryNo3(pantsReviewLabelList.get(3).getCategoryNo())
                                 .texture3(pantsReviewLabelList.get(3).getCategoryItemNo())
                                 .textureItemName(pantsReviewLabelList.get(3).getCategoryItemName())
-                                .clothLengthCategoryNo(pantsReviewLabelList.get(4).getCategoryNo())
+                                .clothLengthCategoryNo3(pantsReviewLabelList.get(4).getCategoryNo())
                                 .clothLength3(pantsReviewLabelList.get(4).getCategoryItemNo())
                                 .clothLengthItemName(pantsReviewLabelList.get(4).getCategoryItemName())
-                                .neckLineCategoryNo(pantsReviewLabelList.get(5).getCategoryNo())
-                                .neckLine3(pantsReviewLabelList.get(5).getCategoryItemNo())
-                                .neckLineItemName(pantsReviewLabelList.get(5).getCategoryItemName())
-                                .karaCategoryNo(pantsReviewLabelList.get(6).getCategoryNo())
-                                .kara3(pantsReviewLabelList.get(6).getCategoryItemNo())
-                                .karaItemName(pantsReviewLabelList.get(6).getCategoryItemName())
-                                .fitCategoryNo(pantsReviewLabelList.get(7).getCategoryNo())
-                                .fit3(pantsReviewLabelList.get(7).getCategoryItemNo())
-                                .fitItemName(pantsReviewLabelList.get(7).getCategoryItemName())
+                                .fitCategoryNo3(pantsReviewLabelList.get(5).getCategoryNo())
+                                .fit3(pantsReviewLabelList.get(5).getCategoryItemNo())
+                                .fitItemName(pantsReviewLabelList.get(5).getCategoryItemName())
                                 .build();
                         resultMap.put("pantsReviewLabel", pantsReviewLabel);
                         System.out.println(pantsReviewLabel);
@@ -525,33 +497,54 @@ public class KfashionLabelController {
                 if(labelNo4 == 4) {
                 List<KfashionLabel> onePieceReviewLabelList = kfashionLabelService.selectOnePieceReviewLabelList(workNo);
                         ReviewLabel onePieceReviewLabel =  ReviewLabel.builder()
-                                .categoryCategoryNo(onePieceReviewLabelList.get(0).getCategoryNo())
+                                .categoryCategoryNo4(onePieceReviewLabelList.get(0).getCategoryNo())
                                 .category4(onePieceReviewLabelList.get(0).getCategoryItemNo())
                                 .categoryItemName(onePieceReviewLabelList.get(0).getCategoryItemName())
-                                .detailCategoryNo(onePieceReviewLabelList.get(1).getCategoryNo())
+                                .detailCategoryNo4(onePieceReviewLabelList.get(1).getCategoryNo())
                                 .detail4(onePieceReviewLabelList.get(1).getCategoryItemNo())
                                 .detailItemName(onePieceReviewLabelList.get(1).getCategoryItemName())
-                                .printCategoryNo(onePieceReviewLabelList.get(2).getCategoryNo())
+                                .printCategoryNo4(onePieceReviewLabelList.get(2).getCategoryNo())
                                 .print4(onePieceReviewLabelList.get(2).getCategoryItemNo())
                                 .printItemName(onePieceReviewLabelList.get(2).getCategoryItemName())
-                                .textureCategoryNo(onePieceReviewLabelList.get(3).getCategoryNo())
+                                .textureCategoryNo4(onePieceReviewLabelList.get(3).getCategoryNo())
                                 .texture4(onePieceReviewLabelList.get(3).getCategoryItemNo())
                                 .textureItemName(onePieceReviewLabelList.get(3).getCategoryItemName())
-                                .clothLengthCategoryNo(onePieceReviewLabelList.get(4).getCategoryNo())
+                                .clothLengthCategoryNo4(onePieceReviewLabelList.get(4).getCategoryNo())
                                 .clothLength4(onePieceReviewLabelList.get(4).getCategoryItemNo())
                                 .clothLengthItemName(onePieceReviewLabelList.get(4).getCategoryItemName())
-                                .neckLineCategoryNo(onePieceReviewLabelList.get(5).getCategoryNo())
+                                .neckLineCategoryNo4(onePieceReviewLabelList.get(5).getCategoryNo())
                                 .neckLine4(onePieceReviewLabelList.get(5).getCategoryItemNo())
                                 .neckLineItemName(onePieceReviewLabelList.get(5).getCategoryItemName())
-                                .karaCategoryNo(onePieceReviewLabelList.get(6).getCategoryNo())
+                                .karaCategoryNo4(onePieceReviewLabelList.get(6).getCategoryNo())
                                 .kara4(onePieceReviewLabelList.get(6).getCategoryItemNo())
                                 .karaItemName(onePieceReviewLabelList.get(6).getCategoryItemName())
-                                .fitCategoryNo(onePieceReviewLabelList.get(7).getCategoryNo())
+                                .fitCategoryNo4(onePieceReviewLabelList.get(7).getCategoryNo())
                                 .fit4(onePieceReviewLabelList.get(7).getCategoryItemNo())
                                 .fitItemName(onePieceReviewLabelList.get(7).getCategoryItemName())
                                 .build();
                         resultMap.put("onePieceReviewLabel", onePieceReviewLabel);
                         System.out.println(onePieceReviewLabel);
+                }
+                if(labelNo5 == 5) {
+                        List<KfashionLabel> styleReviewLabelList = kfashionLabelService.selectStyleReviewLabelList(workNo);
+                        if(styleReviewLabelList.size() == 2){
+                                ReviewLabel styleReviewLabel =  ReviewLabel.builder()
+                                        .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
+                                        .style(styleReviewLabelList.get(0).getCategoryItemNo())
+                                        .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
+                                        .styleCategorySubNo(styleReviewLabelList.get(1).getCategoryNo())
+                                        .styleSub(styleReviewLabelList.get(1).getCategoryItemNo())
+                                        .styleSubItemName(styleReviewLabelList.get(1).getCategoryItemName())
+                                        .build();
+                                resultMap.put("styleReviewLabel", styleReviewLabel);
+                        }else {
+                                ReviewLabel styleReviewLabel =  ReviewLabel.builder()
+                                        .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
+                                        .style(styleReviewLabelList.get(0).getCategoryItemNo())
+                                        .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
+                                        .build();
+                                resultMap.put("styleReviewLabel", styleReviewLabel);
+                        }
                 }
                 return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }

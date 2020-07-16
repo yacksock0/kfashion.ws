@@ -2,7 +2,7 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Category2 from "../step3/Category2";
 import Detail2 from "./Detail2";
 import Print2 from "../step3/Print2";
@@ -88,8 +88,6 @@ class CategoryComponent2 extends React.Component {
         this.handleDeleteTexture = this.handleDeleteTexture.bind(this)
         this.handleDeleteKara = this.handleDeleteKara.bind(this)
         this.handleDeleteFit = this.handleDeleteFit.bind(this)
-        this.handleDeleteSafe = this.handleDeleteSafe.bind(this)
-        this.handleDeleteSilhouette = this.handleDeleteSilhouette.bind(this)
 
     }
     componentDidMount() {
@@ -204,22 +202,7 @@ class CategoryComponent2 extends React.Component {
             fitName:'',
         })
     }
-    handleDeleteSafe(){
-        this.setState({
-            safeNo:0,
-            safeName:'',
-        })
-    }
-    handleDeleteSilhouette(){
-        this.setState({
-            silhouetteNo:0,
-            silhouetteName:'',
-        })
-    }
     handleSubmit(){
-            const createdId=this.props.authStore.loginUser.id;
-            this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-            this.props.professionalLabelStore.doProfessionalLabelUp();
         if(this.props.onClick){
             this.props.onClick();
         }
@@ -307,6 +290,38 @@ class CategoryComponent2 extends React.Component {
                                             </div>
                                             {this.state.lengthNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {this.state.lengthName} </Button> ) : ''
+                                            }
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={12} lg={6}>
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
+                                                넥라인
+                                            </Typography>
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <NeckLine2 onClick={this.handleClickNeckLine}/>
+                                            </div>
+                                            <div>
+                                                <hr></hr>
+                                            </div>
+                                            {this.state.necklineNo > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
+                                            }
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={12} lg={6}>
+                                        <div className={classes.content} style={{display:'inline'}}>
+                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
+                                                칼라(카라)
+                                            </Typography>
+                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                                                <ColorKara2 onClick={this.handleClickKara}/>
+                                            </div>
+                                            <div>
+                                                <hr></hr>
+                                            </div>
+                                            {this.state.karaNo > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
