@@ -98,13 +98,34 @@ public class ReviewLabel {
 
     private String styleItemName;
     private String styleSubItemName;
-    private String categoryItemName;
-    private String detailItemName;
-    private String printItemName;
-    private String textureItemName;
-    private String clothLengthItemName;
-    private String neckLineItemName;
-    private String karaItemName;
-    private String fitItemName;
-
+    private String categoryItemName1;
+    private String categoryItemName2;
+    private String categoryItemName3;
+    private String categoryItemName4;
+    private String detailItemName1;
+    private String detailItemName2;
+    private String detailItemName3;
+    private String detailItemName4;
+    private String printItemName1;
+    private String printItemName2;
+    private String printItemName3;
+    private String printItemName4;
+    private String textureItemName1;
+    private String textureItemName2;
+    private String textureItemName3;
+    private String textureItemName4;
+    private String clothLengthItemName1;
+    private String clothLengthItemName2;
+    private String clothLengthItemName3;
+    private String clothLengthItemName4;
+    private String neckLineItemName1;
+    private String neckLineItemName2;
+    private String neckLineItemName4;
+    private String karaItemName1;
+    private String karaItemName2;
+    private String karaItemName4;
+    private String fitItemName1;
+    private String fitItemName2;
+    private String fitItemName3;
+    private String fitItemName4;
 }

@@ -32,37 +32,22 @@ export default class Style extends React.Component {
         axios.get('/api/v1/kfashion/category/item/professional/style')
             .then(response => {
                 const styleList = response.data.styleList;
-                this.setState({ styleList : styleList.map(style => {
-                        style.value = style.no;
-                        style.label = style.categoryItemName;
-                        return style
+                this.setState({ styleList : styleList
                     })
-                })
             })
             .catch(error => {
                 console.log(error)
             })
     }
     handleClick = (style) => {
-        this.setState({
-            selectedNo:style.no,
-            selectedName:style.categoryItemName
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelStyle(style);
         this.props.professionalLabelStore.changeNewProfessionalLabelNo5(5);
     };
     handleClickSub = (styleSub) =>{
         this.setState({
-            selectedSubNo:styleSub.no,
-            selectedSubName:styleSub.categoryItemName,
             open:false,
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelStyleSub(styleSub);
-        // if(this.props.onClick) {
-        //     this.props.onClick(this.state.selectedNo,this.state.selectedName,
-        //         this.state.selectedSubNo,
-        //         this.state.selectedSubName);
-        // }
     }
     handleClickOpen(){
         this.setState({
@@ -75,23 +60,15 @@ export default class Style extends React.Component {
         });
     }
     handleDelete(){
-        this.setState({
-            selectedNo:0,
-            selectedName:'',
-            selectedSubNo:0,
-            selectedSubName:'',
-        })
+        this.props.professionalLabelStore.deleteStyle();
         this.props.professionalLabelStore.changeNewProfessionalLabelNo5(0);
     }
     handleDeleteSub(){
-        this.setState({
-            selectedSubNo: 0,
-            selectedSubName: '',
-        })
+        this.props.professionalLabelStore.deleteSubStyle();
     }
     render() {
         const styleList= this.state.styleList;
-        const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel} =this.props.workStore;
+        const {styleReviewLabel} =this.props.professionalLabelStore;
         return (
             <div>
                 <Grid item xs={12} lg={12}>
@@ -106,13 +83,13 @@ export default class Style extends React.Component {
                             <hr></hr>
                         </div>
                         <div style={{display:"inline-block", marginRight:10}}>
-                        {this.state.selectedNo > 0 ?
-                            (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.selectedName} </Button> ) : ''
-                        }
+                            {styleReviewLabel.styleCategoryNo > 0 ?
+                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {styleReviewLabel.styleItemName} </Button> ) : ''
+                            }
                         </div>
                         <div style={{display:"inline-block"}}>
-                            {this.state.selectedSubNo > 0 ?
-                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteSub} endIcon={<DeleteIcon />} > {this.state.selectedSubName} </Button> ) : ''
+                            {styleReviewLabel.styleCategorySubNo > 0 ?
+                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteSub} endIcon={<DeleteIcon />} > {styleReviewLabel.styleSubItemName} </Button> ) : ''
                             }
                         </div>
                     </div>
@@ -126,20 +103,20 @@ export default class Style extends React.Component {
                     <DialogContent>
                         <Grid container style={{height:'100%'}}>
                             <Grid item xs={6} style={{padding:10}}>
-                        <Typography variant="h5" component="h2" style={{display:'inline'}}>
-                            메인 스타일
-                        </Typography>
+                                <Typography variant="h5" component="h2" style={{display:'inline'}}>
+                                    메인 스타일
+                                </Typography>
                                 <div style={{display:'inline-block', float:'right', marginTop: -3}}>
-                                {this.state.selectedNo > 0 ?
-                                    (<Chip
-                                        variant="outlined"
-                                        label={this.state.selectedName}
-                                        onDelete={this.handleDelete}
-                                        color="primary"
-                                    />) : ''
-                                }
+                                    {styleReviewLabel.styleCategoryNo > 0 ?
+                                        (<Chip
+                                            variant="outlined"
+                                            label={styleReviewLabel.styleItemName}
+                                            onDelete={this.handleDelete}
+                                            color="primary"
+                                        />) : ''
+                                    }
                                 </div>
-                        <hr></hr>
+                                <hr></hr>
                                 <Grid container>
                                     {styleList.map((style) =>
                                         <Grid item xs={3}>
@@ -158,20 +135,20 @@ export default class Style extends React.Component {
                                     서브 스타일
                                 </Typography>
                                 <hr></hr>
-                                {!this.state.selectedNo == 0 ?
-                                <Grid container>
-                                    {styleList.map((style) =>
-                                        <Grid item xs={3}>
-                                            <div style={{textAlign:'center', margin:5}}>
-                                                <Button style={{width:'100%', height:60,padding:0}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
-                                                    <h3>{style.categoryItemName}</h3>
-                                                </Button>
-                                            </div>
-                                        </Grid>
-                                    )
-                                    }
-                                </Grid>
-                                :''}
+                                {!styleReviewLabel.styleCategoryNo == 0 ?
+                                    <Grid container>
+                                        {styleList.map((style) =>
+                                            <Grid item xs={3}>
+                                                <div style={{textAlign:'center', margin:5}}>
+                                                    <Button style={{width:'100%', height:60,padding:0}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
+                                                        <h3>{style.categoryItemName}</h3>
+                                                    </Button>
+                                                </div>
+                                            </Grid>
+                                        )
+                                        }
+                                    </Grid>
+                                    :''}
                             </Grid>
                         </Grid>
                     </DialogContent>

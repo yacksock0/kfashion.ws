@@ -43,9 +43,7 @@ class WorkedImg extends React.Component  {
     }
 
     handleClick=(item)=>{
-        if(this.props.onClick){
-            this.props.onClick(item)
-        }
+        this.props.professionalLabelStore.LoadLabelList(item.workNo);
     }
     render() {
         const {recentlyImg} = this.props.professionalLabelStore;

@@ -93,114 +93,58 @@ class CategoryComponent2 extends React.Component {
     componentDidMount() {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
+
     handleClickCategory=(category)=>{
-        console.log(category.no);
-        this.setState({
-            categoryNo: category.no,
-            categoryName: category.categoryItemName,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory2(category);
         this.props.professionalLabelStore.changeNewProfessionalLabelNo2(2);
     }
 
     handleClickDetail=(detail)=>{
-        this.setState({
-            detailNo: detail.no,
-            detailName: detail.categoryItemName,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelDetail2(detail);
     }
     handleClickPrint=(print)=>{
-        this.setState({
-            printNo: print.no,
-            printName: print.categoryItemName,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelPrint2(print);
     }
     handleClickTexture=(texture)=>{
-        this.setState({
-            textureNo: texture.no,
-            textureName: texture.categoryItemName,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelTexture2(texture);
     }
     handleClickCloth=(length)=>{
-        this.setState({
-            lengthNo: length.no,
-            lengthName: length.categoryItemName,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelClothLength2(length);
     }
     handleClickNeckLine=(neckline)=>{
-        this.setState({
-            necklineNo: neckline.no,
-            necklineName: neckline.categoryItemName,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine2(neckline);
     }
     handleClickKara=(kara)=>{
-        this.setState({
-            karaNo: kara.no,
-            karaName: kara.categoryItemName,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelKara2(kara);
     }
     handleClickFit=(fit)=>{
-        this.setState({
-            fitNo: fit.no,
-            fitName: fit.categoryItemName,
-        })
         this.props.professionalLabelStore.changeNewProfessionalLabelFit2(fit);
     }
 
     handleDelete(){
-        this.setState({
-            categoryNo:0,
-            categoryName:'',
-        })
+        this.props.professionalLabelStore.deleteCategory2();
         this.props.professionalLabelStore.changeNewProfessionalLabelNo2(0);
     }
     handleDeleteCloth(){
-        this.setState({
-            lengthNo:0,
-            lengthName:'',
-        })
+        this.props.professionalLabelStore.deleteClothLength2();
     }
     handleDeleteDetail(){
-        this.setState({
-            detailNo:0,
-            detailName:'',
-        })
+        this.props.professionalLabelStore.deleteDetail2();
     }
     handleDeletePrint(){
-        this.setState({
-            printNo:0,
-            printName:'',
-        })
+        this.props.professionalLabelStore.deletePrint2();
     }
     handleDeleteNeckline(){
-        this.setState({
-            necklineNo:0,
-            necklineName:'',
-        })
+        this.props.professionalLabelStore.deleteNeckLine2();
     }
     handleDeleteTexture(){
-        this.setState({
-            textureNo:0,
-            textureName:'',
-        })
+        this.props.professionalLabelStore.deleteTexture2();
     }
     handleDeleteKara(){
-        this.setState({
-            karaNo:0,
-            karaName:'',
-        })
+        this.props.professionalLabelStore.deleteKara2();
     }
     handleDeleteFit(){
-        this.setState({
-            fitNo:0,
-            fitName:'',
-        })
+        this.props.professionalLabelStore.deleteFit2();
     }
     handleSubmit(){
         if(this.props.onClick){
@@ -209,6 +153,7 @@ class CategoryComponent2 extends React.Component {
     }
     render() {
         const {classes} = this.props;
+        const {topReviewLabel} = this.props.professionalLabelStore;
         console.log('lastIndex', this.props.polyLast)
         console.log('tabIndex1', this.props.tabIndex1)
         return (
@@ -224,8 +169,8 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {this.state.categoryNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.categoryName} </Button> ) : ''
+                                            {topReviewLabel.categoryCategoryNo2 > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.categoryItemName2} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -240,8 +185,8 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {this.state.detailNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {this.state.detailName} </Button> ) : ''
+                                            {topReviewLabel.detailCategoryNo2 > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {topReviewLabel.detailItemName2} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -256,8 +201,8 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {this.state.printNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {this.state.printName} </Button> ) : ''
+                                            {topReviewLabel.printCategoryNo2 > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {topReviewLabel.printItemName2} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -272,8 +217,8 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {this.state.textureNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {this.state.textureName} </Button> ) : ''
+                                            {topReviewLabel.textureCategoryNo2 > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {topReviewLabel.textureItemName2} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -288,8 +233,8 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {this.state.lengthNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {this.state.lengthName} </Button> ) : ''
+                                            {topReviewLabel.clothLengthCategoryNo2 > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {topReviewLabel.clothLengthItemName2} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -304,8 +249,8 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {this.state.necklineNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
+                                            {topReviewLabel.neckLineCategoryNo > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {topReviewLabel.neckLineItemName2} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -320,8 +265,8 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {this.state.karaNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
+                                            {topReviewLabel.karaCategoryNo2 > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {topReviewLabel.karaItemName2} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -336,8 +281,8 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {this.state.fitNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
+                                            {topReviewLabel.fitCategoryNo2 > 0 ?
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {topReviewLabel.fitItemName2} </Button> ) : ''
                                             }
                                         </div>
                                         <Button style={{marginTop: 50}}
