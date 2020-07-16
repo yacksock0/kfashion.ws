@@ -8,7 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from "@material-ui/core/Chip";
 import {withStyles} from "@material-ui/core/styles";
 
-@inject('professionalLabelStore','authStore')
+@inject('professionalLabelStore','authStore', 'workStore')
 @observer
 export default class Style extends React.Component {
     constructor(props) {
@@ -90,6 +90,7 @@ export default class Style extends React.Component {
     }
     render() {
         const styleList= this.state.styleList;
+        const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel} =this.props.workStore;
         return (
             <div>
                 <Grid item xs={12} lg={12}>
@@ -104,6 +105,8 @@ export default class Style extends React.Component {
                             <hr></hr>
                         </div>
                         <div style={{display:"inline-block", marginRight:10}}>
+                            <Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.styleItemName} </Button>
+                            <Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.styleSubItemName} </Button>
                         {this.state.selectedNo > 0 ?
                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.selectedName} </Button> ) : ''
                         }

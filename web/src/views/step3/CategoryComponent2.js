@@ -317,38 +317,6 @@ class CategoryComponent2 extends React.Component {
                                     <Grid item xs={12} lg={6}>
                                         <div className={classes.content} style={{display:'inline'}}>
                                             <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                넥라인
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <NeckLine onClick={this.handleClickNeckLine}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {this.state.necklineNo > 0 ?
-                                            (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                칼라(카라)
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <ColorKara onClick={this.handleClickKara}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {this.state.karaNo > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
                                                 핏
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
