@@ -99,8 +99,6 @@ class CategoryComponent1 extends React.Component {
         this.handleDeleteTexture = this.handleDeleteTexture.bind(this)
         this.handleDeleteKara = this.handleDeleteKara.bind(this)
         this.handleDeleteFit = this.handleDeleteFit.bind(this)
-        this.handleDeleteSafe = this.handleDeleteSafe.bind(this)
-        this.handleDeleteSilhouette = this.handleDeleteSilhouette.bind(this)
 
     }
     componentDidMount() {
@@ -213,12 +211,6 @@ class CategoryComponent1 extends React.Component {
         this.setState({
             fitNo:0,
             fitName:'',
-        })
-    }
-    handleDeleteSafe(){
-        this.setState({
-            safeNo:0,
-            safeName:'',
         })
     }
     handleSubmit(){

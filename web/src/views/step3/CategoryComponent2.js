@@ -88,8 +88,6 @@ class CategoryComponent2 extends React.Component {
         this.handleDeleteTexture = this.handleDeleteTexture.bind(this)
         this.handleDeleteKara = this.handleDeleteKara.bind(this)
         this.handleDeleteFit = this.handleDeleteFit.bind(this)
-        this.handleDeleteSafe = this.handleDeleteSafe.bind(this)
-        this.handleDeleteSilhouette = this.handleDeleteSilhouette.bind(this)
 
     }
     componentDidMount() {
