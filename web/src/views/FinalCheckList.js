@@ -7,7 +7,6 @@ import Edit from '@material-ui/icons/Edit';
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
 import {Container, Grid} from "@material-ui/core";
-import 'react-tabs/style/react-tabs.css';
 import AddBox from "@material-ui/icons/AddBox";
 import Check from "@material-ui/icons/Check";
 import Clear from "@material-ui/icons/Clear";

@@ -129,7 +129,6 @@ export default class ProfessionalLabelStore {
     @action initStore = () => {
         this.professionalList = [];
     }
-
     @action changeNewProfessionalLabelNo1 = (labelNo1) => {
         this.newProfessionalLabel.labelNo1 = labelNo1;
     }
@@ -591,7 +590,6 @@ export default class ProfessionalLabelStore {
         this.state = State.Pending;
         try {
                 const param = toJS(this.newProfessionalLabel);
-
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
                     const createdId =this.newProfessionalLabel.createdId;
