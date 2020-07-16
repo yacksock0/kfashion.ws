@@ -27,8 +27,9 @@ export default class Color4 extends React.Component {
             .then(response => {
                 const colorList4 = response.data.colorList4;
                 this.setState({
-                    colorList4:colorList4,
+                    colorList4 : colorList4,
                 })
+                console.log(colorList4);
             })
             .catch(error => {
                 console.log(error)
@@ -50,17 +51,17 @@ export default class Color4 extends React.Component {
             open1: false
         });
     }
-    handledColor(color){
+    handledColor(color4){
         if(this.props.onClick) {
-            this.props.onClick(color);
+            this.props.onClick(color4);
         }
         this.setState({
             open: false
         });
     }
-    handledColorSub(color){
+    handledColorSub(color4){
         if(this.props.onClick) {
-            this.props.onClickSub(color);
+            this.props.onClickSub(color4);
         }
         this.setState({
             open1: false
@@ -82,12 +83,12 @@ export default class Color4 extends React.Component {
                 </Typography>
                 <hr></hr>
                 <div style={{textAlign:'center'}}>
-                    {colorList4.map((color) =>
-                     <Button key={color.no} onClick={() => this.handledColor(color)}>
+                    {colorList4.map((color4) =>
+                     <Button key={color4.no} onClick={() => this.handledColor(color4)}>
                          <div>
-                         <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>
+                         <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color4.categoryItemMemo}`}}>
                          </div>
-                         <div style={{display:'inline-block'}}>{color.categoryItemName}
+                         <div style={{display:'inline-block'}}>{color4.categoryItemName}
                          </div>
                          </div>
                      </Button>
@@ -105,12 +106,12 @@ export default class Color4 extends React.Component {
                         </Typography>
                         <hr></hr>
                         <div style={{textAlign:'center'}}>
-                            {colorList4.map((color) =>
-                                <Button key={color.no} onClick={() => this.handledColorSub(color)}>
+                            {colorList4.map((color4) =>
+                                <Button key={color4.no} onClick={() => this.handledColorSub(color4)}>
                                     <div>
-                                        <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>
+                                        <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color4.categoryItemMemo}`}}>
                                         </div>
-                                        <div style={{display:'inline-block'}}>{color.categoryItemName}
+                                        <div style={{display:'inline-block'}}>{color4.categoryItemName}
                                         </div>
                                     </div>
                                 </Button>

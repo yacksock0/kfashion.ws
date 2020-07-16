@@ -50,17 +50,17 @@ export default class Color3 extends React.Component {
             open1: false
         });
     }
-    handledColor(color){
+    handledColor(color3){
         if(this.props.onClick) {
-            this.props.onClick(color);
+            this.props.onClick(color3);
         }
         this.setState({
             open: false
         });
     }
-    handledColorSub(color){
+    handledColorSub(color3){
         if(this.props.onClick) {
-            this.props.onClickSub(color);
+            this.props.onClickSub(color3);
         }
         this.setState({
             open1: false
@@ -82,12 +82,12 @@ export default class Color3 extends React.Component {
                 </Typography>
                 <hr></hr>
                 <div style={{textAlign:'center'}}>
-                    {colorList3.map((color) =>
-                     <Button key={color.no} onClick={() => this.handledColor(color)}>
+                    {colorList3.map((color3) =>
+                     <Button key={color3.no} onClick={() => this.handledColor(color3)}>
                          <div>
-                         <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>
+                         <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color3.categoryItemMemo}`}}>
                          </div>
-                         <div style={{display:'inline-block'}}>{color.categoryItemName}
+                         <div style={{display:'inline-block'}}>{color3.categoryItemName}
                          </div>
                          </div>
                      </Button>
@@ -105,12 +105,12 @@ export default class Color3 extends React.Component {
                         </Typography>
                         <hr></hr>
                         <div style={{textAlign:'center'}}>
-                            {colorList3.map((color) =>
-                                <Button key={color.no} onClick={() => this.handledColorSub(color)}>
+                            {colorList3.map((color3) =>
+                                <Button key={color3.no} onClick={() => this.handledColorSub(color3)}>
                                     <div>
-                                        <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>
+                                        <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color3.categoryItemMemo}`}}>
                                         </div>
-                                        <div style={{display:'inline-block'}}>{color.categoryItemName}
+                                        <div style={{display:'inline-block'}}>{color3.categoryItemName}
                                         </div>
                                     </div>
                                 </Button>
