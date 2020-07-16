@@ -439,7 +439,6 @@ class Step2 extends React.Component {
         })
     }
 
-
     lineTwoPoint =[];
     x;
     y;
