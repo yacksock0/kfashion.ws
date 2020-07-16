@@ -2,7 +2,7 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Typography} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import Category2 from "../step3/Category2";
 import Detail2 from "./Detail2";
 import Print2 from "../step3/Print2";
@@ -204,22 +204,7 @@ class CategoryComponent2 extends React.Component {
             fitName:'',
         })
     }
-    handleDeleteSafe(){
-        this.setState({
-            safeNo:0,
-            safeName:'',
-        })
-    }
-    handleDeleteSilhouette(){
-        this.setState({
-            silhouetteNo:0,
-            silhouetteName:'',
-        })
-    }
     handleSubmit(){
-            const createdId=this.props.authStore.loginUser.id;
-            this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-            this.props.professionalLabelStore.doProfessionalLabelUp();
         if(this.props.onClick){
             this.props.onClick();
         }

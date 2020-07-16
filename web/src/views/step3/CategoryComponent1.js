@@ -221,15 +221,7 @@ class CategoryComponent1 extends React.Component {
             safeName:'',
         })
     }
-    handleDeleteSilhouette(){
-        this.setState({
-            silhouetteNo:0,
-            silhouetteName:'',
-        })
-    }
     handleSubmit(){
-        const createdId=this.props.authStore.loginUser.id;
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
         if(this.props.onClick){
             this.props.onClick();
         }
