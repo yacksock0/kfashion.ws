@@ -24,6 +24,7 @@ import GroupList from "./GroupList";
 import {toJS} from "mobx";
 import {inject, observer} from "mobx-react";
 import ErrorIcon from "@material-ui/icons/Error";
+import CheckIcon from "@material-ui/icons/Check";
 
 const styles = theme => ({
     mainContainer: {
@@ -74,6 +75,7 @@ class UserList extends React.Component {
             id:'',
             name:'',
             password:'',
+            hidden : true,
             columns: [
                 {
                     title: '아이디',
@@ -83,7 +85,7 @@ class UserList extends React.Component {
                     editPlaceholder: '아이디 입력',
                 },
                 {title: '이름', field: 'name', type: 'text'},
-                {title: '비밀번호', field: 'password'},
+                {title: '비밀번호', field: 'password' },
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                 {title: '비고', field: 'etc', type: 'text'},
             ],
@@ -99,6 +101,14 @@ class UserList extends React.Component {
         this.props.authStore.checkLogin();
     }
 
+    handelOnChange=() => {
+        if(this.state.columns.hidden == true) {
+            this.setState({
+                hidden : false,
+            })
+        }
+
+    }
 
 
     render() {
@@ -111,10 +121,14 @@ class UserList extends React.Component {
                     <Grid item xs={12} lg={12}>
                         <MaterialTable
                             icons={tableIcons}
-                            localization={{ body: { editRow: { deleteText: '정말 삭제 하시겠습니까?'} } ,pagination: {
+                            localization={{ body: {
+                                editRow: { deleteText: '정말 삭제 하시겠습니까?'} } ,
+                                pagination: {
                                     labelDisplayedRows: '10',
-                                    labelRowsPerPage: '5'
-                                }}}
+                                    labelRowsPerPage: '5',
+                                    }
+                                }
+                            }
                             columns={this.state.columns}
                             data={!!this.props.userListStore.groupUserList ?
                                 this.props.userListStore.groupUserList.map((item) => {

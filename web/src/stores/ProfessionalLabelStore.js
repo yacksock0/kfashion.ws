@@ -285,6 +285,7 @@ export default class ProfessionalLabelStore {
                     this.LoadProfessionalList(createdId);
                     this.LoadRecentImage(createdId);
                 } else {
+                    this.state = State.Fail;
                 }
         } catch (e) {
             console.log('에러좀 나지 마라')
