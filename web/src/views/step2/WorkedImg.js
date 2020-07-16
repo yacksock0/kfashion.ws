@@ -47,13 +47,11 @@ class WorkedImg extends React.Component  {
     handleClick=(item)=>{
         if(this.props.onClick){
             this.props.onClick(item)
-
         }
     }
     render() {
         const {recentlyImg} = this.props.imageStore;
         const {classes} = this.props;
-        console.log('recentlyImg',recentlyImg)
         return (
             <div className={classes.root}>
                 <Grid item xs={12}>
