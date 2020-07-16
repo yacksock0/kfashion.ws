@@ -112,8 +112,8 @@ class CategoryComponent4 extends React.Component {
             categoryNo: category.no,
             categoryName: category.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelCategory(category);
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
+        this.props.professionalLabelStore.changeNewProfessionalLabelCategory4(category);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo4(4);
     }
 
     handleClickDetail=(detail)=>{
@@ -121,49 +121,49 @@ class CategoryComponent4 extends React.Component {
             detailNo: detail.no,
             detailName: detail.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelDetail(detail);
+        this.props.professionalLabelStore.changeNewProfessionalLabelDetail4(detail);
     }
     handleClickPrint=(print)=>{
         this.setState({
             printNo: print.no,
             printName: print.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelPrint(print);
+        this.props.professionalLabelStore.changeNewProfessionalLabelPrint4(print);
     }
     handleClickTexture=(texture)=>{
         this.setState({
             textureNo: texture.no,
             textureName: texture.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelTexture(texture);
+        this.props.professionalLabelStore.changeNewProfessionalLabelTexture4(texture);
     }
     handleClickCloth=(length)=>{
         this.setState({
             lengthNo: length.no,
             lengthName: length.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength(length);
+        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength4(length);
     }
     handleClickNeckLine=(neckline)=>{
         this.setState({
             necklineNo: neckline.no,
             necklineName: neckline.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine(neckline);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine4(neckline);
     }
     handleClickKara=(kara)=>{
         this.setState({
             karaNo: kara.no,
             karaName: kara.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelKara(kara);
+        this.props.professionalLabelStore.changeNewProfessionalLabelKara4(kara);
     }
     handleClickFit=(fit)=>{
         this.setState({
             fitNo: fit.no,
             fitName: fit.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelFit(fit);
+        this.props.professionalLabelStore.changeNewProfessionalLabelFit4(fit);
     }
 
     handleDelete(){
@@ -171,7 +171,7 @@ class CategoryComponent4 extends React.Component {
             categoryNo:0,
             categoryName:'',
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(0);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo4(0);
     }
     handleDeleteCloth(){
         this.setState({

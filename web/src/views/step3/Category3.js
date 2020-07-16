@@ -13,9 +13,6 @@ export default class Category3 extends React.Component {
         this.state = {
             text: 'text',
             open: false,
-            categoryList0: [],
-            categoryList1: [],
-            categoryList2: [],
             categoryList3: [],
             selectedOption:null,
         }
@@ -26,14 +23,10 @@ export default class Category3 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/category')
             .then(response => {
-                const categoryList1 = response.data.categoryList1;
-                const categoryList2 = response.data.categoryList2;
                 const categoryList3 = response.data.categoryList3;
-                const categoryList4 = response.data.categoryList4;
-                this.setState({categoryList1:categoryList1,
-                    categoryList2: categoryList2,
+                this.setState({
                     categoryList3: categoryList3,
-                    categoryList4: categoryList4})
+                    })
             })
             .catch(error => {
                 console.log(error)

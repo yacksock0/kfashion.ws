@@ -94,20 +94,20 @@ export default class ProfessionalLabelStore {
     }
 
 
-    @action changeNewProfessionalLabelNo1 = (lableNo1) => {
-        this.newProfessionalLabel.labelNo1 = lableNo1;
+    @action changeNewProfessionalLabelNo1 = (labelNo1) => {
+        this.newProfessionalLabel.labelNo1 = labelNo1;
     }
-    @action changeNewProfessionalLabelNo2 = (lableNo2) => {
-        this.newProfessionalLabel.labelNo2 = lableNo2;
+    @action changeNewProfessionalLabelNo2 = (labelNo2) => {
+        this.newProfessionalLabel.labelNo2 = labelNo2;
     }
-    @action changeNewProfessionalLabelNo3 = (lableNo3) => {
-        this.newProfessionalLabel.labelNo3 = lableNo3;
+    @action changeNewProfessionalLabelNo3 = (labelNo3) => {
+        this.newProfessionalLabel.labelNo3 = labelNo3;
     }
-    @action changeNewProfessionalLabelNo4 = (lableNo4) => {
-        this.newProfessionalLabel.labelNo4 = lableNo4;
+    @action changeNewProfessionalLabelNo4 = (labelNo4) => {
+        this.newProfessionalLabel.labelNo4 = labelNo4;
     }
-    @action changeNewProfessionalLabelNo5 = (lableNo5) => {
-        this.newProfessionalLabel.labelNo5 = lableNo5;
+    @action changeNewProfessionalLabelNo5 = (labelNo5) => {
+        this.newProfessionalLabel.labelNo5 = labelNo5;
     }
 
     @action changeNewProfessionalLabelStyle = (style) => {
@@ -120,140 +120,134 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.styleCategorySubNo = styleSub.categoryNo;
     }
 
-    @action changeNewProfessionalLabelCategory = (category) => {
-        this.newProfessionalLabel.category = category.no;
-        this.newProfessionalLabel.categoryCategoryNo = category.categoryNo;
-    }
     @action changeNewProfessionalLabelCategory1 = (category1) => {
         this.newProfessionalLabel.category1 = category1.no;
-        this.newProfessionalLabel.categoryCategoryNo = category1.categoryNo;
+        this.newProfessionalLabel.categoryCategoryNo1 = category1.categoryNo;
     }
     @action changeNewProfessionalLabelCategory2 = (category2) => {
         this.newProfessionalLabel.category2 = category2.no;
-        this.newProfessionalLabel.categoryCategoryNo = category2.categoryNo;
+        this.newProfessionalLabel.categoryCategoryNo2 = category2.categoryNo;
     }
     @action changeNewProfessionalLabelCategory3 = (category3) => {
         this.newProfessionalLabel.category3 = category3.no;
-        this.newProfessionalLabel.categoryCategoryNo = category3.categoryNo;
+        this.newProfessionalLabel.categoryCategoryNo3 = category3.categoryNo;
+    }
+    @action changeNewProfessionalLabelCategory4 = (category4) => {
+        this.newProfessionalLabel.category4 = category4.no;
+        this.newProfessionalLabel.categoryCategoryNo4 = category4.categoryNo;
     }
 
-    @action changeNewProfessionalLabelDetail = (detail) => {
-        this.newProfessionalLabel.detail = detail.no;
-        this.newProfessionalLabel.detailCategoryNo = detail.categoryNo;
-    }
     @action changeNewProfessionalLabelDetail1 = (detail1) => {
         this.newProfessionalLabel.detail1 = detail1.no;
-        this.newProfessionalLabel.detailCategoryNo = detail1.categoryNo;
+        this.newProfessionalLabel.detailCategoryNo1 = detail1.categoryNo;
     }
-    @action changeNewProfessionalLabelDetail2= (detail2) => {
+    @action changeNewProfessionalLabelDetail2 = (detail2) => {
         this.newProfessionalLabel.detail2 = detail2.no;
-        this.newProfessionalLabel.detailCategoryNo = detail2.categoryNo;
+        this.newProfessionalLabel.detailCategoryNo2 = detail2.categoryNo;
     }
-    @action changeNewProfessionalLabelDetail3 = (detail3) => {
+    @action changeNewProfessionalLabelDetail3= (detail3) => {
         this.newProfessionalLabel.detail3 = detail3.no;
-        this.newProfessionalLabel.detailCategoryNo = detail3.categoryNo;
+        this.newProfessionalLabel.detailCategoryNo3 = detail3.categoryNo;
+    }
+    @action changeNewProfessionalLabelDetail4 = (detail4) => {
+        this.newProfessionalLabel.detail4 = detail4.no;
+        this.newProfessionalLabel.detailCategoryNo4 = detail4.categoryNo;
     }
 
-    @action changeNewProfessionalLabelPrint= (print) => {
-        this.newProfessionalLabel.print = print.no;
-        this.newProfessionalLabel.printCategoryNo = print.categoryNo;
+    @action changeNewProfessionalLabelPrint4= (print4) => {
+        this.newProfessionalLabel.print4 = print4.no;
+        this.newProfessionalLabel.printCategoryNo4 = print4.categoryNo;
     }
     @action changeNewProfessionalLabelPrint1= (print1) => {
         this.newProfessionalLabel.print1 = print1.no;
-        this.newProfessionalLabel.printCategoryNo = print1.categoryNo;
+        this.newProfessionalLabel.printCategoryNo1 = print1.categoryNo;
     }
     @action changeNewProfessionalLabelPrint2= (print2) => {
         this.newProfessionalLabel.print2 = print2.no;
-        this.newProfessionalLabel.printCategoryNo = print2.categoryNo;
+        this.newProfessionalLabel.printCategoryNo2 = print2.categoryNo;
     }
     @action changeNewProfessionalLabelPrint3= (print3) => {
         this.newProfessionalLabel.print3 = print3.no;
-        this.newProfessionalLabel.printCategoryNo = print3.categoryNo;
+        this.newProfessionalLabel.printCategoryNo3 = print3.categoryNo;
     }
 
-    @action changeNewProfessionalLabelTexture = (texture) => {
-        this.newProfessionalLabel.texture = texture.no;
-        this.newProfessionalLabel.textureCategoryNo = texture.categoryNo;
+    @action changeNewProfessionalLabelTexture4 = (texture4) => {
+        this.newProfessionalLabel.texture4 = texture4.no;
+        this.newProfessionalLabel.textureCategoryNo4 = texture4.categoryNo;
     }
     @action changeNewProfessionalLabelTexture1 = (texture1) => {
         this.newProfessionalLabel.texture1 = texture1.no;
-        this.newProfessionalLabel.textureCategoryNo = texture1.categoryNo;
+        this.newProfessionalLabel.textureCategoryNo1 = texture1.categoryNo;
     }
     @action changeNewProfessionalLabelTexture2 = (texture2) => {
         this.newProfessionalLabel.texture2 = texture2.no;
-        this.newProfessionalLabel.textureCategoryNo = texture2.categoryNo;
+        this.newProfessionalLabel.textureCategoryNo2 = texture2.categoryNo;
     }
     @action changeNewProfessionalLabelTexture3 = (texture3) => {
         this.newProfessionalLabel.texture3 = texture3.no;
-        this.newProfessionalLabel.textureCategoryNo = texture3.categoryNo;
+        this.newProfessionalLabel.textureCategoryNo3 = texture3.categoryNo;
     }
 
-    @action changeNewProfessionalLabelClothLength = (clothLength) => {
-        this.newProfessionalLabel.clothLength = clothLength.no;
-        this.newProfessionalLabel.clothLengthCategoryNo = clothLength.categoryNo;
+    @action changeNewProfessionalLabelClothLength4 = (clothLength4) => {
+        this.newProfessionalLabel.clothLength4 = clothLength4.no;
+        this.newProfessionalLabel.clothLengthCategoryNo4 = clothLength4.categoryNo;
     }
     @action changeNewProfessionalLabelClothLength1 = (clothLength1) => {
         this.newProfessionalLabel.clothLength1 = clothLength1.no;
-        this.newProfessionalLabel.clothLengthCategoryNo = clothLength1.categoryNo;
+        this.newProfessionalLabel.clothLengthCategoryNo1 = clothLength1.categoryNo;
     }
     @action changeNewProfessionalLabelClothLength2 = (clothLength2) => {
         this.newProfessionalLabel.clothLength2 = clothLength2.no;
-        this.newProfessionalLabel.clothLengthCategoryNo = clothLength2.categoryNo;
+        this.newProfessionalLabel.clothLengthCategoryNo2 = clothLength2.categoryNo;
     }
     @action changeNewProfessionalLabelClothLength3 = (clothLength3) => {
         this.newProfessionalLabel.clothLength3 = clothLength3.no;
-        this.newProfessionalLabel.clothLengthCategoryNo = clothLength3.categoryNo;
+        this.newProfessionalLabel.clothLengthCategoryNo3 = clothLength3.categoryNo;
     }
 
-    @action changeNewProfessionalLabelNeckLine = (neckLine) => {
-        this.newProfessionalLabel.neckLine = neckLine.no;
-        this.newProfessionalLabel.neckLineCategoryNo = neckLine.categoryNo;
+    @action changeNewProfessionalLabelNeckLine4 = (neckLine4) => {
+        this.newProfessionalLabel.neckLine4 = neckLine4.no;
+        this.newProfessionalLabel.neckLineCategoryNo4 = neckLine4.categoryNo;
     }
     @action changeNewProfessionalLabelNeckLine1 = (neckLine1) => {
         this.newProfessionalLabel.neckLine1 = neckLine1.no;
-        this.newProfessionalLabel.neckLineCategoryNo = neckLine1.categoryNo;
+        this.newProfessionalLabel.neckLineCategoryNo1 = neckLine1.categoryNo;
     }
     @action changeNewProfessionalLabelNeckLine2 = (neckLine2) => {
         this.newProfessionalLabel.neckLine2 = neckLine2.no;
-        this.newProfessionalLabel.neckLineCategoryNo = neckLine2.categoryNo;
-    }
-    @action changeNewProfessionalLabelNeckLine3 = (neckLine3) => {
-        this.newProfessionalLabel.neckLine3 = neckLine3.no;
-        this.newProfessionalLabel.neckLineCategoryNo = neckLine3.categoryNo;
+        this.newProfessionalLabel.neckLineCategoryNo2 = neckLine2.categoryNo;
     }
 
-    @action changeNewProfessionalLabelKara = (kara) => {
-        this.newProfessionalLabel.kara = kara.no;
-        this.newProfessionalLabel.karaCategoryNo = kara.categoryNo;
+
+    @action changeNewProfessionalLabelKara4 = (kara4) => {
+        this.newProfessionalLabel.kara4 = kara4.no;
+        this.newProfessionalLabel.karaCategoryNo4= kara4.categoryNo;
     }
     @action changeNewProfessionalLabelKara1 = (kara1) => {
         this.newProfessionalLabel.kara1 = kara1.no;
-        this.newProfessionalLabel.karaCategoryNo = kara1.categoryNo;
+        this.newProfessionalLabel.karaCategoryNo1 = kara1.categoryNo;
     }
     @action changeNewProfessionalLabelKara2 = (kara2) => {
         this.newProfessionalLabel.kara2 = kara2.no;
-        this.newProfessionalLabel.karaCategoryNo = kara2.categoryNo;
-    }
-    @action changeNewProfessionalLabelKara3 = (kara3) => {
-        this.newProfessionalLabel.kara3 = kara3.no;
-        this.newProfessionalLabel.karaCategoryNo = kara3.categoryNo;
+        this.newProfessionalLabel.karaCategoryNo2 = kara2.categoryNo;
     }
 
-    @action changeNewProfessionalLabelFit = (fit) => {
-        this.newProfessionalLabel.fit = fit.no;
-        this.newProfessionalLabel.fitCategoryNo = fit.categoryNo;
+
+    @action changeNewProfessionalLabelFit4 = (fit4) => {
+        this.newProfessionalLabel.fit4 = fit4.no;
+        this.newProfessionalLabel.fitCategoryNo4 = fit4.categoryNo;
     }
     @action changeNewProfessionalLabelFit1 = (fit1) => {
         this.newProfessionalLabel.fit1 = fit1.no;
-        this.newProfessionalLabel.fitCategoryNo = fit1.categoryNo;
+        this.newProfessionalLabel.fitCategoryNo1 = fit1.categoryNo;
     }
     @action changeNewProfessionalLabelFit2 = (fit2) => {
         this.newProfessionalLabel.fit2 = fit2.no;
-        this.newProfessionalLabel.fitCategoryNo = fit2.categoryNo;
+        this.newProfessionalLabel.fitCategoryNo2 = fit2.categoryNo;
     }
     @action changeNewProfessionalLabelFit3 = (fit3) => {
         this.newProfessionalLabel.fit3 = fit3.no;
-        this.newProfessionalLabel.fitCategoryNo = fit3.categoryNo;
+        this.newProfessionalLabel.fitCategoryNo3 = fit3.categoryNo;
     }
 
 

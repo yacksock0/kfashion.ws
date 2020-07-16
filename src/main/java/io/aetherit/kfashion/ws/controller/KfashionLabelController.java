@@ -5,11 +5,9 @@ import io.aetherit.kfashion.ws.service.KfashionImageLocationPolygonPointService;
 import io.aetherit.kfashion.ws.service.KfashionLabelService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import io.aetherit.kfashion.ws.service.KfashionWorkService;
-import org.apache.ibatis.annotations.Case;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -173,27 +171,10 @@ public class KfashionLabelController {
                 workHistory.setWorkStep(professionalLabel.getWorkStep());
                 workHistory.setCreatedId(professionalLabel.getCreatedId());
                 kfashionWorkHistoryService.insertWorkHistory(workHistory);
-                if(professionalLabel.getLabelNo5() == 5){
-                        KfashionLabel professional5 = new KfashionLabel();
-                        professional5.setWorkNo(professionalLabel.getWorkNo());
-                        professional5.setWorkStep(professionalLabel.getWorkStep());
-                        professional5.setLabelNo(professionalLabel.getLabelNo5());
-                        professional5.setNo(1);
-                        professional5.setCategoryNo(professionalLabel.getStyleCategoryNo());
-                        professional5.setCategoryItemNo(professionalLabel.getStyle());
-                        professional5.setCreatedId(professionalLabel.getCreatedId());
-                        kfashionLabelService.insertProfessionalLabel(professional5);
-                        if(professionalLabel.getStyleSub() != 0) {
-                                professional5.setNo(2);
-                                professional5.setCategoryNo(professionalLabel.getStyleCategorySubNo());
-                                professional5.setCategoryItemNo(professionalLabel.getStyleSub());
-                                kfashionLabelService.insertProfessionalLabel(professional5);
-                        }
-                }
-
 
                 if(professionalLabel.getLabelNo1() == 1) {
                         KfashionLabel professional1 = new KfashionLabel();
+                        professional1.setCreatedId(professionalLabel.getCreatedId());
                         professional1.setWorkNo(professionalLabel.getWorkNo());
                         professional1.setWorkStep(professionalLabel.getWorkStep());
                         professional1.setLabelNo(professionalLabel.getLabelNo1());
@@ -240,6 +221,7 @@ public class KfashionLabelController {
                 }
                 if(professionalLabel.getLabelNo2() == 2) {
                         KfashionLabel professional2 = new KfashionLabel();
+                        professional2.setCreatedId(professionalLabel.getCreatedId());
                         professional2.setWorkNo(professionalLabel.getWorkNo());
                         professional2.setWorkStep(professionalLabel.getWorkStep());
                         professional2.setLabelNo(professionalLabel.getLabelNo2());
@@ -286,6 +268,7 @@ public class KfashionLabelController {
                 }
                 if(professionalLabel.getLabelNo3() == 3) {
                         KfashionLabel professional3 = new KfashionLabel();
+                        professional3.setCreatedId(professionalLabel.getCreatedId());
                         professional3.setWorkNo(professionalLabel.getWorkNo());
                         professional3.setWorkStep(professionalLabel.getWorkStep());
                         professional3.setLabelNo(professionalLabel.getLabelNo3());
@@ -322,6 +305,7 @@ public class KfashionLabelController {
                 }
                 if(professionalLabel.getLabelNo4() == 4) {
                         KfashionLabel professional4 = new KfashionLabel();
+                        professional4.setCreatedId(professionalLabel.getCreatedId());
                         professional4.setWorkNo(professionalLabel.getWorkNo());
                         professional4.setWorkStep(professionalLabel.getWorkStep());
                         professional4.setLabelNo(professionalLabel.getLabelNo4());
@@ -366,6 +350,24 @@ public class KfashionLabelController {
                         professional4.setCategoryItemNo(professionalLabel.getFit4());
                         kfashionLabelService.insertProfessionalLabel(professional4);
                 }
+                if(professionalLabel.getLabelNo5() == 5){
+                        KfashionLabel professional5 = new KfashionLabel();
+                        professional5.setWorkNo(professionalLabel.getWorkNo());
+                        professional5.setWorkStep(professionalLabel.getWorkStep());
+                        professional5.setLabelNo(professionalLabel.getLabelNo5());
+                        professional5.setNo(1);
+                        professional5.setCategoryNo(professionalLabel.getStyleCategoryNo());
+                        professional5.setCategoryItemNo(professionalLabel.getStyle());
+                        professional5.setCreatedId(professionalLabel.getCreatedId());
+                        kfashionLabelService.insertProfessionalLabel(professional5);
+                        if(professionalLabel.getStyleSub() != 0) {
+                                professional5.setNo(2);
+                                professional5.setCategoryNo(professionalLabel.getStyleCategorySubNo());
+                                professional5.setCategoryItemNo(professionalLabel.getStyleSub());
+                                kfashionLabelService.insertProfessionalLabel(professional5);
+                        }
+                }
+
                 return new ResponseEntity<Object>("success", HttpStatus.OK);
         }
 
@@ -407,27 +409,6 @@ public class KfashionLabelController {
                                 labelNo5 = 5;
                         }
 
-                }
-                if(labelNo5 == 5) {
-                    List<KfashionLabel> styleReviewLabelList = kfashionLabelService.selectStyleReviewLabelList(workNo);
-                    if(styleReviewLabelList.size() == 2){
-                        ReviewLabel styleReviewLabel =  ReviewLabel.builder()
-                                .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
-                                .style(styleReviewLabelList.get(0).getCategoryItemNo())
-                                .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
-                                .styleCategorySubNo(styleReviewLabelList.get(1).getCategoryNo())
-                                .styleSub(styleReviewLabelList.get(1).getCategoryItemNo())
-                                .styleSubItemName(styleReviewLabelList.get(1).getCategoryItemName())
-                                .build();
-                        resultMap.put("styleReviewLabel", styleReviewLabel);
-                    }else {
-                            ReviewLabel styleReviewLabel =  ReviewLabel.builder()
-                                    .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
-                                    .style(styleReviewLabelList.get(0).getCategoryItemNo())
-                                    .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
-                                    .build();
-                            resultMap.put("styleReviewLabel", styleReviewLabel);
-                    }
                 }
 
                 if(labelNo1 == 1) {
@@ -553,6 +534,27 @@ public class KfashionLabelController {
                                 .build();
                         resultMap.put("onePieceReviewLabel", onePieceReviewLabel);
                         System.out.println(onePieceReviewLabel);
+                }
+                if(labelNo5 == 5) {
+                        List<KfashionLabel> styleReviewLabelList = kfashionLabelService.selectStyleReviewLabelList(workNo);
+                        if(styleReviewLabelList.size() == 2){
+                                ReviewLabel styleReviewLabel =  ReviewLabel.builder()
+                                        .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
+                                        .style(styleReviewLabelList.get(0).getCategoryItemNo())
+                                        .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
+                                        .styleCategorySubNo(styleReviewLabelList.get(1).getCategoryNo())
+                                        .styleSub(styleReviewLabelList.get(1).getCategoryItemNo())
+                                        .styleSubItemName(styleReviewLabelList.get(1).getCategoryItemName())
+                                        .build();
+                                resultMap.put("styleReviewLabel", styleReviewLabel);
+                        }else {
+                                ReviewLabel styleReviewLabel =  ReviewLabel.builder()
+                                        .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
+                                        .style(styleReviewLabelList.get(0).getCategoryItemNo())
+                                        .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
+                                        .build();
+                                resultMap.put("styleReviewLabel", styleReviewLabel);
+                        }
                 }
                 return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }

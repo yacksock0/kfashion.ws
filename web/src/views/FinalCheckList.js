@@ -283,7 +283,7 @@ class FinalCheckList extends React.Component {
                                         <TableBody>
                                                 <TableRow>
                                                     <TableCell align="center">스타일</TableCell>
-                                                    <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName}</TableCell>
+                                                    <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
                                                 </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">카테고리</TableCell>
@@ -335,7 +335,7 @@ class FinalCheckList extends React.Component {
                                                     <TableBody>
                                                         <TableRow>
                                                             <TableCell align="center">스타일</TableCell>
-                                                            <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName}</TableCell>
+                                                            <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">카테고리</TableCell>
@@ -386,7 +386,7 @@ class FinalCheckList extends React.Component {
                                                     <TableBody>
                                                         <TableRow>
                                                             <TableCell align="center">스타일</TableCell>
-                                                            <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName}</TableCell>
+                                                            <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">카테고리</TableCell>
@@ -438,7 +438,7 @@ class FinalCheckList extends React.Component {
                                                     <TableBody>
                                                         <TableRow>
                                                             <TableCell align="center">스타일</TableCell>
-                                                            <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName}</TableCell>
+                                                            <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">카테고리</TableCell>

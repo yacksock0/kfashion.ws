@@ -3,7 +3,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Grid, Typography} from "@material-ui/core";
-import Category1 from "./Category4";
+import Category1 from "./Category1";
 import Detail1 from "./Detail1";
 import Print1 from "../step3/Print1";
 import Texture1 from "./Texture1";
@@ -112,7 +112,7 @@ class CategoryComponent1 extends React.Component {
             categoryNo: category.no,
             categoryName: category.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelCategory(category);
+        this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
         this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
 
@@ -121,49 +121,49 @@ class CategoryComponent1 extends React.Component {
             detailNo: detail.no,
             detailName: detail.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelDetail(detail);
+        this.props.professionalLabelStore.changeNewProfessionalLabelDetail1(detail);
     }
     handleClickPrint=(print)=>{
         this.setState({
             printNo: print.no,
             printName: print.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelPrint(print);
+        this.props.professionalLabelStore.changeNewProfessionalLabelPrint1(print);
     }
     handleClickTexture=(texture)=>{
         this.setState({
             textureNo: texture.no,
             textureName: texture.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelTexture(texture);
+        this.props.professionalLabelStore.changeNewProfessionalLabelTexture1(texture);
     }
     handleClickCloth=(length)=>{
         this.setState({
             lengthNo: length.no,
             lengthName: length.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength(length);
+        this.props.professionalLabelStore.changeNewProfessionalLabelClothLength1(length);
     }
     handleClickNeckLine=(neckline)=>{
         this.setState({
             necklineNo: neckline.no,
             necklineName: neckline.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine(neckline);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine1(neckline);
     }
     handleClickKara=(kara)=>{
         this.setState({
             karaNo: kara.no,
             karaName: kara.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelKara(kara);
+        this.props.professionalLabelStore.changeNewProfessionalLabelKara1(kara);
     }
     handleClickFit=(fit)=>{
         this.setState({
             fitNo: fit.no,
             fitName: fit.categoryItemName,
         })
-        this.props.professionalLabelStore.changeNewProfessionalLabelFit(fit);
+        this.props.professionalLabelStore.changeNewProfessionalLabelFit1(fit);
     }
 
     handleDelete(){

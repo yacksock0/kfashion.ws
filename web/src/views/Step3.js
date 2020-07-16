@@ -110,9 +110,14 @@ class Step3 extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
     }
-    handleClickSubmit = () => {
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(this.state.createdId);
+    handleSubmit = () => {
+        const createdId = this.props.authStore.isUserId;
+        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
         this.props.professionalLabelStore.doProfessionalLabelUp();
+        alert("저장 완료")
+        this.setState({
+            tabIndex:1,
+        })
     }
 
     handleClickItem = (workNo, imageData) => {
@@ -287,12 +292,7 @@ class Step3 extends React.Component {
     handleLabel=(item)=>{
         this.props.workStore.LoadReviewLabelList(item.workNo);
     }
-    handleSubmit=()=>{
-        alert("저장 완료")
-        this.setState({
-            tabIndex:1,
-        })
-    }
+
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
@@ -318,7 +318,6 @@ class Step3 extends React.Component {
                                         </TabList>
 
                                         <TabPanel>
-
                                             <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
@@ -362,27 +361,6 @@ class Step3 extends React.Component {
                                     </Tabs>
                                 </Grid>
                         </Grid>
-                    {/*<Grid container>*/}
-                    {/*    <Grid item xs={3} lg={1} style={{marginRight:10}}>*/}
-                    {/*/!*<Button*!/*/}
-                    {/*/!*    type="submit"*!/*/}
-                    {/*/!*    className={classes.buttonType1}*!/*/}
-                    {/*/!*    variant="outlined"*!/*/}
-                    {/*/!*    onClick={this.handlePrevious.bind(this)}*!/*/}
-                    {/*/!*>*!/*/}
-                    {/*/!*    Previous*!/*/}
-                    {/*/!*</Button>*!/*/}
-                    {/*/!*    </Grid>*!/*/}
-                    {/*/!*    <Grid item xs={3} lg={1}>*!/*/}
-                    {/*/!*<Button*!/*/}
-                    {/*/!*    type="submit"*!/*/}
-                    {/*/!*    className={classes.buttonType1}*!/*/}
-                    {/*/!*    variant="outlined"*!/*/}
-                    {/*/!*    onClick={this.handleNext.bind(this)}*!/*/}
-                    {/*/!*>*!/*/}
-                    {/*/!*    Next*!/*/}
-                    {/*</Button>*/}
-                    {/* </Grid>*/}
                         <div>
                         <hr></hr>
                         </div>
@@ -397,7 +375,6 @@ class Step3 extends React.Component {
                                 Next Step
                             </Button>
                         </Grid>
-                    {/*</Grid>*/}
                     </div>
                     <ErrorIcon/>
                     <Typography variant="h6" component="h4" style={{display:'inline'}}>
