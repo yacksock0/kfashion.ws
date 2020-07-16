@@ -54,26 +54,6 @@ class CategoryComponent2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lengthNo:0,
-            lengthName:'',
-            categoryNo:0,
-            categoryName:'',
-            detailNo:0,
-            detailName:'',
-            printNo:0,
-            printName:'',
-            textureNo:0,
-            textureName:'',
-            necklineNo:0,
-            necklineName:'',
-            karaNo:0,
-            karaName:'',
-            fitNo:0,
-            fitName:'',
-            safeNo:0,
-            safeName:'',
-            silhouetteNo:0,
-            silhouetteName:'',
             value:0,
             createdId: '',
             polyLast:0,
@@ -249,7 +229,7 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {topReviewLabel.neckLineCategoryNo > 0 ?
+                                            {topReviewLabel.neckLineCategoryNo2 > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {topReviewLabel.neckLineItemName2} </Button> ) : ''
                                             }
                                         </div>

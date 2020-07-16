@@ -129,7 +129,6 @@ export default class ProfessionalLabelStore {
     @action initStore = () => {
         this.professionalList = [];
     }
-
     @action changeNewProfessionalLabelNo1 = (labelNo1) => {
         this.newProfessionalLabel.labelNo1 = labelNo1;
     }
@@ -148,28 +147,28 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelStyle = (style) => {
-        this.newProfessionalLabel.style = style.no;
-        this.newProfessionalLabel.styleCategoryNo = style.categoryNo;
-        this.newProfessionalLabel.styleItemName = style.categoryItemName;
-        return this.newProfessionalLabel;
+        this.styleReviewLabel.style = style.no;
+        this.styleReviewLabel.styleCategoryNo = style.categoryNo;
+        this.styleReviewLabel.styleItemName = style.categoryItemName;
+        return this.styleReviewLabel;
     }
     @action deleteStyle = () => {
-        this.newProfessionalLabel.style = '';
-        this.newProfessionalLabel.styleCategoryNo = 0;
-        this.newProfessionalLabel.styleItemName = '';
-        return this.newProfessionalLabel;
+        this.styleReviewLabel.style = '';
+        this.styleReviewLabel.styleCategoryNo = 0;
+        this.styleReviewLabel.styleItemName = '';
+        return this.styleReviewLabel;
     }
     @action deleteSubStyle = () => {
-        this.newProfessionalLabel.styleSub = '';
-        this.newProfessionalLabel.styleCategorySubNo = 0;
-        this.newProfessionalLabel.styleSubItemName = '';
-        return this.newProfessionalLabel;
+        this.styleReviewLabel.styleSub = '';
+        this.styleReviewLabel.styleCategorySubNo = 0;
+        this.styleReviewLabel.styleSubItemName = '';
+        return this.styleReviewLabel;
     }
     @action changeNewProfessionalLabelStyleSub = (styleSub) => {
-        this.newProfessionalLabel.styleSub = styleSub.no;
-        this.newProfessionalLabel.styleCategorySubNo = styleSub.categoryNo;
-        this.newProfessionalLabel.styleSubItemName = styleSub.categoryItemName;
-        return this.newProfessionalLabel;
+        this.styleReviewLabel.styleSub = styleSub.no;
+        this.styleReviewLabel.styleCategorySubNo = styleSub.categoryNo;
+        this.styleReviewLabel.styleSubItemName = styleSub.categoryItemName;
+        return this.styleReviewLabel;
     }
     @action changeNewProfessionalLabelCategory1 = (category1) => {
         this.outerReviewLabel.category1 = category1.no;
@@ -591,7 +590,6 @@ export default class ProfessionalLabelStore {
         this.state = State.Pending;
         try {
                 const param = toJS(this.newProfessionalLabel);
-
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
                     const createdId =this.newProfessionalLabel.createdId;
