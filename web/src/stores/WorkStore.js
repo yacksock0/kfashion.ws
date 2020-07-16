@@ -62,6 +62,13 @@ export default class WorkStore {
         this.professionalList = 0;
     }
 
+    @action reSetCategoryItem=()=>{
+        this.outerReviewLabel = [];
+        this.topReviewLabel = [];
+        this.pantsReviewLabel = [];
+        this.onePieceReviewLabel = [];
+    }
+
     @action changeAuthorityNo = (authorityNo) => {
         this.authorityNo = authorityNo;
     }

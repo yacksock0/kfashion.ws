@@ -52,7 +52,7 @@ const styles = theme => ({
     }
 });
 
-@inject('professionalLabelStore','authStore', 'imageStore')
+@inject('professionalLabelStore','authStore', 'imageStore', 'workStore')
 @observer
 class CategoryComponent1 extends React.Component {
     constructor(props) {
@@ -229,6 +229,7 @@ class CategoryComponent1 extends React.Component {
     }
     render() {
         const {classes} = this.props;
+        const {topReviewLabel} =this.props.workStore;
         console.log('lastIndex', this.props.polyLast)
         console.log('tabIndex1', this.props.tabIndex1)
         return (
@@ -244,6 +245,7 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
+                                <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.categoryItemName} </Button>
                                             {this.state.categoryNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.categoryName} </Button> ) : ''
                                             }
@@ -260,6 +262,7 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
+                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.detailItemName} </Button>
                                             {this.state.detailNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {this.state.detailName} </Button> ) : ''
                                             }
@@ -276,6 +279,7 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
+                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.printItemName} </Button>
                                             {this.state.printNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {this.state.printName} </Button> ) : ''
                                             }
@@ -292,6 +296,7 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
+                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.textureItemName} </Button>
                                             {this.state.textureNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {this.state.textureName} </Button> ) : ''
                                             }
@@ -308,6 +313,7 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
+                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.clothLengthItemName} </Button>
                                             {this.state.lengthNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {this.state.lengthName} </Button> ) : ''
                                             }
@@ -324,6 +330,7 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
+                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.neckLineItemName} </Button>
                                             {this.state.necklineNo > 0 ?
                                             (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
                                             }
@@ -340,6 +347,7 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
+                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.karaItemName} </Button>
                                             {this.state.karaNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
                                             }
@@ -356,6 +364,7 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
+                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {topReviewLabel.fitItemName} </Button>
                                             {this.state.fitNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }

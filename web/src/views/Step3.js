@@ -117,6 +117,7 @@ class Step3 extends React.Component {
 
     handleClickItem = (workNo, imageData) => {
         this.deleteAll();
+        this.props.workStore.reSetCategoryItem();
         this.setState({
             tabIndex:0,
         })
