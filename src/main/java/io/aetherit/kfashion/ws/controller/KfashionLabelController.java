@@ -161,6 +161,8 @@ public class KfashionLabelController {
         @PostMapping(value = "/professionalLabel")
         public ResponseEntity<Object> professionalLabel(HttpServletRequest httpServletRequest,
                                       @RequestBody ProfessionalLabel professionalLabel) throws Exception {
+
+                System.out.println(professionalLabel);
                 KfashionWork work = new KfashionWork();
                 work.setNo(professionalLabel.getWorkNo());
                 work.setWorkState(professionalLabel.getWorkStep());
@@ -171,6 +173,24 @@ public class KfashionLabelController {
                 workHistory.setWorkStep(professionalLabel.getWorkStep());
                 workHistory.setCreatedId(professionalLabel.getCreatedId());
                 kfashionWorkHistoryService.insertWorkHistory(workHistory);
+
+                if(professionalLabel.getLabelNo5() == 5){
+                        KfashionLabel professional5 = new KfashionLabel();
+                        professional5.setWorkNo(professionalLabel.getWorkNo());
+                        professional5.setWorkStep(professionalLabel.getWorkStep());
+                        professional5.setLabelNo(professionalLabel.getLabelNo5());
+                        professional5.setNo(1);
+                        professional5.setCategoryNo(professionalLabel.getStyleCategoryNo());
+                        professional5.setCategoryItemNo(professionalLabel.getStyle());
+                        professional5.setCreatedId(professionalLabel.getCreatedId());
+                        kfashionLabelService.insertProfessionalLabel(professional5);
+                        if(professionalLabel.getStyleSub() != 0) {
+                                professional5.setNo(2);
+                                professional5.setCategoryNo(professionalLabel.getStyleCategorySubNo());
+                                professional5.setCategoryItemNo(professionalLabel.getStyleSub());
+                                kfashionLabelService.insertProfessionalLabel(professional5);
+                        }
+                }
 
                 if(professionalLabel.getLabelNo1() == 1) {
                         KfashionLabel professional1 = new KfashionLabel();
@@ -350,23 +370,7 @@ public class KfashionLabelController {
                         professional4.setCategoryItemNo(professionalLabel.getFit4());
                         kfashionLabelService.insertProfessionalLabel(professional4);
                 }
-                if(professionalLabel.getLabelNo5() == 5){
-                        KfashionLabel professional5 = new KfashionLabel();
-                        professional5.setWorkNo(professionalLabel.getWorkNo());
-                        professional5.setWorkStep(professionalLabel.getWorkStep());
-                        professional5.setLabelNo(professionalLabel.getLabelNo5());
-                        professional5.setNo(1);
-                        professional5.setCategoryNo(professionalLabel.getStyleCategoryNo());
-                        professional5.setCategoryItemNo(professionalLabel.getStyle());
-                        professional5.setCreatedId(professionalLabel.getCreatedId());
-                        kfashionLabelService.insertProfessionalLabel(professional5);
-                        if(professionalLabel.getStyleSub() != 0) {
-                                professional5.setNo(2);
-                                professional5.setCategoryNo(professionalLabel.getStyleCategorySubNo());
-                                professional5.setCategoryItemNo(professionalLabel.getStyleSub());
-                                kfashionLabelService.insertProfessionalLabel(professional5);
-                        }
-                }
+
 
                 return new ResponseEntity<Object>("success", HttpStatus.OK);
         }

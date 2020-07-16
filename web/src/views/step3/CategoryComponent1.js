@@ -228,8 +228,6 @@ class CategoryComponent1 extends React.Component {
         })
     }
     handleSubmit(){
-        const createdId=this.props.authStore.loginUser.id;
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
         if(this.props.onClick){
             this.props.onClick();
         }
