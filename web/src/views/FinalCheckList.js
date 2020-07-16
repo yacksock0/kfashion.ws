@@ -128,7 +128,7 @@ const tableIcons = {
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore')
 @observer
-class finalCheckList extends React.Component {
+class FinalCheckList extends React.Component {
     constructor(props) {
         super(...arguments , props);
         this.state = {
@@ -521,4 +521,4 @@ class finalCheckList extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(styles) (finalCheckList)));
+export default withSnackbar(withRouter(withStyles(styles) (FinalCheckList)));
