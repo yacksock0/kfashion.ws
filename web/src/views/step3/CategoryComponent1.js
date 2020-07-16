@@ -221,12 +221,6 @@ class CategoryComponent1 extends React.Component {
             safeName:'',
         })
     }
-    handleDeleteSilhouette(){
-        this.setState({
-            silhouetteNo:0,
-            silhouetteName:'',
-        })
-    }
     handleSubmit(){
         if(this.props.onClick){
             this.props.onClick();
