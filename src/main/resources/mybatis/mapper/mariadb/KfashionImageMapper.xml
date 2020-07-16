@@ -130,7 +130,7 @@
         FROM kfashion_image
                  LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
                  RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        WHERE kfashion_work_history.work_step = 6 And  kfashion_work_history.created_id = 'univ1'
+        WHERE kfashion_work_history.work_step = 6 And  kfashion_work_history.created_id = #{created_Id}
         ORDER BY kfashion_work_history.updated_datetime DESC LIMIT 10
     </select>
 

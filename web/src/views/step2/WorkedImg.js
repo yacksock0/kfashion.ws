@@ -30,7 +30,7 @@ const style = theme => ({
     }
 });
 
-@inject('imageStore','authStore')
+@inject('imageStore','authStore','workStore')
 @observer
 class WorkedImg extends React.Component  {
     constructor(props) {
@@ -44,8 +44,11 @@ class WorkedImg extends React.Component  {
         this.props.imageStore.LoadRecentImage(id)
     }
 
-    handleClick=()=>{
+    handleClick=(item)=>{
+        if(this.props.onClick){
+            this.props.onClick(item)
 
+        }
     }
     render() {
         const {recentlyImg} = this.props.imageStore;
@@ -58,7 +61,7 @@ class WorkedImg extends React.Component  {
                         <h3>이전작업 </h3>
                     </div>
                     {recentlyImg.map((item) =>
-                            <Button className={classes.imgBox} onClick={() => this.handleClick}>
+                            <Button className={classes.imgBox} onClick={() => this.handleClick(item)}>
                                 <img src={item.fileName} style={{width: '100%', height: '100%'}}/>
                             </Button>
                     )

@@ -286,6 +286,11 @@ class Step3 extends React.Component {
             this.props.onChange(polyLast)
         }
     }
+    handleLabel=(item)=>{
+    this.props.workStore.LoadReviewLabelList(item.workNo);
+    console.log('item', item)
+        console.log('workNo', item.workNo)
+    }
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
@@ -295,7 +300,7 @@ class Step3 extends React.Component {
                     <div className={classes.mainContent}>
                         <Grid container>
                             <Grid item xs={12} lg={1}>
-                                <WorkedImg />
+                                <WorkedImg onClick={this.handleLabel}/>
                             </Grid>
                             <Grid item xs={12} lg={5} style={{margin:'auto'}}>
                                 <div>
