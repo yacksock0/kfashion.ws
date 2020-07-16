@@ -13,7 +13,7 @@ export default class ColorKara1 extends React.Component {
         this.state = {
             open: false,
             text: 'text',
-            karaList: [],
+            karaList4: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)

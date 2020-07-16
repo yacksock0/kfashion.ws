@@ -230,13 +230,11 @@ class CategoryComponent1 extends React.Component {
     handleSubmit(){
         const createdId=this.props.authStore.loginUser.id;
         this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-        this.props.professionalLabelStore.doProfessionalLabelUp();
         if(this.props.onClick){
             this.props.onClick();
         }
     }
     render() {
-        const {outerReviewLabel} =this.props.workStore;
         const {classes} = this.props;
         return (
                     <Grid container spacing={3} style={{marginTop: 10}}>
@@ -251,8 +249,6 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                {this.props.outerReviewLabel.categoryCategoryNo > 0 ?
-                                    (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.props.outerReviewLabel.categoryItemName} </Button>):''}
                                             {this.state.categoryNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.categoryName} </Button> ) : ''
                                             }
@@ -269,7 +265,6 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.detailItemName} </Button>
                                             {this.state.detailNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {this.state.detailName} </Button> ) : ''
                                             }
@@ -286,7 +281,6 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.printItemName} </Button>
                                             {this.state.printNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {this.state.printName} </Button> ) : ''
                                             }
@@ -303,7 +297,6 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.textureItemName} </Button>
                                             {this.state.textureNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {this.state.textureName} </Button> ) : ''
                                             }
@@ -320,7 +313,6 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.clothLengthItemName} </Button>
                                             {this.state.lengthNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {this.state.lengthName} </Button> ) : ''
                                             }
@@ -337,7 +329,6 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.neckLineItemName} </Button>
                                             {this.state.necklineNo > 0 ?
                                             (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {this.state.necklineName} </Button> ) : ''
                                             }
@@ -354,7 +345,6 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.karaItemName} </Button>
                                             {this.state.karaNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {this.state.karaName} </Button> ) : ''
                                             }
@@ -371,7 +361,6 @@ class CategoryComponent1 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.fitItemName} </Button>
                                             {this.state.fitNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {this.state.fitName} </Button> ) : ''
                                             }
@@ -388,48 +377,6 @@ class CategoryComponent1 extends React.Component {
                                         </Button>
 
                                     </Grid>
-                                    {/*<Grid item xs={12} lg={6}>*/}
-                                    {/*    <div className={classes.content} style={{display:'inline'}}>*/}
-                                    {/*        <Typography variant="h5" component="h5" style={{display:'inline'}}>*/}
-                                    {/*            세이프*/}
-                                    {/*        </Typography>*/}
-                                    {/*        <div style={{display:'inline-block', float:'right', marginTop : -3}}>*/}
-                                    {/*            <Safe onClick={this.handleClickSafe}/>*/}
-                                    {/*        </div>*/}
-                                    {/*        <div>*/}
-                                    {/*            <hr></hr>*/}
-                                    {/*        </div>*/}
-                                    {/*        {this.state.safeNo > 0 ?*/}
-                                    {/*            (<Chip*/}
-                                    {/*                variant="outlined"*/}
-                                    {/*                label={this.state.safeName}*/}
-                                    {/*                onDelete={this.handleDeleteSafe}*/}
-                                    {/*                color="primary"*/}
-                                    {/*            />) : ''*/}
-                                    {/*        }*/}
-                                    {/*    </div>*/}
-                                    {/*</Grid>*/}
-                                    {/*<Grid item xs={12} lg={6}>*/}
-                                    {/*    <div className={classes.content} style={{display:'inline'}}>*/}
-                                    {/*        <Typography variant="h5" component="h5" style={{display:'inline'}}>*/}
-                                    {/*            실루엣*/}
-                                    {/*        </Typography>*/}
-                                    {/*        <div style={{display:'inline-block', float:'right', marginTop : -3}}>*/}
-                                    {/*            <Silhouette onClick={this.handleClickSilhouette}/>*/}
-                                    {/*        </div>*/}
-                                    {/*        <div>*/}
-                                    {/*            <hr></hr>*/}
-                                    {/*        </div>*/}
-                                    {/*        {this.state.silhouetteNo > 0 ?*/}
-                                    {/*            (<Chip*/}
-                                    {/*                variant="outlined"*/}
-                                    {/*                label={this.state.silhouetteName}*/}
-                                    {/*                onDelete={this.handleDeleteSilhouette}*/}
-                                    {/*                color="primary"*/}
-                                    {/*            />) : ''*/}
-                                    {/*        }*/}
-                                    {/*    </div>*/}
-                                    {/*</Grid>*/}
                                 </Grid>
 
         );

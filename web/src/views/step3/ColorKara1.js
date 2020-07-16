@@ -13,7 +13,7 @@ export default class ColorKara1 extends React.Component {
         this.state = {
             open: false,
             text: 'text',
-            karaList: [],
+            karaList1: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -24,11 +24,8 @@ export default class ColorKara1 extends React.Component {
         axios.get('/api/v1/kfashion/category/item/professional/kara')
             .then(response => {
                 const karaList1 = response.data.karaList1;
-                const karaList2 = response.data.karaList2;
-                const karaList4 = response.data.karaList4;
                 this.setState({ karaList1 : karaList1,
-                    karaList2 : karaList2,
-                    karaList4 : karaList4})
+                    })
             })
             .catch(error => {
                 console.log(error)
