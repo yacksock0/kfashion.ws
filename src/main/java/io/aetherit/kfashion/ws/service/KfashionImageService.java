@@ -51,4 +51,8 @@ public class KfashionImageService {
     public List<KfashionImage> selectInspectionList() {
         return repository.selectInspectionList();
     }
+
+    public List<KfashionImage> selectInspectionHighList() {
+        return repository.selectInspectionHighList();
+    }
 }

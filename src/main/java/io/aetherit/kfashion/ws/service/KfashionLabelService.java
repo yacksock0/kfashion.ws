@@ -49,4 +49,24 @@ public class KfashionLabelService {
     public int[] selectLabelList(Long workNo) {
         return repository.selectLabelList(workNo);
     }
+
+    public int[] selectHighLabelList(Long workNo) {
+        return repository.selectHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectOuterReviewHighLabelList(Long workNo) {
+        return repository.selectOuterReviewHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectTopReviewHighLabelList(Long workNo) {
+        return repository.selectTopReviewHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectPantsReviewHighLabelList(Long workNo) {
+        return repository.selectPantsReviewHighLabelList(workNo);
+    }
+
+    public List<KfashionLabel> selectOnePieceReviewHighLabelList(Long workNo) {
+        return repository.selectOnePieceReviewHighLabelList(workNo);
+    }
 }

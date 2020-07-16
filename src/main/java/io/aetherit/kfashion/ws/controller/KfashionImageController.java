@@ -219,6 +219,20 @@ public class KfashionImageController {
         resultMap.put("inspectionList", inspectionList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
+
+    /**
+     * 고등학생 검수리스트
+     * @return ResponseEntity
+     * @throws
+     */
+
+    @GetMapping(value="inspectionHighList")
+    public ResponseEntity<Object> inspectionHighList(HttpServletRequest httpRequest) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionImage> inspectionHighList = kfashionImageService.selectInspectionHighList();
+        resultMap.put("inspectionHighList", inspectionHighList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
     /**
      * 최근작업 이미지 리스트
      * @param

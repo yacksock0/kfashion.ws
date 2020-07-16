@@ -332,16 +332,6 @@ public class KfashionLabelController {
                         kfashionLabelService.insertProfessionalLabel(professional2);
 
                         professional2.setNo(8);
-                        professional2.setCategoryNo(professionalLabel.getNeckLineCategoryNo());
-                        professional2.setCategoryItemNo(professionalLabel.getNeckLine2());
-                        kfashionLabelService.insertProfessionalLabel(professional2);
-
-                        professional2.setNo(9);
-                        professional2.setCategoryNo(professionalLabel.getKaraCategoryNo());
-                        professional2.setCategoryItemNo(professionalLabel.getKara2());
-                        kfashionLabelService.insertProfessionalLabel(professional2);
-
-                        professional2.setNo(10);
                         professional2.setCategoryNo(professionalLabel.getFitCategoryNo());
                         professional2.setCategoryItemNo(professionalLabel.getFit2());
                         kfashionLabelService.insertProfessionalLabel(professional2);
@@ -592,4 +582,90 @@ public class KfashionLabelController {
 
 
 
+        @GetMapping(value="/reviewHighLabelList")
+        public ResponseEntity<Object> reviewHighLabelList(HttpServletRequest httpRequest,
+                                                      @RequestParam(value="workNo")Long workNo) {
+                HashMap<String, Object> resultMap = new HashMap<String, Object>();
+                int[] labelNo = kfashionLabelService.selectHighLabelList(workNo);
+                int labelNo1 = 0;
+                int labelNo2 = 0;
+                int labelNo3 = 0;
+                int labelNo4 = 0;
+
+                for (int i = 0; i < labelNo.length; i++) {
+                        if (labelNo[i] == 1) {
+                                labelNo1 = 1;
+                        }
+                        if (labelNo[i] == 2) {
+                                labelNo2 = 2;
+                        }
+                        if (labelNo[i] == 3) {
+                                labelNo3 = 3;
+                        }
+                        if (labelNo[i] == 4) {
+                                labelNo4 = 4;
+                        }
+                }
+                if(labelNo1 == 1) {
+                        List<KfashionLabel> outerReviewHighLabelList = kfashionLabelService.selectOuterReviewHighLabelList(workNo);
+                        HighReviewLabel outerReviewHighLabel =  HighReviewLabel.builder()
+                                .colorCategoryNo(outerReviewHighLabelList.get(0).getCategoryNo())
+                                .color1(outerReviewHighLabelList.get(0).getCategoryItemNo())
+                                .colorItemName(outerReviewHighLabelList.get(0).getCategoryItemName())
+                                .subColor1(outerReviewHighLabelList.get(1).getCategoryItemNo())
+                                .colorSubItemName(outerReviewHighLabelList.get(1).getCategoryItemName())
+                                .sleeveLengthCategoryNo(outerReviewHighLabelList.get(2).getCategoryNo())
+                                .sleeveLength1(outerReviewHighLabelList.get(2).getCategoryItemNo())
+                                .sleeveLengthItemName(outerReviewHighLabelList.get(2).getCategoryItemName())
+                                .build();
+                        resultMap.put("outerReviewHighLabel", outerReviewHighLabel);
+                        System.out.println(outerReviewHighLabel);
+                }
+                if(labelNo2 == 2) {
+                        List<KfashionLabel> topReviewHighLabelList = kfashionLabelService.selectTopReviewHighLabelList(workNo);
+                        HighReviewLabel topReviewHighLabel =  HighReviewLabel.builder()
+                                .colorCategoryNo(topReviewHighLabelList.get(0).getCategoryNo())
+                                .color2(topReviewHighLabelList.get(0).getCategoryItemNo())
+                                .colorItemName(topReviewHighLabelList.get(0).getCategoryItemName())
+                                .subColor2(topReviewHighLabelList.get(1).getCategoryItemNo())
+                                .colorSubItemName(topReviewHighLabelList.get(1).getCategoryItemName())
+                                .sleeveLengthCategoryNo(topReviewHighLabelList.get(2).getCategoryNo())
+                                .sleeveLength2(topReviewHighLabelList.get(2).getCategoryItemNo())
+                                .sleeveLengthItemName(topReviewHighLabelList.get(2).getCategoryItemName())
+                                .build();
+                        resultMap.put("topReviewHighLabel", topReviewHighLabel);
+                        System.out.println(topReviewHighLabel);
+                }
+                if(labelNo3 == 3) {
+                        List<KfashionLabel> pantsReviewHighLabelList = kfashionLabelService.selectPantsReviewHighLabelList(workNo);
+                        HighReviewLabel pantsReviewLabel =  HighReviewLabel.builder()
+                                .colorCategoryNo(pantsReviewHighLabelList.get(0).getCategoryNo())
+                                .color3(pantsReviewHighLabelList.get(0).getCategoryItemNo())
+                                .colorItemName(pantsReviewHighLabelList.get(0).getCategoryItemName())
+                                .subColor3(pantsReviewHighLabelList.get(1).getCategoryItemNo())
+                                .colorSubItemName(pantsReviewHighLabelList.get(1).getCategoryItemName())
+                                .sleeveLengthCategoryNo(pantsReviewHighLabelList.get(2).getCategoryNo())
+                                .sleeveLength3(pantsReviewHighLabelList.get(2).getCategoryItemNo())
+                                .sleeveLengthItemName(pantsReviewHighLabelList.get(2).getCategoryItemName())
+                                .build();
+                        resultMap.put("pantsReviewLabel", pantsReviewLabel);
+                        System.out.println(pantsReviewLabel);
+                }
+                if(labelNo4 == 4) {
+                        List<KfashionLabel> oneReviewHighLabelList = kfashionLabelService.selectOnePieceReviewHighLabelList(workNo);
+                        HighReviewLabel pantsReviewHighLabel = HighReviewLabel.builder()
+                                .colorCategoryNo(oneReviewHighLabelList.get(0).getCategoryNo())
+                                .color4(oneReviewHighLabelList.get(0).getCategoryItemNo())
+                                .colorItemName(oneReviewHighLabelList.get(0).getCategoryItemName())
+                                .subColor4(oneReviewHighLabelList.get(1).getCategoryItemNo())
+                                .colorSubItemName(oneReviewHighLabelList.get(1).getCategoryItemName())
+                                .sleeveLengthCategoryNo(oneReviewHighLabelList.get(2).getCategoryNo())
+                                .sleeveLength4(oneReviewHighLabelList.get(2).getCategoryItemNo())
+                                .sleeveLengthItemName(oneReviewHighLabelList.get(2).getCategoryItemName())
+                                .build();
+                        resultMap.put("pantsReviewHighLabel", pantsReviewHighLabel);
+                        System.out.println(pantsReviewHighLabel);
+                }
+                return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }
 }
