@@ -229,7 +229,7 @@ class HighCheckList extends React.Component {
                                         <TableBody>
                                                 <TableRow>
                                                     <TableCell align="center">색상</TableCell>
-                                                    <TableCell align="center">메인 : {outerReviewHighLabel.colorItemName} 서브 : {outerReviewHighLabel.colorSubItemName}</TableCell>
+                                                    <TableCell align="center">메인 : {outerReviewHighLabel.colorItemName} 서브 : {outerReviewHighLabel.colorSubItemName ? outerReviewHighLabel.colorSubItemName : '' }</TableCell>
                                                 </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">소매길이</TableCell>
@@ -253,7 +253,7 @@ class HighCheckList extends React.Component {
                                                     <TableBody>
                                                         <TableRow>
                                                             <TableCell align="center">색상</TableCell>
-                                                            <TableCell align="center">메인 : {topReviewHighLabel.colorItemName} 서브 : {topReviewHighLabel.colorSubItemName}</TableCell>
+                                                            <TableCell align="center">메인 : {topReviewHighLabel.colorItemName} 서브 : {topReviewHighLabel.colorSubItemName ? topReviewHighLabel.colorSubItemName : ''}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">소매길이</TableCell>
@@ -276,7 +276,7 @@ class HighCheckList extends React.Component {
                                                     <TableBody>
                                                         <TableRow>
                                                             <TableCell align="center">색상</TableCell>
-                                                            <TableCell align="center">메인 : {pantsReviewHighLabel.colorItemName} 서브 : {pantsReviewHighLabel.colorSubItemName}</TableCell>
+                                                            <TableCell align="center">메인 : {pantsReviewHighLabel.colorItemName} 서브 : {pantsReviewHighLabel.colorSubItemName ? pantsReviewHighLabel.colorSubItemName : '' }</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">소매길이</TableCell>
@@ -300,7 +300,7 @@ class HighCheckList extends React.Component {
                                                     <TableBody>
                                                         <TableRow>
                                                             <TableCell align="center">색상</TableCell>
-                                                            <TableCell align="center">메인 : {onePieceReviewHighLabel.colorItemName} 서브 : {onePieceReviewHighLabel.colorSubItemName}</TableCell>
+                                                            <TableCell align="center">메인 : {onePieceReviewHighLabel.colorItemName} 서브 : {onePieceReviewHighLabel.colorSubItemName ? onePieceReviewHighLabel.colorSubItemName : ''}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">소매길이</TableCell>

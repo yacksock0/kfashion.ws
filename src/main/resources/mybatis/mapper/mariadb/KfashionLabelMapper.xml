@@ -214,7 +214,21 @@
           AND kfashion_label.label_no=4
           AND kfashion_label.work_step=4
           ORDER BY kfashion_label.no
+    </select>
 
+    <select id="selectStyleReviewLabelList" resultMap="kfashionLabelResultMap" parameterType="Long">
+        SELECT DISTINCT
+            kfashion_label.category_item_no,
+            kfashion_label.category_no,
+            kfashion_category.category_name,
+            kfashion_category_item.category_item_name
+        FROM kfashion_label
+                 LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
+                 RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
+        WHERE work_no = #{workNo}
+          AND kfashion_label.label_no=5
+          AND kfashion_label.work_step=4
+          ORDER BY kfashion_label.no
     </select>
 
 </mapper>

@@ -15,6 +15,7 @@ public class ProfessionalLabel {
     private Long workNo;
     private int workStep;
     private String createdId;
+    private int labelNo5;
     private int labelNo1;
     private int labelNo2;
     private int labelNo3;
