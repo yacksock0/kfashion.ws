@@ -40,7 +40,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('professionalListStore','authStore')
+@inject('professionalLabelStore','authStore')
 @observer
 export default class ProImageList extends React.Component {
     constructor(props) {
@@ -60,11 +60,11 @@ export default class ProImageList extends React.Component {
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
-        this.props.professionalListStore.LoadProfessionalList(createdId);
+        this.props.professionalLabelStore.LoadProfessionalList(createdId);
     }
 
     componentWillUnmount() {
-        this.props.professionalListStore.initStore();
+        this.props.professionalLabelStore.initStore();
     }
 
     handleClick = (workNo, imageData) => {
@@ -84,8 +84,8 @@ export default class ProImageList extends React.Component {
             <MaterialTable
                 icons={tableIcons}
                 columns={this.state.columns}
-                data={!!this.props.professionalListStore.professionalList ?
-                    this.props.professionalListStore.professionalList.map((item) => {
+                data={!!this.props.professionalLabelStore.professionalList ?
+                    this.props.professionalLabelStore.professionalList.map((item) => {
                         return {
                             workNo: item.workNo,
                             fileName: item.fileName,
