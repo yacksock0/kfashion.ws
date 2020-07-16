@@ -19,4 +19,14 @@ public interface KfashionLabelMapper {
     List<KfashionLabel> selectOnePieceReviewLabelList(Long workNo);
 
     int[] selectLabelList(Long workNo);
+
+    int[] selectHighLabelList(Long workNo);
+
+    List<KfashionLabel> selectOuterReviewHighLabelList(Long workNo);
+
+    List<KfashionLabel> selectTopReviewHighLabelList(Long workNo);
+
+    List<KfashionLabel> selectPantsReviewHighLabelList(Long workNo);
+
+    List<KfashionLabel> selectOnePieceReviewHighLabelList(Long workNo);
 }

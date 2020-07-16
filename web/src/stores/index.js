@@ -15,6 +15,7 @@ import GroupStore from "./GroupStore";
 import CurrentStepStore from "./CurrentStepStore";
 import ProfessionalListStore from "./ProfessionalListStore";
 import WorkStore from "./WorkStore";
+import CheckHighLabelStore from "./CheckHighLabelStore";
 
 
 
@@ -36,4 +37,5 @@ export const stores = {
     currentStepStore : new CurrentStepStore(),
     professionalListStore : new ProfessionalListStore(),
     workStore : new WorkStore(),
+    checkHighLabelStore : new CheckHighLabelStore(),
 };
