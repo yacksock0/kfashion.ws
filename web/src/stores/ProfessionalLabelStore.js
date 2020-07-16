@@ -71,8 +71,6 @@ export default class ProfessionalLabelStore {
     @action initStore = () => {
         this.professionalList = [];
     }
-
-
     @action changeNewProfessionalLabelNo1 = (lableNo1) => {
         this.newProfessionalLabel.labelNo1 = lableNo1;
     }
@@ -85,17 +83,14 @@ export default class ProfessionalLabelStore {
     @action changeNewProfessionalLabelNo4 = (lableNo4) => {
         this.newProfessionalLabel.labelNo4 = lableNo4;
     }
-
     @action changeNewProfessionalLabelStyle = (style) => {
         this.newProfessionalLabel.style = style.no;
         this.newProfessionalLabel.styleCategoryNo = style.categoryNo;
     }
-
     @action changeNewProfessionalLabelStyleSub = (styleSub) => {
         this.newProfessionalLabel.styleSub = styleSub.no;
         this.newProfessionalLabel.styleCategorySubNo = styleSub.categoryNo;
     }
-
     @action changeNewProfessionalLabelCategory = (category) => {
         this.newProfessionalLabel.category = category.no;
         this.newProfessionalLabel.categoryCategoryNo = category.categoryNo;
@@ -112,7 +107,6 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.category3 = category3.no;
         this.newProfessionalLabel.categoryCategoryNo = category3.categoryNo;
     }
-
     @action changeNewProfessionalLabelDetail = (detail) => {
         this.newProfessionalLabel.detail = detail.no;
         this.newProfessionalLabel.detailCategoryNo = detail.categoryNo;
@@ -129,7 +123,6 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.detail3 = detail3.no;
         this.newProfessionalLabel.detailCategoryNo = detail3.categoryNo;
     }
-
     @action changeNewProfessionalLabelPrint= (print) => {
         this.newProfessionalLabel.print = print.no;
         this.newProfessionalLabel.printCategoryNo = print.categoryNo;
@@ -146,7 +139,6 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.print3 = print3.no;
         this.newProfessionalLabel.printCategoryNo = print3.categoryNo;
     }
-
     @action changeNewProfessionalLabelTexture = (texture) => {
         this.newProfessionalLabel.texture = texture.no;
         this.newProfessionalLabel.textureCategoryNo = texture.categoryNo;
@@ -163,7 +155,6 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.texture3 = texture3.no;
         this.newProfessionalLabel.textureCategoryNo = texture3.categoryNo;
     }
-
     @action changeNewProfessionalLabelClothLength = (clothLength) => {
         this.newProfessionalLabel.clothLength = clothLength.no;
         this.newProfessionalLabel.clothLengthCategoryNo = clothLength.categoryNo;
@@ -180,7 +171,6 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.clothLength3 = clothLength3.no;
         this.newProfessionalLabel.clothLengthCategoryNo = clothLength3.categoryNo;
     }
-
     @action changeNewProfessionalLabelNeckLine = (neckLine) => {
         this.newProfessionalLabel.neckLine = neckLine.no;
         this.newProfessionalLabel.neckLineCategoryNo = neckLine.categoryNo;
@@ -197,7 +187,6 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.neckLine3 = neckLine3.no;
         this.newProfessionalLabel.neckLineCategoryNo = neckLine3.categoryNo;
     }
-
     @action changeNewProfessionalLabelKara = (kara) => {
         this.newProfessionalLabel.kara = kara.no;
         this.newProfessionalLabel.karaCategoryNo = kara.categoryNo;
@@ -214,7 +203,6 @@ export default class ProfessionalLabelStore {
         this.newProfessionalLabel.kara3 = kara3.no;
         this.newProfessionalLabel.karaCategoryNo = kara3.categoryNo;
     }
-
     @action changeNewProfessionalLabelFit = (fit) => {
         this.newProfessionalLabel.fit = fit.no;
         this.newProfessionalLabel.fitCategoryNo = fit.categoryNo;

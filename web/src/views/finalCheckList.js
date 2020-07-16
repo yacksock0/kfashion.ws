@@ -31,6 +31,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import {fabric} from "fabric";
+import {toJS} from "mobx";
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -126,9 +128,10 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore')
+@inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore', 'polygonStore')
 @observer
 class finalCheckList extends React.Component {
+    createdIdTable = '';
     constructor(props) {
         super(...arguments , props);
         this.state = {
@@ -149,10 +152,11 @@ class finalCheckList extends React.Component {
             count: 0,
             data: [],
             columns: [
-                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
-                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
+                {title: '번호', field: 'workNo',type: 'numeric', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: '생성자', field: 'createdId', type: 'string'},
             ],
         }
     }
@@ -162,6 +166,7 @@ class finalCheckList extends React.Component {
     }
 
     componentDidMount() {
+        this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
         this.props.imageStore.LoadInspectionList();
         const id = this.props.authStore.loginUser.id;
@@ -173,94 +178,151 @@ class finalCheckList extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
+
     }
     handleClick=(workNo, imgData)=>{
         this.props.workStore.LoadReviewLabelList(workNo);
-        this.setState({
-            imgData:imgData,
+        this.deleteAll();
+        this.props.imageStore.changeWorkNo(workNo);
+        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+        this.props.polygonStore.LoadPolygonLocation(workNo);
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 750,
+            height: 850,
+            originX: 'left',
+            originY: 'top'
+        });
+    }
+    deleteAll = () =>{
+        let objList = [];
+        this.canvas.getObjects().forEach(function (o) {
+            objList.push(o);
         })
-
+        for (let i = 0; i <= objList.length; i++) {
+            this.canvas.remove(objList[i]);
+        }
     }
-    handleClickReturn=()=>{
 
-    }
 
     onSelectTab(tabIndex) {
-        // if(tabIndex === 0) {
-        //     if(this.props.workStore.outerReviewLabel !== null) {
-        //         this.setState({
-        //             styleItemName: this.props.workStore.outerReviewLabel.styleItemName,
-        //             styleSubItemName: this.props.workStore.outerReviewLabel.styleSubItemName,
-        //             categoryItemName: this.props.workStore.outerReviewLabel.categoryItemName,
-        //             detailItemName: this.props.workStore.outerReviewLabel.detailItemName,
-        //             printItemName: this.props.workStore.outerReviewLabel.printItemName,
-        //             textureItemName: this.props.workStore.outerReviewLabel.textureItemName,
-        //             clothLengthItemName: this.props.workStore.outerReviewLabel.clothLengthItemName,
-        //             neckLineItemName: this.props.workStore.outerReviewLabel.neckLineItemName,
-        //             karaItemName: this.props.workStore.outerReviewLabel.karaItemName,
-        //             fitItemName: this.props.workStore.outerReviewLabel.fitItemName,
-        //         })
-        //     }
-        // }
-        // if(tabIndex === 1) {
-        //     if(this.props.workStore.topReviewLabel !== null){
-        //         this.setState({
-        //             styleItemName : this.props.workStore.topReviewLabel.styleItemName,
-        //             styleSubItemName : this.props.workStore.topReviewLabel.styleSubItemName,
-        //             categoryItemName : this.props.workStore.topReviewLabel.categoryItemName,
-        //             detailItemName : this.props.workStore.topReviewLabel.detailItemName,
-        //             printItemName : this.props.workStore.topReviewLabel.printItemName,
-        //             textureItemName : this.props.workStore.topReviewLabel.textureItemName,
-        //             clothLengthItemName : this.props.workStore.topReviewLabel.clothLengthItemName,
-        //             neckLineItemName : this.props.workStore.topReviewLabel.neckLineItemName,
-        //             karaItemName : this.props.workStore.topReviewLabel.karaItemName,
-        //             fitItemName : this.props.workStore.topReviewLabel.fitItemName,
-        //         })
-        //     }
-        // }
-        // if(tabIndex === 2) {
-        //     if(this.props.workStore.pantsReviewLabel !== null) {
-        //         this.setState({
-        //             styleItemName: this.props.workStore.pantsReviewLabel.styleItemName,
-        //             styleSubItemName: this.props.workStore.pantsReviewLabel.styleSubItemName,
-        //             categoryItemName: this.props.workStore.pantsReviewLabel.categoryItemName,
-        //             detailItemName: this.props.workStore.pantsReviewLabel.detailItemName,
-        //             printItemName: this.props.workStore.pantsReviewLabel.printItemName,
-        //             textureItemName: this.props.workStore.pantsReviewLabel.textureItemName,
-        //             clothLengthItemName: this.props.workStore.pantsReviewLabel.clothLengthItemName,
-        //             neckLineItemName: this.props.workStore.pantsReviewLabel.neckLineItemName,
-        //             karaItemName: this.props.workStore.pantsReviewLabel.karaItemName,
-        //             fitItemName: this.props.workStore.pantsReviewLabel.fitItemName,
-        //         })
-        //     }
-        // }
-        // if(tabIndex === 3) {
-        //     if(this.props.workStore.onePieceReviewLabel !== null) {
-        //         this.setState({
-        //             styleItemName: this.props.workStore.onePieceReviewLabel.styleItemName,
-        //             styleSubItemName: this.props.workStore.onePieceReviewLabel.styleSubItemName,
-        //             categoryItemName: this.props.workStore.onePieceReviewLabel.categoryItemName,
-        //             detailItemName: this.props.workStore.onePieceReviewLabel.detailItemName,
-        //             printItemName: this.props.workStore.onePieceReviewLabel.printItemName,
-        //             textureItemName: this.props.workStore.onePieceReviewLabel.textureItemName,
-        //             clothLengthItemName: this.props.workStore.onePieceReviewLabel.clothLengthItemName,
-        //             neckLineItemName: this.props.workStore.onePieceReviewLabel.neckLineItemName,
-        //             karaItemName: this.props.workStore.onePieceReviewLabel.karaItemName,
-        //             fitItemName: this.props.workStore.onePieceReviewLabel.fitItemName,
-        //         })
-        //     }
-        // }
+        let polyNo = tabIndex + 1;
+        const {locationPolygonList} = this.props.polygonStore;
+        const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
+        if (selectedPoly.length !== 0) {
+            this.deleteAll();
+            for(let i = 0 ; i <selectedPoly.length; i++) {
+                this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
+                this.x = selectedPoly[i].locationX;
+                this.y = selectedPoly[i].locationY;
+
+                if(i !=0) {
+                    let x1 = this.lineTwoPoint[0];
+                    let x2 = this.lineTwoPoint[2];
+                    let x3 = 0;
+                    let y1 = this.lineTwoPoint[1];
+                    let y2 = this.lineTwoPoint[3];
+                    let y3 = 0;
+                    if (x2 < x1) {
+                        x3 = x1;
+                        x1 = x2;
+                        x2 = x3;
+                    }
+                    if (y2 < y1) {
+                        y3 = y1;
+                        y1 = y2;
+                        y2 = y3;
+                    }
+
+                    let polyline = new fabric.Line(
+                        [this.lineTwoPoint[0],
+                            this.lineTwoPoint[1],
+                            this.lineTwoPoint[2],
+                            this.lineTwoPoint[3]], {
+                            id: this.lineCounter,
+                            type: 'line',
+                            fill: 'red',
+                            stroke: 'red',
+                            strokeWidth: 5,
+                            padding: 1,
+                            selectable: false,
+                            evented: false,
+                            left: x1,
+                            top: y1,
+                        });
+                    this.canvas.add(polyline);
+                    this.canvas.sendToBack(polyline);
+                }
+            }
+            let x1 = selectedPoly[selectedPoly.length-1].locationX;
+            let x2 = selectedPoly[0].locationX;
+            let x3 = 0;
+            let y1 = selectedPoly[selectedPoly.length-1].locationY;
+            let y2 = selectedPoly[0].locationY;
+            let y3 = 0;
+            this.lineTwoPoint = [x1, y1, x2, y2];
+            if (x2 < x1) {
+                x3 = x1;
+                x1 = x2;
+                x2 = x3;
+            }
+            if (y2 < y1) {
+                y3 = y1;
+                y1 = y2;
+                y2 = y3;
+            }
+            let polyline = new fabric.Line(
+                [this.lineTwoPoint[0],
+                    this.lineTwoPoint[1],
+                    this.lineTwoPoint[2],
+                    this.lineTwoPoint[3]], {
+                    id: this.lineCounter,
+                    type: 'line',
+                    fill: 'red',
+                    stroke: 'red',
+                    strokeWidth: 5,
+                    padding: 1,
+                    selectable: false,
+                    evented: false,
+                    left: x1,
+                    top: y1,
+                });
+            this.canvas.add(polyline);
+            this.canvas.sendToBack(polyline);
+            this.setState({
+                tabIndex1: tabIndex,
+            })
+        }
     }
+
+    handleClickReturn=()=>{
+        //  값들 다 스토어에 저장하고
+        //  페이지 이동
+    }
+
     render() {
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel} =this.props.workStore;
+        const isMine = () => {
+            const inspectList = this.props.imageStore.inspectionList;
+            for(let i in inspectList) {
+                const inspect = inspectList[i];
+                if(inspect.createdId == this.props.authStore.loginUser.id){
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+        }
+
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={4}>
-                            <img src={this.state.imgData} style={{display:"inline-block" , width:650, height:'60vh'}}/>
+                            <div>
+                                <canvas id="c" width="750" height="850">  </canvas>
+                            </div>
                         </Grid>
                         <Grid item xs={3} style={{marginRight:20}}>
                             <div component={Paper}>
@@ -273,7 +335,6 @@ class finalCheckList extends React.Component {
                                         </TabList>
                                         <TabPanel>
                                         <TableContainer  style={{height:'60vh'}}>
-
                                     <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                         <TableHead>
                                             <TableRow>
@@ -322,10 +383,8 @@ class finalCheckList extends React.Component {
                                     </Table>
                                 </TableContainer>
                                     </TabPanel>
-
                                         <TabPanel>
                                             <TableContainer  style={{height:'60vh'}}>
-
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
                                                         <TableRow>
@@ -376,7 +435,6 @@ class finalCheckList extends React.Component {
                                         </TabPanel>
                                         <TabPanel>
                                             <TableContainer  style={{height:'60vh'}}>
-
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
                                                         <TableRow>
@@ -424,11 +482,9 @@ class finalCheckList extends React.Component {
                                                     </TableBody>
                                                 </Table>
                                             </TableContainer>
-
                                         </TabPanel>
                                         <TabPanel>
                                             <TableContainer  style={{height:'60vh'}}>
-
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
                                                         <TableRow>
@@ -476,16 +532,13 @@ class finalCheckList extends React.Component {
                                                     </TableBody>
                                                 </Table>
                                             </TableContainer>
-
                                         </TabPanel>
                                     </Tabs>
                             </div>
                         </Grid>
                         <Grid item xs={4}>
                             <MaterialTable
-                                icons={tableIcons
-                                }
-
+                                icons={tableIcons}
                                 columns={this.state.columns}
                                 data={!!this.props.imageStore.inspectionList ?
                                     this.props.imageStore.inspectionList.map((item) => {
@@ -494,6 +547,7 @@ class finalCheckList extends React.Component {
                                             fileName: item.fileName,
                                             workName: item.workName,
                                             createdDatetime: item.createdDatetime,
+                                            createdId: item.createdId,
                                         }
                                     }) : []}
                                 title="이미지 리스트"
@@ -501,18 +555,21 @@ class finalCheckList extends React.Component {
                                     search: true,
                                     actionsColumnIndex: -1,
                                 }}
-                                actions={[
-                                    {
-                                        icon: CheckIcon,
-                                        tooltip: 'Select Image',
-                                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
-                                    },
-                                    {
-                                        icon: Clear,
-                                        tooltip: 'return',
-                                        onClick: (event, rowData) => this.handleClickReturn(rowData.id)
-                                    }
-                                ]}
+                                actions={
+                                    [
+                                        {
+                                            icon: 'check',
+                                            tooltip: 'Select Image',
+                                            onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo=" + rowData.workNo)
+                                        },
+                                        rowData => ({
+                                            icon: 'edit',
+                                            tooltip: 'return',
+                                            hidden: rowData.createdId !== this.props.authStore.loginUser.id,
+                                            onClick: (event, rowData) => this.handleClickReturn(rowData.id)
+                                        })
+                                    ]
+                                }
                             />
                         </Grid>
                     </Grid>
