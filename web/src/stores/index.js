@@ -16,6 +16,7 @@ import CurrentStepStore from "./CurrentStepStore";
 import ProfessionalListStore from "./ProfessionalListStore";
 import WorkStore from "./WorkStore";
 import CheckHighLabelStore from "./CheckHighLabelStore";
+import BasicCategoryStore from "./BasicCategoryStore";
 
 
 
@@ -38,4 +39,5 @@ export const stores = {
     professionalListStore : new ProfessionalListStore(),
     workStore : new WorkStore(),
     checkHighLabelStore : new CheckHighLabelStore(),
+    basicCategoryStore : new BasicCategoryStore(),
 };

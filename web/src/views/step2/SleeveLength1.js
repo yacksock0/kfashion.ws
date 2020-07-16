@@ -18,6 +18,9 @@ export default class SleeveLength1 extends React.Component {
             open:false,
             text: 'text',
             sleeveList1: [],
+            sleeveList2: [],
+            sleeveList4: [],
+
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -28,9 +31,16 @@ export default class SleeveLength1 extends React.Component {
         axios.get('/api/v1/kfashion/category/item/basic/sleeve')
             .then(response => {
                 const sleeveList1 = response.data.sleeveList1;
+                const sleeveList2 = response.data.sleeveList2;
+                const sleeveList4 = response.data.sleeveList4;
                 this.setState({
                     sleeveList1: sleeveList1,
+                    sleeveList2: sleeveList2,
+                    sleeveList4: sleeveList4,
                 })
+                console.log("sleeveList1",sleeveList1)
+                console.log("sleeveList2",sleeveList2)
+                console.log("sleeveList4",sleeveList4)
             })
             .catch(error => {
                 console.log(error)
