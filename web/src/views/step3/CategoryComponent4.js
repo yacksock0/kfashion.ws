@@ -3,15 +3,15 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Button, Container, Grid, Typography} from "@material-ui/core";
-import Category from "../step3/Category";
+import Category1 from "./Category4";
 import Style from "../step3/Style";
-import Detail from "../step3/Detail";
+import Detail1 from "./Detail1";
 import Print from "../step3/Print";
-import Texture from "../step3/Texture";
-import ClothLength from "../step3/ClothLength";
-import NeckLine from "../step3/NeckLine";
-import ColorKara from "../step3/ColorKara";
-import Fit from "../step3/Fit";
+import Texture1 from "./Texture1";
+import ClothLength1 from "./ClothLength1";
+import NeckLine1 from "./NeckLine1";
+import ColorKara1 from "./ColorKara1";
+import Fit1 from "./Fit1";
 import Safe from "../step3/Safe";
 import Silhouette from "../step3/Silhouette";
 import {inject, observer} from "mobx-react";
@@ -54,7 +54,7 @@ const styles = theme => ({
 
 @inject('professionalLabelStore','authStore', 'imageStore','workStore')
 @observer
-class CategoryComponent extends React.Component {
+class CategoryComponent1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -110,6 +110,7 @@ class CategoryComponent extends React.Component {
     componentDidMount() {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
+
     handleClickCategory=(category)=>{
         this.setState({
             categoryNo: category.no,
@@ -249,12 +250,13 @@ class CategoryComponent extends React.Component {
                                                 카테고리
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Category onClick={this.handleClickCategory} />
+                                                <Category4 onClick={this.handleClickCategory}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                    <Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.categoryItemName} </Button>
+                                {this.props.outerReviewLabel.categoryCategoryNo > 0 ?
+                                    (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.props.outerReviewLabel.categoryItemName} </Button>):''}
                                             {this.state.categoryNo > 0 ?
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.categoryName} </Button> ) : ''
                                             }
@@ -266,7 +268,7 @@ class CategoryComponent extends React.Component {
                                                 디테일
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail onClick={this.handleClickDetail}/>
+                                                <Detail1 onClick={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -300,7 +302,7 @@ class CategoryComponent extends React.Component {
                                                 소재감
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Texture onClick={this.handleClickTexture} />
+                                                <Texture1 onClick={this.handleClickTexture} />
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -317,7 +319,7 @@ class CategoryComponent extends React.Component {
                                                 기장
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <ClothLength onClick={this.handleClickCloth}/>
+                                                <ClothLength1 onClick={this.handleClickCloth}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -334,7 +336,7 @@ class CategoryComponent extends React.Component {
                                                 넥라인
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <NeckLine onClick={this.handleClickNeckLine}/>
+                                                <NeckLine1 onClick={this.handleClickNeckLine}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -351,7 +353,7 @@ class CategoryComponent extends React.Component {
                                                 칼라(카라)
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <ColorKara onClick={this.handleClickKara}/>
+                                                <ColorKara1 onClick={this.handleClickKara}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -368,7 +370,7 @@ class CategoryComponent extends React.Component {
                                                 핏
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Fit onClick={this.handleClickFit}/>
+                                                <Fit1 onClick={this.handleClickFit}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
@@ -437,4 +439,4 @@ class CategoryComponent extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(styles) (CategoryComponent)));
+export default withSnackbar(withRouter(withStyles(styles) (CategoryComponent1)));

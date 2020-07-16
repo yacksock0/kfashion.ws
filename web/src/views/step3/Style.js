@@ -50,6 +50,7 @@ export default class Style extends React.Component {
             selectedName:style.categoryItemName
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelStyle(style);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo5(5);
     };
     handleClickSub = (styleSub) =>{
         this.setState({
@@ -81,6 +82,7 @@ export default class Style extends React.Component {
             selectedSubNo:0,
             selectedSubName:'',
         })
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo5(0);
     }
     handleDeleteSub(){
         this.setState({

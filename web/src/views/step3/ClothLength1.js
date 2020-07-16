@@ -33,18 +33,14 @@ export default class ClothLength1 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/length')
             .then(response => {
-                console.log(response.data.lengthList0);
-                console.log(response.data.lengthList1);
-                console.log(response.data.lengthList2);
-                console.log(response.data.lengthList3);
-                const lengthList0 = response.data.lengthList0;
                 const lengthList1 = response.data.lengthList1;
                 const lengthList2 = response.data.lengthList2;
                 const lengthList3 = response.data.lengthList3;
-                this.setState({lengthList0:lengthList0,
-                    lengthList1: lengthList1,
+                const lengthList4 = response.data.lengthList4;
+                this.setState({lengthList1:lengthList1,
                     lengthList2: lengthList2,
-                    lengthList3: lengthList3})
+                    lengthList3: lengthList3,
+                    lengthList4: lengthList4})
             })
             .catch(error => {
                 console.log(error)

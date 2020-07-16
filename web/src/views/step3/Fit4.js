@@ -7,16 +7,13 @@ import DialogContent from "@material-ui/core/DialogContent";
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Category3 extends React.Component {
+export default class Fit4 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            open:false,
             text: 'text',
-            open: false,
-            categoryList0: [],
-            categoryList1: [],
-            categoryList2: [],
-            categoryList3: [],
+            fitList4:[],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -24,22 +21,17 @@ export default class Category3 extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/category')
+        axios.get('/api/v1/kfashion/category/item/professional/fit')
             .then(response => {
-                const categoryList1 = response.data.categoryList1;
-                const categoryList2 = response.data.categoryList2;
-                const categoryList3 = response.data.categoryList3;
-                const categoryList4 = response.data.categoryList4;
-                this.setState({categoryList1:categoryList1,
-                    categoryList2: categoryList2,
-                    categoryList3: categoryList3,
-                    categoryList4: categoryList4})
+                const fitList4 = response.data.fitList4;
+                this.setState({
+                    fitList4: fitList4,
+                })
             })
             .catch(error => {
                 console.log(error)
             })
     }
-
     handleClickOpen() {
         this.setState({
             open: true
@@ -50,18 +42,17 @@ export default class Category3 extends React.Component {
             open: false
         });
     }
-    handleClick(category){
+    handleClick(fit){
         if(this.props.onClick) {
-            this.props.onClick(category);
+            this.props.onClick(fit);
         }
         this.setState({
             open:false,
         })
 
     }
-
     render() {
-        const categoryList3= this.state.categoryList3;
+        const fitList4= this.state.fitList4;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -72,15 +63,15 @@ export default class Category3 extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            카테고리
+                            핏
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {categoryList3.map((category) =>
+                            {fitList4.map((fit) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>
-                                            <h2>{category.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
+                                            <h2>{fit.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

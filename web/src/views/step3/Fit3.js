@@ -4,24 +4,16 @@ import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Fit3 extends React.Component {
+export default class Fit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open:false,
             text: 'text',
-            fitList0: [],
-            fitList3:[],
+            fitList3: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -31,13 +23,10 @@ export default class Fit3 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/fit')
             .then(response => {
-                console.log(response.data.fitList0);
-                console.log(response.data.fitList3);
-                const fitList0 = response.data.fitList0;
                 const fitList3 = response.data.fitList3;
-                this.setState({fitList0:fitList0,
+                this.setState({
                     fitList3: fitList3,
-                    })
+                })
             })
             .catch(error => {
                 console.log(error)

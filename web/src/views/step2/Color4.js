@@ -3,7 +3,7 @@ import axios from "axios";
 import {inject, observer} from "mobx-react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import {Grid, Button, Typography} from "@material-ui/core";
+import {Button, Typography} from "@material-ui/core";
 
 @inject('basicLabelStore','authStore')
 @observer
@@ -14,7 +14,7 @@ export default class Color extends React.Component {
             open:false,
             open1:false,
             text: 'text',
-            colorList: [],
+            colorList4: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -25,9 +25,9 @@ export default class Color extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/basic/color')
             .then(response => {
-                const colorList = response.data.colorList;
+                const colorList4 = response.data.colorList4;
                 this.setState({
-                    colorList:colorList,
+                    colorList4:colorList4,
                 })
             })
             .catch(error => {
@@ -67,7 +67,7 @@ export default class Color extends React.Component {
         });
     }
     render() {
-        const {colorList}= this.state;
+        const {colorList4}= this.state;
 
         return (
             <div>
@@ -82,7 +82,7 @@ export default class Color extends React.Component {
                 </Typography>
                 <hr></hr>
                 <div style={{textAlign:'center'}}>
-                    {colorList.map((color) =>
+                    {colorList4.map((color) =>
                      <Button key={color.no} onClick={() => this.handledColor(color)}>
                          <div>
                          <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>
@@ -105,7 +105,7 @@ export default class Color extends React.Component {
                         </Typography>
                         <hr></hr>
                         <div style={{textAlign:'center'}}>
-                            {colorList.map((color) =>
+                            {colorList4.map((color) =>
                                 <Button key={color.no} onClick={() => this.handledColorSub(color)}>
                                     <div>
                                         <div style={{width: 60, height: 60,margin:'auto',border:'1px solid black', backgroundColor: `${color.categoryItemMemo}`}}>

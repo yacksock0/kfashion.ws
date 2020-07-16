@@ -4,23 +4,16 @@ import {inject, observer} from "mobx-react";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
 
 @inject('professionalLabelStore','authStore')
 @observer
-export default class Silhouette extends React.Component {
+export default class NeckLine1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open: false,
             text: 'text',
-            silhouetteList: [],
+            neckLineList1: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -28,10 +21,12 @@ export default class Silhouette extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/silhouette')
+        axios.get('/api/v1/kfashion/category/item/professional/neckLine')
             .then(response => {
-                const silhouetteList = response.data.silhouetteList;
-                this.setState({ silhouetteList : silhouetteList})
+                const neckLineList1 = response.data.neckLineList1;
+                this.setState({
+                    neckLineList1: neckLineList1,
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -47,16 +42,18 @@ export default class Silhouette extends React.Component {
             open: false
         });
     }
-    handleClick(silhouette){
+    handleClick(neckLine){
         if(this.props.onClick) {
-            this.props.onClick(silhouette);
+            this.props.onClick(neckLine);
         }
         this.setState({
             open:false,
         })
+
     }
+
     render() {
-        const silhouetteList= this.state.silhouetteList;
+        const neckLineList1= this.state.neckLineList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -67,15 +64,15 @@ export default class Silhouette extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            카테고리
+                           넥라인
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {silhouetteList.map((silhouette) =>
+                            {neckLineList1.map((neckLine) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={silhouette.no} onClick={() => this.handleClick(silhouette)}>
-                                            <h2>{silhouette.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={neckLine.no} onClick={() => this.handleClick(neckLine)}>
+                                            <h2>{neckLine.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>
