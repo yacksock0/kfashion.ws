@@ -158,6 +158,11 @@ export default class WorkStore {
             }else {
                 this.styleReviewLabel = [];
             }
+            console.log("styleReviewLabel" + this.styleReviewLabel);
+            console.log("outerReviewLabel" + this.outerReviewLabel);
+            console.log("topReviewLabel" + this.topReviewLabel);
+            console.log("pantsReviewLabel" + this.pantsReviewLabel);
+            console.log("onePieceReviewLabel" + this.onePieceReviewLabel);
 
         } catch (e) {
             console.log('error')

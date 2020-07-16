@@ -130,8 +130,7 @@ const tableIcons = {
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore', 'polygonStore')
 @observer
-class finalCheckList extends React.Component {
-    createdIdTable = '';
+class FinalCheckList extends React.Component {
     constructor(props) {
         super(...arguments , props);
         this.state = {
@@ -301,18 +300,7 @@ class finalCheckList extends React.Component {
 
     render() {
         const {classes} = this.props;
-        const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel} =this.props.workStore;
-        const isMine = () => {
-            const inspectList = this.props.imageStore.inspectionList;
-            for(let i in inspectList) {
-                const inspect = inspectList[i];
-                if(inspect.createdId == this.props.authStore.loginUser.id){
-                    return true;
-                } else{
-                    return false;
-                }
-            }
-        }
+        const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.workStore;
 
         return (
             <Container component="main" className={classes.mainContainer}>
@@ -326,214 +314,214 @@ class finalCheckList extends React.Component {
                         </Grid>
                         <Grid item xs={3} style={{marginRight:20}}>
                             <div component={Paper}>
-                                    <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTab(tabIndex)}>
-                                        <TabList >
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
-                                        </TabList>
-                                        <TabPanel>
+                                <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTab(tabIndex)}>
+                                    <TabList >
+                                        <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
+                                        <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
+                                        <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
+                                        <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                    </TabList>
+                                    <TabPanel>
                                         <TableContainer  style={{height:'60vh'}}>
-                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell align="center">항목</TableCell>
-                                                <TableCell align="center">레이블링</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                                <TableRow>
-                                                    <TableCell align="center">스타일</TableCell>
-                                                    <TableCell align="center">메인 : {outerReviewLabel.styleItemName} 서브 : {outerReviewLabel.styleSubItemName}</TableCell>
-                                                </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">카테고리</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.categoryItemName}</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">디테일</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.detailItemName}</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">프린트</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.printItemName}</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">소재</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.textureItemName}</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">기장</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.clothLengthItemName}</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">넥라인</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.neckLineItemName}</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">칼라</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.karaItemName}</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center">핏</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.fitItemName}</TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
+                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell align="center">항목</TableCell>
+                                                        <TableCell align="center">레이블링</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    <TableRow>
+                                                        <TableCell align="center">스타일</TableCell>
+                                                        <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">카테고리</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.categoryItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">디테일</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.detailItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">프린트</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.printItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">소재</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.textureItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">기장</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.clothLengthItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">넥라인</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.neckLineItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">칼라</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.karaItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">핏</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.fitItemName}</TableCell>
+                                                    </TableRow>
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
                                     </TabPanel>
-                                        <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
-                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                    <TableHead>
-                                                        <TableRow>
-                                                            <TableCell align="center">항목</TableCell>
-                                                            <TableCell align="center">레이블링</TableCell>
-                                                        </TableRow>
-                                                    </TableHead>
-                                                    <TableBody>
-                                                        <TableRow>
-                                                            <TableCell align="center">스타일</TableCell>
-                                                            <TableCell align="center">메인 : {topReviewLabel.styleItemName} 서브 : {topReviewLabel.styleSubItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">카테고리</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.categoryItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">디테일</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.detailItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">프린트</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.printItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">소재</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.textureItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">기장</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.clothLengthItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">넥라인</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.neckLineItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">칼라</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.karaItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">핏</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.fitItemName}</TableCell>
-                                                        </TableRow>
-                                                    </TableBody>
-                                                </Table>
-                                            </TableContainer>
-                                        </TabPanel>
-                                        <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
-                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                    <TableHead>
-                                                        <TableRow>
-                                                            <TableCell align="center">항목</TableCell>
-                                                            <TableCell align="center">레이블링</TableCell>
-                                                        </TableRow>
-                                                    </TableHead>
-                                                    <TableBody>
-                                                        <TableRow>
-                                                            <TableCell align="center">스타일</TableCell>
-                                                            <TableCell align="center">메인 : {pantsReviewLabel.styleItemName} 서브 : {pantsReviewLabel.styleSubItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">카테고리</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.categoryItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">디테일</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.detailItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">프린트</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.printItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">소재</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.textureItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">기장</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.clothLengthItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">넥라인</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.neckLineItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">칼라</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.karaItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">핏</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.fitItemName}</TableCell>
-                                                        </TableRow>
-                                                    </TableBody>
-                                                </Table>
-                                            </TableContainer>
-                                        </TabPanel>
-                                        <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
-                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                    <TableHead>
-                                                        <TableRow>
-                                                            <TableCell align="center">항목</TableCell>
-                                                            <TableCell align="center">레이블링</TableCell>
-                                                        </TableRow>
-                                                    </TableHead>
-                                                    <TableBody>
-                                                        <TableRow>
-                                                            <TableCell align="center">스타일</TableCell>
-                                                            <TableCell align="center">메인 : {onePieceReviewLabel.styleItemName} 서브 : {onePieceReviewLabel.styleSubItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">카테고리</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.categoryItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">디테일</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.detailItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">프린트</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.printItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">소재</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.textureItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">기장</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.clothLengthItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">넥라인</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.neckLineItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">칼라</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.karaItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">핏</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.fitItemName}</TableCell>
-                                                        </TableRow>
-                                                    </TableBody>
-                                                </Table>
-                                            </TableContainer>
-                                        </TabPanel>
-                                    </Tabs>
+                                    <TabPanel>
+                                        <TableContainer  style={{height:'60vh'}}>
+                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell align="center">항목</TableCell>
+                                                        <TableCell align="center">레이블링</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    <TableRow>
+                                                        <TableCell align="center">스타일</TableCell>
+                                                        <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">카테고리</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.categoryItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">디테일</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.detailItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">프린트</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.printItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">소재</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.textureItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">기장</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.clothLengthItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">넥라인</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.neckLineItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">칼라</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.karaItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">핏</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.fitItemName}</TableCell>
+                                                    </TableRow>
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <TableContainer  style={{height:'60vh'}}>
+                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell align="center">항목</TableCell>
+                                                        <TableCell align="center">레이블링</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    <TableRow>
+                                                        <TableCell align="center">스타일</TableCell>
+                                                        <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">카테고리</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.categoryItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">디테일</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.detailItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">프린트</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.printItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">소재</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.textureItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">기장</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.clothLengthItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">넥라인</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.neckLineItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">칼라</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.karaItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">핏</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.fitItemName}</TableCell>
+                                                    </TableRow>
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <TableContainer  style={{height:'60vh'}}>
+                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell align="center">항목</TableCell>
+                                                        <TableCell align="center">레이블링</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    <TableRow>
+                                                        <TableCell align="center">스타일</TableCell>
+                                                        <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">카테고리</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.categoryItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">디테일</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.detailItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">프린트</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.printItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">소재</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.textureItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">기장</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.clothLengthItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">넥라인</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.neckLineItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">칼라</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.karaItemName}</TableCell>
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell align="center">핏</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.fitItemName}</TableCell>
+                                                    </TableRow>
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </TabPanel>
+                                </Tabs>
                             </div>
                         </Grid>
                         <Grid item xs={4}>
@@ -558,12 +546,12 @@ class finalCheckList extends React.Component {
                                 actions={
                                     [
                                         {
-                                            icon: 'check',
+                                            icon: CheckIcon,
                                             tooltip: 'Select Image',
                                             onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo=" + rowData.workNo)
                                         },
                                         rowData => ({
-                                            icon: 'edit',
+                                            icon: Edit,
                                             tooltip: 'return',
                                             hidden: rowData.createdId !== this.props.authStore.loginUser.id,
                                             onClick: (event, rowData) => this.handleClickReturn(rowData.id)
@@ -578,4 +566,4 @@ class finalCheckList extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(styles) (finalCheckList)));
+export default withSnackbar(withRouter(withStyles(styles) (FinalCheckList)));
