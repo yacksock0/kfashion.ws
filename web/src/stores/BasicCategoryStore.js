@@ -82,9 +82,6 @@ export default class BasicCategoryStore {
                 this.sleeveList1 = sleeveList1;
                 this.sleeveList2 = sleeveList2;
                 this.sleeveList4 = sleeveList4;
-                console.log("sleeveList1", sleeveList1);
-                console.log("sleeveList1", sleeveList2);
-                console.log("sleeveList1", sleeveList4);
         } catch (e) {
             console.log('error')
         }
@@ -103,11 +100,6 @@ export default class BasicCategoryStore {
                 this.colorList2 = colorList2;
                 this.colorList3 = colorList3;
                 this.colorList4 = colorList4;
-                console.log("colorList1",colorList1);
-                console.log("colorList2",colorList2);
-                console.log("colorList3",colorList3);
-                console.log("colorList4",colorList4);
-
         } catch (e) {
             console.log('error')
         }
