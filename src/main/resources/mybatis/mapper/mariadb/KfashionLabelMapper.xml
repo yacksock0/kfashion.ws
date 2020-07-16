@@ -227,7 +227,7 @@
                  RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
         WHERE work_no = #{workNo}
           AND kfashion_label.label_no=5
-          AND kfashion_label.work_step=4
+          AND kfashion_label.work_step=6
           ORDER BY kfashion_label.no
     </select>
 
