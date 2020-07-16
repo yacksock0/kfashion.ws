@@ -13,7 +13,7 @@ export default class Texture1 extends React.Component {
         this.state = {
             open:false,
             text: 'text',
-            textureList: [],
+            textureList1: [],
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
@@ -49,7 +49,7 @@ export default class Texture1 extends React.Component {
 
     }
     render() {
-        const textureList1= this.state.textureList;
+        const textureList1= this.state.textureList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>

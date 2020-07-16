@@ -13,9 +13,6 @@ export default class ClothLength3 extends React.Component {
         this.state = {
             text: 'text',
             open: false,
-            lengthList0: [],
-            lengthList1: [],
-            lengthList2: [],
             lengthList3: [],
             selectedOption:null,
         }
@@ -26,14 +23,10 @@ export default class ClothLength3 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/length')
             .then(response => {
-                const lengthList1 = response.data.lengthList1;
-                const lengthList2 = response.data.lengthList2;
                 const lengthList3 = response.data.lengthList3;
-                const lengthList4 = response.data.lengthList4;
-                this.setState({lengthList1:lengthList1,
-                    lengthList2: lengthList2,
+                this.setState({
                     lengthList3: lengthList3,
-                    lengthList4: lengthList4})
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -58,7 +51,7 @@ export default class ClothLength3 extends React.Component {
         })
     }
     render() {
-        const lengthList4= this.state.lengthList4;
+        const lengthList3= this.state.lengthList3;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -73,7 +66,7 @@ export default class ClothLength3 extends React.Component {
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {lengthList4.map((length) =>
+                            {lengthList3.map((length) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
                                         <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>

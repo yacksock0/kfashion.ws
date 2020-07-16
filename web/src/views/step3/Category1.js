@@ -26,6 +26,7 @@ export default class Category extends React.Component {
         axios.get('/api/v1/kfashion/category/item/professional/category')
             .then(response => {
                 const categoryList1 = response.data.categoryList1;
+                console.log('categoryList1',categoryList1)
                 this.setState({categoryList1:categoryList1,
                     })
             })

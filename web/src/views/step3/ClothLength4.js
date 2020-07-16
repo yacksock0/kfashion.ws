@@ -13,10 +13,7 @@ export default class ClothLength1 extends React.Component {
         this.state = {
             text: 'text',
             open: false,
-            lengthList0: [],
-            lengthList1: [],
-            lengthList2: [],
-            lengthList3: [],
+            lengthList4: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -26,13 +23,8 @@ export default class ClothLength1 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/length')
             .then(response => {
-                const lengthList1 = response.data.lengthList1;
-                const lengthList2 = response.data.lengthList2;
-                const lengthList3 = response.data.lengthList3;
                 const lengthList4 = response.data.lengthList4;
-                this.setState({lengthList1:lengthList1,
-                    lengthList2: lengthList2,
-                    lengthList3: lengthList3,
+                this.setState({
                     lengthList4: lengthList4})
             })
             .catch(error => {

@@ -332,48 +332,6 @@ class CategoryComponent3 extends React.Component {
                                             저장
                                         </Button>
                                     </Grid>
-                                    {/*<Grid item xs={12} lg={6}>*/}
-                                    {/*    <div className={classes.content} style={{display:'inline'}}>*/}
-                                    {/*        <Typography variant="h5" component="h5" style={{display:'inline'}}>*/}
-                                    {/*            세이프*/}
-                                    {/*        </Typography>*/}
-                                    {/*        <div style={{display:'inline-block', float:'right', marginTop : -3}}>*/}
-                                    {/*            <Safe onClick={this.handleClickSafe}/>*/}
-                                    {/*        </div>*/}
-                                    {/*        <div>*/}
-                                    {/*            <hr></hr>*/}
-                                    {/*        </div>*/}
-                                    {/*        {this.state.safeNo > 0 ?*/}
-                                    {/*            (<Chip*/}
-                                    {/*                variant="outlined"*/}
-                                    {/*                label={this.state.safeName}*/}
-                                    {/*                onDelete={this.handleDeleteSafe}*/}
-                                    {/*                color="primary"*/}
-                                    {/*            />) : ''*/}
-                                    {/*        }*/}
-                                    {/*    </div>*/}
-                                    {/*</Grid>*/}
-                                    {/*<Grid item xs={12} lg={6}>*/}
-                                    {/*    <div className={classes.content} style={{display:'inline'}}>*/}
-                                    {/*        <Typography variant="h5" component="h5" style={{display:'inline'}}>*/}
-                                    {/*            실루엣*/}
-                                    {/*        </Typography>*/}
-                                    {/*        <div style={{display:'inline-block', float:'right', marginTop : -3}}>*/}
-                                    {/*            <Silhouette onClick={this.handleClickSilhouette}/>*/}
-                                    {/*        </div>*/}
-                                    {/*        <div>*/}
-                                    {/*            <hr></hr>*/}
-                                    {/*        </div>*/}
-                                    {/*        {this.state.silhouetteNo > 0 ?*/}
-                                    {/*            (<Chip*/}
-                                    {/*                variant="outlined"*/}
-                                    {/*                label={this.state.silhouetteName}*/}
-                                    {/*                onDelete={this.handleDeleteSilhouette}*/}
-                                    {/*                color="primary"*/}
-                                    {/*            />) : ''*/}
-                                    {/*        }*/}
-                                    {/*    </div>*/}
-                                    {/*</Grid>*/}
                                 </Grid>
 
         );

@@ -296,7 +296,6 @@ class Step3 extends React.Component {
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
-        const {outerReviewLabel,topReviewLabel,pantsReviewLabel,onePieceReviewLabel} = this.props.workStore;
 
             return (
                 <Container component="main" className={classes.mainContainer}>
@@ -327,9 +326,6 @@ class Step3 extends React.Component {
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>*/}
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>*/}
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>*/}
                                         </TabList>
 
                                         <TabPanel>
@@ -339,22 +335,22 @@ class Step3 extends React.Component {
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} outerReviewLabel={outerReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} topReviewLabel={topReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} pantsReviewLabel={pantsReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent4 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onePieceReviewLabel={onePieceReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent4 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                     </Tabs>

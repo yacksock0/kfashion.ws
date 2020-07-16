@@ -13,7 +13,7 @@ export default class Detail1 extends React.Component {
         this.state = {
             text: 'text',
             open: false,
-            detailList: [],
+            detailList4: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -23,15 +23,10 @@ export default class Detail1 extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/detail')
             .then(response => {
-                const detailList1 = response.data.detailList1;
-                const detailList2 = response.data.detailList2;
-                const detailList3 = response.data.detailList3;
                 const detailList4 = response.data.detailList4;
 
-                this.setState({detailList:detailList1,
-                    detailLis2: detailList2,
-                    detailLis3: detailList3,
-                    detailLis4: detailList4
+                this.setState({
+                    detailList4: detailList4
                 })
             })
             .catch(error => {
@@ -66,7 +61,7 @@ export default class Detail1 extends React.Component {
         });
     }
     render() {
-        const detailList4= this.state.detailLis4;
+        const detailList4= this.state.detailList4;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>

@@ -15,10 +15,7 @@ export default class Category1 extends React.Component {
         this.state = {
             text: 'text',
             open: false,
-            categoryList0: [],
             categoryList1: [],
-            categoryList2: [],
-            categoryList3: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -29,13 +26,8 @@ export default class Category1 extends React.Component {
         axios.get('/api/v1/kfashion/category/item/professional/category')
             .then(response => {
                 const categoryList1 = response.data.categoryList1;
-                const categoryList2 = response.data.categoryList2;
-                const categoryList3 = response.data.categoryList3;
-                const categoryList4 = response.data.categoryList4;
                 this.setState({categoryList1:categoryList1,
-                                    categoryList2: categoryList2,
-                                    categoryList3: categoryList3,
-                                    categoryList4: categoryList4})
+                                    })
             })
             .catch(error => {
                 console.log(error)
@@ -63,7 +55,7 @@ export default class Category1 extends React.Component {
     }
 
     render() {
-        const categoryList4= this.state.categoryList4;
+        const categoryList1= this.state.categoryList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -79,7 +71,7 @@ export default class Category1 extends React.Component {
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {categoryList4.map((category) =>
+                            {categoryList1.map((category) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
                                         <Button style={{width:'100%', height:60}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>

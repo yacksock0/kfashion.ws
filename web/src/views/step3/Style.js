@@ -107,8 +107,6 @@ export default class Style extends React.Component {
                             <hr></hr>
                         </div>
                         <div style={{display:"inline-block", marginRight:10}}>
-                            <Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.styleItemName} </Button>
-                            <Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.styleSubItemName} </Button>
                         {this.state.selectedNo > 0 ?
                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {this.state.selectedName} </Button> ) : ''
                         }
