@@ -120,18 +120,18 @@
          WHERE kfashion_work.work_state = 6
          GROUP BY kfashion_image.work_no
     </select>
-    <select id="recentlyImg" parameterType="String" resultType="kfashionImageResultMap" >
+    <select id="recentlyImg" resultMap="kfashionImageResultMap" >
         SELECT DISTINCT
-        kfashion_image.work_no,
-        SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name,
-        CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
-        kfashion_work.created_datetime,
-        kfashion_work_history.created_id
+            kfashion_image.work_no,
+            SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name,
+            CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
+            kfashion_work_history.created_id,
+            kfashion_work_history.updated_datetime
         FROM kfashion_image
-        LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
-        RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        WHERE kfashion_work.work_state = 6 And  kfashion_work_history.created_id = #{createdId}
-        ORDER BY kfashion_work_history.updated_datetime DESC
+                 LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+                 RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        WHERE kfashion_work_history.work_step = 6 And  kfashion_work_history.created_id = 'univ1'
+        ORDER BY kfashion_work_history.updated_datetime DESC LIMIT 10
     </select>
 
 </mapper>
