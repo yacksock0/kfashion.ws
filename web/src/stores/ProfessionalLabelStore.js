@@ -641,6 +641,22 @@ export default class ProfessionalLabelStore {
         this.styleReviewLabel.workNo = workNo;
     }
 
+    @computed get isLabelNo1() {
+        return (this.styleReviewLabel.labelNo1 !== undefined) && (this.styleReviewLabel.labelNo1 !== null) && (this.styleReviewLabel.labelNo1.length > 0);
+    }
+    @computed get isLabelNo2() {
+        return (this.styleReviewLabel.labelNo2 !== undefined) && (this.styleReviewLabel.labelNo2 !== null) && (this.styleReviewLabe2.labelNo1.length > 0);
+    }
+    @computed get isLabelNo3() {
+        return (this.styleReviewLabel.labelNo3 !== undefined) && (this.styleReviewLabel.labelNo3 !== null) && (this.styleReviewLabe3.labelNo1.length > 0);
+    }
+    @computed get isLabelNo4() {
+        return (this.styleReviewLabel.labelNo4 !== undefined) && (this.styleReviewLabel.labelNo4 !== null) && (this.styleReviewLabe4.labelNo1.length > 0);
+    }
+    @computed get isLabelNo5() {
+        return (this.styleReviewLabel.labelNo5 !== undefined) && (this.styleReviewLabel.labelNo5 !== null) && (this.styleReviewLabe5.labelNo1.length > 0);
+    }
+
     @computed get isPending() {
         return this.state === State.Pending;
     }

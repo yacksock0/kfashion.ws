@@ -659,17 +659,6 @@ class Step2 extends React.Component {
                 sleeveLengthCategoryNo4: this.state.sleeveLengthCategoryNo4,
                 createdId: this.props.authStore.loginUser.id,
             });
-            console.log('colorCategoryNo1', this.state.colorCategoryNo1)
-            console.log('colorCategoryNo2', this.state.colorCategoryNo2)
-            console.log('colorCategoryNo3', this.state.colorCategoryNo3)
-            console.log('colorCategoryNo4', this.state.colorCategoryNo4)
-            console.log('colorCategoryNo4', this.state.subColorCategoryNo1)
-            console.log('colorCategoryNo4', this.state.subColorCategoryNo2)
-            console.log('colorCategoryNo4', this.state.subColorCategoryNo3)
-            console.log('colorCategoryNo4', this.state.subColorCategoryNo4)
-            console.log('sleeveLengthCategoryNo1', this.state.sleeveLengthCategoryNo1)
-            console.log('sleeveLengthCategoryNo2', this.state.sleeveLengthCategoryNo2)
-            console.log('sleeveLengthCategoryNo4', this.state.sleeveLengthCategoryNo4)
             axios.post('/api/v1/kfashion/label/basicLabel', param, {})
                 .then(res => {
                     if (res.status === 200) {
