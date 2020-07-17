@@ -8,10 +8,8 @@ const style = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        overflow: 'hidden',
         border: '1px solid black',
         borderRadius: 15,
-        padding:10
     },
     topBox:{
         borderBottom:'1px solid black',
@@ -21,10 +19,11 @@ const style = theme => ({
         padding:0
     },
     imgBox:{
-        width:100,
+        width:80,
         height:80,
         display:'block',
         margin:'auto',
+        padding:0
     }
 });
 

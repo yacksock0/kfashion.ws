@@ -604,6 +604,8 @@ export default class ProfessionalLabelStore {
         }
     });
 
+
+
     LoadLabelList = flow(function* LoadLabelList(workNo) {
         this.state = State.Pending;
         try {

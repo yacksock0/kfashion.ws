@@ -130,7 +130,7 @@ class Step3 extends React.Component {
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width : 750,
+            width : 650,
             height : 850,
             originX: 'left',
             originY: 'top'
@@ -302,15 +302,15 @@ class Step3 extends React.Component {
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
                         <Grid container>
-                            <Grid item xs={12} lg={1}>
+                            <div style={{width:120}}>
                                 <WorkedImg onClick={this.handleLabel}/>
-                            </Grid>
-                            <Grid item xs={12} lg={5} style={{margin:'auto'}}>
-                                <div>
-                                    <canvas id="c" width={750} height={850} className={classes.canvas} style={{display:'contain'}}>  </canvas>
+                            </div>
+                            <div>
+                                <div style={{marginLeft:10}}>
+                                    <canvas id="c" width={650} height={850} className={classes.canvas} style={{display:'absolute'}}>  </canvas>
                                 </div>
-                            </Grid>
-                            <Grid item xs={12} lg={5}>
+                            </div>
+                            <div>
                                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                         <TabList >
                                             <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>레이블링</h3></Tab>
@@ -359,7 +359,7 @@ class Step3 extends React.Component {
                                     <ProImageList onClick={this.handleClickItem} />
                                     </TabPanel>
                                     </Tabs>
-                                </Grid>
+                            </div>
                         </Grid>
                         <div>
                         <hr></hr>
