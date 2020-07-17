@@ -73,4 +73,8 @@ public class KfashionLabelService {
     public List<KfashionLabel> selectStyleReviewLabelList(Long workNo) {
         return repository.selectStyleReviewLabelList(workNo);
     }
+
+    public void deleteProfessionalLabel(int workNo) {
+        repository.deleteProfessionalLabel(workNo);
+    }
 }

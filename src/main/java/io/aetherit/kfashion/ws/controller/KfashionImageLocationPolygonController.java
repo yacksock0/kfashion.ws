@@ -64,7 +64,7 @@ public class KfashionImageLocationPolygonController {
 
             if(polygonList != null) {
 
-                for(int i=0; i <= polygonList.size(); i++) {
+                for(int i=0; i < polygonList.size(); i++) {
                     KfashionImageLocationPolygon polygon = new KfashionImageLocationPolygon();
                     polygon.setWorkNo(polygonList.get(i).getWorkNo());
                     polygon.setWorkStep(polygonList.get(i).getWorkStep());

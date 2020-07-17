@@ -355,8 +355,6 @@ class Polygon extends React.Component {
             this.rectScaleY = path.scaleY;
             this.rectScaleX = path.scaleX;
 
-
-
             const rect = new fabric.Rect({
                 id : this.polyNo,
                 left: path.left,
@@ -410,7 +408,6 @@ class Polygon extends React.Component {
                 this.polygon.push(newPolygon);
                 this.state.savebtn = false;
                 this.deleteAll(newPolyNo);
-                // console.log(this.polygon);
 
                 switch (newPolyNo) {
                     case 1 :
@@ -448,7 +445,6 @@ class Polygon extends React.Component {
         }else if(this.state.savebtn){
             alert("save 눌러 작업을 마무리 하세요.");
         }else{
-
             // -- RectLocation 저장
             this.props.rectStore.objGet(this.rectangle, this.polygon);
             this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);

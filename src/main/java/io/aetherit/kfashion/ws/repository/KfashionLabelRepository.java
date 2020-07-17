@@ -70,4 +70,7 @@ public class KfashionLabelRepository {
     public List<KfashionLabel> selectStyleReviewLabelList(Long workNo) {
         return mapper.selectStyleReviewLabelList(workNo);
     }
+    public void deleteProfessionalLabel(int workNo) {
+        mapper.deleteProfessionalLabel(workNo);
+    }
 }

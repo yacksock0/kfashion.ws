@@ -231,4 +231,11 @@
           ORDER BY kfashion_label.no
     </select>
 
+
+    <delete id="deleteProfessionalLabel" parameterType="Int">
+            DELETE FROM kfashion_label WHERE work_no = #{value}
+    </delete>
+
+
+
 </mapper>

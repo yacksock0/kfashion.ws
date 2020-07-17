@@ -239,3 +239,24 @@ CREATE TABLE  kfashion_label (
 	CONSTRAINT fk_kfashion_label_category_item_no 						FOREIGN KEY (category_item_no)
 																		REFERENCES 	kfashion_category_item (no)
 );
+
+CREATE TABLE kfashion_comment (
+	work_no					BIGINT			NOT NULL,	-- 외래키
+	work_step				INT				NOT NULL,	-- 외래키
+	comment_no				INT				NOT NULL,
+    back_step 				INT				NOT NULL,
+    comment					NVARCHAR(256)	NOT NULL,
+    complete				CHAR(1) 		NOT NULL	DEFAULT 'N',
+    send_id					NVARCHAR(64)	NOT NULL,
+    receive_id				NVARCHAR(64)	NOT NULL,
+	created_datetime		DATETIME		NOT NULL,
+	updated_datetime		DATETIME		NULL,
+
+	PRIMARY KEY (work_no, work_step, comment_no),
+	CONSTRAINT fk_kfashion_comment_work_no_work_step	FOREIGN KEY (work_no,work_step)
+														REFERENCES 	kfashion_work_history (work_no, work_step),
+	CONSTRAINT fk_kfashion_comment_send_id				FOREIGN KEY (send_id)
+														REFERENCES 	kfashion_user_info (id),
+	CONSTRAINT fk_kfashion_comment_receive_id			FOREIGN KEY (receive_id)
+														REFERENCES 	kfashion_user_info (id)
+);

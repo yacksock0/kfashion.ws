@@ -96,13 +96,18 @@ class WorkDetail extends React.Component {
     }
     handleSubmit=()=>{
         axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
-        this.setState({
-            value:'',
-            open:false,
-        })
-        const groupNo = this.props.authStore.loginUser.groupNo;
-        this.props.userListStore.LoadGroupUserList(groupNo);
-        alert("작업지정이 완료되었습니다.");
+            .then(res =>{
+                if (res.status === 200) {
+                    this.setState({
+                        value:'',
+                        open:false,
+                    })
+                    const groupNo = this.props.authStore.loginUser.groupNo;
+                    this.props.userListStore.LoadGroupUserList(groupNo);
+                    alert("작업지정이 완료되었습니다.");
+                }
+            })
+
 
     }
     render() {
