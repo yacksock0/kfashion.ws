@@ -318,7 +318,6 @@ class HighCheckList extends React.Component {
                             <MaterialTable
                                 icons={tableIcons
                                 }
-
                                 columns={this.state.columns}
                                 data={!!this.props.checkHighLabelStore.inspectionHighList ?
                                     this.props.checkHighLabelStore.inspectionHighList.map((item) => {

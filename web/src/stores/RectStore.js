@@ -110,7 +110,14 @@ export default class RectStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/rect/rectList?createdId='+createdId)
             this.rectList = response.data.rectList;
-            handleListChange(this.rectList.length);
+
+            //polygon 입력하고 호출될 땐 핸들러가 없어서 오류남.
+            if(handleListChange != null){
+                handleListChange(this.rectList.length);
+            }
+
+
+
         } catch (e) {
             console.log('error')
         }
@@ -136,12 +143,13 @@ export default class RectStore {
             console.log(kfashionRectList);
             const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList);
             if (resp.status === 200) {
-                this.state = State.Success;
-                const createdId = this.NewRectLocation.createdId;
-                this.LoadRectImage(createdId);
+                // this.state = State.Success;
+                // const createdId = this.NewRectLocation.createdId;
+                // this.LoadRectImage(createdId);
+                this.doPolygonLocationUp();
             };
 
-            this.doPolygonLocationUp();
+
         } catch (e) {
             console.log('error')
         }
@@ -160,14 +168,15 @@ export default class RectStore {
             }));
             const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
             if (resp.status === 200) {
-                alert("작업이 저장되었습니다.")
+                alert("작업이 저장되었습니다.");
                 this.state = State.Success;
-                const createdId = this.NewPolygonLocation.createdId;
-                this.LoadPolygonImage(createdId);
-            } else {
+
+                //작업 완료 후 리스트 갱신.
+                const createdId = this.NewRectLocation.createdId;
+                this.LoadRectImage(createdId);
             }
         } catch (e) {
-            console.log('error')
+            console.log('error');
         }
     });
 

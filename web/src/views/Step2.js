@@ -574,130 +574,143 @@ class Step2 extends React.Component {
         const {polyInfo} = this.props.polygonStore;
         let savebtn = true;
         console.log(polyInfo);
-        for(let i = 0 ; i < polyInfo.length ; i++){
+        for (let i = 0; i < polyInfo.length; i++) {
             console.log("!!!!!!" + polyInfo[i]);
             switch (polyInfo[i]) {
                 case 1 :
-                    if(this.state.no1 == 0){
+                    if (this.state.no1 == 0) {
                         alert("아우터의 메인색상을 선택해주세요");
-                        savebtn = false; i = polyInfo.length;
+                        savebtn = false;
+                        i = polyInfo.length;
                         break;
-                    }else if(this.state.sleeveNo1 == ""){
+                    } else if (this.state.sleeveNo1 == "") {
                         alert("아우터의 소매길이를 선택해주세요");
-                        savebtn = false; i = polyInfo.length;
+                        savebtn = false;
+                        i = polyInfo.length;
                         break;
-                    } break;
+                    }
+                    break;
                 case 2 :
-                     if(this.state.no2 == 0){
+                    if (this.state.no2 == 0) {
                         alert("상의의 메인색상을 선택해주세요");
-                         savebtn = false; i = polyInfo.length;
-                         break;
-                     }else if(this.state.sleeveNo2 == ""){
-                         alert("상의의 소매길이를 선택해주세요");
-                         savebtn = false; i = polyInfo.length;
-                         break;
-                     } break;
+                        savebtn = false;
+                        i = polyInfo.length;
+                        break;
+                    } else if (this.state.sleeveNo2 == "") {
+                        alert("상의의 소매길이를 선택해주세요");
+                        savebtn = false;
+                        i = polyInfo.length;
+                        break;
+                    }
+                    break;
                 case 3 :
-                    if(this.state.no3 == 0){
+                    if (this.state.no3 == 0) {
                         alert("하의의 메인색상을 선택해주세요");
-                        savebtn = false; i = polyInfo.length;
+                        savebtn = false;
+                        i = polyInfo.length;
                         break;
-                    } break;
+                    }
+                    break;
                 case 4 :
-                    if(this.state.no4 == 0){
+                    if (this.state.no4 == 0) {
                         alert("원피스의 메인색상을 선택해주세요");
-                        savebtn = false; i = polyInfo.length;
+                        savebtn = false;
+                        i = polyInfo.length;
                         break;
-                    }else if(this.state.sleeveNo4 == ""){
+                    } else if (this.state.sleeveNo4 == "") {
                         alert("원피의 소매길이를 선택해주세요");
-                        savebtn = false; i = polyInfo.length;
+                        savebtn = false;
+                        i = polyInfo.length;
                         break;
-                    } break;
+                    }
+                    break;
             }
         }
-     if(savebtn){
-         console.log(savebtn);
+        if (savebtn) {
+            console.log(savebtn);
             const param = toJS({
                 workNo: this.props.imageStore.isWorkNo,
-                workStep:4,
-                labelNo1 : this.state.labelNo1,
-                labelNo2 : this.state.labelNo2,
-                labelNo3 : this.state.labelNo3,
-                labelNo4 : this.state.labelNo4,
-                color1:this.state.no1,
-                color2:this.state.no2,
-                color3:this.state.no3,
-                color4:this.state.no4,
+                workStep: 4,
+                labelNo1: this.state.labelNo1,
+                labelNo2: this.state.labelNo2,
+                labelNo3: this.state.labelNo3,
+                labelNo4: this.state.labelNo4,
+                color1: this.state.no1,
+                color2: this.state.no2,
+                color3: this.state.no3,
+                color4: this.state.no4,
                 colorCategoryNo1: this.state.colorCategoryNo1,
                 colorCategoryNo2: this.state.colorCategoryNo2,
                 colorCategoryNo3: this.state.colorCategoryNo3,
                 colorCategoryNo4: this.state.colorCategoryNo4,
-                subColor1:this.state.subNo1,
-                subColor2:this.state.subNo2,
-                subColor3:this.state.subNo3,
-                subColor4:this.state.subNo4,
-                subColorCategoryNo1 :this.state.subColorCategoryNo1,
-                subColorCategoryNo2 :this.state.subColorCategoryNo2,
-                subColorCategoryNo3 :this.state.subColorCategoryNo3,
-                subColorCategoryNo4 :this.state.subColorCategoryNo4,
-                sleeveLength1:this.state.sleeveNo1,
-                sleeveLength2:this.state.sleeveNo2,
-                sleeveLength4:this.state.sleeveNo4,
-                sleeveLengthCategoryNo1:this.state.sleeveLengthCategoryNo1,
-                sleeveLengthCategoryNo2:this.state.sleeveLengthCategoryNo2,
-                sleeveLengthCategoryNo4:this.state.sleeveLengthCategoryNo4,
-                createdId:this.props.authStore.loginUser.id,});
-            console.log('colorCategoryNo1',this.state.colorCategoryNo1)
-            console.log('colorCategoryNo2',this.state.colorCategoryNo2)
-            console.log('colorCategoryNo3',this.state.colorCategoryNo3)
-            console.log('colorCategoryNo4',this.state.colorCategoryNo4)
-            console.log('colorCategoryNo4',this.state.subColorCategoryNo1)
-            console.log('colorCategoryNo4',this.state.subColorCategoryNo2)
-            console.log('colorCategoryNo4',this.state.subColorCategoryNo3)
-            console.log('colorCategoryNo4',this.state.subColorCategoryNo4)
-            console.log('sleeveLengthCategoryNo1',this.state.sleeveLengthCategoryNo1)
-            console.log('sleeveLengthCategoryNo2',this.state.sleeveLengthCategoryNo2)
-            console.log('sleeveLengthCategoryNo4',this.state.sleeveLengthCategoryNo4)
-            const res = axios.post('/api/v1/kfashion/label/basicLabel', param);
-            if(res.status === 200) {
-                alert("작업을 저장하였습니다.");
-                this.setState({
-                    tabIndex:1,
-                    workNo: 0,
-                    no:0,
-                    labelNo1 : 0,
-                    labelNo2 : 0,
-                    labelNo3 : 0,
-                    labelNo4 : 0,
-                    color1:0,
-                    color2:0,
-                    color3:0,
-                    color4:0,
-                    colorCategoryNo1 : 0,
-                    colorCategoryNo2 : 0,
-                    colorCategoryNo3 : 0,
-                    colorCategoryNo4 : 0,
-                    subColor1:0,
-                    subColor2:0,
-                    subColor3:0,
-                    subColor4:0,
-                    subColorCategoryNo1 : 0,
-                    subColorCategoryNo2 : 0,
-                    subColorCategoryNo3 : 0,
-                    subColorCategoryNo4 : 0,
-                    sleeveLength1:0,
-                    sleeveLength2:0,
-                    sleeveLength4:0,
-                    sleeveLengthCategoryNo1 : 0,
-                    sleeveLengthCategoryNo2 : 0,
-                    sleeveLengthCategoryNo4 : 0,
+                subColor1: this.state.subNo1,
+                subColor2: this.state.subNo2,
+                subColor3: this.state.subNo3,
+                subColor4: this.state.subNo4,
+                subColorCategoryNo1: this.state.subColorCategoryNo1,
+                subColorCategoryNo2: this.state.subColorCategoryNo2,
+                subColorCategoryNo3: this.state.subColorCategoryNo3,
+                subColorCategoryNo4: this.state.subColorCategoryNo4,
+                sleeveLength1: this.state.sleeveNo1,
+                sleeveLength2: this.state.sleeveNo2,
+                sleeveLength4: this.state.sleeveNo4,
+                sleeveLengthCategoryNo1: this.state.sleeveLengthCategoryNo1,
+                sleeveLengthCategoryNo2: this.state.sleeveLengthCategoryNo2,
+                sleeveLengthCategoryNo4: this.state.sleeveLengthCategoryNo4,
+                createdId: this.props.authStore.loginUser.id,
+            });
+            console.log('colorCategoryNo1', this.state.colorCategoryNo1)
+            console.log('colorCategoryNo2', this.state.colorCategoryNo2)
+            console.log('colorCategoryNo3', this.state.colorCategoryNo3)
+            console.log('colorCategoryNo4', this.state.colorCategoryNo4)
+            console.log('colorCategoryNo4', this.state.subColorCategoryNo1)
+            console.log('colorCategoryNo4', this.state.subColorCategoryNo2)
+            console.log('colorCategoryNo4', this.state.subColorCategoryNo3)
+            console.log('colorCategoryNo4', this.state.subColorCategoryNo4)
+            console.log('sleeveLengthCategoryNo1', this.state.sleeveLengthCategoryNo1)
+            console.log('sleeveLengthCategoryNo2', this.state.sleeveLengthCategoryNo2)
+            console.log('sleeveLengthCategoryNo4', this.state.sleeveLengthCategoryNo4)
+            axios.post('/api/v1/kfashion/label/basicLabel', param, {})
+                .then(res => {
+                    if (res.status === 200) {
+                        alert("작업을 저장하였습니다.");
+                        this.setState({
+                            tabIndex: 1,
+                            workNo: 0,
+                            no: 0,
+                            labelNo1: 0,
+                            labelNo2: 0,
+                            labelNo3: 0,
+                            labelNo4: 0,
+                            color1: 0,
+                            color2: 0,
+                            color3: 0,
+                            color4: 0,
+                            colorCategoryNo1: 0,
+                            colorCategoryNo2: 0,
+                            colorCategoryNo3: 0,
+                            colorCategoryNo4: 0,
+                            subColor1: 0,
+                            subColor2: 0,
+                            subColor3: 0,
+                            subColor4: 0,
+                            subColorCategoryNo1: 0,
+                            subColorCategoryNo2: 0,
+                            subColorCategoryNo3: 0,
+                            subColorCategoryNo4: 0,
+                            sleeveLength1: 0,
+                            sleeveLength2: 0,
+                            sleeveLength4: 0,
+                            sleeveLengthCategoryNo1: 0,
+                            sleeveLengthCategoryNo2: 0,
+                            sleeveLengthCategoryNo4: 0,
+                        });
+                    } else {
+                        console.log("error");
+                    }
                 })
-            }else {
-                console.log("error");
-            }
         }
     }
-
     deleteAll = () =>{
         let objList = [];
         this.canvas.getObjects().forEach(function (o) {

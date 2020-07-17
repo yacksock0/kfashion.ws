@@ -40,7 +40,7 @@ export default class ImageStore {
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable workNo = '';
-    @observable count = 0;
+    @observable count = 0;@observable count = 0;
 
 
     @action countChange =()=>{

@@ -677,7 +677,6 @@ export default class ProfessionalLabelStore {
     doProfessionalLabelUp = flow(function* doProfessionalLabelUp() {
         this.state = State.Pending;
         try {
-
             this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
             this.newProfessionalLabel.categoryCategoryNo1 = this.outerReviewLabel.categoryCategoryNo1;
             this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
@@ -772,8 +771,6 @@ export default class ProfessionalLabelStore {
         }
     });
 
-
-
     LoadLabelList = flow(function* LoadLabelList(workNo) {
         this.state = State.Pending;
         try {
@@ -808,4 +805,20 @@ export default class ProfessionalLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
+    // deleteProfessionalLabel = flow(function* deleteProfessionalLabel(workNo) {
+    //     this.state = State.Pending;
+    //     try {
+    //         const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo='+ workNo);
+    //         if (resp.status === 200) {
+    //             console.log("삭제 완료");
+    //             this.doProfessionalLabelUp();
+    //             this.props.history.push("/Step2/FinalCheckList");
+    //
+    //         } else {
+    //             this.state = State.Fail;
+    //         }
+    //     } catch (e) {
+    //         console.log('에러좀 나지 마라')
+    //     }
+    // });
 }

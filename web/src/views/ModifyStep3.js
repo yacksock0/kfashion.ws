@@ -26,10 +26,11 @@ const styles = theme => ({   root: {
     table: {
         minWidth: 500,
     },
+
     mainContainer: {
         flexGrow: 1,
-        marginTop:10,
-        maxWidth:'100%',
+        marginTop:20,
+        maxWidth:'80%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -61,6 +62,7 @@ const styles = theme => ({   root: {
         height:'100%',
     },
     fileText: {
+        paddingTop: 32,
         paddingRight: theme.spacing(2),
         textAlign: 'left'
     },
@@ -77,15 +79,12 @@ const styles = theme => ({   root: {
     },
     divStyle: {
         display: 'inline',
-    },canvas:{
-        width: '100%',
-        height: '100%',
-    }
+    },
 });
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','polygonStore','workStore')
 @observer
-class Step3 extends React.Component {
+class ModifyStep3 extends React.Component {
     constructor(props) {
         super(...arguments);
         this.state = {
@@ -93,51 +92,31 @@ class Step3 extends React.Component {
             selectedName:'',
             selectedSubNo:0,
             selectedSubName:'',
-            tabIndex: 1,
+            // tabIndex: 1,
             tabIndex1:0,
             createdId: '',
         }
     }
 
     componentDidMount() {
-        this.props.currentStepStore.setStep(3);
+        this.props.currentStepStore.setStep(5)
+        const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
+        this.setState({createdId : this.props.authStore.loginUser.id});
         this.canvas = new fabric.Canvas('c');
-        const id = this.props.authStore.loginUser.id;
-        this.setState({createdId : id});
-        this.props.enqueueSnackbar("Step3", {
-            variant: 'info'
-        });
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-        })
-    }
-    handleSubmit = () => {
-        const createdId = this.props.authStore.isUserId;
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-        this.props.professionalLabelStore.doProfessionalLabelUp();
-        this.setState({
-            tabIndex:1,
-        })
-        alert("저장 완료")
-    }
-
-    handleClickItem = (workNo, imageData) => {
-        this.deleteAll();
-        this.props.workStore.reSetCategoryItem();
-        this.setState({
-            tabIndex:0,
-        })
-
-        this.props.imageStore.changeWorkNo(workNo);
-        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-        this.props.polygonStore.LoadPolygonLocation(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width : 650,
-            height : 650,
+            width : 750,
+            height : 850,
             originX: 'left',
             originY: 'top'
         });
     }
+
+    handleSubmit = () => {
+        const createdId = this.props.authStore.isUserId;
+        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
+        this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);
+    }
+
 
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
         this.setState({
@@ -160,14 +139,14 @@ class Step3 extends React.Component {
     onSelectTab(tabIndex1) {
         let polyNo = tabIndex1;
         const {locationPolygonList} = this.props.polygonStore;
-        console.log(locationPolygonList);
-        console.log(locationPolygonList.length);
+        // console.log(locationPolygonList);
+        // console.log(locationPolygonList.length);
         if (locationPolygonList.length > 0 ) {
             const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
             if (selectedPoly.length !== 0) {
                 this.deleteAll();
                 for (let i = 0; i < selectedPoly.length; i++) {
-                    console.log(this.lineTwoPoint);
+                    // console.log(this.lineTwoPoint);
                     this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                     this.x = selectedPoly[i].locationX;
                     this.y = selectedPoly[i].locationY;
@@ -262,41 +241,22 @@ class Step3 extends React.Component {
             })
         }
     };
-    handleChange=(polyLast)=>{
-        if(this.props.onChange){
-            this.props.onChange(polyLast)
-        }
-    }
-    handleLabel=(item)=>{
-        this.props.workStore.LoadReviewLabelList(item.workNo);
-    }
-
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
 
-            return (
-                <Container component="main" className={classes.mainContainer}>
-                    <div className={classes.appBarSpacer} />
-                    <div className={classes.mainContent}>
-                            <Grid item xs={12} style={{padding:3, textAlign:'center'}}>
-                                <WorkedImg onClick={this.handleLabel} />
-                            </Grid>
-                        <Grid container>
-                            <Grid item xs={12} lg={6} style={{marginTop:10}}>
-                                <div>
-                                    <canvas id="c" width={550} height={650} className={classes.canvas}>  </canvas>
-                                </div>
-                            </Grid>
-                            <Grid item xs={12} lg={6} style={{marginLeft:"auto", marginTop:10}}>
-                                    <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
-                                        <TabList >
-                                            <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
-                                            <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
-                                        </TabList>
-
-                                        <TabPanel>
-                                            <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
+        return (
+            <Container component="main" className={classes.mainContainer}>
+                <div className={classes.appBarSpacer} />
+                <div className={classes.mainContent}>
+                    <Grid container>
+                        <Grid item xs={12} lg={5} style={{margin:'auto'}}>
+                            <div>
+                                <canvas id="c" width={750} height={850} className={classes.canvas} style={{display:'contain'}}>  </canvas>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} lg={5}>
+                                    <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
@@ -331,35 +291,29 @@ class Step3 extends React.Component {
                                             </Grid>
                                         </TabPanel>
                                     </Tabs>
-                                        </TabPanel>
-                                     <TabPanel>
-
-                                    <ProImageList onClick={this.handleClickItem} />
-                                    </TabPanel>
-                                    </Tabs>
-                                </Grid>
                         </Grid>
-                        <div>
+                    </Grid>
+                    <div>
                         <hr></hr>
-                        </div>
-                        <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
-                            <Button
-                                type="button"
-                                className={classes.buttonType2}
-                                color="primary"
-                                variant="outlined"
-                                onClick={()=>history.push('/step3')}
-                            >
-                                Next Step
-                            </Button>
-                        </Grid>
                     </div>
-                    <ErrorIcon/>
-                    <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                        우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 / 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭
-                    </Typography>
-                </Container>
-            );
-        }
-    };
-export default withSnackbar(withRouter(withStyles(styles) (Step3)));
+                    <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
+                        <Button
+                            type="button"
+                            className={classes.buttonType2}
+                            color="primary"
+                            variant="outlined"
+                            onClick={()=>this.handleSubmit()}
+                        >
+                            수정완료
+                        </Button>
+                    </Grid>
+                </div>
+                <ErrorIcon/>
+                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                    우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 / 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭
+                </Typography>
+            </Container>
+        );
+    }
+};
+export default withSnackbar(withRouter(withStyles(styles) (ModifyStep3)));

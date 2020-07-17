@@ -25,6 +25,10 @@ public class KfashionWorkHistoryService {
         repository.deleteWorkHistory(workImage);
     }
 
+    public void deleteLabelWorkHistory(int workNo, int workStep) {
+        repository.deleteLabelWorkHistory(workNo, workStep);
+    }
+
     public  KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId) {
         return repository.selectWorkProgressRate(createdId);
     }

@@ -46,6 +46,7 @@ export default class Category1 extends React.Component {
         });
     }
     handleClick(category){
+        console.log(category);
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
         this.setState({
             open:false,

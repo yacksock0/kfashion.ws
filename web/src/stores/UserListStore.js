@@ -56,7 +56,6 @@ export default class UserListStore {
         this.newMember.groupNo = groupNo;
     }
 
-
         LoadGroupUserList= flow(function* loadGroupUserList(groupNo) {
             this.listState = ListState.Loading;
             this.groupUserList = [];
