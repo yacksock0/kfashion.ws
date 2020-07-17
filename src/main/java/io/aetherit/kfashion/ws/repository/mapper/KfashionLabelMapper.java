@@ -31,4 +31,6 @@ public interface KfashionLabelMapper {
     List<KfashionLabel> selectOnePieceReviewHighLabelList(Long workNo);
 
     List<KfashionLabel> selectStyleReviewLabelList(Long workNo);
+
+    void deleteProfessionalLabel(int workNo);
 }

@@ -1,5 +1,6 @@
 import {action, computed, flow, observable, toJS} from "mobx";
 import axios from "axios";
+import Outer from "../views/step3/data/Outer";
 
 const State = {
     Ready: 'Ready',
@@ -9,111 +10,111 @@ const State = {
 }
 
 const EmptyNewProfessionalLabel = {
-    workNo : '',
-    workStep : 6,
-    labelNo1 : 0,
-    labelNo2 : 0,
-    labelNo3 : 0,
-    labelNo4 : 0,
-    labelNo5 : 0,
-    createId : '',
-    style : '',
-    styleSub : '',
-    styleCategoryNo : '',
-    styleCategorySubNo : '',
-    category1 : '',
-    category2 : '',
-    category3 : '',
-    category4 : '',
-    categoryCategoryNo1 : '',
-    categoryCategoryNo2 : '',
-    categoryCategoryNo3 : '',
-    categoryCategoryNo4 : '',
-    detail1 : '',
-    detail2 : '',
-    detail3 : '',
-    detail4 : '',
-    detailCategoryNo1 : '',
-    detailCategoryNo2 : '',
-    detailCategoryNo3 : '',
-    detailCategoryNo4 : '',
-    print1 : '',
-    print2 : '',
-    print3 : '',
-    print4 : '',
-    printCategoryNo1 : '',
-    printCategoryNo2 : '',
-    printCategoryNo3 : '',
-    printCategoryNo4 : '',
-    texture1 : '',
-    texture2 : '',
-    texture3 : '',
-    texture4 : '',
-    textureCategoryNo1 : '',
-    textureCategoryNo2 : '',
-    textureCategoryNo3 : '',
-    textureCategoryNo4 : '',
-    clothLength1 : '',
-    clothLength2 : '',
-    clothLength3 : '',
-    clothLength4 : '',
-    clothLengthCategoryNo1 : '',
-    clothLengthCategoryNo2 : '',
-    clothLengthCategoryNo3 : '',
-    clothLengthCategoryNo4 : '',
-    neckLine1 : '',
-    neckLine2 : '',
-    neckLine4 : '',
-    neckLineCategoryNo1 : '',
-    neckLineCategoryNo2 : '',
-    neckLineCategoryNo4 : '',
-    kara1 : '',
-    kara2 : '',
-    kara4 : '',
-    karaCategoryNo1 : '',
-    karaCategoryNo2 : '',
-    karaCategoryNo4 : '',
-    fit1 : '',
-    fit2 : '',
-    fit3 : '',
-    fit4 : '',
-    fitCategoryNo1 : '',
-    fitCategoryNo2 : '',
-    fitCategoryNo3 : '',
-    fitCategoryNo4 : '',
+     workNo : '',
+     workStep : 6,
+     labelNo1 : 0,
+     labelNo2 : 0,
+     labelNo3 : 0,
+     labelNo4 : 0,
+     labelNo5 : 0,
+     createId : '',
+     style : '',
+     styleSub : '',
+     styleCategoryNo : '',
+     styleCategorySubNo : '',
+     category1 : '',
+     category2 : '',
+     category3 : '',
+     category4 : '',
+     categoryCategoryNo1 : '',
+     categoryCategoryNo2 : '',
+     categoryCategoryNo3 : '',
+     categoryCategoryNo4 : '',
+     detail1 : '',
+     detail2 : '',
+     detail3 : '',
+     detail4 : '',
+     detailCategoryNo1 : '',
+     detailCategoryNo2 : '',
+     detailCategoryNo3 : '',
+     detailCategoryNo4 : '',
+     print1 : '',
+     print2 : '',
+     print3 : '',
+     print4 : '',
+     printCategoryNo1 : '',
+     printCategoryNo2 : '',
+     printCategoryNo3 : '',
+     printCategoryNo4 : '',
+     texture1 : '',
+     texture2 : '',
+     texture3 : '',
+     texture4 : '',
+     textureCategoryNo1 : '',
+     textureCategoryNo2 : '',
+     textureCategoryNo3 : '',
+     textureCategoryNo4 : '',
+     clothLength1 : '',
+     clothLength2 : '',
+     clothLength3 : '',
+     clothLength4 : '',
+     clothLengthCategoryNo1 : '',
+     clothLengthCategoryNo2 : '',
+     clothLengthCategoryNo3 : '',
+     clothLengthCategoryNo4 : '',
+     neckLine1 : '',
+     neckLine2 : '',
+     neckLine4 : '',
+     neckLineCategoryNo1 : '',
+     neckLineCategoryNo2 : '',
+     neckLineCategoryNo4 : '',
+     kara1 : '',
+     kara2 : '',
+     kara4 : '',
+     karaCategoryNo1 : '',
+     karaCategoryNo2 : '',
+     karaCategoryNo4 : '',
+     fit1 : '',
+     fit2 : '',
+     fit3 : '',
+     fit4 : '',
+     fitCategoryNo1 : '',
+     fitCategoryNo2 : '',
+     fitCategoryNo3 : '',
+     fitCategoryNo4 : '',
 
-    styleItemName :'',
-    styleSubItemName : '',
-    categoryItemName1 : '',
-    categoryItemName2 : '',
-    categoryItemName3 : '',
-    categoryItemName4 : '',
-    detailItemName1 : '',
-    detailItemName2 : '',
-    detailItemName3 : '',
-    detailItemName4 : '',
-    printItemName1 : '',
-    printItemName2 : '',
-    printItemName3 : '',
-    printItemName4 : '',
-    textureItemName1 : '' ,
-    textureItemName2 : '' ,
-    textureItemName3 : '' ,
-    textureItemName4 : '' ,
-    clothLengthItemName1 : '',
-    clothLengthItemName2 : '',
-    clothLengthItemName3 : '',
-    clothLengthItemName4 : '',
-    neckLineItemName1 : '',
-    neckLineItemName2 : '',
-    neckLineItemName4 : '',
-    karaItemName1: '',
-    karaItemName2 : '',
-    karaItemName4 : '',
-    fitItemName1 : '',
-    fitItemName2 : '',
-    fitItemName3 : '',
-    fitItemName4 : '',
+     styleItemName :'',
+     styleSubItemName : '',
+     categoryItemName1 : '',
+     categoryItemName2 : '',
+     categoryItemName3 : '',
+     categoryItemName4 : '',
+      detailItemName1 : '',
+     detailItemName2 : '',
+     detailItemName3 : '',
+     detailItemName4 : '',
+     printItemName1 : '',
+     printItemName2 : '',
+     printItemName3 : '',
+     printItemName4 : '',
+     textureItemName1 : '' ,
+     textureItemName2 : '' ,
+     textureItemName3 : '' ,
+     textureItemName4 : '' ,
+     clothLengthItemName1 : '',
+     clothLengthItemName2 : '',
+     clothLengthItemName3 : '',
+     clothLengthItemName4 : '',
+     neckLineItemName1 : '',
+     neckLineItemName2 : '',
+     neckLineItemName4 : '',
+     karaItemName1: '',
+     karaItemName2 : '',
+     karaItemName4 : '',
+     fitItemName1 : '',
+     fitItemName2 : '',
+     fitItemName3 : '',
+     fitItemName4 : '',
 }
 export default class ProfessionalLabelStore {
     @observable state = State.Ready;
@@ -171,10 +172,13 @@ export default class ProfessionalLabelStore {
         return this.styleReviewLabel;
     }
     @action changeNewProfessionalLabelCategory1 = (category1) => {
-        this.outerReviewLabel.category1 = category1.no;
-        this.outerReviewLabel.categoryCategoryNo1 = category1.categoryNo;
-        this.outerReviewLabel.categoryItemName1 = category1.categoryItemName;
-        return this.outerReviewLabel
+        console.log(category1);
+        // this.outerReviewLabel.category1 = category1.no;
+        // this.outerReviewLabel.categoryCategoryNo1 = category1.categoryNo;
+        // this.outerReviewLabel.categoryItemName1 = category1.categoryItemName;
+        this.outerReviewLabel = new Outer(category1);
+        console.log(this.outerReviewLabel);
+        // return this.outerReviewLabel;
     }
     @action deleteCategory1 = () => {
         this.outerReviewLabel.category1 = '';
@@ -570,7 +574,7 @@ export default class ProfessionalLabelStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/img/professionalList?createdId='+createdId)
             this.professionalList = response.data.professionalList;
-            console.log(' this.professionalList', this.professionalList)
+            console.log(' this.professionalList', toJS(this.professionalList))
         } catch (e) {
             console.log('error')
         }
@@ -638,4 +642,20 @@ export default class ProfessionalLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
+    // deleteProfessionalLabel = flow(function* deleteProfessionalLabel(workNo) {
+    //     this.state = State.Pending;
+    //     try {
+    //         const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo='+ workNo);
+    //         if (resp.status === 200) {
+    //             console.log("삭제 완료");
+    //             this.doProfessionalLabelUp();
+    //             this.props.history.push("/Step2/FinalCheckList");
+    //
+    //         } else {
+    //             this.state = State.Fail;
+    //         }
+    //     } catch (e) {
+    //         console.log('에러좀 나지 마라')
+    //     }
+    // });
 }

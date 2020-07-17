@@ -686,4 +686,13 @@ public class KfashionLabelController {
                 }
                 return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
+        @GetMapping(value="/deleteProfessionalLabel")
+        public ResponseEntity<Object> deleteProfessionalLabel(HttpServletRequest httpRequest,
+                                                     @RequestParam(value="workNo")int workNo) {
+
+                HashMap<String, Object> resultMap = new HashMap<String, Object>();
+                kfashionLabelService.deleteProfessionalLabel(workNo);
+                kfashionWorkHistoryService.deleteLabelWorkHistory(workNo, 6);
+                return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }
 }

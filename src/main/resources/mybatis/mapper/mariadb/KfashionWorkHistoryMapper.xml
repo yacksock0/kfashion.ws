@@ -34,6 +34,13 @@
         WHERE work_no = #{workNo}
     </delete>
 
+    <delete id="deleteLabelWorkHistory" parameterType="int">
+        DELETE
+        FROM kfashion_work_history
+        WHERE work_no = #{workNo}
+        AND work_step = #{workStep}
+    </delete>
+
     <select id="selectWorkProgressRate" resultMap="kfashionWorkHistoryResultMap">
         SELECT created_id
              , COUNT(*) AS finish_work

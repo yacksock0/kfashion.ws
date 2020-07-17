@@ -2,12 +2,12 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Button, Container, Grid, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
-import CategoryComponent from "./step3/CategoryComponent";
 import CategoryComponent1 from "./step3/CategoryComponent1";
 import CategoryComponent2 from "./step3/CategoryComponent2";
 import CategoryComponent3 from "./step3/CategoryComponent3";
+import CategoryComponent4 from "./step3/CategoryComponent4";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
@@ -84,7 +84,7 @@ const styles = theme => ({   root: {
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','polygonStore','workStore')
 @observer
-class modifyStep3 extends React.Component {
+class ModifyStep3 extends React.Component {
     constructor(props) {
         super(...arguments);
         this.state = {
@@ -92,37 +92,17 @@ class modifyStep3 extends React.Component {
             selectedName:'',
             selectedSubNo:0,
             selectedSubName:'',
-            tabIndex: 1,
+            // tabIndex: 1,
             tabIndex1:0,
             createdId: '',
         }
     }
 
     componentDidMount() {
-        this.props.currentStepStore.setStep(3);
+        this.props.currentStepStore.setStep(5)
+        const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
+        this.setState({createdId : this.props.authStore.loginUser.id});
         this.canvas = new fabric.Canvas('c');
-        const id = this.props.authStore.loginUser.id;
-        this.setState({createdId : id});
-        this.props.enqueueSnackbar("Step3", {
-            variant: 'info'
-        });
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-        })
-    }
-    handleClickSubmit = () => {
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(this.state.createdId);
-        this.props.professionalLabelStore.doProfessionalLabelUp();
-    }
-
-    handleClickItem = (workNo, imageData) => {
-        this.deleteAll();
-        this.setState({
-            tabIndex:0,
-        })
-        this.props.imageStore.changeWorkNo(workNo);
-        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-        this.props.polygonStore.LoadPolygonLocation(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width : 750,
             height : 850,
@@ -130,6 +110,13 @@ class modifyStep3 extends React.Component {
             originY: 'top'
         });
     }
+
+    handleSubmit = () => {
+        const createdId = this.props.authStore.isUserId;
+        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
+        this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);
+    }
+
 
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
         this.setState({
@@ -152,14 +139,18 @@ class modifyStep3 extends React.Component {
     onSelectTab(tabIndex1) {
         let polyNo = tabIndex1;
         const {locationPolygonList} = this.props.polygonStore;
-        if (locationPolygonList.length >= 1) {
+        // console.log(locationPolygonList);
+        // console.log(locationPolygonList.length);
+        if (locationPolygonList.length > 0 ) {
             const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
             if (selectedPoly.length !== 0) {
                 this.deleteAll();
                 for (let i = 0; i < selectedPoly.length; i++) {
+                    // console.log(this.lineTwoPoint);
                     this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                     this.x = selectedPoly[i].locationX;
                     this.y = selectedPoly[i].locationY;
+
                     if (i != 0) {
                         let x1 = this.lineTwoPoint[0];
                         let x2 = this.lineTwoPoint[2];
@@ -232,6 +223,7 @@ class modifyStep3 extends React.Component {
                     });
                 this.canvas.add(polyline);
                 this.canvas.sendToBack(polyline);
+
                 this.setState({
                     tabIndex1: tabIndex1,
                 })
@@ -249,48 +241,21 @@ class modifyStep3 extends React.Component {
             })
         }
     };
-
-    handleChange=(polyLast)=>{
-        if(this.props.onChange){
-            this.props.onChange(polyLast)
-        }
-    }
-    handleLabel=(item)=>{
-        this.props.workStore.LoadReviewLabelList(item.workNo);
-    }
-    handleSubmit=()=>{
-        alert("저장 완료")
-        this.setState({
-            tabIndex:1,
-        })
-    }
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
-        const {outerReviewLabel,topReviewLabel,pantsReviewLabel,onePieceReviewLabel} = this.props.workStore;
 
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={1}>
-                            <WorkedImg onClick={this.handleLabel}/>
-                        </Grid>
                         <Grid item xs={12} lg={5} style={{margin:'auto'}}>
                             <div>
                                 <canvas id="c" width={750} height={850} className={classes.canvas} style={{display:'contain'}}>  </canvas>
                             </div>
                         </Grid>
                         <Grid item xs={12} lg={5}>
-                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
-                                <TabList >
-                                    <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>레이블링</h3></Tab>
-                                    <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
-                                </TabList>
-
-                                <TabPanel>
-
                                     <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
@@ -298,9 +263,6 @@ class modifyStep3 extends React.Component {
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>신발</h3></Tab>*/}
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>가방</h3></Tab>*/}
-                                            {/*<Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>악세서리</h3></Tab>*/}
                                         </TabList>
 
                                         <TabPanel>
@@ -310,31 +272,25 @@ class modifyStep3 extends React.Component {
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent polyLast={polyLast} tabIndex1={this.state.tabIndex1} outerReviewLabel={outerReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} topReviewLabel={topReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} pantsReviewLabel={pantsReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onePieceReviewLabel={onePieceReviewLabel} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent4 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                     </Tabs>
-                                </TabPanel>
-                                <TabPanel>
-
-                                    <ProImageList onClick={this.handleClickItem} />
-                                </TabPanel>
-                            </Tabs>
                         </Grid>
                     </Grid>
                     <div>
@@ -346,12 +302,11 @@ class modifyStep3 extends React.Component {
                             className={classes.buttonType2}
                             color="primary"
                             variant="outlined"
-                            onClick={()=>history.push('/step3')}
+                            onClick={()=>this.handleSubmit()}
                         >
-                            Next Step
+                            수정완료
                         </Button>
                     </Grid>
-                    {/*</Grid>*/}
                 </div>
                 <ErrorIcon/>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
@@ -361,4 +316,4 @@ class modifyStep3 extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(styles) (modifyStep3)));
+export default withSnackbar(withRouter(withStyles(styles) (ModifyStep3)));

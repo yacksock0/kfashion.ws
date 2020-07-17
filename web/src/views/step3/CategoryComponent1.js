@@ -135,6 +135,7 @@ class CategoryComponent1 extends React.Component {
     render() {
         const {classes} = this.props;
         const {outerReviewLabel} = this.props.professionalLabelStore;
+        console.log(outerReviewLabel);
         return (
                     <Grid container spacing={3} style={{marginTop: 10}}>
                         <Grid item xs={12} lg={6}>
