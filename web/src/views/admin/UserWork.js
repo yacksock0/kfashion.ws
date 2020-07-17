@@ -140,6 +140,7 @@ class UserWork extends React.Component {
                                 //     })
                             }}
                             options={{
+                                emptyRowsWhenPaging : true,
                                 sorting: false,
                                 minBodyHeight: '100%',
                                 actionsColumnIndex: -1,

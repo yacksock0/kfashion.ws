@@ -195,6 +195,7 @@ class Step2 extends React.Component {
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
         })
         this.canvas = new fabric.Canvas('c');
+
         this.props.basicCategoryStore.LoadColorList();
         this.props.basicCategoryStore.LoadSleeveList();
 

@@ -265,7 +265,7 @@ class CategoryComponent1 extends React.Component {
                                             }
                                         </div>
 
-                                        <Button style={{marginTop: 50}}
+                                        <Button style={{marginTop: 100}}
                                                 type="button"
                                                 className={classes.buttonType2}
                                                 color="primary"

@@ -265,7 +265,7 @@ class CategoryComponent2 extends React.Component {
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {topReviewLabel.fitItemName2} </Button> ) : ''
                                             }
                                         </div>
-                                        <Button style={{marginTop: 50}}
+                                        <Button style={{marginTop: 100}}
                                                 type="button"
                                                 className={classes.buttonType2}
                                                 color="primary"

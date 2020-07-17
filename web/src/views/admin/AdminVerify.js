@@ -118,6 +118,7 @@ export default class AdminVerify extends React.Component {
                             })
                     }}
                     options={{
+                        emptyRowsWhenPaging: true,
                         sorting: false,
                         /*padding:'dense',*/
                         minBodyHeight: '65vh',

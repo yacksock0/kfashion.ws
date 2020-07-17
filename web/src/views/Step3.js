@@ -26,7 +26,6 @@ const styles = theme => ({   root: {
     table: {
         minWidth: 500,
     },
-
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
@@ -79,7 +78,10 @@ const styles = theme => ({   root: {
     },
     divStyle: {
         display: 'inline',
-    },
+    },canvas:{
+        width: '100%',
+        height: '100%',
+    }
 });
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','polygonStore','workStore')
@@ -126,6 +128,7 @@ class Step3 extends React.Component {
         this.setState({
             tabIndex:0,
         })
+
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
@@ -307,7 +310,7 @@ class Step3 extends React.Component {
                             </Grid>
                             <Grid item xs={12} lg={5} style={{margin:'auto'}}>
                                 <div>
-                                    <canvas id="c" width={650} height={850} className={classes.canvas} style={{display:'absolute'}}>  </canvas>
+                                    <canvas id="c" width={650} height={850} className={classes.canvas} data-paper-resize={true}>  </canvas>
                                 </div>
                             </Grid>
                             <Grid item xs={12} lg={5}>
