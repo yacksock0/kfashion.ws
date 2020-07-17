@@ -152,10 +152,9 @@ public class KfashionLabelController {
          * @throws Exception
          */
 
-
         @PostMapping(value = "/professionalLabel")
         public ResponseEntity<Object> professionalLabel(HttpServletRequest httpServletRequest,
-                                      @RequestBody ProfessionalLabel professionalLabel) throws Exception {
+                                                        @RequestBody ProfessionalLabel professionalLabel) throws Exception {
 
                 KfashionWork work = new KfashionWork();
                 work.setNo(professionalLabel.getWorkNo());
@@ -366,6 +365,7 @@ public class KfashionLabelController {
                 }
                 return new ResponseEntity<Object>("success", HttpStatus.OK);
         }
+
 
         @GetMapping(value="/basicLabelList")
         public ResponseEntity<Object> basicLabelList(HttpServletRequest httpRequest,

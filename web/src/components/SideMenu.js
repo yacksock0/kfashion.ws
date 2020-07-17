@@ -428,7 +428,7 @@ export default function SideMenu(props) {
                     )}
                 </Drawer>
             </Hidden>
-            <Hidden xsDown implementation="css">
+            <Hidden smDown implementation="css">
                 <Drawer variant="permanent"
                         classes={{
                             paper: classes.drawerPaper,
