@@ -302,15 +302,15 @@ class Step3 extends React.Component {
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
                         <Grid container>
-                            <div style={{width:120}}>
+                            <Grid item xs={12} lg={1} style={{padding:2}}>
                                 <WorkedImg onClick={this.handleLabel}/>
-                            </div>
-                            <div>
-                                <div style={{marginLeft:10}}>
+                            </Grid>
+                            <Grid item xs={12} lg={5} style={{margin:'auto'}}>
+                                <div>
                                     <canvas id="c" width={650} height={850} className={classes.canvas} style={{display:'absolute'}}>  </canvas>
                                 </div>
-                            </div>
-                            <div>
+                            </Grid>
+                            <Grid item xs={12} lg={5}>
                                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                         <TabList >
                                             <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>레이블링</h3></Tab>
@@ -359,7 +359,7 @@ class Step3 extends React.Component {
                                     <ProImageList onClick={this.handleClickItem} />
                                     </TabPanel>
                                     </Tabs>
-                            </div>
+                                </Grid>
                         </Grid>
                         <div>
                         <hr></hr>
