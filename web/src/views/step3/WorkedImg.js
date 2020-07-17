@@ -5,25 +5,18 @@ import {inject, observer} from "mobx-react";
 
 const style = theme => ({
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
         border: '1px solid black',
-        borderRadius: 15,
+        borderRadius: 1,
+        margin:0,
+        padding:0,
     },
     topBox:{
         borderBottom:'1px solid black',
-        textAlign:'center',
-        display:'block',
-        margin:'auto',
-        padding:0
     },
     imgBox:{
-        width:80,
+        width:60,
         height:80,
-        display:'block',
-        margin:'auto',
-        padding:0
+        borderRadius: 10,
     }
 });
 
@@ -49,17 +42,13 @@ class WorkedImg extends React.Component  {
         const {classes} = this.props;
         return (
             <div className={classes.root}>
-                <Grid item xs={12}>
-                    <div className={classes.topBox}>
                         <h3>이전작업 </h3>
-                    </div>
                     {recentlyImg.map((item) =>
                         <Button className={classes.imgBox} onClick={() => this.handleClick(item)}>
-                            <img src={item.fileName} style={{width: '100%', height: 80}}/>
+                            <img src={item.fileName} style={{width: 80, height: 80}}/>
                         </Button>
                     )
                     }
-                </Grid>
             </div>
         );
     }

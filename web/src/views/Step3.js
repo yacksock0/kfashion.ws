@@ -28,8 +28,8 @@ const styles = theme => ({   root: {
     },
     mainContainer: {
         flexGrow: 1,
-        marginTop:20,
-        maxWidth:'80%',
+        marginTop:10,
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -61,7 +61,6 @@ const styles = theme => ({   root: {
         height:'100%',
     },
     fileText: {
-        paddingTop: 32,
         paddingRight: theme.spacing(2),
         textAlign: 'left'
     },
@@ -134,7 +133,7 @@ class Step3 extends React.Component {
         this.props.polygonStore.LoadPolygonLocation(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width : 650,
-            height : 850,
+            height : 650,
             originX: 'left',
             originY: 'top'
         });
@@ -304,20 +303,20 @@ class Step3 extends React.Component {
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
-                        <Grid container>
-                            <Grid item xs={12} lg={1} style={{padding:2}}>
-                                <WorkedImg onClick={this.handleLabel}/>
+                            <Grid item xs={12} style={{padding:3, textAlign:'center'}}>
+                                <WorkedImg onClick={this.handleLabel} />
                             </Grid>
-                            <Grid item xs={12} lg={5} style={{margin:'auto'}}>
+                        <Grid container>
+                            <Grid item xs={12} lg={6} style={{marginTop:10}}>
                                 <div>
-                                    <canvas id="c" width={650} height={850} className={classes.canvas} data-paper-resize={true}>  </canvas>
+                                    <canvas id="c" width={550} height={650} className={classes.canvas}>  </canvas>
                                 </div>
                             </Grid>
-                            <Grid item xs={12} lg={5}>
+                            <Grid item xs={12} lg={6} style={{marginLeft:"auto", marginTop:10}}>
                                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                         <TabList >
-                                            <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>레이블링</h3></Tab>
-                                            <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                            <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
+                                            <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                                         </TabList>
 
                                         <TabPanel>

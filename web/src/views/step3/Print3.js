@@ -67,8 +67,8 @@ export default class Print extends React.Component {
                         <Grid container>
                             {printList3.map((print) =>
                                 <Grid item xs={3}>
-                                    <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
+                                    <div style={{textAlign:'center', margin:5}}>
+                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
                                             <h2>{print.categoryItemName}</h2>
                                         </Button>
                                     </div>

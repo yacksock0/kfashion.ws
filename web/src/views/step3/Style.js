@@ -84,12 +84,12 @@ export default class Style extends React.Component {
                         </div>
                         <div style={{display:"inline-block", marginRight:10}}>
                             {styleReviewLabel.styleCategoryNo > 0 ?
-                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {styleReviewLabel.styleItemName} </Button> ) : ''
+                                (<Button style={{fontSize:20, width:170, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {styleReviewLabel.styleItemName} </Button> ) : ''
                             }
                         </div>
                         <div style={{display:"inline-block"}}>
                             {styleReviewLabel.styleCategorySubNo > 0 ?
-                                (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteSub} endIcon={<DeleteIcon />} > {styleReviewLabel.styleSubItemName} </Button> ) : ''
+                                (<Button style={{fontSize:20, width:170, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteSub} endIcon={<DeleteIcon />} > {styleReviewLabel.styleSubItemName} </Button> ) : ''
                             }
                         </div>
                     </div>
@@ -102,7 +102,7 @@ export default class Style extends React.Component {
                 >
                     <DialogContent>
                         <Grid container style={{height:'100%'}}>
-                            <Grid item xs={6} style={{padding:10}}>
+                            <Grid item xs={6} style={{padding:5}}>
                                 <Typography variant="h5" component="h2" style={{display:'inline'}}>
                                     메인 스타일
                                 </Typography>
@@ -121,8 +121,8 @@ export default class Style extends React.Component {
                                     {styleList.map((style) =>
                                         <Grid item xs={3}>
                                             <div style={{textAlign:'center', margin:5}}>
-                                                <Button style={{width:'100%', height:60,padding:0}} variant="outlined" key={style.no} onClick={() => this.handleClick(style)}>
-                                                    <h3>{style.categoryItemName}</h3>
+                                                <Button style={{width:'100%', height:40,padding:0}} variant="outlined" key={style.no} onClick={() => this.handleClick(style)}>
+                                                    <h5>{style.categoryItemName}</h5>
                                                 </Button>
                                             </div>
                                         </Grid>
@@ -130,7 +130,7 @@ export default class Style extends React.Component {
                                     }
                                 </Grid>
                             </Grid>
-                            <Grid item xs={6} style={{padding:10}}>
+                            <Grid item xs={6} style={{padding:5}}>
                                 <Typography variant="h5" component="h2">
                                     서브 스타일
                                 </Typography>
@@ -140,8 +140,8 @@ export default class Style extends React.Component {
                                         {styleList.map((style) =>
                                             <Grid item xs={3}>
                                                 <div style={{textAlign:'center', margin:5}}>
-                                                    <Button style={{width:'100%', height:60,padding:0}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
-                                                        <h3>{style.categoryItemName}</h3>
+                                                    <Button style={{width:'100%', height:40,padding:0}} variant="outlined" key={style.no} onClick={() => this.handleClickSub(style)}>
+                                                        <h5>{style.categoryItemName}</h5>
                                                     </Button>
                                                 </div>
                                             </Grid>

@@ -66,8 +66,8 @@ export default class Texture1 extends React.Component {
                         <Grid container>
                             {textureList2.map((texture) =>
                                 <Grid item xs={3}>
-                                    <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClick(texture)}>
+                                    <div style={{textAlign:'center', margin:5}}>
+                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClick(texture)}>
                                             <h2>{texture.categoryItemName}</h2>
                                         </Button>
                                     </div>

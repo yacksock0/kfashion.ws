@@ -83,8 +83,8 @@ export default class Detail1 extends React.Component {
                             <Grid container>
                                         {detailList3.map((detail) =>
                                 <Grid item xs={3}>
-                                    <div style={{textAlign:'center', margin:10}}>
-                                            <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
+                                    <div style={{textAlign:'center', margin:5}}>
+                                            <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
                                                 <h3>{detail.categoryItemName}</h3>
                                             </Button>
                                     </div>

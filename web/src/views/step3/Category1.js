@@ -73,7 +73,7 @@ export default class Category1 extends React.Component {
                             {categoryList1.map((category) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>
+                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>
                                             <h2>{category.categoryItemName}</h2>
                                         </Button>
                                     </div>

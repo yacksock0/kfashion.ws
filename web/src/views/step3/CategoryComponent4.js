@@ -135,7 +135,7 @@ class CategoryComponent4 extends React.Component {
         const {onePieceReviewLabel} =this.props.professionalLabelStore;
         const {classes} = this.props;
         return (
-                    <Grid container spacing={3} style={{marginTop: 10}}>
+                    <Grid container spacing={3}>
                         <Grid item xs={12} lg={6}>
                             <div className={classes.content}  style={{display:'inline'}} >
                                             <Typography variant="h5" component="h5" style={{display:'inline'}} >
@@ -264,7 +264,7 @@ class CategoryComponent4 extends React.Component {
                                             }
                                         </div>
 
-                                        <Button style={{marginTop: 100}}
+                                        <Button style={{marginTop: 50}}
                                                 type="button"
                                                 className={classes.buttonType2}
                                                 color="primary"

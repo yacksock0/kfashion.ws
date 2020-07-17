@@ -74,8 +74,8 @@ export default class Fit1 extends React.Component {
                         <Grid container>
                             {fitList1.map((fit) =>
                                 <Grid item xs={3}>
-                                    <div style={{textAlign:'center', margin:10}}>
-                                        <Button style={{width:'100%', height:60, padding:0}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
+                                    <div style={{textAlign:'center', margin:5}}>
+                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={fit.no} onClick={() => this.handleClick(fit)}>
                                             <h2>{fit.categoryItemName}</h2>
                                         </Button>
                                     </div>

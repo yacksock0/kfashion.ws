@@ -14,16 +14,13 @@ const style = theme => ({
     topBox:{
         borderBottom:'1px solid black',
         textAlign:'center',
-        display:'block',
-        margin:'auto',
-        padding:0
+        margin: 'auto',
     },
     imgBox:{
-        width:80,
+        width:100,
         height:80,
-        display:'block',
         margin:'auto',
-        padding:0
+        padding:5
     }
 });
 

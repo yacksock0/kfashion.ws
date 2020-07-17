@@ -122,7 +122,7 @@ class CategoryComponent3 extends React.Component {
         console.log('lastIndex', this.props.polyLast)
         console.log('tabIndex1', this.props.tabIndex1)
         return (
-                    <Grid container spacing={3} style={{marginTop: 10}}>
+                    <Grid container spacing={3}>
                         <Grid item xs={12} lg={6}>
                             <div className={classes.content}  style={{display:'inline'}} >
                                             <Typography variant="h5" component="h5" style={{display:'inline'}} >

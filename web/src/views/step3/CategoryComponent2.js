@@ -138,7 +138,7 @@ class CategoryComponent2 extends React.Component {
         console.log('lastIndex', this.props.polyLast)
         console.log('tabIndex1', this.props.tabIndex1)
         return (
-                    <Grid container spacing={3} style={{marginTop: 10}}>
+                    <Grid container spacing={3}>
                         <Grid item xs={12} lg={6}>
                             <div className={classes.content}  style={{display:'inline'}} >
                                             <Typography variant="h5" component="h5" style={{display:'inline'}} >
@@ -267,7 +267,7 @@ class CategoryComponent2 extends React.Component {
                                                 (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {topReviewLabel.fitItemName2} </Button> ) : ''
                                             }
                                         </div>
-                                        <Button style={{marginTop: 100}}
+                                        <Button style={{marginTop: 50}}
                                                 type="button"
                                                 className={classes.buttonType2}
                                                 color="primary"
