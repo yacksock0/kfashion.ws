@@ -676,8 +676,8 @@ export default class ProfessionalLabelStore {
 
     doProfessionalLabelUp = flow(function* doProfessionalLabelUp() {
         this.state = State.Pending;
-        try {
 
+        try {
             this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
             this.newProfessionalLabel.categoryCategoryNo1 = this.outerReviewLabel.categoryCategoryNo1;
             this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
