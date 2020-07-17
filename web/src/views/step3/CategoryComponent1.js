@@ -5,7 +5,7 @@ import {withStyles} from "@material-ui/core/styles";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Category1 from "./Category1";
 import Detail1 from "./Detail1";
-import Print1 from "../step3/Print1";
+import Print1 from "./Print1";
 import Texture1 from "./Texture1";
 import ClothLength1 from "./ClothLength1";
 import NeckLine1 from "./NeckLine1";
@@ -77,11 +77,12 @@ class CategoryComponent1 extends React.Component {
 
     handleClickCategory=(category)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
+
 
     handleClickDetail=(detail)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelDetail1(detail);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
     handleClickPrint=(print)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelPrint1(print);
@@ -104,13 +105,13 @@ class CategoryComponent1 extends React.Component {
 
     handleDelete(){
         this.props.professionalLabelStore.deleteCategory1();
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(0);
     }
     handleDeleteCloth(){
         this.props.professionalLabelStore.deleteClothLength1();
     }
     handleDeleteDetail(){
         this.props.professionalLabelStore.deleteDetail1();
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(0);
     }
     handleDeletePrint(){
         this.props.professionalLabelStore.deletePrint1();
@@ -136,146 +137,146 @@ class CategoryComponent1 extends React.Component {
         const {classes} = this.props;
         const {outerReviewLabel} = this.props.professionalLabelStore;
         return (
-                    <Grid container spacing={3} style={{marginTop: 10}}>
-                        <Grid item xs={12} lg={6}>
-                            <div className={classes.content}  style={{display:'inline'}} >
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}} >
-                                                카테고리
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Category1 onClick={this.handleClickCategory}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {outerReviewLabel.categoryCategoryNo1 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.categoryItemName1} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline' }}>
-                                                디테일
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail1 onClick={this.handleClickDetail}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {outerReviewLabel.detailCategoryNo1 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {outerReviewLabel.detailItemName1} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                프린트
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Print1 onClick={this.handleClickPrint}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {outerReviewLabel.printCategoryNo1 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {outerReviewLabel.printItemName1} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                소재감
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Texture1 onClick={this.handleClickTexture} />
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {outerReviewLabel.textureCategoryNo1 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {outerReviewLabel.textureItemName1} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                기장
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <ClothLength1 onClick={this.handleClickCloth}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {outerReviewLabel.clothLengthCategoryNo1 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {outerReviewLabel.clothLengthItemName1} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                넥라인
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <NeckLine1 onClick={this.handleClickNeckLine}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {outerReviewLabel.neckLineCategoryNo1 > 0 ?
-                                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {outerReviewLabel.neckLineItemName1} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                칼라(카라)
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <ColorKara1 onClick={this.handleClickKara}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {outerReviewLabel.karaCategoryNo1 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {outerReviewLabel.karaItemName1} </Button> ) : ''
-                                            }
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} lg={6}>
-                                        <div className={classes.content} style={{display:'inline'}}>
-                                            <Typography variant="h5" component="h5" style={{display:'inline'}}>
-                                                핏
-                                            </Typography>
-                                            <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Fit1 onClick={this.handleClickFit}/>
-                                            </div>
-                                            <div>
-                                                <hr></hr>
-                                            </div>
-                                            {outerReviewLabel.fitCategoryNo1 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {outerReviewLabel.fitItemName1} </Button> ) : ''
-                                            }
-                                        </div>
+            <Grid container spacing={3} style={{marginTop: 10}}>
+                <Grid item xs={12} lg={6}>
+                    <div className={classes.content}  style={{display:'inline'}} >
+                        <Typography variant="h5" component="h5" style={{display:'inline'}} >
+                            카테고리
+                        </Typography>
+                        <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                            <Category1 onClick={this.handleClickCategory}/>
+                        </div>
+                        <div>
+                            <hr></hr>
+                        </div>
+                        {outerReviewLabel.categoryCategoryNo1 > 0 ?
+                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.categoryItemName1} </Button> ) : ''
+                        }
+                    </div>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                    <div className={classes.content} style={{display:'inline'}}>
+                        <Typography variant="h5" component="h5" style={{display:'inline' }}>
+                            디테일
+                        </Typography>
+                        <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                            <Detail1 onClick={this.handleClickDetail}/>
+                        </div>
+                        <div>
+                            <hr></hr>
+                        </div>
+                        {outerReviewLabel.detailCategoryNo1 > 0 ?
+                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {outerReviewLabel.detailItemName1} </Button> ) : ''
+                        }
+                    </div>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                    <div className={classes.content} style={{display:'inline'}}>
+                        <Typography variant="h5" component="h5" style={{display:'inline'}}>
+                            프린트
+                        </Typography>
+                        <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                            <Print1 onClick={this.handleClickPrint}/>
+                        </div>
+                        <div>
+                            <hr></hr>
+                        </div>
+                        {outerReviewLabel.printCategoryNo1 > 0 ?
+                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {outerReviewLabel.printItemName1} </Button> ) : ''
+                        }
+                    </div>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                    <div className={classes.content} style={{display:'inline'}}>
+                        <Typography variant="h5" component="h5" style={{display:'inline'}}>
+                            소재감
+                        </Typography>
+                        <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                            <Texture1 onClick={this.handleClickTexture} />
+                        </div>
+                        <div>
+                            <hr></hr>
+                        </div>
+                        {outerReviewLabel.textureCategoryNo1 > 0 ?
+                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {outerReviewLabel.textureItemName1} </Button> ) : ''
+                        }
+                    </div>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                    <div className={classes.content} style={{display:'inline'}}>
+                        <Typography variant="h5" component="h5" style={{display:'inline'}}>
+                            기장
+                        </Typography>
+                        <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                            <ClothLength1 onClick={this.handleClickCloth}/>
+                        </div>
+                        <div>
+                            <hr></hr>
+                        </div>
+                        {outerReviewLabel.clothLengthCategoryNo1 > 0 ?
+                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {outerReviewLabel.clothLengthItemName1} </Button> ) : ''
+                        }
+                    </div>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                    <div className={classes.content} style={{display:'inline'}}>
+                        <Typography variant="h5" component="h5" style={{display:'inline'}}>
+                            넥라인
+                        </Typography>
+                        <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                            <NeckLine1 onClick={this.handleClickNeckLine}/>
+                        </div>
+                        <div>
+                            <hr></hr>
+                        </div>
+                        {outerReviewLabel.neckLineCategoryNo1 > 0 ?
+                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {outerReviewLabel.neckLineItemName1} </Button> ) : ''
+                        }
+                    </div>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                    <div className={classes.content} style={{display:'inline'}}>
+                        <Typography variant="h5" component="h5" style={{display:'inline'}}>
+                            칼라(카라)
+                        </Typography>
+                        <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                            <ColorKara1 onClick={this.handleClickKara}/>
+                        </div>
+                        <div>
+                            <hr></hr>
+                        </div>
+                        {outerReviewLabel.karaCategoryNo1 > 0 ?
+                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {outerReviewLabel.karaItemName1} </Button> ) : ''
+                        }
+                    </div>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                    <div className={classes.content} style={{display:'inline'}}>
+                        <Typography variant="h5" component="h5" style={{display:'inline'}}>
+                            핏
+                        </Typography>
+                        <div style={{display:'inline-block', float:'right', marginTop : -3}}>
+                            <Fit1 onClick={this.handleClickFit}/>
+                        </div>
+                        <div>
+                            <hr></hr>
+                        </div>
+                        {outerReviewLabel.fitCategoryNo1 > 0 ?
+                            (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {outerReviewLabel.fitItemName1} </Button> ) : ''
+                        }
+                    </div>
 
-                                        <Button style={{marginTop: 50}}
-                                                type="button"
-                                                className={classes.buttonType2}
-                                                color="primary"
-                                                variant="outlined"
-                                                onClick={()=>this.handleSubmit()}
-                                        >
-                                            저장
-                                        </Button>
-                                    </Grid>
-                                </Grid>
+                    <Button style={{marginTop: 50}}
+                            type="button"
+                            className={classes.buttonType2}
+                            color="primary"
+                            variant="outlined"
+                            onClick={()=>this.handleSubmit()}
+                    >
+                        저장
+                    </Button>
+                </Grid>
+            </Grid>
         );
     }
 };

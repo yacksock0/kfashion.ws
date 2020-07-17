@@ -7,6 +7,89 @@ const State = {
     Success: 'Success',
     Fail: 'Fail',
 }
+const EmptyNewOuterReviewLabel = {
+    category1 : '',
+    categoryCategoryNo1 : '',
+    detail1 : '',
+    detailCategoryNo1 : '',
+    print1 : '',
+    printCategoryNo1 : '',
+    texture1 : '',
+    textureCategoryNo1 : '',
+    clothLength1 : '',
+    clothLengthCategoryNo1 : '',
+    neckLine1 : '',
+    neckLineCategoryNo1 : '',
+    kara1 : '',
+    karaCategoryNo1 : '',
+    fit1 : '',
+    fitCategoryNo1 : '',
+}
+const EmptyNewTopReviewLabel = {
+    category2 : '',
+    categoryCategoryNo2 : '',
+    detail2 : '',
+    detailCategoryNo2 : '',
+    print2 : '',
+    printCategoryNo2 : '',
+    texture2 : '',
+    textureCategoryNo2 : '',
+    clothLength2 : '',
+    clothLengthCategoryNo2 : '',
+    neckLine2 : '',
+    neckLineCategoryNo2 : '',
+    kara2 : '',
+    karaCategoryNo2 : '',
+    fit2 : '',
+    fitCategoryNo2 : '',
+}
+const EmptyNewPantsReviewLabel = {
+    category3 : '',
+    categoryCategoryNo3 : '',
+    detail3 : '',
+    detailCategoryNo3 : '',
+    print3 : '',
+    printCategoryNo3 : '',
+    texture3 : '',
+    textureCategoryNo3 : '',
+    clothLength3 : '',
+    clothLengthCategoryNo3 : '',
+    fit3 : '',
+    fitCategoryNo3 : '',
+}
+const EmptyNewOnePieceReviewLabel = {
+    category4 : '',
+    categoryCategoryNo4 : '',
+    detail4 : '',
+    detailCategoryNo4 : '',
+    print4 : '',
+    printCategoryNo4 : '',
+    texture4 : '',
+    textureCategoryNo4 : '',
+    clothLength4 : '',
+    clothLengthCategoryNo4 : '',
+    neckLine4 : '',
+    neckLineCategoryNo4 : '',
+    kara4 : '',
+    karaCategoryNo4 : '',
+    fit4 : '',
+    fitCategoryNo4 : '',
+}
+const EmptyNewStyleReviewLabel = {
+    createdId : '',
+    workNo : '',
+    workStep : 6,
+    labelNo1 : 0,
+    labelNo2 : 0,
+    labelNo3 : 0,
+    labelNo4 : 0,
+    labelNo5 : 0,
+    style : '',
+    styleSub : '',
+    styleCategoryNo : '',
+    styleCategorySubNo : '',
+}
+
 
 const EmptyNewProfessionalLabel = {
     workNo : '',
@@ -16,7 +99,7 @@ const EmptyNewProfessionalLabel = {
     labelNo3 : 0,
     labelNo4 : 0,
     labelNo5 : 0,
-    createId : '',
+    createdId : '',
     style : '',
     styleSub : '',
     styleCategoryNo : '',
@@ -120,30 +203,35 @@ export default class ProfessionalLabelStore {
     @observable newProfessionalLabel = {...EmptyNewProfessionalLabel}
     @observable professionalList = [];
     @observable recentlyImg=[];
-    @observable outerReviewLabel= {...EmptyNewProfessionalLabel}
-    @observable topReviewLabel= {...EmptyNewProfessionalLabel}
-    @observable pantsReviewLabel= {...EmptyNewProfessionalLabel}
-    @observable onePieceReviewLabel= {...EmptyNewProfessionalLabel}
-    @observable styleReviewLabel= {...EmptyNewProfessionalLabel}
+    @observable outerReviewLabel= {...EmptyNewOuterReviewLabel}
+    @observable topReviewLabel= {...EmptyNewTopReviewLabel}
+    @observable pantsReviewLabel= {...EmptyNewPantsReviewLabel}
+    @observable onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel}
+    @observable styleReviewLabel= {...EmptyNewStyleReviewLabel}
 
     @action initStore = () => {
         this.professionalList = [];
     }
     @action changeNewProfessionalLabelNo1 = (labelNo1) => {
-        this.newProfessionalLabel.labelNo1 = labelNo1;
+        this.styleReviewLabel.labelNo1 = labelNo1;
+        return this.styleReviewLabel;
     }
 
     @action changeNewProfessionalLabelNo2 = (labelNo2) => {
-        this.newProfessionalLabel.labelNo2 = labelNo2;
+        this.styleReviewLabel.labelNo2 = labelNo2;
+        return this.styleReviewLabel;
     }
     @action changeNewProfessionalLabelNo3 = (labelNo3) => {
-        this.newProfessionalLabel.labelNo3 = labelNo3;
+        this.styleReviewLabel.labelNo3 = labelNo3;
+        return this.styleReviewLabel;
     }
     @action changeNewProfessionalLabelNo4 = (labelNo4) => {
-        this.newProfessionalLabel.labelNo4 = labelNo4;
+        this.styleReviewLabel.labelNo4 = labelNo4;
+        return this.styleReviewLabel;
     }
     @action changeNewProfessionalLabelNo5 = (labelNo5) => {
-        this.newProfessionalLabel.labelNo5 = labelNo5;
+        this.styleReviewLabel.labelNo5 = labelNo5;
+        return this.styleReviewLabel;
     }
 
     @action changeNewProfessionalLabelStyle = (style) => {
@@ -372,7 +460,7 @@ export default class ProfessionalLabelStore {
         this.outerReviewLabel.clothLength1 = clothLength1.no;
         this.outerReviewLabel.clothLengthCategoryNo1 = clothLength1.categoryNo;
         this.outerReviewLabel.clothLengthItemName1 = clothLength1.categoryItemName;
-        return this.outerReviewLabel
+        return this.outerReviewLabel;
     }
     @action changeNewProfessionalLabelClothLength2 = (clothLength2) => {
         this.topReviewLabel.clothLength2 = clothLength2.no;
@@ -546,11 +634,11 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelCreatedId = (createdId) => {
-        this.newProfessionalLabel.createdId = createdId;
+        this.styleReviewLabel.createdId = createdId;
     }
 
     @action changeNewProfessionalLabelWorkNo = (workNo) => {
-        this.newProfessionalLabel.workNo = workNo;
+        this.styleReviewLabel.workNo = workNo;
     }
 
     @computed get isPending() {
@@ -589,7 +677,87 @@ export default class ProfessionalLabelStore {
     doProfessionalLabelUp = flow(function* doProfessionalLabelUp() {
         this.state = State.Pending;
         try {
-                const param = toJS(this.newProfessionalLabel);
+
+            this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
+            this.newProfessionalLabel.categoryCategoryNo1 = this.outerReviewLabel.categoryCategoryNo1;
+            this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
+            this.newProfessionalLabel.detail1 = this.outerReviewLabel.detail1;
+            this.newProfessionalLabel.detailCategoryNo1 = this.outerReviewLabel.detailCategoryNo1;
+            this.newProfessionalLabel.print1 = this.outerReviewLabel.print1;
+            this.newProfessionalLabel.printCategoryNo1 = this.outerReviewLabel.printCategoryNo1;
+            this.newProfessionalLabel.texture1 = this.outerReviewLabel.texture1;
+            this.newProfessionalLabel.textureCategoryNo1 = this.outerReviewLabel.textureCategoryNo1;
+            this.newProfessionalLabel.clothLength1 = this.outerReviewLabel.clothLength1;
+            this.newProfessionalLabel.clothLengthCategoryNo1 = this.outerReviewLabel.clothLengthCategoryNo1;
+            this.newProfessionalLabel.neckLine1 = this.outerReviewLabel.neckLine1;
+            this.newProfessionalLabel.neckLineCategoryNo1 = this.outerReviewLabel.neckLineCategoryNo1;
+            this.newProfessionalLabel.kara1 = this.outerReviewLabel.kara1;
+            this.newProfessionalLabel.karaCategoryNo1 = this.outerReviewLabel.karaCategoryNo1;
+            this.newProfessionalLabel.fit1 = this.outerReviewLabel.fit1;
+            this.newProfessionalLabel.fitCategoryNo1 = this.outerReviewLabel.fitCategoryNo1;
+
+            this.newProfessionalLabel.category2 = this.topReviewLabel.category2;
+            this.newProfessionalLabel.categoryCategoryNo2 = this.topReviewLabel.categoryCategoryNo2;
+            this.newProfessionalLabel.detail2 = this.topReviewLabel.detail2;
+            this.newProfessionalLabel.detailCategoryNo2 = this.topReviewLabel.detailCategoryNo2;
+            this.newProfessionalLabel.print2 = this.topReviewLabel.print2;
+            this.newProfessionalLabel.printCategoryNo2 = this.topReviewLabel.printCategoryNo2;
+            this.newProfessionalLabel.texture2 = this.topReviewLabel.texture2;
+            this.newProfessionalLabel.textureCategoryNo2 = this.topReviewLabel.textureCategoryNo2;
+            this.newProfessionalLabel.clothLength2 = this.topReviewLabel.clothLength2;
+            this.newProfessionalLabel.clothLengthCategoryNo2 = this.topReviewLabel.clothLengthCategoryNo2;
+            this.newProfessionalLabel.neckLine2 = this.topReviewLabel.neckLine2;
+            this.newProfessionalLabel.neckLineCategoryNo2 = this.topReviewLabel.neckLineCategoryNo2;
+            this.newProfessionalLabel.kara2 = this.topReviewLabel.kara2;
+            this.newProfessionalLabel.karaCategoryNo2 = this.topReviewLabel.karaCategoryNo2;
+            this.newProfessionalLabel.fit2 = this.topReviewLabel.fit2;
+            this.newProfessionalLabel.fitCategoryNo2 = this.topReviewLabel.fitCategoryNo2;
+
+            this.newProfessionalLabel.category3 = this.pantsReviewLabel.category3;
+            this.newProfessionalLabel.categoryCategoryNo3 = this.pantsReviewLabel.categoryCategoryNo3;
+            this.newProfessionalLabel.detail3 = this.pantsReviewLabel.detail3;
+            this.newProfessionalLabel.detailCategoryNo3 = this.pantsReviewLabel.detailCategoryNo3;
+            this.newProfessionalLabel.print3 = this.pantsReviewLabel.print3;
+            this.newProfessionalLabel.printCategoryNo3 = this.pantsReviewLabel.printCategoryNo3;
+            this.newProfessionalLabel.texture3 = this.pantsReviewLabel.texture3;
+            this.newProfessionalLabel.textureCategoryNo3 = this.pantsReviewLabel.textureCategoryNo3;
+            this.newProfessionalLabel.clothLength3 = this.pantsReviewLabel.clothLength3;
+            this.newProfessionalLabel.clothLengthCategoryNo3 = this.pantsReviewLabel.clothLengthCategoryNo3;
+            this.newProfessionalLabel.fit3 = this.pantsReviewLabel.fit3;
+            this.newProfessionalLabel.fitCategoryNo3 = this.pantsReviewLabel.fitCategoryNo3;
+
+            this.newProfessionalLabel.category4 = this.onePieceReviewLabel.category4;
+            this.newProfessionalLabel.categoryCategoryNo4 = this.onePieceReviewLabel.categoryCategoryNo4;
+            this.newProfessionalLabel.detail4 = this.onePieceReviewLabel.detail4;
+            this.newProfessionalLabel.detailCategoryNo4 = this.onePieceReviewLabel.detailCategoryNo4;
+            this.newProfessionalLabel.print4 = this.onePieceReviewLabel.print4;
+            this.newProfessionalLabel.printCategoryNo4 = this.onePieceReviewLabel.printCategoryNo4;
+            this.newProfessionalLabel.texture4 = this.onePieceReviewLabel.texture4;
+            this.newProfessionalLabel.textureCategoryNo4 = this.onePieceReviewLabel.textureCategoryNo4;
+            this.newProfessionalLabel.clothLength4 = this.onePieceReviewLabel.clothLength4;
+            this.newProfessionalLabel.category4 = this.onePieceReviewLabel.category4;
+            this.newProfessionalLabel.clothLengthCategoryNo4 = this.onePieceReviewLabel.clothLengthCategoryNo4;
+            this.newProfessionalLabel.neckLine4 = this.onePieceReviewLabel.neckLine4;
+            this.newProfessionalLabel.neckLineCategoryNo4 = this.onePieceReviewLabel.neckLineCategoryNo4;
+            this.newProfessionalLabel.kara4 = this.onePieceReviewLabel.kara4;
+            this.newProfessionalLabel.karaCategoryNo4 = this.onePieceReviewLabel.karaCategoryNo4;
+            this.newProfessionalLabel.fit4 = this.onePieceReviewLabel.fit4;
+            this.newProfessionalLabel.fitCategoryNo4 = this.onePieceReviewLabel.fitCategoryNo4;
+
+            this.newProfessionalLabel.createdId = this.styleReviewLabel.createdId;
+            this.newProfessionalLabel.workNo = this.styleReviewLabel.workNo;
+            this.newProfessionalLabel.workStep = this.styleReviewLabel.workStep;
+            this.newProfessionalLabel.labelNo1 = this.styleReviewLabel.labelNo1;
+            this.newProfessionalLabel.labelNo2 = this.styleReviewLabel.labelNo2;
+            this.newProfessionalLabel.labelNo3 = this.styleReviewLabel.labelNo3;
+            this.newProfessionalLabel.labelNo4 = this.styleReviewLabel.labelNo4;
+            this.newProfessionalLabel.labelNo5 = this.styleReviewLabel.labelNo5;
+            this.newProfessionalLabel.style = this.styleReviewLabel.style;
+            this.newProfessionalLabel.styleSub = this.styleReviewLabel.styleSub;
+            this.newProfessionalLabel.styleCategoryNo = this.styleReviewLabel.styleCategoryNo;
+            this.newProfessionalLabel.styleCategorySubNo = this.styleReviewLabel.styleCategorySubNo;
+            const param = toJS(this.newProfessionalLabel);
+            console.log(param);
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
                     const createdId =this.newProfessionalLabel.createdId;

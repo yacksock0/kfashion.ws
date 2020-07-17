@@ -286,35 +286,35 @@ class FinalCheckList extends React.Component {
                                                 </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">카테고리</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.categoryItemName}</TableCell>
+                                                <TableCell align="center">{outerReviewLabel.categoryItemName1}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">디테일</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.detailItemName}</TableCell>
+                                                <TableCell align="center">{outerReviewLabel.detailItemName1}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">프린트</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.printItemName}</TableCell>
+                                                <TableCell align="center">{outerReviewLabel.printItemName1}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">소재</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.textureItemName}</TableCell>
+                                                <TableCell align="center">{outerReviewLabel.textureItemName1}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">기장</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.clothLengthItemName}</TableCell>
+                                                <TableCell align="center">{outerReviewLabel.clothLengthItemName1}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">넥라인</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.neckLineItemName}</TableCell>
+                                                <TableCell align="center">{outerReviewLabel.neckLineItemName1}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">칼라</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.karaItemName}</TableCell>
+                                                <TableCell align="center">{outerReviewLabel.karaItemName1}</TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell align="center">핏</TableCell>
-                                                <TableCell align="center">{outerReviewLabel.fitItemName}</TableCell>
+                                                <TableCell align="center">{outerReviewLabel.fitItemName1}</TableCell>
                                             </TableRow>
                                         </TableBody>
                                     </Table>
@@ -338,35 +338,35 @@ class FinalCheckList extends React.Component {
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">카테고리</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.categoryItemName}</TableCell>
+                                                            <TableCell align="center">{topReviewLabel.categoryItemName2}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">디테일</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.detailItemName}</TableCell>
+                                                            <TableCell align="center">{topReviewLabel.detailItemName2}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">프린트</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.printItemName}</TableCell>
+                                                            <TableCell align="center">{topReviewLabel.printItemName2}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">소재</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.textureItemName}</TableCell>
+                                                            <TableCell align="center">{topReviewLabel.textureItemName2}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">기장</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.clothLengthItemName}</TableCell>
+                                                            <TableCell align="center">{topReviewLabel.clothLengthItemName2}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">넥라인</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.neckLineItemName}</TableCell>
+                                                            <TableCell align="center">{topReviewLabel.neckLineItemName2}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">칼라</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.karaItemName}</TableCell>
+                                                            <TableCell align="center">{topReviewLabel.karaItemName2}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">핏</TableCell>
-                                                            <TableCell align="center">{topReviewLabel.fitItemName}</TableCell>
+                                                            <TableCell align="center">{topReviewLabel.fitItemName2}</TableCell>
                                                         </TableRow>
                                                     </TableBody>
                                                 </Table>
@@ -389,35 +389,27 @@ class FinalCheckList extends React.Component {
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">카테고리</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.categoryItemName}</TableCell>
+                                                            <TableCell align="center">{pantsReviewLabel.categoryItemName3}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">디테일</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.detailItemName}</TableCell>
+                                                            <TableCell align="center">{pantsReviewLabel.detailItemName3}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">프린트</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.printItemName}</TableCell>
+                                                            <TableCell align="center">{pantsReviewLabel.printItemName3}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">소재</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.textureItemName}</TableCell>
+                                                            <TableCell align="center">{pantsReviewLabel.textureItemName3}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">기장</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.clothLengthItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">넥라인</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.neckLineItemName}</TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center">칼라</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.karaItemName}</TableCell>
+                                                            <TableCell align="center">{pantsReviewLabel.clothLengthItemName3}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">핏</TableCell>
-                                                            <TableCell align="center">{pantsReviewLabel.fitItemName}</TableCell>
+                                                            <TableCell align="center">{pantsReviewLabel.fitItemName3}</TableCell>
                                                         </TableRow>
                                                     </TableBody>
                                                 </Table>
@@ -441,35 +433,35 @@ class FinalCheckList extends React.Component {
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">카테고리</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.categoryItemName}</TableCell>
+                                                            <TableCell align="center">{onePieceReviewLabel.categoryItemName4}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">디테일</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.detailItemName}</TableCell>
+                                                            <TableCell align="center">{onePieceReviewLabel.detailItemName4}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">프린트</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.printItemName}</TableCell>
+                                                            <TableCell align="center">{onePieceReviewLabel.printItemName4}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">소재</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.textureItemName}</TableCell>
+                                                            <TableCell align="center">{onePieceReviewLabel.textureItemName4}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">기장</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.clothLengthItemName}</TableCell>
+                                                            <TableCell align="center">{onePieceReviewLabel.clothLengthItemName4}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">넥라인</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.neckLineItemName}</TableCell>
+                                                            <TableCell align="center">{onePieceReviewLabel.neckLineItemName4}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">칼라</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.karaItemName}</TableCell>
+                                                            <TableCell align="center">{onePieceReviewLabel.karaItemName4}</TableCell>
                                                         </TableRow>
                                                         <TableRow>
                                                             <TableCell align="center">핏</TableCell>
-                                                            <TableCell align="center">{onePieceReviewLabel.fitItemName}</TableCell>
+                                                            <TableCell align="center">{onePieceReviewLabel.fitItemName4}</TableCell>
                                                         </TableRow>
                                                     </TableBody>
                                                 </Table>
