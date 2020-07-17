@@ -11,6 +11,7 @@ import ClothLength3 from "../step3/ClothLength3";
 import Fit3 from "./Fit3";
 import {inject, observer} from "mobx-react";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Detail1 from "./Detail1";
 
 const styles = theme => ({
     mainContainer: {
@@ -144,13 +145,13 @@ class CategoryComponent3 extends React.Component {
                                                 디테일
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail3 onClick={this.handleClickDetail}/>
+                                                <Detail1 onClick={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
                                             {pantsReviewLabel.detailCategoryNo3 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {pantsReviewLabel.detailItemName3} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {pantsReviewLabel.detailItemName3} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>

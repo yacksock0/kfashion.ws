@@ -345,7 +345,7 @@ export default class ProfessionalLabelStore {
     @action changeNewProfessionalLabelDetail3= (detail3) => {
         this.pantsReviewLabel.detail3 = detail3.no;
         this.pantsReviewLabel.detailCategoryNo3 = detail3.categoryNo;
-        this.pantsReviewLabel.detailItemName = detail3.categoryItemName;
+        this.pantsReviewLabel.detailItemName3 = detail3.categoryItemName;
         return this.pantsReviewLabel;
     }
     @action changeNewProfessionalLabelDetail4 = (detail4) => {

@@ -13,6 +13,7 @@ import ColorKara2 from "./ColorKara2";
 import Fit2 from "./Fit2";
 import {inject, observer} from "mobx-react";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Detail1 from "./Detail1";
 
 const styles = theme => ({
     mainContainer: {
@@ -154,19 +155,20 @@ class CategoryComponent2 extends React.Component {
                                             }
                                         </div>
                                     </Grid>
+
                                     <Grid item xs={12} lg={6}>
                                         <div className={classes.content} style={{display:'inline'}}>
                                             <Typography variant="h5" component="h5" style={{display:'inline' }}>
                                                 디테일
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail2 onClick={this.handleClickDetail}/>
+                                                <Detail1 onClick={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
                                             </div>
                                             {topReviewLabel.detailCategoryNo2 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {topReviewLabel.detailItemName2} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {topReviewLabel.detailItemName2} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
