@@ -4,7 +4,6 @@ package io.aetherit.kfashion.ws.controller;
 import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionWork;
 import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
-import io.aetherit.kfashion.ws.service.FileStorageService;
 import io.aetherit.kfashion.ws.service.KfashionImageService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import io.aetherit.kfashion.ws.service.KfashionWorkService;
@@ -12,14 +11,12 @@ import io.aetherit.kfashion.ws.util.CommonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -37,7 +34,6 @@ public class KfashionImageController {
 
     private KfashionImageService kfashionImageService;
     private KfashionWorkService kfashionWorkService;
-    private FileStorageService fileStorageService;
     private KfashionWorkHistoryService kfashionWorkHistoryService;
 
     @Autowired
@@ -45,11 +41,9 @@ public class KfashionImageController {
     @Autowired
     public KfashionImageController(KfashionImageService kfashionImageService,
                                    KfashionWorkService kfashionWorkService,
-                                   FileStorageService fileStorageService,
                                    KfashionWorkHistoryService kfashionWorkHistoryService) {
         this.kfashionImageService = kfashionImageService;
         this.kfashionWorkService = kfashionWorkService;
-        this.fileStorageService = fileStorageService;
         this.kfashionWorkHistoryService = kfashionWorkHistoryService;
     }
 
@@ -83,13 +77,6 @@ public class KfashionImageController {
             e.printStackTrace();
         }
 
-        String fileName = fileStorageService.storeFile(file);
-
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName)
-                .toUriString();
-
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
@@ -109,39 +96,6 @@ public class KfashionImageController {
                 .stream()
                 .map(file -> uploadFile(userId,file))
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * 다운로드 파일
-     * @param fileName
-     * @return ResponseEntity
-     * @throws IOException
-     */
-    @GetMapping("/downloadFile/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName,
-                                                 HttpServletRequest request) {
-        // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
-
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile()
-                    .getAbsolutePath());
-        } catch (IOException ex) {
-            logger.info("Could not determine file type.");
-        }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
-                        + resource.getFilename() + "\"")
-                .body(resource);
     }
 
     /**
@@ -213,9 +167,10 @@ public class KfashionImageController {
      */
 
     @GetMapping(value="inspectionList")
-    public ResponseEntity<Object> inspectionList(HttpServletRequest httpRequest) {
+    public ResponseEntity<Object> inspectionList(HttpServletRequest httpRequest,
+                                                 @RequestParam(value="createdId")String createdId) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList();
+        List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList(createdId);
         resultMap.put("inspectionList", inspectionList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
