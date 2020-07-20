@@ -66,7 +66,7 @@ class WorkedImg extends React.Component  {
                     </div>
                     {recentlyImg.map((item) =>
                         <Button className={classes.imgBox} onClick={() => this.handleClick(item)}>
-                            <img src={item.fileName} style={{width: '100%', height: 80}}/>
+                            <img src={item.fileName} style={{width: '100%', height: 80, borderRadius:15}}/>
                         </Button>
                     )
                     }
