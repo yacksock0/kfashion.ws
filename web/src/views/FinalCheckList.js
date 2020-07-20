@@ -42,11 +42,10 @@ const styles = theme => ({   root: {
     table: {
         minWidth: 500,
     },
-
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'80%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -144,7 +143,8 @@ class FinalCheckList extends React.Component {
             neckLineItemName : '',
             karaItemName : '',
             fitItemName : '',
-            tapIndex: 0,
+            tabIndex1:1,
+            tabIndex2: 0,
             createdId: '',
             boundaryList: [],
             imgData:'',
@@ -187,11 +187,12 @@ class FinalCheckList extends React.Component {
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
+            width: 650,
+            height: 700,
             originX: 'left',
             originY: 'top'
         });
+        this.setState({tabIndex1 : 0, tabIndex2 : 0})
     }
     deleteAll = () =>{
         let objList = [];
@@ -204,7 +205,7 @@ class FinalCheckList extends React.Component {
     }
 
 
-    onSelectTab(tabIndex) {
+    onSelectTab2(tabIndex) {
         let polyNo = tabIndex + 1;
         const {locationPolygonList} = this.props.polygonStore;
         const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
@@ -289,12 +290,12 @@ class FinalCheckList extends React.Component {
             this.canvas.add(polyline);
             this.canvas.sendToBack(polyline);
             this.setState({
-                tabIndex1: tabIndex,
+                tabIndex2: tabIndex,
             })
         }else{
             this.deleteAll();
             this.setState({
-                tabIndex1: tabIndex,
+                tabIndex2: tabIndex,
             });
         }
     }
@@ -307,6 +308,9 @@ class FinalCheckList extends React.Component {
         this.props.history.push("/Step2/ModifyStep3");
     }
 
+    onSelectTab1(tabIndex) {
+        this.setState({tabIndex1 : tabIndex});
+    }
     render() {
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.workStore;
@@ -316,20 +320,46 @@ class FinalCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={4}>
+                        <Grid item xs={5}>
                             <div>
-                                <canvas id="c" width="750" height="850">  </canvas>
+                                <canvas id="c" width="600" height="650">  </canvas>
                             </div>
                         </Grid>
-                        <Grid item xs={3} style={{marginRight:20}}>
+                        <Grid item xs={5} style={{marginRight:20}}>
                             <div component={Paper}>
-                                <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTab(tabIndex)}>
+                                <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                     <TabList >
-                                        <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
-                                        <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                        <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                        <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                        <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
+                                        <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                                     </TabList>
+
+                                    <TabPanel>
+                                <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
+                                    <TabList >
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                    </TabList>
+                                    <TabPanel>
+                                        <TableContainer  style={{height:'60vh'}}>
+                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell align="center">항목</TableCell>
+                                                        <TableCell align="center">레이블링</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    <TableRow>
+                                                        <TableCell align="center">스타일</TableCell>
+                                                        <TableCell align="center">메인 : {styleReviewLabel.styleItemName} 서브 : {styleReviewLabel.styleSubItemName ? styleReviewLabel.styleSubItemName : ''}</TableCell>
+                                                    </TableRow>
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </TabPanel>
                                     <TabPanel>
                                         <TableContainer  style={{height:'60vh'}}>
                                             <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
@@ -523,43 +553,49 @@ class FinalCheckList extends React.Component {
                                         </TableContainer>
                                     </TabPanel>
                                 </Tabs>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <MaterialTable
+                                            icons={tableIcons}
+                                            columns={this.state.columns}
+                                            data={!!this.props.imageStore.inspectionList ?
+                                                this.props.imageStore.inspectionList.map((item) => {
+                                                    return {
+                                                        workNo: item.workNo,
+                                                        fileName: item.fileName,
+                                                        workName: item.workName,
+                                                        createdDatetime: item.createdDatetime,
+                                                        createdId: item.createdId,
+                                                    }
+                                                }) : []}
+                                            title="이미지 리스트"
+                                            options={{
+                                                search: true,
+                                                actionsColumnIndex: -1,
+                                            }}
+                                            actions={
+                                                [
+                                                    {
+                                                        icon: CheckIcon,
+                                                        tooltip: 'Select Image',
+                                                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo=" + rowData.workNo)
+                                                    },
+                                                    // rowData => ({
+                                                    //     icon: Edit,
+                                                    //     tooltip: 'return',
+                                                    //     hidden: rowData.createdId !== this.props.authStore.loginUser.id,
+                                                    //     onClick: (event, rowData) => this.handleClickReturn(rowData.workNo)
+                                                    // })
+                                                ]
+                                            }
+                                        />
+                                    </TabPanel>
+                                </Tabs>
+
                             </div>
                         </Grid>
                         <Grid item xs={4}>
-                            <MaterialTable
-                                icons={tableIcons}
-                                columns={this.state.columns}
-                                data={!!this.props.imageStore.inspectionList ?
-                                    this.props.imageStore.inspectionList.map((item) => {
-                                        return {
-                                            workNo: item.workNo,
-                                            fileName: item.fileName,
-                                            workName: item.workName,
-                                            createdDatetime: item.createdDatetime,
-                                            createdId: item.createdId,
-                                        }
-                                    }) : []}
-                                title="이미지 리스트"
-                                options={{
-                                    search: true,
-                                    actionsColumnIndex: -1,
-                                }}
-                                actions={
-                                    [
-                                        {
-                                            icon: CheckIcon,
-                                            tooltip: 'Select Image',
-                                            onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo=" + rowData.workNo)
-                                        },
-                                        rowData => ({
-                                            icon: Edit,
-                                            tooltip: 'return',
-                                            hidden: rowData.createdId !== this.props.authStore.loginUser.id,
-                                            onClick: (event, rowData) => this.handleClickReturn(rowData.workNo)
-                                        })
-                                    ]
-                                }
-                            />
+
                         </Grid>
                     </Grid>
                 </div>

@@ -107,18 +107,17 @@ class Step3 extends React.Component {
         this.props.enqueueSnackbar("Step3", {
             variant: 'info'
         });
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-        })
     }
     handleSubmit = () => {
+        const finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
+        if(finalCheck){
         const createdId = this.props.authStore.isUserId;
         this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
         this.props.professionalLabelStore.doProfessionalLabelUp();
         this.setState({
             tabIndex:1,
-        })
-        alert("저장 완료")
+        });
+        }
     }
 
     handleClickItem = (workNo, imageData) => {
@@ -126,6 +125,7 @@ class Step3 extends React.Component {
         this.props.workStore.reSetCategoryItem();
         this.setState({
             tabIndex:0,
+            tabIndex1:0,
         })
 
         this.props.imageStore.changeWorkNo(workNo);
@@ -268,7 +268,11 @@ class Step3 extends React.Component {
         }
     }
     handleLabel=(item)=>{
-        this.props.workStore.LoadReviewLabelList(item.workNo);
+        if(this.props.imageStore.workNo != ""){
+            this.props.professionalLabelStore.LoadLabelList(item.workNo);
+        }else{
+            alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
+        }
     }
 
     render() {
@@ -344,19 +348,21 @@ class Step3 extends React.Component {
                         </div>
                         <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                             <Button
-                                type="button"
-                                className={classes.buttonType2}
-                                color="primary"
-                                variant="outlined"
-                                onClick={()=>history.push('/step3')}
+                                    type="button"
+                                    className={classes.buttonType2}
+                                    color="primary"
+                                    variant="outlined"
+                                    onClick={()=>this.handleSubmit()}
                             >
-                                Next Step
+                                저장
                             </Button>
                         </Grid>
                     </div>
-                    <ErrorIcon/>
+
                     <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                        우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 / 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭
+                        <p><ErrorIcon/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 </p>
+                        <p><ErrorIcon/> 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 </p>
+                        <p><ErrorIcon/> 이미지에 해당되는 모든 탭의 정보를 입력한 후 저장버튼을 눌러주세요.</p>
                     </Typography>
                 </Container>
             );

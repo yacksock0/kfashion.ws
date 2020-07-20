@@ -76,6 +76,7 @@ class CategoryComponent1 extends React.Component {
     }
 
     handleClickCategory=(category)=>{
+        console.log("2222222 : " +category);
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
     }
 
@@ -129,6 +130,7 @@ class CategoryComponent1 extends React.Component {
         this.props.professionalLabelStore.deleteFit1();
     }
     handleSubmit(){
+        console.log("저장 1111 : ");
         if(this.props.onClick){
             this.props.onClick();
         }
@@ -267,15 +269,15 @@ class CategoryComponent1 extends React.Component {
                         }
                     </div>
 
-                    <Button style={{marginTop: 50}}
-                            type="button"
-                            className={classes.buttonType2}
-                            color="primary"
-                            variant="outlined"
-                            onClick={()=>this.handleSubmit()}
-                    >
-                        저장
-                    </Button>
+                    {/*<Button style={{marginTop: 50}}*/}
+                    {/*        type="button"*/}
+                    {/*        className={classes.buttonType2}*/}
+                    {/*        color="primary"*/}
+                    {/*        variant="outlined"*/}
+                    {/*        onClick={()=>this.handleSubmit()}*/}
+                    {/*>*/}
+                    {/*    저장*/}
+                    {/*</Button>*/}
                 </Grid>
             </Grid>
         );

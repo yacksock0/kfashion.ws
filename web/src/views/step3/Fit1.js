@@ -48,6 +48,7 @@ export default class Fit1 extends React.Component {
         });
     }
     handleClick(fit){
+
         if(this.props.onClick) {
             this.props.onClick(fit);
         }

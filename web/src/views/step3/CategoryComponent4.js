@@ -264,15 +264,15 @@ class CategoryComponent4 extends React.Component {
                                             }
                                         </div>
 
-                                        <Button style={{marginTop: 50}}
-                                                type="button"
-                                                className={classes.buttonType2}
-                                                color="primary"
-                                                variant="outlined"
-                                                onClick={()=>this.handleSubmit()}
-                                        >
-                                            저장
-                                        </Button>
+                                        {/*<Button style={{marginTop: 50}}*/}
+                                        {/*        type="button"*/}
+                                        {/*        className={classes.buttonType2}*/}
+                                        {/*        color="primary"*/}
+                                        {/*        variant="outlined"*/}
+                                        {/*        onClick={()=>this.handleSubmit()}*/}
+                                        {/*>*/}
+                                        {/*    저장*/}
+                                        {/*</Button>*/}
 
                                     </Grid>
                                 </Grid>

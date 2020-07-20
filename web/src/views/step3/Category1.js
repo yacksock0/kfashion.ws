@@ -45,15 +45,24 @@ export default class Category1 extends React.Component {
             open: false
         });
     }
+    // handleClick(category){
+    //     console.log(category);
+    //     this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
+    //     this.setState({
+    //         open:false,
+    //     })
+    //
+    // }
     handleClick(category){
-        console.log(category);
-        this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
+        console.log("1111111 : " +category);
+        if(this.props.onClick) {
+            this.props.onClick(category);
+        }
         this.setState({
             open:false,
         })
 
     }
-
     render() {
         const categoryList1= this.state.categoryList1;
         return (

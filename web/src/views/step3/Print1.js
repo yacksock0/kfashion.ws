@@ -40,7 +40,7 @@ export default class Print extends React.Component {
             open: false
         });
     }
-    handleClick(print){
+    handleClick(print){console.log("printTest : "+print);
         if(this.props.onClick) {
             this.props.onClick(print);
         }
