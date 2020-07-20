@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="KFashion@192.168.111.90" uuid="2bbb0d7b-00c7-48f3-ab90-3f8f0a6187ab">
-      <driver-ref>mariadb</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://192.168.111.90:3306/KFashion</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="kfashion@192.168.10.110" uuid="10ec5720-3b11-427f-8c91-7d5361dcadc0">
-      <driver-ref>mariadb</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://192.168.10.110:3306/kfashion</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="KFashion@192.168.111.90 [2]" uuid="45a7c604-5ed0-44fb-a09c-637221b17f64">
+    <data-source source="LOCAL" name="KFashion@192.168.111.90" uuid="e91bdb92-af78-4e89-8c23-c06301734470">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
