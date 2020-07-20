@@ -162,248 +162,248 @@ public class KfashionLabelController {
                 System.out.println("333333 : " +professionalLabel.getLabelNo3());
                 System.out.println("444444 : " +professionalLabel.getLabelNo4());
                 System.out.println("555555 : " +professionalLabel.getLabelNo5());
-//                KfashionWork work = new KfashionWork();
-//                work.setNo(professionalLabel.getWorkNo());
-//                work.setWorkState(professionalLabel.getWorkStep());
-//                kfashionWorkService.updateWork(work);
-//
-//                KfashionWorkHistory workHistory = new KfashionWorkHistory();
-//                workHistory.setWorkNo(professionalLabel.getWorkNo());
-//                workHistory.setWorkStep(professionalLabel.getWorkStep());
-//                workHistory.setCreatedId(professionalLabel.getCreatedId());
-//                kfashionWorkHistoryService.insertWorkHistory(workHistory);
-//
-//                if(professionalLabel.getLabelNo5() == 5){
-//                        KfashionLabel professional5 = new KfashionLabel();
-//                        professional5.setWorkNo(professionalLabel.getWorkNo());
-//                        professional5.setWorkStep(professionalLabel.getWorkStep());
-//                        professional5.setLabelNo(professionalLabel.getLabelNo5());
-//                        if(professionalLabel.getStyleCategoryNo() != 0) {
-//                        professional5.setNo(1);
-//                        professional5.setCategoryNo(professionalLabel.getStyleCategoryNo());
-//                        professional5.setCategoryItemNo(professionalLabel.getStyle());
-//                        professional5.setCreatedId(professionalLabel.getCreatedId());
-//                        kfashionLabelService.insertProfessionalLabel(professional5);
-//                         }
-//                        if(professionalLabel.getStyleSub() != 0) {
-//                                professional5.setNo(2);
-//                                professional5.setCategoryNo(professionalLabel.getStyleCategorySubNo());
-//                                professional5.setCategoryItemNo(professionalLabel.getStyleSub());
-//                                kfashionLabelService.insertProfessionalLabel(professional5);
-//                        }
-//                }
-//
-//
-//
-//                if(professionalLabel.getLabelNo1() == 1) {
-//                        KfashionLabel professional1 = new KfashionLabel();
-//                        professional1.setCreatedId(professionalLabel.getCreatedId());
-//                        professional1.setWorkNo(professionalLabel.getWorkNo());
-//                        professional1.setWorkStep(professionalLabel.getWorkStep());
-//                        professional1.setLabelNo(professionalLabel.getLabelNo1());
-//
-//                        if(professionalLabel.getCategoryCategoryNo1() !=0) {
-//                                professional1.setNo(1);
-//                                professional1.setCategoryNo(professionalLabel.getCategoryCategoryNo1());
-//                                professional1.setCategoryItemNo(professionalLabel.getCategory1());
-//                                kfashionLabelService.insertProfessionalLabel(professional1);
-//                        }
-//                        if(professionalLabel.getDetailCategoryNo1() !=0) {
-//                                professional1.setNo(2);
-//                                professional1.setCategoryNo(professionalLabel.getDetailCategoryNo1());
-//                                professional1.setCategoryItemNo(professionalLabel.getDetail1());
-//                                kfashionLabelService.insertProfessionalLabel(professional1);
-//                        }
-//                        if(professionalLabel.getPrintCategoryNo1() !=0) {
-//                                professional1.setNo(3);
-//                                professional1.setCategoryNo(professionalLabel.getPrintCategoryNo1());
-//                                professional1.setCategoryItemNo(professionalLabel.getPrint1());
-//                                kfashionLabelService.insertProfessionalLabel(professional1);
-//                        }
-//                        if(professionalLabel.getTextureCategoryNo1() !=0) {
-//                                professional1.setNo(4);
-//                                professional1.setCategoryNo(professionalLabel.getTextureCategoryNo1());
-//                                professional1.setCategoryItemNo(professionalLabel.getTexture1());
-//                                kfashionLabelService.insertProfessionalLabel(professional1);
-//                        }
-//                        if(professionalLabel.getClothLengthCategoryNo1() !=0) {
-//                                professional1.setNo(5);
-//                                professional1.setCategoryNo(professionalLabel.getClothLengthCategoryNo1());
-//                                professional1.setCategoryItemNo(professionalLabel.getClothLength1());
-//                                kfashionLabelService.insertProfessionalLabel(professional1);
-//                        }
-//                        if(professionalLabel.getNeckLineCategoryNo1() !=0) {
-//                                professional1.setNo(6);
-//                                professional1.setCategoryNo(professionalLabel.getNeckLineCategoryNo1());
-//                                professional1.setCategoryItemNo(professionalLabel.getNeckLine1());
-//                                kfashionLabelService.insertProfessionalLabel(professional1);
-//                        }
-//                        if(professionalLabel.getKaraCategoryNo1() !=0) {
-//                                professional1.setNo(7);
-//                                professional1.setCategoryNo(professionalLabel.getKaraCategoryNo1());
-//                                professional1.setCategoryItemNo(professionalLabel.getKara1());
-//                                kfashionLabelService.insertProfessionalLabel(professional1);
-//                        }
-//                        if(professionalLabel.getFitCategoryNo1() !=0) {
-//                                professional1.setNo(8);
-//                                professional1.setCategoryNo(professionalLabel.getFitCategoryNo1());
-//                                professional1.setCategoryItemNo(professionalLabel.getFit1());
-//                                kfashionLabelService.insertProfessionalLabel(professional1);
-//                        }
-//                }
-//                if(professionalLabel.getLabelNo2() == 2) {
-//                        KfashionLabel professional2 = new KfashionLabel();
-//                        professional2.setCreatedId(professionalLabel.getCreatedId());
-//                        professional2.setWorkNo(professionalLabel.getWorkNo());
-//                        professional2.setWorkStep(professionalLabel.getWorkStep());
-//                        professional2.setLabelNo(professionalLabel.getLabelNo2());
-//
-//                        if(professionalLabel.getCategoryCategoryNo2() !=0) {
-//                                professional2.setNo(1);
-//                                professional2.setCategoryNo(professionalLabel.getCategoryCategoryNo2());
-//                                professional2.setCategoryItemNo(professionalLabel.getCategory2());
-//                                kfashionLabelService.insertProfessionalLabel(professional2);
-//                        } if(professionalLabel.getCategoryCategoryNo2() !=0) {
-//                                professional2.setNo(2);
-//                                professional2.setCategoryNo(professionalLabel.getDetailCategoryNo2());
-//                                professional2.setCategoryItemNo(professionalLabel.getDetail2());
-//                                kfashionLabelService.insertProfessionalLabel(professional2);
-//                        } if(professionalLabel.getPrintCategoryNo2() !=0) {
-//                                professional2.setNo(3);
-//                                professional2.setCategoryNo(professionalLabel.getPrintCategoryNo2());
-//                                professional2.setCategoryItemNo(professionalLabel.getPrint2());
-//                                kfashionLabelService.insertProfessionalLabel(professional2);
-//                        }
-//                        if(professionalLabel.getTextureCategoryNo2() !=0) {
-//                                professional2.setNo(4);
-//                                professional2.setCategoryNo(professionalLabel.getTextureCategoryNo2());
-//                                professional2.setCategoryItemNo(professionalLabel.getTexture2());
-//                                kfashionLabelService.insertProfessionalLabel(professional2);
-//                        }
-//                        if(professionalLabel.getClothLengthCategoryNo2() !=0) {
-//                                professional2.setNo(5);
-//                                professional2.setCategoryNo(professionalLabel.getClothLengthCategoryNo2());
-//                                professional2.setCategoryItemNo(professionalLabel.getClothLength2());
-//                                kfashionLabelService.insertProfessionalLabel(professional2);
-//                        }
-//                        if(professionalLabel.getNeckLineCategoryNo2() !=0) {
-//                                professional2.setNo(6);
-//                                professional2.setCategoryNo(professionalLabel.getNeckLineCategoryNo2());
-//                                professional2.setCategoryItemNo(professionalLabel.getNeckLine2());
-//                                kfashionLabelService.insertProfessionalLabel(professional2);
-//                        }
-//                        if(professionalLabel.getKaraCategoryNo2() !=0) {
-//                                professional2.setNo(7);
-//                                professional2.setCategoryNo(professionalLabel.getKaraCategoryNo2());
-//                                professional2.setCategoryItemNo(professionalLabel.getKara2());
-//                                kfashionLabelService.insertProfessionalLabel(professional2);
-//                        }
-//                        if(professionalLabel.getFitCategoryNo2() !=0) {
-//                                professional2.setNo(8);
-//                                professional2.setCategoryNo(professionalLabel.getFitCategoryNo2());
-//                                professional2.setCategoryItemNo(professionalLabel.getFit2());
-//                                kfashionLabelService.insertProfessionalLabel(professional2);
-//                        }
-//                }
-//                if(professionalLabel.getLabelNo3() == 3) {
-//                        KfashionLabel professional3 = new KfashionLabel();
-//                        professional3.setCreatedId(professionalLabel.getCreatedId());
-//                        professional3.setWorkNo(professionalLabel.getWorkNo());
-//                        professional3.setWorkStep(professionalLabel.getWorkStep());
-//                        professional3.setLabelNo(professionalLabel.getLabelNo3());
-//                        if(professionalLabel.getCategoryCategoryNo3() !=0) {
-//                                professional3.setNo(1);
-//                                professional3.setCategoryNo(professionalLabel.getCategoryCategoryNo3());
-//                                professional3.setCategoryItemNo(professionalLabel.getCategory3());
-//                                kfashionLabelService.insertProfessionalLabel(professional3);
-//                        }
-//                        if(professionalLabel.getDetailCategoryNo3() !=0) {
-//                                professional3.setNo(2);
-//                                professional3.setCategoryNo(professionalLabel.getDetailCategoryNo3());
-//                                professional3.setCategoryItemNo(professionalLabel.getDetail3());
-//                                kfashionLabelService.insertProfessionalLabel(professional3);
-//                        }
-//                        if(professionalLabel.getPrintCategoryNo3() !=0) {
-//                                professional3.setNo(3);
-//                                professional3.setCategoryNo(professionalLabel.getPrintCategoryNo3());
-//                                professional3.setCategoryItemNo(professionalLabel.getPrint3());
-//                                kfashionLabelService.insertProfessionalLabel(professional3);
-//                        }
-//                        if(professionalLabel.getTextureCategoryNo3() !=0) {
-//                                professional3.setNo(4);
-//                                professional3.setCategoryNo(professionalLabel.getTextureCategoryNo3());
-//                                professional3.setCategoryItemNo(professionalLabel.getTexture3());
-//                                kfashionLabelService.insertProfessionalLabel(professional3);
-//                        }
-//                        if(professionalLabel.getClothLengthCategoryNo3() !=0) {
-//                                professional3.setNo(5);
-//                                professional3.setCategoryNo(professionalLabel.getClothLengthCategoryNo3());
-//                                professional3.setCategoryItemNo(professionalLabel.getClothLength3());
-//                                kfashionLabelService.insertProfessionalLabel(professional3);
-//                        }
-//                        if(professionalLabel.getFitCategoryNo3() !=0) {
-//                                professional3.setNo(6);
-//                                professional3.setCategoryNo(professionalLabel.getFitCategoryNo3());
-//                                professional3.setCategoryItemNo(professionalLabel.getFit3());
-//                                kfashionLabelService.insertProfessionalLabel(professional3);
-//                        }
-//                }
-//                if(professionalLabel.getLabelNo4() == 4) {
-//                        KfashionLabel professional4 = new KfashionLabel();
-//                        professional4.setCreatedId(professionalLabel.getCreatedId());
-//                        professional4.setWorkNo(professionalLabel.getWorkNo());
-//                        professional4.setWorkStep(professionalLabel.getWorkStep());
-//                        professional4.setLabelNo(professionalLabel.getLabelNo4());
-//
-//                        if(professionalLabel.getCategoryCategoryNo4() !=0) {
-//                                professional4.setNo(1);
-//                                professional4.setCategoryNo(professionalLabel.getCategoryCategoryNo4());
-//                                professional4.setCategoryItemNo(professionalLabel.getCategory4());
-//                                kfashionLabelService.insertProfessionalLabel(professional4);
-//                        }
-//                        if(professionalLabel.getDetailCategoryNo4() !=0) {
-//                                professional4.setNo(2);
-//                                professional4.setCategoryNo(professionalLabel.getDetailCategoryNo4());
-//                                professional4.setCategoryItemNo(professionalLabel.getDetail4());
-//                                kfashionLabelService.insertProfessionalLabel(professional4);
-//                        }
-//                        if(professionalLabel.getPrintCategoryNo4() !=0) {
-//                                professional4.setNo(3);
-//                                professional4.setCategoryNo(professionalLabel.getPrintCategoryNo4());
-//                                professional4.setCategoryItemNo(professionalLabel.getPrint4());
-//                                kfashionLabelService.insertProfessionalLabel(professional4);
-//                        }
-//                        if(professionalLabel.getTextureCategoryNo4() !=0) {
-//                                professional4.setNo(4);
-//                                professional4.setCategoryNo(professionalLabel.getTextureCategoryNo4());
-//                                professional4.setCategoryItemNo(professionalLabel.getTexture4());
-//                                kfashionLabelService.insertProfessionalLabel(professional4);
-//                        }
-//                        if(professionalLabel.getClothLengthCategoryNo4() !=0) {
-//                                professional4.setNo(5);
-//                                professional4.setCategoryNo(professionalLabel.getClothLengthCategoryNo4());
-//                                professional4.setCategoryItemNo(professionalLabel.getClothLength4());
-//                                kfashionLabelService.insertProfessionalLabel(professional4);
-//                        }
-//                        if(professionalLabel.getNeckLineCategoryNo4() !=0) {
-//                                professional4.setNo(6);
-//                                professional4.setCategoryNo(professionalLabel.getNeckLineCategoryNo4());
-//                                professional4.setCategoryItemNo(professionalLabel.getNeckLine4());
-//                                kfashionLabelService.insertProfessionalLabel(professional4);
-//                        }
-//                        if(professionalLabel.getKaraCategoryNo4() !=0) {
-//                                professional4.setNo(7);
-//                                professional4.setCategoryNo(professionalLabel.getKaraCategoryNo4());
-//                                professional4.setCategoryItemNo(professionalLabel.getKara4());
-//                                kfashionLabelService.insertProfessionalLabel(professional4);
-//                        }
-//                        if(professionalLabel.getFitCategoryNo4() !=0) {
-//                                professional4.setNo(8);
-//                                professional4.setCategoryNo(professionalLabel.getFitCategoryNo4());
-//                                professional4.setCategoryItemNo(professionalLabel.getFit4());
-//                                kfashionLabelService.insertProfessionalLabel(professional4);
-//                        }
-//                }
+                KfashionWork work = new KfashionWork();
+                work.setNo(professionalLabel.getWorkNo());
+                work.setWorkState(professionalLabel.getWorkStep());
+                kfashionWorkService.updateWork(work);
+
+                KfashionWorkHistory workHistory = new KfashionWorkHistory();
+                workHistory.setWorkNo(professionalLabel.getWorkNo());
+                workHistory.setWorkStep(professionalLabel.getWorkStep());
+                workHistory.setCreatedId(professionalLabel.getCreatedId());
+                kfashionWorkHistoryService.insertWorkHistory(workHistory);
+
+                if(professionalLabel.getLabelNo5() == 5){
+                        KfashionLabel professional5 = new KfashionLabel();
+                        professional5.setWorkNo(professionalLabel.getWorkNo());
+                        professional5.setWorkStep(professionalLabel.getWorkStep());
+                        professional5.setLabelNo(professionalLabel.getLabelNo5());
+                        if(professionalLabel.getStyleCategoryNo() != 0) {
+                        professional5.setNo(1);
+                        professional5.setCategoryNo(professionalLabel.getStyleCategoryNo());
+                        professional5.setCategoryItemNo(professionalLabel.getStyle());
+                        professional5.setCreatedId(professionalLabel.getCreatedId());
+                        kfashionLabelService.insertProfessionalLabel(professional5);
+                         }
+                        if(professionalLabel.getStyleSub() != 0) {
+                                professional5.setNo(2);
+                                professional5.setCategoryNo(professionalLabel.getStyleCategorySubNo());
+                                professional5.setCategoryItemNo(professionalLabel.getStyleSub());
+                                kfashionLabelService.insertProfessionalLabel(professional5);
+                        }
+                }
+
+
+
+                if(professionalLabel.getLabelNo1() == 1) {
+                        KfashionLabel professional1 = new KfashionLabel();
+                        professional1.setCreatedId(professionalLabel.getCreatedId());
+                        professional1.setWorkNo(professionalLabel.getWorkNo());
+                        professional1.setWorkStep(professionalLabel.getWorkStep());
+                        professional1.setLabelNo(professionalLabel.getLabelNo1());
+
+                        if(professionalLabel.getCategoryCategoryNo1() !=0) {
+                                professional1.setNo(1);
+                                professional1.setCategoryNo(professionalLabel.getCategoryCategoryNo1());
+                                professional1.setCategoryItemNo(professionalLabel.getCategory1());
+                                kfashionLabelService.insertProfessionalLabel(professional1);
+                        }
+                        if(professionalLabel.getDetailCategoryNo1() !=0) {
+                                professional1.setNo(2);
+                                professional1.setCategoryNo(professionalLabel.getDetailCategoryNo1());
+                                professional1.setCategoryItemNo(professionalLabel.getDetail1());
+                                kfashionLabelService.insertProfessionalLabel(professional1);
+                        }
+                        if(professionalLabel.getPrintCategoryNo1() !=0) {
+                                professional1.setNo(3);
+                                professional1.setCategoryNo(professionalLabel.getPrintCategoryNo1());
+                                professional1.setCategoryItemNo(professionalLabel.getPrint1());
+                                kfashionLabelService.insertProfessionalLabel(professional1);
+                        }
+                        if(professionalLabel.getTextureCategoryNo1() !=0) {
+                                professional1.setNo(4);
+                                professional1.setCategoryNo(professionalLabel.getTextureCategoryNo1());
+                                professional1.setCategoryItemNo(professionalLabel.getTexture1());
+                                kfashionLabelService.insertProfessionalLabel(professional1);
+                        }
+                        if(professionalLabel.getClothLengthCategoryNo1() !=0) {
+                                professional1.setNo(5);
+                                professional1.setCategoryNo(professionalLabel.getClothLengthCategoryNo1());
+                                professional1.setCategoryItemNo(professionalLabel.getClothLength1());
+                                kfashionLabelService.insertProfessionalLabel(professional1);
+                        }
+                        if(professionalLabel.getNeckLineCategoryNo1() !=0) {
+                                professional1.setNo(6);
+                                professional1.setCategoryNo(professionalLabel.getNeckLineCategoryNo1());
+                                professional1.setCategoryItemNo(professionalLabel.getNeckLine1());
+                                kfashionLabelService.insertProfessionalLabel(professional1);
+                        }
+                        if(professionalLabel.getKaraCategoryNo1() !=0) {
+                                professional1.setNo(7);
+                                professional1.setCategoryNo(professionalLabel.getKaraCategoryNo1());
+                                professional1.setCategoryItemNo(professionalLabel.getKara1());
+                                kfashionLabelService.insertProfessionalLabel(professional1);
+                        }
+                        if(professionalLabel.getFitCategoryNo1() !=0) {
+                                professional1.setNo(8);
+                                professional1.setCategoryNo(professionalLabel.getFitCategoryNo1());
+                                professional1.setCategoryItemNo(professionalLabel.getFit1());
+                                kfashionLabelService.insertProfessionalLabel(professional1);
+                        }
+                }
+                if(professionalLabel.getLabelNo2() == 2) {
+                        KfashionLabel professional2 = new KfashionLabel();
+                        professional2.setCreatedId(professionalLabel.getCreatedId());
+                        professional2.setWorkNo(professionalLabel.getWorkNo());
+                        professional2.setWorkStep(professionalLabel.getWorkStep());
+                        professional2.setLabelNo(professionalLabel.getLabelNo2());
+
+                        if(professionalLabel.getCategoryCategoryNo2() !=0) {
+                                professional2.setNo(1);
+                                professional2.setCategoryNo(professionalLabel.getCategoryCategoryNo2());
+                                professional2.setCategoryItemNo(professionalLabel.getCategory2());
+                                kfashionLabelService.insertProfessionalLabel(professional2);
+                        } if(professionalLabel.getCategoryCategoryNo2() !=0) {
+                                professional2.setNo(2);
+                                professional2.setCategoryNo(professionalLabel.getDetailCategoryNo2());
+                                professional2.setCategoryItemNo(professionalLabel.getDetail2());
+                                kfashionLabelService.insertProfessionalLabel(professional2);
+                        } if(professionalLabel.getPrintCategoryNo2() !=0) {
+                                professional2.setNo(3);
+                                professional2.setCategoryNo(professionalLabel.getPrintCategoryNo2());
+                                professional2.setCategoryItemNo(professionalLabel.getPrint2());
+                                kfashionLabelService.insertProfessionalLabel(professional2);
+                        }
+                        if(professionalLabel.getTextureCategoryNo2() !=0) {
+                                professional2.setNo(4);
+                                professional2.setCategoryNo(professionalLabel.getTextureCategoryNo2());
+                                professional2.setCategoryItemNo(professionalLabel.getTexture2());
+                                kfashionLabelService.insertProfessionalLabel(professional2);
+                        }
+                        if(professionalLabel.getClothLengthCategoryNo2() !=0) {
+                                professional2.setNo(5);
+                                professional2.setCategoryNo(professionalLabel.getClothLengthCategoryNo2());
+                                professional2.setCategoryItemNo(professionalLabel.getClothLength2());
+                                kfashionLabelService.insertProfessionalLabel(professional2);
+                        }
+                        if(professionalLabel.getNeckLineCategoryNo2() !=0) {
+                                professional2.setNo(6);
+                                professional2.setCategoryNo(professionalLabel.getNeckLineCategoryNo2());
+                                professional2.setCategoryItemNo(professionalLabel.getNeckLine2());
+                                kfashionLabelService.insertProfessionalLabel(professional2);
+                        }
+                        if(professionalLabel.getKaraCategoryNo2() !=0) {
+                                professional2.setNo(7);
+                                professional2.setCategoryNo(professionalLabel.getKaraCategoryNo2());
+                                professional2.setCategoryItemNo(professionalLabel.getKara2());
+                                kfashionLabelService.insertProfessionalLabel(professional2);
+                        }
+                        if(professionalLabel.getFitCategoryNo2() !=0) {
+                                professional2.setNo(8);
+                                professional2.setCategoryNo(professionalLabel.getFitCategoryNo2());
+                                professional2.setCategoryItemNo(professionalLabel.getFit2());
+                                kfashionLabelService.insertProfessionalLabel(professional2);
+                        }
+                }
+                if(professionalLabel.getLabelNo3() == 3) {
+                        KfashionLabel professional3 = new KfashionLabel();
+                        professional3.setCreatedId(professionalLabel.getCreatedId());
+                        professional3.setWorkNo(professionalLabel.getWorkNo());
+                        professional3.setWorkStep(professionalLabel.getWorkStep());
+                        professional3.setLabelNo(professionalLabel.getLabelNo3());
+                        if(professionalLabel.getCategoryCategoryNo3() !=0) {
+                                professional3.setNo(1);
+                                professional3.setCategoryNo(professionalLabel.getCategoryCategoryNo3());
+                                professional3.setCategoryItemNo(professionalLabel.getCategory3());
+                                kfashionLabelService.insertProfessionalLabel(professional3);
+                        }
+                        if(professionalLabel.getDetailCategoryNo3() !=0) {
+                                professional3.setNo(2);
+                                professional3.setCategoryNo(professionalLabel.getDetailCategoryNo3());
+                                professional3.setCategoryItemNo(professionalLabel.getDetail3());
+                                kfashionLabelService.insertProfessionalLabel(professional3);
+                        }
+                        if(professionalLabel.getPrintCategoryNo3() !=0) {
+                                professional3.setNo(3);
+                                professional3.setCategoryNo(professionalLabel.getPrintCategoryNo3());
+                                professional3.setCategoryItemNo(professionalLabel.getPrint3());
+                                kfashionLabelService.insertProfessionalLabel(professional3);
+                        }
+                        if(professionalLabel.getTextureCategoryNo3() !=0) {
+                                professional3.setNo(4);
+                                professional3.setCategoryNo(professionalLabel.getTextureCategoryNo3());
+                                professional3.setCategoryItemNo(professionalLabel.getTexture3());
+                                kfashionLabelService.insertProfessionalLabel(professional3);
+                        }
+                        if(professionalLabel.getClothLengthCategoryNo3() !=0) {
+                                professional3.setNo(5);
+                                professional3.setCategoryNo(professionalLabel.getClothLengthCategoryNo3());
+                                professional3.setCategoryItemNo(professionalLabel.getClothLength3());
+                                kfashionLabelService.insertProfessionalLabel(professional3);
+                        }
+                        if(professionalLabel.getFitCategoryNo3() !=0) {
+                                professional3.setNo(6);
+                                professional3.setCategoryNo(professionalLabel.getFitCategoryNo3());
+                                professional3.setCategoryItemNo(professionalLabel.getFit3());
+                                kfashionLabelService.insertProfessionalLabel(professional3);
+                        }
+                }
+                if(professionalLabel.getLabelNo4() == 4) {
+                        KfashionLabel professional4 = new KfashionLabel();
+                        professional4.setCreatedId(professionalLabel.getCreatedId());
+                        professional4.setWorkNo(professionalLabel.getWorkNo());
+                        professional4.setWorkStep(professionalLabel.getWorkStep());
+                        professional4.setLabelNo(professionalLabel.getLabelNo4());
+
+                        if(professionalLabel.getCategoryCategoryNo4() !=0) {
+                                professional4.setNo(1);
+                                professional4.setCategoryNo(professionalLabel.getCategoryCategoryNo4());
+                                professional4.setCategoryItemNo(professionalLabel.getCategory4());
+                                kfashionLabelService.insertProfessionalLabel(professional4);
+                        }
+                        if(professionalLabel.getDetailCategoryNo4() !=0) {
+                                professional4.setNo(2);
+                                professional4.setCategoryNo(professionalLabel.getDetailCategoryNo4());
+                                professional4.setCategoryItemNo(professionalLabel.getDetail4());
+                                kfashionLabelService.insertProfessionalLabel(professional4);
+                        }
+                        if(professionalLabel.getPrintCategoryNo4() !=0) {
+                                professional4.setNo(3);
+                                professional4.setCategoryNo(professionalLabel.getPrintCategoryNo4());
+                                professional4.setCategoryItemNo(professionalLabel.getPrint4());
+                                kfashionLabelService.insertProfessionalLabel(professional4);
+                        }
+                        if(professionalLabel.getTextureCategoryNo4() !=0) {
+                                professional4.setNo(4);
+                                professional4.setCategoryNo(professionalLabel.getTextureCategoryNo4());
+                                professional4.setCategoryItemNo(professionalLabel.getTexture4());
+                                kfashionLabelService.insertProfessionalLabel(professional4);
+                        }
+                        if(professionalLabel.getClothLengthCategoryNo4() !=0) {
+                                professional4.setNo(5);
+                                professional4.setCategoryNo(professionalLabel.getClothLengthCategoryNo4());
+                                professional4.setCategoryItemNo(professionalLabel.getClothLength4());
+                                kfashionLabelService.insertProfessionalLabel(professional4);
+                        }
+                        if(professionalLabel.getNeckLineCategoryNo4() !=0) {
+                                professional4.setNo(6);
+                                professional4.setCategoryNo(professionalLabel.getNeckLineCategoryNo4());
+                                professional4.setCategoryItemNo(professionalLabel.getNeckLine4());
+                                kfashionLabelService.insertProfessionalLabel(professional4);
+                        }
+                        if(professionalLabel.getKaraCategoryNo4() !=0) {
+                                professional4.setNo(7);
+                                professional4.setCategoryNo(professionalLabel.getKaraCategoryNo4());
+                                professional4.setCategoryItemNo(professionalLabel.getKara4());
+                                kfashionLabelService.insertProfessionalLabel(professional4);
+                        }
+                        if(professionalLabel.getFitCategoryNo4() !=0) {
+                                professional4.setNo(8);
+                                professional4.setCategoryNo(professionalLabel.getFitCategoryNo4());
+                                professional4.setCategoryItemNo(professionalLabel.getFit4());
+                                kfashionLabelService.insertProfessionalLabel(professional4);
+                        }
+                }
                 return new ResponseEntity<Object>("success", HttpStatus.OK);
         }
 
@@ -509,7 +509,7 @@ public class KfashionLabelController {
                                         topReviewLabel.setTextureCategoryNo2(topReviewLabelList.get(i).getCategoryNo());
                                         topReviewLabel.setTexture2(topReviewLabelList.get(i).getCategoryItemNo());
                                         topReviewLabel.setTextureItemName2(topReviewLabelList.get(i).getCategoryItemName());
-                                } else if(topReviewLabelList.get(i).getCategoryName().equals("기장")){
+                                } else if(topReviewLabelList.get(i).getCategoryName().equals("기장(상의)")){
                                         topReviewLabel.setClothLengthCategoryNo2(topReviewLabelList.get(i).getCategoryNo());
                                         topReviewLabel.setClothLength2(topReviewLabelList.get(i).getCategoryItemNo());
                                         topReviewLabel.setClothLengthItemName2(topReviewLabelList.get(i).getCategoryItemName());
@@ -550,7 +550,7 @@ public class KfashionLabelController {
                                         pantsReviewLabel.setTextureCategoryNo3(pantsReviewLabelList.get(i).getCategoryNo());
                                         pantsReviewLabel.setTexture3(pantsReviewLabelList.get(i).getCategoryItemNo());
                                         pantsReviewLabel.setTextureItemName3(pantsReviewLabelList.get(i).getCategoryItemName());
-                                } else if(pantsReviewLabelList.get(i).getCategoryName().equals("기장")){
+                                } else if(pantsReviewLabelList.get(i).getCategoryName().equals("기장(하의)")){
                                         pantsReviewLabel.setClothLengthCategoryNo3(pantsReviewLabelList.get(i).getCategoryNo());
                                         pantsReviewLabel.setClothLength3(pantsReviewLabelList.get(i).getCategoryItemNo());
                                         pantsReviewLabel.setClothLengthItemName3(pantsReviewLabelList.get(i).getCategoryItemName());

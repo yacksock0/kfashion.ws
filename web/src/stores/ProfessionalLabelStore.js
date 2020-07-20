@@ -199,6 +199,20 @@ const EmptyNewProfessionalLabel = {
     fitItemName3 : '',
     fitItemName4 : '',
 }
+const menuOpen = {
+    categoryDialLog : '',
+    clothLengthDialLog: '',
+    colorKaraDialLog:'',
+    detailDialLog:'',
+    fitDialLog:'',
+    neckLineDialLog:'',
+    printDialLog:'',
+    textureDialLog:'',
+    categoryAll1 :'',
+    categoryAll2 :'',
+    categoryAll3 :'',
+    categoryAll4 :'',
+}
 export default class ProfessionalLabelStore {
     @observable state = State.Ready;
     @observable newProfessionalLabel = {...EmptyNewProfessionalLabel};
@@ -209,6 +223,43 @@ export default class ProfessionalLabelStore {
     @observable pantsReviewLabel= {...EmptyNewPantsReviewLabel};
     @observable onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
     @observable styleReviewLabel= {...EmptyNewStyleReviewLabel};
+    @observable menuOpen={...menuOpen};
+    @action openCategoryAll1 =(value)=>{
+        this.menuOpen.categoryAll1 = value;
+    }
+    @action openCategoryAll2 =(value)=>{
+        this.menuOpen.categoryAll2 = value;
+    }
+    @action openCategoryAll3 =(value)=>{
+        this.menuOpen.categoryAll3 = value;
+    }
+    @action openCategoryAll4 =(value)=>{
+        this.menuOpen.categoryAll4 = value;
+    }
+    @action openCategoryDialLog =(value)=>{
+        this.menuOpen.categoryDialLog = value;
+    }
+    @action openClothLength =(value)=>{
+        this.menuOpen.clothLengthDialLog = value;
+    }
+    @action openColorKaraDialLog =(value)=>{
+        this.menuOpen.colorKaraDialLog = value;
+    }
+    @action openDetailDialLog =(value)=>{
+        this.menuOpen.detailDialLog = value;
+    }
+    @action openFitDialLog =(value)=>{
+        this.menuOpen.fitDialLog = value;
+    }
+    @action openNeckLineDialLog =(value)=>{
+        this.menuOpen.neckLineDialLog = value;
+    }
+    @action openPrintDialLog =(value)=>{
+        this.menuOpen.printDialLog = value;
+    }
+    @action openTextureDialLog =(value)=>{
+        this.menuOpen.textureDialLog = value;
+    }
 
     @action initStore = () => {
         this.professionalList = [];
@@ -832,6 +883,7 @@ export default class ProfessionalLabelStore {
             console.log("3 : "+ this.newProfessionalLabel.labelNo3);
             console.log("4 : "+ this.newProfessionalLabel.labelNo4);
             console.log("5 : "+ this.newProfessionalLabel.labelNo5);
+            console.log('param',param);
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
                     const createdId =this.newProfessionalLabel.createdId;

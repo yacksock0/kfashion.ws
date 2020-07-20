@@ -148,8 +148,8 @@ class Step3 extends React.Component {
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
             this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-                width : 650,
-                height : 650,
+                width : 800,
+                height : 800,
                 originX: 'left',
                 originY: 'top'
             });
@@ -318,7 +318,7 @@ class Step3 extends React.Component {
                         <Grid container>
                             <Grid item xs={12} lg={6} style={{marginTop:10}}>
                                 <div>
-                                    <canvas id="c" width={550} height={650} className={classes.canvas}>  </canvas>
+                                    <canvas id="c" width={800} height={800} className={classes.canvas}>  </canvas>
                                 </div>
                             </Grid>
                             <Grid item xs={12} lg={6} style={{marginLeft:"auto", marginTop:10}}>
