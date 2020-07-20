@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +59,7 @@ public class KfashionImageController {
     @PostMapping("/uploadFile")
     public ResponseEntity<Object> uploadFile(@RequestParam(value="userId", required = true) String userId,
                                          @RequestParam("file") MultipartFile file) {
+        System.out.println("file"+file.getOriginalFilename());
         String workName = file.getOriginalFilename();
         KfashionWork work = new KfashionWork();
         work.setWorkName(workName);
@@ -76,8 +78,7 @@ public class KfashionImageController {
         }catch (IOException e) {
             e.printStackTrace();
         }
-
-        return new ResponseEntity<Object>(HttpStatus.OK);
+        return new ResponseEntity<Object>(file.getOriginalFilename(),HttpStatus.OK);
     }
 
     /**
@@ -109,6 +110,10 @@ public class KfashionImageController {
     public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList();
+//        for(int i=0; i< boundaryList.size(); i++) {
+//            System.out.println("boudaryList"+boundaryList.get(i).getWorkNo()+boundaryList.get(i).getFileName()+")"+boundaryList.get(i).getCreatedDatetime().format(DateTimeFormatter.ISO_LOCAL_TIME));
+//
+//        }
         resultMap.put("boundaryList", boundaryList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }

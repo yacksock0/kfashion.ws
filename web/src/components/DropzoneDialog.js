@@ -49,13 +49,10 @@ class DropzoneDialogExample extends Component {
 
 
         const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'});
-        file = file.sort((a, b) => collator.compare(a.name, b.name))
-
+        const sortedFile = file.sort((a, b) => collator.compare(a.name, b.name))
         const userId = this.props.authStore.isUserId;
-        for(let i=0; i < file.length; i++) {
-            this.props.imageStore.countReset(0);
-            this.props.imageStore.fileupload(file[i], userId);
-        }
+        this.props.imageStore.countReset(0);
+        this.props.imageStore.fileupload(sortedFile, userId, 0, sortedFile.length);
         this.props.imageStore.LoadImage();
     }
 
