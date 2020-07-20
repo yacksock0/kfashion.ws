@@ -16,6 +16,7 @@ import ProImageList from "../views/step3/ProImageList";
 import {toJS} from "mobx";
 import ErrorIcon from "@material-ui/icons/Error";
 import WorkedImg from "./step2/WorkedImg";
+import Category1 from "./step3/Category1";
 
 
 const styles = theme => ({   root: {

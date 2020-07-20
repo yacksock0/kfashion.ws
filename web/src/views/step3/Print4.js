@@ -13,7 +13,7 @@ export default class Print extends React.Component {
         this.state = {
             open:false,
             text: 'text',
-            textureList1: [],
+            printList4: [],
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -21,10 +21,10 @@ export default class Print extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
-        axios.get('/api/v1/kfashion/category/item/professional/texture')
+        axios.get('/api/v1/kfashion/category/item/professional/print')
             .then(response => {
-                const textureList1 = response.data.textureList1;
-                this.setState({ textureList1 : textureList1})
+                const printList4 = response.data.printList4;
+                this.setState({ printList4 : printList4})
             })
             .catch(error => {
                 console.log(error)
@@ -40,9 +40,9 @@ export default class Print extends React.Component {
             open: false
         });
     }
-    handleClick(texture){
+    handleClick(print){
         if(this.props.onClick) {
-            this.props.onClick(texture);
+            this.props.onClick(print);
         }
         this.setState({
             open:false,
@@ -50,7 +50,7 @@ export default class Print extends React.Component {
 
     }
     render() {
-        const textureList1= this.state.textureList1;
+        const printList4= this.state.printList4;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -65,11 +65,11 @@ export default class Print extends React.Component {
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {textureList1.map((texture) =>
+                            {printList4.map((print) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
-                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClick(texture)}>
-                                            <h2>{texture.categoryItemName}</h2>
+                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
+                                            <h2>{print.categoryItemName}</h2>
                                         </Button>
                                     </div>
                                 </Grid>

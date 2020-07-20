@@ -76,7 +76,6 @@ class CategoryComponent1 extends React.Component {
     }
 
     handleClickCategory=(category)=>{
-        console.log("2222222 : " +category);
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
     }
 
@@ -141,6 +140,9 @@ class CategoryComponent1 extends React.Component {
         console.log(outerReviewLabel);
         return (
             <Grid container spacing={3}>
+                <Grid items xs={12} lg={12}>
+                    <Button variant="contained" color="primary" style={{width:'100%', marginBottom:10, borderRadius:15}} onClick={this.handleOpenAll}>전체메뉴 보기</Button>
+                </Grid>
                 <Grid item xs={12} lg={6}>
                     <div className={classes.content}  style={{display:'inline'}} >
                         <Typography variant="h5" component="h5" style={{display:'inline'}} >
