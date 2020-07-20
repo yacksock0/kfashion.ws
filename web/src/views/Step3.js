@@ -94,13 +94,14 @@ class Step3 extends React.Component {
             selectedName:'',
             selectedSubNo:0,
             selectedSubName:'',
-            tabIndex: 1,
-            tabIndex1:0,
+            tabIndex1: 1,
+            tabIndex2:0,
             createdId: '',
         }
     }
 
     componentDidMount() {
+        this.props.imageStore.changeWorkNo(0);
         this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
         const id = this.props.authStore.loginUser.id;
@@ -110,34 +111,49 @@ class Step3 extends React.Component {
         });
     }
     handleSubmit = () => {
-        const finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
-        if(finalCheck){
-        const createdId = this.props.authStore.isUserId;
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-        this.props.professionalLabelStore.doProfessionalLabelUp();
-        this.setState({
-            tabIndex:1,
-        });
+        if(this.props.imageStore.workNo != 0){
+            const finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
+            if(finalCheck){
+                const createdId = this.props.authStore.isUserId;
+                this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
+                this.props.professionalLabelStore.doProfessionalLabelUp(this.props.imageStore.changeWorkNo);
+                this.setState({
+                    tabIndex1 : 1,
+                });
+            }
+        }else{
+            alert("작업을 먼저 선택해 주세요.");
+            this.setState({
+                tabIndex1: 1,
+            });
         }
+
     }
 
     handleClickItem = (workNo, imageData) => {
-        this.deleteAll();
-        this.props.workStore.reSetCategoryItem();
-        this.setState({
-            tabIndex:0,
-            tabIndex1:0,
-        })
+        let changeWorkCheck = true;
+        if(this.props.imageStore.workNo != 0) {
+            changeWorkCheck= window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
+        }
+        if(changeWorkCheck){
+            this.deleteAll();
+            this.props.professionalLabelStore.cleanLabel();
+            this.props.workStore.reSetCategoryItem();
+            this.setState({
+                tabIndex1:0,
+                tabIndex2:0,
+            })
 
-        this.props.imageStore.changeWorkNo(workNo);
-        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-        this.props.polygonStore.LoadPolygonLocation(workNo);
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width : 650,
-            height : 650,
-            originX: 'left',
-            originY: 'top'
-        });
+            this.props.imageStore.changeWorkNo(workNo);
+            this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+            this.props.polygonStore.LoadPolygonLocation(workNo);
+            this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+                width : 650,
+                height : 650,
+                originX: 'left',
+                originY: 'top'
+            });
+        }
     }
 
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
@@ -158,8 +174,15 @@ class Step3 extends React.Component {
             this.canvas.remove(objList[i]);
         }
     }
-    onSelectTab(tabIndex1) {
-        let polyNo = tabIndex1;
+    onSelectTab1(tabIndex1) {
+        console.log(tabIndex1);
+        this.setState({
+            tabIndex1: tabIndex1,
+        });
+
+    }
+    onSelectTab2(tabIndex2) {
+        let polyNo = tabIndex2;
         const {locationPolygonList} = this.props.polygonStore;
         console.log(locationPolygonList);
         console.log(locationPolygonList.length);
@@ -247,19 +270,19 @@ class Step3 extends React.Component {
                 this.canvas.sendToBack(polyline);
 
                 this.setState({
-                    tabIndex1: tabIndex1,
+                    tabIndex2: tabIndex2,
                 })
-            } else if (tabIndex1 == 0) {
+            } else if (tabIndex2 == 0) {
                 this.deleteAll();
                 this.setState({
-                    tabIndex1: tabIndex1,
+                    tabIndex2: tabIndex2,
                 })
             } else {
                 alert("poly정보가 존재하지 않습니다.")
             }
         }else{
             this.setState({
-                tabIndex1: tabIndex1,
+                tabIndex2: tabIndex2,
             })
         }
     };
@@ -269,10 +292,15 @@ class Step3 extends React.Component {
         }
     }
     handleLabel=(item)=>{
-        if(this.props.imageStore.workNo != ""){
+
+        if(this.props.imageStore.workNo != 0){
+            console.log(this.props.imageStore.workNo);
             this.props.professionalLabelStore.LoadLabelList(item.workNo);
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
+            this.setState({
+                tabIndex1: 1,
+            });
         }
     }
 
@@ -294,14 +322,14 @@ class Step3 extends React.Component {
                                 </div>
                             </Grid>
                             <Grid item xs={12} lg={6} style={{marginLeft:"auto", marginTop:10}}>
-                                    <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                                    <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                         <TabList >
                                             <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
                                             <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                                         </TabList>
 
                                         <TabPanel>
-                                            <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
+                                            <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
                                         <TabList>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
@@ -317,22 +345,22 @@ class Step3 extends React.Component {
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent1 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent1 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent2 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent2 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent3 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent3 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <CategoryComponent4 polyLast={polyLast} tabIndex1={this.state.tabIndex1} onClick={()=>this.handleSubmit()}/>
+                                                <CategoryComponent4 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
                                     </Tabs>

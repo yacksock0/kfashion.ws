@@ -745,7 +745,7 @@ export default class ProfessionalLabelStore {
         }
     });
 
-    doProfessionalLabelUp = flow(function* doProfessionalLabelUp() {
+    doProfessionalLabelUp = flow(function* doProfessionalLabelUp(changeWorkNo) {
         this.state = State.Pending;
         try {
                 this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
@@ -843,7 +843,7 @@ export default class ProfessionalLabelStore {
                     this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
                     this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
                     this.LoadRecentImage(createdId);
-                    this.props.imageStore.changeWorkNo("");
+                    changeWorkNo(0);
                     alert("저장 완료");
                 } else {
                     this.state = State.Fail;
@@ -887,6 +887,15 @@ export default class ProfessionalLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
+
+    cleanLabel = flow(function* LoadLabelList(workNo) {
+        this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
+        this.topReviewLabel= {...EmptyNewTopReviewLabel};
+        this.pantsReviewLabel= {...EmptyNewPantsReviewLabel};
+        this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
+        this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
+    });
+
     // deleteProfessionalLabel = flow(function* deleteProfessionalLabel(workNo) {
     //     this.state = State.Pending;
     //     try {
