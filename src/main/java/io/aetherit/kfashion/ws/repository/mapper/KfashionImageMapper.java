@@ -20,7 +20,7 @@ public interface KfashionImageMapper {
 
     List<KfashionImage> selectProfessionalList(String createdId);
 
-    List<KfashionImage> selectInspectionList(String createdId);
+    List<KfashionImage> selectInspectionList();
 
     List<KfashionImage> recentlyImg(String createdId);
 

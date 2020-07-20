@@ -167,10 +167,9 @@ public class KfashionImageController {
      */
 
     @GetMapping(value="inspectionList")
-    public ResponseEntity<Object> inspectionList(HttpServletRequest httpRequest,
-                                                 @RequestParam(value="createdId")String createdId) {
+    public ResponseEntity<Object> inspectionList(HttpServletRequest httpRequest) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList(createdId);
+        List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList();
         resultMap.put("inspectionList", inspectionList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
