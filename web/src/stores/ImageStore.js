@@ -91,10 +91,10 @@ export default class ImageStore {
 
 
 
-    LoadInspectionList = flow(function* loadInspectionList() {
+    LoadInspectionList = flow(function* loadInspectionList(createdId) {
         this.inspectionList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/img/inspectionList')
+            const response = yield axios.get('/api/v1/kfashion/img/inspectionList?createdId='+createdId)
             this.inspectionList = response.data.inspectionList;
         } catch (e) {
             console.log('error')
