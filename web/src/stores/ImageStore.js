@@ -39,7 +39,7 @@ export default class ImageStore {
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
-    @observable workNo = '';
+    @observable workNo = 0;
     @observable count = 0;@observable count = 0;
 
 
