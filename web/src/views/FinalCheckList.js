@@ -8,7 +8,6 @@ import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
 import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
 import 'react-tabs/style/react-tabs.css';
-import Stepper from "../components/Stepper";
 import AddBox from "@material-ui/icons/AddBox";
 import Check from "@material-ui/icons/Check";
 import Clear from "@material-ui/icons/Clear";

@@ -29,10 +29,6 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
-    table: {
-        minWidth: 500,
-    },
-
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
@@ -49,8 +45,7 @@ const styles = theme => ({
         padding:0,
     },
     buttonType1:{
-        width: 100,
-        marginRight: theme.spacing(2),
+        width: 80,
     },
     buttonType2:{
         width: 150,
@@ -61,10 +56,6 @@ const styles = theme => ({
         border:'1px solid black',
         height:50,
         width:'100%',
-    },
-    test:{
-        border:'1px solid black',
-        height: '50%',
     },
     toolBox:{
         border:'1px solid black',
@@ -507,13 +498,13 @@ class Polygon extends React.Component {
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={6} xl={6}>
+                        <Grid item xs={12} lg={5} xl={5}>
                             <div>
                                 <canvas id="c" width={800} height={800}>  </canvas>
                             </div>
                         </Grid>
 
-                        <Grid item xs={12} lg={6} xl={6}>
+                        <Grid item xs={12} lg={5} xl={6} style={{marginLeft:'auto'}}>
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                 <TabList>
                                     <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
@@ -521,23 +512,22 @@ class Polygon extends React.Component {
                                 </TabList>
 
                                 <TabPanel value={this.state.value} index={0}>
-                                    <div className={classes.mainContent}>
-                                        <Table className={classes.table}>
+                                        <Table >
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell>영역</TableCell>
-                                                    <TableCell>시작</TableCell>
-                                                    <TableCell>종료</TableCell>
-                                                    <TableCell>삭제</TableCell>
-                                                    <TableCell>전부삭제</TableCell>
-                                                    <TableCell>저장</TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>영역</TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>시작</TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>종료</TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>삭제</TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>전부삭제</TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>저장</TableCell>
                                                 </TableRow>
                                             </TableHead>
 
                                             <TableBody>
-                                                <TableRow >
-                                                    <TableCell><b>아우터 영역</b></TableCell>
-                                                    <TableCell>
+                                                <TableRow>
+                                                    <TableCell style={{textAlign:"center"}}><b>아우터 영역</b></TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -549,7 +539,7 @@ class Polygon extends React.Component {
                                                         </Button>
                                                     </TableCell>
 
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -561,7 +551,7 @@ class Polygon extends React.Component {
                                                         </Button>
                                                     </TableCell>
 
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Tooltip title="Delete">
                                                             <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis1}>
                                                                 <DeleteIcon />
@@ -569,7 +559,7 @@ class Polygon extends React.Component {
                                                         </Tooltip>
                                                     </TableCell>
 
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -581,7 +571,7 @@ class Polygon extends React.Component {
                                                         </Button>
                                                     </TableCell>
 
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Tooltip title="Save">
                                                             <IconButton aria-label="save" onClick={() => this.doSave(1)} disabled={this.state.buttonDis1}>
                                                                 save <SaveIcon />
@@ -594,8 +584,8 @@ class Polygon extends React.Component {
 
                                             <TableBody>
                                                 <TableRow >
-                                                    <TableCell><b>상의 영역</b></TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}><b>상의 영역</b></TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -606,7 +596,7 @@ class Polygon extends React.Component {
                                                             start <AddIcon/>
                                                         </Button>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -618,14 +608,14 @@ class Polygon extends React.Component {
                                                         </Button>
 
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Tooltip title="Delete">
                                                             <IconButton  aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis2}>
                                                                 <DeleteIcon />
                                                             </IconButton>
                                                         </Tooltip>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -636,7 +626,7 @@ class Polygon extends React.Component {
                                                             All<DeleteIcon />
                                                         </Button>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Tooltip title="Save">
                                                             <IconButton aria-label="save" onClick={() => this.doSave(2)} disabled={this.state.buttonDis2}>
                                                                 save <SaveIcon />
@@ -647,8 +637,8 @@ class Polygon extends React.Component {
                                             </TableBody>
                                             <TableBody >
                                                 <TableRow>
-                                                    <TableCell><b>하의 영역</b></TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}><b>하의 영역</b></TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -659,7 +649,7 @@ class Polygon extends React.Component {
                                                             start <AddIcon/>
                                                         </Button>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -671,14 +661,14 @@ class Polygon extends React.Component {
                                                         </Button>
 
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Tooltip title="Delete">
                                                             <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis3}>
                                                                 <DeleteIcon />
                                                             </IconButton>
                                                         </Tooltip>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -689,7 +679,7 @@ class Polygon extends React.Component {
                                                             All<DeleteIcon />
                                                         </Button>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Tooltip title="Save">
                                                             <IconButton aria-label="save" onClick={() => this.doSave(3)} disabled={this.state.buttonDis3}>
                                                                 save <SaveIcon />
@@ -701,8 +691,8 @@ class Polygon extends React.Component {
 
                                             <TableBody>
                                                 <TableRow >
-                                                    <TableCell><b>원피스 영역</b></TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}><b>원피스 영역</b></TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -713,7 +703,7 @@ class Polygon extends React.Component {
                                                             start <AddIcon/>
                                                         </Button>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -724,14 +714,14 @@ class Polygon extends React.Component {
                                                             finish
                                                         </Button>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Tooltip title="Delete">
                                                             <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis4}>
                                                                 <DeleteIcon />
                                                             </IconButton>
                                                         </Tooltip>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Button
                                                             type="submit"
                                                             className={classes.buttonType1}
@@ -742,7 +732,7 @@ class Polygon extends React.Component {
                                                             All<DeleteIcon />
                                                         </Button>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell style={{textAlign:"center"}}>
                                                         <Tooltip title="Save">
                                                             <IconButton aria-label="save" onClick={() => this.doSave(4)} disabled={this.state.buttonDis4}>
                                                                 save <SaveIcon />
@@ -911,7 +901,6 @@ class Polygon extends React.Component {
                                             {/*    </TableRow>*/}
                                             {/*</TableBody>*/}
                                         </Table>
-                                    </div>
 
                                     <div style={{backgroundColor: 'grey'}}>
                                         <div align="center">
