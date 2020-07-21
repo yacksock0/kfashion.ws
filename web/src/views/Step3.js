@@ -134,6 +134,7 @@ class Step3 extends React.Component {
         }
         if(changeWorkCheck){
             this.deleteAll();
+            this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
             this.props.professionalLabelStore.cleanLabel();
             this.setState({
                 tabIndex1:0,
@@ -293,12 +294,10 @@ class Step3 extends React.Component {
     handleLabel=(item)=>{
 
         if(this.props.imageStore.workNo != 0){
-            console.log(this.props.imageStore.workNo);
+            console.log('@@@@',this.props.imageStore.workNo);
             this.props.professionalLabelStore.cleanLabel();
             this.props.professionalLabelStore.LoadLabelList(item.workNo);
-
-
-
+            console.log('@@@@',item.workNo);
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
             this.setState({
