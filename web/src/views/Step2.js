@@ -22,12 +22,9 @@ import ErrorIcon from "@material-ui/icons/Error";
 
 const styles = theme => ({
     root: {
-        width: "80%",
+        width: "100%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
-    },
-    table: {
-        minWidth: 500,
     },
     // --START Test
     fab: {
@@ -43,7 +40,7 @@ const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'80%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -100,9 +97,6 @@ const styles = theme => ({
         clip: 'rect(0,0,0,0)',
         border: 0,
         borderRadius: 12,
-    },
-    testBox:{
-        border: '1px solid black'
     },
     });
 
@@ -215,8 +209,8 @@ class Step2 extends React.Component {
             tabIndex1: polyNo,
         })
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
+            width: 800,
+            height: 800,
             originX: 'left',
             originY: 'top'
         });
@@ -729,16 +723,14 @@ class Step2 extends React.Component {
         const {isWorkNo} = this.props.imageStore;
         const {polyInfo} = this.props.polygonStore;
         const {polyLast} = this.props.polygonStore;
-        console.log('@@@@@@@@'+polyInfo);
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
-                 <Grid container spacing={3}>
-
-                     <Grid item xs={12} lg={6} style={{margin:"auto", display:"block"}}>
+                 <Grid container>
+                     <Grid item xs={12} lg={6}>
                          <div>
-                             <canvas id="c" width="750" height="850">  </canvas>
+                             <canvas id="c" width="800" height="800">  </canvas>
                          </div>
                      </Grid>
                      <Grid item xs={12} lg={6}>

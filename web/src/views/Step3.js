@@ -78,9 +78,6 @@ const styles = theme => ({   root: {
     },
     divStyle: {
         display: 'inline',
-    },canvas:{
-        width: '100%',
-        height: '100%',
     }
 });
 
@@ -148,10 +145,10 @@ class Step3 extends React.Component {
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
             this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-                width : 800,
-                height : 800,
-                originX: 'left',
-                originY: 'top',
+                width:800,
+                height:800,
+                originX: 0,
+                originY: 0
             });
         }
     }
@@ -319,10 +316,8 @@ class Step3 extends React.Component {
                                 <WorkedImg onClick={this.handleLabel} />
                             </Grid>
                         <Grid container>
-                            <Grid item xs={12} lg={7} xl={6} style={{marginTop:10}}>
-                                <div>
-                                    <canvas id="c" width={800} height={800} className={classes.canvas} style={{display:'block', margin:'auto'}}>  </canvas>
-                                </div>
+                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
+                                    <canvas id="c" width={800} height={800} >  </canvas>
                             </Grid>
                             <Grid item xs={12} lg={5} xl={6} style={{marginLeft:"auto", marginTop:10}}>
                                     <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>

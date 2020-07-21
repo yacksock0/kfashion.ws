@@ -36,7 +36,7 @@ const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'80%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -166,10 +166,6 @@ class Polygon extends React.Component {
     onOff = '';
     onOff2 = 1;
     i=0;
-
-    handleTabChange = (event, newValue) => {
-        this.setState({ value: newValue });
-    }
 
     componentDidMount() {
         this.props.currentStepStore.setStep(1);
@@ -477,8 +473,8 @@ class Polygon extends React.Component {
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 750,
-            height: 850,
+            width: 800,
+            height: 800,
             originX: 'left',
             originY: 'top'
         });
@@ -506,20 +502,18 @@ class Polygon extends React.Component {
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
-
-            console.log('sdakfjsdkfjklsdf', this.state.listIndex);
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} lg={5} style={{margin:"auto", display: "block"}}>
+                    <Grid container>
+                        <Grid item xs={12} lg={6} xl={6}>
                             <div>
-                                <canvas id="c" width={750} height={850} className={classes.canvas}>  </canvas>
+                                <canvas id="c" width={800} height={800}>  </canvas>
                             </div>
                         </Grid>
 
-                        <Grid item xs={12} lg={6}>
+                        <Grid item xs={12} lg={6} xl={6}>
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                                 <TabList>
                                     <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>

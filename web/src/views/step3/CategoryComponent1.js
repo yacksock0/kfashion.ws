@@ -146,7 +146,7 @@ class CategoryComponent1 extends React.Component {
         console.log( detail1 );
         return (
             <Grid container spacing={3}>
-                <Grid items xs={12} lg={12} style={{margin:"auto", marginTop:10}}>
+                <Grid items xs={11} style={{margin:"auto", marginTop:10}}>
                     <CategoryAll1 />
                 </Grid>
                 <Grid item xs={12} lg={6}>
