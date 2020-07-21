@@ -319,12 +319,12 @@ class Step3 extends React.Component {
                                 <WorkedImg onClick={this.handleLabel} />
                             </Grid>
                         <Grid container>
-                            <Grid item xs={12} lg={5} style={{marginTop:10, margin:'auto'}}>
+                            <Grid item xs={12} lg={7} xl={6} style={{marginTop:10}}>
                                 <div>
                                     <canvas id="c" width={800} height={800} className={classes.canvas} style={{display:'block', margin:'auto'}}>  </canvas>
                                 </div>
                             </Grid>
-                            <Grid item xs={12} lg={6} style={{marginLeft:"auto", marginTop:10}}>
+                            <Grid item xs={12} lg={5} xl={6} style={{marginLeft:"auto", marginTop:10}}>
                                     <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                         <TabList >
                                             <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
