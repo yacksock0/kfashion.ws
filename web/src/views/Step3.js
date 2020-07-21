@@ -294,8 +294,8 @@ class Step3 extends React.Component {
         }
     }
     handleLabel=(item)=>{
+
         if(this.props.imageStore.workNo != 0){
-            console.log("this.props.professionalLabelStore : "+this.props.professionalLabelStore.workNo);
             console.log(this.props.imageStore.workNo);
             this.props.professionalLabelStore.cleanLabel();
             this.props.professionalLabelStore.LoadLabelList(item.workNo);

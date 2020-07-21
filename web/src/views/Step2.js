@@ -656,7 +656,7 @@ class Step2 extends React.Component {
             axios.post('/api/v1/kfashion/label/basicLabel', param, {})
                 .then(res => {
                     if (res.status === 200) {
-                        alert("작업을 저장하였습니다.");
+                        alert("작업을 저장하였습니다.")
                         this.setState({
                             tabIndex: 1,
                             workNo: 0,
@@ -728,12 +728,12 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container>
-                     <Grid item xs={12} lg={6}>
+                     <Grid item xs={12} lg={5} xl={5}>
                          <div>
                              <canvas id="c" width="800" height="800">  </canvas>
                          </div>
                      </Grid>
-                     <Grid item xs={12} lg={6}>
+                     <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
                          <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTab2(tabIndex)}>
                              <TabList >
                                  <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>기본 레이블링</h3></Tab>

@@ -20,11 +20,8 @@ import Search from "@material-ui/icons/Search";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Remove from "@material-ui/icons/Remove";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import GroupList from "./GroupList";
-import {toJS} from "mobx";
 import {inject, observer} from "mobx-react";
 import ErrorIcon from "@material-ui/icons/Error";
-import CheckIcon from "@material-ui/icons/Check";
 
 const styles = theme => ({
     mainContainer: {

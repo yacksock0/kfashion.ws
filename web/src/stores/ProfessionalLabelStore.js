@@ -900,7 +900,7 @@ export default class ProfessionalLabelStore {
                 this.newProfessionalLabel.fitCategoryNo4 = this.onePieceReviewLabel.fitCategoryNo4;
 
                 this.newProfessionalLabel.createdId = this.styleReviewLabel.createdId;
-                this.newProfessionalLabel.workNo = this.workNo;
+                this.newProfessionalLabel.workNo = this.styleReviewLabel.workNo;
                 this.newProfessionalLabel.workStep = 6;
                 this.newProfessionalLabel.labelNo1 = this.styleReviewLabel.labelNo1;
                 this.newProfessionalLabel.labelNo2 = this.styleReviewLabel.labelNo2;
@@ -968,6 +968,7 @@ export default class ProfessionalLabelStore {
             }else {
                 this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
             }
+
         } catch (e) {
             console.log('에러좀 나지 마라')
         }
