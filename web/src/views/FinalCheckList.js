@@ -382,11 +382,7 @@ class FinalCheckList extends React.Component {
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">디테일</TableCell>
-                                                        <TableCell align="center">{outerReviewLabel.detailItemName1.length>0 ?
-                                                            (detail1.map((detail) => detail
-                                                                 + '\n\n'))
-                                                            : ''}
-                                                        </TableCell>
+                                                        <TableCell align="center"> {outerReviewLabel.detailItemName1} </TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">프린트</TableCell>

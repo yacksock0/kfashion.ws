@@ -63,6 +63,7 @@ export default class Detail1 extends React.Component {
     render() {
         const detailList4= this.state.detailList4;
         const {onePieceReviewLabel} = this.props.professionalLabelStore;
+        const detailCheck =onePieceReviewLabel.detailItemName4;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -84,7 +85,10 @@ export default class Detail1 extends React.Component {
                                                 style={{width:'100%', height:30, padding:0}}
                                                 variant="outlined"
                                                 key={detail.no}
-                                                // disabled={onePieceReviewLabel.detail4.find(p => p.no = detail.no) != null}
+                                                disabled = {detailCheck != undefined?
+                                                    detail.categoryItemName == detailCheck.filter((check) => check==detail.categoryItemName
+                                                    ) : ""
+                                                }
                                                 onClick={() => this.handledDetail(detail)}
                                             >
                                                 <h4>{detail.categoryItemName}</h4>

@@ -272,14 +272,6 @@ export default class ProfessionalLabelStore {
     @action initStore = () => {
         this.professionalList = [];
     }
-    @action resetLabel=()=>{
-        this.styleReviewLabel = [];
-        this.topReviewLabel = [];
-        this.pantsReviewLabel =[];
-        this.onePieceReviewLabel = [];
-        this.styleReviewLabel = [];
-        return this.styleReviewLabel && this.topReviewLabel && this.pantsReviewLabel && this.onePieceReviewLabel && this.styleReviewLabel;
-    }
     @action changeLabelNumber = (labelNo)=>{
         if(labelNo == 1){
             this.styleReviewLabel.labelNo1 = labelNo;
@@ -422,6 +414,12 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelDetail4 = (detail4) => {
+        console.log("this.onePieceReviewLabel.detail4 : " + this.onePieceReviewLabel.detail4);
+        console.log("this.onePieceReviewLabel.detailCategoryNo4 : " + this.onePieceReviewLabel.detailCategoryNo4);
+        console.log("this.onePieceReviewLabel.detailItemName4 : " + this.onePieceReviewLabel.detailItemName4);
+        console.log("detail4 : " + detail4);
+
+
         this.changeNewProfessionalLabelNo4(4);
         this.onePieceReviewLabel.detail4[this.onePieceReviewLabel.detailCount] = detail4.no;
         this.onePieceReviewLabel.detailCategoryNo4[this.onePieceReviewLabel.detailCount] = detail4.categoryNo;

@@ -135,7 +135,6 @@ class Step3 extends React.Component {
         if(changeWorkCheck){
             this.deleteAll();
             this.props.professionalLabelStore.cleanLabel();
-            this.props.workStore.reSetCategoryItem();
             this.setState({
                 tabIndex1:0,
                 tabIndex2:0,
