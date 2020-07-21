@@ -316,7 +316,7 @@ class Step3 extends React.Component {
                                 <WorkedImg onClick={this.handleLabel} />
                             </Grid>
                         <Grid container>
-                            <Grid item xs={12} lg={6} style={{marginTop:10, margin:'auto'}}>
+                            <Grid item xs={12} lg={5} style={{marginTop:10, margin:'auto'}}>
                                 <div>
                                     <canvas id="c" width={800} height={800} className={classes.canvas} style={{display:'block', margin:'auto'}}>  </canvas>
                                 </div>
