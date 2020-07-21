@@ -175,10 +175,13 @@ class Step3 extends React.Component {
         }
     }
     onSelectTab1(tabIndex1) {
-        console.log(tabIndex1);
-        this.setState({
-            tabIndex1: tabIndex1,
-        });
+        if (this.props.imageStore.workNo != 0) {
+            this.setState({
+                tabIndex1: tabIndex1,
+            });
+        }else{
+            alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
+        }
 
     }
     onSelectTab2(tabIndex2) {

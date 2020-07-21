@@ -109,8 +109,8 @@ class CategoryComponent2 extends React.Component {
     handleDeleteCloth(){
         this.props.professionalLabelStore.deleteClothLength2();
     }
-    handleDeleteDetail(){
-        this.props.professionalLabelStore.deleteDetail2();
+    handleDeleteDetail(detail2){
+        this.props.professionalLabelStore.deleteDetail2(detail2);
     }
     handleDeletePrint(){
         this.props.professionalLabelStore.deletePrint2();
@@ -135,8 +135,8 @@ class CategoryComponent2 extends React.Component {
     render() {
         const {classes} = this.props;
         const {topReviewLabel} = this.props.professionalLabelStore;
-        console.log('lastIndex', this.props.polyLast)
-        console.log('tabIndex1', this.props.tabIndex1)
+        const detail2 = topReviewLabel.detailItemName2;
+        console.log( detail2 );
         return (
                     <Grid container spacing={3}>
                         <Grid items xs={12} lg={12} style={{margin:"auto", marginTop:10}}>
@@ -170,9 +170,18 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {topReviewLabel.detailCategoryNo2 > 0 ?
-                                                (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {topReviewLabel.detailItemName2} </Button> ) : ''
-                                            }
+                                            {detail2.length > 0 ?(
+                                                detail2.map((detail2) =>
+                                                <Button
+                                                    style={{fontSize:15, width:200, borderRadius:50 ,padding:0}}
+                                                    variant="outlined" color="primary"
+                                                    onClick={() => this.handleDeleteDetail(detail2)}
+                                                    endIcon={<DeleteIcon />}
+                                                >
+                                                    {detail2}
+                                                </Button>
+                                                )
+                                            ) : ''}
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>

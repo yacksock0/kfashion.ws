@@ -77,8 +77,11 @@ class CategoryComponent1 extends React.Component {
     }
 
     handleClickCategory=(category)=>{
+        console.log("2222222 : " +category);
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
     }
+
+
     handleClickDetail=(detail)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelDetail1(detail);
         this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
@@ -108,9 +111,8 @@ class CategoryComponent1 extends React.Component {
     handleDeleteCloth(){
         this.props.professionalLabelStore.deleteClothLength1();
     }
-    handleDeleteDetail(){
-        this.props.professionalLabelStore.deleteDetail1();
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(0);
+    handleDeleteDetail(detail1){
+        this.props.professionalLabelStore.deleteDetail1(detail1);
     }
     handleDeletePrint(){
         this.props.professionalLabelStore.deletePrint1();
@@ -128,6 +130,7 @@ class CategoryComponent1 extends React.Component {
         this.props.professionalLabelStore.deleteFit1();
     }
     handleSubmit(){
+        console.log("저장 1111 : ");
         if(this.props.onClick){
             this.props.onClick();
         }
@@ -139,6 +142,8 @@ class CategoryComponent1 extends React.Component {
     render() {
         const {classes} = this.props;
         const {outerReviewLabel} = this.props.professionalLabelStore;
+        const detail1 =outerReviewLabel.detailItemName1;
+        console.log( detail1 );
         return (
             <Grid container spacing={3}>
                 <Grid items xs={12} lg={12} style={{margin:"auto", marginTop:10}}>
@@ -171,9 +176,24 @@ class CategoryComponent1 extends React.Component {
                         <div>
                             <hr></hr>
                         </div>
-                        {outerReviewLabel.detailCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {outerReviewLabel.detailItemName1} </Button> ) : ''
-                        }
+                        {detail1.length > 0 ?(
+                            detail1.map((detail1) =>
+                                <Button
+                                    style={{
+                                        fontSize: 15,
+                                        width: 200,
+                                        borderRadius: 50,
+                                        padding: 0
+                                    }}
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={()=>this.handleDeleteDetail(detail1)}
+                                    endIcon={<DeleteIcon/>}
+                                >
+                                {detail1}
+                                </Button>
+                            )) : ''}
+
                     </div>
                 </Grid>
                 <Grid item xs={12} lg={6}>
