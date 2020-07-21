@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Typography, Toolbar, Grid} from "@material-ui/core";
+import {Container, Grid} from "@material-ui/core";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";

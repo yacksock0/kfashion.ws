@@ -163,6 +163,7 @@ public class KfashionLabelController {
                 System.out.println("333333 : " +professionalLabel.getLabelNo3());
                 System.out.println("444444 : " +professionalLabel.getLabelNo4());
                 System.out.println("555555 : " +professionalLabel.getLabelNo5());
+                System.out.println("getWorkNo : " +professionalLabel.getWorkNo());
                 KfashionWork work = new KfashionWork();
                 work.setNo(professionalLabel.getWorkNo());
                 work.setWorkState(professionalLabel.getWorkStep());

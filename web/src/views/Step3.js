@@ -94,6 +94,7 @@ class Step3 extends React.Component {
             tabIndex1: 1,
             tabIndex2:0,
             createdId: '',
+            workNo : 0,
         }
     }
 
@@ -133,8 +134,9 @@ class Step3 extends React.Component {
             changeWorkCheck= window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
         if(changeWorkCheck){
-            this.deleteAll();
+            this.setState({ workNo : workNo});
             this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
+            this.deleteAll();
             this.props.professionalLabelStore.cleanLabel();
             this.setState({
                 tabIndex1:0,
@@ -294,10 +296,10 @@ class Step3 extends React.Component {
     handleLabel=(item)=>{
 
         if(this.props.imageStore.workNo != 0){
-            console.log('@@@@',this.props.imageStore.workNo);
+            console.log(this.props.imageStore.workNo);
             this.props.professionalLabelStore.cleanLabel();
             this.props.professionalLabelStore.LoadLabelList(item.workNo);
-            console.log('@@@@',item.workNo);
+            this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.state.workNo);
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
             this.setState({
