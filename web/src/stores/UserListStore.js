@@ -7,6 +7,7 @@ const State = {
     Pending: 'Pending',
     Success: 'Success',
     Fail: 'Fail',
+    NotAvailableId: 'NotAvailableId',
 }
 const ListState = {
     Loading: 'Loading',
@@ -56,6 +57,14 @@ export default class UserListStore {
         this.newMember.groupNo = groupNo;
     }
 
+    @action clearState = () => {
+        this.state = State.Ready;
+    }
+
+    @computed get isNotAvailableId() {
+        return this.state === State.NotAvailableId;
+    }
+
         LoadGroupUserList= flow(function* loadGroupUserList(groupNo) {
             this.listState = ListState.Loading;
             this.groupUserList = [];
@@ -73,10 +82,9 @@ export default class UserListStore {
     AddGroupUser = flow(function* addGroupUser() {
         this.state = State.Pending;
         try {
-            // console.log("id : "+ this.newMember.id);
-            // console.log("pw : "+ this.newMember.password);
-            // console.log("name : "+ this.newMember.name);
-            // console.log("groupNo : "+ this.newMember.groupNo);
+            const responseId = yield axios.get(`/api/v1/kfashion/users/signupcheck/id?id=${this.newMember.id}`)
+            const isNotAvailId = responseId.data.result;
+            if(!isNotAvailId) {
             const param = toJS(this.newMember);
                 axios.post('/api/v1/kfashion/users/createGroupUser', param)
                 .then(res =>{
@@ -85,6 +93,11 @@ export default class UserListStore {
                         this.LoadGroupUserList(groupNo);
                     }
                 })
+        }else {
+                console.log("error");
+                this.state = State.NotAvailableId;
+                console.log(this.state);
+            }
         } catch (e) {
             console.log('에러좀 나지 마라')
         }

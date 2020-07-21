@@ -101,6 +101,15 @@ class UserList extends React.Component {
         this.props.authStore.checkLogin();
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.userListStore.isNotAvailableId) {
+            alert("이미 사용중인 아이디입니다.")
+
+            this.props.userListStore.clearState();
+        }
+    }
+
+
     handelOnChange=() => {
         if(this.state.columns.hidden == true) {
             this.setState({
@@ -113,6 +122,7 @@ class UserList extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const {isNotAvailableId} =this.props.userListStore.isNotAvailableId;
         const groupNo = this.props.authStore.loginUser.groupNo;
         return (
             <Container component="main" className={classes.mainContainer}>
