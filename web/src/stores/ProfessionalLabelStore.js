@@ -410,8 +410,7 @@ export default class ProfessionalLabelStore {
         this.topReviewLabel.detail2[this.topReviewLabel.detailCount] = detail2.no;
         this.topReviewLabel.detailCategoryNo2[this.topReviewLabel.detailCount] = detail2.categoryNo;
         this.topReviewLabel.detailItemName2[this.topReviewLabel.detailCount] = detail2.categoryItemName;
-        this.topReviewLabel.detailCount +=1;
-        console.log("ASDASDASDASD :"+this.topReviewLabel.detailItemName2);
+        this.topReviewLabel.detailCount +=1
     }
 
     @action changeNewProfessionalLabelDetail3= (detail3) => {

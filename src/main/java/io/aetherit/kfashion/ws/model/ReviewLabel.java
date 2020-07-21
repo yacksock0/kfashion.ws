@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -48,14 +50,14 @@ public class ReviewLabel {
     private int categoryCategoryNo2;
     private int categoryCategoryNo3;
     private int categoryCategoryNo4;
-    private int detail1;
-    private int detail2;
-    private int detail3;
-    private int detail4;
-    private int detailCategoryNo1;
-    private int detailCategoryNo2;
-    private int detailCategoryNo3;
-    private int detailCategoryNo4;
+    private List<Integer> detail1;
+    private List<Integer> detail2;
+    private List<Integer> detail3;
+    private List<Integer> detail4;
+    private List<Integer> detailCategoryNo1;
+    private List<Integer> detailCategoryNo2;
+    private List<Integer> detailCategoryNo3;
+    private List<Integer> detailCategoryNo4;
     private int print1;
     private int print2;
     private int print3;
@@ -107,10 +109,10 @@ public class ReviewLabel {
     private String categoryItemName2;
     private String categoryItemName3;
     private String categoryItemName4;
-    private String detailItemName1;
-    private String detailItemName2;
-    private String detailItemName3;
-    private String detailItemName4;
+    private List<String> detailItemName1;
+    private List<String> detailItemName2;
+    private List<String> detailItemName3;
+    private List<String> detailItemName4;
     private String printItemName1;
     private String printItemName2;
     private String printItemName3;
