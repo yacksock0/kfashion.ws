@@ -103,14 +103,12 @@ class UserList extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.userListStore.isNotAvailableId) {
-            console.log("asdfasdfasd")
-            this.props.enqueueSnackbar('이미 사용중인 아이디 입니다.', {
-                variant: 'error'
-            });
+            alert("이미 사용중인 아이디입니다.")
 
             this.props.userListStore.clearState();
         }
     }
+
 
     handelOnChange=() => {
         if(this.state.columns.hidden == true) {
