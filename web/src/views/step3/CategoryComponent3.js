@@ -118,8 +118,7 @@ class CategoryComponent3 extends React.Component {
         const {classes} = this.props;
         const {pantsReviewLabel} = this.props.professionalLabelStore;
         const detail3 = pantsReviewLabel.detailItemName3;
-        console.log('lastIndex', this.props.polyLast)
-        console.log('tabIndex1', this.props.tabIndex1)
+
         return (
                     <Grid container spacing={3}>
                         <Grid items xs={12} lg={12} style={{margin:"auto", marginTop:10}}>

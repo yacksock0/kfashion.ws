@@ -945,26 +945,26 @@ export default class ProfessionalLabelStore {
             if(response.data.outerReviewLabel != null) {
                 this.outerReviewLabel = response.data.outerReviewLabel;
             }else {
-                this.outerReviewLabel= [];
+                this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
             }
             if(response.data.topReviewLabel != null) {
                 this.topReviewLabel = response.data.topReviewLabel;
             }else {
-                this.topReviewLabel = [];
+                this.topReviewLabel = {...EmptyNewTopReviewLabel};
             }
             if(response.data.pantsReviewLabel != null) {
                 this.pantsReviewLabel = response.data.pantsReviewLabel;
             }else {
-                this.pantsReviewLabel = [];
+                this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
             }
             if(response.data.onePieceReviewLabel != null) {
                 this.onePieceReviewLabel = response.data.onePieceReviewLabel;
             }else {
-                this.onePieceReviewLabel = [];
+                this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
             }if(response.data.styleReviewLabel != null) {
                 this.styleReviewLabel = response.data.styleReviewLabel;
             }else {
-                this.styleReviewLabel = [];
+                this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
             }
 
         } catch (e) {
@@ -980,20 +980,20 @@ export default class ProfessionalLabelStore {
         this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
     });
 
-    // deleteProfessionalLabel = flow(function* deleteProfessionalLabel(workNo) {
-    //     this.state = State.Pending;
-    //     try {
-    //         const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo='+ workNo);
-    //         if (resp.status === 200) {
-    //             console.log("삭제 완료");
-    //             this.doProfessionalLabelUp();
-    //             this.props.history.push("/Step2/FinalCheckList");
-    //
-    //         } else {
-    //             this.state = State.Fail;
-    //         }
-    //     } catch (e) {
-    //         console.log('에러좀 나지 마라')
-    //     }
-    // });
+    deleteProfessionalLabel = flow(function* deleteProfessionalLabel(workNo) {
+        this.state = State.Pending;
+        try {
+            const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo='+ workNo);
+            if (resp.status === 200) {
+                console.log("삭제 완료");
+                this.doProfessionalLabelUp();
+                this.props.history.push("/Step2/FinalCheckList");
+
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러좀 나지 마라')
+        }
+    });
 }

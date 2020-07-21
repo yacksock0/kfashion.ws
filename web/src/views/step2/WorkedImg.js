@@ -43,17 +43,6 @@ class WorkedImg extends React.Component  {
             this.props.onClick(item);
         }
 
-        //
-        // if(this.props.imageStore.workNo != 0){
-        //     console.log(this.props.imageStore.workNo);
-        //     this.props.professionalLabelStore.LoadLabelList(item.workNo);
-        // }else{
-        //     alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
-        //     this.setState({
-        //         tabIndex1: 1,
-        //     });
-        // }
-
     }
     render() {
         const {recentlyImg} = this.props.professionalLabelStore;

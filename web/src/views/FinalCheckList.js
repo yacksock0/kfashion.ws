@@ -582,12 +582,12 @@ class FinalCheckList extends React.Component {
                                                         tooltip: 'Select Image',
                                                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo=" + rowData.workNo)
                                                     },
-                                                    // rowData => ({
-                                                    //     icon: Edit,
-                                                    //     tooltip: 'return',
-                                                    //     hidden: rowData.createdId !== this.props.authStore.loginUser.id,
-                                                    //     onClick: (event, rowData) => this.handleClickReturn(rowData.workNo)
-                                                    // })
+                                                    rowData => ({
+                                                        icon: Edit,
+                                                        tooltip: 'return',
+                                                        hidden: rowData.createdId !== this.props.authStore.loginUser.id,
+                                                        onClick: (event, rowData) => this.handleClickReturn(rowData.workNo)
+                                                    })
                                                 ]
                                             }
                                         />
