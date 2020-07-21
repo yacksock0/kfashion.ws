@@ -152,7 +152,7 @@ class CategoryComponent3 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {detail3.length > 0 ?(
+                                            {detail3 != 0  && detail3 != undefined  ?(
                                                 detail3.map((detail3) =>
                                                     <Button
                                                         style={{fontSize:15, width:200, borderRadius:50 ,padding:0}}

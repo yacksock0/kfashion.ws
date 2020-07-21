@@ -90,7 +90,10 @@ export default class Detail1 extends React.Component {
                                                 style={{width:'100%', height:30, padding:0}}
                                                 variant="outlined"
                                                 key={detail.no}
-                                                disabled = {detail.categoryItemName == detailCheck.filter((check) => check==detail.categoryItemName)}
+                                                disabled = {detailCheck != undefined?
+                                                    detail.categoryItemName == detailCheck.filter((check) => check==detail.categoryItemName
+                                                    ) : ""
+                                                }
                                                 onClick={() => this.handledDetail(detail)}>
                                                 <h4>{detail.categoryItemName}</h4>
                                             </Button>

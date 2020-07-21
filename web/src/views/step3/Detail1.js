@@ -21,6 +21,7 @@ export default class Detail1 extends React.Component {
         this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
+
         axios.get('/api/v1/kfashion/category/item/professional/detail')
             .then(response => {
                 const detailList1 = response.data.detailList1;
@@ -82,7 +83,10 @@ export default class Detail1 extends React.Component {
                                                 style={{width:'100%', height:30, padding:0}}
                                                 variant="outlined"
                                                 key={detail.no}
-                                                disabled = {detail.categoryItemName == detailCheck.filter((check) => check==detail.categoryItemName)}
+                                                disabled = {detailCheck != undefined?
+                                                    detail.categoryItemName == detailCheck.filter((check) => check==detail.categoryItemName
+                                                    ) : ""
+                                                }
                                                 onClick={() => this.handledDetail(detail)}>
                                                 <h4>{detail.categoryItemName}</h4>
                                             </Button>
