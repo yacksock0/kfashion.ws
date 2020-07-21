@@ -180,8 +180,10 @@ class FinalCheckList extends React.Component {
 
     }
     handleClick=(workNo, imgData)=>{
-        this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
-        this.props.workStore.LoadReviewLabelList(workNo);
+        this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
+        this.props.professionalLabelStore.LoadLabelList(workNo);
+
+        // this.props.workStore.LoadReviewLabelList(workNo);
         this.deleteAll();
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
@@ -313,8 +315,8 @@ class FinalCheckList extends React.Component {
     }
     render() {
         const {classes} = this.props;
-        const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.workStore;
-
+        const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
+        const detail1 = outerReviewLabel.detailItemName1;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -380,7 +382,11 @@ class FinalCheckList extends React.Component {
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">디테일</TableCell>
-                                                        <TableCell align="center">{outerReviewLabel.detailItemName1}</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.detailItemName1.length>0 ?
+                                                            (detail1.map((detail) => detail
+                                                                 + '\n\n'))
+                                                            : ''}
+                                                        </TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">프린트</TableCell>

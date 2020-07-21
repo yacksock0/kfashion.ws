@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -400,6 +401,8 @@ public class KfashionLabelController {
         @GetMapping(value="/reviewLabelList")
         public ResponseEntity<Object> reviewLabelList(HttpServletRequest httpRequest,
                                                       @RequestParam(value="workNo")Long workNo) {
+
+
                 HashMap<String, Object> resultMap = new HashMap<String, Object>();
                 int[] labelNo = kfashionLabelService.selectLabelList(workNo);
                 int labelNo1=0;
@@ -428,17 +431,36 @@ public class KfashionLabelController {
                 }
 
                 if(labelNo1 == 1) {
+                        List<Integer> detailCategoryNo = new ArrayList<>();
+                        List<Integer> detail = new ArrayList<>();
+                        List<String> detailItemName = new ArrayList<>();
+
                         List<KfashionLabel> outerReviewLabelList = kfashionLabelService.selectOuterReviewLabelList(workNo);
+                        System.out.println("outerReviewLabelList : " +outerReviewLabelList);
                         ReviewLabel outerReviewLabel = new ReviewLabel();
+
+
                         for(int i = 0 ; i<outerReviewLabelList.size() ; i++){
                                 if(outerReviewLabelList.get(i).getCategoryName().equals("카테고리")){
                                         outerReviewLabel.setCategoryCategoryNo1(outerReviewLabelList.get(i).getCategoryNo());
                                         outerReviewLabel.setCategory1(outerReviewLabelList.get(i).getCategoryItemNo());
                                         outerReviewLabel.setCategoryItemName1(outerReviewLabelList.get(i).getCategoryItemName());
                                 } else if(outerReviewLabelList.get(i).getCategoryName().equals("디테일")){
-                                        outerReviewLabel.setDetailCategoryNo1(outerReviewLabelList.get(i).getCategoryNo());
-                                        outerReviewLabel.setDetail1(outerReviewLabelList.get(i).getCategoryItemNo());
-                                        outerReviewLabel.setDetailItemName1(outerReviewLabelList.get(i).getCategoryItemName());
+
+                                        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+                                        detailCategoryNo.add(outerReviewLabelList.get(i).getCategoryNo());
+                                        System.out.println(outerReviewLabelList.get(i).getCategoryNo());
+
+                                        detail.add(outerReviewLabelList.get(i).getCategoryItemNo());
+                                        System.out.println(outerReviewLabelList.get(i).getCategoryItemNo());
+
+                                        detailItemName.add(outerReviewLabelList.get(i).getCategoryItemName());
+                                        System.out.println(outerReviewLabelList.get(i).getCategoryItemName());
+
+                                        outerReviewLabel.setDetailCategoryNo1(detailCategoryNo);
+                                        outerReviewLabel.setDetail1(detail);
+                                        outerReviewLabel.setDetailItemName1(detailItemName);
                                 } else if(outerReviewLabelList.get(i).getCategoryName().equals("프린트")){
                                         outerReviewLabel.setPrintCategoryNo1(outerReviewLabelList.get(i).getCategoryNo());
                                         outerReviewLabel.setPrint1(outerReviewLabelList.get(i).getCategoryItemNo());
@@ -469,6 +491,10 @@ public class KfashionLabelController {
                         System.out.println(outerReviewLabel);
                 }
                 if(labelNo2 == 2) {
+                        List<Integer> detailCategoryNo = new ArrayList<>();
+                        List<Integer> detail = new ArrayList<>();
+                        List<String> detailItemName = new ArrayList<>();
+
                         List<KfashionLabel> topReviewLabelList = kfashionLabelService.selectTopReviewLabelList(workNo);
                         ReviewLabel topReviewLabel = new ReviewLabel();
                         for(int i = 0 ; i<topReviewLabelList.size() ; i++){
@@ -477,9 +503,13 @@ public class KfashionLabelController {
                                         topReviewLabel.setCategory2(topReviewLabelList.get(i).getCategoryItemNo());
                                         topReviewLabel.setCategoryItemName2(topReviewLabelList.get(i).getCategoryItemName());
                                 } else if(topReviewLabelList.get(i).getCategoryName().equals("디테일")){
-                                        topReviewLabel.setDetailCategoryNo2(topReviewLabelList.get(i).getCategoryNo());
-                                        topReviewLabel.setDetail2(topReviewLabelList.get(i).getCategoryItemNo());
-                                        topReviewLabel.setDetailItemName2(topReviewLabelList.get(i).getCategoryItemName());
+                                        detailCategoryNo.add(topReviewLabelList.get(i).getCategoryNo());
+                                        detail.add(topReviewLabelList.get(i).getCategoryItemNo());
+                                        detailItemName.add(topReviewLabelList.get(i).getCategoryItemName());
+
+                                        topReviewLabel.setDetailCategoryNo2(detailCategoryNo);
+                                        topReviewLabel.setDetail2(detail);
+                                        topReviewLabel.setDetailItemName2(detailItemName);
                                 } else if(topReviewLabelList.get(i).getCategoryName().equals("프린트")){
                                         topReviewLabel.setPrintCategoryNo2(topReviewLabelList.get(i).getCategoryNo());
                                         topReviewLabel.setPrint2(topReviewLabelList.get(i).getCategoryItemNo());
@@ -510,6 +540,10 @@ public class KfashionLabelController {
                         System.out.println(topReviewLabel);
                 }
                 if(labelNo3 == 3) {
+                        List<Integer> detailCategoryNo = new ArrayList<>();
+                        List<Integer> detail = new ArrayList<>();
+                        List<String> detailItemName = new ArrayList<>();
+
                         List<KfashionLabel> pantsReviewLabelList = kfashionLabelService.selectPantsReviewLabelList(workNo);
                         ReviewLabel pantsReviewLabel = new ReviewLabel();
                         for(int i = 0 ; i<pantsReviewLabelList.size() ; i++){
@@ -518,9 +552,13 @@ public class KfashionLabelController {
                                         pantsReviewLabel.setCategory3(pantsReviewLabelList.get(i).getCategoryItemNo());
                                         pantsReviewLabel.setCategoryItemName3(pantsReviewLabelList.get(i).getCategoryItemName());
                                 } else if(pantsReviewLabelList.get(i).getCategoryName().equals("디테일")){
-                                        pantsReviewLabel.setDetailCategoryNo3(pantsReviewLabelList.get(i).getCategoryNo());
-                                        pantsReviewLabel.setDetail3(pantsReviewLabelList.get(i).getCategoryItemNo());
-                                        pantsReviewLabel.setDetailItemName3(pantsReviewLabelList.get(i).getCategoryItemName());
+                                        detailCategoryNo.add(pantsReviewLabelList.get(i).getCategoryNo());
+                                        detail.add(pantsReviewLabelList.get(i).getCategoryItemNo());
+                                        detailItemName.add(pantsReviewLabelList.get(i).getCategoryItemName());
+
+                                        pantsReviewLabel.setDetailCategoryNo3(detailCategoryNo);
+                                        pantsReviewLabel.setDetail3(detail);
+                                        pantsReviewLabel.setDetailItemName3(detailItemName);
                                 } else if(pantsReviewLabelList.get(i).getCategoryName().equals("프린트")){
                                         pantsReviewLabel.setPrintCategoryNo3(pantsReviewLabelList.get(i).getCategoryNo());
                                         pantsReviewLabel.setPrint3(pantsReviewLabelList.get(i).getCategoryItemNo());
@@ -543,6 +581,10 @@ public class KfashionLabelController {
                         System.out.println(pantsReviewLabel);
                 }
                 if(labelNo4 == 4) {
+                        List<Integer> detailCategoryNo = new ArrayList<>();
+                        List<Integer> detail = new ArrayList<>();
+                        List<String> detailItemName = new ArrayList<>();
+
                         List<KfashionLabel> onePieceReviewLabelList = kfashionLabelService.selectOnePieceReviewLabelList(workNo);
                         ReviewLabel onePieceReviewLabel = new ReviewLabel();
                         for(int i = 0 ; i<onePieceReviewLabelList.size() ; i++){
@@ -551,9 +593,13 @@ public class KfashionLabelController {
                                         onePieceReviewLabel.setCategory4(onePieceReviewLabelList.get(i).getCategoryItemNo());
                                         onePieceReviewLabel.setCategoryItemName4(onePieceReviewLabelList.get(i).getCategoryItemName());
                                 } else if(onePieceReviewLabelList.get(i).getCategoryName().equals("디테일")){
-                                        onePieceReviewLabel.setDetailCategoryNo4(onePieceReviewLabelList.get(i).getCategoryNo());
-                                        onePieceReviewLabel.setDetail4(onePieceReviewLabelList.get(i).getCategoryItemNo());
-                                        onePieceReviewLabel.setDetailItemName4(onePieceReviewLabelList.get(i).getCategoryItemName());
+                                        detailCategoryNo.add(onePieceReviewLabelList.get(i).getCategoryNo());
+                                        detail.add(onePieceReviewLabelList.get(i).getCategoryItemNo());
+                                        detailItemName.add(onePieceReviewLabelList.get(i).getCategoryItemName());
+
+                                        onePieceReviewLabel.setDetailCategoryNo4(detailCategoryNo);
+                                        onePieceReviewLabel.setDetail4(detail);
+                                        onePieceReviewLabel.setDetailItemName4(detailItemName);
                                 } else if(onePieceReviewLabelList.get(i).getCategoryName().equals("프린트")){
                                         onePieceReviewLabel.setPrintCategoryNo4(onePieceReviewLabelList.get(i).getCategoryNo());
                                         onePieceReviewLabel.setPrint4(onePieceReviewLabelList.get(i).getCategoryItemNo());
