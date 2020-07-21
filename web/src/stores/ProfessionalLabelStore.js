@@ -777,6 +777,7 @@ export default class ProfessionalLabelStore {
 
     @action changeNewProfessionalLabelWorkNo = (workNo) => {
         this.styleReviewLabel.workNo = workNo;
+        this.newProfessionalLabel.workNo = workNo;
     }
 
     @computed get isLabelNo1() {
@@ -915,6 +916,9 @@ export default class ProfessionalLabelStore {
             console.log("3 : "+ this.newProfessionalLabel.labelNo3);
             console.log("4 : "+ this.newProfessionalLabel.labelNo4);
             console.log("5 : "+ this.newProfessionalLabel.labelNo5);
+
+            console.log("1231312123123123123"+ this.newProfessionalLabel.workNo);
+            console.log("1231312123123123123"+ this.styleReviewLabel.workNo);
             console.log('param',param);
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
