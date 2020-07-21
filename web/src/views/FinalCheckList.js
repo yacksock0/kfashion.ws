@@ -304,6 +304,7 @@ class FinalCheckList extends React.Component {
 
     handleClickReturn=(workNo)=>{
         this.props.professionalLabelStore.LoadLabelList(workNo);
+        this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);

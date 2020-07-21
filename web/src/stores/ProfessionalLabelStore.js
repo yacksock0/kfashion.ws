@@ -232,6 +232,8 @@ export default class ProfessionalLabelStore {
     @observable onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
     @observable styleReviewLabel= {...EmptyNewStyleReviewLabel};
     @observable menuOpen={...menuOpen};
+    @observable workNo = 0;
+
     @action openCategoryAll1 =(value)=>{
         this.menuOpen.categoryAll1 = value;
     }
@@ -776,7 +778,7 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelWorkNo = (workNo) => {
-        this.styleReviewLabel.workNo = workNo;
+        this.workNo = workNo;
     }
 
     @computed get isLabelNo1() {
@@ -898,7 +900,7 @@ export default class ProfessionalLabelStore {
                 this.newProfessionalLabel.fitCategoryNo4 = this.onePieceReviewLabel.fitCategoryNo4;
 
                 this.newProfessionalLabel.createdId = this.styleReviewLabel.createdId;
-                this.newProfessionalLabel.workNo = this.styleReviewLabel.workNo;
+                this.newProfessionalLabel.workNo = this.workNo;
                 this.newProfessionalLabel.workStep = 6;
                 this.newProfessionalLabel.labelNo1 = this.styleReviewLabel.labelNo1;
                 this.newProfessionalLabel.labelNo2 = this.styleReviewLabel.labelNo2;
@@ -966,7 +968,6 @@ export default class ProfessionalLabelStore {
             }else {
                 this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
             }
-
         } catch (e) {
             console.log('에러좀 나지 마라')
         }
@@ -983,6 +984,18 @@ export default class ProfessionalLabelStore {
     deleteProfessionalLabel = flow(function* deleteProfessionalLabel(workNo) {
         this.state = State.Pending;
         try {
+            console.log("1 : "+ this.newProfessionalLabel.labelNo1);
+            console.log("2 : "+ this.newProfessionalLabel.labelNo2);
+            console.log("3 : "+ this.newProfessionalLabel.labelNo3);
+            console.log("4 : "+ this.newProfessionalLabel.labelNo4);
+            console.log("5 : "+ this.newProfessionalLabel.labelNo5);
+
+            console.log("outerReviewLabel : "+ this.outerReviewLabel.detail1);
+            console.log("topReviewLabel : "+ this.topReviewLabel.detail2);
+            console.log("pantsReviewLabel : "+ this.pantsReviewLabel.detail3);
+            console.log("onePieceReviewLabel : "+ this.onePieceReviewLabel.detail4);
+            console.log("styleReviewLabel : "+ this.styleReviewLabel);
+
             const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo='+ workNo);
             if (resp.status === 200) {
                 console.log("삭제 완료");

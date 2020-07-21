@@ -95,10 +95,12 @@ class ModifyStep3 extends React.Component {
             // tabIndex: 1,
             tabIndex1:0,
             createdId: '',
+            workNo : 0 ,
         }
     }
 
     componentDidMount() {
+        this.setState({workNo : this.props.professionalLabelStore.workNo});
         this.props.currentStepStore.setStep(5)
         const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
         this.setState({createdId : this.props.authStore.loginUser.id});
