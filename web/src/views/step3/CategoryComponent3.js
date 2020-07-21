@@ -72,7 +72,6 @@ class CategoryComponent3 extends React.Component {
 
     handleClickCategory=(category)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory3(category);
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo3(3);
     }
 
     handleClickDetail=(detail)=>{
@@ -93,13 +92,12 @@ class CategoryComponent3 extends React.Component {
 
     handleDelete(){
         this.props.professionalLabelStore.deleteCategory3();
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo3(0);
     }
     handleDeleteCloth(){
         this.props.professionalLabelStore.deleteClothLength3();
     }
-    handleDeleteDetail(){
-        this.props.professionalLabelStore.deleteDetail3();
+    handleDeleteDetail(detail3){
+        this.props.professionalLabelStore.deleteDetail3(detail3);
     }
     handleDeletePrint(){
         this.props.professionalLabelStore.deletePrint3();
@@ -118,6 +116,7 @@ class CategoryComponent3 extends React.Component {
     render() {
         const {classes} = this.props;
         const {pantsReviewLabel} = this.props.professionalLabelStore;
+        const detail3 = pantsReviewLabel.detailItemName3;
         console.log('lastIndex', this.props.polyLast)
         console.log('tabIndex1', this.props.tabIndex1)
         return (
@@ -149,9 +148,18 @@ class CategoryComponent3 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {pantsReviewLabel.detailCategoryNo3 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {pantsReviewLabel.detailItemName3} </Button> ) : ''
-                                            }
+                                            {detail3.length > 0 ?(
+                                                detail3.map((detail3) =>
+                                                    <Button
+                                                        style={{fontSize:20, width:180, borderRadius:50 ,padding:0}}
+                                                        variant="outlined" color="primary"
+                                                        onClick={() => this.handleDeleteDetail(detail3)}
+                                                        endIcon={<DeleteIcon />}
+                                                    >
+                                                        {detail3}
+                                                    </Button>
+                                                )
+                                            ) : ''}
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>

@@ -28,7 +28,8 @@ export default class Detail1 extends React.Component {
                 const detailList3 = response.data.detailList3;
                 const detailList4 = response.data.detailList4;
 
-                this.setState({detailList1:detailList1,
+                this.setState({
+                    detailList1:detailList1,
                     detailList2: detailList2,
                     detailList3: detailList3,
                     detailList4: detailList4

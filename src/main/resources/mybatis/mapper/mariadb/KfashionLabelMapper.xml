@@ -15,6 +15,9 @@
     </resultMap>
 
     <insert id="insertBasicLabel" parameterType="KfashionLabel">
+
+
+
         INSERT
         INTO kfashion_label (
         work_no,
@@ -40,6 +43,10 @@
     </insert>
 
     <insert id="insertProfessionalLabel" parameterType="KfashionLabel">
+
+        <selectKey keyProperty="no" resultType="int" order="BEFORE">
+            SELECT (IFNULL(MAX(no),0)+1) AS no FROM kfashion_label WHERE work_no = #{workNo} AND work_step = #{workStep} AND label_no = #{labelNo}
+        </selectKey>
         INSERT
         INTO kfashion_label (
         work_no,

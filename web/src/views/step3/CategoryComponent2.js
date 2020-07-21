@@ -76,10 +76,10 @@ class CategoryComponent2 extends React.Component {
 
     handleClickCategory=(category)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory2(category);
-        this.props.professionalLabelStore.changeNewProfessionalLabelNo2(2);
     }
 
     handleClickDetail=(detail)=>{
+        console.log("2222 : "+detail);
         this.props.professionalLabelStore.changeNewProfessionalLabelDetail2(detail);
     }
     handleClickPrint=(print)=>{
@@ -108,8 +108,8 @@ class CategoryComponent2 extends React.Component {
     handleDeleteCloth(){
         this.props.professionalLabelStore.deleteClothLength2();
     }
-    handleDeleteDetail(){
-        this.props.professionalLabelStore.deleteDetail2();
+    handleDeleteDetail(detail2){
+        this.props.professionalLabelStore.deleteDetail2(detail2);
     }
     handleDeletePrint(){
         this.props.professionalLabelStore.deletePrint2();
@@ -134,8 +134,8 @@ class CategoryComponent2 extends React.Component {
     render() {
         const {classes} = this.props;
         const {topReviewLabel} = this.props.professionalLabelStore;
-        console.log('lastIndex', this.props.polyLast)
-        console.log('tabIndex1', this.props.tabIndex1)
+        const detail2 = topReviewLabel.detailItemName2;
+        console.log( detail2 );
         return (
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={6}>
@@ -154,7 +154,6 @@ class CategoryComponent2 extends React.Component {
                                             }
                                         </div>
                                     </Grid>
-
                                     <Grid item xs={12} lg={6}>
                                         <div className={classes.content} style={{display:'inline'}}>
                                             <Typography variant="h5" component="h5" style={{display:'inline' }}>
@@ -166,9 +165,18 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {topReviewLabel.detailCategoryNo2 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteDetail} endIcon={<DeleteIcon />} > {topReviewLabel.detailItemName2} </Button> ) : ''
-                                            }
+                                            {detail2.length > 0 ?(
+                                                detail2.map((detail2) =>
+                                                <Button
+                                                    style={{fontSize:20, width:180, borderRadius:50 ,padding:0}}
+                                                    variant="outlined" color="primary"
+                                                    onClick={() => this.handleDeleteDetail(detail2)}
+                                                    endIcon={<DeleteIcon />}
+                                                >
+                                                    {detail2}
+                                                </Button>
+                                                )
+                                            ) : ''}
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>

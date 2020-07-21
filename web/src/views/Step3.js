@@ -174,10 +174,13 @@ class Step3 extends React.Component {
         }
     }
     onSelectTab1(tabIndex1) {
-        console.log(tabIndex1);
-        this.setState({
-            tabIndex1: tabIndex1,
-        });
+        if (this.props.imageStore.workNo != 0) {
+            this.setState({
+                tabIndex1: tabIndex1,
+            });
+        }else{
+            alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
+        }
 
     }
     onSelectTab2(tabIndex2) {
@@ -317,7 +320,7 @@ class Step3 extends React.Component {
                         <Grid container>
                             <Grid item xs={12} lg={6} style={{marginTop:10}}>
                                 <div>
-                                    <canvas id="c" width={550} height={650} className={classes.canvas}>  </canvas>
+                                    <canvas id="c" width={800} height={800} className={classes.canvas}>  </canvas>
                                 </div>
                             </Grid>
                             <Grid item xs={12} lg={6} style={{marginLeft:"auto", marginTop:10}}>
