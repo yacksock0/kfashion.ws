@@ -167,8 +167,8 @@ class FinalCheckList extends React.Component {
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
+        this.props.imageStore.LoadInspectionList();
         const id = this.props.authStore.loginUser.id;
-        this.props.imageStore.LoadInspectionList(id);
         this.setState({createdId : id});
         this.props.enqueueSnackbar("FinalCheck", {
             variant: 'info'

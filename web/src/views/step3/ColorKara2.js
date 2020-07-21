@@ -71,7 +71,7 @@ export default class ColorKara2 extends React.Component {
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={kara.no} onClick={() => this.handleClick(kara)}>
-                                            <h2>{kara.categoryItemName}</h2>
+                                            <h4>{kara.categoryItemName}</h4>
                                         </Button>
                                     </div>
                                 </Grid>

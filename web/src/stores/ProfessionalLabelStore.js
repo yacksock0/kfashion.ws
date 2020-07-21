@@ -207,6 +207,20 @@ const EmptyNewProfessionalLabel = {
     fitItemName3 : '',
     fitItemName4 : '',
 }
+const menuOpen = {
+    categoryDialLog : '',
+    clothLengthDialLog: '',
+    colorKaraDialLog:'',
+    detailDialLog:'',
+    fitDialLog:'',
+    neckLineDialLog:'',
+    printDialLog:'',
+    textureDialLog:'',
+    categoryAll1 :'',
+    categoryAll2 :'',
+    categoryAll3 :'',
+    categoryAll4 :'',
+}
 export default class ProfessionalLabelStore {
     @observable state = State.Ready;
     @observable newProfessionalLabel = {...EmptyNewProfessionalLabel};
@@ -217,6 +231,43 @@ export default class ProfessionalLabelStore {
     @observable pantsReviewLabel= {...EmptyNewPantsReviewLabel};
     @observable onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
     @observable styleReviewLabel= {...EmptyNewStyleReviewLabel};
+    @observable menuOpen={...menuOpen};
+    @action openCategoryAll1 =(value)=>{
+        this.menuOpen.categoryAll1 = value;
+    }
+    @action openCategoryAll2 =(value)=>{
+        this.menuOpen.categoryAll2 = value;
+    }
+    @action openCategoryAll3 =(value)=>{
+        this.menuOpen.categoryAll3 = value;
+    }
+    @action openCategoryAll4 =(value)=>{
+        this.menuOpen.categoryAll4 = value;
+    }
+    @action openCategoryDialLog =(value)=>{
+        this.menuOpen.categoryDialLog = value;
+    }
+    @action openClothLength =(value)=>{
+        this.menuOpen.clothLengthDialLog = value;
+    }
+    @action openColorKaraDialLog =(value)=>{
+        this.menuOpen.colorKaraDialLog = value;
+    }
+    @action openDetailDialLog =(value)=>{
+        this.menuOpen.detailDialLog = value;
+    }
+    @action openFitDialLog =(value)=>{
+        this.menuOpen.fitDialLog = value;
+    }
+    @action openNeckLineDialLog =(value)=>{
+        this.menuOpen.neckLineDialLog = value;
+    }
+    @action openPrintDialLog =(value)=>{
+        this.menuOpen.printDialLog = value;
+    }
+    @action openTextureDialLog =(value)=>{
+        this.menuOpen.textureDialLog = value;
+    }
 
     @action initStore = () => {
         this.professionalList = [];
@@ -227,6 +278,7 @@ export default class ProfessionalLabelStore {
         this.pantsReviewLabel =[];
         this.onePieceReviewLabel = [];
         this.styleReviewLabel = [];
+        return this.styleReviewLabel && this.topReviewLabel && this.pantsReviewLabel && this.onePieceReviewLabel && this.styleReviewLabel;
     }
     @action changeLabelNumber = (labelNo)=>{
         if(labelNo == 1){
@@ -345,7 +397,7 @@ export default class ProfessionalLabelStore {
         this.onePieceReviewLabel.categoryItemName4 = '';
         return this.onePieceReviewLabel;
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////
+
     @action changeNewProfessionalLabelDetail1 = (detail1) => {
         this.changeNewProfessionalLabelNo1(1);
         this.outerReviewLabel.detail1[this.outerReviewLabel.detailCount] = detail1.no;
@@ -866,7 +918,7 @@ export default class ProfessionalLabelStore {
             console.log("3 : "+ this.newProfessionalLabel.labelNo3);
             console.log("4 : "+ this.newProfessionalLabel.labelNo4);
             console.log("5 : "+ this.newProfessionalLabel.labelNo5);
-            alert("들어왔어요");
+            console.log('param',param);
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
                     const createdId =this.newProfessionalLabel.createdId;
@@ -882,7 +934,6 @@ export default class ProfessionalLabelStore {
                     alert("저장 완료");
                 } else {
                     this.state = State.Fail;
-                    changeWorkNo(0);
                 }
         } catch (e) {
             console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');

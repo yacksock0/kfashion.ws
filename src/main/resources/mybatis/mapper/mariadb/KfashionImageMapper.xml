@@ -108,7 +108,7 @@
     </select>
 
 
-    <select id="selectInspectionList" resultMap="kfashionImageResultMap" parameterType="String">
+    <select id="selectInspectionList" resultMap="kfashionImageResultMap">
          SELECT DISTINCT
             kfashion_image.work_no,
             SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name,
@@ -119,9 +119,6 @@
              LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
              RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
          WHERE kfashion_work_history.work_step = 6
-         AND kfashion_work_history.created_id NOT IN (SELECT kfashion_work_history.created_id
-                                                FROM kfashion_work_history
-                                                WHERE kfashion_work_history.created_id = #{createdId})
          GROUP BY kfashion_image.work_no
     </select>
 

@@ -157,24 +157,6 @@ public class KfashionLabelController {
                                                         @RequestBody ProfessionalLabel professionalLabel) throws Exception {
 
 
-                System.out.println("------------------------------");
-
-                System.out.println("------------------------------");
-                for(int i = 0 ; i<professionalLabel.getDetail2().size() ; i ++){
-                        System.out.println(professionalLabel.getDetail2().get(i));
-                }
-                System.out.println("------------------------------");
-                for(int i = 0 ; i<professionalLabel.getDetail3().size() ; i ++){
-                        System.out.println(professionalLabel.getDetail3().get(i));
-                }
-                System.out.println("------------------------------");
-                for(int i = 0 ; i<professionalLabel.getDetail4().size() ; i ++){
-                        System.out.println(professionalLabel.getDetail4().get(i));
-                }
-
-
-
-
                 System.out.println("111111 : " +professionalLabel.getLabelNo1());
                 System.out.println("222222 : " +professionalLabel.getLabelNo2());
                 System.out.println("333333 : " +professionalLabel.getLabelNo3());
@@ -401,7 +383,7 @@ public class KfashionLabelController {
                                 kfashionLabelService.insertProfessionalLabel(professional4);
                         }
                 }
-                return null;
+                return new ResponseEntity<Object>("success", HttpStatus.OK);
         }
 
 
@@ -506,7 +488,7 @@ public class KfashionLabelController {
                                         topReviewLabel.setTextureCategoryNo2(topReviewLabelList.get(i).getCategoryNo());
                                         topReviewLabel.setTexture2(topReviewLabelList.get(i).getCategoryItemNo());
                                         topReviewLabel.setTextureItemName2(topReviewLabelList.get(i).getCategoryItemName());
-                                } else if(topReviewLabelList.get(i).getCategoryName().equals("기장")){
+                                } else if(topReviewLabelList.get(i).getCategoryName().equals("기장(상의)")){
                                         topReviewLabel.setClothLengthCategoryNo2(topReviewLabelList.get(i).getCategoryNo());
                                         topReviewLabel.setClothLength2(topReviewLabelList.get(i).getCategoryItemNo());
                                         topReviewLabel.setClothLengthItemName2(topReviewLabelList.get(i).getCategoryItemName());
@@ -547,7 +529,7 @@ public class KfashionLabelController {
                                         pantsReviewLabel.setTextureCategoryNo3(pantsReviewLabelList.get(i).getCategoryNo());
                                         pantsReviewLabel.setTexture3(pantsReviewLabelList.get(i).getCategoryItemNo());
                                         pantsReviewLabel.setTextureItemName3(pantsReviewLabelList.get(i).getCategoryItemName());
-                                } else if(pantsReviewLabelList.get(i).getCategoryName().equals("기장")){
+                                } else if(pantsReviewLabelList.get(i).getCategoryName().equals("기장(하의)")){
                                         pantsReviewLabel.setClothLengthCategoryNo3(pantsReviewLabelList.get(i).getCategoryNo());
                                         pantsReviewLabel.setClothLength3(pantsReviewLabelList.get(i).getCategoryItemNo());
                                         pantsReviewLabel.setClothLengthItemName3(pantsReviewLabelList.get(i).getCategoryItemName());

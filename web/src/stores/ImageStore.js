@@ -40,8 +40,7 @@ export default class ImageStore {
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable workNo = 0;
-    @observable count = 0;@observable count = 0;
-
+    @observable count = 0;
 
     @action countChange =()=>{
         this.count= this.count+1
@@ -91,10 +90,10 @@ export default class ImageStore {
 
 
 
-    LoadInspectionList = flow(function* loadInspectionList(createdId) {
+    LoadInspectionList = flow(function* loadInspectionList() {
         this.inspectionList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/img/inspectionList?createdId='+createdId)
+            const response = yield axios.get('/api/v1/kfashion/img/inspectionList')
             this.inspectionList = response.data.inspectionList;
         } catch (e) {
             console.log('error')
@@ -121,23 +120,34 @@ export default class ImageStore {
     })
     
     
-    fileupload (file,userId){
-        console.log(file);
+    fileupload = flow(function* fileupload (fileList, userId, index, max){
+        if(index >= max) return this.LoadImage();
         const formData = new FormData();
         formData.append("userId",userId);
-        formData.append("file",file);
-        axios.post('/api/v1/kfashion/img/uploadFile', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') })
-            .then(res =>{
-                console.log(res);
-                if(res.status === 200) {
-                    this.countChange();
-                    console.log(this.count);
-                    formData.delete("file");
-                }
-            })
-        this.LoadImage();
+        formData.append("file",fileList[index]);
+        // new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        try {
+            const resp = yield axios.post('/api/v1/kfashion/img/uploadFile', formData, {
+                headers: {'Content-Type': 'multipart/form-data'},
+                'Authorization': 'JWT ' + sessionStorage.getItem('token')
+            });
+            if (resp.status === 200) {
+                console.log(this.count);
+                this.countChange();
+                this.fileupload(fileList, userId, index + 1, max)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+                // resolve();
+            // }, 1000)
+        // }).then(resp => {
+        //     console.log(this.count);
+        //     this.fileupload(fileList, userId, index + 1, max)
+        //     this.countChange();
+        // });
         // formData.append('files', file);
-
         // const resp = axios.post('/api/v1/kfashion/img/uploadMultipleFiles', formData, {headers: {'Content-Type':'multipart/form-data'},'Authorization': 'JWT ' + sessionStorage.getItem('token') })
         //     .then(res =>{
         //         if(res.status === 200) {
@@ -145,5 +155,5 @@ export default class ImageStore {
         //         }else {
         //         }
         //     })
-    };
+    });
 }

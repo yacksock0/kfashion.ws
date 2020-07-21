@@ -87,7 +87,7 @@ export default class Detail1 extends React.Component {
                                                 // disabled={onePieceReviewLabel.detail4.find(p => p.no = detail.no) != null}
                                                 onClick={() => this.handledDetail(detail)}
                                             >
-                                                <h3>{detail.categoryItemName}</h3>
+                                                <h4>{detail.categoryItemName}</h4>
                                             </Button>
                                     </div>
                                 </Grid>

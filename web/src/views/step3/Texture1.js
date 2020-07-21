@@ -30,22 +30,16 @@ export default class Texture1 extends React.Component {
             })
     }
     handleClickOpen() {
-        this.setState({
-            open: true
-        });
+        this.props.professionalLabelStore.openTextureDialLog(true);
     }
     handleClose() {
-        this.setState({
-            open: false
-        });
+        this.props.professionalLabelStore.openTextureDialLog(false);
     }
     handleClick(texture){
         if(this.props.onClick) {
             this.props.onClick(texture);
         }
-        this.setState({
-            open:false,
-        })
+        this.props.professionalLabelStore.openTextureDialLog(false);
 
     }
     render() {
@@ -53,7 +47,7 @@ export default class Texture1 extends React.Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
+                <Dialog open={this.props.professionalLabelStore.menuOpen.textureDialLog} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
@@ -68,7 +62,7 @@ export default class Texture1 extends React.Component {
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClick(texture)}>
-                                            <h2>{texture.categoryItemName}</h2>
+                                            <h4>{texture.categoryItemName}</h4>
                                         </Button>
                                     </div>
                                 </Grid>

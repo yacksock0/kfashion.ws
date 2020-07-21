@@ -58,7 +58,7 @@ export default class ClothLength2 extends React.Component {
         })
     }
     render() {
-        const lengthList3= this.state.lengthList3;
+        const lengthList2= this.state.lengthList2;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -73,11 +73,11 @@ export default class ClothLength2 extends React.Component {
                         </Typography>
                         <hr></hr>
                         <Grid container>
-                            {lengthList3.map((length) =>
+                            {lengthList2.map((length) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>
-                                            <h2>{length.categoryItemName}</h2>
+                                            <h4>{length.categoryItemName}</h4>
                                         </Button>
                                     </div>
                                 </Grid>

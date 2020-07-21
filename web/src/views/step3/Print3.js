@@ -69,7 +69,7 @@ export default class Print extends React.Component {
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
-                                            <h2>{print.categoryItemName}</h2>
+                                            <h4>{print.categoryItemName}</h4>
                                         </Button>
                                     </div>
                                 </Grid>

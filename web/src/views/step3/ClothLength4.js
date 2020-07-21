@@ -69,7 +69,7 @@ export default class ClothLength1 extends React.Component {
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>
-                                            <h2>{length.categoryItemName}</h2>
+                                            <h4>{length.categoryItemName}</h4>
                                         </Button>
                                     </div>
                                 </Grid>

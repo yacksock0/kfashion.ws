@@ -31,30 +31,23 @@ export default class Print extends React.Component {
             })
     }
     handleClickOpen() {
-        this.setState({
-            open: true
-        });
+        this.props.professionalLabelStore.openPrintDialLog(true);
     }
     handleClose() {
-        this.setState({
-            open: false
-        });
+        this.props.professionalLabelStore.openPrintDialLog(false);
     }
     handleClick(print){console.log("printTest : "+print);
         if(this.props.onClick) {
             this.props.onClick(print);
         }
-        this.setState({
-            open:false,
-        })
-
+        this.props.professionalLabelStore.openPrintDialLog(false);
     }
     render() {
         const printList1= this.state.printList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
+                <Dialog open={this.props.professionalLabelStore.menuOpen.printDialLog} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
@@ -69,7 +62,7 @@ export default class Print extends React.Component {
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
-                                            <h2>{print.categoryItemName}</h2>
+                                            <h4>{print.categoryItemName}</h4>
                                         </Button>
                                     </div>
                                 </Grid>

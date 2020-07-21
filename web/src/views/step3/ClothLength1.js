@@ -40,29 +40,23 @@ export default class ClothLength1 extends React.Component {
             })
     }
     handleClickOpen() {
-        this.setState({
-            open: true
-        });
+     this.props.professionalLabelStore.openClothLength(true)
     }
     handleClose() {
-        this.setState({
-            open: false
-        });
+        this.props.professionalLabelStore.openClothLength(false)
     }
     handleClick(length) {
         if (this.props.onClick) {
             this.props.onClick(length);
         }
-        this.setState({
-            open: false,
-        })
+        this.props.professionalLabelStore.openClothLength(false)
     }
     render() {
         const lengthList1= this.state.lengthList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
+                <Dialog open={this.props.professionalLabelStore.menuOpen.clothLengthDialLog} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
@@ -77,7 +71,7 @@ export default class ClothLength1 extends React.Component {
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={length.no} onClick={() => this.handleClick(length)}>
-                                            <h2>{length.categoryItemName}</h2>
+                                            <h4>{length.categoryItemName}</h4>
                                         </Button>
                                     </div>
                                 </Grid>

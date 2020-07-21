@@ -40,38 +40,29 @@ export default class Detail1 extends React.Component {
             })
     }
     handleClickOpen() {
-        this.setState({
-            open: true
-        });
+       this.props.professionalLabelStore.openDetailDialLog(true)
     }
     handleClose() {
-        this.setState({
-            open: false
-        });
+        this.props.professionalLabelStore.openDetailDialLog(false)
     }
     handleClick(detail){
         if(this.props.onClick) {
             this.props.onClick(detail);
         }
-        this.setState({
-            open:false,
-        })
-
+        this.props.professionalLabelStore.openDetailDialLog(false)
     }
     handledDetail=(detail)=>{
         if(this.props.onClick) {
             this.props.onClick(detail);
         }
-        this.setState({
-            open: false
-        });
+        this.props.professionalLabelStore.openDetailDialLog(false)
     }
     render() {
         const detailList1= this.state.detailList1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'52%', marginTop:'-4%'}}
+                <Dialog open={this.props.professionalLabelStore.menuOpen.detailDialLog} onClose={this.handleClose} style={{marginLeft:'52%', marginTop:'-4%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
@@ -86,7 +77,7 @@ export default class Detail1 extends React.Component {
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
                                             <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
-                                                <h3>{detail.categoryItemName}</h3>
+                                                <h4>{detail.categoryItemName}</h4>
                                             </Button>
                                     </div>
                                 </Grid>
