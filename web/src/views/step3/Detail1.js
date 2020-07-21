@@ -59,6 +59,8 @@ export default class Detail1 extends React.Component {
     }
     render() {
         const detailList1= this.state.detailList1;
+        const {outerReviewLabel} = this.props.professionalLabelStore;
+        const detailCheck =outerReviewLabel.detailItemName1;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
@@ -76,7 +78,12 @@ export default class Detail1 extends React.Component {
                                         {detailList1.map((detail) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
-                                            <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handledDetail(detail)}>
+                                            <Button
+                                                style={{width:'100%', height:30, padding:0}}
+                                                variant="outlined"
+                                                key={detail.no}
+                                                disabled = {detail.categoryItemName == detailCheck.filter((check) => check==detail.categoryItemName)}
+                                                onClick={() => this.handledDetail(detail)}>
                                                 <h4>{detail.categoryItemName}</h4>
                                             </Button>
                                     </div>
