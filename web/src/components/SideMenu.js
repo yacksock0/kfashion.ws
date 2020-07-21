@@ -28,7 +28,7 @@ const logoHeight = 22;
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('xl')]: {
             width: theme.drawerWidth,
             flexShrink: 0,
         },
@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
         border: 'none',
     },
     toolbar: {
-        width: theme.drawerWidth,
         backgroundColor: theme.palette.primary.main,
         paddingLeft: 0,
         paddingRight: 0,
@@ -428,12 +427,11 @@ export default function SideMenu(props) {
                     )}
                 </Drawer>
             </Hidden>
-            <Hidden smDown implementation="css">
+            <Hidden lgDown implementation="css">
                 <Drawer variant="permanent"
                         classes={{
                             paper: classes.drawerPaper,
                         }}
-
                         open
                 >
                     <Toolbar className={classes.toolbar}>

@@ -11,15 +11,15 @@ const logoWidth = 120;
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('xl')]: {
             width: `calc(100% - ${theme.drawerWidth}px)`,
             marginLeft: theme.drawerWidth,
         },
     },
     menuButton: {
         marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
+        [theme.breakpoints.up('xl')]: {
+        display:'none'
         },
     },
     title: {
