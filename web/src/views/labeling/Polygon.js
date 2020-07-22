@@ -158,6 +158,13 @@ class Polygon extends React.Component {
     onOff2 = 1;
     i=0;
 
+
+
+
+    // Wheel Scale Test
+    delta;
+    zoom;
+
     componentDidMount() {
         this.props.currentStepStore.setStep(1);
         this.props.enqueueSnackbar("Polygon Work", {
@@ -170,25 +177,46 @@ class Polygon extends React.Component {
         // canvas Drawing
         this.canvas = new fabric.Canvas('c');
 
-        this.canvas.on('mouse:down', (e) => {
-            console.log('polyNo : ' + this.polyNo);
+        let canvas = this.canvas;
+        canvas.on('mouse:wheel', function(opt) {
+            let delta = opt.e.deltaY;
+            let zoom = canvas.getZoom();
+            zoom *= 0.999 ** delta;
+            if (zoom > 10) zoom = 10;
+            if (zoom < 0.1) zoom = 0.1;
+            canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+            opt.e.preventDefault();
+            opt.e.stopPropagation();
+            console.log("delta : "+ delta);
+            console.log("zoom : "+ zoom);
+            console.log("opt.e.offsetX : "+ opt.e.offsetX);
+            console.log("opt.e.offsetY : "+ opt.e.offsetY);
+
+        })
+        this.canvas = canvas;
+
+        canvas.on('mouse:down', (e) => {
+            console.log('width : '  + canvas.getZoom());
+            console.log('x : '  + canvas.getPointer(e, false).x);
+            console.log('x : '  + canvas.getPointer(e, false).y);
+
 
             if (this.onOff == 'lineUse') {
                 this.canvas.selection = false;
-                this.polyPointX[this.polyCounter] = e.pointer.x;
-                this.polyPointY[this.polyCounter] = e.pointer.y;
+                this.polyPointX[this.polyCounter] = canvas.getPointer(e, false).x;
+                this.polyPointY[this.polyCounter] = canvas.getPointer(e, false).y;
 
-                this.lineTwoPoint = [this.x, this.y, e.pointer.x, e.pointer.y];
-                this.x = e.pointer.x;
-                this.y = e.pointer.y;
+                this.lineTwoPoint = [this.x, this.y, canvas.getPointer(e, false).x, canvas.getPointer(e, false).y];
+                this.x = canvas.getPointer(e, false).x;
+                this.y = canvas.getPointer(e, false).y;
 
                 let circle = new fabric.Circle({
                     type: 'circle',
                     id: this.polyCounter,
                     radius: 6,
                     fill: 'green',
-                    left: e.pointer.x - 3.5,
-                    top: e.pointer.y - 3.5,
+                    left: canvas.getPointer(e, false).x - 3.5,
+                    top: canvas.getPointer(e, false).y - 3.5,
                     selectable: false,
                     evented: false,
                 });
@@ -197,8 +225,6 @@ class Polygon extends React.Component {
                 this.canvas.renderAll();
                 this.polyCounter += 1;
             }
-            console.log(this.polyPointX);
-            console.log(this.polyPointY);
         });
 
         this.canvas.on('mouse:up', (e) => {
@@ -426,6 +452,8 @@ class Polygon extends React.Component {
 
     // -- Location Data 저장
     submit = () =>{
+
+
         console.log(this.polygon);
         if(this.onOff !=""){
             alert("finish를 눌러 작업을 마무리 하세요.");
@@ -464,8 +492,12 @@ class Polygon extends React.Component {
         this.props.rectStore.changeNewRectLocationWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            top :  0,
+            left : 0,
             width: 800,
             height: 800,
+            scaleX : 1,
+            scaleY : 1,
             originX: 'left',
             originY: 'top'
         });
@@ -490,6 +522,10 @@ class Polygon extends React.Component {
             listIndex:listIndex,
         })
     }
+
+    // btnReset = () =>{
+    //     this.canvas.zoomToPoint({ x: 400, y: 400 }, 1);
+    // }
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -500,6 +536,8 @@ class Polygon extends React.Component {
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5}>
                             <div>
+                                <Button id="btnReset" onClick={this.btnReset}>ZoomIn</Button>
+
                                 <canvas id="c" width={800} height={800}>  </canvas>
                             </div>
                         </Grid>

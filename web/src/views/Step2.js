@@ -501,8 +501,8 @@ class Step2 extends React.Component {
                             stroke: 'red',
                             strokeWidth: 5,
                             padding: 1,
-                            // selectable: false,
-                            // evented: false,
+                            selectable: false,
+                            evented: false,
                             left: x1,
                             top: y1,
                         });
