@@ -61,7 +61,6 @@ class CategoryComponent1 extends React.Component {
             tabIndex1:0,
             tabIndex:0,
         }
-        this.handleClickAll = this.handleClickAll.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleDeleteCloth = this.handleDeleteCloth.bind(this)
         this.handleDeleteDetail = this.handleDeleteDetail.bind(this)
@@ -134,10 +133,6 @@ class CategoryComponent1 extends React.Component {
         if(this.props.onClick){
             this.props.onClick();
         }
-    }
-    handleClickAll(){
-        console.log(this);
-        this.props.professionalLabelStore.openCategoryAll(true);
     }
     render() {
         const {classes} = this.props;

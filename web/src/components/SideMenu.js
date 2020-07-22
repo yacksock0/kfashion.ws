@@ -302,6 +302,19 @@ export default function SideMenu(props) {
                     </Link>
                 ):''}
                 {loginUser.groupAdmin !== 1 &&  loginUser.authorityNo == 3 ? (
+                    <div>
+                        <Link to="/Step2/HighCheckList" className={classes.link}>
+                            <Collapse in={open2} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <ListItem type="button" className={classes.nested}>
+                                        <ListItemIcon>
+                                            <PlaylistAddCheckIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="고등학생 검수" />
+                                    </ListItem>
+                                </List>
+                            </Collapse>
+                        </Link>
                     <Link to="/Step2/FinalCheckList" className={classes.link}>
                         <Collapse in={open2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
@@ -314,6 +327,7 @@ export default function SideMenu(props) {
                             </List>
                         </Collapse>
                     </Link>
+                    </div>
                 ):''}
                     </List>
             <Divider />
