@@ -50,6 +50,7 @@ class WorkDetail extends React.Component {
         super(props);
         this.state = {
             open: false,
+            open1: false,
             selectedId:'',
             basicLabelList: [],
             value:'',
@@ -62,7 +63,9 @@ class WorkDetail extends React.Component {
             ],
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
+        this.handleClickOpen1 = this.handleClickOpen1.bind(this)
         this.handleClose = this.handleClose.bind(this)
+        this.handleClose1 = this.handleClose1.bind(this)
         this.handleClickId = this.handleClickId.bind(this)
     }
     componentDidMount() {
@@ -84,6 +87,16 @@ class WorkDetail extends React.Component {
     handleClose() {
         this.setState({
             open: false,
+        });
+    }
+    handleClickOpen1(){
+        this.setState({
+            open1: true,
+        });
+    }
+    handleClose1() {
+        this.setState({
+            open1: false,
         });
     }
     handleClickId(selectedId){
@@ -114,6 +127,8 @@ class WorkDetail extends React.Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>작업지정</Button>
+                &nbsp;&nbsp;
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen1}>작업취소</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"xs"}
                         fullWidth={"100%"}
@@ -130,6 +145,22 @@ class WorkDetail extends React.Component {
                 </form>
             </DialogContent>
             </Dialog>
+                <Dialog open={this.state.open1} onClose={this.handleClose1}
+                        maxWidth={"xs"}
+                        fullWidth={"100%"}
+                        height={'100%'}
+                >
+                    <DialogContent>
+                        <Typography variant="h5" component="h2">
+                            작업회수  (남은 작업: {this.props.workStore.workQuantity})
+                        </Typography>
+                        <hr></hr>
+                        <form noValidate autoComplete="off">
+                            <TextField id="number" label="작업수량 입력" onChange={this.handleChange}/>
+                            <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleSubmit}>확인 </Button>
+                        </form>
+                    </DialogContent>
+                </Dialog>
             </div>
         );
     }
