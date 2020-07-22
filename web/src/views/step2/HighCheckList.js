@@ -30,6 +30,14 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import {fabric} from "fabric";
+import ReturnMsg from "./ReturnMsg";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -125,6 +133,45 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
+
+// @inject('checkHighLabelStore')
+// @observer
+// class returnDialog extends React.Component {
+//     handleClose=()=>{
+//         this.props.checkHighLabelStore.msgDialogOpen(false);
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <Dialog open={this.props.checkHighLabelStore.msgDialog} onClose={this.handleClose()} aria-labelledby="form-dialog-title">
+//                     <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+//                     <DialogContent>
+//                         <DialogContentText>
+//                             작업 리턴 사유를 입력하세요.
+//                         </DialogContentText>
+//                         <TextField
+//                             autoFocus
+//                             margin="dense"
+//                             id="name"
+//                             label="Email Address"
+//                             type="email"
+//                             fullWidth
+//                         />
+//                     </DialogContent>
+//                     <DialogActions>
+//                         <Button onClick={this.handleClose()} color="primary">
+//                             Cancel
+//                         </Button>
+//                         <Button onClick={this.handleClose()} color="primary">
+//                             Subscribe
+//                         </Button>
+//                     </DialogActions>
+//                 </Dialog>
+//             </div>
+//         );
+//     }
+// }
+
 @inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore')
 @observer
 class HighCheckList extends React.Component {
@@ -151,7 +198,8 @@ class HighCheckList extends React.Component {
             sleeveLength3 : '',
 
             sleeveLengthCategoryNo : '',
-            tapIndex: 0,
+            tabIndex1: 1,
+            tabIndex2:0,
             createdId: '',
             imgData:'',
             count: 0,
@@ -161,6 +209,7 @@ class HighCheckList extends React.Component {
                 {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: '반송', field: 'return',render : rowData => <ReturnMsg selectedNo ={rowData.workNo}/> },
             ],
         }
     }
@@ -170,6 +219,7 @@ class HighCheckList extends React.Component {
     }
 
     componentDidMount() {
+        this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
         this.props.checkHighLabelStore.LoadInspectionHighList();
         const id = this.props.authStore.loginUser.id;
@@ -182,19 +232,26 @@ class HighCheckList extends React.Component {
         })
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.props.imageStore.isWorkNo);
     }
+
     handleClick=(workNo, imgData)=>{
         this.props.checkHighLabelStore.LoadReviewHighLabelList(workNo);
         this.setState({
             imgData:imgData,
         })
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 800,
+            height: 800,
+            originX: 'left',
+            originY: 'top'
+        });
+        this.setState({tabIndex1 : 0, tabIndex2 : 0})
 
     }
-    handleClickReturn=()=>{
-
+    onSelectTab(tabIndex1) {
+        this.setState({tabIndex1:tabIndex1})
     }
-
-    onSelectTab(tabIndex) {
-
+    onSelectTab1(tabIndex2){
+        this.setState({tabIndex2:tabIndex2})
     }
     render() {
         const {classes} = this.props;
@@ -204,12 +261,21 @@ class HighCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={4}>
-                            <img src={this.state.imgData} style={{display:"inline-block" , width:650, height:'60vh'}}/>
+                        <Grid item xs={12} lg={5} xl={5}>
+                            <div>
+                                <canvas id="c" width="800" height="800">  </canvas>
+                            </div>
                         </Grid>
-                        <Grid item xs={3} style={{marginRight:20}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
                             <div component={Paper}>
-                                    <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTab(tabIndex)}>
+                                <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
+                                    <TabList >
+                                        <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
+                                        <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                    </TabList>
+
+                                    <TabPanel>
+                                    <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab1(tabIndex2)}>
                                         <TabList >
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
@@ -312,9 +378,9 @@ class HighCheckList extends React.Component {
 
                                         </TabPanel>
                                     </Tabs>
-                            </div>
-                        </Grid>
-                        <Grid item xs={4}>
+                                    </TabPanel>
+
+                        <TabPanel>
                             <MaterialTable
                                 icons={tableIcons
                                 }
@@ -330,8 +396,17 @@ class HighCheckList extends React.Component {
                                     }) : []}
                                 title="이미지 리스트"
                                 options={{
+                                    sorting: false,
                                     search: true,
                                     actionsColumnIndex: -1,
+                                    headerStyle: {
+                                        backgroundColor: '#01579b',
+                                        color: '#FFF',
+                                        textAlign:'center',
+                                    },
+                                    cellStyle: {
+                                        textAlign: 'center'
+                                    },
                                 }}
                                 actions={[
                                     {
@@ -339,16 +414,21 @@ class HighCheckList extends React.Component {
                                         tooltip: 'Select Image',
                                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                                     },
-                                    {
-                                        icon: Clear,
-                                        tooltip: 'return',
-                                        onClick: (event, rowData) => this.handleClickReturn(rowData.id)
-                                    }
+                                    // {
+                                    //     icon: Clear,
+                                    //     tooltip: 'return',
+                                    //     onClick: (event, rowData) => this.props.checkHighLabelStore.msgDialogOpen(true)
+                                    // }
                                 ]}
                             />
+                        </TabPanel>
+                                </Tabs>
+                            </div>
                         </Grid>
                     </Grid>
                 </div>
+
+
             </Container>
         );
     }
