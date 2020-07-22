@@ -30,7 +30,7 @@ const styles = theme => ({   root: {
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'80%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -106,8 +106,8 @@ class ModifyStep3 extends React.Component {
         this.setState({createdId : this.props.authStore.loginUser.id});
         this.canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width : 750,
-            height : 850,
+            width : 800,
+            height : 800,
             originX: 'left',
             originY: 'top'
         });
@@ -263,12 +263,12 @@ class ModifyStep3 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} style={{margin:'auto'}}>
+                        <Grid item xs={12} lg={5}>
                             <div>
-                                <canvas id="c" width={750} height={850} className={classes.canvas} style={{display:'contain'}}>  </canvas>
+                                <canvas id="c" width={800} height={800} className={classes.canvas} style={{display:'contain'}}>  </canvas>
                             </div>
                         </Grid>
-                        <Grid item xs={12} lg={5}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
                                     <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>
                                             <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
