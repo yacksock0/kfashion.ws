@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('xl')]: {
             width: `calc(100% - ${theme.drawerWidth}px)`,
             marginLeft: theme.drawerWidth,
+            backgroundColor : '#000000',
         },
     },
     menuButton: {
