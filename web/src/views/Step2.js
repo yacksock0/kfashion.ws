@@ -106,6 +106,7 @@ class Step2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            workNo : 0,
             labelNo1 : 0,
             labelNo2 : 0,
             labelNo3 : 0,
@@ -118,10 +119,9 @@ class Step2 extends React.Component {
             subMemo4: '',
             sleeveNo4: 0,
             sleeveName4: '',
-            tabIndex: 1,
-            tabIndex1: 0,
+            tabIndex1: 1,
+            tabIndex2: 0,
             imgData: '',
-            workNo: '',
             value: 0,
             number: 1,
             createdId: '',
@@ -201,24 +201,29 @@ class Step2 extends React.Component {
     }
 
     handleClickItem = (workNo, imageData, polyNo) => {
-        this.deleteAll();
-        this.props.imageStore.changeWorkNo(workNo);
-        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-        this.props.polygonStore.LoadPolygonLocation(workNo);
-        this.setState({
-            tabIndex1: polyNo,
-        })
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 800,
-            height: 800,
-            originX: 'left',
-            originY: 'top'
-        });
-        this.setState({
-            tabIndex: 0,
-            tabIndex1:0,
-        })
+        let check = true;
+        if(this.state.workNo !=0){
+            check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
+        }
+        if(check){
+            this.deleteAll();
+            this.props.imageStore.changeWorkNo(workNo);
+            this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+            this.props.polygonStore.LoadPolygonLocation(workNo);
+            this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+                width: 800,
+                height: 800,
+                originX: 'left',
+                originY: 'top'
+            });
+            this.setState({
+                tabIndex2: 0,
+                tabIndex1: 0,
+                workNo : workNo,
+            })
+        }
     }
+
     handleClickColor1 = (color1) => {
         this.setState({
             no1: color1.no,
@@ -441,12 +446,9 @@ class Step2 extends React.Component {
     x;
     y;
 
-    onSelectTab(tabIndex1) {
-        console.log(tabIndex1);
+    onSelectTab2(tabIndex2) {
         console.log(this.props.polygonStore.polyLast);
-
-
-        let polyNo = tabIndex1 + 1;
+        let polyNo = tabIndex2 + 1;
         const {locationPolygonList} = this.props.polygonStore;
         const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
 
@@ -470,7 +472,6 @@ class Step2 extends React.Component {
                 // });
                 // this.canvas.add(circle);
                 // this.canvas.bringToFront(circle)
-
 
                 if(i !=0) {
                     let x1 = this.lineTwoPoint[0];
@@ -557,7 +558,7 @@ class Step2 extends React.Component {
             // this.canvas.add(path);
 
             this.setState({
-                tabIndex1: tabIndex1,
+                tabIndex2: tabIndex2,
             })
         } else {
             alert("poly정보가 존재하지 않습니다.")
@@ -658,7 +659,7 @@ class Step2 extends React.Component {
                     if (res.status === 200) {
                         alert("작업을 저장하였습니다.")
                         this.setState({
-                            tabIndex: 1,
+                            tabIndex1: 1,
                             workNo: 0,
                             no: 0,
                             labelNo1: 0,
@@ -703,19 +704,24 @@ class Step2 extends React.Component {
             this.canvas.remove(objList[i]);
         }
     }
-    onSelectTab2 =( tabIndex ) => {
-        this.setState({tabIndex});
+    onSelectTab1 =( tabIndex1 ) => {
+        if(this.state.workNo != 0){
+            this.setState({tabIndex1 : tabIndex1 });
+        }else{
+            alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
+        }
+
     }
     nextTab =() => {
         const {polyInfo} = this.props.polygonStore;
-        const currentTap = this.state.tabIndex1;
-        let tabIndex1 =0;
+        const currentTap = this.state.tabIndex2;
+        let tabIndex2 =0;
         for(let i=0;i < polyInfo.length; i++){
-            if(polyInfo[i] == this.state.tabIndex1+1 ){
-                tabIndex1 = (polyInfo[i+1]-1);
-                this.setState({tabIndex1 : tabIndex1});
+            if(polyInfo[i] == this.state.tabIndex2+1 ){
+                tabIndex2 = (polyInfo[i+1]-1);
+                this.setState({tabIndex2 : tabIndex2});
             }
-        }this.onSelectTab(tabIndex1);
+        }this.onSelectTab2(tabIndex2);
     }
     render() {
         const {classes,history} = this.props;
@@ -723,6 +729,7 @@ class Step2 extends React.Component {
         const {isWorkNo} = this.props.imageStore;
         const {polyInfo} = this.props.polygonStore;
         const {polyLast} = this.props.polygonStore;
+        console.log(polyLast);
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -734,14 +741,14 @@ class Step2 extends React.Component {
                          </div>
                      </Grid>
                      <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
-                         <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTab2(tabIndex)}>
+                         <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                              <TabList >
                                  <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>기본 레이블링</h3></Tab>
                                  <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                              </TabList>
 
                          <TabPanel>
-                             <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
+                             <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
                              <TabList>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
                                  <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
@@ -790,7 +797,7 @@ class Step2 extends React.Component {
                                          {this.state.sleeveNo1 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
                                          }
-                                         {polyLast === this.state.tabIndex1 ? (
+                                         {polyLast === this.state.tabIndex2 ? (
                                          <Button style={{marginTop: 20}}
                                                  type="button"
                                                  className={classes.buttonType2}
@@ -851,10 +858,10 @@ class Step2 extends React.Component {
                                              <hr></hr>
                                          </div>
                                          <br></br>
-                                         {this.state.sleeveNo2 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.state.sleeveName2} </Button> ) : ''
+                                         {this.state.sleeveNo1 >0 ?
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
                                          }
-                                         {polyLast === this.state.tabIndex1 ? (
+                                         {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -901,7 +908,10 @@ class Step2 extends React.Component {
                                                  </div>) : ''
                                              }
                                          </div>
-                                         {polyLast === this.state.tabIndex1 ? (
+                                         {this.state.sleeveNo1 >0 ?
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
+                                         }
+                                         {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -911,7 +921,17 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
-                                         ):''}
+                                         ):(
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={()=>(this.nextTab())}
+                                             >
+                                                 다음
+                                             </Button>
+                                         )}
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -951,10 +971,10 @@ class Step2 extends React.Component {
                                              <hr></hr>
                                          </div>
                                          <br></br>
-                                         {this.state.sleeveNo4 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.state.sleeveName4} </Button> ) : ''
+                                         {this.state.sleeveNo1 >0 ?
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
                                          }
-                                         {polyLast === this.state.tabIndex1 ? (
+                                         {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -964,20 +984,20 @@ class Step2 extends React.Component {
                                              >
                                                  저장
                                              </Button>
-                                             ):''}
+                                         ):(
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={()=>(this.nextTab())}
+                                             >
+                                                 다음
+                                             </Button>
+                                         )}
                                      </div>
                                  </TabPanel>
-                             <TabPanel>
-                                 <Button style={{marginTop: 20}}
-                                         type="button"
-                                         className={classes.buttonType2}
-                                         color="primary"
-                                         variant="outlined"
-                                         onClick={()=>(this.handleSave())}
-                                 >
-                                     저장
-                                 </Button>
-                             </TabPanel>
+
 
                              </Tabs>
                          </TabPanel>

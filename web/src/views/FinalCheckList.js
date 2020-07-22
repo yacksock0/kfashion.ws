@@ -635,7 +635,7 @@ class FinalCheckList extends React.Component {
                                                         icon: Edit,
                                                         tooltip: 'return',
                                                         hidden: rowData.createdId !== this.props.authStore.loginUser.id,
-                                                        onClick: (event, rowData) => this.handleClickMsgOpen(rowData.workNo)
+                                                        onClick: (event, rowData) => this.handleClickReturn(rowData.workNo)
                                                     })
                                                 ]
                                             }

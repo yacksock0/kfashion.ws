@@ -97,7 +97,7 @@ const styles = theme => ({
 class Polygon extends React.Component {
     state = {
         imgData :'',
-        workNo:'',
+        workNo:0,
         value:1,
         finishbtn : false,
         savebtn : true,
@@ -166,6 +166,17 @@ class Polygon extends React.Component {
     zoom;
 
     componentDidMount() {
+        let radius = 100,
+            x = 300,
+            y = 300,
+            lens,
+            img1,
+            scale = 2,
+            originalWidth = 600,
+            originalHeight = 600;
+
+
+
         this.props.currentStepStore.setStep(1);
         this.props.enqueueSnackbar("Polygon Work", {
             variant: 'info'
@@ -187,20 +198,13 @@ class Polygon extends React.Component {
             canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
             opt.e.preventDefault();
             opt.e.stopPropagation();
-            console.log("delta : "+ delta);
-            console.log("zoom : "+ zoom);
-            console.log("opt.e.offsetX : "+ opt.e.offsetX);
-            console.log("opt.e.offsetY : "+ opt.e.offsetY);
-
         })
         this.canvas = canvas;
 
+
+
+
         canvas.on('mouse:down', (e) => {
-            console.log('width : '  + canvas.getZoom());
-            console.log('x : '  + canvas.getPointer(e, false).x);
-            console.log('x : '  + canvas.getPointer(e, false).y);
-
-
             if (this.onOff == 'lineUse') {
                 this.canvas.selection = false;
                 this.polyPointX[this.polyCounter] = canvas.getPointer(e, false).x;
@@ -268,6 +272,10 @@ class Polygon extends React.Component {
             }
             this.canvas.selection = true;
         });
+    }
+
+    changeWorkNo = (workNo) => {
+        this.setState({ workNo : workNo});
     }
 
     startPoly = (polyNo) => {
@@ -348,6 +356,7 @@ class Polygon extends React.Component {
 
     finishPath = () => {
         if(this.canvas.getObjects().length !=0) {
+            this.canvas.setViewportTransform([1,0,0,1,0,0]);
             console.log("여기는 피니시");
             this.onOff = '';
             let makePath = 'M' + this.polyPointX[0] + ' ' + this.polyPointY[0];
@@ -452,66 +461,75 @@ class Polygon extends React.Component {
 
     // -- Location Data 저장
     submit = () =>{
+        if(this.state.workNo != 0) {
+            const check = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
+            if (check) {
+                console.log(this.polygon);
+                if (this.onOff != "") {
+                    alert("finish를 눌러 작업을 마무리 하세요.");
+                } else if (this.state.savebtn) {
+                    alert("save 눌러 작업을 마무리 하세요.");
+                } else {
+                    // -- RectLocation 저장
+                    this.props.rectStore.objGet(this.rectangle, this.polygon);
+                    this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+                    this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
+                    this.props.rectStore.doRectLocationUp(this.changeWorkNo);
+                    // -- PolygonLocation 저장
+                    // this.props.polygonStore.objGet(this.polygon);
+                    // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
+                    // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
+                    // this.props.polygonStore.doPolygonLocationUp();
 
+                    this.deleteAll(1);
+                    this.save1 = false;
+                    this.save2 = false;
+                    this.save3 = false;
+                    this.save4 = false;
+                    this.buttonState();
+                    // -- Tap Menu List로 전환
+                    this.setState({
+                        tabIndex: 1,
+                        workNo: 0
+                    });
+                }
+            }
+        }
+    }
 
-        console.log(this.polygon);
-        if(this.onOff !=""){
-            alert("finish를 눌러 작업을 마무리 하세요.");
-        }else if(this.state.savebtn){
-            alert("save 눌러 작업을 마무리 하세요.");
-        }else{
-            // -- RectLocation 저장
-            this.props.rectStore.objGet(this.rectangle, this.polygon);
-            this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-            this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-            this.props.rectStore.doRectLocationUp();
-
-            // -- PolygonLocation 저장
-            // this.props.polygonStore.objGet(this.polygon);
-            // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
-            // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
-            // this.props.polygonStore.doPolygonLocationUp();
-
+    handleClickItem = (workNo, imageData) => {
+        let check = true;
+        if(this.state.workNo != 0){
+            check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
+        }
+        if(check) {
+            this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+            this.setState({tabIndex: 0, workNo: workNo});
+            this.props.rectStore.LoadRectLocation(workNo);
+            this.props.rectStore.changeNewRectLocationWorkNo(workNo);
+            this.props.imageStore.changeWorkNo(workNo);
+            this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+                top: 0,
+                left: 0,
+                width: 800,
+                height: 800,
+                scaleX: 1,
+                scaleY: 1,
+                originX: 'left',
+                originY: 'top'
+            });
+            this.setState({
+                tadIndex: 1,
+            })
+            this.polygon.length = 0;
+            this.rectangle.length = 0;
             this.deleteAll(1);
             this.save1 = false;
             this.save2 = false;
             this.save3 = false;
             this.save4 = false;
             this.buttonState();
-            // -- Tap Menu List로 전환
-            this.setState({
-                tabIndex: 1,
-            });
-
         }
-    }
-
-    handleClickItem = (workNo, imageData) => {
-        this.setState({tabIndex:0 });
-        this.props.rectStore.LoadRectLocation(workNo);
-        this.props.rectStore.changeNewRectLocationWorkNo(workNo);
-        this.props.imageStore.changeWorkNo(workNo);
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            top :  0,
-            left : 0,
-            width: 800,
-            height: 800,
-            scaleX : 1,
-            scaleY : 1,
-            originX: 'left',
-            originY: 'top'
-        });
-        this.setState({
-            tadIndex:1,
-        })
-        this.polygon.length = 0;
-        this.rectangle.length =0;
-        this.deleteAll(1);
-        this.save1 = false;
-        this.save2 = false;
-        this.save3 = false;
-        this.save4 = false;
-        this.buttonState();
     }
 
     handleStepView = () =>{
@@ -522,10 +540,18 @@ class Polygon extends React.Component {
             listIndex:listIndex,
         })
     }
+    btnReset = () =>{
+        this.canvas.setViewportTransform([1,0,0,1,0,0]);
+    }
 
-    // btnReset = () =>{
-    //     this.canvas.zoomToPoint({ x: 400, y: 400 }, 1);
-    // }
+    onSelectTap = (tabIndex) => {
+        if(this.state.workNo != 0 ){
+            this.setState({tabIndex : tabIndex});
+        }else{
+            alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
+        }
+    }
+
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -536,14 +562,14 @@ class Polygon extends React.Component {
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5}>
                             <div>
-                                <Button id="btnReset" onClick={this.btnReset}>ZoomIn</Button>
+                                <Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>
 
                                 <canvas id="c" width={800} height={800}>  </canvas>
                             </div>
                         </Grid>
 
                         <Grid item xs={12} lg={5} xl={6} style={{marginLeft:'auto'}}>
-                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTap( tabIndex )}>
                                 <TabList>
                                     <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
                                     <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
