@@ -23,7 +23,6 @@ import UserWork from "./views/admin/UserWork";
 import FinalCheckList from "./views/FinalCheckList";
 import HighCheckList from "./views/step2/HighCheckList";
 import ModifyStep3 from "./views/ModifyStep3";
-import Test from "./views/labeling/Test";
 
 
 const style = () => ({
@@ -114,7 +113,6 @@ class App extends React.Component {
                                     <Route exact path="/Step/ImageUpload" component={ImageUpload}/>
                                     <Route exact path="/Step/BoundaryBox" component={BoundaryBox} />
                                     <Route exact path="/Step/Polygon" component={Polygon} />
-                                    <Route exact path="/Step/Test" component={Test} />
                                     <Route exact path="/Step2/FinalCheckList" component={FinalCheckList} />
                                     <Route exact path="/Step2/ModifyStep3" component={ModifyStep3} />
                                     <Route exact path="/Step2/HighCheckList" component={HighCheckList} />

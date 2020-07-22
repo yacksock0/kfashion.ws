@@ -173,21 +173,6 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                 ):''}
-                    {loginUser.authorityNo == 2 && loginUser.groupAdmin == 0? (
-                    <Link to="/step/Test" className={classes.link}>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <ListItem type="button" className={classes.nested}>
-                                    <ListItemIcon>
-                                        <FormatShapesIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Test" />
-                                </ListItem>
-                            </List>
-                        </Collapse>
-                    </Link>
-
-                ):''}
                 {loginUser.isAdmin == 'Y'? (
                     <Link to="/step/polygon" className={classes.link}>
                         <Collapse in={open} timeout="auto" unmountOnExit>
