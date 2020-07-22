@@ -93,6 +93,7 @@ const ReviewLabel = {
 
 export default class WorkStore {
     @observable workQuantity= 0;
+    @observable workUserCancelQuantity = 0;
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
@@ -125,6 +126,16 @@ export default class WorkStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/work/workQuantity?authorityNo='+authorityNo)
             this.workQuantity = response.data.workQuantity;
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+    LoadWorkUserCancelQuantity = flow(function* loadWorkUserCancelQuantity(authorityNo) {
+        this.workUserCancelQuantity = 0;
+        try {
+            const response = yield axios.get('/api/v1/kfashion/work/workUserCancelQuantity?authorityNo='+authorityNo)
+            this.workUserCancelQuantity = response.data.workUserCancelQuantity;
         } catch (e) {
             console.log('error')
         }
