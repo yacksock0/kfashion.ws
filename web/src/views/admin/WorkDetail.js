@@ -49,11 +49,13 @@ class WorkDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            userId: '',
             open: false,
             open1: false,
             selectedId:'',
             basicLabelList: [],
             value:'',
+            CancelValue:'',
             count: 0,
             data: [],
             columns: [
@@ -69,8 +71,10 @@ class WorkDetail extends React.Component {
         this.handleClickId = this.handleClickId.bind(this)
     }
     componentDidMount() {
-        const authorityNo = this.props.authStore.loginUser.authorityNo;
-        this.props.workStore.LoadWorkQuantity(authorityNo);
+        this.setState({
+            userId : this.props.rowDataId,
+        })
+
 
     }
 
@@ -80,6 +84,8 @@ class WorkDetail extends React.Component {
         })
     }
     handleClickOpen(){
+        const authorityNo = this.props.authStore.loginUser.authorityNo;
+        this.props.workStore.LoadWorkQuantity(authorityNo);
         this.setState({
             open: true,
         });
@@ -90,6 +96,9 @@ class WorkDetail extends React.Component {
         });
     }
     handleClickOpen1(){
+        const authorityNo = this.props.authStore.loginUser.authorityNo;
+        const userId = this.state.userId;
+        this.props.workStore.LoadWorkUserCancelQuantity(authorityNo,userId);
         this.setState({
             open1: true,
         });
@@ -104,10 +113,14 @@ class WorkDetail extends React.Component {
             selectedId: selectedId,
         })
     }
-   handleChange = (event) => {
+   handleWorkQuantityChange = (event) => {
         this.setState({value: event.target.value});
     }
-    handleSubmit=()=>{
+
+    handleWorkUserCancelQuantityChange = (event) => {
+        this.setState({CancelValue: event.target.value});
+    }
+    handleWorkQuantitySubmit=()=>{
         axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
             .then(res =>{
                 if (res.status === 200) {
@@ -120,9 +133,24 @@ class WorkDetail extends React.Component {
                     alert("작업지정이 완료되었습니다.");
                 }
             })
-
-
     }
+
+    handleWorkUserCancelQuantitySubmit=()=>{
+        axios.post(`/api/v1/kfashion/work/history/assignmentCancel?workId=${this.props.rowDataId}&workCount=${this.state.CancelValue}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
+            .then(res =>{
+                if (res.status === 200) {
+                    this.setState({
+                        value:'',
+                        open:false,
+                    })
+                    const groupNo = this.props.authStore.loginUser.groupNo;
+                    this.props.userListStore.LoadGroupUserList(groupNo);
+                    alert("작업취소가 완료되었습니다.");
+                }
+            })
+    }
+
+
     render() {
         return (
             <div>
@@ -140,8 +168,8 @@ class WorkDetail extends React.Component {
                 </Typography>
                 <hr></hr>
                 <form noValidate autoComplete="off">
-                    <TextField id="number" label="작업수량 입력" onChange={this.handleChange}/>
-                    <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleSubmit}>확인 </Button>
+                    <TextField id="number" label="작업수량 입력" onChange={this.handleWorkQuantityChange}/>
+                    <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleWorkQuantitySubmit}>확인 </Button>
                 </form>
             </DialogContent>
             </Dialog>
@@ -152,12 +180,12 @@ class WorkDetail extends React.Component {
                 >
                     <DialogContent>
                         <Typography variant="h5" component="h2">
-                            작업회수  (남은 작업: {this.props.workStore.workQuantity})
+                            작업회수  (남은 작업: {this.props.workStore.workUserCancelQuantity})
                         </Typography>
                         <hr></hr>
                         <form noValidate autoComplete="off">
-                            <TextField id="number" label="작업수량 입력" onChange={this.handleChange}/>
-                            <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleSubmit}>확인 </Button>
+                            <TextField id="number" label="작업수량 입력" onChange={this.handleWorkUserCancelQuantityChange}/>
+                            <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleWorkUserCancelQuantitySubmit}>확인 </Button>
                         </form>
                     </DialogContent>
                 </Dialog>

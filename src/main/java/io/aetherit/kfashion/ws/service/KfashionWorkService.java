@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class KfashionWorkService {
@@ -46,5 +47,13 @@ public class KfashionWorkService {
 
     public int selectWorkQuantity(int workState) {
         return repository.selectWorkQuantity(workState);
+    }
+
+    public int selectWorkUserCancelQuantity(Map<String, Object> workCancelQuantityMap) {
+        return repository.selectWorkUserCancelQuantity(workCancelQuantityMap);
+    }
+
+    public List<Long> selectWorkAssignmentCancel(HashMap<String, Object> workAssignmentCancelMap) {
+        return repository.selectWorkAssignmentCancel(workAssignmentCancelMap);
     }
 }

@@ -5,6 +5,7 @@ import io.aetherit.kfashion.ws.model.KfashionWork;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface KfashionWorkMapper {
     Long insertWork(KfashionWork work);
@@ -20,4 +21,9 @@ public interface KfashionWorkMapper {
     List<Long> selectWorkAssignment(HashMap<String, Object> workMap);
 
     int selectWorkQuantity(int workState);
+
+    int selectWorkUserCancelQuantity(Map<String, Object> workCancelQuantityMap);
+
+    List<Long> selectWorkAssignmentCancel(HashMap<String, Object> workAssignmentCancelMap);
+
 }

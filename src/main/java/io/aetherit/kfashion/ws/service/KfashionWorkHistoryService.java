@@ -33,4 +33,7 @@ public class KfashionWorkHistoryService {
         return repository.selectWorkProgressRate(createdId);
     }
 
+    public void deleteAssignmentCancelWorkHistory(KfashionWorkHistory workHistory) {
+        repository.deleteAssignmentCancelWorkHistory(workHistory);
+    }
 }

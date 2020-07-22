@@ -131,10 +131,10 @@ export default class WorkStore {
         }
     });
 
-    LoadWorkUserCancelQuantity = flow(function* loadWorkUserCancelQuantity(authorityNo) {
+    LoadWorkUserCancelQuantity = flow(function* loadWorkUserCancelQuantity(authorityNo,userId) {
         this.workUserCancelQuantity = 0;
         try {
-            const response = yield axios.get('/api/v1/kfashion/work/workUserCancelQuantity?authorityNo='+authorityNo)
+            const response = yield axios.get('/api/v1/kfashion/work/workUserCancelQuantity?authorityNo='+authorityNo+'&userId='+userId)
             this.workUserCancelQuantity = response.data.workUserCancelQuantity;
         } catch (e) {
             console.log('error')
