@@ -114,9 +114,13 @@ class ModifyStep3 extends React.Component {
     }
 
     handleSubmit = () => {
-        const createdId = this.props.authStore.isUserId;
-        this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-        this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);
+        const check = window.confirm("수정하시겠습니까?");
+        if (check) {
+            const createdId = this.props.authStore.isUserId;
+            this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
+            this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);
+            this.props.history.push("/Step2/FinalCheckList");
+        }
     }
 
 
@@ -243,6 +247,13 @@ class ModifyStep3 extends React.Component {
             })
         }
     };
+
+    handleReturn = () => {
+        const check = window.confirm("돌아가시면 변경된 값은 저장되지 않습니다.");
+        if(check){
+            this.props.history.push("/Step2/FinalCheckList");
+        }
+    }
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
@@ -298,8 +309,18 @@ class ModifyStep3 extends React.Component {
                     <div>
                         <hr></hr>
                     </div>
-                    <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
-                        <Button
+                        <Grid item xs={1} lg={2} style={{marginLeft:'auto'}}>
+                            <Button
+                                type="button"
+                                className={classes.buttonType2}
+                                color="primary"
+                                variant="outlined"
+                                onClick={()=>this.handleReturn()}
+                            >
+                               돌아가기
+                            </Button>
+
+                            <Button
                             type="button"
                             className={classes.buttonType2}
                             color="primary"
@@ -312,7 +333,6 @@ class ModifyStep3 extends React.Component {
                 </div>
                 <ErrorIcon/>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                    우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 / 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭
                 </Typography>
             </Container>
         );

@@ -393,6 +393,7 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelDetail1 = (detail1) => {
+        console.log(this.outerReviewLabel.detail1)
         this.changeNewProfessionalLabelNo1(1);
         this.outerReviewLabel.detail1[this.outerReviewLabel.detailCount] = detail1.no;
         this.outerReviewLabel.detailCategoryNo1[this.outerReviewLabel.detailCount] = detail1.categoryNo;
@@ -946,21 +947,25 @@ export default class ProfessionalLabelStore {
             console.log(response.data)
             if(response.data.outerReviewLabel != null) {
                 this.outerReviewLabel = response.data.outerReviewLabel;
+                this.outerReviewLabel.detailCount = response.data.outerReviewLabel.detail1.length;
             }else {
                 this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
             }
             if(response.data.topReviewLabel != null) {
                 this.topReviewLabel = response.data.topReviewLabel;
+                this.topReviewLabel.detailCount = response.data.topReviewLabel.detail2.length;
             }else {
                 this.topReviewLabel = {...EmptyNewTopReviewLabel};
             }
             if(response.data.pantsReviewLabel != null) {
                 this.pantsReviewLabel = response.data.pantsReviewLabel;
+                this.pantsReviewLabel.detailCount = response.data.pantsReviewLabel.detail3.length;
             }else {
                 this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
             }
             if(response.data.onePieceReviewLabel != null) {
                 this.onePieceReviewLabel = response.data.onePieceReviewLabel;
+                this.onePieceReviewLabel.detailCount = response.data.onePieceReviewLabel.detail4.length;
             }else {
                 this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
             }if(response.data.styleReviewLabel != null) {
@@ -999,9 +1004,8 @@ export default class ProfessionalLabelStore {
 
             const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo='+ workNo);
             if (resp.status === 200) {
-                console.log("삭제 완료");
                 this.doProfessionalLabelUp();
-                this.props.history.push("/Step2/FinalCheckList");
+                alert("정상적으로 수정되었습니다.")
 
             } else {
                 this.state = State.Fail;
