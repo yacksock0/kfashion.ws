@@ -50,4 +50,12 @@
         WHERE work_step = #{workStep}
         AND created_id=#{createdId}
     </select>
+
+    <delete id="deleteAssignmentCancelWorkHistory" parameterType="KfashionWorkHistory">
+        DELETE
+        FROM kfashion_work_history
+        WHERE work_no =#{workNo}
+        AND created_id = #{createdId}
+        AND work_step = #{workStep};
+    </delete>
 </mapper>
