@@ -9,11 +9,9 @@ import {Container, Toolbar, Typography} from "@material-ui/core";
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        padding: theme.spacing(3),
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
-        marginTop: theme.spacing(2),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -40,10 +38,11 @@ class Home extends React.Component {
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
+                    <img src='/images/mainbanner.jpg' />
                     <Toolbar className={classes.toolbar}>
-                        <Typography variant="h4" component="h2">
-                            Kfashion에 오신걸 환영합니다.
-                        </Typography>
+                        {/*<Typography variant="h4" component="h2">*/}
+                        {/*    Kfashion에 오신걸 환영합니다.*/}
+                        {/*</Typography>*/}
                     </Toolbar>
 
                 </div>

@@ -32,6 +32,12 @@ import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
 import {toJS} from "mobx";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -125,13 +131,48 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
-
+const handleClose = () => {
+    this.setState({open:false,})
+};
+class ReturnDialog extends React.Component{
+    render() {
+        return(
+            <div>
+                <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            작업 리턴 사유를 입력하세요.
+                        </DialogContentText>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="Email Address"
+                            type="email"
+                            fullWidth
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            취소
+                        </Button>
+                        <Button onClick={handleClose} color="primary">
+                            확인
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        );
+    }
+}
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore', 'polygonStore')
 @observer
 class FinalCheckList extends React.Component {
     constructor(props) {
         super(...arguments , props);
         this.state = {
+            open:'',
             styleItemName :'',
             styleSubItemName : '',
             categoryItemName : '',
@@ -157,6 +198,7 @@ class FinalCheckList extends React.Component {
                 {title: '생성자', field: 'createdId', type: 'string'},
             ],
         }
+        this.handleClickMsgOpen = this.handleClickMsgOpen.bind(this)
     }
 
     componentWillUnmount() {
@@ -177,6 +219,9 @@ class FinalCheckList extends React.Component {
         })
 
 
+    }
+    handleClickMsgOpen(workNo){
+        this.setState({open:true,})
     }
     handleClick=(workNo, imgData)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
@@ -314,6 +359,10 @@ class FinalCheckList extends React.Component {
         this.setState({tabIndex1 : tabIndex});
     }
     render() {
+        const handleClickMsgOpen = () => {
+            this.setState({open:true,})
+        };
+
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
         const detail1 = outerReviewLabel.detailItemName1;
@@ -586,7 +635,7 @@ class FinalCheckList extends React.Component {
                                                         icon: Edit,
                                                         tooltip: 'return',
                                                         hidden: rowData.createdId !== this.props.authStore.loginUser.id,
-                                                        onClick: (event, rowData) => this.handleClickReturn(rowData.workNo)
+                                                        onClick: (event, rowData) => this.handleClickMsgOpen(rowData.workNo)
                                                     })
                                                 ]
                                             }

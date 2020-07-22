@@ -87,6 +87,59 @@ public class KfashionWorkHistoryController {
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
+
+    @PostMapping(value = "/assignmentCancel")
+    public ResponseEntity<Object> workAssignmentCancel(HttpServletRequest httpRequest,
+                                                 @RequestParam(value="workId", required=true)String workId,
+                                                 @RequestParam(value="workCount", required=true)int workCount,
+                                                 @RequestParam(value="authorityNo", required=true)int authorityNo
+    ) {
+
+
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        HashMap<String, Object> workAssignmentCancelMap = new HashMap<String, Object>();
+
+        if(authorityNo == 3) { //Univ admin이 작업을 취소한 경우
+            workAssignmentCancelMap.put("currentNo",5);
+            workAssignmentCancelMap.put("workStep",6);
+            workAssignmentCancelMap.put("workCount",workCount);
+            workAssignmentCancelMap.put("workId",workId);
+            List<Long> workAssignmentCancel = kfashionWorkService.selectWorkAssignmentCancel(workAssignmentCancelMap); //
+            for(int i = 0; i < workAssignmentCancel.size() ; i++){
+                KfashionWork work = new KfashionWork();
+                work.setNo(workAssignmentCancel.get(i));
+                work.setWorkState(1);
+                kfashionWorkService.updateWork(work);
+
+                KfashionWorkHistory workHistory = new KfashionWorkHistory();
+                workHistory.setWorkNo(workAssignmentCancel.get(i));
+                workHistory.setCreatedId(workId);
+                workHistory.setWorkStep(5);
+                kfashionWorkHistoryService.deleteAssignmentCancelWorkHistory(workHistory);
+            }
+        }else { //High admin이 작업을 취소한 경우
+            workAssignmentCancelMap.put("currentNo",2);
+            workAssignmentCancelMap.put("workStep",4);
+            workAssignmentCancelMap.put("workCount",workCount);
+            workAssignmentCancelMap.put("workId",workId);
+            List<Long> workAssignmentCancel = kfashionWorkService.selectWorkAssignmentCancel(workAssignmentCancelMap);
+
+            for(int i = 0; i <workAssignmentCancel.size() ; i++){
+                KfashionWork work = new KfashionWork();
+                work.setNo(workAssignmentCancel.get(i));
+                work.setWorkState(1);
+                kfashionWorkService.updateWork(work);
+
+                KfashionWorkHistory workHistory = new KfashionWorkHistory();
+                workHistory.setWorkNo(workAssignmentCancel.get(i));
+                workHistory.setCreatedId(workId);
+                workHistory.setWorkStep(2);
+                kfashionWorkHistoryService.deleteAssignmentCancelWorkHistory(workHistory);
+            }
+        }
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/progressRate")
     public ResponseEntity<Object> workProgressRate(HttpServletRequest httpRequest,
                                                  @RequestParam(value="createdId")String createdId,

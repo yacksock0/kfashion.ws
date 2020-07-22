@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         border: 'none',
     },
     toolbar: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: '#000000',
         paddingLeft: 0,
         paddingRight: 0,
         boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)',
@@ -303,6 +303,19 @@ export default function SideMenu(props) {
                     </Link>
                 ):''}
                 {loginUser.groupAdmin !== 1 &&  loginUser.authorityNo == 3 ? (
+                    <div>
+                        <Link to="/Step2/HighCheckList" className={classes.link}>
+                            <Collapse in={open2} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <ListItem type="button" className={classes.nested}>
+                                        <ListItemIcon>
+                                            <PlaylistAddCheckIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="고등학생 검수" />
+                                    </ListItem>
+                                </List>
+                            </Collapse>
+                        </Link>
                     <Link to="/Step2/FinalCheckList" className={classes.link}>
                         <Collapse in={open2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
@@ -315,6 +328,7 @@ export default function SideMenu(props) {
                             </List>
                         </Collapse>
                     </Link>
+                    </div>
                 ):''}
                     </List>
             <Divider />

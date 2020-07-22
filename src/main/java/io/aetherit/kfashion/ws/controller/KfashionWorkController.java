@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/kfashion/work")
@@ -54,6 +55,35 @@ public class KfashionWorkController {
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
+
+    @GetMapping(value="workUserCancelQuantity")
+    public ResponseEntity<Object> workUserCancelQuantity(HttpServletRequest httpRequest,
+                                               @RequestParam(value="authorityNo", required=true)int authorityNo,
+                                               @RequestParam(value="userId", required = true) String userId) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        int workState = 0;
+        Map<String,Object> workCancelQuantityMap = new HashMap<>();
+        if(authorityNo == 3) {
+            workCancelQuantityMap.put("workState",5);
+            workCancelQuantityMap.put("workStep",6);
+            workCancelQuantityMap.put("userId",userId);
+            //대학생들 작업지정 후에 work_history : step = 5로 이동
+            //work_history : step = 1에 해당되는 row들은 다 가져오되 step = 5에 해당되는 row들은 제외 해줄꺼야.
+
+            int workUserCancelQuantity = kfashionWorkService.selectWorkUserCancelQuantity(workCancelQuantityMap);
+            resultMap.put("workUserCancelQuantity", workUserCancelQuantity);
+        }else {
+            workCancelQuantityMap.put("workState",2);
+            workCancelQuantityMap.put("workStep",4);
+            workCancelQuantityMap.put("userId",userId);
+            //고등학생들 작업지정 후에 work_history : 2로 이동
+            //work_history : step = 1에 해당되는 row들은 다 가져오되 step = 2에 해당되는 row들은 제외 해줄꺼야.
+            int workUserCancelQuantity = kfashionWorkService.selectWorkUserCancelQuantity(workCancelQuantityMap);
+            resultMap.put("workUserCancelQuantity", workUserCancelQuantity);
+        }
+
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
 
 
     }

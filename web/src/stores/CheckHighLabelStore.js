@@ -8,6 +8,7 @@ const State = {
     NotAvailableEmail: 'NotAvailableEmail',
     Success: 'Success',
     Fail: 'Fail',
+
 }
 
 const AddState = {
@@ -16,6 +17,7 @@ const AddState = {
     Adding: 'Adding',
     Added: 'Added',
     AddFailed: 'AddFailed',
+    msgDialog: '',
 };
 
 const UpdateState = {
@@ -54,8 +56,6 @@ const ReviewHighLabel = {
     sleeveLengthCategoryNo : '',
 }
 
-
-
 export default class CheckHighLabelStore {
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
@@ -66,12 +66,14 @@ export default class CheckHighLabelStore {
     @observable pantsReviewHighLabel = {...ReviewHighLabel};
     @observable onePieceReviewHighLabel = {...ReviewHighLabel};
     @observable inspectionHighList = [];
-
+    @observable msgDialog = '';
 
     @action initStore = () => {
         this.professionalList = 0;
     }
-
+    @action msgDialogOpen = (value) => {
+        this.msgDialog = value;
+    }
     @action changeAuthorityNo = (authorityNo) => {
         this.authorityNo = authorityNo;
     }

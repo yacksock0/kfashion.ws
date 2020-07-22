@@ -13,4 +13,6 @@ public interface KfashionWorkHistoryMapper {
     void deleteWorkHistory(KfashionImage workImage);
     void deleteLabelWorkHistory(int workNo, int workStep);
     KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId);
+
+    void deleteAssignmentCancelWorkHistory(KfashionWorkHistory workHistory);
 }

@@ -12,6 +12,10 @@ import * as store from "../stores/AuthStore";
 
 const style = theme => ({
     appBarSpacer: theme.mixins.toolbar,
+    container : {
+        margin:'auto',
+        marginTop: '250px',
+    },
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -32,6 +36,8 @@ const style = theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        backgroundColor: '#000000',
+        fontSize : '20px',
     },
 });
 
@@ -64,12 +70,11 @@ class SignIn extends React.Component {
         const { loginState, login } = this.props.authStore;
 
         return (
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" className={classes.container}>
                 <div className={classes.appBarSpacer} />
                     <div className={classes.paper}>
-                        <Avatar className={classes.lockOutAvatar}><LockOutlinedIcon/></Avatar>
-                        <Typography component="h1" variant="h5">
-                            {loginState === store.State.Failed ? 'Sign in failed.' : 'Please sign in.'}
+                        <Typography component="h1" variant="h4">
+                            {loginState === store.State.Failed ? '로그인 실패.' : '로그인'}
                         </Typography>
                         <div className={classes.form}>
                             <TextField id="id"
@@ -97,7 +102,7 @@ class SignIn extends React.Component {
                                     disabled={loginState === store.State.Pending}
                                     onClick={this.handleSubmitForm}
                                     fullWidth >
-                                {loginState === store.State.Pending ? <CircularProgress size={22}/> : 'Sign In'}
+                                {loginState === store.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>
                         </div>
                     </div>
