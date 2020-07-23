@@ -51,7 +51,7 @@
         FROM kfashion_image
         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        LEFT OUTER JOIN kfashion_comment ON kfashion_image.work_no = kfashion_comment.work_no
+        LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =3)
         WHERE kfashion_work_history.created_id = #{createdId}
           AND kfashion_work_history.work_step = 2
         ORDER BY kfashion_image.work_no DESC
@@ -67,7 +67,7 @@
         FROM kfashion_image
         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        LEFT OUTER JOIN kfashion_comment ON kfashion_image.work_no = kfashion_comment.work_no
+        LEFT OUTER JOIN kfashion_comment ON (kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =4)
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 3
         ORDER BY kfashion_image.work_no DESC
