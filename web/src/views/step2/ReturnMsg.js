@@ -19,9 +19,13 @@ export default class ReturnMsg extends React.Component {
         super(...arguments, props);
         this.state ={
             open:false,
-            poly:'',
-            label:'',
+            poly:false,
+            label:false,
             workNo:'',
+            outer:false,
+            top:false,
+            pants:false,
+            onepiece:false,
         }
     }
     handleClickOpen = () => {
@@ -69,7 +73,40 @@ export default class ReturnMsg extends React.Component {
             this.props.messageStore.changeWorkStep1('')
         }
     };
+    handleChangeType1 = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.checked});
+        if (!this.state.outer == true) {
+            this.props.messageStore.changeWorkType1(event.target.value)
+        }else{
+            this.props.messageStore.changeWorkType1('')
+        }
+    };
+    handleChangeType2 = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.checked});
+        if (!this.state.top == true) {
+            this.props.messageStore.changeWorkType2(event.target.value)
+        }else{
+            this.props.messageStore.changeWorkType2('')
+        }
+    };
+    handleChangeType3 = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.checked});
+        if (!this.state.pants == true) {
+            this.props.messageStore.changeWorkType3(event.target.value)
+        }else{
+            this.props.messageStore.changeWorkType3('')
+        }
+    };
+    handleChangeType4 = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.checked});
+        if (!this.state.onepiece == true) {
+            this.props.messageStore.changeWorkType4(event.target.value)
+        }else{
+            this.props.messageStore.changeWorkType4('')
+        }
+    };
     render() {
+        const {poly} = this.state;
         const comment = this.props.messageStore.newMsg.comment;
         return (
             <div>
@@ -84,13 +121,32 @@ export default class ReturnMsg extends React.Component {
                         </DialogContentText>
                         <FormGroup row>
                             <FormControlLabel
-                                control={<Checkbox value={3} onChange={this.handleChange} name="poly" />}
-                                label="영역지정"
+                                control={<Checkbox checked={poly} value={3} onChange={this.handleChange} name="poly" />}
+                                label="영역지정 : "
+                            />
+
+                            <FormControlLabel
+                                control={<Checkbox value={1} onClick={this.handleChangeType1} name="outer" />}
+                                label="아우터"
                             />
                             <FormControlLabel
-                                control={<Checkbox value={4} onChange={this.handleChange1} name="label" />}
-                                label="레이블링"
+                                control={<Checkbox value={2} onClick={this.handleChangeType2} name="top" />}
+                                label="상의"
                             />
+                            <FormControlLabel
+                                control={<Checkbox value={3} onClick={this.handleChangeType3} name="pants" />}
+                                label="하의"
+                            />
+                            <FormControlLabel
+                                control={<Checkbox value={4} onClick={this.handleChangeType4} name="onepiece" />}
+                                label="원피스"
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                        <FormControlLabel
+                            control={<Checkbox value={4} onChange={this.handleChange1} name="label" />}
+                            label="레이블링"
+                        />
                         </FormGroup>
                         <TextField
                             autoFocus

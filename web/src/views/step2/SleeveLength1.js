@@ -18,9 +18,6 @@ export default class SleeveLength1 extends React.Component {
             open:false,
             text: 'text',
             sleeveList1: [],
-            sleeveList2: [],
-            sleeveList4: [],
-
             selectedOption:null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)

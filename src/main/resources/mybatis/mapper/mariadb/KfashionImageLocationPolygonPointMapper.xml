@@ -68,4 +68,12 @@
         WHERE work_no = #{workNo}
     </select>
 
+
+    <delete id="deletePolyPoint">
+        DELETE
+        FROM kfashion_image_location_polygon_point
+        WHERE work_no = #{workNo}
+        AND poly_no = #{polyNo}
+    </delete>
+
 </mapper>

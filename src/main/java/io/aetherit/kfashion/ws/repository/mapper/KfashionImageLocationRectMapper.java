@@ -4,6 +4,7 @@ import io.aetherit.kfashion.ws.model.KfashionCategoryItem;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationRect;
 
 import java.util.List;
+import java.util.Map;
 
 public interface KfashionImageLocationRectMapper {
     void insertLocationRect(KfashionImageLocationRect rect);
@@ -11,4 +12,6 @@ public interface KfashionImageLocationRectMapper {
     List<KfashionImageLocationRect> selectLocationRectList(KfashionImageLocationRect rect);
 
     List<KfashionImageLocationRect> selectRectNoList(Long workNo);
+
+    void deleteRect(Map<String, Object> deleteMap);
 }
