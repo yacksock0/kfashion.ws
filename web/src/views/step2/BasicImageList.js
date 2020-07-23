@@ -20,7 +20,6 @@ import axios from "axios";
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
 import {toJS} from "mobx";
-import ErrorIcon from "@material-ui/icons/Error";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -111,11 +110,6 @@ class BasicImageList extends React.Component {
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo,polyNo)
                     },
-                    rowData => ({
-                        icon: ErrorIcon,
-                        tooltip: 'Comment',
-                        // hidden: rowData.createdId !== this.props.authStore.loginUser.id,
-                    })
                     // {
                     //     icon: Clear,
                     //     tooltip: 'return',

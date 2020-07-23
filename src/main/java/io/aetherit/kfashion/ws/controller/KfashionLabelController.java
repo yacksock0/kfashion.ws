@@ -824,11 +824,34 @@ public class KfashionLabelController {
 
         @GetMapping(value="/deleteProfessionalLabel")
         public ResponseEntity<Object> deleteProfessionalLabel(HttpServletRequest httpRequest,
-                                                              @RequestParam(value="workNo")int workNo) {
+                                                              @RequestParam(value="workNo")Long workNo) {
 
                 HashMap<String, Object> resultMap = new HashMap<String, Object>();
-                kfashionLabelService.deleteProfessionalLabel(workNo);
-                kfashionWorkHistoryService.deleteLabelWorkHistory(workNo, 6);
+                HashMap<String, Object> deleteMap = new HashMap<String, Object>();
+                deleteMap.put("workNo",workNo);
+                deleteMap.put("workStep",6);
+                kfashionLabelService.deleteProfessionalLabel(deleteMap);
+                kfashionWorkHistoryService.deleteProfessionalLabelWorkHistory(deleteMap);
+                return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }
+
+        /**
+         * 기본 라벨 삭제
+         * @param workNo
+         * @return ResponseEntity
+         * @throws Exception
+         */
+
+        @GetMapping(value="/deleteBasicLabel")
+        public ResponseEntity<Object> deleteBasicLabel(HttpServletRequest httpRequest,
+                                                              @RequestParam(value="workNo")Long workNo) {
+
+                HashMap<String, Object> resultMap = new HashMap<String, Object>();
+                HashMap<String, Object> deleteMap = new HashMap<String, Object>();
+                deleteMap.put("workNo",workNo);
+                deleteMap.put("workStep",4);
+                kfashionLabelService.deleteBasicLabel(deleteMap);
+                kfashionWorkHistoryService.deleteBasicLabelWorkHistory(deleteMap);
                 return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 }

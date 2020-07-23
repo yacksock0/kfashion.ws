@@ -94,51 +94,65 @@ public class KfashionImageLocationPolygonController {
             return new ResponseEntity<String>(msg, HttpStatus.OK);
         }
 
+        /**
+         * 폴리곤 좌표 삭제
+         * @param workNo
+         * @return ResponseEntity
+         * @throws Exception
+         */
 
-    /**
-     * 폴리곤 이미지 리스트
-     * @param httpRequest
-     * @param createdId
-     * @return polygonList
-     * @throws Exception
-     */
-    @GetMapping(value="/polygonList")
-    public ResponseEntity<Object> polygonList(HttpServletRequest httpRequest,
-                                           @RequestParam(value="createdId")String createdId) {
-        HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImage> polygonList = kfashionImageService.selectPolygonList(createdId);
-        resultMap.put("polygonList", polygonList);
-        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
-    }
-
-    /**
-     * 폴리곤 좌표값 리스트
-     * @param httpRequest
-     * @param workNo
-     * @return locationPolygonList
-     * @throws
-     */
-
-    @GetMapping(value="/locationPolygonList")
-    public ResponseEntity<Object> locationPolygonList(HttpServletRequest httpRequest,
-                                                   @RequestParam(value="workNo")Long workNo){
-        List<KfashionImageLocationPolygonPoint> polyNoList = kfashionImageLocationPolygonPointService.selectPolyNoList(workNo);
-        System.out.println(polyNoList);
-        KfashionImageLocationPolygonPoint polygon = new KfashionImageLocationPolygonPoint();
-        List<KfashionImageLocationPolygonPoint> locationPolygonList = new ArrayList<>();
-        HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        if(polyNoList != null) {
-            for(int i=0; i < polyNoList.size(); i++) {
-                polygon.setWorkNo(polyNoList.get(i).getWorkNo());
-                polygon.setPolyNo(polyNoList.get(i).getPolyNo());
-                polygon.setNo(polyNoList.get(i).getNo());
-                locationPolygonList.addAll(kfashionImageLocationPolygonPointService.selectLocationPolygonList(polygon));
-            }
-            List<Integer> polyNo = kfashionImageLocationPolygonPointService.selectPolyNo(workNo);
-            resultMap.put("polyNo",polyNo);
-            resultMap.put("locationPolygonList", locationPolygonList);
+        @GetMapping(value="/deletePolygon")
+        public ResponseEntity<Object> deletePolygon(HttpServletRequest httpRequest,
+                                                  @RequestParam(value="workNo")Long workNo) {
+            HashMap<String, Object> deleteMap = new HashMap<String, Object>();
+            return new ResponseEntity<Object>(HttpStatus.OK);
         }
-        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
-    }
+
+
+        /**
+         * 폴리곤 이미지 리스트
+         * @param httpRequest
+         * @param createdId
+         * @return polygonList
+         * @throws Exception
+         */
+        @GetMapping(value="/polygonList")
+        public ResponseEntity<Object> polygonList(HttpServletRequest httpRequest,
+                                               @RequestParam(value="createdId")String createdId) {
+            HashMap<String, Object> resultMap = new HashMap<String, Object>();
+            List<KfashionImage> polygonList = kfashionImageService.selectPolygonList(createdId);
+            resultMap.put("polygonList", polygonList);
+            return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }
+
+        /**
+         * 폴리곤 좌표값 리스트
+         * @param httpRequest
+         * @param workNo
+         * @return locationPolygonList
+         * @throws
+         */
+
+        @GetMapping(value="/locationPolygonList")
+        public ResponseEntity<Object> locationPolygonList(HttpServletRequest httpRequest,
+                                                       @RequestParam(value="workNo")Long workNo){
+            List<KfashionImageLocationPolygonPoint> polyNoList = kfashionImageLocationPolygonPointService.selectPolyNoList(workNo);
+            System.out.println(polyNoList);
+            KfashionImageLocationPolygonPoint polygon = new KfashionImageLocationPolygonPoint();
+            List<KfashionImageLocationPolygonPoint> locationPolygonList = new ArrayList<>();
+            HashMap<String, Object> resultMap = new HashMap<String, Object>();
+            if(polyNoList != null) {
+                for(int i=0; i < polyNoList.size(); i++) {
+                    polygon.setWorkNo(polyNoList.get(i).getWorkNo());
+                    polygon.setPolyNo(polyNoList.get(i).getPolyNo());
+                    polygon.setNo(polyNoList.get(i).getNo());
+                    locationPolygonList.addAll(kfashionImageLocationPolygonPointService.selectLocationPolygonList(polygon));
+                }
+                List<Integer> polyNo = kfashionImageLocationPolygonPointService.selectPolyNo(workNo);
+                resultMap.put("polyNo",polyNo);
+                resultMap.put("locationPolygonList", locationPolygonList);
+            }
+            return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }
 
 }

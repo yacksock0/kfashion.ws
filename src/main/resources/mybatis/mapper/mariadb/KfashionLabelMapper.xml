@@ -235,9 +235,18 @@
           ORDER BY kfashion_label.no
     </select>
 
+    <delete id="deleteProfessionalLabel">
+            DELETE
+            FROM kfashion_label
+            WHERE work_no = #{workNo}
+            AND work_step = #{workStep}
+    </delete>
 
-    <delete id="deleteProfessionalLabel" parameterType="Int">
-            DELETE FROM kfashion_label WHERE work_no = #{value}
+    <delete id="deleteBasicLabel">
+            DELETE
+            FROM kfashion_label
+            WHERE work_no = #{workNo}
+            AND work_step = #{workStep}
     </delete>
 
 

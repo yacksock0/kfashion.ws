@@ -5,6 +5,7 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionLabelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -70,7 +71,11 @@ public class KfashionLabelRepository {
     public List<KfashionLabel> selectStyleReviewLabelList(Long workNo) {
         return mapper.selectStyleReviewLabelList(workNo);
     }
-    public void deleteProfessionalLabel(int workNo) {
-        mapper.deleteProfessionalLabel(workNo);
+    public void deleteProfessionalLabel(HashMap<String, Object> deleteMap) {
+        mapper.deleteProfessionalLabel(deleteMap);
+    }
+
+    public void deleteBasicLabel(HashMap<String, Object> deleteMap) {
+        mapper.deleteBasicLabel(deleteMap);
     }
 }

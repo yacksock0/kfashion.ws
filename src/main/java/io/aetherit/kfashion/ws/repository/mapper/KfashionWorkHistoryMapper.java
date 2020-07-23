@@ -11,10 +11,12 @@ public interface KfashionWorkHistoryMapper {
     void insertWorkHistory(KfashionWorkHistory workHistory);
 
     void deleteWorkHistory(KfashionImage workImage);
-    void deleteLabelWorkHistory(int workNo, int workStep);
     KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId);
 
     void deleteAssignmentCancelWorkHistory(KfashionWorkHistory workHistory);
 
     String selectReceiveId(Long workNo);
+
+    void deleteProfessionalLabelWorkHistory(HashMap<String, Object> deleteMap);
+    void deleteBasicLabelWorkHistory(HashMap<String, Object> deleteMap);
 }

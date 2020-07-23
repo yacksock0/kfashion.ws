@@ -26,9 +26,6 @@ public class KfashionWorkHistoryRepository {
     public void deleteWorkHistory(KfashionImage workImage) {
         mapper.deleteWorkHistory(workImage);
     }
-    public void deleteLabelWorkHistory(int workNo, int workStep) {
-        mapper.deleteLabelWorkHistory(workNo, workStep);
-    }
 
     public  KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId) {
         return mapper.selectWorkProgressRate(createdId);
@@ -40,5 +37,13 @@ public class KfashionWorkHistoryRepository {
 
     public String selectReceiveId(Long workNo) {
         return mapper.selectReceiveId(workNo);
+    }
+
+    public void deleteProfessionalLabelWorkHistory(HashMap<String, Object> deleteMap) {
+        mapper.deleteProfessionalLabelWorkHistory(deleteMap);
+    }
+
+    public void deleteBasicLabelWorkHistory(HashMap<String, Object> deleteMap) {
+        mapper.deleteBasicLabelWorkHistory(deleteMap);
     }
 }
