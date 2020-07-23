@@ -49,12 +49,6 @@ public class KfashionImageLocationRectController {
     public ResponseEntity<String> insertLocationRect(HttpServletRequest httpServletRequest,
                                                      @RequestBody List<KfashionRectList> rectList) throws Exception {
         String msg= "";
-        System.out.println("q11111111122222212123123123112312312312313123123123123123123131231111"+rectList);
-        System.out.println();
-        System.out.println();
-
-
-
         KfashionWork work = new KfashionWork();
         work.setNo(rectList.get(0).getWorkNo());
         work.setWorkState(rectList.get(0).getWorkStep());
@@ -68,7 +62,7 @@ public class KfashionImageLocationRectController {
 
 
         KfashionImageLocationRect rect = new KfashionImageLocationRect();
-        for(int i = 1; i<rectList.size();i++){
+        for(int i = 0; i<rectList.size();i++){
             rect.setWorkNo(rectList.get(i).getWorkNo());
             rect.setWorkStep(rectList.get(i).getWorkStep());
             rect.setRectNo(rectList.get(i).getId());
