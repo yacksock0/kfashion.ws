@@ -5,7 +5,6 @@
         <result property="imgData"             column="img_data" />
         <result property="workName"             column="work_name" />
         <result property="fileName"             column="file_name" />
-        <result property="comment"             column="comment" />
         <result property="createdId"             column="created_id" />
         <result property="createdDatetime"      column="created_datetime" />
         <result property="updatedDatetime"      column="updated_datetime" />
@@ -42,18 +41,21 @@
 
     <select id="selectRectList" resultMap="kfashionImageResultMap" parameterType="String">
         SELECT DISTINCT
-            kfashion_image.work_no,
-            SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name,
-            CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
-            kfashion_work.created_datetime,
-            kfashion_work_history.created_id,
-            kfashion_comment.comment
+        kfashion_image.work_no,
+        SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name,
+        CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
+        kfashion_work.created_datetime,
+        kfashion_work_history.created_id,
+        kfashion_comment.comment
         FROM kfashion_image
         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =3)
         WHERE kfashion_work_history.created_id = #{createdId}
-          AND kfashion_work_history.work_step = 2
+        AND kfashion_work_history.work_step = 2
+        AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                    FROM kfashion_work_history
+                                                    WHERE kfashion_work_history.work_step = 3)
         ORDER BY kfashion_image.work_no DESC
     </select>
 
@@ -68,9 +70,12 @@
         FROM kfashion_image
         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        LEFT OUTER JOIN kfashion_comment ON (kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =4)
+        LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =4)
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 3
+        AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                    FROM kfashion_work_history
+                                                    WHERE kfashion_work_history.work_step = 4)
         ORDER BY kfashion_image.work_no DESC
     </select>
 
@@ -96,8 +101,8 @@
         kfashion_work.created_datetime,
         kfashion_work_history.created_id
         FROM kfashion_image
-            INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
-            INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+        INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 5
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
@@ -122,19 +127,19 @@
     </select>
 
     <select id="selectInspectionHighList" resultMap="kfashionImageResultMap">
-       SELECT DISTINCT
+        SELECT DISTINCT
             kfashion_image.work_no,
             SUBSTRING_INDEX(kfashion_work.work_name,'.',1) work_name,
             CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
             kfashion_work_history.created_datetime
-        FROM kfashion_image
-                 INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
-                 INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-                 LEFT JOIN kfashion_comment ON kfashion_image.work_no = kfashion_comment.work_no
-        WHERE kfashion_work_history.work_step = 4
-          AND kfashion_image.work_no NOT IN (SELECT work_no
-                                             FROM kfashion_comment)
-        GROUP BY kfashion_image.work_no
+         FROM kfashion_image
+             INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+             INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+             LEFT JOIN kfashion_comment ON kfashion_image.work_no = kfashion_comment.work_no
+         WHERE kfashion_work_history.work_step = 4
+         AND kfashion_image.work_no NOT IN (SELECT work_no
+                                            FROM kfashion_comment)
+         GROUP BY kfashion_image.work_no
     </select>
     <select id="recentlyImg" resultMap="kfashionImageResultMap" >
         SELECT DISTINCT
