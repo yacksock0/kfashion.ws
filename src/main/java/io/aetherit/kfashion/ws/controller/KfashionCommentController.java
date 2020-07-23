@@ -26,7 +26,7 @@ public class KfashionCommentController {
     }
 
     /**
-     * 고등학생 작업 리턴 코멘트
+     * 기본 작업 리턴 코멘트
      * @param kfashionComment
      * @return ResponseEntity
      * @throws Exception
@@ -34,9 +34,8 @@ public class KfashionCommentController {
 
     @PostMapping(value = "/highComment")
     public ResponseEntity<Object> highComment(HttpServletRequest httpRequest,
-                                                   @RequestBody KfashionComment kfashionComment) throws Exception {
+                                                   @RequestBody KfashionComment kfashionComment) {
         kfashionComment.setReceiveId(kfashionWorkHistoryService.selectReceiveId(kfashionComment.getWorkNo()));
-
         if(kfashionComment.getWorkStep() == 3) {
             kfashionComment.setCommentNo(1);
             kfashionCommentService.insertHighPolyComment(kfashionComment);

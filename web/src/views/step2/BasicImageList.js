@@ -70,7 +70,6 @@ class BasicImageList extends React.Component {
         this.props.polygonStore.initStore();
     }
     handleClick = (workNo, imageData,polyNo) => {
-
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData,polyNo);
             console.log('selectedPoly@@@@@@',polyNo)

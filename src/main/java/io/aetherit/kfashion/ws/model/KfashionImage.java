@@ -21,6 +21,7 @@ public class KfashionImage implements Serializable {
     private String fileName;
     private byte[] imgData;
     private String createdId;
+    private String comment;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;
 }

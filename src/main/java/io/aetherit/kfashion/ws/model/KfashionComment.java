@@ -16,6 +16,7 @@ public class KfashionComment {
     private Long workNo;
     private int workStep;
     private int workStep1;
+    private int workType;
     private int commentNo;
     private char complete;
     private String comment;

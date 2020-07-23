@@ -658,6 +658,7 @@ class Step2 extends React.Component {
                 .then(res => {
                     if (res.status === 200) {
                         alert("작업을 저장하였습니다.")
+                        this.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
                         this.setState({
                             tabIndex1: 1,
                             workNo: 0,
@@ -908,9 +909,6 @@ class Step2 extends React.Component {
                                                  </div>) : ''
                                              }
                                          </div>
-                                         {this.state.sleeveNo1 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.state.sleeveName1} </Button> ) : ''
-                                         }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
