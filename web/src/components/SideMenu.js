@@ -186,6 +186,7 @@ export default function SideMenu(props) {
                             </List>
                         </Collapse>
                     </Link>
+
                 ):''}
                 { loginUser.isAdmin == 'Y'?  (
                         <ListItem button>

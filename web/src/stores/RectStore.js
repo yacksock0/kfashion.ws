@@ -123,7 +123,7 @@ export default class RectStore {
         }
     });
 
-    doRectLocationUp = flow(function* doRectLocationUp(doAction) {
+    doRectLocationUp = flow(function* doRectLocationUp(changeWorkNo) {
         this.state = State.Pending;
         try {
 
@@ -147,6 +147,7 @@ export default class RectStore {
                 // const createdId = this.NewRectLocation.createdId;
                 // this.LoadRectImage(createdId);
                 this.doPolygonLocationUp();
+                changeWorkNo(0);
             };
 
 
