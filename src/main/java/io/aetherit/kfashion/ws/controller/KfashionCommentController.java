@@ -36,6 +36,7 @@ public class KfashionCommentController {
     public ResponseEntity<Object> highComment(HttpServletRequest httpRequest,
                                                    @RequestBody KfashionComment kfashionComment) {
         kfashionComment.setReceiveId(kfashionWorkHistoryService.selectReceiveId(kfashionComment.getWorkNo()));
+
         if(kfashionComment.getWorkStep() == 3) {
             kfashionComment.setCommentNo(1);
             kfashionCommentService.insertHighPolyComment(kfashionComment);

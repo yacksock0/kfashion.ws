@@ -658,7 +658,7 @@ class Step2 extends React.Component {
                 .then(res => {
                     if (res.status === 200) {
                         alert("작업을 저장하였습니다.")
-                        this.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
+                        this.props.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
                         this.setState({
                             tabIndex1: 1,
                             workNo: 0,

@@ -54,8 +54,11 @@
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 2
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
-                                                    FROM kfashion_work_history
-                                                    WHERE kfashion_work_history.work_step = 3)
+                                           FROM kfashion_work_history
+                                           WHERE kfashion_work_history.work_step = 3
+                                            AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
+                                                                                      FROM kfashion_comment
+                                                                                      WHERE kfashion_comment.work_step = 3))
         ORDER BY kfashion_image.work_no DESC
     </select>
 
@@ -75,7 +78,10 @@
         AND kfashion_work_history.work_step = 3
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                                     FROM kfashion_work_history
-                                                    WHERE kfashion_work_history.work_step = 4)
+                                                    WHERE kfashion_work_history.work_step = 4
+                                                    AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
+                                                                                      FROM kfashion_comment
+                                                                                      WHERE kfashion_comment.work_step = 4))
         ORDER BY kfashion_image.work_no DESC
     </select>
 
@@ -83,7 +89,6 @@
         SELECT img_data
         FROM kfashion_image
         WHERE work_no = #{workNo}
-
     </select>
 
 
