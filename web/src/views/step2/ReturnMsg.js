@@ -12,20 +12,18 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 
-@inject('authStore', 'messageStore')
+@inject('authStore', 'messageStore','checkHighLabelStore')
 @observer
 export default class ReturnMsg extends React.Component {
     constructor(props) {
         super(...arguments, props);
         this.state ={
             open:false,
-            poly:false,
-            label:false,
             workNo:'',
-            outer:false,
-            top:false,
-            pants:false,
-            onepiece:false,
+            poly:'',
+            label:'',
+            outer:'',
+            top:'',
         }
     }
     handleClickOpen = () => {
@@ -53,36 +51,21 @@ export default class ReturnMsg extends React.Component {
             })
             alert('작업이 반송처리 되었습니다')
         }
+        this.props.checkHighLabelStore.LoadInspectionHighList();
     }
     handleChangeMsg=(e)=>{
         this.props.messageStore.changeComment(e.target.value)
     }
     handleChange = (event) => {
-        this.setState({ ...this.state, [event.target.name]: event.target.checked });
-        if(!this.state.poly == true){
-        this.props.messageStore.changeWorkStep(event.target.value)
-        this.setState({outer:true, top:true, pants:true, onepiece:true})
-        }else{
-            this.props.messageStore.changeWorkStep('')
-            this.setState({outer:false, top:false, pants:false, onepiece:false})
-        }
+        {this.props.messageStore.checkBox.poly == false? this.props.messageStore.checkPoly(true) : this.props.messageStore.checkPoly(false) }
     };
     handleChange1 = (event) => {
-        this.setState({...this.state, [event.target.name]: event.target.checked});
-        if (!this.state.label == true) {
-            this.props.messageStore.changeWorkStep1(event.target.value)
-        }else{
-            this.props.messageStore.changeWorkStep1('')
-        }
+        {this.props.messageStore.checkBox.label == false? this.props.messageStore.checkLabel(true) : this.props.messageStore.checkLabel(false) }
     };
     handleChangeType = (event) => {
-        this.setState({...this.state, [event.target.name]: event.target.checked});
-        this.setState({poly:true})
-        {this.state[event.target.name] !== true ? this.props.messageStore.changeWorkType(event.target.name) :this.props.messageStore.changeWorkType('')}
-
+        {this.props.messageStore.checkBox[event.target.name] !== true ? this.props.messageStore.changeWorkType(event.target.name) :this.props.messageStore.changeWorkType1(event.target.name)}
     };
     render() {
-        const {poly, outer, top, pants, onepiece} = this.state;
         const comment = this.props.messageStore.newMsg.comment;
         return (
             <div>
@@ -97,30 +80,30 @@ export default class ReturnMsg extends React.Component {
                         </DialogContentText>
                         <FormGroup row>
                             <FormControlLabel
-                                control={<Checkbox checked={poly} value={3} onChange={this.handleChange} name="poly" />}
+                                control={<Checkbox checked={this.props.messageStore.checkBox.poly} value={3} onChange={this.handleChange} name="poly" />}
                                 label="영역지정 : "
                             />
 
                             <FormControlLabel
-                                control={<Checkbox checked={outer} onChange={this.handleChangeType} name="outer" />}
+                                control={<Checkbox checked={this.props.messageStore.checkBox.outer} onChange={this.handleChangeType} name="outer" />}
                                 label="아우터"
                             />
                             <FormControlLabel
-                                control={<Checkbox checked={top} onChange={this.handleChangeType} name="top" />}
+                                control={<Checkbox checked={this.props.messageStore.checkBox.top} onChange={this.handleChangeType} name="top" />}
                                 label="상의"
                             />
                             <FormControlLabel
-                                control={<Checkbox checked={pants} onChange={this.handleChangeType} name="pants" />}
+                                control={<Checkbox checked={this.props.messageStore.checkBox.pants} onChange={this.handleChangeType} name="pants" />}
                                 label="하의"
                             />
                             <FormControlLabel
-                                control={<Checkbox checked={onepiece}  onChange={this.handleChangeType} name="onepiece" />}
+                                control={<Checkbox checked={this.props.messageStore.checkBox.onepiece}  onChange={this.handleChangeType} name="onepiece" />}
                                 label="원피스"
                             />
                         </FormGroup>
                         <FormGroup>
                         <FormControlLabel
-                            control={<Checkbox value={4} onChange={this.handleChange1} name="label" />}
+                            control={<Checkbox checked={this.props.messageStore.checkBox.label} value={4} onChange={this.handleChange1} name="label" />}
                             label="레이블링"
                         />
                         </FormGroup>

@@ -209,6 +209,7 @@ class HighCheckList extends React.Component {
         this.setState({tabIndex2:tabIndex2})
     }
     render() {
+        const {inspectionHighList} = this.props.checkHighLabelStore;
         const {classes} = this.props;
         const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onePieceReviewHighLabel} =this.props.checkHighLabelStore;
         return (
@@ -341,7 +342,7 @@ class HighCheckList extends React.Component {
                                 }
                                 columns={this.state.columns}
                                 data={!!this.props.checkHighLabelStore.inspectionHighList ?
-                                    this.props.checkHighLabelStore.inspectionHighList.map((item) => {
+                                    inspectionHighList.map((item) => {
                                         return {
                                             workNo: item.workNo,
                                             fileName: item.fileName,

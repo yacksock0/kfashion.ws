@@ -77,7 +77,6 @@ export default class CheckHighLabelStore {
     @action changeAuthorityNo = (authorityNo) => {
         this.authorityNo = authorityNo;
     }
-
     LoadInspectionHighList = flow(function* loadInspectionHighList() {
         this.inspectionHighList = [];
         try {

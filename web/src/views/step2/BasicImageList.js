@@ -87,7 +87,6 @@ class BasicImageList extends React.Component {
     render() {
         const {basicLabelList} = this.state;
         const polyNo = this.props.polygonStore.tabIndex1-1;
-        const comment = this.props.polygonStore.polygonList;
         return (
             <MaterialTable
                 icons={tableIcons}
