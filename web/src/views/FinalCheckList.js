@@ -131,41 +131,6 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
-const handleClose = () => {
-    this.setState({open:false,})
-};
-class ReturnDialog extends React.Component{
-    render() {
-        return(
-            <div>
-                <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            작업 리턴 사유를 입력하세요.
-                        </DialogContentText>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                        />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            취소
-                        </Button>
-                        <Button onClick={handleClose} color="primary">
-                            확인
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
-        );
-    }
-}
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore', 'polygonStore')
 @observer
 class FinalCheckList extends React.Component {
@@ -191,8 +156,8 @@ class FinalCheckList extends React.Component {
             count: 0,
             data: [],
             columns: [
-                {title: '번호', field: 'workNo',type: 'numeric', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '번호', field: 'workNo',type: 'number'},
+                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80}}/> },
                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                 {title: '생성자', field: 'createdId', type: 'string'},
@@ -621,8 +586,17 @@ class FinalCheckList extends React.Component {
                                                 }) : []}
                                             title="이미지 리스트"
                                             options={{
+                                                sorting:false,
                                                 search: true,
                                                 actionsColumnIndex: -1,
+                                                headerStyle: {
+                                                    backgroundColor: '#000000',
+                                                    color: '#FFF',
+                                                    textAlign:'center',
+                                                },
+                                                cellStyle: {
+                                                    textAlign: 'center'
+                                                },
                                             }}
                                             actions={
                                                 [
@@ -642,11 +616,7 @@ class FinalCheckList extends React.Component {
                                         />
                                     </TabPanel>
                                 </Tabs>
-
                             </div>
-                        </Grid>
-                        <Grid item xs={4}>
-
                         </Grid>
                     </Grid>
                 </div>

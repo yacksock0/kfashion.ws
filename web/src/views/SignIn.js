@@ -14,10 +14,9 @@ const style = theme => ({
     appBarSpacer: theme.mixins.toolbar,
     container : {
         margin:'auto',
-        marginTop: '250px',
+        marginTop: '150px',
     },
     paper: {
-        marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -32,7 +31,6 @@ const style = theme => ({
     },
     form: {
         width: '100%',
-        marginTop: theme.spacing(1),
     },
     submit: {
         margin: theme.spacing(3, 0, 2),

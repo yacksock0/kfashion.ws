@@ -3,7 +3,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 
-import {Container, Toolbar, Typography} from "@material-ui/core";
+import {Grid,Typography} from "@material-ui/core";
 
 
 const styles = theme => ({
@@ -12,16 +12,25 @@ const styles = theme => ({
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        width: 1920,
+        height: 940,
+        objectFit: 'contain',
     },
     toolbar: {
         width: '100%',
     },
-    test:{
-        float: 'left'
-    },
+    mainTitle:{
+            position:'absolute',
+            fontFamily: 'NotoSansCJKkr',
+            fontsize: 47,
+            fontWeight: 'bold',
+            fontStretch: 'normal',
+            fontStyle: 'normal',
+            lineHeight: 1.49,
+            letterSpacing: 'normal',
+            textAlign: 'center',
+            color: '#000000',
+    }
 });
 
 class Home extends React.Component {
@@ -35,18 +44,12 @@ class Home extends React.Component {
         const { classes } = this.props;
 
         return (
-            <Container component="main" className={classes.mainContainer}>
+            <div>
                 <div className={classes.appBarSpacer} />
-                <div className={classes.mainContent}>
-                    <img src='/images/mainbanner.jpg' />
-                    <Toolbar className={classes.toolbar}>
-                        {/*<Typography variant="h4" component="h2">*/}
-                        {/*    Kfashion에 오신걸 환영합니다.*/}
-                        {/*</Typography>*/}
-                    </Toolbar>
-
-                </div>
-            </Container>
+                    <Grid items xs={12} style={{}}>
+                    <img src='/images/mainbanner.jpg' style={{width:'100%',objectFit:'contain'}}/>
+                    </Grid>
+            </div>
         );
     }
 };

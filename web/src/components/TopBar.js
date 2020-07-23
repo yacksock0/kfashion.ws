@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
             marginLeft: theme.drawerWidth,
             backgroundColor : '#000000',
         },
+        backgroundColor : '#000000',
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -44,6 +45,8 @@ export default function TopBar(props) {
     return (
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
+                { isLoggedIn ? (
+
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -53,6 +56,7 @@ export default function TopBar(props) {
                 >
                     <MenuIcon />
                 </IconButton>
+                ) : ''}
                 { isLoggedIn ? (
                 <Stepper currentStep = {props.setStep}/>):''}
                 { isLoggedIn ? (

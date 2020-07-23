@@ -32,13 +32,6 @@ import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
 import ReturnMsg from "./ReturnMsg";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import TextField from "@material-ui/core/TextField";
-import DialogActions from "@material-ui/core/DialogActions";
-
 const styles = theme => ({   root: {
         width: "100%",
         marginTop: theme.spacing.unit * 3,
@@ -51,7 +44,7 @@ const styles = theme => ({   root: {
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'80%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -206,10 +199,10 @@ class HighCheckList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
-                {title: '반송', field: 'return',render : rowData => <ReturnMsg selectedNo ={rowData.workNo}/> },
+                {title: '반송', field: 'return',render : rowData => <ReturnMsg workNo={rowData.workNo}/> },
             ],
         }
     }
@@ -283,7 +276,7 @@ class HighCheckList extends React.Component {
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
                                         </TabList>
                                         <TabPanel>
-                                        <TableContainer  style={{height:'60vh'}}>
+                                        <TableContainer >
 
                                     <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                         <TableHead>
@@ -307,7 +300,7 @@ class HighCheckList extends React.Component {
                                     </TabPanel>
 
                                         <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
+                                            <TableContainer >
 
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
@@ -330,7 +323,7 @@ class HighCheckList extends React.Component {
                                             </TableContainer>
                                         </TabPanel>
                                         <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
+                                            <TableContainer>
 
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
@@ -354,7 +347,7 @@ class HighCheckList extends React.Component {
 
                                         </TabPanel>
                                         <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
+                                            <TableContainer>
 
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
@@ -400,7 +393,7 @@ class HighCheckList extends React.Component {
                                     search: true,
                                     actionsColumnIndex: -1,
                                     headerStyle: {
-                                        backgroundColor: '#01579b',
+                                        backgroundColor: '#000000',
                                         color: '#FFF',
                                         textAlign:'center',
                                     },

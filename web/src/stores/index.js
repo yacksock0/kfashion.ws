@@ -17,6 +17,7 @@ import ProfessionalListStore from "./ProfessionalListStore";
 import WorkStore from "./WorkStore";
 import CheckHighLabelStore from "./CheckHighLabelStore";
 import BasicCategoryStore from "./BasicCategoryStore";
+import MessageStore from "./MessageStore";
 
 
 
@@ -40,4 +41,5 @@ export const stores = {
     workStore : new WorkStore(),
     checkHighLabelStore : new CheckHighLabelStore(),
     basicCategoryStore : new BasicCategoryStore(),
+    messageStore : new MessageStore(),
 };
