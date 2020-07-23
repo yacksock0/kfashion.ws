@@ -18,6 +18,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
+import ErrorIcon from "@material-ui/icons/Error";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -84,6 +85,7 @@ class PolygonList extends React.Component {
         }
     }
     render() {
+        const comment = this.props.rectStore.rectList;
         return (
             <MaterialTable
                 icons={tableIcons}
@@ -96,6 +98,7 @@ class PolygonList extends React.Component {
                             workName: item.workName,
                             createdId: item.createdId,
                             createdDatetime: item.createdDatetime,
+                            comment : item.comment,
                         }
                     }) : []}
                 title="이미지 리스트"
@@ -112,7 +115,13 @@ class PolygonList extends React.Component {
                         icon: CheckIcon,
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
-                    }
+                    },
+                    rowData => ({
+                        icon: ErrorIcon,
+                        iconProps:{color:"secondary"},
+                        tooltip: <h1 style={{lineHeight:1}}>{rowData.comment}</h1>,
+                        hidden: rowData.comment == null,
+                    })
                 ]}
             />
         );

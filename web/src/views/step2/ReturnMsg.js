@@ -36,16 +36,19 @@ export default class ReturnMsg extends React.Component {
         })
     };
     handleSubmit = () => {
-        // {this.props.messageStore.newMsg.comment == '' ? alert('')}
-        this.props.messageStore.changeWorkNo(this.props.workNo);
-        this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
-        this.props.messageStore.sendMsg();
-        this.props.messageStore.changeWorkStep('')
-        this.props.messageStore.changeWorkStep1('')
-        this.props.messageStore.changeComment('')
-        this.setState({
-            open:false,
-        })
+        if(this.props.messageStore.newMsg.comment == ''){alert('반송 단계 및 사유를 입력해 주세요')}
+        else {
+            this.props.messageStore.changeWorkNo(this.props.workNo);
+            this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
+            this.props.messageStore.sendMsg();
+            this.props.messageStore.changeWorkStep('')
+            this.props.messageStore.changeWorkStep1('')
+            this.props.messageStore.changeComment('')
+            this.setState({
+                open: false,
+            })
+            alert('작업이 반송처리 되었습니다')
+        }
     }
     handleChangeMsg=(e)=>{
         this.props.messageStore.changeComment(e.target.value)

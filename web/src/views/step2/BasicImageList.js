@@ -87,6 +87,7 @@ class BasicImageList extends React.Component {
     render() {
         const {basicLabelList} = this.state;
         const polyNo = this.props.polygonStore.tabIndex1-1;
+        const comment = this.props.polygonStore.polygonList;
         return (
             <MaterialTable
                 icons={tableIcons}
@@ -99,6 +100,7 @@ class BasicImageList extends React.Component {
                             workName: item.workName,
                             createdId: item.createdId,
                             createdDatetime: item.createdDatetime,
+                            comment: item.comment
                         }
                     }) : []}
                 title="이미지 리스트"
@@ -113,8 +115,8 @@ class BasicImageList extends React.Component {
                     },
                     rowData => ({
                         icon: ErrorIcon,
-                        tooltip: 'Comment',
-                        // hidden: rowData.createdId !== this.props.authStore.loginUser.id,
+                        tooltip: <h1 style={{lineHeight:1}}>{rowData.comment}</h1>,
+                        hidden: rowData.comment == null,
                     })
                     // {
                     //     icon: Clear,
