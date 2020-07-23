@@ -5,6 +5,8 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionCommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 @Repository
 public class KfashionCommentRepository {
 
@@ -22,5 +24,9 @@ public class KfashionCommentRepository {
 
     public void insertHighPolyComment(KfashionComment kfashionComment) {
         mapper.insertHighPolyComment(kfashionComment);
+    }
+
+    public int selectCommentNo(Map<String, Object> selectMap) {
+        return mapper.selectCommentNo(selectMap);
     }
 }

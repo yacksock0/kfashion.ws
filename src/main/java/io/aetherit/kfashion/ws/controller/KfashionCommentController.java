@@ -61,7 +61,11 @@ public class KfashionCommentController {
                 kfashionImageLocationRectService.deleteRect(deleteMap);
             }
             if(kfashionComment.getWorkType2() == 2) {
-                kfashionComment.setCommentNo(1);
+                Map<String,Object> selectMap = new HashMap<>();
+                selectMap.put("workNo",kfashionComment.getWorkNo());
+                selectMap.put("workStep",kfashionComment.getWorkStep1());
+                int commentNo =kfashionCommentService.selectCommentNo(selectMap);
+                kfashionComment.setCommentNo(commentNo);
                 kfashionComment.setWorkStep(3);
                 kfashionComment.setWorkType(2);
                 kfashionCommentService.insertHighPolyComment(kfashionComment);
@@ -74,7 +78,11 @@ public class KfashionCommentController {
                 kfashionImageLocationRectService.deleteRect(deleteMap);
             }
             if(kfashionComment.getWorkType3() == 3) {
-                kfashionComment.setCommentNo(1);
+                Map<String,Object> selectMap = new HashMap<>();
+                selectMap.put("workNo",kfashionComment.getWorkNo());
+                selectMap.put("workStep",kfashionComment.getWorkStep1());
+                int commentNo =kfashionCommentService.selectCommentNo(selectMap);
+                kfashionComment.setCommentNo(commentNo);
                 kfashionComment.setWorkStep(3);
                 kfashionComment.setWorkType(3);
                 kfashionCommentService.insertHighPolyComment(kfashionComment);
@@ -87,7 +95,11 @@ public class KfashionCommentController {
                 kfashionImageLocationRectService.deleteRect(deleteMap);
             }
             if(kfashionComment.getWorkType4() == 4) {
-                kfashionComment.setCommentNo(1);
+                Map<String,Object> selectMap = new HashMap<>();
+                selectMap.put("workNo",kfashionComment.getWorkNo());
+                selectMap.put("workStep",kfashionComment.getWorkStep1());
+                int commentNo =kfashionCommentService.selectCommentNo(selectMap);
+                kfashionComment.setCommentNo(commentNo);
                 kfashionComment.setWorkStep(3);
                 kfashionComment.setWorkType(4);
                 kfashionCommentService.insertHighPolyComment(kfashionComment);
