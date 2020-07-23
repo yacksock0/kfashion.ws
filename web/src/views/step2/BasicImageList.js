@@ -53,7 +53,7 @@ class BasicImageList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 70, height:70,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
@@ -105,7 +105,16 @@ class BasicImageList extends React.Component {
                     }) : []}
                 title="이미지 리스트"
                 options={{
+                    sorting:false,
                     actionsColumnIndex: -1,
+                    headerStyle: {
+                        backgroundColor: '#000000',
+                        color: '#FFF',
+                        textAlign:'center',
+                    },
+                    cellStyle: {
+                        textAlign: 'center'
+                    },
                 }}
                 actions={[
                     {
