@@ -26,7 +26,7 @@ public class KfashionImageService {
         return repository.selectBoundaryList();
     }
 
-    public Map<String, Object> getByteImage(int workNo) {
+    public Map<String, Object> getByteImage(Long workNo) {
       return repository.getByteImage(workNo);
     }
 

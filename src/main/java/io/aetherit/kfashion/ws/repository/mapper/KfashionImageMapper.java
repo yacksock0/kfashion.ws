@@ -10,7 +10,7 @@ public interface KfashionImageMapper {
 
     List<KfashionImage> selectBoundaryList();
 
-    Map<String, Object> getByteImage(int workNo);
+    Map<String, Object> getByteImage(Long workNo);
 
     List<KfashionImage> selectPolygonList(String createdId);
 
