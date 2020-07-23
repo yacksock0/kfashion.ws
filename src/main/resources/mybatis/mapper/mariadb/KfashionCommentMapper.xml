@@ -19,6 +19,7 @@
         INTO kfashion_comment (
         work_no,
         work_step,
+        work_type,
         comment_no,
         comment,
         send_id,
@@ -28,6 +29,7 @@
         ) VALUES (
         #{workNo},
         #{workStep},
+        #{workType},
         #{commentNo},
         #{comment},
         #{sendId},
@@ -42,6 +44,7 @@
         INTO kfashion_comment (
         work_no,
         work_step,
+        work_type,
         comment_no,
         comment,
         send_id,
@@ -50,7 +53,8 @@
         updated_datetime
         ) VALUES (
         #{workNo},
-        #{workStep1},
+        #{workStep},
+        #{workType},
         #{commentNo},
         #{comment},
         #{sendId},
@@ -59,4 +63,11 @@
         NOW()
         )
     </insert>
+
+    <select id="selectCommentNo" resultType="int">
+        SELECT SUM(comment_no+1) AS comment_no
+        FROM kfashion_comment
+        WHERE work_no = #{workNo}
+        AND work_step = #{workStep}
+    </select>
 </mapper>
