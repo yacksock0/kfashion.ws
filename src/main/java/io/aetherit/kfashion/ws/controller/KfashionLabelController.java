@@ -39,7 +39,7 @@ public class KfashionLabelController {
          * 기본라벨 인서트
          * @param httpServletRequest
          * @param basicLabel
-         * @return String
+         * @return ResponseEntity
          * @throws Exception
          */
 
@@ -149,7 +149,7 @@ public class KfashionLabelController {
          * 전문가라벨 인서트
          * @param httpServletRequest
          * @param professionalLabel
-         * @return String
+         * @return ResponseEntity
          * @throws Exception
          */
 
@@ -389,6 +389,12 @@ public class KfashionLabelController {
         }
 
 
+        /**
+         * 기본 라벨 리스트
+         * @param createdId
+         * @return ResponseEntity
+         * @throws Exception
+         */
         @GetMapping(value="/basicLabelList")
         public ResponseEntity<Object> basicLabelList(HttpServletRequest httpRequest,
                                                      @RequestParam(value="createdId")String createdId) {
@@ -398,6 +404,13 @@ public class KfashionLabelController {
                 System.out.println(basicLabelList);
                 return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
+
+        /**
+         * 전문가 라벨 리뷰리스트
+         * @param workNo
+         * @return ResponseEntity
+         * @throws Exception
+         */
 
         @GetMapping(value="/reviewLabelList")
         public ResponseEntity<Object> reviewLabelList(HttpServletRequest httpRequest,
@@ -659,7 +672,12 @@ public class KfashionLabelController {
                 return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
 
-
+        /**
+         * 일반 라벨 리뷰 리스트
+         * @param workNo
+         * @return ResponseEntity
+         * @throws Exception
+         */
 
         @GetMapping(value="/reviewHighLabelList")
         public ResponseEntity<Object> reviewHighLabelList(HttpServletRequest httpRequest,
@@ -796,6 +814,14 @@ public class KfashionLabelController {
                 }
                 return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
+
+        /**
+         * 전문가 라벨 삭제
+         * @param workNo
+         * @return ResponseEntity
+         * @throws Exception
+         */
+
         @GetMapping(value="/deleteProfessionalLabel")
         public ResponseEntity<Object> deleteProfessionalLabel(HttpServletRequest httpRequest,
                                                               @RequestParam(value="workNo")int workNo) {

@@ -58,4 +58,11 @@
         AND created_id = #{createdId}
         AND work_step = #{workStep};
     </delete>
+
+    <select id="selectReceiveId" resultType="String">
+        SELECT created_id
+        FROM kfashion_work_history
+        WHERE work_no =#{workNo}
+        AND work_step = 2
+    </select>
 </mapper>

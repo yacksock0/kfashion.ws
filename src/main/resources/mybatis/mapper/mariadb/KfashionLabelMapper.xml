@@ -15,9 +15,6 @@
     </resultMap>
 
     <insert id="insertBasicLabel" parameterType="KfashionLabel">
-
-
-
         INSERT
         INTO kfashion_label (
         work_no,

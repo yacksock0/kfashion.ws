@@ -131,7 +131,10 @@
          FROM kfashion_image
              LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
              RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+             LEFT JOIN kfashion_comment ON kfashion_image.work_no = kfashion_comment.work_no
          WHERE kfashion_work_history.work_step = 4
+         AND kfashion_image.work_no NOT IN (SELECT work_no
+                                            FROM kfashion_comment)
          GROUP BY kfashion_image.work_no
     </select>
     <select id="recentlyImg" resultMap="kfashionImageResultMap" >

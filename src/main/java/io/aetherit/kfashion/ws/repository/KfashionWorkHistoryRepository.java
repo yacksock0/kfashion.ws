@@ -37,4 +37,8 @@ public class KfashionWorkHistoryRepository {
     public void deleteAssignmentCancelWorkHistory(KfashionWorkHistory workHistory) {
        mapper.deleteAssignmentCancelWorkHistory(workHistory);
     }
+
+    public String selectReceiveId(Long workNo) {
+        return mapper.selectReceiveId(workNo);
+    }
 }
