@@ -27,4 +27,11 @@
         )
     </insert>
 
+    <delete id="deletePoly">
+        DELETE
+        FROM kfashion_image_location_polygon
+        WHERE work_no = #{workNo}
+        AND poly_no = #{polyNo}
+    </delete>
+
 </mapper>

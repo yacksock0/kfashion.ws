@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class KfashionImageLocationPolygonPointService {
@@ -39,5 +40,9 @@ public class KfashionImageLocationPolygonPointService {
 
     public int[] selectLabelNo(Long workNo) {
         return  repository.selectLabelNo(workNo);
+    }
+
+    public void deletePolyPoint(Map<String, Object> deleteMap) {
+        repository.deletePolyPoint(deleteMap);
     }
 }

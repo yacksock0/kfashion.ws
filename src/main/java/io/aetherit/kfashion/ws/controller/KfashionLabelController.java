@@ -845,7 +845,6 @@ public class KfashionLabelController {
         @GetMapping(value="/deleteBasicLabel")
         public ResponseEntity<Object> deleteBasicLabel(HttpServletRequest httpRequest,
                                                               @RequestParam(value="workNo")Long workNo) {
-
                 HashMap<String, Object> resultMap = new HashMap<String, Object>();
                 HashMap<String, Object> deleteMap = new HashMap<String, Object>();
                 deleteMap.put("workNo",workNo);
