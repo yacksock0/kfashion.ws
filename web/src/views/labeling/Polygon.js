@@ -547,7 +547,6 @@ class Polygon extends React.Component {
             });
 
             canvas.setBackgroundImage(img);
-            console.log("lens : "+ lens);
             canvas.add(lens);
             canvas.centerObject(img);//******* issue no longer here****
 
@@ -556,9 +555,10 @@ class Polygon extends React.Component {
         this.canvas.renderAll.bind(canvas);
 
         this.canvas.on('mouse:move', function(e) {
-                x = canvas.getPointer(e, false).x;;
+
+                x = canvas.getPointer(e, false).x;
                 y =  canvas.getPointer(e, false).y;
-                if (x > 150 && x < 750) {
+                if (x > 0 && x < 800) {
                     lens.set('left', -(scale - 1) * x );
                     lens.set('top', -(scale - 1) * y);
                 }
@@ -635,8 +635,18 @@ class Polygon extends React.Component {
                         <Grid item xs={12} lg={5} xl={5}>
                             <div>
                                 {/*<Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>*/}
-                                <Button onClick={this.zoomON}>돋보기 켜기</Button>
-                                <Button onClick={this.zoomOFF}>돋보기 끄기</Button>
+                                <Button
+                                    onClick={this.zoomON}
+                                    disabled={this.state.workNo ==0}
+                                >
+                                    돋보기 켜기
+                                </Button>
+                                <Button
+                                    onClick={this.zoomOFF}
+                                    disabled={this.state.workNo ==0}
+                                >
+                                    돋보기 끄기
+                                </Button>
                                 <canvas id="c" width={800} height={800}>  </canvas>
                             </div>
                         </Grid>
