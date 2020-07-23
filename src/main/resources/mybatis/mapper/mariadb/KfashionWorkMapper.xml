@@ -62,7 +62,7 @@
         SELECT work_no
         FROM kfashion_work_history
         WHERE work_step = #{currentNo}
-        AND work_no not in(SELECT work_no
+        AND work_no NOT IN(SELECT work_no
 						    FROM kfashion_work_history
 							WHERE work_step = #{authorityNo})
         ORDER BY work_no ASC limit  #{workCount}
@@ -73,7 +73,7 @@
           SELECT COUNT(*)
           FROM kfashion_work_history
           WHERE work_step =1
-          AND work_no not in(SELECT work_no
+          AND work_no NOT IN(SELECT work_no
 								  FROM kfashion_work_history
 								  WHERE work_step = #{workState});
     </select>
@@ -83,7 +83,7 @@
         FROM kfashion_work_history
         WHERE work_step = #{workState}
           AND created_id = #{userId}
-          AND work_no not in (SELECT work_no
+          AND work_no NOT IN(SELECT work_no
                               FROM kfashion_work_history
                               WHERE work_step = #{workStep})
     </select>
@@ -93,7 +93,7 @@
         FROM kfashion_work_history
         WHERE work_step = #{currentNo}
         AND created_id = #{workId}
-        AND work_no not in(SELECT work_no
+        AND work_no NOT IN(SELECT work_no
 						    FROM kfashion_work_history
 							WHERE work_step = #{workStep})
         ORDER BY work_no ASC limit  #{workCount}

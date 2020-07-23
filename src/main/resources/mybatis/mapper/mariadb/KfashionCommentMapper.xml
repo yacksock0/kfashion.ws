@@ -1,0 +1,62 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionCommentMapper">
+    <resultMap id="kfashionCommentResultMap" type="KfashionComment">
+        <id property="workNo"                            column="work_no" />
+        <result property="workStep"                      column="work_step" />
+        <result property="workType"                      column="work_type" />
+        <result property="commentNo"                     column="comment_no" />
+        <result property="comment"                       column="comment" />
+        <result property="complete"                      column="complete" />
+        <result property="sendId"                        column="send_id" />
+        <result property="receiveId"                     column="receive_id" />
+        <result property="createdDatetime"               column="created_datetime" />
+        <result property="updatedDatetime"               column="updated_datetime" />
+    </resultMap>
+
+
+<insert id="insertHighPolyComment">
+        INSERT
+        INTO kfashion_comment (
+        work_no,
+        work_step,
+        comment_no,
+        comment,
+        send_id,
+        receive_id,
+        created_datetime,
+        updated_datetime
+        ) VALUES (
+        #{workNo},
+        #{workStep},
+        #{commentNo},
+        #{comment},
+        #{sendId},
+        #{receiveId},
+        NOW(),
+        NOW()
+        )
+    </insert>
+
+    <insert id="insertHighLabelComment">
+        INSERT
+        INTO kfashion_comment (
+        work_no,
+        work_step,
+        comment_no,
+        comment,
+        send_id,
+        receive_id,
+        created_datetime,
+        updated_datetime
+        ) VALUES (
+        #{workNo},
+        #{workStep1},
+        #{commentNo},
+        #{comment},
+        #{sendId},
+        #{receiveId},
+        NOW(),
+        NOW()
+        )
+    </insert>
+</mapper>

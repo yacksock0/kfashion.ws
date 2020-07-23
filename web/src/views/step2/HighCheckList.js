@@ -6,7 +6,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Edit from '@material-ui/icons/Edit';
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
-import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Container, Grid} from "@material-ui/core";
 import 'react-tabs/style/react-tabs.css';
 import AddBox from "@material-ui/icons/AddBox";
 import Check from "@material-ui/icons/Check";
@@ -32,13 +32,7 @@ import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
 import ReturnMsg from "./ReturnMsg";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import TextField from "@material-ui/core/TextField";
-import DialogActions from "@material-ui/core/DialogActions";
-
+import ErrorIcon from '@material-ui/icons/Error';
 const styles = theme => ({   root: {
         width: "100%",
         marginTop: theme.spacing.unit * 3,
@@ -51,7 +45,7 @@ const styles = theme => ({   root: {
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'80%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -133,45 +127,6 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-
-// @inject('checkHighLabelStore')
-// @observer
-// class returnDialog extends React.Component {
-//     handleClose=()=>{
-//         this.props.checkHighLabelStore.msgDialogOpen(false);
-//     }
-//     render() {
-//         return (
-//             <div>
-//                 <Dialog open={this.props.checkHighLabelStore.msgDialog} onClose={this.handleClose()} aria-labelledby="form-dialog-title">
-//                     <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-//                     <DialogContent>
-//                         <DialogContentText>
-//                             작업 리턴 사유를 입력하세요.
-//                         </DialogContentText>
-//                         <TextField
-//                             autoFocus
-//                             margin="dense"
-//                             id="name"
-//                             label="Email Address"
-//                             type="email"
-//                             fullWidth
-//                         />
-//                     </DialogContent>
-//                     <DialogActions>
-//                         <Button onClick={this.handleClose()} color="primary">
-//                             Cancel
-//                         </Button>
-//                         <Button onClick={this.handleClose()} color="primary">
-//                             Subscribe
-//                         </Button>
-//                     </DialogActions>
-//                 </Dialog>
-//             </div>
-//         );
-//     }
-// }
-
 @inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore')
 @observer
 class HighCheckList extends React.Component {
@@ -206,10 +161,10 @@ class HighCheckList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
-                {title: '반송', field: 'return',render : rowData => <ReturnMsg selectedNo ={rowData.workNo}/> },
+                {title: '반송', field: 'return',render : rowData => <ReturnMsg workNo={rowData.workNo}/> },
             ],
         }
     }
@@ -283,7 +238,7 @@ class HighCheckList extends React.Component {
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
                                         </TabList>
                                         <TabPanel>
-                                        <TableContainer  style={{height:'60vh'}}>
+                                        <TableContainer >
 
                                     <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                         <TableHead>
@@ -307,7 +262,7 @@ class HighCheckList extends React.Component {
                                     </TabPanel>
 
                                         <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
+                                            <TableContainer >
 
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
@@ -330,7 +285,7 @@ class HighCheckList extends React.Component {
                                             </TableContainer>
                                         </TabPanel>
                                         <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
+                                            <TableContainer>
 
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
@@ -354,7 +309,7 @@ class HighCheckList extends React.Component {
 
                                         </TabPanel>
                                         <TabPanel>
-                                            <TableContainer  style={{height:'60vh'}}>
+                                            <TableContainer>
 
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
@@ -400,7 +355,7 @@ class HighCheckList extends React.Component {
                                     search: true,
                                     actionsColumnIndex: -1,
                                     headerStyle: {
-                                        backgroundColor: '#01579b',
+                                        backgroundColor: '#000000',
                                         color: '#FFF',
                                         textAlign:'center',
                                     },
@@ -414,6 +369,7 @@ class HighCheckList extends React.Component {
                                         tooltip: 'Select Image',
                                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                                     },
+
                                     // {
                                     //     icon: Clear,
                                     //     tooltip: 'return',

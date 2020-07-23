@@ -34,12 +34,6 @@
         WHERE work_no = #{workNo}
     </delete>
 
-    <delete id="deleteLabelWorkHistory" parameterType="int">
-        DELETE
-        FROM kfashion_work_history
-        WHERE work_no = #{workNo}
-        AND work_step = #{workStep}
-    </delete>
 
     <select id="selectWorkProgressRate" resultMap="kfashionWorkHistoryResultMap">
         SELECT created_id
@@ -57,5 +51,25 @@
         WHERE work_no =#{workNo}
         AND created_id = #{createdId}
         AND work_step = #{workStep};
+    </delete>
+
+    <select id="selectReceiveId" resultType="String">
+        SELECT created_id
+        FROM kfashion_work_history
+        WHERE work_no =#{workNo}
+        AND work_step = 2
+    </select>
+    <delete id="deleteProfessionalLabelWorkHistory">
+        DELETE
+        FROM kfashion_work_history
+        WHERE work_no = #{workNo}
+        AND work_step = #{workStep}
+    </delete>
+
+    <delete id="deleteBasicLabelWorkHistory">
+        DELETE
+        FROM kfashion_work_history
+        WHERE work_no = #{workNo}
+        AND work_step = #{workStep}
     </delete>
 </mapper>

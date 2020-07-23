@@ -49,8 +49,8 @@ export default class ProImageList extends React.Component {
             count: 0,
             data: [],
             columns: [
-                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '번호', field: 'workNo',type: 'button'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',hidden:true},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
@@ -97,8 +97,18 @@ export default class ProImageList extends React.Component {
                         }
                     }) : []}
                 title="이미지 리스트"
+                onChangeColumnHidden={('createdDatetime',true)}
                 options={{
                     actionsColumnIndex: -1,
+                    sorting:false,
+                    headerStyle: {
+                        backgroundColor: '#000000',
+                        color: '#FFF',
+                        textAlign:'center',
+                    },
+                    cellStyle: {
+                        textAlign: 'center'
+                    },
                 }}
                 actions={[
                     {

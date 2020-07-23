@@ -20,6 +20,7 @@ import axios from "axios";
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
 import {toJS} from "mobx";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -70,7 +71,6 @@ class BasicImageList extends React.Component {
         this.props.polygonStore.initStore();
     }
     handleClick = (workNo, imageData,polyNo) => {
-
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData,polyNo);
             console.log('selectedPoly@@@@@@',polyNo)
@@ -87,6 +87,7 @@ class BasicImageList extends React.Component {
     render() {
         const {basicLabelList} = this.state;
         const polyNo = this.props.polygonStore.tabIndex1-1;
+        const comment = this.props.polygonStore.polygonList;
         return (
             <MaterialTable
                 icons={tableIcons}
@@ -99,6 +100,7 @@ class BasicImageList extends React.Component {
                             workName: item.workName,
                             createdId: item.createdId,
                             createdDatetime: item.createdDatetime,
+                            comment: item.comment
                         }
                     }) : []}
                 title="이미지 리스트"
@@ -111,6 +113,11 @@ class BasicImageList extends React.Component {
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo,polyNo)
                     },
+                    rowData => ({
+                        icon: ErrorIcon,
+                        tooltip: <h1 style={{lineHeight:1}}>{rowData.comment}</h1>,
+                        hidden: rowData.comment == null,
+                    })
                     // {
                     //     icon: Clear,
                     //     tooltip: 'return',

@@ -1,27 +1,28 @@
 package io.aetherit.kfashion.ws.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class KfashionImage implements Serializable {
+public class KfashionComment {
 
     private Long workNo;
-    private String workName;
-    private String fileName;
-    private byte[] imgData;
-    private String createdId;
+    private int workStep;
+    private int workStep1;
+    private int workType;
+    private int commentNo;
+    private char complete;
     private String comment;
+    private String sendId;
+    private String receiveId;
     private LocalDateTime createdDatetime;
-    private LocalDateTime updatedDatetime;
+    private LocalDateTime authorityDatetime;
+
 }

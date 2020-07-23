@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -74,7 +75,11 @@ public class KfashionLabelService {
         return repository.selectStyleReviewLabelList(workNo);
     }
 
-    public void deleteProfessionalLabel(int workNo) {
-        repository.deleteProfessionalLabel(workNo);
+    public void deleteProfessionalLabel(HashMap<String, Object> deleteMap) {
+        repository.deleteProfessionalLabel(deleteMap);
+    }
+
+    public void deleteBasicLabel(HashMap<String, Object> deleteMap) {
+        repository.deleteBasicLabel(deleteMap);
     }
 }
