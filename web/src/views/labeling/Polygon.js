@@ -225,7 +225,7 @@ class Polygon extends React.Component {
                     evented: false,
                 });
                 this.canvas.add(circle);
-                this.canvas.bringToFront(circle)
+                // this.canvas.bringToFront(circle);
                 this.canvas.renderAll();
                 this.polyCounter += 1;
             }
@@ -527,9 +527,11 @@ class Polygon extends React.Component {
                     ctx.arc(-this.left + x - this.width / 2, -this.top + y - this.height / 2, radius, 0, Math.PI * 2, true);
                 }
             });
+
             canvas.setBackgroundImage(img);
             canvas.add(lens);
             canvas.centerObject(img);//******* issue no longer here****
+
         });
         this.canvas = canvas;
         this.canvas.renderAll.bind(canvas);
@@ -540,6 +542,7 @@ class Polygon extends React.Component {
                 lens.set('left', -(scale - 1) * x );
                 lens.set('top', -(scale - 1) * y);
             }
+            canvas.bringToFront(lens);
             canvas.renderAll();
         });
     }
@@ -611,7 +614,7 @@ class Polygon extends React.Component {
                         <Grid item xs={12} lg={5} xl={5}>
                             <div>
                                 {/*<Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>*/}
-
+                                {/*<Button onClick={this.zoomAction(this.state.workNo)}>돋보</Button>*/}
                                 <canvas id="c" width={800} height={800}>  </canvas>
                             </div>
                         </Grid>
