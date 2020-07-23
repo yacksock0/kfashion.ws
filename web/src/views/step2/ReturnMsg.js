@@ -61,8 +61,10 @@ export default class ReturnMsg extends React.Component {
         this.setState({ ...this.state, [event.target.name]: event.target.checked });
         if(!this.state.poly == true){
         this.props.messageStore.changeWorkStep(event.target.value)
+        this.setState({outer:true, top:true, pants:true, onepiece:true})
         }else{
             this.props.messageStore.changeWorkStep('')
+            this.setState({outer:false, top:false, pants:false, onepiece:false})
         }
     };
     handleChange1 = (event) => {
@@ -73,40 +75,14 @@ export default class ReturnMsg extends React.Component {
             this.props.messageStore.changeWorkStep1('')
         }
     };
-    handleChangeType1 = (event) => {
+    handleChangeType = (event) => {
         this.setState({...this.state, [event.target.name]: event.target.checked});
-        if (!this.state.outer == true) {
-            this.props.messageStore.changeWorkType1(event.target.value)
-        }else{
-            this.props.messageStore.changeWorkType1('')
-        }
-    };
-    handleChangeType2 = (event) => {
-        this.setState({...this.state, [event.target.name]: event.target.checked});
-        if (!this.state.top == true) {
-            this.props.messageStore.changeWorkType2(event.target.value)
-        }else{
-            this.props.messageStore.changeWorkType2('')
-        }
-    };
-    handleChangeType3 = (event) => {
-        this.setState({...this.state, [event.target.name]: event.target.checked});
-        if (!this.state.pants == true) {
-            this.props.messageStore.changeWorkType3(event.target.value)
-        }else{
-            this.props.messageStore.changeWorkType3('')
-        }
-    };
-    handleChangeType4 = (event) => {
-        this.setState({...this.state, [event.target.name]: event.target.checked});
-        if (!this.state.onepiece == true) {
-            this.props.messageStore.changeWorkType4(event.target.value)
-        }else{
-            this.props.messageStore.changeWorkType4('')
-        }
+        this.setState({poly:true})
+        {this.state[event.target.name] !== true ? this.props.messageStore.changeWorkType(event.target.name) :this.props.messageStore.changeWorkType('')}
+
     };
     render() {
-        const {poly} = this.state;
+        const {poly, outer, top, pants, onepiece} = this.state;
         const comment = this.props.messageStore.newMsg.comment;
         return (
             <div>
@@ -126,19 +102,19 @@ export default class ReturnMsg extends React.Component {
                             />
 
                             <FormControlLabel
-                                control={<Checkbox value={1} onClick={this.handleChangeType1} name="outer" />}
+                                control={<Checkbox checked={outer} onChange={this.handleChangeType} name="outer" />}
                                 label="아우터"
                             />
                             <FormControlLabel
-                                control={<Checkbox value={2} onClick={this.handleChangeType2} name="top" />}
+                                control={<Checkbox checked={top} onChange={this.handleChangeType} name="top" />}
                                 label="상의"
                             />
                             <FormControlLabel
-                                control={<Checkbox value={3} onClick={this.handleChangeType3} name="pants" />}
+                                control={<Checkbox checked={pants} onChange={this.handleChangeType} name="pants" />}
                                 label="하의"
                             />
                             <FormControlLabel
-                                control={<Checkbox value={4} onClick={this.handleChangeType4} name="onepiece" />}
+                                control={<Checkbox checked={onepiece}  onChange={this.handleChangeType} name="onepiece" />}
                                 label="원피스"
                             />
                         </FormGroup>

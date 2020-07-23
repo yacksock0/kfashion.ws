@@ -34,21 +34,21 @@ export default class MessageStore {
     @action changeSendId=(value)=>{
         this.newMsg.sendId = value;
     }
-    @action changeWorkType1=(value)=>{
-        console.log('changeWorkType1',value)
-        this.newMsg.workType1 = value;
-    }
-    @action changeWorkType2=(value)=>{
-        console.log('changeWorkType2',value)
-        this.newMsg.workType2 = value;
-    }
-    @action changeWorkType3=(value)=>{
-        console.log('changeWorkType3',value)
-        this.newMsg.workType3 = value;
-    }
-    @action changeWorkType4=(value)=>{
-        console.log('changeWorkType4',value)
-        this.newMsg.workType4 = value;
+    @action changeWorkType=(value)=>{
+        console.log('changeWorkType',value)
+        if(value == 'outer'){
+            this.newMsg.workType1 = 1;
+            console.log('changeWorkType',this.newMsg.workType1)
+        }else if(value == 'top'){
+            this.newMsg.workType2 = 2;
+            console.log('changeWorkType',this.newMsg.workType2)
+        }else if(value == 'pants'){
+            this.newMsg.workType3 = 3;
+            console.log('changeWorkType',this.newMsg.workType3)
+        }if(value == 'onepiece') {
+            this.newMsg.workType4 = 4;
+            console.log('changeWorkType',this.newMsg.workType4)
+        }
     }
     sendMsg = flow(function* sendMsg() {
         const param = toJS(this.newMsg);
