@@ -48,11 +48,7 @@ public class KfashionCommentController {
         kfashionComment.setReceiveId(kfashionWorkHistoryService.selectReceiveId(kfashionComment.getWorkNo()));
         if(kfashionComment.getWorkStep1() == 3) {
             if(kfashionComment.getWorkType1() == 1) {
-                Map<String,Object> selectMap = new HashMap<>();
-                selectMap.put("workNo",kfashionComment.getWorkNo());
-                selectMap.put("workStep",kfashionComment.getWorkStep1());
-                int commentNo =kfashionCommentService.selectCommentNo(selectMap);
-                kfashionComment.setCommentNo(commentNo);
+                kfashionComment.setCommentNo(1);
                 kfashionComment.setWorkStep(3);
                 kfashionComment.setWorkType(1);
                 kfashionCommentService.insertHighPolyComment(kfashionComment);
@@ -117,11 +113,7 @@ public class KfashionCommentController {
             }
         }
         if(kfashionComment.getWorkStep2() == 4) {
-            Map<String,Object> selectMap = new HashMap<>();
-            selectMap.put("workNo",kfashionComment.getWorkNo());
-            selectMap.put("workStep",kfashionComment.getWorkStep1());
-            int commentNo =kfashionCommentService.selectCommentNo(selectMap);
-            kfashionComment.setCommentNo(commentNo);
+            kfashionComment.setCommentNo(1);
             kfashionComment.setWorkStep(4);
             kfashionCommentService.insertHighLabelComment(kfashionComment);
         }
