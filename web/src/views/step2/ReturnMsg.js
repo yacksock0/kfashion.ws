@@ -43,15 +43,13 @@ export default class ReturnMsg extends React.Component {
             this.props.messageStore.changeWorkNo(this.props.workNo);
             this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
             this.props.messageStore.sendMsg();
-            this.props.messageStore.changeWorkStep('')
-            this.props.messageStore.changeWorkStep1('')
             this.props.messageStore.changeComment('')
             this.setState({
                 open: false,
             })
+            this.props.checkHighLabelStore.LoadInspectionHighList();
             alert('작업이 반송처리 되었습니다')
         }
-        this.props.checkHighLabelStore.LoadInspectionHighList();
     }
     handleChangeMsg=(e)=>{
         this.props.messageStore.changeComment(e.target.value)
