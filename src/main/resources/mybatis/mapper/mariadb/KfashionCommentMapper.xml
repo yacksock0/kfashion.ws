@@ -65,7 +65,7 @@
     </insert>
 
     <select id="selectCommentNo" resultType="int">
-        SELECT SUM(comment_no+1) AS comment_no
+        SELECT ifnull(SUM(comment_no+1),1) AS comment_no
         FROM kfashion_comment
         WHERE work_no = #{workNo}
         AND work_step = #{workStep}
