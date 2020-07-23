@@ -85,7 +85,7 @@
         ORDER BY kfashion_comment.comment DESC
     </select>
 
-    <select id="getByteImage" parameterType="int" resultType="java.util.Map">
+    <select id="getByteImage" parameterType="Long" resultType="java.util.Map">
         SELECT img_data
         FROM kfashion_image
         WHERE work_no = #{workNo}
