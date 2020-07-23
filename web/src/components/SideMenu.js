@@ -173,6 +173,7 @@ export default function SideMenu(props) {
                     </Collapse>
                 </Link>
                 ):''}
+
                 {loginUser.isAdmin == 'Y'? (
                     <Link to="/step/polygon" className={classes.link}>
                         <Collapse in={open} timeout="auto" unmountOnExit>
