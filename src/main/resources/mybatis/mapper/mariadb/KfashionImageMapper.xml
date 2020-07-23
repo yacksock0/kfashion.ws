@@ -59,7 +59,7 @@
                                             AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
                                                                                       FROM kfashion_comment
                                                                                       WHERE kfashion_comment.work_step = 3))
-        ORDER BY kfashion_image.work_no DESC
+        ORDER BY kfashion_comment.comment DESC
     </select>
 
     <select id="selectPolygonList" resultMap="kfashionImageResultMap" parameterType="String">
@@ -82,7 +82,7 @@
                                                     AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
                                                                                       FROM kfashion_comment
                                                                                       WHERE kfashion_comment.work_step = 4))
-        ORDER BY kfashion_image.work_no DESC
+        ORDER BY kfashion_comment.comment DESC
     </select>
 
     <select id="getByteImage" parameterType="int" resultType="java.util.Map">
