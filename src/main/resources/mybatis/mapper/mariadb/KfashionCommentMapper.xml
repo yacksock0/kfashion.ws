@@ -1,8 +1,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionCategoryItemMapper">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionCommentMapper">
     <resultMap id="kfashionCommentResultMap" type="KfashionComment">
         <id property="workNo"                            column="work_no" />
         <result property="workStep"                      column="work_step" />
+        <result property="workType"                      column="work_type" />
         <result property="commentNo"                     column="comment_no" />
         <result property="comment"                       column="comment" />
         <result property="complete"                      column="complete" />
@@ -29,8 +30,8 @@
         #{workStep},
         #{commentNo},
         #{comment},
-        #{send_id},
-        #{receive_id},
+        #{sendId},
+        #{receiveId},
         NOW(),
         NOW()
         )
@@ -52,8 +53,8 @@
         #{workStep1},
         #{commentNo},
         #{comment},
-        #{send_id},
-        #{receive_id},
+        #{sendId},
+        #{receiveId},
         NOW(),
         NOW()
         )

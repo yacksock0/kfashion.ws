@@ -19,18 +19,26 @@ export default class MessageStore {
         this.newMsg.workNo = value;
     }
     @action changeWorkStep=(value)=>{
-        {value == 'checked' ? this.newMsg.workStep = 3 : this.newMsg.workStep = ''};
+        console.log('value',value)
+        this.newMsg.workStep = value;
     }
     @action changeWorkStep1=(value)=>{
-        {value == 'checked' ? this.newMsg.workStep1 = 4 : this.newMsg.workStep1 = ''};
+        console.log('value',value)
+        this.newMsg.workStep1 = value;
     }
+
     @action changeSendId=(value)=>{
         this.newMsg.sendId = value;
     }
     sendMsg = flow(function* sendMsg() {
         const param = toJS(this.newMsg);
         console.log('param', param)
-        const resp = yield axios.post('/api/v1/kfashion/group/create', param);
+        try {
+            const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
+            console.log(resp)
+        }catch (e) {
+            console.log('comment 에러')
+        }
     });
 }
 
