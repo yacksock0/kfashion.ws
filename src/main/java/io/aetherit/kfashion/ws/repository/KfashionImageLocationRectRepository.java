@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class KfashionImageLocationRectRepository {
@@ -27,5 +28,9 @@ public class KfashionImageLocationRectRepository {
 
     public List<KfashionImageLocationRect> selectRectNoList(Long workNo) {
         return mapper.selectRectNoList(workNo);
+    }
+
+    public void deleteRect(Map<String, Object> deleteMap) {
+        mapper.deleteRect(deleteMap);
     }
 }

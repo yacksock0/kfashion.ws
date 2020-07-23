@@ -91,7 +91,6 @@
         WHERE work_no = #{workNo}
     </select>
 
-
     <delete id="deleteImage" parameterType="KfashionImage">
         DELETE
         FROM kfashion_image
