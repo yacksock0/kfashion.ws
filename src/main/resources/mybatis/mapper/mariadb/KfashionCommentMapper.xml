@@ -30,8 +30,8 @@
         #{workStep},
         #{commentNo},
         #{comment},
-        #{send_id},
-        #{receive_id},
+        #{sendId},
+        #{receiveId},
         NOW(),
         NOW()
         )
@@ -53,8 +53,8 @@
         #{workStep1},
         #{commentNo},
         #{comment},
-        #{send_id},
-        #{receive_id},
+        #{sendId},
+        #{receiveId},
         NOW(),
         NOW()
         )

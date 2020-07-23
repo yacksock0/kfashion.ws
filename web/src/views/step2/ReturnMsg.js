@@ -19,8 +19,8 @@ export default class ReturnMsg extends React.Component {
         super(...arguments, props);
         this.state ={
             open:false,
-            poly:false,
-            label:false,
+            poly:'',
+            label:'',
             workNo:'',
         }
     }
@@ -36,9 +36,13 @@ export default class ReturnMsg extends React.Component {
         })
     };
     handleSubmit = () => {
-        this.props.messageStore.newMsg.workNo = this.props.workNo
-        this.props.messageStore.newMsg.sendId =  this.props.authStore.isUserId()
+        // {this.props.messageStore.newMsg.comment == '' ? alert('')}
+        this.props.messageStore.changeWorkNo(this.props.workNo);
+        this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
         this.props.messageStore.sendMsg();
+        this.props.messageStore.changeWorkStep('')
+        this.props.messageStore.changeWorkStep1('')
+        this.props.messageStore.changeComment('')
         this.setState({
             open:false,
         })
@@ -48,29 +52,40 @@ export default class ReturnMsg extends React.Component {
     }
     handleChange = (event) => {
         this.setState({ ...this.state, [event.target.name]: event.target.checked });
-        this.props.messageStore.changeWorkNo(this.state.poly)
-        this.props.messageStore.changeWorkNo(this.state.label)
+        if(!this.state.poly == true){
+        this.props.messageStore.changeWorkStep(event.target.value)
+        }else{
+            this.props.messageStore.changeWorkStep('')
+        }
+    };
+    handleChange1 = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.checked});
+        if (!this.state.label == true) {
+            this.props.messageStore.changeWorkStep1(event.target.value)
+        }else{
+            this.props.messageStore.changeWorkStep1('')
+        }
     };
     render() {
         const comment = this.props.messageStore.newMsg.comment;
         return (
             <div>
-                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-                    Return
+                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
+                    반송
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">반송</DialogTitle>
                     <DialogContent style={{width: 600}}>
                         <DialogContentText>
-                            작업 반송 단계를 선택하세요(중복선택 가능)
+                            작업 반송 단계를 선택하세요 (중복선택 가능)
                         </DialogContentText>
                         <FormGroup row>
                             <FormControlLabel
-                                control={<Checkbox checked={this.state.poly} onChange={this.handleChange} name="poly" />}
+                                control={<Checkbox value={3} onChange={this.handleChange} name="poly" />}
                                 label="영역지정"
                             />
                             <FormControlLabel
-                                control={<Checkbox checked={this.state.label} onChange={this.handleChange} name="label" />}
+                                control={<Checkbox value={4} onChange={this.handleChange1} name="label" />}
                                 label="레이블링"
                             />
                         </FormGroup>

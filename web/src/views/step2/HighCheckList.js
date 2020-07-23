@@ -6,7 +6,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Edit from '@material-ui/icons/Edit';
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
-import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Container, Grid} from "@material-ui/core";
 import 'react-tabs/style/react-tabs.css';
 import AddBox from "@material-ui/icons/AddBox";
 import Check from "@material-ui/icons/Check";
@@ -32,6 +32,7 @@ import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
 import ReturnMsg from "./ReturnMsg";
+import ErrorIcon from '@material-ui/icons/Error';
 const styles = theme => ({   root: {
         width: "100%",
         marginTop: theme.spacing.unit * 3,
@@ -125,45 +126,6 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
-
-
-// @inject('checkHighLabelStore')
-// @observer
-// class returnDialog extends React.Component {
-//     handleClose=()=>{
-//         this.props.checkHighLabelStore.msgDialogOpen(false);
-//     }
-//     render() {
-//         return (
-//             <div>
-//                 <Dialog open={this.props.checkHighLabelStore.msgDialog} onClose={this.handleClose()} aria-labelledby="form-dialog-title">
-//                     <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-//                     <DialogContent>
-//                         <DialogContentText>
-//                             작업 리턴 사유를 입력하세요.
-//                         </DialogContentText>
-//                         <TextField
-//                             autoFocus
-//                             margin="dense"
-//                             id="name"
-//                             label="Email Address"
-//                             type="email"
-//                             fullWidth
-//                         />
-//                     </DialogContent>
-//                     <DialogActions>
-//                         <Button onClick={this.handleClose()} color="primary">
-//                             Cancel
-//                         </Button>
-//                         <Button onClick={this.handleClose()} color="primary">
-//                             Subscribe
-//                         </Button>
-//                     </DialogActions>
-//                 </Dialog>
-//             </div>
-//         );
-//     }
-// }
 
 @inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore')
 @observer
@@ -407,6 +369,7 @@ class HighCheckList extends React.Component {
                                         tooltip: 'Select Image',
                                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                                     },
+
                                     // {
                                     //     icon: Clear,
                                     //     tooltip: 'return',
