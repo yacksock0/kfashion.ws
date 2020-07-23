@@ -5,8 +5,12 @@ const State = {
     comment:'',
     workNo:0,
     sendId:'',
-    workStep:'',
     workStep1:'',
+    workStep2:'',
+    workType1:'',
+    workType2:'',
+    workType3:'',
+    workType4:'',
 }
 
 export default class MessageStore {
@@ -20,15 +24,31 @@ export default class MessageStore {
     }
     @action changeWorkStep=(value)=>{
         console.log('value',value)
-        this.newMsg.workStep = value;
+        this.newMsg.workStep1 = value;
     }
     @action changeWorkStep1=(value)=>{
         console.log('value',value)
-        this.newMsg.workStep1 = value;
+        this.newMsg.workStep2 = value;
     }
 
     @action changeSendId=(value)=>{
         this.newMsg.sendId = value;
+    }
+    @action changeWorkType1=(value)=>{
+        console.log('changeWorkType1',value)
+        this.newMsg.workType1 = value;
+    }
+    @action changeWorkType2=(value)=>{
+        console.log('changeWorkType2',value)
+        this.newMsg.workType2 = value;
+    }
+    @action changeWorkType3=(value)=>{
+        console.log('changeWorkType3',value)
+        this.newMsg.workType3 = value;
+    }
+    @action changeWorkType4=(value)=>{
+        console.log('changeWorkType4',value)
+        this.newMsg.workType4 = value;
     }
     sendMsg = flow(function* sendMsg() {
         const param = toJS(this.newMsg);
