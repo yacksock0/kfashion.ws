@@ -36,4 +36,8 @@ public class KfashionWorkHistoryService {
     public void deleteAssignmentCancelWorkHistory(KfashionWorkHistory workHistory) {
         repository.deleteAssignmentCancelWorkHistory(workHistory);
     }
+
+    public String selectReceiveId(Long workNo) {
+        return repository.selectReceiveId(workNo);
+    }
 }

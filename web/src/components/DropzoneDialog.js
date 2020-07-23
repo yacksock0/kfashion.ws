@@ -87,6 +87,8 @@ class DropzoneDialogExample extends Component {
                     onClose={this.handleClose.bind(this)}
                     showAlerts={false}
                     dropzoneText={"여기에 파일을 끌어다 놓거 클릭 하십시오"}
+                    cancelButtonText={"취소"}
+                    submitButtonText={"저장"}
                 />
             </div>
         );
