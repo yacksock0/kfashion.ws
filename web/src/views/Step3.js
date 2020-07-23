@@ -99,7 +99,6 @@ class Step3 extends React.Component {
     }
 
     componentDidMount() {
-        this.props.imageStore.changeWorkNo(0);
         this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
         const id = this.props.authStore.loginUser.id;
@@ -108,13 +107,18 @@ class Step3 extends React.Component {
             variant: 'info'
         });
     }
+
+    changeWorkNo = (workNo) => {
+        this.setState({ workNo : workNo});
+
+    }
     handleSubmit = () => {
-        if(this.props.imageStore.workNo != 0){
+        if(this.state.workNo != 0){
             const finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
             if(finalCheck){
                 const createdId = this.props.authStore.isUserId;
                 this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-                this.props.professionalLabelStore.doProfessionalLabelUp(this.props.imageStore.changeWorkNo);
+                this.props.professionalLabelStore.doProfessionalLabelUp(this.changeWorkNo);
                 this.setState({
                     tabIndex1 : 1,
                 });
@@ -129,11 +133,11 @@ class Step3 extends React.Component {
     }
 
     handleClickItem = (workNo, imageData) => {
-        let changeWorkCheck = true;
-        if(this.props.imageStore.workNo != 0) {
-            changeWorkCheck= window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
+        let check = true;
+        if(this.state.workNo != 0) {
+            check= window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
-        if(changeWorkCheck){
+        if(check){
             this.setState({ workNo : workNo});
             this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
             this.deleteAll();
@@ -142,7 +146,6 @@ class Step3 extends React.Component {
                 tabIndex1:0,
                 tabIndex2:0,
             })
-
             this.props.imageStore.changeWorkNo(workNo);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
@@ -174,7 +177,7 @@ class Step3 extends React.Component {
         }
     }
     onSelectTab1(tabIndex1) {
-        if (this.props.imageStore.workNo != 0) {
+        if (this.state.workNo != 0) {
             this.setState({
                 tabIndex1: tabIndex1,
             });
@@ -186,8 +189,6 @@ class Step3 extends React.Component {
     onSelectTab2(tabIndex2) {
         let polyNo = tabIndex2;
         const {locationPolygonList} = this.props.polygonStore;
-        console.log(locationPolygonList);
-        console.log(locationPolygonList.length);
         if (locationPolygonList.length > 0 ) {
             const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
             if (selectedPoly.length !== 0) {
@@ -295,7 +296,7 @@ class Step3 extends React.Component {
     }
     handleLabel=(item)=>{
 
-        if(this.props.imageStore.workNo != 0){
+        if(this.state.workNo != 0){
             console.log(this.props.imageStore.workNo);
             this.props.professionalLabelStore.cleanLabel();
             this.props.professionalLabelStore.LoadLabelList(item.workNo);
