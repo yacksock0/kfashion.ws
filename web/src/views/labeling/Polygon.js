@@ -305,7 +305,7 @@ class Polygon extends React.Component {
         let line = 0;
         let circle = 0;
         this.canvas.getObjects().forEach(function( o) {
-            if(o.id == j-1 && o.type == 'line')     line = o;
+            if(o.id == j-2 && o.type == 'line')     line = o;
             if(o.id == j-1 && o.type == 'circle')   circle = o;
         })
         this.canvas.remove(line);
@@ -512,6 +512,7 @@ class Polygon extends React.Component {
         })
         console.log(lens);
         this.canvas.remove(lens);
+        this.canvas.off('mouse:move');
         this.setState({ zoomBtn : false});
     }
 
