@@ -110,6 +110,7 @@ class Polygon extends React.Component {
         buttonDis7 : true,
         tabIndex: 1,
         listIndex:0,
+        zoomBtn : true,
     }
     save1 = false;
     save2 = false;
@@ -279,7 +280,7 @@ class Polygon extends React.Component {
     }
 
     startPoly = (polyNo) => {
-        this.zoomAction(this.state.workNo);
+        // this.zoomAction(this.state.workNo);
         // this.polygonIndex +=1;
         this.onOff = 'lineUse';
         this.state.savebtn = true;
@@ -497,6 +498,23 @@ class Polygon extends React.Component {
             }
         }
     }
+
+
+    zoomON = () =>{
+        this.zoomAction(this.state.workNo);
+        this.setState({ zoomBtn : true})
+    }
+    zoomOFF = () =>{
+        let lens = null;
+        this.canvas.getObjects().forEach(function( o) {
+            console.log("o : "+ o);
+            if(o.id == "lens")     lens = o;
+        })
+        console.log(lens);
+        this.canvas.remove(lens);
+        this.setState({ zoomBtn : false});
+    }
+
     zoomAction=(workNo)=> {
         let canvas = this.canvas;
         let radius = 100,
@@ -506,8 +524,9 @@ class Polygon extends React.Component {
             img1,
             scale = 2,
             originalWidth = 800,
-            originalHeight = 800;
-
+            originalHeight = 800,
+            zoomBtn = this.state.zoomBtn;
+        if(zoomBtn){
         fabric.Image.fromURL(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, function(img) {
             img1 = img;
             img.set({
@@ -519,6 +538,7 @@ class Polygon extends React.Component {
 
             lens = fabric.util.object.clone(img);
             lens.set({
+                id : "lens",
                 top: -225,
                 left: 150,
                 width: scale * originalWidth,
@@ -529,22 +549,26 @@ class Polygon extends React.Component {
             });
 
             canvas.setBackgroundImage(img);
+            console.log("lens : "+ lens);
             canvas.add(lens);
             canvas.centerObject(img);//******* issue no longer here****
 
         });
         this.canvas = canvas;
         this.canvas.renderAll.bind(canvas);
+
         this.canvas.on('mouse:move', function(e) {
-            x = canvas.getPointer(e, false).x;;
-            y =  canvas.getPointer(e, false).y;
-            if (x > 150 && x < 750) {
-                lens.set('left', -(scale - 1) * x );
-                lens.set('top', -(scale - 1) * y);
-            }
-            canvas.bringToFront(lens);
-            canvas.renderAll();
+                x = canvas.getPointer(e, false).x;;
+                y =  canvas.getPointer(e, false).y;
+                if (x > 150 && x < 750) {
+                    lens.set('left', -(scale - 1) * x );
+                    lens.set('top', -(scale - 1) * y);
+                }
+                console.log(lens);
+                canvas.bringToFront(lens);
+                canvas.renderAll();
         });
+        }
     }
     handleClickItem = (workNo, imageData) => {
         let check = true;
@@ -614,7 +638,8 @@ class Polygon extends React.Component {
                         <Grid item xs={12} lg={5} xl={5}>
                             <div>
                                 {/*<Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>*/}
-                                {/*<Button onClick={this.zoomAction(this.state.workNo)}>돋보</Button>*/}
+                                <Button onClick={this.zoomON}>돋보기 켜기</Button>
+                                <Button onClick={this.zoomOFF}>돋보기 끄기</Button>
                                 <canvas id="c" width={800} height={800}>  </canvas>
                             </div>
                         </Grid>
