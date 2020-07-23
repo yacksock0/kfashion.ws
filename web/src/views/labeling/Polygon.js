@@ -110,7 +110,6 @@ class Polygon extends React.Component {
         buttonDis7 : true,
         tabIndex: 1,
         listIndex:0,
-        zoomBtn : true,
     }
     save1 = false;
     save2 = false;
@@ -345,6 +344,7 @@ class Polygon extends React.Component {
             this.polyPointY.length =0;
             this.buttonState();
         }
+        this.zoomOFF();
     }
 
     buttonState = () => {
@@ -502,7 +502,6 @@ class Polygon extends React.Component {
 
     zoomON = () =>{
         this.zoomAction(this.state.workNo);
-        this.setState({ zoomBtn : true})
     }
     zoomOFF = () =>{
         let lens = null;
@@ -513,7 +512,6 @@ class Polygon extends React.Component {
         console.log(lens);
         this.canvas.remove(lens);
         this.canvas.off('mouse:move');
-        this.setState({ zoomBtn : false});
     }
 
     zoomAction=(workNo)=> {
@@ -527,7 +525,6 @@ class Polygon extends React.Component {
             originalWidth = 800,
             originalHeight = 800,
             zoomBtn = this.state.zoomBtn;
-        if(zoomBtn){
         fabric.Image.fromURL(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, function(img) {
             img1 = img;
             img.set({
@@ -569,7 +566,6 @@ class Polygon extends React.Component {
                 canvas.bringToFront(lens);
                 canvas.renderAll();
         });
-        }
     }
     handleClickItem = (workNo, imageData) => {
         let check = true;
