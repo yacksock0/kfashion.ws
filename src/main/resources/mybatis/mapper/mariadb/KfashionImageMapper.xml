@@ -95,11 +95,11 @@
         kfashion_work.created_datetime,
         kfashion_work_history.created_id
         FROM kfashion_image
-        INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
-        INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+            INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+            INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 5
-        AND kfashion_work_history.work_no not in(SELECT kfashion_work_history.work_no
+        AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                                     FROM kfashion_work_history
                                                     WHERE kfashion_work_history.work_step = 6)
         ORDER BY kfashion_image.work_no DESC
@@ -143,8 +143,8 @@
             kfashion_work_history.created_id,
             kfashion_work_history.updated_datetime
         FROM kfashion_image
-                 LEFT JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
-                 RIGHT JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+            INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+            INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.work_step = 6 And  kfashion_work_history.created_id = #{created_Id}
         ORDER BY kfashion_work_history.updated_datetime DESC LIMIT 5
     </select>
