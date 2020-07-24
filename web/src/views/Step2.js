@@ -243,6 +243,7 @@ class Step2 extends React.Component {
         })
     }
     handleClickColor3 = (color3) => {
+        console.log(color3);
         this.setState({
             no3: color3.no,
             name3: color3.categoryItemName,
@@ -285,6 +286,7 @@ class Step2 extends React.Component {
         }
     }
     handleClickSubColor3= (color3) => {
+        console.log(color3);
         {
             !this.state.no3 == 0 ?
                 this.setState({
