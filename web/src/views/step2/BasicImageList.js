@@ -42,7 +42,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore','polygonStore','basicCategoryStore')
+@inject('fileUploadStore','authStore','imageStore','polygonStore','basicCategoryStore','checkHighLabelStore')
 @observer
 class BasicImageList extends React.Component {
     constructor(props) {
@@ -71,6 +71,7 @@ class BasicImageList extends React.Component {
         this.props.polygonStore.initStore();
     }
     handleClick = (workNo, imageData,polyNo, comment) => {
+        this.props.checkHighLabelStore.LoadReviewHighLabelList(workNo);
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData,polyNo,comment);
         }
