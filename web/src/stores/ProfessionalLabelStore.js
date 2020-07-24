@@ -1003,4 +1003,20 @@ export default class ProfessionalLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
+
+    deleteImg = flow(function* (workNo,createdId) {
+        console.log(workNo);
+        try {
+            const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${workNo}`, {
+                data: {
+                    workNo: workNo
+                }
+            })
+            if(resp.status === 200) {
+                this.LoadProfessionalList(createdId);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    })
 }
