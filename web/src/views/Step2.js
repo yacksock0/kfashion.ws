@@ -466,7 +466,7 @@ class Step2 extends React.Component {
                              <canvas id="c" width="800" height="800">  </canvas>
                          </div>
                      </Grid>
-                     <Grid item xs={12} lg={4} xl={4} style={{marginLeft:'auto'}}>
+                     <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
                          <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                              <TabList >
                                  <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>기본 레이블링</h3></Tab>
