@@ -467,8 +467,8 @@ class Step2 extends React.Component {
         const {classes,history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
-        const {polyLast,polyInfo} = this.props.polygonStore;
-        const {outerReviewHighLabel, topReviewHighLabel , pantsReviewHighLabel, onepieceReviewHighLabel}= this.props.checkHighLabelStore;
+        const {polyLast,polyInfo,polygonList} = this.props.polygonStore;
+        const {outerReviewHighLabel, topReviewHighLabel , pantsReviewHighLabel, onepieceReviewHighLabel, }= this.props.checkHighLabelStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
