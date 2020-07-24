@@ -4,18 +4,27 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
-
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        backgroundColor: '#45ce7c',
+        color: '#45ce7c',
     },
     button: {
         marginRight: theme.spacing(1),
+        color: '#45ce7c',
+        backgroundColor: '#45ce7c',
     },
     instructions: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
+        color: '#45ce7c',
+        backgroundColor: '#45ce7c',
     },
+    completed:{
+        color: '#45ce7c',
+        backgroundColor: '#45ce7c',
+    }
 }));
 
 function getSteps() {
@@ -44,7 +53,7 @@ export default function HorizontalLinearStepper(props) {
     const [activeStep, setActiveStep] = React.useState(props.setStep);
     const [skipped, setSkipped] = React.useState(new Set());
     const steps = getSteps();
-
+    const { active, completed } = props;
     useEffect(() => {
         setActiveStep(props.currentStep);
         getStepContent(props.currentStep);
@@ -99,7 +108,7 @@ export default function HorizontalLinearStepper(props) {
 
     return (
         <div className={classes.root}>
-            <Stepper activeStep={activeStep} style={{padding:10}}>
+            <Stepper activeStep={activeStep} style={{padding:10,}}>
                 {steps.map((label, index) => {
                     const stepProps = {};
                     const labelProps = {};

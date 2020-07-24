@@ -53,6 +53,7 @@
         LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =3)
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 2
+        AND kfashion_comment.complete = 'N'
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                            FROM kfashion_work_history
                                            WHERE kfashion_work_history.work_step = 3
@@ -76,6 +77,7 @@
         LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =4)
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 3
+        AND kfashion_comment.complete = 'N'
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                                     FROM kfashion_work_history
                                                     WHERE kfashion_work_history.work_step = 4
@@ -142,7 +144,8 @@
              LEFT JOIN kfashion_comment ON kfashion_image.work_no = kfashion_comment.work_no
          WHERE kfashion_work_history.work_step = 4
          AND kfashion_image.work_no NOT IN (SELECT work_no
-                                            FROM kfashion_comment)
+                                            FROM kfashion_comment
+                                            WHERE complete = 'N')
          ORDER BY kfashion_image.work_no
     </select>
     <select id="recentlyImg" resultMap="kfashionImageResultMap" >

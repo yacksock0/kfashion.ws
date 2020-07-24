@@ -116,12 +116,14 @@ export default class MessageStore {
         }
         {!!this.checkBox.outer == false && !!this.checkBox.top == false && !!this.checkBox.pants == false && !!this.checkBox.onepiece == false ? this.checkBox.poly=false :this.checkBox.poly=true}
     }
+
+
     sendMsg = flow(function* sendMsg() {
         const param = toJS(this.newMsg);
         console.log('param', param)
         try {
             const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
-            console.log(resp)
+            this.checkBox ={...CheckBox}
         }catch (e) {
             console.log('comment 에러')
         }

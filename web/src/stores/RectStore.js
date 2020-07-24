@@ -179,5 +179,22 @@ export default class RectStore {
     });
 
 
+    deleteImg = flow(function* deleteImg(workNo,createdId) {
+        console.log(workNo);
+        try {
+            const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${workNo}`, {
+                data: {
+                    workNo: workNo
+                }
+            })
+            if(resp.status === 200) {
+                alert('이미지가 삭제 되었습니다.')
+                this.LoadRectImage(createdId);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    })
+
 
 }

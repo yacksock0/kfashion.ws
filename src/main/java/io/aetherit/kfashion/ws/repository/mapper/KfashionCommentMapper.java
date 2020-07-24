@@ -11,4 +11,6 @@ public interface KfashionCommentMapper {
     void insertHighPolyComment(KfashionComment kfashionComment);
 
     int selectCommentNo(Map<String, Object> selectMap);
+
+    void updateComment(Long workNo);
 }
