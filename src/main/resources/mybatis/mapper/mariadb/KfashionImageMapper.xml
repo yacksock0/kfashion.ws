@@ -144,7 +144,8 @@
              LEFT JOIN kfashion_comment ON kfashion_image.work_no = kfashion_comment.work_no
          WHERE kfashion_work_history.work_step = 4
          AND kfashion_image.work_no NOT IN (SELECT work_no
-                                            FROM kfashion_comment)
+                                            FROM kfashion_comment
+                                            WHERE complete = 'N')
          ORDER BY kfashion_image.work_no
     </select>
     <select id="recentlyImg" resultMap="kfashionImageResultMap" >
