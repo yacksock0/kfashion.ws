@@ -9,7 +9,7 @@ const columns = [
     { id: '항목', label: '항목', minWidth: 170 },
 ];
 
-@inject('basicLabelStore','authStore','basicCategoryStore')
+@inject('basicLabelStore','authStore','basicCategoryStore', 'checkHighLabelStore')
 @observer
 export default class SleeveLength1 extends React.Component {
     constructor(props) {
@@ -38,9 +38,7 @@ export default class SleeveLength1 extends React.Component {
         });
     }
     handleClick(sleeve1){
-        if(this.props.onClick) {
-            this.props.onClick(sleeve1);
-        }
+        this.props.checkHighLabelStore.changeNewBasicLabelSleeveLength1(sleeve1);
         this.setState({
             open:false,
         })

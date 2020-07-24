@@ -5,7 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import {Button, Typography} from "@material-ui/core";
 
-@inject('basicLabelStore','authStore','basicCategoryStore')
+@inject('basicLabelStore','authStore','basicCategoryStore','checkHighLabelStore')
 @observer
 export default class Color3 extends React.Component {
     constructor(props) {
@@ -45,17 +45,13 @@ export default class Color3 extends React.Component {
         });
     }
     handledColor(color3){
-        if(this.props.onClick) {
-            this.props.onClick(color3);
-        }
+        this.props.checkHighLabelStore.changeNewBasicLabelColor3(color3);
         this.setState({
             open: false
         });
     }
     handledColorSub(color3){
-        if(this.props.onClick) {
-            this.props.onClickSub(color3);
-        }
+        this.props.checkHighLabelStore.changeNewBasicLabelSubColor3(color3);
         this.setState({
             open1: false
         });
