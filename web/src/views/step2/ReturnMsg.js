@@ -44,8 +44,8 @@ export default class ReturnMsg extends React.Component {
             this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
             this.props.messageStore.sendMsg();
             this.props.messageStore.changeComment('')
-            alert('작업이 반송처리 되었습니다')
             this.props.checkHighLabelStore.LoadInspectionHighList();
+            alert('작업이 반송처리 되었습니다')
             this.setState({
                 open: false,
             })
