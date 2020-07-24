@@ -567,6 +567,9 @@ class Polygon extends React.Component {
                 canvas.renderAll();
         });
     }
+
+
+
     handleClickItem = (workNo, imageData) => {
         let check = true;
         if(this.state.workNo != 0){
@@ -578,7 +581,7 @@ class Polygon extends React.Component {
             this.props.rectStore.LoadRectLocation(workNo);
             this.props.rectStore.changeNewRectLocationWorkNo(workNo);
             this.props.imageStore.changeWorkNo(workNo);
-
+            const rectList = this.props.rectStore.locationRectList;
             this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
                 top: 0,
                 left: 0,
@@ -596,10 +599,29 @@ class Polygon extends React.Component {
             this.polygon.length = 0;
             this.rectangle.length = 0;
             this.deleteAll(1);
+
+
+alert(rectList);
+
             this.save1 = false;
             this.save2 = false;
             this.save3 = false;
             this.save4 = false;
+            for(let i =0;i<rectList.length; i++){
+
+                if(rectList[i].rectNo == 1){
+                    this.save1 = true;
+                }
+                if(rectList[i].rectNo == 2){
+                    this.save2 = true;
+                }
+                if(rectList[i].rectNo == 3){
+                    this.save3 = true;
+                }
+                if(rectList[i].rectNo == 4){
+                    this.save4 = true;
+                }
+            }
             this.buttonState();
         }
     }
