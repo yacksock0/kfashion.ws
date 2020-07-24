@@ -437,6 +437,22 @@ class Step2 extends React.Component {
             }
         }
     }
+    handleUpdate = () => {
+            const finalCheck = window.confirm("이미지 수정을 완료하셨습니까?");
+            if(finalCheck){
+                this.props.checkHighLabelStore.DeleteBasicLabel();
+                this.props.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
+                this.deleteAll();
+                this.setState({
+                    tabIndex1 : 1,
+                });
+        }else{
+            this.setState({
+                tabIndex1: 1,
+            });
+        }
+    }
+
     deleteAll = () =>{
         let objList = [];
         this.canvas.getObjects().forEach(function (o) {
@@ -544,7 +560,7 @@ class Step2 extends React.Component {
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
-                                                     onClick={() => (this.handleSave())}
+                                                     onClick={() => (this.handleUpdate())}
                                              >
                                                  수정
                                              </Button>
@@ -621,7 +637,7 @@ class Step2 extends React.Component {
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
-                                                     onClick={() => (this.handleSave())}
+                                                     onClick={() => (this.handleUpdate())}
                                              >
                                                  수정
                                              </Button>
@@ -681,7 +697,7 @@ class Step2 extends React.Component {
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
-                                                     onClick={() => (this.handleSave())}
+                                                     onClick={() => (this.handleUpdate())}
                                              >
                                                  수정
                                              </Button>
@@ -757,7 +773,7 @@ class Step2 extends React.Component {
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
-                                                     onClick={() => (this.handleSave())}
+                                                     onClick={() => (this.handleUpdate())}
                                              >
                                                  수정
                                              </Button>

@@ -254,6 +254,4 @@
             AND work_step = #{workStep}
     </delete>
 
-
-
 </mapper>
