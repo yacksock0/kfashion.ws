@@ -145,7 +145,7 @@ class UserWork extends React.Component {
                                 minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
-                                    backgroundColor: '#01579b',
+                                    backgroundColor: '#000000',
                                     color: '#FFF',
                                     textAlign:'center',
                                 },
