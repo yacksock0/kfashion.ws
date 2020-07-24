@@ -6,6 +6,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import Stepper from "./Stepper";
+import StepConnector from "@material-ui/core/StepConnector";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const logoWidth = 120;
 
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'inherit',
     }
 }));
+
 export default function TopBar(props) {
     const classes = useStyles();
     const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser, setStep } = props;
@@ -58,7 +61,7 @@ export default function TopBar(props) {
                 </IconButton>
                 ) : ''}
                 { isLoggedIn ? (
-                <Stepper currentStep = {props.setStep}/>):''}
+                <Stepper currentStep = {props.setStep} />):''}
                 { isLoggedIn ? (
                     <IconButton color="inherit" onClick={doLogout}>
                         {loginUser.id}
