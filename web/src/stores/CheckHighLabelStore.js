@@ -163,6 +163,7 @@ export default class CheckHighLabelStore {
     @observable onePieceReviewHighLabel = {...OnePieceReviewHighLabel};
     @observable inspectionHighList = [];
     @observable msgDialog = '';
+    @observable workNo = 0;
 
     @action changeNewBasicLabelNo1 = (labelNo1) => {
         this.outerReviewHighLabel.labelNo1 = labelNo1;
@@ -338,6 +339,14 @@ export default class CheckHighLabelStore {
     }
 
 
+    @action changeNewBasicLabelCreatedId = (createdId) => {
+        this.changeNewBasicLabel.createdId = createdId;
+    }
+
+    @action changeNewBasicLabelWorkNo = (workNo) => {
+        this.workNo = workNo;
+    }
+
 
     @action initStore = () => {
         this.professionalList = 0;
@@ -357,6 +366,61 @@ export default class CheckHighLabelStore {
             console.log('error')
         }
     });
+
+    DoBasicLabelUp = flow(function* doBasicLabelUp(changeWorkNo) {
+        this.state = State.Pending;
+        try {
+            this.changeNewBasicLabel.color1 = this.outerReviewHighLabel.color1;
+            this.changeNewBasicLabel.colorCategoryNo1 = this.outerReviewHighLabel.colorCategoryNo1;
+            this.changeNewBasicLabel.subColor1 = this.outerReviewHighLabel.subColor1;
+            this.changeNewBasicLabel.subColorCategoryNo1 = this.outerReviewHighLabel.subColorCategoryNo1;
+            this.changeNewBasicLabel.sleeveLength1 = this.outerReviewHighLabel.sleeveLength1;
+            this.changeNewBasicLabel.sleeveLengthCategoryNo1 = this.outerReviewHighLabel.sleeveLengthCategoryNo1;
+
+            this.changeNewBasicLabel.color2 = this.topReviewHighLabel.color2;
+            this.changeNewBasicLabel.colorCategoryNo2 = this.topReviewHighLabel.colorCategoryNo2;
+            this.changeNewBasicLabel.subColor2 = this.topReviewHighLabel.subColor2;
+            this.changeNewBasicLabel.subColorCategoryNo2 = this.topReviewHighLabel.subColorCategoryNo2;
+            this.changeNewBasicLabel.sleeveLength2 = this.topReviewHighLabel.sleeveLength2;
+            this.changeNewBasicLabel.sleeveLengthCategoryNo2 = this.topReviewHighLabel.sleeveLengthCategoryNo2;
+
+            this.changeNewBasicLabel.color3 = this.pantsReviewHighLabel.color3;
+            this.changeNewBasicLabel.colorCategoryNo3 = this.pantsReviewHighLabel.colorCategoryNo3;
+            this.changeNewBasicLabel.subColor3 = this.pantsReviewHighLabel.subColor3;
+            this.changeNewBasicLabel.subColorCategoryNo3 = this.pantsReviewHighLabel.subColorCategoryNo3;
+
+            this.changeNewBasicLabel.color4 = this.onePieceReviewHighLabel.color4;
+            this.changeNewBasicLabel.colorCategoryNo4 = this.onePieceReviewHighLabel.colorCategoryNo4;
+            this.changeNewBasicLabel.subColor4 = this.onePieceReviewHighLabel.subColor4;
+            this.changeNewBasicLabel.subColorCategoryNo4 = this.onePieceReviewHighLabel.subColorCategoryNo4;
+            this.changeNewBasicLabel.sleeveLength4 = this.onePieceReviewHighLabel.sleeveLength4;
+            this.changeNewBasicLabel.sleeveLengthCategoryNo4 = this.onePieceReviewHighLabel.sleeveLengthCategoryNo4;
+
+            this.changeNewBasicLabel.labelNo1 = this.outerReviewHighLabel.labelNo1;
+            this.changeNewBasicLabel.labelNo2 = this.topReviewHighLabel.labelNo2;
+            this.changeNewBasicLabel.labelNo3 = this.pantsReviewHighLabel.labelNo3;
+            this.changeNewBasicLabel.labelNo4 = this.onePieceReviewHighLabel.labelNo4;
+            this.changeNewBasicLabel.workNo = this.workNo;
+            const param = toJS(this.changeNewBasicLabel);
+            console.log('param',param);
+            const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
+            if (resp.status === 200) {
+                const createdId =this.changeNewBasicLabel.createdId;
+                this.state = State.Success;
+                this.outerReviewHighLabel= {...OuterReviewHighLabel};
+                this.topReviewHighLabel= {...TopReviewHighLabel};
+                this.pantsReviewHighLabel= {...PantsReviewHighLabel};
+                this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
+                changeWorkNo(0);
+                alert("저장 완료");
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
+        }
+    });
+
 
 
     LoadReviewHighLabelList = flow(function* loadReviewHighLabelList(workNo) {
@@ -384,6 +448,25 @@ export default class CheckHighLabelStore {
             }
         } catch (e) {
             console.log('error')
+        }
+    });
+
+
+
+    DeleteBasicLabel = flow(function* deleteBasicLabel(workNo) {
+        this.state = State.Pending;
+        try {
+
+            const resp = yield axios.get('/api/v1/kfashion/label/deleteBasicLabel?workNo='+ workNo);
+            if (resp.status === 200) {
+                // this.doProfessionalLabelUp()
+                alert("정상적으로 수정되었습니다.")
+                this.DoBasicLabelUp();
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러좀 나지 마라')
         }
     });
 
