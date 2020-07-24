@@ -428,30 +428,20 @@ export default class CheckHighLabelStore {
             const response = yield axios.get('/api/v1/kfashion/label/reviewHighLabelList?workNo='+workNo)
             if(response.data.outerReviewHighLabel != null) {
                 this.outerReviewHighLabel = response.data.outerReviewHighLabel;
-            }else {
-                this.outerReviewHighLabel= [];
             }
             if(response.data.topReviewHighLabel != null) {
                 this.topReviewHighLabel = response.data.topReviewHighLabel;
-            }else {
-                this.topReviewHighLabel = [];
             }
             if(response.data.pantsReviewHighLabel != null) {
                 this.pantsReviewHighLabel = response.data.pantsReviewHighLabel;
-            }else {
-                this.pantsReviewHighLabel = [];
             }
             if(response.data.onePieceReviewHighLabel != null) {
                 this.onePieceReviewHighLabel = response.data.onePieceReviewHighLabel;
-            }else {
-                this.onePieceReviewHighLabel = [];
             }
         } catch (e) {
             console.log('error')
         }
     });
-
-
 
     DeleteBasicLabel = flow(function* deleteBasicLabel(workNo) {
         this.state = State.Pending;

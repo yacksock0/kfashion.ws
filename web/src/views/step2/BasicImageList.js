@@ -75,7 +75,6 @@ class BasicImageList extends React.Component {
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData,polyNo,comment);
         }
-
     }
 
     handleClickReturn = () =>{
