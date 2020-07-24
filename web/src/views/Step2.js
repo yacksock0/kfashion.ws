@@ -585,7 +585,7 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
                                          }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
@@ -695,7 +695,7 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
                                          }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
