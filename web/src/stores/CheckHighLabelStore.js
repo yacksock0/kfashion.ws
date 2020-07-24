@@ -187,6 +187,7 @@ export default class CheckHighLabelStore {
         this.outerReviewHighLabel.color1 = color1.no;
         this.outerReviewHighLabel.colorCategoryNo1 = color1.categoryNo;
         this.outerReviewHighLabel.colorItemName1 = color1.categoryItemName;
+        this.outerReviewHighLabel.colorItemMemo1 = color1.categoryItemMemo;
         return this.outerReviewHighLabel
     }
     @action changeNewBasicLabelColor2= (color2) => {
@@ -194,6 +195,7 @@ export default class CheckHighLabelStore {
         this.topReviewHighLabel.color2 = color2.no;
         this.topReviewHighLabel.colorCategoryNo2 = color2.categoryNo;
         this.topReviewHighLabel.colorItemName2 = color2.categoryItemName;
+        this.topReviewHighLabel.colorItemMemo2 = color2.categoryItemMemo;
         return this.topReviewHighLabel
     }
     @action changeNewBasicLabelColor3= (color3) => {
@@ -201,6 +203,7 @@ export default class CheckHighLabelStore {
         this.pantsReviewHighLabel.color3 = color3.no;
         this.pantsReviewHighLabel.colorCategoryNo3 = color3.categoryNo;
         this.pantsReviewHighLabel.colorItemName3 = color3.categoryItemName;
+        this.pantsReviewHighLabel.colorItemMemo3 = color3.categoryItemMemo;
         return this.pantsReviewHighLabel
     }
     @action changeNewBasicLabelColor4= (color4) => {
@@ -208,6 +211,7 @@ export default class CheckHighLabelStore {
         this.onePieceReviewHighLabel.color4 = color4.no;
         this.onePieceReviewHighLabel.colorCategoryNo4 = color4.categoryNo;
         this.onePieceReviewHighLabel.colorItemName4 = color4.categoryItemName;
+        this.onePieceReviewHighLabel.colorItemMemo4 = color4.categoryItemMemo;
         return this.onePieceReviewHighLabel
     }
 
@@ -216,6 +220,7 @@ export default class CheckHighLabelStore {
         this.outerReviewHighLabel.subColor1 = subcolor1.no;
         this.outerReviewHighLabel.subColorCategoryNo1 = subcolor1.categoryNo;
         this.outerReviewHighLabel.subColorItemName1 = subcolor1.categoryItemName;
+        this.outerReviewHighLabel.subColorItemMemo1 = subcolor1.categoryItemMemo;
         return this.outerReviewHighLabel
     }
     @action changeNewBasicLabelSubColor2= (subcolor2) => {
@@ -223,6 +228,7 @@ export default class CheckHighLabelStore {
         this.topReviewHighLabel.subColor2 = subcolor2.no;
         this.topReviewHighLabel.subColorCategoryNo2 = subcolor2.categoryNo;
         this.topReviewHighLabel.subColorItemName2 = subcolor2.categoryItemName;
+        this.topReviewHighLabel.subColorItemMemo2 = subcolor2.categoryItemMemo;
         return this.topReviewHighLabel
     }
     @action changeNewBasicLabelSubColor3= (subcolor3) => {
@@ -230,6 +236,7 @@ export default class CheckHighLabelStore {
         this.pantsReviewHighLabel.subColor3 = subcolor3.no;
         this.pantsReviewHighLabel.subColorCategoryNo3 = subcolor3.categoryNo;
         this.pantsReviewHighLabel.subColorItemName3 = subcolor3.categoryItemName;
+        this.pantsReviewHighLabel.subColorItemMemo3 = subcolor3.categoryItemMemo;
         return this.pantsReviewHighLabel
     }
     @action changeNewBasicLabelSubColor4= (subcolor4) => {
@@ -237,6 +244,7 @@ export default class CheckHighLabelStore {
         this.onePieceReviewHighLabel.subColor4 = subcolor4.no;
         this.onePieceReviewHighLabel.subColorCategoryNo4 = subcolor4.categoryNo;
         this.onePieceReviewHighLabel.subColorItemName4 = subcolor4.categoryItemName;
+        this.onePieceReviewHighLabel.subColorItemMemo4 = subcolor4.categoryItemMemo;
         return this.onePieceReviewHighLabel
     }
 

@@ -73,7 +73,6 @@ class BasicImageList extends React.Component {
     handleClick = (workNo, imageData,polyNo) => {
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData,polyNo);
-            console.log('selectedPoly@@@@@@',polyNo)
         }
 
     }
