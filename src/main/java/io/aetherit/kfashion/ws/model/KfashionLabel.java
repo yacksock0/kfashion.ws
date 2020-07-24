@@ -21,6 +21,7 @@ public class KfashionLabel {
     private int categoryItemNo;
     private String categoryName;
     private String categoryItemName;
+    private String categoryItemMemo;
     private String createdId;
     private LocalDateTime createdDatetime;
     private LocalDateTime updatedDatetime;

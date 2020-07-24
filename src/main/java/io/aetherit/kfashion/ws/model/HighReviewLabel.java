@@ -17,10 +17,21 @@ public class HighReviewLabel {
     private String colorItemName3;
     private String colorItemName4;
 
-    private String colorSubItemName1;
-    private String colorSubItemName2;
-    private String colorSubItemName3;
-    private String colorSubItemName4;
+    private String colorItemMemo1;
+    private String colorItemMemo2;
+    private String colorItemMemo3;
+    private String colorItemMemo4;
+
+
+    private String subColorItemName1;
+    private String subColorItemName2;
+    private String subColorItemName3;
+    private String subColorItemName4;
+
+    private String subColorItemMemo1;
+    private String subColorItemMemo2;
+    private String subColorItemMemo3;
+    private String subColorItemMemo4;
 
     private String sleeveLengthItemName1;
     private String sleeveLengthItemName2;
