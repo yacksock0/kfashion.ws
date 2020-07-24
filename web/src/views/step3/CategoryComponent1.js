@@ -129,7 +129,6 @@ class CategoryComponent1 extends React.Component {
         this.props.professionalLabelStore.deleteFit1();
     }
     handleSubmit(){
-        console.log("저장 1111 : ");
         if(this.props.onClick){
             this.props.onClick();
         }
@@ -142,7 +141,7 @@ class CategoryComponent1 extends React.Component {
         return (
             <Grid container spacing={3}>
                 <Grid items xs={11} style={{margin:"auto", marginTop:10}}>
-                    <CategoryAll1 />
+                    <CategoryAll1 onClick={()=>this.handleDeleteDetail(detail1)}/>
                 </Grid>
                 <Grid item xs={12} lg={6}>
                     <div className={classes.content}  style={{display:'inline'}} >

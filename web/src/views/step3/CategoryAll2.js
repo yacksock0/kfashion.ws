@@ -5,6 +5,7 @@ import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Chip from "@material-ui/core/Chip";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 
 
@@ -144,8 +145,13 @@ export default class CategoryAll2 extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelFit2(fit);
         this.props.professionalLabelStore.openCategoryAll2(false);
     }
+
+    handleDeleteDetail=(detail2)=>{
+        if(this.props.onClick){
+            this.props.onClick(detail2);
+        }
+    }
     render() {
-        const {topReviewLabel} = this.props.professionalLabelStore;
         const categoryList2= this.state.categoryList2;
         const lengthList2= this.state.lengthList2;
         const karaList2= this.state.karaList2;
@@ -154,7 +160,8 @@ export default class CategoryAll2 extends React.Component {
         const neckLineList2= this.state.neckLineList2;
         const printList2= this.state.printList2;
         const textureList2= this.state.textureList2;
-
+        const {topReviewLabel} = this.props.professionalLabelStore;
+        const detail2 =topReviewLabel.detailItemName2;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen} style={{width:'100%', borderRadius:15}}>항목 전체선택</Button>
@@ -194,13 +201,24 @@ export default class CategoryAll2 extends React.Component {
                             디테일
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {topReviewLabel.detailCategoryNo2 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={topReviewLabel.detailItemName2}
-                                    color="primary"
-                                />) : ''
-                            }
+                            {detail2 != null  && detail2 != undefined  ?(
+                                detail2.map((detail2) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={()=>this.handleDeleteDetail(detail2)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {detail2}
+                                    </Button>
+                                )) : ''}
+
                         </div>
                         <hr></hr>
                         <Grid container>

@@ -5,6 +5,7 @@ import {Button, Grid, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Chip from "@material-ui/core/Chip";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 
 
@@ -138,14 +139,20 @@ export default class CategoryAll3 extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelFit3(fit);
         this.props.professionalLabelStore.openCategoryAll3(false);
     }
+    handleDeleteDetail=(detail3)=>{
+        if(this.props.onClick){
+            this.props.onClick(detail3);
+        }
+    }
     render() {
-        const {pantsReviewLabel} = this.props.professionalLabelStore;
         const categoryList3= this.state.categoryList3;
         const lengthList3= this.state.lengthList3;
         const detailList3= this.state.detailList3;
         const fitList3= this.state.fitList3;
         const printList3= this.state.printList3;
         const textureList3= this.state.textureList3;
+        const {pantsReviewLabel} = this.props.professionalLabelStore;
+        const detail3 =pantsReviewLabel.detailItemName3;
 
         return (
             <div>
@@ -186,13 +193,23 @@ export default class CategoryAll3 extends React.Component {
                             디테일
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {pantsReviewLabel.detailCategoryNo3 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={pantsReviewLabel.detailItemName3}
-                                    color="primary"
-                                />) : ''
-                            }
+                            {detail3 != null  && detail3 != undefined  ?(
+                                detail3.map((detail3) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={()=>this.handleDeleteDetail(detail3)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {detail3}
+                                    </Button>
+                                )) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>
