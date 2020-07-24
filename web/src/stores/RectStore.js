@@ -115,9 +115,6 @@ export default class RectStore {
             if(handleListChange != null){
                 handleListChange(this.rectList.length);
             }
-
-
-
         } catch (e) {
             console.log('error')
         }
