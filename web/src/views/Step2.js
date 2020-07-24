@@ -174,6 +174,7 @@ class Step2 extends React.Component {
                 tabIndex2: 0,
                 tabIndex1: 0,
                 workNo : workNo,
+                comment:comment,
             })
         }
     }
@@ -537,7 +538,7 @@ class Step2 extends React.Component {
                                          {outerReviewHighLabel.sleeveLengthCategoryNo1 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {outerReviewHighLabel.sleeveLengthItemName1} </Button> ) : ''
                                          }
-                                         {this.props.comment !== '' ?
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
@@ -549,12 +550,13 @@ class Step2 extends React.Component {
                                              </Button>
                                              :''
                                          }
-                                         {polyLast === this.state.tabIndex2 ?(
+                                         {polyLast === this.state.tabIndex2?(
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
+                                                     disabled={!this.state.comment == ''}
                                                      onClick={() => (this.handleSave())}
                                              >
                                                  저장
@@ -613,12 +615,25 @@ class Step2 extends React.Component {
                                          {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
                                          }
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleSave())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
+                                                     disabled={!this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
                                              >
                                                  저장
@@ -660,12 +675,25 @@ class Step2 extends React.Component {
                                                  </div>) : ''
                                              }
                                          </div>
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleSave())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
+                                                     disabled={! this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
                                              >
                                                  저장
@@ -723,12 +751,25 @@ class Step2 extends React.Component {
                                          {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
                                          }
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleSave())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
+                                                     disabled={!this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
                                              >
                                                  저장
