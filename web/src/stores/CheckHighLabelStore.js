@@ -402,23 +402,28 @@ export default class CheckHighLabelStore {
             this.changeNewBasicLabel.labelNo4 = this.onePieceReviewHighLabel.labelNo4;
             this.changeNewBasicLabel.workNo = this.workNo;
             const param = toJS(this.changeNewBasicLabel);
-            console.log('param',param);
-            const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
-            if (resp.status === 200) {
-                const createdId =this.changeNewBasicLabel.createdId;
+            const resp = yield axios.post('/api/v1/kfashion/label/basicLabel', param);
+            console.log(resp);
+            if(resp.status === 200) {
                 this.state = State.Success;
                 this.outerReviewHighLabel= {...OuterReviewHighLabel};
                 this.topReviewHighLabel= {...TopReviewHighLabel};
                 this.pantsReviewHighLabel= {...PantsReviewHighLabel};
                 this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
-                changeWorkNo(0);
                 alert("저장 완료");
             } else {
                 this.state = State.Fail;
             }
         } catch (e) {
-            console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
+            console.log('에러 좀 나지 마라');
         }
+    });
+
+    cleanLabel = flow(function* LoadLabelList(workNo) {
+        this.outerReviewHighLabel= {...OuterReviewHighLabel};
+        this.topReviewHighLabel= {...TopReviewHighLabel};
+        this.pantsReviewHighLabel= {...PantsReviewHighLabel};
+        this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
     });
 
 
@@ -428,15 +433,23 @@ export default class CheckHighLabelStore {
             const response = yield axios.get('/api/v1/kfashion/label/reviewHighLabelList?workNo='+workNo)
             if(response.data.outerReviewHighLabel != null) {
                 this.outerReviewHighLabel = response.data.outerReviewHighLabel;
+            }else {
+                this.outerReviewHighLabel= {...OuterReviewHighLabel};
             }
             if(response.data.topReviewHighLabel != null) {
                 this.topReviewHighLabel = response.data.topReviewHighLabel;
+            }else {
+                this.topReviewHighLabel= {...TopReviewHighLabel};
             }
             if(response.data.pantsReviewHighLabel != null) {
                 this.pantsReviewHighLabel = response.data.pantsReviewHighLabel;
+            }else {
+                this.pantsReviewHighLabel= {...PantsReviewHighLabel};
             }
             if(response.data.onePieceReviewHighLabel != null) {
                 this.onePieceReviewHighLabel = response.data.onePieceReviewHighLabel;
+            }else {
+                this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
             }
         } catch (e) {
             console.log('error')

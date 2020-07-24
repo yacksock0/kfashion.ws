@@ -110,7 +110,6 @@ class Step3 extends React.Component {
 
     changeWorkNo = (workNo) => {
         this.setState({ workNo : workNo});
-
     }
     handleSubmit = () => {
         if(this.state.workNo != 0){

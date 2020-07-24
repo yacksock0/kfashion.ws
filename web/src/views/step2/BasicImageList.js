@@ -72,6 +72,9 @@ class BasicImageList extends React.Component {
     }
     handleClick = (workNo, imageData,polyNo, comment) => {
         this.props.checkHighLabelStore.LoadReviewHighLabelList(workNo);
+        this.props.checkHighLabelStore.cleanLabel();
+        this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(workNo);
+        this.props.checkHighLabelStore.changeNewBasicLabelCreatedId(this.props.authStore.loginUser.id);
         if(this.props.onClick) {
             this.props.onClick(workNo, imageData,polyNo,comment);
         }

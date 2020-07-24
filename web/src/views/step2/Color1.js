@@ -19,7 +19,7 @@ export default class Color1 extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClickOpenSub =this.handleClickOpenSub.bind(this)
-        this.handleClose = this.handleClose.bind(this);
+        this.handleClose = this.handleClose.bind(this)
         this.handledColor = this.handledColor.bind(this)
     }
     componentDidMount() {

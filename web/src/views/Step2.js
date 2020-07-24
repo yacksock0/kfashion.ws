@@ -419,7 +419,21 @@ class Step2 extends React.Component {
             }
         }
         if (savebtn) {
-            this.props.checkHighLabelStore.DoBasicLabelUp();
+            if(this.state.workNo != 0){
+                const finalCheck = window.confirm("이미지에 필요한 정보를 입력하셨습니까?");
+                if(finalCheck){
+                    this.props.checkHighLabelStore.DoBasicLabelUp();
+                    this.props.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
+                    this.setState({
+                        tabIndex1 : 1,
+                    });
+                }
+            }else{
+                alert("작업을 먼저 선택해 주세요.");
+                this.setState({
+                    tabIndex1: 1,
+                });
+            }
         }
     }
     deleteAll = () =>{
@@ -597,7 +611,7 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
                                          }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
@@ -707,7 +721,7 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
                                          }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
