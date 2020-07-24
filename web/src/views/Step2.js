@@ -113,7 +113,7 @@ class Step2 extends React.Component {
             tabIndex1:1,
             tabIndex2:0,
         }
-
+        this.handleClickSubColor1 = this.handleClickSubColor1.bind(this)
         this.handleDelete1 = this.handleDelete1.bind(this)
         this.colorDelete1 = this.colorDelete1.bind(this)
         this.colorDeleteSub1 = this.colorDeleteSub1.bind(this)
@@ -174,20 +174,22 @@ class Step2 extends React.Component {
                 tabIndex2: 0,
                 tabIndex1: 0,
                 workNo : workNo,
+                comment:comment,
             })
         }
     }
 
-    handleClickSubColor1 = () => {
+    handleClickSubColor1(){
+        console.log('main',this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1)
         if(this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0 ){ alert('메인 색상을 먼저 선택해 주세요')}
     }
-    handleClickSubColor2 = () => {
+    handleClickSubColor2(){
         if(this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0 ){ alert('메인 색상을 먼저 선택해 주세요')}
     }
-    handleClickSubColor3= () => {
+    handleClickSubColor3(){
         if(this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ){ alert('메인 색상을 먼저 선택해 주세요')}
     }
-    handleClickSubColor4 = () => {
+    handleClickSubColor4(){
         if(this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0 ){ alert('메인 색상을 먼저 선택해 주세요')}
     }
     handleDelete1() {
@@ -536,23 +538,36 @@ class Step2 extends React.Component {
                                          {outerReviewHighLabel.sleeveLengthCategoryNo1 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {outerReviewHighLabel.sleeveLengthItemName1} </Button> ) : ''
                                          }
-                                         {polyLast === this.state.tabIndex2 ? (
-                                         <Button style={{marginTop: 20}}
-                                                 type="button"
-                                                 className={classes.buttonType2}
-                                                 color="primary"
-                                                 variant="outlined"
-                                                 onClick={()=>(this.handleSave())}
-                                         >
-                                             저장
-                                         </Button>
-                                         ):(
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
-                                                     onClick={()=>(this.nextTab())}
+                                                     onClick={() => (this.handleSave())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
+                                         {polyLast === this.state.tabIndex2?(
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     disabled={!this.state.comment == ''}
+                                                     onClick={() => (this.handleSave())}
+                                             >
+                                                 저장
+                                             </Button>
+                                         ) : (
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.nextTab())}
                                              >
                                                  다음
                                              </Button>
@@ -567,7 +582,7 @@ class Step2 extends React.Component {
                                          </Typography>
                                          &nbsp;&nbsp;{!this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color2 onClickSub={this.handleClickSubColor2} style={{display:'inline', float:'right'}}/>
+                                             <Color2 onClickSub={()=>this.handleClickSubColor2()} style={{display:'inline', float:'right'}}/>
                                          </div>
                                          <div>
                                              <hr></hr>
@@ -600,12 +615,25 @@ class Step2 extends React.Component {
                                          {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
                                          }
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleSave())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
+                                                     disabled={!this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
                                              >
                                                  저장
@@ -630,7 +658,7 @@ class Step2 extends React.Component {
                                          </Typography>
                                          &nbsp;&nbsp;{!this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color3 onClickSub={this.handleClickSubColor3} style={{display:'inline', float:'right'}}/>
+                                             <Color3 onClickSub={()=>this.handleClickSubColor3()} style={{display:'inline', float:'right'}}/>
                                          </div>
                                          <div>
                                              <hr></hr>
@@ -647,12 +675,25 @@ class Step2 extends React.Component {
                                                  </div>) : ''
                                              }
                                          </div>
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleSave())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
+                                                     disabled={! this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
                                              >
                                                  저장
@@ -677,7 +718,7 @@ class Step2 extends React.Component {
                                          </Typography>
                                          &nbsp;&nbsp;{!this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color4 onClickSub={this.handleClickSubColor4} style={{display:'inline', float:'right'}}/>
+                                             <Color4 onClickSub={()=>this.handleClickSubColor4()} style={{display:'inline', float:'right'}}/>
                                          </div>
                                          <div>
                                              <hr></hr>
@@ -710,12 +751,25 @@ class Step2 extends React.Component {
                                          {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
                                          }
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleSave())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
                                                      color="primary"
                                                      variant="outlined"
+                                                     disabled={!this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
                                              >
                                                  저장
