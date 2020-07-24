@@ -68,4 +68,11 @@
         WHERE work_no = #{workNo}
         AND work_step = #{workStep}
     </select>
+
+    <update id="updateComment" parameterType="Long">
+        UPDATE kfashion_comment
+        SET
+        complete = 'Y'
+        WHERE work_no =#{workNo}
+    </update>
 </mapper>

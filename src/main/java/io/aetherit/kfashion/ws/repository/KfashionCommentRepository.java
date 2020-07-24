@@ -29,4 +29,8 @@ public class KfashionCommentRepository {
     public int selectCommentNo(Map<String, Object> selectMap) {
         return mapper.selectCommentNo(selectMap);
     }
+
+    public void updateComment(Long workNo) {
+        mapper.updateComment(workNo);
+    }
 }

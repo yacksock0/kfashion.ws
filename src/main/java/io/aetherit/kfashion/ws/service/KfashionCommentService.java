@@ -29,4 +29,8 @@ public class KfashionCommentService {
     public int selectCommentNo(Map<String, Object> selectMap) {
         return repository.selectCommentNo(selectMap);
     }
+
+    public void updateComment(Long workNo) {
+        repository.updateComment(workNo);
+    }
 }
