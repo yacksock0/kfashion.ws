@@ -106,6 +106,7 @@ class Step2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            comment:'',
             workNo : 0,
             labelNo1 : 0,
             labelNo2 : 0,
@@ -200,7 +201,7 @@ class Step2 extends React.Component {
         this.props.basicLabelStore.doBasicLabelUp();
     }
 
-    handleClickItem = (workNo, imageData, polyNo) => {
+    handleClickItem = (workNo, imageData, polyNo, comment) => {
         let check = true;
         if(this.state.workNo !=0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
@@ -222,6 +223,7 @@ class Step2 extends React.Component {
                 workNo : workNo,
             })
         }
+        {!comment == '' ? this.setState({comment:'y'}):this.setState({comment:'n'})}
     }
 
     handleClickColor1 = (color1) => {
