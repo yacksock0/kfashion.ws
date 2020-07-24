@@ -9,6 +9,7 @@
         <result property="categoryItemNo"           column="category_item_no" />
         <result property="categoryName"           column="category_name" />
         <result property="categoryItemName"           column="category_item_name" />
+        <result property="categoryItemMemo"           column="category_item_memo" />
         <result property="createdId"                column="created_id" />
         <result property="createdDatetime"          column="created_datetime" />
         <result property="updatedDatetime"          column="updated_datetime" />
@@ -164,7 +165,8 @@
             kfashion_label.category_item_no,
             kfashion_label.category_no,
             kfashion_category.category_name,
-            kfashion_category_item.category_item_name
+            kfashion_category_item.category_item_name,
+            kfashion_category_item.category_item_memo
         FROM kfashion_label
                  LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
                  RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
@@ -179,7 +181,8 @@
             kfashion_label.category_item_no,
             kfashion_label.category_no,
             kfashion_category.category_name,
-            kfashion_category_item.category_item_name
+            kfashion_category_item.category_item_name,
+            kfashion_category_item.category_item_memo
         FROM kfashion_label
                  LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
                  RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
@@ -194,7 +197,8 @@
             kfashion_label.category_item_no,
             kfashion_label.category_no,
             kfashion_category.category_name,
-            kfashion_category_item.category_item_name
+            kfashion_category_item.category_item_name,
+            kfashion_category_item.category_item_memo
         FROM kfashion_label
                  LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
                  RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
@@ -210,7 +214,8 @@
             kfashion_label.category_item_no,
             kfashion_label.category_no,
             kfashion_category.category_name,
-            kfashion_category_item.category_item_name
+            kfashion_category_item.category_item_name,
+            kfashion_category_item.category_item_memo
         FROM kfashion_label
                  LEFT JOIN kfashion_category ON kfashion_label.category_no = kfashion_category.no
                  RIGHT JOIN kfashion_category_item ON kfashion_label.category_item_no = kfashion_category_item.no
