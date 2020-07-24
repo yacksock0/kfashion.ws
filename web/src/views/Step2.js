@@ -418,7 +418,21 @@ class Step2 extends React.Component {
             }
         }
         if (savebtn) {
-            this.props.checkHighLabelStore.DoBasicLabelUp();
+            if(this.state.workNo != 0){
+                const finalCheck = window.confirm("이미지에 필요한 정보를 입력하셨습니까?");
+                if(finalCheck){
+                    this.props.checkHighLabelStore.DoBasicLabelUp();
+                    this.props.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
+                    this.setState({
+                        tabIndex1 : 1,
+                    });
+                }
+            }else{
+                alert("작업을 먼저 선택해 주세요.");
+                this.setState({
+                    tabIndex1: 1,
+                });
+            }
         }
     }
     deleteAll = () =>{
