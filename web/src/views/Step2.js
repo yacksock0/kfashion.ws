@@ -453,8 +453,8 @@ class Step2 extends React.Component {
         const {classes,history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
-        const {polyInfo} = this.props.polygonStore;
-        const {polyLast} = this.props.polygonStore;
+        const {polyLast,polyInfo} = this.props.polygonStore;
+        const {outerReviewHighLabel, topReviewHighLabel , pantsReviewHighLabel, onepieceReviewHighLabel}= this.props.checkHighLabelStore;
         console.log(polyLast);
         return (
             <Container component="main" className={classes.mainContainer}>
@@ -487,7 +487,7 @@ class Step2 extends React.Component {
                                      <Typography variant="h5" component="h2" style={{display:'inline'}}>
                                          색상
                                      </Typography>
-                                         &nbsp;&nbsp;{!this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
+                                         &nbsp;&nbsp;{!outerReviewHighLabel.colorCategoryNo1 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
                                              <div style={{display:'inline-block', float:'right', marginTop : -3}}>
                                                  <Color1 onClickSub={this.handleClickSubColor1} style={{display:'inline', float:'right'}}/>
                                              </div>
@@ -496,14 +496,14 @@ class Step2 extends React.Component {
                                      </div>
                                      <div>
                                              <br></br>
-                                         {this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 >0 ?
-                                             (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.props.checkHighLabelStore.outerReviewHighLabel.colorItemMemo1}`}} onClick={this.colorDelete1}>
+                                         {outerReviewHighLabel.colorCategoryNo1 >0 ?
+                                             (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${outerReviewHighLabel.colorItemMemo1}`}} onClick={this.colorDelete1}>
 
                                      </div>) : ''
                                          }
                                          &nbsp;
-                                         {this.props.checkHighLabelStore.outerReviewHighLabel.subColorCategoryNo1 >0 ?
-                                             (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.props.checkHighLabelStore.outerReviewHighLabel.subColorItemMemo1}`}} onClick={this.colorDeleteSub1}>
+                                         {outerReviewHighLabel.subColorCategoryNo1 >0 ?
+                                             (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${outerReviewHighLabel.subColorItemMemo1}`}} onClick={this.colorDeleteSub1}>
                                              </div>) : ''
                                          }
                                      </div>
@@ -520,8 +520,8 @@ class Step2 extends React.Component {
                                          </div>
 
                                          <br></br>
-                                         {this.props.checkHighLabelStore.outerReviewHighLabel.sleeveLengthCategoryNo1 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.outerReviewHighLabel.sleeveLengthItemName1} </Button> ) : ''
+                                         {outerReviewHighLabel.sleeveLengthCategoryNo1 >0 ?
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {outerReviewHighLabel.sleeveLengthItemName1} </Button> ) : ''
                                          }
                                          {polyLast === this.state.tabIndex2 ? (
                                          <Button style={{marginTop: 20}}
