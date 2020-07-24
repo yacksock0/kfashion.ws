@@ -154,7 +154,7 @@ class Step2 extends React.Component {
         this.props.basicLabelStore.doBasicLabelUp();
     }
 
-    handleClickItem = (workNo, imageData, polyNo) => {
+    handleClickItem = (workNo, imageData, polyNo,comment) => {
         let check = true;
         if(this.state.workNo !=0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
