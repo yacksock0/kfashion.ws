@@ -308,7 +308,11 @@ class Step3 extends React.Component {
             });
         }
     }
-
+    onClickDel(tabIndex1){
+        this.setState({
+            tabIndex1:tabIndex1
+        })
+    }
     render() {
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
@@ -343,7 +347,7 @@ class Step3 extends React.Component {
 
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
-                                                <Style onClick={this.handleClickStyle} />
+                                                <Style onClick={this.handleClickStyle} onClickDel={()=>this.onClickDel(1)}workNo={this.state.workNo}/>
                                             </Grid>
                                         </TabPanel>
                                         <TabPanel>
@@ -366,8 +370,10 @@ class Step3 extends React.Component {
                                                 <CategoryComponent4 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
+
                                     </Tabs>
                                         </TabPanel>
+
                                      <TabPanel>
 
                                     <ProImageList onClick={this.handleClickItem} />

@@ -627,8 +627,16 @@ class Polygon extends React.Component {
         }
     }
     handleDelete =()=>{
-        const workNo = this.state.workNo
+        const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
+        if(deleteConfirm) {
+            const workNo = this.state.workNo
+            const createdId = this.props.authStore.loginUser.id
+            this.props.rectStore.deleteImg(workNo, createdId)
+            this.setState({
+                tabIndex: 1,
+            })
 
+        }
     }
     render() {
         const { classes,history } = this.props;
