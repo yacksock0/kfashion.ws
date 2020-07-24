@@ -108,6 +108,10 @@ class Step2 extends React.Component {
         this.state = {
             comment:'',
             workNo : 0,
+            imageData:'',
+            polyNo:'',
+            tabIndex1:1,
+            tabIndex2:0,
         }
 
         this.handleDelete1 = this.handleDelete1.bind(this)
@@ -150,7 +154,7 @@ class Step2 extends React.Component {
         this.props.basicLabelStore.doBasicLabelUp();
     }
 
-    handleClickItem = (workNo, imageData, polyNo, comment) => {
+    handleClickItem = (workNo, imageData, polyNo) => {
         let check = true;
         if(this.state.workNo !=0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
@@ -172,7 +176,6 @@ class Step2 extends React.Component {
                 workNo : workNo,
             })
         }
-        {!comment == '' ? this.setState({comment:'y'}):this.setState({comment:'n'})}
     }
 
     handleClickSubColor1 = () => {
@@ -415,78 +418,7 @@ class Step2 extends React.Component {
             }
         }
         if (savebtn) {
-            console.log(savebtn);
-        //     const param = toJS({
-        //         workNo: this.props.imageStore.isWorkNo,
-        //         workStep: 4,
-        //         labelNo1: this.state.labelNo1,
-        //         labelNo2: this.state.labelNo2,
-        //         labelNo3: this.state.labelNo3,
-        //         labelNo4: this.state.labelNo4,
-        //         color1: this.state.no1,
-        //         color2: this.state.no2,
-        //         color3: this.state.no3,
-        //         color4: this.state.no4,
-        //         colorCategoryNo1: this.state.colorCategoryNo1,
-        //         colorCategoryNo2: this.state.colorCategoryNo2,
-        //         colorCategoryNo3: this.state.colorCategoryNo3,
-        //         colorCategoryNo4: this.state.colorCategoryNo4,
-        //         subColor1: this.state.subNo1,
-        //         subColor2: this.state.subNo2,
-        //         subColor3: this.state.subNo3,
-        //         subColor4: this.state.subNo4,
-        //         subColorCategoryNo1: this.state.subColorCategoryNo1,
-        //         subColorCategoryNo2: this.state.subColorCategoryNo2,
-        //         subColorCategoryNo3: this.state.subColorCategoryNo3,
-        //         subColorCategoryNo4: this.state.subColorCategoryNo4,
-        //         sleeveLength1: this.state.sleeveNo1,
-        //         sleeveLength2: this.state.sleeveNo2,
-        //         sleeveLength4: this.state.sleeveNo4,
-        //         sleeveLengthCategoryNo1: this.state.sleeveLengthCategoryNo1,
-        //         sleeveLengthCategoryNo2: this.state.sleeveLengthCategoryNo2,
-        //         sleeveLengthCategoryNo4: this.state.sleeveLengthCategoryNo4,
-        //         createdId: this.props.authStore.loginUser.id,
-        //     });
-        //     axios.post('/api/v1/kfashion/label/basicLabel', param, {})
-        //         .then(res => {
-        //             if (res.status === 200) {
-        //                 alert("작업을 저장하였습니다.")
-        //                 this.props.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
-        //                 this.setState({
-        //                     tabIndex1: 1,
-        //                     workNo: 0,
-        //                     no: 0,
-        //                     labelNo1: 0,
-        //                     labelNo2: 0,
-        //                     labelNo3: 0,
-        //                     labelNo4: 0,
-        //                     color1: 0,
-        //                     color2: 0,
-        //                     color3: 0,
-        //                     color4: 0,
-        //                     colorCategoryNo1: 0,
-        //                     colorCategoryNo2: 0,
-        //                     colorCategoryNo3: 0,
-        //                     colorCategoryNo4: 0,
-        //                     subColor1: 0,
-        //                     subColor2: 0,
-        //                     subColor3: 0,
-        //                     subColor4: 0,
-        //                     subColorCategoryNo1: 0,
-        //                     subColorCategoryNo2: 0,
-        //                     subColorCategoryNo3: 0,
-        //                     subColorCategoryNo4: 0,
-        //                     sleeveLength1: 0,
-        //                     sleeveLength2: 0,
-        //                     sleeveLength4: 0,
-        //                     sleeveLengthCategoryNo1: 0,
-        //                     sleeveLengthCategoryNo2: 0,
-        //                     sleeveLengthCategoryNo4: 0,
-        //                 });
-        //             } else {
-        //                 console.log("error");
-        //             }
-        //         })
+            this.props.checkHighLabelStore.DoBasicLabelUp();
         }
     }
     deleteAll = () =>{
@@ -534,7 +466,7 @@ class Step2 extends React.Component {
                              <canvas id="c" width="800" height="800">  </canvas>
                          </div>
                      </Grid>
-                     <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
+                     <Grid item xs={12} lg={4} xl={4} style={{marginLeft:'auto'}}>
                          <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                              <TabList >
                                  <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>기본 레이블링</h3></Tab>
@@ -685,7 +617,7 @@ class Step2 extends React.Component {
                                          </Typography>
                                          &nbsp;&nbsp;{!this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color3 onClick={this.handleClickColor3} onClickSub={this.handleClickSubColor3} style={{display:'inline', float:'right'}}/>
+                                             <Color3 onClickSub={this.handleClickSubColor3} style={{display:'inline', float:'right'}}/>
                                          </div>
                                          <div>
                                              <hr></hr>
@@ -756,7 +688,7 @@ class Step2 extends React.Component {
                                              소매길이
                                          </Typography>
                                          <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <SleeveLength4 onClick={this.handleClickSleeve4} />
+                                             <SleeveLength4 />
                                          </div>
                                          <div>
                                              <hr></hr>

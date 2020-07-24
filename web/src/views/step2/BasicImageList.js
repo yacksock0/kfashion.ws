@@ -70,10 +70,9 @@ class BasicImageList extends React.Component {
     componentWillUnmount() {
         this.props.polygonStore.initStore();
     }
-    handleClick = (workNo, imageData,polyNo, comment) => {
+    handleClick = (workNo, imageData,polyNo) => {
         if(this.props.onClick) {
-            this.props.onClick(workNo, imageData,polyNo,comment);
-            console.log('selectedPoly@@@@@@',polyNo)
+            this.props.onClick(workNo, imageData,polyNo);
         }
 
     }
@@ -119,7 +118,7 @@ class BasicImageList extends React.Component {
                     {
                         icon: CheckIcon,
                         tooltip: 'Select Image',
-                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo,polyNo, rowData.comment)
+                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo,polyNo)
                     },
                     rowData => ({
                         icon: ErrorIcon,

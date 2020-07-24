@@ -63,7 +63,7 @@ export default class Color1 extends React.Component {
             <div>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen} style={{marginRight:10}}>메인 색상</Button>
             <Button variant="contained" color="primary" onClick={this.handleClickOpenSub}>서브 색상</Button>
-            <Dialog open={this.state.open} onClose={this.handleClose}
+            <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%'}}
                     maxWidth={'sm'}
             >
             <DialogContent>
@@ -86,7 +86,7 @@ export default class Color1 extends React.Component {
                 </div>
             </DialogContent>
             </Dialog>
-                <Dialog open={this.state.open1} onClose={this.handleClose}
+                <Dialog open={this.state.open1} onClose={this.handleClose}style={{marginLeft:'50%'}}
                         maxWidth={'sm'}
                 >
                     <DialogContent>

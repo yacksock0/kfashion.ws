@@ -50,7 +50,7 @@ export default class SleeveLength1 extends React.Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>소매기장</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose}
+                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}
