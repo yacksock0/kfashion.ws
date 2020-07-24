@@ -708,26 +708,27 @@ public class KfashionLabelController {
                         System.out.println(outerReviewHighLabelList.size());
                         if(outerReviewHighLabelList.size() == 2) {
                                 HighReviewLabel outerReviewHighLabel =  HighReviewLabel.builder()
-                                        .colorCategoryNo(outerReviewHighLabelList.get(0).getCategoryNo())
+                                        .colorCategoryNo1(outerReviewHighLabelList.get(0).getCategoryNo())
                                         .color1(outerReviewHighLabelList.get(0).getCategoryItemNo())
-                                        .colorItemName(outerReviewHighLabelList.get(0).getCategoryItemName())
-                                        .sleeveLengthCategoryNo(outerReviewHighLabelList.get(1).getCategoryNo())
+                                        .colorItemName1(outerReviewHighLabelList.get(0).getCategoryItemName())
+                                        .sleeveLengthCategoryNo1(outerReviewHighLabelList.get(1).getCategoryNo())
                                         .sleeveLength1(outerReviewHighLabelList.get(1).getCategoryItemNo())
-                                        .sleeveLengthItemName(outerReviewHighLabelList.get(1).getCategoryItemName())
+                                        .sleeveLengthItemName1(outerReviewHighLabelList.get(1).getCategoryItemName())
                                         .build();
                                 resultMap.put("outerReviewHighLabel", outerReviewHighLabel);
                                 System.out.println(outerReviewHighLabel);
 
                         }else {
                                 HighReviewLabel outerReviewHighLabel =  HighReviewLabel.builder()
-                                        .colorCategoryNo(outerReviewHighLabelList.get(0).getCategoryNo())
+                                        .colorCategoryNo1(outerReviewHighLabelList.get(0).getCategoryNo())
                                         .color1(outerReviewHighLabelList.get(0).getCategoryItemNo())
-                                        .colorItemName(outerReviewHighLabelList.get(0).getCategoryItemName())
+                                        .colorItemName1(outerReviewHighLabelList.get(0).getCategoryItemName())
+                                        .subColorCategoryNo1(outerReviewHighLabelList.get(1).getCategoryNo())
                                         .subColor1(outerReviewHighLabelList.get(1).getCategoryItemNo())
-                                        .colorSubItemName(outerReviewHighLabelList.get(1).getCategoryItemName())
-                                        .sleeveLengthCategoryNo(outerReviewHighLabelList.get(2).getCategoryNo())
+                                        .colorSubItemName1(outerReviewHighLabelList.get(1).getCategoryItemName())
+                                        .sleeveLengthCategoryNo1(outerReviewHighLabelList.get(2).getCategoryNo())
                                         .sleeveLength1(outerReviewHighLabelList.get(2).getCategoryItemNo())
-                                        .sleeveLengthItemName(outerReviewHighLabelList.get(2).getCategoryItemName())
+                                        .sleeveLengthItemName1(outerReviewHighLabelList.get(2).getCategoryItemName())
                                         .build();
                                 resultMap.put("outerReviewHighLabel", outerReviewHighLabel);
                                 System.out.println(outerReviewHighLabel);
@@ -737,52 +738,48 @@ public class KfashionLabelController {
                         List<KfashionLabel> topReviewHighLabelList = kfashionLabelService.selectTopReviewHighLabelList(workNo);
                         if(topReviewHighLabelList.size() == 2) {
                                 HighReviewLabel topReviewHighLabel =  HighReviewLabel.builder()
-                                        .colorCategoryNo(topReviewHighLabelList.get(0).getCategoryNo())
+                                        .colorCategoryNo2(topReviewHighLabelList.get(0).getCategoryNo())
                                         .color2(topReviewHighLabelList.get(0).getCategoryItemNo())
-                                        .colorItemName(topReviewHighLabelList.get(0).getCategoryItemName())
-                                        .sleeveLengthCategoryNo(topReviewHighLabelList.get(1).getCategoryNo())
+                                        .colorItemName2(topReviewHighLabelList.get(0).getCategoryItemName())
+                                        .sleeveLengthCategoryNo2(topReviewHighLabelList.get(1).getCategoryNo())
                                         .sleeveLength2(topReviewHighLabelList.get(1).getCategoryItemNo())
-                                        .sleeveLengthItemName(topReviewHighLabelList.get(1).getCategoryItemName())
+                                        .sleeveLengthItemName2(topReviewHighLabelList.get(1).getCategoryItemName())
                                         .build();
                                 resultMap.put("topReviewHighLabel", topReviewHighLabel);
                         }else {
                                 HighReviewLabel topReviewHighLabel =  HighReviewLabel.builder()
-                                        .colorCategoryNo(topReviewHighLabelList.get(0).getCategoryNo())
+                                        .colorCategoryNo2(topReviewHighLabelList.get(0).getCategoryNo())
                                         .color2(topReviewHighLabelList.get(0).getCategoryItemNo())
-                                        .colorItemName(topReviewHighLabelList.get(0).getCategoryItemName())
+                                        .colorItemName2(topReviewHighLabelList.get(0).getCategoryItemName())
+                                        .subColorCategoryNo2(topReviewHighLabelList.get(1).getCategoryNo())
                                         .subColor2(topReviewHighLabelList.get(1).getCategoryItemNo())
-                                        .colorSubItemName(topReviewHighLabelList.get(1).getCategoryItemName())
-                                        .sleeveLengthCategoryNo(topReviewHighLabelList.get(2).getCategoryNo())
+                                        .colorSubItemName2(topReviewHighLabelList.get(1).getCategoryItemName())
+                                        .sleeveLengthCategoryNo2(topReviewHighLabelList.get(2).getCategoryNo())
                                         .sleeveLength2(topReviewHighLabelList.get(2).getCategoryItemNo())
-                                        .sleeveLengthItemName(topReviewHighLabelList.get(2).getCategoryItemName())
+                                        .sleeveLengthItemName2(topReviewHighLabelList.get(2).getCategoryItemName())
                                         .build();
                                 resultMap.put("topReviewHighLabel", topReviewHighLabel);
                         }
                 }
                 if(labelNo3 == 3) {
                         List<KfashionLabel> pantsReviewHighLabelList = kfashionLabelService.selectPantsReviewHighLabelList(workNo);
-                        if(pantsReviewHighLabelList.size() == 2) {
-                                HighReviewLabel pantsReviewLabel = HighReviewLabel.builder()
-                                        .colorCategoryNo(pantsReviewHighLabelList.get(0).getCategoryNo())
+                        if(pantsReviewHighLabelList.size() == 1) {
+                                HighReviewLabel pantsReviewHighLabel = HighReviewLabel.builder()
+                                        .colorCategoryNo3(pantsReviewHighLabelList.get(0).getCategoryNo())
                                         .color3(pantsReviewHighLabelList.get(0).getCategoryItemNo())
-                                        .colorItemName(pantsReviewHighLabelList.get(0).getCategoryItemName())
-                                        .sleeveLengthCategoryNo(pantsReviewHighLabelList.get(1).getCategoryNo())
-                                        .sleeveLength3(pantsReviewHighLabelList.get(1).getCategoryItemNo())
-                                        .sleeveLengthItemName(pantsReviewHighLabelList.get(1).getCategoryItemName())
+                                        .colorItemName3(pantsReviewHighLabelList.get(0).getCategoryItemName())
                                         .build();
-                                resultMap.put("pantsReviewLabel", pantsReviewLabel);
+                                resultMap.put("pantsReviewHighLabel", pantsReviewHighLabel);
                         }else {
-                                HighReviewLabel pantsReviewLabel = HighReviewLabel.builder()
-                                        .colorCategoryNo(pantsReviewHighLabelList.get(0).getCategoryNo())
+                                HighReviewLabel pantsReviewHighLabel = HighReviewLabel.builder()
+                                        .colorCategoryNo3(pantsReviewHighLabelList.get(0).getCategoryNo())
                                         .color3(pantsReviewHighLabelList.get(0).getCategoryItemNo())
-                                        .colorItemName(pantsReviewHighLabelList.get(0).getCategoryItemName())
+                                        .colorItemName3(pantsReviewHighLabelList.get(0).getCategoryItemName())
+                                        .subColorCategoryNo3(pantsReviewHighLabelList.get(1).getCategoryNo())
                                         .subColor3(pantsReviewHighLabelList.get(1).getCategoryItemNo())
-                                        .colorSubItemName(pantsReviewHighLabelList.get(1).getCategoryItemName())
-                                        .sleeveLengthCategoryNo(pantsReviewHighLabelList.get(2).getCategoryNo())
-                                        .sleeveLength3(pantsReviewHighLabelList.get(2).getCategoryItemNo())
-                                        .sleeveLengthItemName(pantsReviewHighLabelList.get(2).getCategoryItemName())
+                                        .colorSubItemName3(pantsReviewHighLabelList.get(1).getCategoryItemName())
                                         .build();
-                                resultMap.put("pantsReviewLabel", pantsReviewLabel);
+                                resultMap.put("pantsReviewHighLabel", pantsReviewHighLabel);
 
                         }
                 }
@@ -790,24 +787,25 @@ public class KfashionLabelController {
                         List<KfashionLabel> onePieceReviewHighLabelList = kfashionLabelService.selectOnePieceReviewHighLabelList(workNo);
                         if(onePieceReviewHighLabelList.size() == 2) {
                                 HighReviewLabel onePieceReviewHighLabel = HighReviewLabel.builder()
-                                        .colorCategoryNo(onePieceReviewHighLabelList.get(0).getCategoryNo())
+                                        .colorCategoryNo4(onePieceReviewHighLabelList.get(0).getCategoryNo())
                                         .color4(onePieceReviewHighLabelList.get(0).getCategoryItemNo())
-                                        .colorItemName(onePieceReviewHighLabelList.get(0).getCategoryItemName())
-                                        .sleeveLengthCategoryNo(onePieceReviewHighLabelList.get(1).getCategoryNo())
+                                        .colorItemName4(onePieceReviewHighLabelList.get(0).getCategoryItemName())
+                                        .sleeveLengthCategoryNo4(onePieceReviewHighLabelList.get(1).getCategoryNo())
                                         .sleeveLength4(onePieceReviewHighLabelList.get(1).getCategoryItemNo())
-                                        .sleeveLengthItemName(onePieceReviewHighLabelList.get(1).getCategoryItemName())
+                                        .sleeveLengthItemName4(onePieceReviewHighLabelList.get(1).getCategoryItemName())
                                         .build();
                                 resultMap.put("onePieceReviewHighLabel", onePieceReviewHighLabel);
                         }else {
                                 HighReviewLabel onePieceReviewHighLabel = HighReviewLabel.builder()
-                                        .colorCategoryNo(onePieceReviewHighLabelList.get(0).getCategoryNo())
+                                        .colorCategoryNo4(onePieceReviewHighLabelList.get(0).getCategoryNo())
                                         .color4(onePieceReviewHighLabelList.get(0).getCategoryItemNo())
-                                        .colorItemName(onePieceReviewHighLabelList.get(0).getCategoryItemName())
+                                        .colorItemName4(onePieceReviewHighLabelList.get(0).getCategoryItemName())
+                                        .subColorCategoryNo4(onePieceReviewHighLabelList.get(0).getCategoryNo())
                                         .subColor4(onePieceReviewHighLabelList.get(1).getCategoryItemNo())
-                                        .colorSubItemName(onePieceReviewHighLabelList.get(1).getCategoryItemName())
-                                        .sleeveLengthCategoryNo(onePieceReviewHighLabelList.get(2).getCategoryNo())
+                                        .colorSubItemName4(onePieceReviewHighLabelList.get(1).getCategoryItemName())
+                                        .sleeveLengthCategoryNo4(onePieceReviewHighLabelList.get(2).getCategoryNo())
                                         .sleeveLength4(onePieceReviewHighLabelList.get(2).getCategoryItemNo())
-                                        .sleeveLengthItemName(onePieceReviewHighLabelList.get(2).getCategoryItemName())
+                                        .sleeveLengthItemName4(onePieceReviewHighLabelList.get(2).getCategoryItemName())
                                         .build();
                                 resultMap.put("onePieceReviewHighLabel", onePieceReviewHighLabel);
                         }

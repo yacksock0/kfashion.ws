@@ -143,7 +143,7 @@
          WHERE kfashion_work_history.work_step = 4
          AND kfashion_image.work_no NOT IN (SELECT work_no
                                             FROM kfashion_comment)
-         GROUP BY kfashion_image.work_no
+         ORDER BY kfashion_image.work_no
     </select>
     <select id="recentlyImg" resultMap="kfashionImageResultMap" >
         SELECT DISTINCT

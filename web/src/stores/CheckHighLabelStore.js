@@ -32,28 +32,93 @@ const UpdateState = {
     Uploaded: 'Uploaded',
     UploadFailed: 'UploadFailed',
 };
+const OuterReviewHighLabel = {
+    color1 : '',
+    colorCategoryNo1 : '',
+    colorItemName1 :'',
+
+    subColor1 : '',
+    subColorCategoryNo1 : '',
+    colorSubItemName1 : '',
+
+    sleeveLength1 : '',
+    sleeveLengthCategoryNo1 : '',
+    sleeveLengthItemName1 : '',
+}
+
+const TopReviewHighLabel = {
+    color2 : '',
+    colorCategoryNo2 : '',
+    colorItemName2 :'',
+
+    subColor2 : '',
+    subColorCategoryNo2 : '',
+    colorSubItemName2 : '',
+
+    sleeveLength2 : '',
+    sleeveLengthCategoryNo2 : '',
+    sleeveLengthItemName2 : '',
+}
+const PantsReviewHighLabel = {
+    color3 : '',
+    colorCategoryNo3 : '',
+    colorItemName3 :'',
+
+    subColor3 : '',
+    subColorCategoryNo3 : '',
+    colorSubItemName3 : '',
+}
+
+const OnePieceReviewHighLabel = {
+    color4 : '',
+    colorCategoryNo4 : '',
+    colorItemName4 :'',
+
+    subColor4 : '',
+    subColorCategoryNo4 : '',
+    colorSubItemName4 : '',
+
+    sleeveLength4 : '',
+    sleeveLengthCategoryNo4 : '',
+    sleeveLengthItemName4 : '',
+}
 
 const ReviewHighLabel = {
-    colorItemName :'',
-    colorSubItemName : '',
-    sleeveLengthItemName : '',
     color1 : '',
     color2 : '',
     color3 : '',
     color4 : '',
-    colorCategoryNo : '',
+    colorCategoryNo1 : '',
+    colorCategoryNo2 : '',
+    colorCategoryNo3 : '',
+    colorCategoryNo4 : '',
+    colorItemName1 :'',
+    colorItemName2 :'',
+    colorItemName3 :'',
+    colorItemName4 :'',
 
     subColor1 : '',
     subColor2 : '',
     subColor3 : '',
     subColor4 : '',
+    subColorCategoryNo1 : '',
+    subColorCategoryNo2 : '',
+    subColorCategoryNo3 : '',
+    subColorCategoryNo4 : '',
+    colorSubItemName1 : '',
+    colorSubItemName2 : '',
+    colorSubItemName3 : '',
+    colorSubItemName4 : '',
 
     sleeveLength1 : '',
     sleeveLength2 : '',
-    sleeveLength3 : '' ,
     sleeveLength4 : '',
-
-    sleeveLengthCategoryNo : '',
+    sleeveLengthCategoryNo1 : '',
+    sleeveLengthCategoryNo2 : '',
+    sleeveLengthCategoryNo4 : '',
+    sleeveLengthItemName1 : '',
+    sleeveLengthItemName2 : '',
+    sleeveLengthItemName4 : '',
 }
 
 export default class CheckHighLabelStore {
@@ -61,10 +126,11 @@ export default class CheckHighLabelStore {
     @observable updateState = UpdateState.Closed;
     @observable state = State.Ready;
     @observable authorityNo = 0;
-    @observable outerReviewHighLabel = {...ReviewHighLabel};
-    @observable topReviewHighLabel = {...ReviewHighLabel};
-    @observable pantsReviewHighLabel = {...ReviewHighLabel};
-    @observable onePieceReviewHighLabel = {...ReviewHighLabel};
+    @observable reviewHighLabel = {...ReviewHighLabel}
+    @observable outerReviewHighLabel = {...OuterReviewHighLabel};
+    @observable topReviewHighLabel = {...TopReviewHighLabel};
+    @observable pantsReviewHighLabel = {...PantsReviewHighLabel};
+    @observable onePieceReviewHighLabel = {...OnePieceReviewHighLabel};
     @observable inspectionHighList = [];
     @observable msgDialog = '';
 
