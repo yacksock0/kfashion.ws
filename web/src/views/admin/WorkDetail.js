@@ -154,9 +154,9 @@ class WorkDetail extends React.Component {
     render() {
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>작업지정</Button>
+                <Button variant="outlined" color={'#000000'} onClick={this.handleClickOpen}>작업지정</Button>
                 &nbsp;&nbsp;
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen1}>작업취소</Button>
+                <Button variant="outlined" color={'#000000'} onClick={this.handleClickOpen1}>작업취소</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"xs"}
                         fullWidth={"100%"}
@@ -185,7 +185,7 @@ class WorkDetail extends React.Component {
                         <hr></hr>
                         <form noValidate autoComplete="off">
                             <TextField id="number" label="작업수량 입력" onChange={this.handleWorkUserCancelQuantityChange}/>
-                            <Button variant="contained" color="primary" style={{marginTop:10}} onClick={this.handleWorkUserCancelQuantitySubmit}>확인 </Button>
+                            <Button variant="outlined" color={'#000000'} style={{marginTop:10}} onClick={this.handleWorkUserCancelQuantitySubmit}>확인 </Button>
                         </form>
                     </DialogContent>
                 </Dialog>

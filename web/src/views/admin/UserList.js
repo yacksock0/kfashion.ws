@@ -84,7 +84,7 @@ class UserList extends React.Component {
                 {title: '이름', field: 'name', type: 'text'},
                 {title: '비밀번호', field: 'password' },
                 {title: '생성일', field: 'createdDatetime', type: 'date', editable: 'never'},
-                {title: '비고', field: 'etc', type: 'text'},
+                // {title: '비고', field: 'etc', type: 'text'},
             ],
         }
     }
@@ -194,7 +194,7 @@ class UserList extends React.Component {
                                 minBodyHeight: '65vh',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
-                                    backgroundColor: '#01579b',
+                                    backgroundColor: '#000000',
                                     color: '#FFF',
                                     textAlign:'center',
                                 },

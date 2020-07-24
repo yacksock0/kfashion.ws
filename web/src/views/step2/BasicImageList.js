@@ -42,7 +42,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore','polygonStore','basicCategoryStore')
+@inject('fileUploadStore','authStore','imageStore','polygonStore','basicCategoryStore','checkHighLabelStore')
 @observer
 class BasicImageList extends React.Component {
     constructor(props) {
@@ -70,10 +70,10 @@ class BasicImageList extends React.Component {
     componentWillUnmount() {
         this.props.polygonStore.initStore();
     }
-    handleClick = (workNo, imageData,polyNo) => {
+    handleClick = (workNo, imageData,polyNo, comment) => {
+        this.props.checkHighLabelStore.LoadReviewHighLabelList(workNo);
         if(this.props.onClick) {
-            this.props.onClick(workNo, imageData,polyNo);
-            console.log('selectedPoly@@@@@@',polyNo)
+            this.props.onClick(workNo, imageData,polyNo,comment);
         }
 
     }
@@ -87,7 +87,6 @@ class BasicImageList extends React.Component {
     render() {
         const {basicLabelList} = this.state;
         const polyNo = this.props.polygonStore.tabIndex1-1;
-        const comment = this.props.polygonStore.polygonList;
         return (
             <MaterialTable
                 icons={tableIcons}
@@ -120,7 +119,7 @@ class BasicImageList extends React.Component {
                     {
                         icon: CheckIcon,
                         tooltip: 'Select Image',
-                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo,polyNo)
+                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo,polyNo, rowData.comment)
                     },
                     rowData => ({
                         icon: ErrorIcon,

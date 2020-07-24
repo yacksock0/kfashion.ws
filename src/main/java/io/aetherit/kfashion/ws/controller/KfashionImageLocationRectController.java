@@ -44,7 +44,6 @@ public class KfashionImageLocationRectController {
      * @throws Exception
      */
 
-
     @PostMapping(value="/location")
     public ResponseEntity<String> insertLocationRect(HttpServletRequest httpServletRequest,
                                                      @RequestBody List<KfashionRectList> rectList) throws Exception {
@@ -60,6 +59,35 @@ public class KfashionImageLocationRectController {
         workHistory.setCreatedId(rectList.get(0).getCreatedId());
         kfashionWorkHistoryService.insertWorkHistory(workHistory);
 
+
+        KfashionImageLocationRect rect = new KfashionImageLocationRect();
+        for(int i = 0; i<rectList.size();i++){
+            rect.setWorkNo(rectList.get(i).getWorkNo());
+            rect.setWorkStep(rectList.get(i).getWorkStep());
+            rect.setRectNo(rectList.get(i).getId());
+            rect.setLocationX(rectList.get(i).getLeft());
+            rect.setLocationY(rectList.get(i).getTop());
+            rect.setLocationWidth(rectList.get(i).getWidth());
+            rect.setLocationHeight(rectList.get(i).getHeight());
+            rect.setScaleX(rectList.get(i).getScaleX());
+            rect.setScaleY(rectList.get(i).getScaleY());
+            msg = kfashionImageLocationRectService.insertLocationRect(rect);
+        }
+        return new ResponseEntity<String>(msg, HttpStatus.OK);
+    }
+
+    /**
+     * 렉트 수
+     * @param httpServletRequest
+     * @param rectList
+     * @return String
+     * @throws Exception
+     */
+
+    @PostMapping(value="/updateLocation")
+    public ResponseEntity<String> updateLocationRect(HttpServletRequest httpServletRequest,
+                                                     @RequestBody List<KfashionRectList> rectList) throws Exception {
+        String msg= "";
 
         KfashionImageLocationRect rect = new KfashionImageLocationRect();
         for(int i = 0; i<rectList.size();i++){

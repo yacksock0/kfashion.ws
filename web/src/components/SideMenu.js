@@ -22,6 +22,7 @@ import FormatShapesIcon from '@material-ui/icons/FormatShapes';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
 const logoWidth = 129;
 const logoHeight = 22;
@@ -104,13 +105,13 @@ export default function SideMenu(props) {
         <div className={classes.menu}>
             <List>
                 {loginUser.isAdmin =='Y' ? (
-                <ListSubheader style={{textAlign: 'center'}}><h3>마스터 관리자</h3></ListSubheader>):''}
+                <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />마스터 관리자</h3></ListSubheader>):''}
                 {loginUser.groupAdmin == 1 && loginUser.authorityNo !== 1? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3>그룹 관리자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />그룹 관리자</h3></ListSubheader>):''}
                 {loginUser.authorityNo == 1 ? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3>업로드 작업자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />업로드 작업자</h3></ListSubheader>):''}
                 {loginUser.authorityNo == 2 && loginUser.groupAdmin == 0? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3>기초 작업자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}}/>기초 작업자</h3></ListSubheader>):''}
                 {loginUser.authorityNo == 3 && loginUser.groupAdmin == 0? (
                     <ListSubheader inset><h3>전문 작업자</h3></ListSubheader>):''}
                 <Link to="/home" className={classes.link}>

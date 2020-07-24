@@ -125,7 +125,7 @@ export default class AdminVerify extends React.Component {
                         selection: false,
                         actionsColumnIndex: -1,
                         headerStyle: {
-                            backgroundColor: '#01579b',
+                            backgroundColor: '#000000',
                             color: '#FFF',
                             textAlign:'center',
                         },

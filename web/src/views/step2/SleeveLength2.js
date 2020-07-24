@@ -9,7 +9,7 @@ const columns = [
     { id: '항목', label: '항목', minWidth: 170 },
 ];
 
-@inject('basicLabelStore','authStore','basicCategoryStore')
+@inject('basicLabelStore','authStore','basicCategoryStore','checkHighLabelStore')
 @observer
 export default class SleeveLength2 extends React.Component {
     constructor(props) {
@@ -38,9 +38,7 @@ export default class SleeveLength2 extends React.Component {
         });
     }
     handleClick(sleeve2){
-        if(this.props.onClick) {
-            this.props.onClick(sleeve2);
-        }
+        this.props.checkHighLabelStore.changeNewBasicLabelSleeveLength2(sleeve2)
         this.setState({
             open:false,
         })
@@ -52,7 +50,7 @@ export default class SleeveLength2 extends React.Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>소매기장</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose}
+                <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
                         height={'100%'}

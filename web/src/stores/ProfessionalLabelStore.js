@@ -990,17 +990,6 @@ export default class ProfessionalLabelStore {
     deleteProfessionalLabel = flow(function* deleteProfessionalLabel(workNo) {
         this.state = State.Pending;
         try {
-            console.log("1 : "+ this.newProfessionalLabel.labelNo1);
-            console.log("2 : "+ this.newProfessionalLabel.labelNo2);
-            console.log("3 : "+ this.newProfessionalLabel.labelNo3);
-            console.log("4 : "+ this.newProfessionalLabel.labelNo4);
-            console.log("5 : "+ this.newProfessionalLabel.labelNo5);
-
-            console.log("outerReviewLabel : "+ this.outerReviewLabel.detail1);
-            console.log("topReviewLabel : "+ this.topReviewLabel.detail2);
-            console.log("pantsReviewLabel : "+ this.pantsReviewLabel.detail3);
-            console.log("onePieceReviewLabel : "+ this.onePieceReviewLabel.detail4);
-            console.log("styleReviewLabel : "+ this.styleReviewLabel);
 
             const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo='+ workNo);
             if (resp.status === 200) {
