@@ -569,6 +569,9 @@ class Polygon extends React.Component {
     }
     handleClickItem = (workNo, imageData) => {
         let check = true;
+        this.setState({
+            workNo :workNo
+        })
         if(this.state.workNo != 0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
@@ -623,7 +626,18 @@ class Polygon extends React.Component {
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
     }
+    handleDelete =()=>{
+        const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
+        if(deleteConfirm) {
+            const workNo = this.state.workNo
+            const createdId = this.props.authStore.loginUser.id
+            this.props.rectStore.deleteImg(workNo, createdId)
+            this.setState({
+                tabIndex: 1,
+            })
 
+        }
+    }
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
@@ -1054,7 +1068,11 @@ class Polygon extends React.Component {
                                             <Button onClick={this.submit}  style={{color:'white', minHeight:70,  fontSize:20, width:'100%', height:'100%' }} >작업 완료 </Button>
                                         </div>
                                     </div>
-
+                                    <Grid item xs={12}>
+                                        <Button variant="outlined" color="secondary" style={{width:'100%', marginTop:5}} onClick={this.handleDelete}>
+                                            이미지 삭제
+                                        </Button>
+                                    </Grid>
                                 </TabPanel>
                                 <TabPanel value={this.state.value} index={1}>
                                     <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange}/>

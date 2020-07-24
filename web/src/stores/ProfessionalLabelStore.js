@@ -1004,7 +1004,7 @@ export default class ProfessionalLabelStore {
         }
     });
 
-    deleteImg = flow(function* (workNo,createdId) {
+    deleteImg = flow(function* deleteImg(workNo,createdId) {
         console.log(workNo);
         try {
             const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${workNo}`, {
