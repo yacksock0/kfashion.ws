@@ -46,7 +46,8 @@
         CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
         kfashion_work.created_datetime,
         kfashion_work_history.created_id,
-        kfashion_comment.comment
+        kfashion_comment.comment,
+        IF(kfashion_comment.complete = 'Y', 'Y' , 'N') AS complete
         FROM kfashion_image
         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
@@ -60,6 +61,7 @@
                                                                                       FROM kfashion_comment
                                                                                       WHERE kfashion_comment.work_step = 3
                                                                                       AND kfashion_comment.complete NOT IN ('Y')))
+        HAVING complete = 'N'
         ORDER BY kfashion_comment.comment DESC
     </select>
 
@@ -70,7 +72,8 @@
         CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
         kfashion_work.created_datetime,
         kfashion_work_history.created_id,
-        kfashion_comment.comment
+        kfashion_comment.comment,
+        IF(kfashion_comment.complete = 'Y', 'Y' , 'N') AS complete
         FROM kfashion_image
         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
@@ -84,6 +87,7 @@
                                                                                       FROM kfashion_comment
                                                                                       WHERE kfashion_comment.work_step = 4
                                                                                       AND kfashion_comment.complete NOT IN ('Y')))
+        HAVING complete = 'N'
         ORDER BY kfashion_comment.comment DESC
     </select>
 
