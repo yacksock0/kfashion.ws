@@ -53,13 +53,13 @@
         LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =3)
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 2
-        AND kfashion_comment.complete = 'N'
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                            FROM kfashion_work_history
                                            WHERE kfashion_work_history.work_step = 3
                                             AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
                                                                                       FROM kfashion_comment
-                                                                                      WHERE kfashion_comment.work_step = 3))
+                                                                                      WHERE kfashion_comment.work_step = 3
+                                                                                      AND kfashion_comment.complete NOT IN ('Y')))
         ORDER BY kfashion_comment.comment DESC
     </select>
 
@@ -77,13 +77,13 @@
         LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =4)
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 3
-        AND kfashion_comment.complete = 'N'
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                                     FROM kfashion_work_history
                                                     WHERE kfashion_work_history.work_step = 4
                                                     AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
                                                                                       FROM kfashion_comment
-                                                                                      WHERE kfashion_comment.work_step = 4))
+                                                                                      WHERE kfashion_comment.work_step = 4
+                                                                                      AND kfashion_comment.complete NOT IN ('Y')))
         ORDER BY kfashion_comment.comment DESC
     </select>
 

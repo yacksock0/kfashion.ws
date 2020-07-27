@@ -30,7 +30,11 @@ public class KfashionCommentRepository {
         return mapper.selectCommentNo(selectMap);
     }
 
-    public void updateComment(Long workNo) {
-        mapper.updateComment(workNo);
+    public void updateComment(Map<String, Object> updateMap) {
+        mapper.updateComment(updateMap);
+    }
+
+    public String selectComment(Long workNo) {
+        return mapper.selectComment(workNo);
     }
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/kfashion/label")
@@ -866,8 +867,10 @@ public class KfashionLabelController {
         @PostMapping(value = "/updateBasicLabel")
         public ResponseEntity<Object> updateBasicLabel(HttpServletRequest httpServletRequest,
                                                  @RequestBody BasicLabel basicLabel) throws Exception{
-                Long workNo = basicLabel.getWorkNo();
-                kfashionCommentService.updateComment(workNo);
+                Map<String,Object> updateMap = new HashMap<>();
+                updateMap.put("workNo",basicLabel.getWorkNo());
+                updateMap.put("workStep",basicLabel.getWorkStep());
+                kfashionCommentService.updateComment(updateMap);
                 if(basicLabel.getLabelNo1() == 1) {
                         System.out.println("case1실행한다");
                         KfashionLabel basic = new KfashionLabel();
