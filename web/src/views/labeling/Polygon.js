@@ -177,8 +177,12 @@ class Polygon extends React.Component {
 
 
         this.props.currentStepStore.setStep(1);
-        this.props.enqueueSnackbar("Polygon Work", {
-            variant: 'info'
+        this.props.enqueueSnackbar("영역지정", {
+            variant: 'success',
+            anchorOrigin:{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
