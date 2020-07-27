@@ -52,6 +52,9 @@ export default class Color4 extends React.Component {
     }
     handledColorSub(color4){
         this.props.checkHighLabelStore.changeNewBasicLabelSubColor4(color4);
+        if(this.props.onClickSub){
+            this.props.onClickSub();
+        }
         this.setState({
             open1: false
         });

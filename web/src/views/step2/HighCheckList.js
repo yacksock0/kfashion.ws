@@ -17,7 +17,6 @@ import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
 import ReturnMsg from "./ReturnMsg";
-import ErrorIcon from '@material-ui/icons/Error';
 import {toJS} from "mobx";
 const styles = theme => ({   root: {
         width: "100%",
@@ -93,7 +92,7 @@ const styles = theme => ({   root: {
     },
 });
 
-@inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore', 'polygonStore')
+@inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore', 'polygonStore', 'messageStore')
 @observer
 class HighCheckList extends React.Component {
     constructor(props) {
@@ -160,7 +159,7 @@ class HighCheckList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80,}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
@@ -174,11 +173,15 @@ class HighCheckList extends React.Component {
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
-        this.props.checkHighLabelStore.LoadInspectionHighList();
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
-        this.props.enqueueSnackbar("FinalCheck", {
-            variant: 'info'
+        this.props.messageStore.LoadInspectionHighList1();
+        this.props.enqueueSnackbar("고등학생 검수", {
+            variant: 'success',
+            anchorOrigin:{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }
         });
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
@@ -315,9 +318,14 @@ class HighCheckList extends React.Component {
             this.canvas.remove(objList[i]);
         }
     }
-
+    handleSubmit(){
+        this.props.messageStore.LoadInspectionHighList1();
+        this.setState({
+            tabIndex1:1
+        })
+    }
     render() {
-        const {inspectionHighList} = this.props.checkHighLabelStore;
+        const {inspectionHighList} = this.props.messageStore;
         const {classes} = this.props;
         const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onePieceReviewHighLabel} =this.props.checkHighLabelStore;
         return (
@@ -451,7 +459,7 @@ class HighCheckList extends React.Component {
                         <TabPanel>
                             <MaterialTable
                                 columns={this.state.columns}
-                                data={!!this.props.checkHighLabelStore.inspectionHighList ?
+                                data={
                                     inspectionHighList.map((item) => {
                                         return {
                                             workNo: item.workNo,
@@ -459,7 +467,7 @@ class HighCheckList extends React.Component {
                                             workName: item.workName,
                                             createdDatetime: item.createdDatetime,
                                         }
-                                    }) : []}
+                                    })}
                                 title="이미지 리스트"
                                 options={{
                                     sorting: false,
@@ -495,7 +503,7 @@ class HighCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <ReturnMsg /><br></br><br></br>
+                <ReturnMsg onClick={()=> this.handleSubmit()}/><br></br><br></br>
             </Container>
         );
     }

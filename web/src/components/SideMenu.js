@@ -29,10 +29,10 @@ const logoHeight = 22;
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
-        // [theme.breakpoints.up('lg')]: {
-        //     width: theme.drawerWidth,
-        //     flexShrink: 0,
-        // },
+        [theme.breakpoints.up('xl')]: {
+            width: theme.drawerWidth,
+            flexShrink: 0,
+        },
     },
     appBar: {
         width: theme.drawerWidth,
@@ -426,10 +426,10 @@ export default function SideMenu(props) {
     );
 
     return (
-
+<div>
+            {isLoggedIn ? (
         <nav className={classes.drawer} aria-label="mailbox folders">
-            <Hidden xsUp implementation="css">
-
+            <Hidden smUp implementation="css">
                 <Drawer variant="temporary"
                         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                         open={mobileOpen}
@@ -455,27 +455,32 @@ export default function SideMenu(props) {
                     )}
                 </Drawer>
             </Hidden>
-            {/*<Hidden lgDown implementation="css">*/}
-            {/*    <Drawer variant="permanent"*/}
-            {/*            classes={{*/}
-            {/*                paper: classes.drawerPaper,*/}
-            {/*            }}*/}
-            {/*            open*/}
-            {/*    >*/}
-            {/*        <Toolbar className={classes.toolbar}>*/}
-            {/*            <Typography variant="h6" noWrap className={classes.title}>*/}
-            {/*                <Link to='/home' className={classes.link1}>*/}
-            {/*                    <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION*/}
-            {/*                </Link>*/}
-            {/*            </Typography>*/}
-            {/*        </Toolbar>*/}
-            {/*        {isLoggedIn ? (*/}
-            {/*            drawer*/}
-            {/*        ) : (*/}
-            {/*            ''*/}
-            {/*        )}*/}
-            {/*    </Drawer>*/}
-            {/*</Hidden>*/}
+            <Hidden lgDown implementation="css">
+                <Drawer variant="permanent"
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        open
+                >
+                            <Toolbar className={classes.toolbar}>
+                                <Typography variant="h6" noWrap className={classes.title}>
+                                    <Link to='/home' className={classes.link1}>
+                                        <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION
+                                    </Link>
+                                </Typography>
+                            </Toolbar>
+
+                    {isLoggedIn ? (
+                        drawer
+                    ) : (
+                        ''
+                    )}
+                </Drawer>
+            </Hidden>
         </nav>
+                ) : (
+                    ''
+                )}
+                </div>
     );
 };

@@ -4,7 +4,6 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import {Grid, Button, CircularProgress, Container, TextField, Typography} from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import * as store from "../stores/AuthStore";
 
@@ -43,6 +42,7 @@ const style = theme => ({
         margin: theme.spacing(3, 0, 2),
         backgroundColor: '#000000',
         fontSize : '20px',
+        color:'white'
     },
 });
 
@@ -105,7 +105,6 @@ class SignIn extends React.Component {
                             <Button type="submit"
                                     className={classes.submit}
                                     variant="contained"
-                                    color="primary"
                                     disabled={loginState === store.State.Pending}
                                     onClick={this.handleSubmitForm}
                                     fullWidth >

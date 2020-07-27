@@ -18,6 +18,7 @@ const AddState = {
     Added: 'Added',
     AddFailed: 'AddFailed',
     msgDialog: '',
+    inspectionHighList:[]
 };
 
 const UpdateState = {
@@ -96,7 +97,6 @@ const OnePieceReviewHighLabel = {
 }
 
 const ReviewHighLabel = {
-
 
     color1 : '',
     color2 : '',
@@ -367,11 +367,10 @@ export default class CheckHighLabelStore {
     }
 
     LoadInspectionHighList = flow(function* loadInspectionHighList() {
-        this.inspectionHighList = [];
+        this.state = State.Pending;
         try {
             const response = yield axios.get('/api/v1/kfashion/img/inspectionHighList')
             this.inspectionHighList = response.data.inspectionHighList;
-
         } catch (e) {
             console.log('error')
         }

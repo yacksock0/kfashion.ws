@@ -40,24 +40,30 @@ export default class ReturnMsg extends React.Component {
         })
     };
     handleSubmit = () => {
+        if(this.props.onClick){
         if(this.props.messageStore.newMsg.comment == ''){alert('반송 단계 및 사유를 입력해 주세요')}
         else {
             this.props.messageStore.changeWorkNo(this.props.checkHighLabelStore.workNo);
             this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
             this.props.messageStore.sendMsg();
-            this.props.checkHighLabelStore.LoadInspectionHighList();
+
             this.setState({
                 open: false,
             })
         }
+        this.props.onClick();
+        }
     }
 
     handleComplete = () => {
+        if(this.props.onClick){
         const basicComplateConfirm = window.confirm("검수를 완료 하시겠습니까?");
         if (basicComplateConfirm) {
         const workNo = this.props.checkHighLabelStore.workNo;
         const createdId = this.props.authStore.loginUser.id;
         this.props.checkHighLabelStore.BasicCompleteUp(workNo, createdId);
+        }
+        this.props.onClick();
         }
     }
      handleChangeMsg=(e)=>{
