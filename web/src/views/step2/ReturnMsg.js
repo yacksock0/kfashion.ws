@@ -69,9 +69,13 @@ export default class ReturnMsg extends React.Component {
         console.log(polyInfo);
         return (
             <div>
-                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150}} disabled={this.props.checkHighLabelStore.workNo == ''}>
+                <Button variant="outlined" onClick={this.handleClickOpen} style={{float:'right' , width:150}} disabled={this.props.checkHighLabelStore.workNo == ''}>
+                    완료
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150, marginRight:10}} disabled={this.props.checkHighLabelStore.workNo == ''}>
                     반송
                 </Button>
+
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">반송</DialogTitle>
                     <DialogContent style={{width: 600}}>

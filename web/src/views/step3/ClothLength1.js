@@ -55,7 +55,7 @@ export default class ClothLength1 extends React.Component {
         const lengthList1= this.state.lengthList1;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.props.professionalLabelStore.menuOpen.clothLengthDialLog} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

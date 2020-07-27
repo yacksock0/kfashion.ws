@@ -3,14 +3,20 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
-
-import {Avatar, Button, CircularProgress, Container, TextField, Typography} from "@material-ui/core";
+import {Grid, Button, CircularProgress, Container, TextField, Typography} from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import * as store from "../stores/AuthStore";
 
 
 const style = theme => ({
+    main:{
+        textAlign:'center',
+        backgroundImage: `url(/images/mainbanner.jpg)`,
+        height:'90vh',
+        backgroundSize:'cover',
+        marginTop: '-90px',
+    },
     appBarSpacer: theme.mixins.toolbar,
     container : {
         margin:'auto',
@@ -20,6 +26,7 @@ const style = theme => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        marginTop: '15vh',
     },
     lockOpenAvatar: {
         margin: theme.spacing(1),
@@ -68,6 +75,8 @@ class SignIn extends React.Component {
         const { loginState, login } = this.props.authStore;
 
         return (
+            <Grid item xs={12}>
+                <div className={classes.main}>
             <Container component="main" maxWidth="xs" className={classes.container}>
                 <div className={classes.appBarSpacer} />
                     <div className={classes.paper}>
@@ -95,8 +104,8 @@ class SignIn extends React.Component {
                                        required fullWidth />
                             <Button type="submit"
                                     className={classes.submit}
-                                    color="primary"
                                     variant="contained"
+                                    color="primary"
                                     disabled={loginState === store.State.Pending}
                                     onClick={this.handleSubmitForm}
                                     fullWidth >
@@ -105,6 +114,8 @@ class SignIn extends React.Component {
                         </div>
                     </div>
             </Container>
+                </div>
+            </Grid>
         );
     }
 };

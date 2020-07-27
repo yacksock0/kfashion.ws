@@ -49,7 +49,7 @@ export default class NeckLine1 extends React.Component {
         const neckLineList1= this.state.neckLineList1;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.props.professionalLabelStore.menuOpen.neckLineDialLog} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

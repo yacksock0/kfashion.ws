@@ -46,7 +46,7 @@ export default class Texture1 extends React.Component {
         const textureList1= this.state.textureList1;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.props.professionalLabelStore.menuOpen.textureDialLog} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

@@ -155,7 +155,7 @@ class CategoryComponent1 extends React.Component {
                             <hr></hr>
                         </div>
                         {outerReviewLabel.categoryCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.categoryItemName1} </Button> ) : ''
+                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {outerReviewLabel.categoryItemName1} </Button> ) : ''
                         }
                     </div>
                 </Grid>
@@ -180,7 +180,6 @@ class CategoryComponent1 extends React.Component {
                                         padding: 0
                                     }}
                                     variant="outlined"
-                                    color="primary"
                                     onClick={()=>this.handleDeleteDetail(detail1)}
                                     endIcon={<DeleteIcon/>}
                                 >
@@ -202,7 +201,7 @@ class CategoryComponent1 extends React.Component {
                             <hr></hr>
                         </div>
                         {outerReviewLabel.printCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {outerReviewLabel.printItemName1} </Button> ) : ''
+                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {outerReviewLabel.printItemName1} </Button> ) : ''
                         }
                     </div>
                 </Grid>
@@ -218,7 +217,7 @@ class CategoryComponent1 extends React.Component {
                             <hr></hr>
                         </div>
                         {outerReviewLabel.textureCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {outerReviewLabel.textureItemName1} </Button> ) : ''
+                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined"  onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {outerReviewLabel.textureItemName1} </Button> ) : ''
                         }
                     </div>
                 </Grid>
@@ -234,7 +233,7 @@ class CategoryComponent1 extends React.Component {
                             <hr></hr>
                         </div>
                         {outerReviewLabel.clothLengthCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {outerReviewLabel.clothLengthItemName1} </Button> ) : ''
+                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined"  onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {outerReviewLabel.clothLengthItemName1} </Button> ) : ''
                         }
                     </div>
                 </Grid>
@@ -250,7 +249,7 @@ class CategoryComponent1 extends React.Component {
                             <hr></hr>
                         </div>
                         {outerReviewLabel.neckLineCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {outerReviewLabel.neckLineItemName1} </Button> ) : ''
+                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined"  onClick={this.handleDeleteNeckline} endIcon={<DeleteIcon />} > {outerReviewLabel.neckLineItemName1} </Button> ) : ''
                         }
                     </div>
                 </Grid>
@@ -266,7 +265,7 @@ class CategoryComponent1 extends React.Component {
                             <hr></hr>
                         </div>
                         {outerReviewLabel.karaCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {outerReviewLabel.karaItemName1} </Button> ) : ''
+                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined"  onClick={this.handleDeleteKara} endIcon={<DeleteIcon />} > {outerReviewLabel.karaItemName1} </Button> ) : ''
                         }
                     </div>
                 </Grid>
@@ -282,7 +281,7 @@ class CategoryComponent1 extends React.Component {
                             <hr></hr>
                         </div>
                         {outerReviewLabel.fitCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {outerReviewLabel.fitItemName1} </Button> ) : ''
+                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {outerReviewLabel.fitItemName1} </Button> ) : ''
                         }
                     </div>
 

@@ -13,18 +13,18 @@ const logoWidth = 120;
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
-        [theme.breakpoints.up('xl')]: {
-            width: `calc(100% - ${theme.drawerWidth}px)`,
-            marginLeft: theme.drawerWidth,
-            backgroundColor : '#000000',
-        },
+        // [theme.breakpoints.up('xl')]: {
+        //     width: `calc(100% - ${theme.drawerWidth}px)`,
+        //     marginLeft: theme.drawerWidth,
+        //     backgroundColor : '#000000',
+        // },
         backgroundColor : '#000000',
     },
     menuButton: {
         marginRight: theme.spacing(2),
-        [theme.breakpoints.up('xl')]: {
-        display:'none'
-        },
+        // [theme.breakpoints.up('xl')]: {
+        // display:'none'
+        // },
     },
     title: {
         marginLeft: (theme.sideMenuWidth - logoWidth) / 2,
@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     link: {
         textDecoration: 'none',
         color: 'inherit',
-    }
+        marginLeft:'15%'
+    },
 }));
 
 export default function TopBar(props) {
@@ -67,7 +68,9 @@ export default function TopBar(props) {
                         {loginUser.id}
                         <ExitToAppIcon />
                     </IconButton>
-                ) : (''
+                ) : ( <Link to='/home' className={classes.link}>
+                        <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
+                    </Link>
                     // <Link to="/SignUp" className={classes.link}>
                     //     <IconButton color="inherit">
                     //         <AssignmentIndIcon />
