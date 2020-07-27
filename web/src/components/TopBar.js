@@ -13,18 +13,18 @@ const logoWidth = 120;
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
-        // [theme.breakpoints.up('xl')]: {
-        //     width: `calc(100% - ${theme.drawerWidth}px)`,
-        //     marginLeft: theme.drawerWidth,
-        //     backgroundColor : '#000000',
-        // },
+        [theme.breakpoints.up('xl')]: {
+            width: `calc(100% - ${theme.drawerWidth}px)`,
+            marginLeft: theme.drawerWidth,
+            backgroundColor : '#000000',
+        },
         backgroundColor : '#000000',
     },
     menuButton: {
         marginRight: theme.spacing(2),
-        // [theme.breakpoints.up('xl')]: {
-        // display:'none'
-        // },
+        [theme.breakpoints.up('xl')]: {
+        display:'none'
+        },
     },
     title: {
         marginLeft: (theme.sideMenuWidth - logoWidth) / 2,
