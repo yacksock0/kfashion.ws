@@ -113,6 +113,7 @@ class Step2 extends React.Component {
             tabIndex1:1,
             tabIndex2:0,
             polyInfo : [],
+            labelNoList : [],
         }
         this.handleClickSubColor1 = this.handleClickSubColor1.bind(this)
         this.handleDelete1 = this.handleDelete1.bind(this)
@@ -164,20 +165,23 @@ class Step2 extends React.Component {
             this.deleteAll();
             this.setState( {comment:comment})
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-            this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
-            this.props.polygonStore.LoadLabelNoList(workNo);
+            this.props.polygonStore.LoadPolygonLocation(workNo);
+            alert("???");
+            this.props.polygonStore.LoadLabelNoList(workNo, this.handleClickCallback);
         }
     }
-    handleClickCallback= (polyInfo, workNo)=>{
-        let tabIndex2 =polyInfo[0] -1;
-        this.setState({ polyInfo : polyInfo, workNo : workNo});
+    handleClickCallback= (labelNoList, workNo)=>{
+        alert("???");
+        let tabIndex2 =labelNoList[0] -1;
+        this.setState({ labelNoList : labelNoList, workNo : workNo});
         this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: 800,
             height: 800,
             originX: 'left',
             originY: 'top'
         });
+        alert(labelNoList);
     }
 
     handleClickSubColor1(){

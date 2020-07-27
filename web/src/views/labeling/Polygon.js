@@ -583,26 +583,17 @@ class Polygon extends React.Component {
             this.polygon.length = 0;
             this.rectangle.length = 0;
             // this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-            this.setState({tabIndex: 0, workNo: workNo});
+
             this.props.rectStore.LoadWorkTypeList(workNo, this.handleClickCallback);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
-            this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-                top: 0,
-                left: 0,
-                width: 800,
-                height: 800,
-                scaleX: 1,
-                scaleY: 1,
-                originX: 'left',
-                originY: 'top'
-            });
+
+
         }
     }
 
 
     handleClickCallback = (workTypeList, workNo)=>{
-        alert(workTypeList);
         if(workTypeList.length > 0 ){
             this.save1 = true;
             this.save2 = true;
@@ -631,9 +622,17 @@ class Polygon extends React.Component {
             this.save4 = false;
         }
         this.buttonState();
-
-        this.setState({ workNo : workNo});
-        this.setState({tabIndex1 : 0});
+        this.setState({tabIndex: 0, workNo: workNo});
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            top: 0,
+            left: 0,
+            width: 800,
+            height: 800,
+            scaleX: 1,
+            scaleY: 1,
+            originX: 'left',
+            originY: 'top'
+        });
     }
 
 

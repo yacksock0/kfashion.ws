@@ -112,7 +112,7 @@ export default class RectStore {
             const response = yield axios.get('/api/v1/kfashion/comment/workTypeList?workNo='+workNo)
             this.workTypeList = response.data.workTypeList;
             console.log("workTypeList",this.workTypeList);
-            handleClickCallback(this.workTypeList);
+            handleClickCallback(this.workTypeList, workNo);
         } catch (e) {
             console.log('error')
         }

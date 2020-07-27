@@ -93,12 +93,15 @@ export default class PolygonStore {
         }
     });
 
-    LoadLabelNoList = flow(function* loadLabelNoList(workNo) {
+    LoadLabelNoList = flow(function* loadLabelNoList(workNo, handleClickCallback ) {
         this.labelNoList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/label/labelNoList?workNo='+workNo)
+            alert("workNo : "+ workNo);
+            const response = yield axios.get('/api/v1/kfashion/label/labelNoList?workNo='+workNo);
+
             this.labelNoList = response.data.labelNoList;
             console.log("labelNoList",this.labelNoList);
+            handleClickCallback(response.data.labelNoList, workNo);
         } catch (e) {
             console.log('error')
         }
