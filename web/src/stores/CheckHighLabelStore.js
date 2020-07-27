@@ -151,6 +151,13 @@ const ReviewHighLabel = {
     createdId : '',
 }
 
+const BasicComplete = {
+    createdId : '',
+    workNo : '',
+    workStep : 7,
+}
+
+
 export default class CheckHighLabelStore {
     @observable addState = AddState.Closed;
     @observable updateState = UpdateState.Closed;
@@ -164,6 +171,7 @@ export default class CheckHighLabelStore {
     @observable inspectionHighList = [];
     @observable msgDialog = '';
     @observable workNo = 0;
+    @observable basicComplete = {...BasicComplete};
 
     @action changeNewBasicLabelNo1 = (labelNo1) => {
         this.outerReviewHighLabel.labelNo1 = labelNo1;
@@ -517,6 +525,26 @@ export default class CheckHighLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
+
+
+    BasicComplete = flow(function* basicComplete(workNo,createdId) {
+        this.state = State.Pending;
+        try {
+            this.basicComplete.workNo = workNo;
+            this.basicComplete.createdId =createdId;
+            const param = toJS(this.basicComplete);
+            const resp = yield axios.post('/api/v1/kfashion/work/history/basicComplete',param);
+            if (resp.status === 200) {
+                alert("검수가 완료 되었습니다.");
+                this.LoadInspectionHighList();
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러좀 나지 마라')
+        }
+    });
+
 
 
 

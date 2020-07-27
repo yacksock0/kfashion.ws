@@ -959,4 +959,20 @@ public class KfashionLabelController {
         }
 
 
+
+        /**
+         * 라벨 넘버 리스트
+         * @param workNo
+         * @return ResponseEntity
+         * @throws
+         */
+        @GetMapping (value = "/labelNoList")
+        public ResponseEntity<Object> labelNoList(HttpServletRequest httpRequest,
+                                                   @RequestParam (value="workNo")Long workNo) {
+                HashMap<String, Object> resultMap = new HashMap<String, Object>();
+                List<Integer> labelNoList = kfashionLabelService.selectLabelNoList(workNo);
+                resultMap.put("labelNoList", labelNoList);
+                System.out.println("labelNoList"+labelNoList);
+                return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }
 }

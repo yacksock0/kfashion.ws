@@ -33,6 +33,7 @@ export default class RectStore {
     @observable polygonInsertList= [];
     @observable polygonList= [];
     @observable locationPolygonList = [];
+    @observable workTypeList = [];
 
     @action objGet = (rectangle, polygon) => {
         this.rectInsertList = rectangle;
@@ -100,6 +101,17 @@ export default class RectStore {
             const response = yield axios.get('/api/v1/kfashion/rect/locationRectList?workNo='+workNo)
             this.locationRectList = response.data.locationRectList;
             console.log(this.locationRectList);
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+    LoadWorkTypeList = flow(function* loadWorkTypeList(workNo) {
+        this.workTypeList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/comment/workTypeList?workNo='+workNo)
+            this.workTypeList = response.data.workTypeList;
+            console.log("workTypeList",this.workTypeList);
         } catch (e) {
             console.log('error')
         }

@@ -31,6 +31,12 @@ const UpdateState = {
     Uploaded: 'Uploaded',
     UploadFailed: 'UploadFailed',
 };
+
+const ProfessionalComplete = {
+    workNo : '',
+    createdId : '',
+    workStep : 8,
+}
 export default class ImageStore {
     @observable boundaryList = [];
     @observable inspectionList = [];
@@ -41,6 +47,7 @@ export default class ImageStore {
     @observable state = State.Ready;
     @observable workNo = 0;
     @observable count = 0;
+    @observable professionalComplete = {...ProfessionalComplete};
 
     @action countChange =()=>{
         this.count= this.count+1
@@ -97,6 +104,24 @@ export default class ImageStore {
             this.inspectionList = response.data.inspectionList;
         } catch (e) {
             console.log('error')
+        }
+    });
+
+    ProfessionalComplete = flow(function* professionalComplete(workNo,createdId) {
+        this.state = State.Pending;
+        try {
+            this.professionalComplete.workNo = workNo;
+            this.professionalComplete.createdId = createdId;
+            const param = toJS(this.professionalComplete);
+            const resp = yield axios.post('/api/v1/kfashion/work/history/professionalComplete',param);
+            if (resp.status === 200) {
+                alert("검수가 완료 되었습니다.");
+                this.LoadInspectionList();
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러좀 나지 마라')
         }
     });
 

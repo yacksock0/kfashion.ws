@@ -45,4 +45,5 @@ public class KfashionWorkHistoryService {
     public void deleteBasicLabelWorkHistory(HashMap<String, Object> deleteMap) {
         repository.deleteBasicLabelWorkHistory(deleteMap);
     }
+
 }

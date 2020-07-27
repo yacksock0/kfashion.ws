@@ -5,6 +5,7 @@ import io.aetherit.kfashion.ws.repository.KfashionCommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -36,5 +37,13 @@ public class KfashionCommentService {
 
     public String selectComment(Long workNo) {
         return repository.selectComment(workNo);
+    }
+
+    public List<Integer> selectWorkTypeList(Long workNo) {
+        return repository.selectWorkTypeList(workNo);
+    }
+
+    public void updatePolyComment(Map<String, Object> updateMap) {
+        repository.updatePolyComment(updateMap);
     }
 }
