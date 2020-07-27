@@ -193,6 +193,7 @@ class Step2 extends React.Component {
             if(comment == null){
                 this.props.polygonStore.LoadPolygonLocation(workNo, this.polyListCallback);
             }else{
+                this.props.polygonStore.LoadPolygonLocation(workNo);
                 this.props.polygonStore.LoadLabelNoList(workNo, this.labelNoListCallback);
             }
         }
@@ -385,16 +386,6 @@ class Step2 extends React.Component {
                 });
             this.canvas.add(polyline);
             this.canvas.sendToBack(polyline);
-
-            // let makePath = 'M ' + selectedPoly[0].locationX + ' ' + selectedPoly[0].locationY;
-            // for (let i = 1; i < selectedPoly.length; i++) {
-            //     makePath += ' L ' + selectedPoly[i].locationX + ' ' + selectedPoly[i].locationY;
-            // }
-            // makePath += ' z';
-            // let path = new fabric.Path(makePath);
-            // path.opacity = 0.3;
-            // console.log(makePath);
-            // this.canvas.add(path);
 
             this.setState({
                 tabIndex2: tabIndex2,
