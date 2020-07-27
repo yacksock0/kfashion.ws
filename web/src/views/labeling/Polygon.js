@@ -583,6 +583,7 @@ class Polygon extends React.Component {
         if(check) {
             this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
             this.setState({tabIndex: 0, workNo: workNo});
+            this.props.rectStore.LoadWorkTypeList(workNo);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
             const {polyInfo} = this.props.polygonStore;

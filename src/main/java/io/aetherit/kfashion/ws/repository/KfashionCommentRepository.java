@@ -5,6 +5,7 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionCommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -36,5 +37,9 @@ public class KfashionCommentRepository {
 
     public String selectComment(Long workNo) {
         return mapper.selectComment(workNo);
+    }
+
+    public List<Integer> selectWorkTypeList(Long workNo) {
+        return mapper.selectWorkTypeList(workNo);
     }
 }

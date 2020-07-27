@@ -67,15 +67,15 @@ export default function TopBar(props) {
                         {loginUser.id}
                         <ExitToAppIcon />
                     </IconButton>
-                ) : (
-                    <Link to="/SignUp" className={classes.link}>
-                        <IconButton color="inherit">
-                            <AssignmentIndIcon />
-                            <Typography variant="h6" noWrap className={classes.title}>
-                                회원가입
-                            </Typography>
-                        </IconButton>
-                    </Link>
+                ) : (''
+                    // <Link to="/SignUp" className={classes.link}>
+                    //     <IconButton color="inherit">
+                    //         <AssignmentIndIcon />
+                    //         <Typography variant="h6" noWrap className={classes.title}>
+                    //             회원가입
+                    //         </Typography>
+                    //     </IconButton>
+                    // </Link>
                 )}
             </Toolbar>
         </AppBar>

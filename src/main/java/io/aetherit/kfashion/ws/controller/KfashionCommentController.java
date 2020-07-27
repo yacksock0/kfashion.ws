@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.controller;
 
+import io.aetherit.kfashion.ws.model.KfashionCategoryItem;
 import io.aetherit.kfashion.ws.model.KfashionComment;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationRect;
 import io.aetherit.kfashion.ws.service.*;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -127,4 +129,22 @@ public class KfashionCommentController {
         }
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
+
+
+    /**
+     * 코멘트 타입 리스트
+     * @param workNo
+     * @return ResponseEntity
+     * @throws
+     */
+    @GetMapping (value = "/workTypeList")
+    public ResponseEntity<Object> workTypeList(HttpServletRequest httpRequest,
+                                            @RequestParam (value="workNo")Long workNo) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<Integer> workTypeList = kfashionCommentService.selectWorkTypeList(workNo);
+        resultMap.put("workTypeList", workTypeList);
+        System.out.println("workTypeList"+workTypeList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
 }
