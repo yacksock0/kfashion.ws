@@ -17,6 +17,8 @@ import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
 import ReturnMsg from "./ReturnMsg";
+import ErrorIcon from '@material-ui/icons/Error';
+import {toJS} from "mobx";
 const styles = theme => ({   root: {
         width: "100%",
         marginTop: theme.spacing.unit * 3,
@@ -91,7 +93,7 @@ const styles = theme => ({   root: {
     },
 });
 
-@inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore')
+@inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore', 'polygonStore')
 @observer
 class HighCheckList extends React.Component {
     constructor(props) {
@@ -148,6 +150,8 @@ class HighCheckList extends React.Component {
             labelNo3 : 0,
             labelNo4 : 0,
 
+            polyInfo : [],
+
             tabIndex1: 1,
             tabIndex2:0,
             createdId: '',
@@ -183,27 +187,135 @@ class HighCheckList extends React.Component {
     }
 
     handleClick=(workNo, imgData)=>{
+        this.deleteAll();
         this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(workNo);
         this.props.checkHighLabelStore.LoadReviewHighLabelList(workNo);
-        this.setState({
-            imgData:imgData,
-        })
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+        this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+        this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
+    }
+    handleClickCallback= (polyInfo, workNo)=>{
+        this.setState({ polyInfo : polyInfo, workNo : workNo});
+        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: 800,
             height: 800,
             originX: 'left',
             originY: 'top'
         });
-        this.setState({tabIndex1 : 0, tabIndex2 : 0})
-
     }
+
     onSelectTab(tabIndex1) {
         this.setState({tabIndex1:tabIndex1})
-        this.props.checkHighLabelStore.changeNewBasicLabelWorkNo('')
+        if(tabIndex1 ==0){
+            this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(this.state.workNo);
+        }else{
+            this.props.checkHighLabelStore.changeNewBasicLabelWorkNo('');
+        }
+
     }
     onSelectTab1(tabIndex2){
-        this.setState({tabIndex2:tabIndex2})
+        let polyNo = tabIndex2+1;
+        const {locationPolygonList} = this.props.polygonStore;
+        const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
+
+        if (selectedPoly.length !== 0) {
+            this.deleteAll();
+            for (let i = 0; i < selectedPoly.length; i++) {
+                console.log(this.lineTwoPoint);
+                this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
+                this.x = selectedPoly[i].locationX;
+                this.y = selectedPoly[i].locationY;
+
+                if (i != 0) {
+                    let x1 = this.lineTwoPoint[0];
+                    let x2 = this.lineTwoPoint[2];
+                    let x3 = 0;
+                    let y1 = this.lineTwoPoint[1];
+                    let y2 = this.lineTwoPoint[3];
+                    let y3 = 0;
+                    if (x2 < x1) {
+                        x3 = x1;
+                        x1 = x2;
+                        x2 = x3;
+                    }
+                    if (y2 < y1) {
+                        y3 = y1;
+                        y1 = y2;
+                        y2 = y3;
+                    }
+                    let polyline = new fabric.Line(
+                        [this.lineTwoPoint[0],
+                            this.lineTwoPoint[1],
+                            this.lineTwoPoint[2],
+                            this.lineTwoPoint[3]], {
+                            id: this.lineCounter,
+                            type: 'line',
+                            fill: 'red',
+                            stroke: 'red',
+                            strokeWidth: 5,
+                            padding: 1,
+                            selectable: false,
+                            evented: false,
+                            left: x1,
+                            top: y1,
+                        });
+                    this.canvas.add(polyline);
+                    this.canvas.sendToBack(polyline);
+                }
+            }
+            let x1 = selectedPoly[selectedPoly.length - 1].locationX;
+            let x2 = selectedPoly[0].locationX;
+            let x3 = 0;
+            let y1 = selectedPoly[selectedPoly.length - 1].locationY;
+            let y2 = selectedPoly[0].locationY;
+            let y3 = 0;
+            this.lineTwoPoint = [x1, y1, x2, y2];
+            if (x2 < x1) {
+                x3 = x1;
+                x1 = x2;
+                x2 = x3;
+            }
+            if (y2 < y1) {
+                y3 = y1;
+                y1 = y2;
+                y2 = y3;
+            }
+            let polyline = new fabric.Line(
+                [this.lineTwoPoint[0],
+                    this.lineTwoPoint[1],
+                    this.lineTwoPoint[2],
+                    this.lineTwoPoint[3]], {
+                    id: this.lineCounter,
+                    type: 'line',
+                    fill: 'red',
+                    stroke: 'red',
+                    strokeWidth: 5,
+                    padding: 1,
+                    selectable: false,
+                    evented: false,
+                    left: x1,
+                    top: y1,
+                });
+            this.canvas.add(polyline);
+            this.canvas.sendToBack(polyline);
+
+            this.setState({
+                tabIndex2: tabIndex2,
+            })
+        }  else {
+            alert("poly정보가 존재하지 않습니다.")
+        }
     }
+    deleteAll = () =>{
+        let objList = [];
+        this.canvas.getObjects().forEach(function (o) {
+            objList.push(o);
+        })
+        for (let i = 0; i <= objList.length; i++) {
+            this.canvas.remove(objList[i]);
+        }
+    }
+
     render() {
         const {inspectionHighList} = this.props.checkHighLabelStore;
         const {classes} = this.props;
@@ -229,10 +341,18 @@ class HighCheckList extends React.Component {
                                     <TabPanel>
                                     <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab1(tabIndex2)}>
                                         <TabList >
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly == 1))}
+                                            ><h3>아우터</h3></Tab>
+                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly == 2))}
+                                            ><h3>상의</h3></Tab>
+                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly == 3))}
+                                            ><h3>하의</h3></Tab>
+                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly == 4))}
+                                            ><h3>원피스</h3></Tab>
                                         </TabList>
                                         <TabPanel>
                                         <TableContainer >

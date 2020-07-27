@@ -12,7 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 
-@inject('authStore', 'messageStore','checkHighLabelStore')
+@inject('authStore', 'messageStore','checkHighLabelStore', 'polygonStore')
 @observer
 export default class ReturnMsg extends React.Component {
     constructor(props) {
@@ -74,6 +74,8 @@ export default class ReturnMsg extends React.Component {
     };
     render() {
         const comment = this.props.messageStore.newMsg.comment;
+        const {polyInfo} = this.props.polygonStore
+        console.log(polyInfo);
         return (
             <div>
                 <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150}} disabled={this.props.checkHighLabelStore.workNo == ''}>
@@ -91,24 +93,54 @@ export default class ReturnMsg extends React.Component {
                         </DialogContentText>
                         <FormGroup row>
                             <FormControlLabel
-                                control={<Checkbox checked={this.props.messageStore.checkBox.poly} value={3} onChange={this.handleChange} name="poly" />}
+                                control={
+                                    <Checkbox
+                                        checked={this.props.messageStore.checkBox.poly}
+                                        value={3}
+                                        onChange={this.handleChange}
+                                        name="poly"
+                                    />}
                                 label="영역지정 : "
                             />
 
                             <FormControlLabel
-                                control={<Checkbox checked={this.props.messageStore.checkBox.outer} onChange={this.handleChangeType} name="outer" />}
+                                control={
+                                    <Checkbox
+                                        checked={this.props.messageStore.checkBox.outer}
+                                        onChange={this.handleChangeType}
+                                        name="outer"
+                                        disabled={ "" == polyInfo.filter(poly => poly == 1) }
+                                    />}
                                 label="아우터"
                             />
                             <FormControlLabel
-                                control={<Checkbox checked={this.props.messageStore.checkBox.top} onChange={this.handleChangeType} name="top" />}
+                                control={
+                                    <Checkbox
+                                        checked={this.props.messageStore.checkBox.top}
+                                        onChange={this.handleChangeType}
+                                        name="top"
+                                        disabled={"" == polyInfo.filter(poly => poly == 2)}
+                                    />}
                                 label="상의"
                             />
                             <FormControlLabel
-                                control={<Checkbox checked={this.props.messageStore.checkBox.pants} onChange={this.handleChangeType} name="pants" />}
+                                control={
+                                    <Checkbox
+                                        checked={this.props.messageStore.checkBox.pants}
+                                        onChange={this.handleChangeType}
+                                        name="pants"
+                                        disabled={"" ==polyInfo.filter(poly => poly == 3)}
+                                    />}
                                 label="하의"
                             />
                             <FormControlLabel
-                                control={<Checkbox checked={this.props.messageStore.checkBox.onepiece}  onChange={this.handleChangeType} name="onepiece" />}
+                                control={
+                                    <Checkbox
+                                        checked={this.props.messageStore.checkBox.onepiece}
+                                        onChange={this.handleChangeType}
+                                        name="onepiece"
+                                        disabled={"" == polyInfo.filter(poly => poly == 4)}
+                                    />}
                                 label="원피스"
                             />
                         </FormGroup>

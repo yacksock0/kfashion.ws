@@ -30,6 +30,7 @@ export default class PolygonStore {
     @observable polyLast = 0;
     @observable polyInfo;
     @observable labelNoList;
+    @observable polyInfo = [];
 
     @action objGet = (obj) => {
         this.polygonInsertList = obj;
@@ -76,7 +77,7 @@ export default class PolygonStore {
     });
 
 
-    LoadPolygonLocation = flow(function* LoadPolygonLocation(workNo) {
+    LoadPolygonLocation = flow(function* LoadPolygonLocation(workNo, handleClickCallback) {
         this.locationPolygonList = [];
         try {
             const response = yield axios.get('/api/v1/kfashion/polygon/locationPolygonList?workNo='+workNo);
@@ -84,19 +85,21 @@ export default class PolygonStore {
             this.tabIndex1 = response.data.polyNo[0];
             this.polyInfo = response.data.polyNo;
             this.polyLast = response.data.polyNo[response.data.polyNo.length-1] - 1;
-            console.log('polyLast',this.polyLast);
+            console.log('locationPolygonList',this.locationPolygonList);
             console.log(this.tabIndex1);
+            handleClickCallback(this.polyInfo, workNo);
         } catch (e) {
             console.log('error');
         }
     });
 
-    LoadLabelNoList = flow(function* loadLabelNoList(workNo) {
+    LoadLabelNoList = flow(function* loadLabelNoList(workNo, handleClickCallback ) {
         this.labelNoList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/label/labelNoList?workNo='+workNo)
+            const response = yield axios.get('/api/v1/kfashion/label/labelNoList?workNo='+workNo);
             this.labelNoList = response.data.labelNoList;
             console.log("labelNoList",this.labelNoList);
+            handleClickCallback(this.polyInfo, response.data.labelNoList, workNo);
         } catch (e) {
             console.log('error')
         }
@@ -115,10 +118,6 @@ export default class PolygonStore {
                 polyNo: r.polyNo,
                 points : r.points,
             }));
-            // const kfashionPolygonList = [];
-            // kfashionPolygonList.concat(polygonList);
-            // console.log("1111111 : "+this.workNo);
-            console.log("1111111 : "+kfashionPolygonList);
             const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
             if (resp.status === 200) {
                 this.state = State.Success;

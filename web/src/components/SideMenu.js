@@ -317,18 +317,30 @@ export default function SideMenu(props) {
                                 </List>
                             </Collapse>
                         </Link>
-                    <Link to="/Step2/FinalCheckList" className={classes.link}>
-                        <Collapse in={open2} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <ListItem type="button" className={classes.nested}>
-                                    <ListItemIcon>
-                                        <PlaylistAddCheckIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="작업내용 상호간체크" />
-                                </ListItem>
-                            </List>
-                        </Collapse>
-                    </Link>
+                        <Link to="/Step2/FinalCheckList" className={classes.link}>
+                            <Collapse in={open2} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <ListItem type="button" className={classes.nested}>
+                                        <ListItemIcon>
+                                            <PlaylistAddCheckIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="작업내용 상호간체크" />
+                                    </ListItem>
+                                </List>
+                            </Collapse>
+                        </Link>
+                        {/*<Link to="/Step2/Test" className={classes.link}>*/}
+                        {/*    <Collapse in={open2} timeout="auto" unmountOnExit>*/}
+                        {/*        <List component="div" disablePadding>*/}
+                        {/*            <ListItem type="button" className={classes.nested}>*/}
+                        {/*                <ListItemIcon>*/}
+                        {/*                    <PlaylistAddCheckIcon />*/}
+                        {/*                </ListItemIcon>*/}
+                        {/*                <ListItemText primary="Test" />*/}
+                        {/*            </ListItem>*/}
+                        {/*        </List>*/}
+                        {/*    </Collapse>*/}
+                        {/*</Link>*/}
                     </div>
                 ):''}
                     </List>
