@@ -177,7 +177,11 @@ class FinalCheckList extends React.Component {
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("FinalCheck", {
-            variant: 'info'
+            variant: 'info',
+            anchorOrigin:{
+            vertical: 'bottom',
+                horizontal: 'left',
+        }
         });
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
@@ -621,6 +625,9 @@ class FinalCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
+                <Button variant="outlined" style={{float:'right' , width:150, marginBottom:10}}>
+                    완료
+                </Button>
             </Container>
         );
     }
