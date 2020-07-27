@@ -112,6 +112,7 @@ class Step2 extends React.Component {
             polyNo:'',
             tabIndex1:1,
             tabIndex2:0,
+            tabController : [],
         }
         this.handleClickSubColor1 = this.handleClickSubColor1.bind(this)
         this.handleDelete1 = this.handleDelete1.bind(this)
@@ -179,7 +180,45 @@ class Step2 extends React.Component {
         }
     }
 
+    handleClickItem = (workNo, imageData, polyNo, comment) => {
 
+        let check = true;
+        if(this.state.workNo !=0){
+            check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
+        }
+        if(check){
+            this.deleteAll();
+            this.setState( {comment:comment})
+            this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+            if(comment == null){
+                this.props.polygonStore.LoadPolygonLocation(workNo, this.polyListCallback);
+            }else{
+                this.props.polygonStore.LoadLabelNoList(workNo, this.labelNoListCallback);
+            }
+        }
+    }
+    labelNoListCallback= (labelNoList, workNo)=>{
+        let tabIndex2 =labelNoList[0] -1;
+        this.setState({ tabController : labelNoList, workNo : workNo});
+        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 800,
+            height: 800,
+            originX: 'left',
+            originY: 'top'
+        });
+    }
+    polyListCallback= (polyInfo, workNo)=>{
+        let tabIndex2 =polyInfo[0] -1;
+        this.setState({ tabController : polyInfo, workNo : workNo});
+        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 800,
+            height: 800,
+            originX: 'left',
+            originY: 'top'
+        });
+    }
 
     handleClickSubColor1(){
         console.log('main',this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1)
@@ -508,12 +547,20 @@ class Step2 extends React.Component {
 
                          <TabPanel>
                              <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
-                             <TabList>
-                                 <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
-                                 <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
-                                 <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
-                                 <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
-                             </TabList>
+                                 <TabList >
+                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                           disabled={"" == this.state.tabController.filter((poly=> poly == 1))}
+                                     ><h3>아우터</h3></Tab>
+                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                           disabled={"" == this.state.tabController.filter((poly=> poly == 2))}
+                                     ><h3>상의</h3></Tab>
+                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                           disabled={"" == this.state.tabController.filter((poly=> poly == 3))}
+                                     ><h3>하의</h3></Tab>
+                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                           disabled={"" == this.state.tabController.filter((poly=> poly == 4))}
+                                     ><h3>원피스</h3></Tab>
+                                 </TabList>
 
                              <TabPanel>
                                      <div className={classes.content} style={{display:'inline'}}>
