@@ -371,6 +371,7 @@ export default class CheckHighLabelStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/img/inspectionHighList')
             this.inspectionHighList = response.data.inspectionHighList;
+
         } catch (e) {
             console.log('error')
         }

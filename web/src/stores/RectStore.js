@@ -106,12 +106,13 @@ export default class RectStore {
         }
     });
 
-    LoadWorkTypeList = flow(function* loadWorkTypeList(workNo) {
+    LoadWorkTypeList = flow(function* loadWorkTypeList(workNo,  handleClickCallback) {
         this.workTypeList = [];
         try {
             const response = yield axios.get('/api/v1/kfashion/comment/workTypeList?workNo='+workNo)
             this.workTypeList = response.data.workTypeList;
             console.log("workTypeList",this.workTypeList);
+            handleClickCallback(this.workTypeList, workNo);
         } catch (e) {
             console.log('error')
         }
@@ -149,15 +150,16 @@ export default class RectStore {
                 workNo :this.NewRectLocation.workNo,
                 workStep : this.NewRectLocation.workStep
             }));
+            alert(kfashionRectList);
             console.log(kfashionRectList);
-            const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList);
-            if (resp.status === 200) {
-                // this.state = State.Success;
-                // const createdId = this.NewRectLocation.createdId;
-                // this.LoadRectImage(createdId);
-                this.doPolygonLocationUp();
-                changeWorkNo(0);
-            };
+            // const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList); //  /updateLocation
+            // if (resp.status === 200) {
+            //     // this.state = State.Success;
+            //     // const createdId = this.NewRectLocation.createdId;
+            //     // this.LoadRectImage(createdId);
+            //     this.doPolygonLocationUp();
+            //     changeWorkNo(0);
+            // };
 
 
         } catch (e) {
