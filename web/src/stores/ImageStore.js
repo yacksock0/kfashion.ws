@@ -107,7 +107,7 @@ export default class ImageStore {
         }
     });
 
-    ProfessionalComplete = flow(function* professionalComplete(workNo,createdId) {
+    ProfessionalCompleteUp = flow(function* professionalCompleteUp(workNo,createdId) {
         this.state = State.Pending;
         try {
             this.professionalComplete.workNo = workNo;

@@ -126,11 +126,10 @@ export default class MessageStore {
             if (resp.status === 200) {
                 this.checkBox ={...CheckBox}
                 this.changeComment('')
-                alert('작업이 반송처리 되었습니다')
+                alert('작업이 반송처리 되었습니다');
             } else {
                 this.state = State.Fail;
             }
-            this.checkBox ={...CheckBox}
         }catch (e) {
             console.log('comment 에러')
         }

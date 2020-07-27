@@ -209,6 +209,20 @@ class FinalCheckList extends React.Component {
         });
         this.setState({tabIndex1 : 0, tabIndex2 : 0})
     }
+
+    handleComplete = () => {
+        const basicComplateConfirm = window.confirm("검수를 완료 하시겠습니까?");
+        if (basicComplateConfirm) {
+            const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
+            const createdId = this.props.authStore.loginUser.id;
+            this.props.imageStore.ProfessionalCompleteUp(workNo, createdId);
+            this.setState({
+                open: false,
+                tabIndex1: 1,
+            })
+        }
+    }
+
     deleteAll = () =>{
         let objList = [];
         this.canvas.getObjects().forEach(function (o) {
@@ -625,7 +639,7 @@ class FinalCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <Button variant="outlined" style={{float:'right' , width:150, marginBottom:10}}>
+                <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}}>
                     완료
                 </Button>
             </Container>

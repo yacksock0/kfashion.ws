@@ -26,6 +26,8 @@ export default class ReturnMsg extends React.Component {
             top:'',
         }
     }
+
+
     handleClickOpen = () => {
         this.setState({
             open:true,
@@ -55,10 +57,7 @@ export default class ReturnMsg extends React.Component {
         if (basicComplateConfirm) {
         const workNo = this.props.checkHighLabelStore.workNo;
         const createdId = this.props.authStore.loginUser.id;
-        this.props.checkHighLabelStore.BasicComplete(workNo, createdId);
-        this.setState({
-            open: false,
-            })
+        this.props.checkHighLabelStore.BasicCompleteUp(workNo, createdId);
         }
     }
      handleChangeMsg=(e)=>{
