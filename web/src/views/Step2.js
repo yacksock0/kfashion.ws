@@ -392,6 +392,9 @@ class Step2 extends React.Component {
             })
         } else {
             alert("poly정보가 존재하지 않습니다.")
+            this.setState({
+                tabIndex2: tabIndex2,
+            })
         }
     };
 
