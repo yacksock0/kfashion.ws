@@ -123,7 +123,11 @@ export default class MessageStore {
         console.log('param', param)
         try {
             const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
-            this.checkBox ={...CheckBox}
+            if(resp.status == 200){
+                alert('작업이 반송처리 되었습니다');
+                this.checkBox ={...CheckBox}
+            }
+
         }catch (e) {
             console.log('comment 에러')
         }

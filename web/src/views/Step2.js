@@ -155,7 +155,7 @@ class Step2 extends React.Component {
         this.props.basicLabelStore.doBasicLabelUp();
     }
 
-    handleClickItem = (workNo, imageData, polyNo,comment) => {
+    handleClickItem = (workNo, imageData, polyNo, comment) => {
         let check = true;
         if(this.state.workNo !=0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
@@ -169,8 +169,9 @@ class Step2 extends React.Component {
         }
     }
     handleClickCallback= (polyInfo, workNo)=>{
+        let tabIndex2 =polyInfo[0] -1;
         this.setState({ polyInfo : polyInfo, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: 800,
             height: 800,
@@ -249,9 +250,8 @@ class Step2 extends React.Component {
         let polyNo = tabIndex2 + 1;
         const {locationPolygonList} = this.props.polygonStore;
         const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
-
+        this.deleteAll();
         if (selectedPoly.length !== 0) {
-            this.deleteAll();
             for(let i = 0 ; i <selectedPoly.length; i++) {
                 console.log( this.lineTwoPoint);
                 this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
@@ -359,7 +359,10 @@ class Step2 extends React.Component {
                 tabIndex2: tabIndex2,
             })
         } else {
-            alert("poly정보가 존재하지 않습니다.")
+            alert("poly정보가 존재하지 않습니다.");
+            this.setState({
+                tabIndex2: tabIndex2,
+            })
         }
     };
 
@@ -508,16 +511,16 @@ class Step2 extends React.Component {
                              <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
                                  <TabList >
                                      <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 1))}
+                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 1)) && this.state.comment == ''   }
                                      ><h3>아우터</h3></Tab>
                                      <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 2))}
+                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 2)) && this.state.comment == ''}
                                      ><h3>상의</h3></Tab>
                                      <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 3))}
+                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 3)) && this.state.comment == ''}
                                      ><h3>하의</h3></Tab>
                                      <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 4))}
+                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 4)) && this.state.comment == ''}
                                      ><h3>원피스</h3></Tab>
                                  </TabList>
 

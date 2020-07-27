@@ -89,6 +89,14 @@ public class KfashionImageLocationRectController {
                                                      @RequestBody List<KfashionRectList> rectList) throws Exception {
         String msg= "";
 
+
+        for(int i = 0; i<rectList.size();i++){
+            rectList.get(i).getId();
+        }
+
+
+
+
         KfashionImageLocationRect rect = new KfashionImageLocationRect();
         for(int i = 0; i<rectList.size();i++){
             rect.setWorkNo(rectList.get(i).getWorkNo());

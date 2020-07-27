@@ -93,7 +93,7 @@ const styles = theme => ({   root: {
     },
 });
 
-@inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore')
+@inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore', 'polygonStore')
 @observer
 class HighCheckList extends React.Component {
     constructor(props) {
@@ -206,7 +206,12 @@ class HighCheckList extends React.Component {
 
     onSelectTab(tabIndex1) {
         this.setState({tabIndex1:tabIndex1})
-        this.props.checkHighLabelStore.changeNewBasicLabelWorkNo('')
+        if(tabIndex1 ==0){
+            this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(this.state.workNo);
+        }else{
+            this.props.checkHighLabelStore.changeNewBasicLabelWorkNo('');
+        }
+
     }
     onSelectTab1(tabIndex2){
         let polyNo = tabIndex2+1;

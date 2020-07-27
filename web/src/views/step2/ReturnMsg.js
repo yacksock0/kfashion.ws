@@ -96,7 +96,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.outer}
                                         onChange={this.handleChangeType}
                                         name="outer"
-                                    //     disabled={polyInfo.filter(poly => poly == 1) == ""}
+                                        disabled={ "" == polyInfo.filter(poly => poly == 1) }
                                     />}
                                 label="아우터"
                             />
@@ -106,7 +106,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.top}
                                         onChange={this.handleChangeType}
                                         name="top"
-                                        // disabled={polyInfo.filter(poly => poly == 2) == ""}
+                                        disabled={"" == polyInfo.filter(poly => poly == 2)}
                                     />}
                                 label="상의"
                             />
@@ -116,7 +116,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.pants}
                                         onChange={this.handleChangeType}
                                         name="pants"
-                                        // disabled={polyInfo.filter(poly => poly == 3) == ""}
+                                        disabled={"" ==polyInfo.filter(poly => poly == 3)}
                                     />}
                                 label="하의"
                             />
@@ -126,7 +126,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.onepiece}
                                         onChange={this.handleChangeType}
                                         name="onepiece"
-                                        // disabled={polyInfo.filter(poly => poly == 4) == ""}
+                                        disabled={"" == polyInfo.filter(poly => poly == 4)}
                                     />}
                                 label="원피스"
                             />

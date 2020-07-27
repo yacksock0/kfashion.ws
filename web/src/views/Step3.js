@@ -145,8 +145,9 @@ class Step3 extends React.Component {
         }
     }
     handleClickCallback= (polyInfo, workNo)=>{
+        let tabIndex2 =polyInfo[0] -1;
         this.setState({ polyInfo : polyInfo, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: 800,
             height: 800,
