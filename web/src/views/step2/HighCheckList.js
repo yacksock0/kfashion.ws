@@ -224,13 +224,12 @@ class HighCheckList extends React.Component {
 
     handleClick=(workNo, imgData)=>{
         this.deleteAll();
-        this.setState({ workNo : workNo});
         this.props.checkHighLabelStore.LoadReviewHighLabelList(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
     }
-    handleClickCallback= (polyInfo)=>{
-        this.setState({ polyInfo : polyInfo});
+    handleClickCallback= (polyInfo, workNo)=>{
+        this.setState({ polyInfo : polyInfo, workNo : workNo});
         this.setState({tabIndex1 : 0, tabIndex2 : 0});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: 800,

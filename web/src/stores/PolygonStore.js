@@ -85,7 +85,7 @@ export default class PolygonStore {
             this.polyLast = response.data.polyNo[response.data.polyNo.length-1] - 1;
             console.log('locationPolygonList',this.locationPolygonList);
             console.log(this.tabIndex1);
-            handleClickCallback(this.polyInfo);
+            handleClickCallback(this.polyInfo, workNo);
         } catch (e) {
             console.log('error');
         }
