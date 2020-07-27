@@ -222,17 +222,20 @@ class Step2 extends React.Component {
     }
 
     handleClickSubColor1(){
-        console.log('main',this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1)
-        if(this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0 ){ alert('메인 색상을 먼저 선택해 주세요')}
+        if(this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
+            this.props.checkHighLabelStore.deleteSubColor1();}
     }
     handleClickSubColor2(){
-        if(this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0 ){ alert('메인 색상을 먼저 선택해 주세요')}
+        if(this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
+            this.props.checkHighLabelStore.deleteSubColor2();}
     }
     handleClickSubColor3(){
-        if(this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ){ alert('메인 색상을 먼저 선택해 주세요')}
+        if(this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
+            this.props.checkHighLabelStore.deleteSubColor3();}
     }
     handleClickSubColor4(){
-        if(this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0 ){ alert('메인 색상을 먼저 선택해 주세요')}
+        if(this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
+            this.props.checkHighLabelStore.deleteSubColor4();}
     }
     handleDelete1() {
         this.props.checkHighLabelStore.deleteSleeveLength1();

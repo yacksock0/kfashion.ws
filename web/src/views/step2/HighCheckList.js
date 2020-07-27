@@ -93,7 +93,7 @@ const styles = theme => ({   root: {
     },
 });
 
-@inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore', 'polygonStore')
+@inject('authStore','imageStore', 'checkHighLabelStore', 'currentStepStore','workStore','professionalLabelStore', 'polygonStore', 'messageStore')
 @observer
 class HighCheckList extends React.Component {
     constructor(props) {
@@ -176,7 +176,7 @@ class HighCheckList extends React.Component {
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
-        this.props.checkHighLabelStore.LoadInspectionHighList();
+        this.props.messageStore.LoadInspectionHighList1();
         this.props.enqueueSnackbar("FinalCheck", {
             variant: 'info'
         });
@@ -315,14 +315,14 @@ class HighCheckList extends React.Component {
             this.canvas.remove(objList[i]);
         }
     }
-    handleSubmit=()=>{
-        this.props.checkHighLabelStore.LoadInspectionHighList();
+    handleSubmit(){
+        this.props.messageStore.LoadInspectionHighList1();
         this.setState({
             tabIndex1:1
         })
     }
     render() {
-        const {inspectionHighList} = this.props.checkHighLabelStore;
+        const {inspectionHighList} = this.props.messageStore;
         const {classes} = this.props;
         const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onePieceReviewHighLabel} =this.props.checkHighLabelStore;
         return (

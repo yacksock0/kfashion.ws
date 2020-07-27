@@ -24,6 +24,8 @@ const CheckBox ={
 export default class MessageStore {
     @observable newMsg = {...State}
     @observable checkBox = {...CheckBox}
+    @observable inspectionHighList =[]
+
     @action resetType=()=>{
         this.newMsg.workStep1='';
         this.newMsg.workType1='';
@@ -126,6 +128,7 @@ export default class MessageStore {
             const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
             if (resp.status === 200) {
                 this.checkBox ={...CheckBox}
+                this.LoadInspectionHighList1();
                 this.changeComment('')
                 alert('작업이 반송처리 되었습니다');
             } else {
@@ -133,6 +136,15 @@ export default class MessageStore {
             }
         }catch (e) {
             console.log('comment 에러')
+        }
+    });
+    LoadInspectionHighList1 = flow(function* loadInspectionHighList() {
+        this.state = State.Pending;
+        try {
+            const response = yield axios.get('/api/v1/kfashion/img/inspectionHighList')
+            this.inspectionHighList = response.data.inspectionHighList;
+        } catch (e) {
+            console.log('error')
         }
     });
 }
