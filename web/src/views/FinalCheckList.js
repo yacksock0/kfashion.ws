@@ -216,6 +216,7 @@ class FinalCheckList extends React.Component {
             const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
             const createdId = this.props.authStore.loginUser.id;
             this.props.imageStore.ProfessionalCompleteUp(workNo, createdId);
+            this.deleteAll();
             this.setState({
                 open: false,
                 tabIndex1 : 1,
