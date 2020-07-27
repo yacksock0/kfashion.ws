@@ -179,33 +179,7 @@ class Step2 extends React.Component {
         }
     }
 
-    handleClickItem = (workNo, imageData, polyNo, comment) => {
-        alert(comment);
-        alert(this.state.comment);
-        let check = true;
-        if(this.state.workNo !=0){
-            check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
-        }
-        if(check){
-            this.deleteAll();
-            this.setState( {comment:comment})
-            this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-            this.props.polygonStore.LoadPolygonLocation(workNo);
-            this.props.polygonStore.LoadLabelNoList(workNo, this.handleClickCallback);
-        }
-    }
-    handleClickCallback= (polyInfo, labelNoList, workNo)=>{
-        alert(polyInfo);
-        let tabIndex2 =labelNoList[0] -1;
-        this.setState({ labelNoList : labelNoList, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 800,
-            height: 800,
-            originX: 'left',
-            originY: 'top'
-        });
-    }
+
 
     handleClickSubColor1(){
         console.log('main',this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1)
