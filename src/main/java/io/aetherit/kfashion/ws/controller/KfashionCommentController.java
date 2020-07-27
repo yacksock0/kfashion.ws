@@ -119,7 +119,7 @@ public class KfashionCommentController {
         if(kfashionComment.getWorkStep2() == 4) {
             Map<String,Object> selectMap = new HashMap<>();
             selectMap.put("workNo",kfashionComment.getWorkNo());
-            selectMap.put("workStep",kfashionComment.getWorkStep1());
+            selectMap.put("workStep",kfashionComment.getWorkStep2());
             int commentNo =kfashionCommentService.selectCommentNo(selectMap);
             kfashionComment.setCommentNo(commentNo);
             kfashionComment.setWorkStep(4);
