@@ -77,4 +77,12 @@
         AND work_step = #{workStep}
     </update>
 
+    <select id="selectWorkTypeList" resultType="int" parameterType="Long">
+        SELECT work_type
+        FROM kfashion_comment
+        WHERE work_no = #{workNo}
+        AND work_step = 3
+        AND complete = 'N'
+    </select>
+
 </mapper>

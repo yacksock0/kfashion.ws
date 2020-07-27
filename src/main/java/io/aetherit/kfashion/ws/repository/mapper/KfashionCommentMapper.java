@@ -2,6 +2,7 @@ package io.aetherit.kfashion.ws.repository.mapper;
 
 import io.aetherit.kfashion.ws.model.KfashionComment;
 
+import java.util.List;
 import java.util.Map;
 
 public interface KfashionCommentMapper {
@@ -15,4 +16,6 @@ public interface KfashionCommentMapper {
     void updateComment(Map<String, Object> updateMap);
 
     String selectComment(Long workNo);
+
+    List<Integer> selectWorkTypeList(Long workNo);
 }
