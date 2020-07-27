@@ -40,7 +40,7 @@ export default class ReturnMsg extends React.Component {
     handleSubmit = () => {
         if(this.props.messageStore.newMsg.comment == ''){alert('반송 단계 및 사유를 입력해 주세요')}
         else {
-            this.props.messageStore.changeWorkNo(this.props.workNo);
+            this.props.messageStore.changeWorkNo(this.props.checkHighLabelStore.workNo);
             this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
             this.props.messageStore.sendMsg();
             this.props.messageStore.changeComment('')
@@ -69,7 +69,7 @@ export default class ReturnMsg extends React.Component {
         console.log(polyInfo);
         return (
             <div>
-                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
+                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150}} disabled={this.props.checkHighLabelStore.workNo == ''}>
                     반송
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
