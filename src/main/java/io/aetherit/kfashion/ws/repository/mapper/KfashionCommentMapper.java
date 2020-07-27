@@ -18,4 +18,6 @@ public interface KfashionCommentMapper {
     String selectComment(Long workNo);
 
     List<Integer> selectWorkTypeList(Long workNo);
+
+    void updatePolyComment(Map<String, Object> updateMap);
 }
