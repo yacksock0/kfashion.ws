@@ -218,7 +218,7 @@ class FinalCheckList extends React.Component {
             this.props.imageStore.ProfessionalCompleteUp(workNo, createdId);
             this.setState({
                 open: false,
-                tabIndex1: 1,
+                tabIndex1 : 1,
             })
         }
     }
