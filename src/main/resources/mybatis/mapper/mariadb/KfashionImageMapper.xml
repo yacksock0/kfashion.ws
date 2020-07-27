@@ -153,6 +153,9 @@
          AND kfashion_image.work_no NOT IN (SELECT work_no
                                             FROM kfashion_comment
                                             WHERE complete = 'N')
+         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                           FROM kfashion_work_history
+                                           WHERE kfashion_work_history.work_step = 7)
          ORDER BY kfashion_image.work_no
     </select>
     <select id="recentlyImg" resultMap="kfashionImageResultMap" >

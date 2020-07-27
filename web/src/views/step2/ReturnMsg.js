@@ -26,6 +26,8 @@ export default class ReturnMsg extends React.Component {
             top:'',
         }
     }
+
+
     handleClickOpen = () => {
         this.setState({
             open:true,
@@ -43,15 +45,22 @@ export default class ReturnMsg extends React.Component {
             this.props.messageStore.changeWorkNo(this.props.checkHighLabelStore.workNo);
             this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
             this.props.messageStore.sendMsg();
-            this.props.messageStore.changeComment('')
             this.props.checkHighLabelStore.LoadInspectionHighList();
-            alert('작업이 반송처리 되었습니다')
             this.setState({
                 open: false,
             })
         }
     }
-    handleChangeMsg=(e)=>{
+
+    handleComplete = () => {
+        const basicComplateConfirm = window.confirm("검수를 완료 하시겠습니까?");
+        if (basicComplateConfirm) {
+        const workNo = this.props.checkHighLabelStore.workNo;
+        const createdId = this.props.authStore.loginUser.id;
+        this.props.checkHighLabelStore.BasicCompleteUp(workNo, createdId);
+        }
+    }
+     handleChangeMsg=(e)=>{
         this.props.messageStore.changeComment(e.target.value)
     }
     handleChange = (event) => {
@@ -69,7 +78,7 @@ export default class ReturnMsg extends React.Component {
         console.log(polyInfo);
         return (
             <div>
-                <Button variant="outlined" onClick={this.handleClickOpen} style={{float:'right' , width:150}} disabled={this.props.checkHighLabelStore.workNo == ''}>
+                <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150}} disabled={this.props.checkHighLabelStore.workNo == ''}>
                     완료
                 </Button>
                 <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150, marginRight:10}} disabled={this.props.checkHighLabelStore.workNo == ''}>

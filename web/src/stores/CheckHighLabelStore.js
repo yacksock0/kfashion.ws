@@ -528,7 +528,7 @@ export default class CheckHighLabelStore {
     });
 
 
-    BasicComplete = flow(function* basicComplete(workNo,createdId) {
+    BasicCompleteUp = flow(function* basicCompleteUp(workNo,createdId) {
         this.state = State.Pending;
         try {
             this.basicComplete.workNo = workNo;
