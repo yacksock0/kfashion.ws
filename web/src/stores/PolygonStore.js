@@ -85,21 +85,20 @@ export default class PolygonStore {
             this.tabIndex1 = response.data.polyNo[0];
             this.polyInfo = response.data.polyNo;
             this.polyLast = response.data.polyNo[response.data.polyNo.length-1] - 1;
-            console.log('locationPolygonList',this.locationPolygonList);
-            console.log(this.tabIndex1);
+
             handleClickCallback(this.polyInfo, workNo);
         } catch (e) {
             console.log('error');
         }
     });
 
-    LoadLabelNoList = flow(function* loadLabelNoList(workNo, handleClickCallback ) {
+    LoadLabelNoList = flow(function* loadLabelNoList(workNo, labelNoListCallback ) {
         this.labelNoList = [];
         try {
             const response = yield axios.get('/api/v1/kfashion/label/labelNoList?workNo='+workNo);
             this.labelNoList = response.data.labelNoList;
             console.log("labelNoList",this.labelNoList);
-            handleClickCallback(this.polyInfo, response.data.labelNoList, workNo);
+            labelNoListCallback(response.data.labelNoList, workNo);
         } catch (e) {
             console.log('error')
         }
