@@ -10,16 +10,19 @@ const logoWidth = 120;
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
-        [theme.breakpoints.up('lg')]: {
+        [theme.breakpoints.up('xl')]: {
             width: `calc(100% - ${theme.drawerWidth}px)`,
             marginLeft: theme.drawerWidth,
             backgroundColor : '#000000',
         },
         backgroundColor : '#000000',
     },
+    appBar1: {
+        backgroundColor : '#000000',
+    },
     menuButton: {
         marginRight: theme.spacing(2),
-        [theme.breakpoints.up('lg')]: {
+        [theme.breakpoints.up('xl')]: {
         display:'none'
         },
     },
@@ -44,6 +47,8 @@ export default function TopBar(props) {
     };
 
     return (
+        <div>
+            { isLoggedIn ? (
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
                 <IconButton
@@ -75,6 +80,39 @@ export default function TopBar(props) {
                     // </Link>
                 )}
             </Toolbar>
-        </AppBar>
+        </AppBar>):(
+                    <AppBar position="fixed" className={classes.appBar1}>
+                        <Toolbar>
+                            <IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                edge="start"
+                                onClick={handleDrawerToggle}
+                                className={classes.menuButton}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            { isLoggedIn ? (
+                                <Stepper currentStep = {props.setStep} />):''}
+                            { isLoggedIn ? (
+                                <IconButton color="inherit" onClick={doLogout}>
+                                    {loginUser.id}
+                                    <ExitToAppIcon />
+                                </IconButton>
+                            ) : ( <Link to='/home' className={classes.link}>
+                                    <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
+                                </Link>
+                                // <Link to="/SignUp" className={classes.link}>
+                                //     <IconButton color="inherit">
+                                //         <AssignmentIndIcon />
+                                //         <Typography variant="h6" noWrap className={classes.title}>
+                                //             회원가입
+                                //         </Typography>
+                                //     </IconButton>
+                                // </Link>
+                            )}
+                        </Toolbar>
+                    </AppBar>)}
+        </div>
     );
 }

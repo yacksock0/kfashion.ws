@@ -39,8 +39,12 @@ const styles = theme => ({
 
 class Home extends React.Component {
     componentDidMount() {
-        this.props.enqueueSnackbar("Welcome", {
-            variant: 'info'
+        this.props.enqueueSnackbar("홈", {
+            variant: 'success',
+            anchorOrigin:{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }
         });
     }
 

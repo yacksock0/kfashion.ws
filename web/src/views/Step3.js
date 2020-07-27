@@ -104,8 +104,12 @@ class Step3 extends React.Component {
         this.canvas = new fabric.Canvas('c');
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
-        this.props.enqueueSnackbar("Step3", {
-            variant: 'info'
+        this.props.enqueueSnackbar("전문 레이블링", {
+            variant: 'success',
+            anchorOrigin:{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }
         });
     }
 

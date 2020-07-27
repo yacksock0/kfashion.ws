@@ -8,20 +8,6 @@ import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
 import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
 import 'react-tabs/style/react-tabs.css';
-import AddBox from "@material-ui/icons/AddBox";
-import Check from "@material-ui/icons/Check";
-import Clear from "@material-ui/icons/Clear";
-import DeleteOutline from "@material-ui/icons/DeleteOutline";
-import ChevronRight from "@material-ui/icons/ChevronRight";
-import SaveAlt from "@material-ui/icons/SaveAlt";
-import FilterList from "@material-ui/icons/FilterList";
-import FirstPage from "@material-ui/icons/FirstPage";
-import LastPage from "@material-ui/icons/LastPage";
-import ChevronLeft from "@material-ui/icons/ChevronLeft";
-import Search from "@material-ui/icons/Search";
-import ArrowDownward from "@material-ui/icons/ArrowDownward";
-import Remove from "@material-ui/icons/Remove";
-import ViewColumn from "@material-ui/icons/ViewColumn";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -32,12 +18,6 @@ import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
 import {toJS} from "mobx";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import TextField from "@material-ui/core/TextField";
-import DialogActions from "@material-ui/core/DialogActions";
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -112,25 +92,6 @@ const styles = theme => ({   root: {
     },
 });
 
-const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-};
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore', 'polygonStore')
 @observer
 class FinalCheckList extends React.Component {
@@ -157,7 +118,7 @@ class FinalCheckList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'number'},
-                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80}}/> },
+                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                 {title: '생성자', field: 'createdId', type: 'string'},
@@ -176,7 +137,7 @@ class FinalCheckList extends React.Component {
         this.props.imageStore.LoadInspectionList();
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
-        this.props.enqueueSnackbar("FinalCheck", {
+        this.props.enqueueSnackbar("검수", {
             variant: 'success',
             anchorOrigin:{
             vertical: 'bottom',
@@ -591,7 +552,6 @@ class FinalCheckList extends React.Component {
                                     </TabPanel>
                                     <TabPanel>
                                         <MaterialTable
-                                            icons={tableIcons}
                                             columns={this.state.columns}
                                             data={!!this.props.imageStore.inspectionList ?
                                                 this.props.imageStore.inspectionList.map((item) => {

@@ -136,8 +136,12 @@ class Step2 extends React.Component {
         this.props.currentStepStore.setStep(2);
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId: id});
-        this.props.enqueueSnackbar("Step2", {
-            variant: 'info',
+        this.props.enqueueSnackbar("기본 레이블링", {
+            variant: 'success',
+            anchorOrigin:{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }
         });
         this.setState({
             boundaryList: this.props.imageStore.boundaryList,
@@ -600,18 +604,7 @@ class Step2 extends React.Component {
                                          {outerReviewHighLabel.sleeveLengthCategoryNo1 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {outerReviewHighLabel.sleeveLengthItemName1} </Button> ) : ''
                                          }
-                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     color="primary"
-                                                     variant="outlined"
-                                                     onClick={() => (this.handleUpdate())}
-                                             >
-                                                 수정
-                                             </Button>
-                                             :''
-                                         }
+
                                          {polyLast === this.state.tabIndex2?(
                                              <Button style={{marginTop: 20}}
                                                      type="button"
@@ -634,6 +627,18 @@ class Step2 extends React.Component {
                                                  다음
                                              </Button>
                                          )}
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20,marginRight:10}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleUpdate())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                      </div>
                                  </TabPanel>
 
@@ -677,18 +682,7 @@ class Step2 extends React.Component {
                                          {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
                                          }
-                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     color="primary"
-                                                     variant="outlined"
-                                                     onClick={() => (this.handleUpdate())}
-                                             >
-                                                 수정
-                                             </Button>
-                                             :''
-                                         }
+
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
@@ -711,6 +705,18 @@ class Step2 extends React.Component {
                                                  다음
                                              </Button>
                                          )}
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20,marginRight:10}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleUpdate())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -737,18 +743,7 @@ class Step2 extends React.Component {
                                                  </div>) : ''
                                              }
                                          </div>
-                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     color="primary"
-                                                     variant="outlined"
-                                                     onClick={() => (this.handleUpdate())}
-                                             >
-                                                 수정
-                                             </Button>
-                                             :''
-                                         }
+
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
@@ -771,6 +766,18 @@ class Step2 extends React.Component {
                                                  다음
                                              </Button>
                                          )}
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20, marginRight:10}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleUpdate())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                      </div>
                                  </TabPanel>
                                  <TabPanel>
@@ -813,18 +820,7 @@ class Step2 extends React.Component {
                                          {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 >0 ?
                                              (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
                                          }
-                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     color="primary"
-                                                     variant="outlined"
-                                                     onClick={() => (this.handleUpdate())}
-                                             >
-                                                 수정
-                                             </Button>
-                                             :''
-                                         }
+
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
@@ -847,6 +843,18 @@ class Step2 extends React.Component {
                                                  다음
                                              </Button>
                                          )}
+                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                             <Button style={{marginTop: 20, marginRight:10}}
+                                                     type="button"
+                                                     className={classes.buttonType2}
+                                                     color="primary"
+                                                     variant="outlined"
+                                                     onClick={() => (this.handleUpdate())}
+                                             >
+                                                 수정
+                                             </Button>
+                                             :''
+                                         }
                                      </div>
                                  </TabPanel>
 

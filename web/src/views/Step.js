@@ -24,8 +24,12 @@ const styles = theme => ({
 
 class Step extends React.Component {
     componentDidMount() {
-        this.props.enqueueSnackbar("Labeling Work", {
-            variant: 'info'
+        this.props.enqueueSnackbar("기본 레이블링", {
+            variant: 'success',
+            anchorOrigin:{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }
         });
     }
 

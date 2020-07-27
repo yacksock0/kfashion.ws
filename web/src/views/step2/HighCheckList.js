@@ -17,7 +17,6 @@ import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
 import ReturnMsg from "./ReturnMsg";
-import ErrorIcon from '@material-ui/icons/Error';
 import {toJS} from "mobx";
 const styles = theme => ({   root: {
         width: "100%",
@@ -160,7 +159,7 @@ class HighCheckList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80,}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
             ],
@@ -177,8 +176,12 @@ class HighCheckList extends React.Component {
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.messageStore.LoadInspectionHighList1();
-        this.props.enqueueSnackbar("FinalCheck", {
-            variant: 'info'
+        this.props.enqueueSnackbar("고등학생 검수", {
+            variant: 'success',
+            anchorOrigin:{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }
         });
         this.setState({
             imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,

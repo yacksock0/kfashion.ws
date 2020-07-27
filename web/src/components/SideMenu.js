@@ -29,7 +29,7 @@ const logoHeight = 22;
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
-        [theme.breakpoints.up('lg')]: {
+        [theme.breakpoints.up('xl')]: {
             width: theme.drawerWidth,
             flexShrink: 0,
         },
@@ -426,7 +426,8 @@ export default function SideMenu(props) {
     );
 
     return (
-
+<div>
+            {isLoggedIn ? (
         <nav className={classes.drawer} aria-label="mailbox folders">
             <Hidden smUp implementation="css">
                 <Drawer variant="temporary"
@@ -461,7 +462,6 @@ export default function SideMenu(props) {
                         }}
                         open
                 >
-                    {isLoggedIn ? (
                             <Toolbar className={classes.toolbar}>
                                 <Typography variant="h6" noWrap className={classes.title}>
                                     <Link to='/home' className={classes.link1}>
@@ -469,9 +469,7 @@ export default function SideMenu(props) {
                                     </Link>
                                 </Typography>
                             </Toolbar>
-                    ) : (
-                        ''
-                    )}
+
                     {isLoggedIn ? (
                         drawer
                     ) : (
@@ -480,5 +478,9 @@ export default function SideMenu(props) {
                 </Drawer>
             </Hidden>
         </nav>
+                ) : (
+                    ''
+                )}
+                </div>
     );
 };
