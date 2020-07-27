@@ -152,22 +152,47 @@ export default class RectStore {
             }));
             alert(kfashionRectList);
             console.log(kfashionRectList);
-            // const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList); //  /updateLocation
-            // if (resp.status === 200) {
-            //     // this.state = State.Success;
-            //     // const createdId = this.NewRectLocation.createdId;
-            //     // this.LoadRectImage(createdId);
-            //     this.doPolygonLocationUp();
-            //     changeWorkNo(0);
-            // };
+            const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList);
+            if (resp.status === 200) {
+                // this.state = State.Success;
+                // const createdId = this.NewRectLocation.createdId;
+                // this.LoadRectImage(createdId);
+                this.doPolygonLocationUp(changeWorkNo);
 
-
+            };
         } catch (e) {
             console.log('error')
         }
     });
 
-    doPolygonLocationUp = flow(function* doPolygonLocationUp() {
+    doRectUpdate = flow(function* doRectUpdate(changeWorkNo) {
+        this.state = State.Pending;
+        try {
+
+            const kfashionRectList = this.rectInsertList.map(r => ({
+                id: r.id,
+                left: r.left,
+                top: r.top,
+                width: r.width,
+                height: r.height,
+                scaleX: r.scaleX,
+                scaleY: r.scaleY,
+
+                createdId : this.NewRectLocation.createdId,
+                workNo :this.NewRectLocation.workNo,
+                workStep : this.NewRectLocation.workStep
+            }));
+
+            const resp = yield axios.post(`/api/v1/kfashion/rect/updateLocation`, kfashionRectList);
+            if (resp.status === 200) {
+                this.doPolygonLocationUp(changeWorkNo);
+            };
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
+    doPolygonLocationUp = flow(function* doPolygonLocationUp(changeWorkNo) {
         this.state = State.Pending;
         try {
             const kfashionPolygonList = this.polygonInsertList.map(r => ({
@@ -186,11 +211,13 @@ export default class RectStore {
                 //작업 완료 후 리스트 갱신.
                 const createdId = this.NewRectLocation.createdId;
                 this.LoadRectImage(createdId);
+                changeWorkNo(0);
             }
         } catch (e) {
             console.log('error');
         }
     });
+
 
 
     deleteImg = flow(function* deleteImg(workNo,createdId) {

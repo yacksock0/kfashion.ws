@@ -471,16 +471,27 @@ class Polygon extends React.Component {
                 } else if (this.state.savebtn) {
                     alert("save 눌러 작업을 마무리 하세요.");
                 } else {
-                    // -- RectLocation 저장
-                    this.props.rectStore.objGet(this.rectangle, this.polygon);
-                    this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
-                    this.props.rectStore.changeNewRectLocationWorkNo(this.props.imageStore.isWorkNo);
-                    this.props.rectStore.doRectLocationUp(this.changeWorkNo);
-                    // -- PolygonLocation 저장
-                    // this.props.polygonStore.objGet(this.polygon);
-                    // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
-                    // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
-                    // this.props.polygonStore.doPolygonLocationUp();
+                    if(this.state.comment == null){
+                        alert("저장!!!");
+                        // -- RectLocation 저장
+                        this.props.rectStore.objGet(this.rectangle, this.polygon);
+                        this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+                        this.props.rectStore.changeNewRectLocationWorkNo(this.state.workNo);
+                        this.props.rectStore.doRectLocationUp(this.changeWorkNo);
+                        // -- PolygonLocation 저장
+                        // this.props.polygonStore.objGet(this.polygon);
+                        // this.props.polygonStore.changeNewPolygonLocationCreatedId(this.props.authStore.isUserId);
+                        // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
+                        // this.props.polygonStore.doPolygonLocationUp();
+                    }else{
+                        alert("수정!!!");
+                        // -- RectLocation 수
+                        this.props.rectStore.objGet(this.rectangle, this.polygon);
+                        this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
+                        this.props.rectStore.changeNewRectLocationWorkNo(this.state.workNo);
+                        this.props.rectStore.doRectUpdate(this.changeWorkNo);
+                    }
+
 
                     this.deleteAll(1);
                     this.save1 = false;
