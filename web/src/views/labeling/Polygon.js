@@ -568,9 +568,7 @@ class Polygon extends React.Component {
     }
 
 
-
     handleClickItem = (workNo, imageData,polyNo, comment) => {
-
         this.setState({comment : comment})
         // alert(comment);
         let check = true;
@@ -581,35 +579,14 @@ class Polygon extends React.Component {
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
         if(check) {
-            this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+            this.deleteAll(1);
+            this.polygon.length = 0;
+            this.rectangle.length = 0;
+            // this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
             this.setState({tabIndex: 0, workNo: workNo});
-            this.props.rectStore.LoadWorkTypeList(workNo);
+            this.props.rectStore.LoadWorkTypeList(workNo, this.handleClickCallback);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
-            const {polyInfo} = this.props.polygonStore;
-            this.save1 = false;
-            this.save2 = false;
-            this.save3 = false;
-            this.save4 = false;
-                for(let i = 0; i<polyInfo.length ; i++) {
-                    switch (polyInfo[i]) {
-                        case 1 :
-                            this.save1 = true;
-                            break;
-                        case 2 :
-                            this.save2 = true;
-                            break;
-                        case 3 :
-                            this.save3 = true;
-                            break;
-                        case 4 :
-                            this.save4 = true;
-                            break;
-                    }
-                }
-
-            this.props.imageStore.changeWorkNo(workNo);
-            const rectList = this.props.rectStore.locationRectList;
             this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
                 top: 0,
                 left: 0,
@@ -620,16 +597,47 @@ class Polygon extends React.Component {
                 originX: 'left',
                 originY: 'top'
             });
-
-            this.setState({
-                tadIndex: 1,
-            })
-            this.polygon.length = 0;
-            this.rectangle.length = 0;
-            this.deleteAll(1);
-            this.buttonState();
         }
     }
+
+
+    handleClickCallback = (workTypeList, workNo)=>{
+        alert(workTypeList);
+        if(workTypeList.length > 0 ){
+            this.save1 = true;
+            this.save2 = true;
+            this.save3 = true;
+            this.save4 = true;
+            for(let i = 0; i<workTypeList.length ; i++) {
+                switch (workTypeList[i]) {
+                    case 1 :
+                        this.save1 = false;
+                        break;
+                    case 2 :
+                        this.save2 = false;
+                        break;
+                    case 3 :
+                        this.save3 = false;
+                        break;
+                    case 4 :
+                        this.save4 = false;
+                        break;
+                }
+            }
+        }else{
+            this.save1 = false;
+            this.save2 = false;
+            this.save3 = false;
+            this.save4 = false;
+        }
+        this.buttonState();
+
+        this.setState({ workNo : workNo});
+        this.setState({tabIndex1 : 0});
+    }
+
+
+
 
     handleStepView = () =>{
         console.log("stepView");
@@ -665,6 +673,7 @@ class Polygon extends React.Component {
     render() {
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
+        const {workTypeList} = this.props.rectStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>

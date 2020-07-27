@@ -106,12 +106,13 @@ export default class RectStore {
         }
     });
 
-    LoadWorkTypeList = flow(function* loadWorkTypeList(workNo) {
+    LoadWorkTypeList = flow(function* loadWorkTypeList(workNo,  handleClickCallback) {
         this.workTypeList = [];
         try {
             const response = yield axios.get('/api/v1/kfashion/comment/workTypeList?workNo='+workNo)
             this.workTypeList = response.data.workTypeList;
             console.log("workTypeList",this.workTypeList);
+            handleClickCallback(this.workTypeList);
         } catch (e) {
             console.log('error')
         }
