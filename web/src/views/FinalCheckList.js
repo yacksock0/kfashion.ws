@@ -177,10 +177,10 @@ class FinalCheckList extends React.Component {
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("FinalCheck", {
-            variant: 'info',
+            variant: 'success',
             anchorOrigin:{
             vertical: 'bottom',
-                horizontal: 'left',
+            horizontal: 'left',
         }
         });
         this.setState({
