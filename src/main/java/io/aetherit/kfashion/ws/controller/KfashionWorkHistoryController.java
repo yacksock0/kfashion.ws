@@ -194,7 +194,6 @@ public class KfashionWorkHistoryController {
     @PostMapping(value = "/professionalComplete")
     public ResponseEntity<Object> professionalComplete(HttpServletRequest httpServletRequest,
                                                     @RequestBody KfashionWorkHistory workHistory) throws Exception {
-        workHistory.setWorkStep(8);
         kfashionWorkHistoryService.insertWorkHistory(workHistory);
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
@@ -202,7 +201,6 @@ public class KfashionWorkHistoryController {
     @PostMapping(value = "/basicComplete")
     public ResponseEntity<Object> basicComplete(HttpServletRequest httpServletRequest,
                                                 @RequestBody KfashionWorkHistory workHistory) throws Exception {
-        workHistory.setWorkStep(7);
         kfashionWorkHistoryService.insertWorkHistory(workHistory);
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
