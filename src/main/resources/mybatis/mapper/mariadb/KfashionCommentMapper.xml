@@ -63,16 +63,18 @@
     </insert>
 
     <select id="selectCommentNo" resultType="int">
-        SELECT ifnull(SUM(comment_no+1),1) AS comment_no
+        SELECT ifnull(MAX(comment_no+1), 1) AS comment_no
         FROM kfashion_comment
         WHERE work_no = #{workNo}
         AND work_step = #{workStep}
     </select>
 
-    <update id="updateComment" parameterType="Long">
+    <update id="updateComment" >
         UPDATE kfashion_comment
         SET
         complete = 'Y'
         WHERE work_no =#{workNo}
+        AND work_step = #{workStep}
     </update>
+
 </mapper>

@@ -12,5 +12,7 @@ public interface KfashionCommentMapper {
 
     int selectCommentNo(Map<String, Object> selectMap);
 
-    void updateComment(Long workNo);
+    void updateComment(Map<String, Object> updateMap);
+
+    String selectComment(Long workNo);
 }
