@@ -165,7 +165,7 @@ class Step2 extends React.Component {
             this.setState( {comment:comment})
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
-
+            this.props.polygonStore.LoadLabelNoList(workNo);
         }
     }
     handleClickCallback= (polyInfo, workNo)=>{

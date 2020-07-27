@@ -42,4 +42,8 @@ public class KfashionCommentService {
     public List<Integer> selectWorkTypeList(Long workNo) {
         return repository.selectWorkTypeList(workNo);
     }
+
+    public void updatePolyComment(Map<String, Object> updateMap) {
+        repository.updatePolyComment(updateMap);
+    }
 }

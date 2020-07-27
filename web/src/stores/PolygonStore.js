@@ -28,6 +28,8 @@ export default class PolygonStore {
     @observable polygonList= [];
     @observable locationPolygonList = [];
     @observable polyLast = 0;
+    @observable polyInfo;
+    @observable labelNoList;
     @observable polyInfo = [];
 
     @action objGet = (obj) => {
@@ -88,6 +90,17 @@ export default class PolygonStore {
             handleClickCallback(this.polyInfo, workNo);
         } catch (e) {
             console.log('error');
+        }
+    });
+
+    LoadLabelNoList = flow(function* loadLabelNoList(workNo) {
+        this.labelNoList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/label/labelNoList?workNo='+workNo)
+            this.labelNoList = response.data.labelNoList;
+            console.log("labelNoList",this.labelNoList);
+        } catch (e) {
+            console.log('error')
         }
     });
 

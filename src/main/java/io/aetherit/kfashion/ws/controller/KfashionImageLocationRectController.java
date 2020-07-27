@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -21,17 +22,20 @@ public class KfashionImageLocationRectController {
     private KfashionWorkHistoryService kfashionWorkHistoryService;
     private KfashionWorkService kfashionWorkService;
     private KfashionImageService kfashionImageService;
+    private KfashionCommentService kfashionCommentService;
 
     @Autowired
     public KfashionImageLocationRectController(KfashionImageLocationRectService kfashionImageLocationRectService,
                                                KfashionWorkHistoryService kfashionWorkHistoryService,
                                                KfashionWorkService kfashionWorkService,
-                                               KfashionImageService kfashionImageService
+                                               KfashionImageService kfashionImageService,
+                                               KfashionCommentService kfashionCommentService
     ) {
         this.kfashionImageLocationRectService = kfashionImageLocationRectService;
         this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         this.kfashionWorkService = kfashionWorkService;
         this.kfashionImageService = kfashionImageService;
+        this.kfashionCommentService = kfashionCommentService;
 
     }
 
@@ -99,6 +103,12 @@ public class KfashionImageLocationRectController {
 
         KfashionImageLocationRect rect = new KfashionImageLocationRect();
         for(int i = 0; i<rectList.size();i++){
+            Map<String,Object> updateMap = new HashMap<>();
+            updateMap.put("workNo",rectList.get(i).getWorkNo());
+            updateMap.put("workStep",3);
+            updateMap.put("workType",rectList.get(i).getId());
+            kfashionCommentService.updatePolyComment(updateMap);
+
             rect.setWorkNo(rectList.get(i).getWorkNo());
             rect.setWorkStep(rectList.get(i).getWorkStep());
             rect.setRectNo(rectList.get(i).getId());

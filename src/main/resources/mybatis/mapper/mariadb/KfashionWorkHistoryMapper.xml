@@ -72,4 +72,5 @@
         WHERE work_no = #{workNo}
         AND work_step = #{workStep}
     </delete>
+
 </mapper>

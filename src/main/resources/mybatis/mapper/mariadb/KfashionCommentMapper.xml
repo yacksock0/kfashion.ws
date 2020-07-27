@@ -85,4 +85,13 @@
         AND complete = 'N'
     </select>
 
+    <update id="updatePolyComment">
+        UPDATE kfashion_comment
+        SET
+        complete = 'Y'
+        WHERE work_no =#{workNo}
+        AND work_step = #{workStep}
+        AND work_type = #{workType}
+    </update>
+
 </mapper>
