@@ -867,6 +867,7 @@ public class KfashionLabelController {
         @PostMapping(value = "/updateBasicLabel")
         public ResponseEntity<Object> updateBasicLabel(HttpServletRequest httpServletRequest,
                                                  @RequestBody BasicLabel basicLabel) throws Exception{
+                System.out.println("basicLabelList"+basicLabel);
                 Map<String,Object> updateMap = new HashMap<>();
                 updateMap.put("workNo",basicLabel.getWorkNo());
                 updateMap.put("workStep",basicLabel.getWorkStep());

@@ -97,7 +97,6 @@ const OnePieceReviewHighLabel = {
 
 const ReviewHighLabel = {
 
-
     color1 : '',
     color2 : '',
     color3 : '',
