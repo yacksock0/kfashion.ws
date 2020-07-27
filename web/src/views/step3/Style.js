@@ -89,19 +89,19 @@ export default class Style extends React.Component {
                             스타일
                         </Typography>
                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                            <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
+                            <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>
                         </div>
                         <div>
                             <hr></hr>
                         </div>
                         <div style={{display:"inline-block", marginRight:10}}>
                             {styleReviewLabel.styleCategoryNo > 0 ?
-                                (<Button style={{fontSize:15, width:200, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {styleReviewLabel.styleItemName} </Button> ) : ''
+                                (<Button style={{fontSize:15, width:200, borderRadius:50}} variant="outlined" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {styleReviewLabel.styleItemName} </Button> ) : ''
                             }
                         </div>
                         <div style={{display:"inline-block"}}>
                             {styleReviewLabel.styleCategorySubNo > 0 ?
-                                (<Button style={{fontSize:15, width:200, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDeleteSub} endIcon={<DeleteIcon />} > {styleReviewLabel.styleSubItemName} </Button> ) : ''
+                                (<Button style={{fontSize:15, width:200, borderRadius:50}} variant="outlined"  onClick={this.handleDeleteSub} endIcon={<DeleteIcon />} > {styleReviewLabel.styleSubItemName} </Button> ) : ''
                             }
                         </div>
                     </div>
@@ -124,7 +124,6 @@ export default class Style extends React.Component {
                                             variant="outlined"
                                             label={styleReviewLabel.styleItemName}
                                             onDelete={this.handleDelete}
-                                            color="primary"
                                         />) : ''
                                     }
                                 </div>

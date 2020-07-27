@@ -64,7 +64,7 @@ export default class Detail1 extends React.Component {
         const detailCheck =outerReviewLabel.detailItemName1;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.props.professionalLabelStore.menuOpen.detailDialLog} onClose={this.handleClose} style={{marginLeft:'52%', marginTop:'-4%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

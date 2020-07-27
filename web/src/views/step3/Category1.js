@@ -59,7 +59,7 @@ export default class Category1 extends React.Component {
         const categoryList1= this.state.categoryList1;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>선택</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>
                 <Dialog open={this.props.professionalLabelStore.menuOpen.categoryDialLog} onClose={this.handleClose} style={{marginLeft:'50%', marginTop:'-7%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}

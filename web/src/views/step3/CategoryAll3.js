@@ -149,7 +149,7 @@ export default class CategoryAll3 extends React.Component {
 
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen} style={{width:'100%', borderRadius:15}}>항목 전체선택</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen} style={{width:'100%', borderRadius:15, fontSize:20}}>항목 전체선택</Button>
                 <Dialog open={this.props.professionalLabelStore.menuOpen.categoryAll3} onClose={this.handleClose} style={{marginLeft:'50%'}}
                         maxWidth={"md"}
                         fullWidth={"100%"}

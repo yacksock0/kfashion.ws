@@ -157,7 +157,7 @@ export default class CategoryAll1 extends React.Component {
         const {outerReviewLabel} = this.props.professionalLabelStore;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen} style={{width:'100%', borderRadius:15}}>항목 전체선택</Button>
+                <Button variant="outlined"  onClick={this.handleClickOpen} style={{width:'100%', borderRadius:15, fontSize:20}}>항목 전체선택</Button>
                 <Dialog open={this.props.professionalLabelStore.menuOpen.categoryAll1} onClose={this.handleClose} style={{marginLeft:'50%'}}
                         maxWidth={"md"}
                         fullWidth={"100%"}
@@ -173,7 +173,6 @@ export default class CategoryAll1 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={outerReviewLabel.categoryItemName1}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -198,7 +197,6 @@ export default class CategoryAll1 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={outerReviewLabel.detailItemName1}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -223,7 +221,6 @@ export default class CategoryAll1 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={outerReviewLabel.printItemName1}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -248,7 +245,6 @@ export default class CategoryAll1 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={outerReviewLabel.textureItemName1}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -273,7 +269,6 @@ export default class CategoryAll1 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={outerReviewLabel.clothLengthItemName1}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -298,7 +293,6 @@ export default class CategoryAll1 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={outerReviewLabel.neckLineItemName1}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -323,7 +317,6 @@ export default class CategoryAll1 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={outerReviewLabel.karaItemName1}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -348,7 +341,6 @@ export default class CategoryAll1 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={outerReviewLabel.fitItemName1}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>

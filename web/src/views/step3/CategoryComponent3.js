@@ -136,7 +136,7 @@ class CategoryComponent3 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {pantsReviewLabel.categoryCategoryNo3 > 0 ?
-                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {pantsReviewLabel.categoryItemName3} </Button> ) : ''
+                                                (<Button style={{fontSize:20, width:180, borderRadius:50}} variant="outlined" onClick={this.handleDelete} endIcon={<DeleteIcon />} > {pantsReviewLabel.categoryItemName3} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -155,7 +155,7 @@ class CategoryComponent3 extends React.Component {
                                                 detail3.map((detail3) =>
                                                     <Button
                                                         style={{fontSize:15, width:200, borderRadius:50 ,padding:0}}
-                                                        variant="outlined" color="primary"
+                                                        variant="outlined"
                                                         onClick={() => this.handleDeleteDetail(detail3)}
                                                         endIcon={<DeleteIcon />}
                                                     >
@@ -177,7 +177,7 @@ class CategoryComponent3 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {pantsReviewLabel.printCategoryNo3 > 0 ?
-                                                (<Button style={{fontSize:15, width:200, borderRadius:50,padding:0}} variant="outlined" color="primary" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {pantsReviewLabel.printItemName3} </Button> ) : ''
+                                                (<Button style={{fontSize:15, width:200, borderRadius:50,padding:0}} variant="outlined" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {pantsReviewLabel.printItemName3} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -193,7 +193,7 @@ class CategoryComponent3 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {pantsReviewLabel.textureCategoryNo3 > 0 ?
-                                                (<Button style={{fontSize:15, width:200, borderRadius:50,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {pantsReviewLabel.textureItemName3} </Button> ) : ''
+                                                (<Button style={{fontSize:15, width:200, borderRadius:50,padding:0}} variant="outlined" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {pantsReviewLabel.textureItemName3} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -209,7 +209,7 @@ class CategoryComponent3 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {pantsReviewLabel.clothLengthCategoryNo3 > 0 ?
-                                                (<Button style={{fontSize:15, width:200, borderRadius:50,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {pantsReviewLabel.clothLengthItemName3} </Button> ) : ''
+                                                (<Button style={{fontSize:15, width:200, borderRadius:50,padding:0}} variant="outlined" onClick={this.handleDeleteCloth} endIcon={<DeleteIcon />} > {pantsReviewLabel.clothLengthItemName3} </Button> ) : ''
                                             }
                                         </div>
                                     </Grid>
@@ -225,7 +225,7 @@ class CategoryComponent3 extends React.Component {
                                                 <hr></hr>
                                             </div>
                                             {pantsReviewLabel.fitCategoryNo3 > 0 ?
-                                                (<Button style={{fontSize:15, width:200, borderRadius:50,padding:0}} variant="outlined" color="primary" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {pantsReviewLabel.fitItemName3} </Button> ) : ''
+                                                (<Button style={{fontSize:15, width:200, borderRadius:50,padding:0}} variant="outlined" onClick={this.handleDeleteFit} endIcon={<DeleteIcon />} > {pantsReviewLabel.fitItemName3} </Button> ) : ''
                                             }
                                         </div>
                                         {/*<Button style={{marginTop: 100}}*/}
