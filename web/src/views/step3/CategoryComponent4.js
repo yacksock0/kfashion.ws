@@ -140,7 +140,7 @@ class CategoryComponent4 extends React.Component {
         return (
                     <Grid container spacing={3}>
                         <Grid items xs={11} style={{margin:"auto", marginTop:10}}>
-                            <CategoryAll4  onClick={()=>this.handleDeleteDetail(detail4)}/>
+                            <CategoryAll4  onClick={this.handleDeleteDetail}/>
                         </Grid>
                         <Grid item xs={12} lg={6}>
                             <div className={classes.content}  style={{display:'inline'}} >
