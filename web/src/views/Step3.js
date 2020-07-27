@@ -95,6 +95,7 @@ class Step3 extends React.Component {
             tabIndex2:0,
             createdId: '',
             workNo : 0,
+            polyInfo : [],
         }
     }
 
@@ -131,30 +132,27 @@ class Step3 extends React.Component {
 
     }
 
-    handleClickItem = (workNo, imageData) => {
+    handleClickItem = (workNo, imageData, polyNo,comment) => {
         let check = true;
-        if(this.state.workNo != 0) {
-            check= window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
+        if(this.state.workNo !=0){
+            check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
         if(check){
-            this.setState({ workNo : workNo});
-            this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
             this.deleteAll();
-            this.props.professionalLabelStore.cleanLabel();
-            this.setState({
-                tabIndex1:0,
-                tabIndex2:0,
-            })
-            this.props.imageStore.changeWorkNo(workNo);
+            this.setState({workNo : workNo, comment:comment})
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-            this.props.polygonStore.LoadPolygonLocation(workNo);
-            this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-                width:800,
-                height:800,
-                originX: 0,
-                originY: 0
-            });
+            this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
         }
+    }
+    handleClickCallback= (polyInfo)=>{
+        this.setState({ polyInfo : polyInfo});
+        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 800,
+            height: 800,
+            originX: 'left',
+            originY: 'top'
+        });
     }
 
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
@@ -336,13 +334,20 @@ class Step3 extends React.Component {
 
                                         <TabPanel>
                                             <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
-                                        <TabList>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                            <Tab style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
-                                        </TabList>
+                                                <TabList >
+                                                    <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly == 1)) && this.state.polyInfo.length > 0}
+                                                    ><h3>아우터</h3></Tab>
+                                                    <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly == 2)) && this.state.polyInfo.length > 0}
+                                                    ><h3>상의</h3></Tab>
+                                                    <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly == 3)) && this.state.polyInfo.length > 0}
+                                                    ><h3>하의</h3></Tab>
+                                                    <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly == 4)) && this.state.polyInfo.length > 0}
+                                                    ><h3>원피스</h3></Tab>
+                                                </TabList>
 
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>

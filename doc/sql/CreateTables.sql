@@ -68,13 +68,13 @@ CREATE TABLE kfashion_user_info (
 	id						NVARCHAR(64)	NOT NULL,
 	password				NVARCHAR(128)	NOT NULL,
 	name					NVARCHAR(64)	NOT NULL,
-	email					NVARCHAR(256)	NOT NULL,
+	email					NVARCHAR(256)	NULL,
 	phone					NVARCHAR(64)	NULL,
 	group_no				INT				NULL,						-- null  DEFAULT 1
 	is_admin				CHAR(1)			NOT NULL 	DEFAULT 'N', 	-- boolean y/n DEFAULT n **************
 	is_approved				CHAR(1)			NOT NULL	DEFAULT 'N',	-- boolean y/n DEFAULT n
 	created_datetime		DATETIME		NOT NULL,
-	updated_datetime		DATETIME		NOT NULL,
+	updated_datetime		DATETIME		NULL,
 
    PRIMARY KEY (id),
    CONSTRAINT fk_kfashion_user_info_group_no 			FOREIGN KEY (group_no)

@@ -3,7 +3,7 @@ import MaterialTable from 'material-table';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
 
-@inject('authStore','imageStore','rectStore')
+@inject('authStore','imageStore','rectStore', 'polygonStore')
 @observer
 class PolygonList extends React.Component {
     constructor(props) {
@@ -30,9 +30,9 @@ class PolygonList extends React.Component {
         this.props.rectStore.initStore();
     }
 
-    handleClick = (workNo, imageData) => {
+    handleClick = (workNo, imageData, polyNo, comment) => {
         if(this.props.onClick) {
-            this.props.onClick(workNo, imageData);
+            this.props.onClick(workNo, imageData, polyNo, comment);
         }
     }
 
@@ -49,6 +49,7 @@ class PolygonList extends React.Component {
     }
     render() {
         const comment = this.props.rectStore.rectList;
+        const polyNo = this.props.polygonStore.tabIndex1-1;
         return (
             <MaterialTable
                 columns={this.state.columns}
@@ -80,7 +81,7 @@ class PolygonList extends React.Component {
                     {
                         icon: 'check',
                         tooltip: 'Select Image',
-                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
+                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo, polyNo, rowData.comment)
                     },
                     rowData => ({
                         icon: 'error',

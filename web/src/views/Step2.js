@@ -112,6 +112,7 @@ class Step2 extends React.Component {
             polyNo:'',
             tabIndex1:1,
             tabIndex2:0,
+            polyInfo : [],
         }
         this.handleClickSubColor1 = this.handleClickSubColor1.bind(this)
         this.handleDelete1 = this.handleDelete1.bind(this)
@@ -161,22 +162,21 @@ class Step2 extends React.Component {
         }
         if(check){
             this.deleteAll();
-            this.props.imageStore.changeWorkNo(workNo);
+            this.setState({workNo : workNo, comment:comment})
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-            this.props.polygonStore.LoadPolygonLocation(workNo);
-            this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-                width: 800,
-                height: 800,
-                originX: 'left',
-                originY: 'top'
-            });
-            this.setState({
-                tabIndex2: 0,
-                tabIndex1: 0,
-                workNo : workNo,
-                comment:comment,
-            })
+            this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
+
         }
+    }
+    handleClickCallback= (polyInfo)=>{
+        this.setState({ polyInfo : polyInfo});
+        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: 800,
+            height: 800,
+            originX: 'left',
+            originY: 'top'
+        });
     }
 
     handleClickSubColor1(){
@@ -506,12 +506,20 @@ class Step2 extends React.Component {
 
                          <TabPanel>
                              <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
-                             <TabList>
-                                 <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >아우터</h3></Tab>
-                                 <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >상의</h3></Tab>
-                                 <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >하의</h3></Tab>
-                                 <Tab  style={{width: '25%', height:60,textAlign:'center'}}><h3 >원피스</h3></Tab>
-                             </TabList>
+                                 <TabList >
+                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 1))}
+                                     ><h3>아우터</h3></Tab>
+                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 2))}
+                                     ><h3>상의</h3></Tab>
+                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 3))}
+                                     ><h3>하의</h3></Tab>
+                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 4))}
+                                     ><h3>원피스</h3></Tab>
+                                 </TabList>
 
                              <TabPanel>
                                      <div className={classes.content} style={{display:'inline'}}>

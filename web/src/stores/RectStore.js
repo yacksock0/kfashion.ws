@@ -137,15 +137,16 @@ export default class RectStore {
                 workNo :this.NewRectLocation.workNo,
                 workStep : this.NewRectLocation.workStep
             }));
+            alert(kfashionRectList);
             console.log(kfashionRectList);
-            const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList);
-            if (resp.status === 200) {
-                // this.state = State.Success;
-                // const createdId = this.NewRectLocation.createdId;
-                // this.LoadRectImage(createdId);
-                this.doPolygonLocationUp();
-                changeWorkNo(0);
-            };
+            // const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList); //  /updateLocation
+            // if (resp.status === 200) {
+            //     // this.state = State.Success;
+            //     // const createdId = this.NewRectLocation.createdId;
+            //     // this.LoadRectImage(createdId);
+            //     this.doPolygonLocationUp();
+            //     changeWorkNo(0);
+            // };
 
 
         } catch (e) {

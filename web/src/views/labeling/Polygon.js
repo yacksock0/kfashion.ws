@@ -22,6 +22,7 @@ import PolygonList from "./PolygonList";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ErrorIcon from "@material-ui/icons/Error";
+import {toJS} from "mobx";
 
 const styles = theme => ({
     root: {
@@ -96,6 +97,7 @@ const styles = theme => ({
 @observer
 class Polygon extends React.Component {
     state = {
+        comment : '',
         imgData :'',
         workNo:0,
         value:1,
@@ -158,12 +160,9 @@ class Polygon extends React.Component {
     onOff2 = 1;
     i=0;
 
-
-
-
     // Wheel Scale Test
-    delta;
-    zoom;
+    // delta;
+    // zoom;
 
     componentDidMount() {
         let radius = 100,
@@ -570,7 +569,10 @@ class Polygon extends React.Component {
 
 
 
-    handleClickItem = (workNo, imageData) => {
+    handleClickItem = (workNo, imageData,polyNo, comment) => {
+
+        this.setState({comment : comment})
+        // alert(comment);
         let check = true;
         this.setState({
             workNo :workNo
@@ -581,8 +583,30 @@ class Polygon extends React.Component {
         if(check) {
             this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
             this.setState({tabIndex: 0, workNo: workNo});
-            this.props.rectStore.LoadRectLocation(workNo);
-            this.props.rectStore.changeNewRectLocationWorkNo(workNo);
+            this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+            this.props.polygonStore.LoadPolygonLocation(workNo);
+            const {polyInfo} = this.props.polygonStore;
+            this.save1 = false;
+            this.save2 = false;
+            this.save3 = false;
+            this.save4 = false;
+                for(let i = 0; i<polyInfo.length ; i++) {
+                    switch (polyInfo[i]) {
+                        case 1 :
+                            this.save1 = true;
+                            break;
+                        case 2 :
+                            this.save2 = true;
+                            break;
+                        case 3 :
+                            this.save3 = true;
+                            break;
+                        case 4 :
+                            this.save4 = true;
+                            break;
+                    }
+                }
+
             this.props.imageStore.changeWorkNo(workNo);
             const rectList = this.props.rectStore.locationRectList;
             this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
@@ -602,29 +626,6 @@ class Polygon extends React.Component {
             this.polygon.length = 0;
             this.rectangle.length = 0;
             this.deleteAll(1);
-
-
-alert(rectList);
-
-            this.save1 = false;
-            this.save2 = false;
-            this.save3 = false;
-            this.save4 = false;
-            for(let i =0;i<rectList.length; i++){
-
-                if(rectList[i].rectNo == 1){
-                    this.save1 = true;
-                }
-                if(rectList[i].rectNo == 2){
-                    this.save2 = true;
-                }
-                if(rectList[i].rectNo == 3){
-                    this.save3 = true;
-                }
-                if(rectList[i].rectNo == 4){
-                    this.save4 = true;
-                }
-            }
             this.buttonState();
         }
     }
