@@ -36,4 +36,6 @@ public interface KfashionLabelMapper {
     void deleteProfessionalLabel(HashMap<String, Object> deleteMap);
 
     void deleteBasicLabel(HashMap<String, Object> deleteMap);
+
+    List<Integer> selectLabelNoList(Long workNo);
 }

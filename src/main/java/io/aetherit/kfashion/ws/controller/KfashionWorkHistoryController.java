@@ -3,6 +3,7 @@ package io.aetherit.kfashion.ws.controller;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.model.KfashionWork;
 import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
+import io.aetherit.kfashion.ws.model.ProfessionalLabel;
 import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import io.aetherit.kfashion.ws.service.KfashionWorkService;
@@ -34,8 +35,6 @@ public class KfashionWorkHistoryController {
             this.kfashionWorkService = kfashionWorkService;
             this.kfashionUserInfoService = kfashionUserInfoService;
         }
-
-
 
 
         /**
@@ -191,4 +190,20 @@ public class KfashionWorkHistoryController {
 
             return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
         }
+
+    @PostMapping(value = "/professionalComplete")
+    public ResponseEntity<Object> professionalComplete(HttpServletRequest httpServletRequest,
+                                                    @RequestBody KfashionWorkHistory workHistory) throws Exception {
+        workHistory.setWorkStep(8);
+        kfashionWorkHistoryService.insertWorkHistory(workHistory);
+        return new ResponseEntity<Object>(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/basicComplete")
+    public ResponseEntity<Object> basicComplete(HttpServletRequest httpServletRequest,
+                                                @RequestBody KfashionWorkHistory workHistory) throws Exception {
+        workHistory.setWorkStep(7);
+        kfashionWorkHistoryService.insertWorkHistory(workHistory);
+        return new ResponseEntity<Object>(HttpStatus.OK);
+    }
 }

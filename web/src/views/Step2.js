@@ -164,6 +164,7 @@ class Step2 extends React.Component {
             this.props.imageStore.changeWorkNo(workNo);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
+            this.props.polygonStore.LoadLabelNoList(workNo);
             this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
                 width: 800,
                 height: 800,

@@ -78,4 +78,9 @@ public class KfashionLabelRepository {
     public void deleteBasicLabel(HashMap<String, Object> deleteMap) {
         mapper.deleteBasicLabel(deleteMap);
     }
+
+    public List<Integer> selectLabelNoList(Long workNo) {
+        return mapper.selectLabelNoList(workNo);
+    }
+
 }

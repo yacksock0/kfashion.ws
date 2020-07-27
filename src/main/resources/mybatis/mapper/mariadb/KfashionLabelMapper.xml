@@ -254,4 +254,11 @@
             AND work_step = #{workStep}
     </delete>
 
+    <select id="selectLabelNoList" resultType="int">
+        SELECT DISTINCT label_no
+        FROM kfashion_label
+        WHERE work_no =#{workNo}
+        AND work_step = 4
+    </select>
+
 </mapper>
