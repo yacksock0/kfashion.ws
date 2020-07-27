@@ -29,7 +29,7 @@ const logoHeight = 22;
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
-        [theme.breakpoints.up('xl')]: {
+        [theme.breakpoints.up('lg')]: {
             width: theme.drawerWidth,
             flexShrink: 0,
         },
@@ -428,9 +428,7 @@ export default function SideMenu(props) {
     return (
 
         <nav className={classes.drawer} aria-label="mailbox folders">
-            <Hidden xsUp implementation="css">
-                {isLoggedIn ? (
-
+            <Hidden smUp implementation="css">
                 <Drawer variant="temporary"
                         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                         open={mobileOpen}
@@ -455,30 +453,31 @@ export default function SideMenu(props) {
                         ''
                     )}
                 </Drawer>
-                ) : (
-                    ''
-                )}
             </Hidden>
             <Hidden lgDown implementation="css">
-                    {isLoggedIn ? (
                 <Drawer variant="permanent"
                         classes={{
                             paper: classes.drawerPaper,
                         }}
                         open
                 >
+                    {isLoggedIn ? (
                             <Toolbar className={classes.toolbar}>
                                 <Typography variant="h6" noWrap className={classes.title}>
                                     <Link to='/home' className={classes.link1}>
                                         <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION
                                     </Link>
                                 </Typography>
-                            </Toolbar>,
-                        drawer
-                </Drawer>
+                            </Toolbar>
                     ) : (
                         ''
                     )}
+                    {isLoggedIn ? (
+                        drawer
+                    ) : (
+                        ''
+                    )}
+                </Drawer>
             </Hidden>
         </nav>
     );

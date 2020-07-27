@@ -174,7 +174,6 @@ class HighCheckList extends React.Component {
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
-        this.props.checkHighLabelStore.LoadInspectionHighList();
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("FinalCheck", {
@@ -315,9 +314,13 @@ class HighCheckList extends React.Component {
             this.canvas.remove(objList[i]);
         }
     }
-
+    handleSubmit=()=>{
+        this.props.checkHighLabelStore.LoadInspectionHighList();
+        this.setState({
+            tabIndex1:1
+        })
+    }
     render() {
-        const {inspectionHighList} = this.props.checkHighLabelStore;
         const {classes} = this.props;
         const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onePieceReviewHighLabel} =this.props.checkHighLabelStore;
         return (
@@ -451,15 +454,15 @@ class HighCheckList extends React.Component {
                         <TabPanel>
                             <MaterialTable
                                 columns={this.state.columns}
-                                data={!!this.props.checkHighLabelStore.inspectionHighList ?
-                                    inspectionHighList.map((item) => {
+                                data={
+                                    this.props.checkHighLabelStore.inspectionHighList.map((item) => {
                                         return {
                                             workNo: item.workNo,
                                             fileName: item.fileName,
                                             workName: item.workName,
                                             createdDatetime: item.createdDatetime,
                                         }
-                                    }) : []}
+                                    })}
                                 title="이미지 리스트"
                                 options={{
                                     sorting: false,
@@ -495,7 +498,7 @@ class HighCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <ReturnMsg /><br></br><br></br>
+                <ReturnMsg onClick={()=> this.handleSubmit()}/><br></br><br></br>
             </Container>
         );
     }

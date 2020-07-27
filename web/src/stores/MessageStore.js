@@ -1,5 +1,6 @@
 import {action, computed, flow, observable, toJS} from "mobx";
 import axios from "axios";
+import {inject, observer} from "mobx-react";
 
 const State = {
     comment:'',

@@ -4,16 +4,13 @@ import {makeStyles} from "@material-ui/core/styles";
 import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import Stepper from "./Stepper";
-import StepConnector from "@material-ui/core/StepConnector";
-import withStyles from "@material-ui/core/styles/withStyles";
 
 const logoWidth = 120;
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
-        [theme.breakpoints.up('xl')]: {
+        [theme.breakpoints.up('lg')]: {
             width: `calc(100% - ${theme.drawerWidth}px)`,
             marginLeft: theme.drawerWidth,
             backgroundColor : '#000000',
@@ -22,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
         marginRight: theme.spacing(2),
-        [theme.breakpoints.up('xl')]: {
+        [theme.breakpoints.up('lg')]: {
         display:'none'
         },
     },
@@ -49,8 +46,6 @@ export default function TopBar(props) {
     return (
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-                { isLoggedIn ? (
-
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -60,7 +55,6 @@ export default function TopBar(props) {
                 >
                     <MenuIcon />
                 </IconButton>
-                ) : ''}
                 { isLoggedIn ? (
                 <Stepper currentStep = {props.setStep} />):''}
                 { isLoggedIn ? (
