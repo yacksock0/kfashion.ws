@@ -375,7 +375,7 @@ class HighCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <ReturnMsg />
+                <ReturnMsg /><br></br><br></br>
             </Container>
         );
     }
