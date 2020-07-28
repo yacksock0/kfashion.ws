@@ -134,8 +134,8 @@ class FinalCheckList extends React.Component {
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
-        this.props.imageStore.LoadInspectionList();
         const id = this.props.authStore.loginUser.id;
+        this.props.professionalLabelStore.LoadInspectionList(id);
         this.setState({createdId : id});
         this.props.enqueueSnackbar("검수", {
             variant: 'success',
@@ -176,7 +176,7 @@ class FinalCheckList extends React.Component {
         if (basicComplateConfirm) {
             const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
             const createdId = this.props.authStore.loginUser.id;
-            this.props.imageStore.ProfessionalCompleteUp(workNo, createdId);
+            this.props.professionalLabelStore.ProfessionalCompleteUp(workNo, createdId);
             this.deleteAll();
             this.setState({
                 open: false,
@@ -553,8 +553,8 @@ class FinalCheckList extends React.Component {
                                     <TabPanel>
                                         <MaterialTable
                                             columns={this.state.columns}
-                                            data={!!this.props.imageStore.inspectionList ?
-                                                this.props.imageStore.inspectionList.map((item) => {
+                                            data={!!this.props.professionalLabelStore.inspectionList ?
+                                                this.props.professionalLabelStore.inspectionList.map((item) => {
                                                     return {
                                                         workNo: item.workNo,
                                                         fileName: item.fileName,

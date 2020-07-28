@@ -466,7 +466,6 @@ class Step2 extends React.Component {
                 const finalCheck = window.confirm("이미지에 필요한 정보를 입력하셨습니까?");
                 if(finalCheck){
                     this.props.checkHighLabelStore.DoBasicLabelUp();
-                    this.props.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
                     this.setState({
                         tabIndex1 : 1,
                     });
@@ -483,7 +482,6 @@ class Step2 extends React.Component {
             const finalCheck = window.confirm("이미지 수정을 완료하셨습니까?");
             if(finalCheck){
                 this.props.checkHighLabelStore.DeleteBasicLabel();
-                this.props.polygonStore.LoadPolygonImage(this.props.authStore.loginUser.id);
                 this.deleteAll();
                 this.setState({
                     tabIndex1 : 1,

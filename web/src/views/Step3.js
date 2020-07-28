@@ -15,8 +15,7 @@ import Style from "../views/step3/Style";
 import ProImageList from "../views/step3/ProImageList";
 import {toJS} from "mobx";
 import ErrorIcon from "@material-ui/icons/Error";
-import WorkedImg from "./step2/WorkedImg";
-import Category1 from "./step3/Category1";
+import WorkedImg from "./step3/WorkedImg";
 
 
 const styles = theme => ({   root: {
@@ -116,12 +115,14 @@ class Step3 extends React.Component {
     changeWorkNo = (workNo) => {
         this.setState({ workNo : workNo});
     }
+
     handleSubmit = () => {
         if(this.state.workNo != 0){
             const finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
             if(finalCheck){
                 const createdId = this.props.authStore.isUserId;
                 this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
+                this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.state.workNo);
                 this.props.professionalLabelStore.doProfessionalLabelUp(this.changeWorkNo);
                 this.setState({
                     tabIndex1 : 1,
@@ -301,7 +302,7 @@ class Step3 extends React.Component {
         if(this.state.workNo != 0){
             console.log(this.props.imageStore.workNo);
             this.props.professionalLabelStore.cleanLabel();
-            this.props.professionalLabelStore.LoadLabelList(item.workNo);
+            this.props.professionalLabelStore.LoadLabelList(this.state.workNo);
             this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.state.workNo);
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
@@ -340,7 +341,8 @@ class Step3 extends React.Component {
                                         <TabPanel>
                                             <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
                                                 <TabList >
-                                                    <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
+                                                    <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                                    ><h3>스타일</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
                                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 1)) && this.state.polyInfo.length > 0}
                                                     ><h3>아우터</h3></Tab>
@@ -354,7 +356,6 @@ class Step3 extends React.Component {
                                                           disabled={"" == this.state.polyInfo.filter((poly=> poly == 4)) && this.state.polyInfo.length > 0}
                                                     ><h3>원피스</h3></Tab>
                                                 </TabList>
-
                                         <TabPanel>
                                             <Grid items xs={12} lg={12}>
                                                 <Style onClick={this.handleClickStyle} onClickDel={()=>this.onClickDel(1)}workNo={this.state.workNo}/>
@@ -391,6 +392,7 @@ class Step3 extends React.Component {
                                     </Tabs>
                                 </Grid>
                         </Grid>
+                    </div>
                         <div>
                             <hr></hr>
                         </div>
@@ -404,7 +406,6 @@ class Step3 extends React.Component {
                                 저장
                             </Button>
                         </Grid>
-                    </div>
 
                     <Typography variant="h6" component="h4" style={{display:'inline'}}>
                         <p><ErrorIcon/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 </p>

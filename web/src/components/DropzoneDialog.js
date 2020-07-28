@@ -73,8 +73,8 @@ class DropzoneDialogExample extends Component {
         const {count} = this.props.imageStore;
         return (
             <div style={{display:'inline'}}>
-                <Button style={{display:'inline'}} onClick={this.handleOpen.bind(this)} className={classes.toolButton} variant="contained"
-                        color="primary">
+                <Button style={{display:'inline'}} onClick={this.handleOpen.bind(this)} className={classes.toolButton} variant="outlined"
+                        >
                     Add Image {this.state.fileTotal > 0 ?  `( ${count} / ${this.state.fileTotal} )` :  "" }
                 </Button>
                 <DropzoneDialog

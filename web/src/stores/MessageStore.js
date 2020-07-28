@@ -138,6 +138,7 @@ export default class MessageStore {
             console.log('comment 에러')
         }
     });
+
     LoadInspectionHighList1 = flow(function* loadInspectionHighList() {
         this.state = State.Pending;
         try {

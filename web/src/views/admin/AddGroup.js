@@ -70,7 +70,7 @@ class AddGroup extends React.Component {
     render() {
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>그룹 추가</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen}>그룹 추가</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>그룹 추가</DialogTitle>
                     <DialogContent>
@@ -91,8 +91,8 @@ class AddGroup extends React.Component {
                         </div>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
-                        <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
+                        <Button variant="outlined"  onClick={this.handleFormSubmit}>추가</Button>
+                        <Button variant="outlined"  onClick={this.handleClose}>닫기</Button>
                     </DialogActions>
                 </Dialog>
             </div>

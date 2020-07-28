@@ -3,6 +3,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Grid, Typography} from "@material-ui/core";
+import {inject, observer} from "mobx-react";
 
 
 const styles = theme => ({
@@ -37,8 +38,11 @@ const styles = theme => ({
     }
 });
 
+@inject('currentStepStore')
+@observer
 class Home extends React.Component {
     componentDidMount() {
+        this.props.currentStepStore.setStep(0);
         this.props.enqueueSnackbar("홈", {
             variant: 'success',
             anchorOrigin:{
@@ -54,7 +58,7 @@ class Home extends React.Component {
         return (
             <div className={classes.mainContainer} style={{backgroundImage: `url(/images/mainbanner.jpg)`, width:'100%', height:'90vh', backgroundSize:'cover'}}>
                 <div className={classes.appBarSpacer} />
-                    <Grid items xs={12} >
+                    <Grid item xs={12}>
                     <div className={classes.mainTitle}>
                         <Typography variant="h3" component="h3" style={{display:'inline'}} >
                             K-Fashion AI 데이터 시스템 구성
