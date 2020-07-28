@@ -112,14 +112,14 @@ class CategoryComponent1 extends React.Component {
     handleDeleteDetail(detail1){
         this.props.professionalLabelStore.deleteDetail1(detail1);
     }
-    handleDeletePrint(){
-        this.props.professionalLabelStore.deletePrint1();
+    handleDeletePrint(print1){
+        this.props.professionalLabelStore.deletePrint1(print1);
     }
     handleDeleteNeckline(){
         this.props.professionalLabelStore.deleteNeckLine1();
     }
-    handleDeleteTexture(){
-        this.props.professionalLabelStore.deleteTexture1();
+    handleDeleteTexture(texture1){
+        this.props.professionalLabelStore.deleteTexture1(texture1);
     }
     handleDeleteKara(){
         this.props.professionalLabelStore.deleteKara1();
@@ -136,7 +136,9 @@ class CategoryComponent1 extends React.Component {
         const {classes} = this.props;
         const {outerReviewLabel} = this.props.professionalLabelStore;
         const detail1 =outerReviewLabel.detailItemName1;
-        console.log( detail1 );
+        const print1 =outerReviewLabel.printItemName1;
+        const texture1 =outerReviewLabel.textureItemName1;
+
         return (
             <Grid container spacing={3}>
                 <Grid items xs={11} style={{margin:"auto", marginTop:10}}>
@@ -199,9 +201,22 @@ class CategoryComponent1 extends React.Component {
                         <div>
                             <hr></hr>
                         </div>
-                        {outerReviewLabel.printCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {outerReviewLabel.printItemName1} </Button> ) : ''
-                        }
+                        {print1 != null  && print1 != undefined  ?(
+                            print1.map((print1) =>
+                                <Button
+                                    style={{
+                                        fontSize: 15,
+                                        width: 200,
+                                        borderRadius: 50,
+                                        padding: 0
+                                    }}
+                                    variant="outlined"
+                                    onClick={()=>this.handleDeletePrint(print1)}
+                                    endIcon={<DeleteIcon/>}
+                                >
+                                    {print1}
+                                </Button>
+                            )) : ''}
                     </div>
                 </Grid>
                 <Grid item xs={12} lg={6}>
@@ -215,9 +230,22 @@ class CategoryComponent1 extends React.Component {
                         <div>
                             <hr></hr>
                         </div>
-                        {outerReviewLabel.textureCategoryNo1 > 0 ?
-                            (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined"  onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {outerReviewLabel.textureItemName1} </Button> ) : ''
-                        }
+                        {texture1 != null  && texture1 != undefined  ?(
+                            texture1.map((texture1) =>
+                                <Button
+                                    style={{
+                                        fontSize: 15,
+                                        width: 200,
+                                        borderRadius: 50,
+                                        padding: 0
+                                    }}
+                                    variant="outlined"
+                                    onClick={()=>this.handleDeleteTexture(texture1)}
+                                    endIcon={<DeleteIcon/>}
+                                >
+                                    {texture1}
+                                </Button>
+                            )) : ''}
                     </div>
                 </Grid>
                 <Grid item xs={12} lg={6}>

@@ -112,14 +112,14 @@ class CategoryComponent4 extends React.Component {
     handleDeleteDetail(detail4){
         this.props.professionalLabelStore.deleteDetail4(detail4);
     }
-    handleDeletePrint(){
-        this.props.professionalLabelStore.deletePrint4();
+    handleDeletePrint(print4){
+        this.props.professionalLabelStore.deletePrint4(print4);
     }
     handleDeleteNeckline(){
         this.props.professionalLabelStore.deleteNeckLine4();
     }
-    handleDeleteTexture(){
-        this.props.professionalLabelStore.deleteTexture4();
+    handleDeleteTexture(texture4){
+        this.props.professionalLabelStore.deleteTexture4(texture4);
     }
     handleDeleteKara(){
         this.props.professionalLabelStore.deleteKara4();
@@ -137,6 +137,8 @@ class CategoryComponent4 extends React.Component {
         const {classes} = this.props;
         const {onePieceReviewLabel} =this.props.professionalLabelStore;
         const detail4 = onePieceReviewLabel.detailItemName4;
+        const print4 =onePieceReviewLabel.printItemName4;
+        const texture4 =onePieceReviewLabel.textureItemName4;
         return (
                     <Grid container spacing={3}>
                         <Grid items xs={11} style={{margin:"auto", marginTop:10}}>
@@ -194,9 +196,23 @@ class CategoryComponent4 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {onePieceReviewLabel.printCategoryNo4 > 0 ?
-                                                (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" onClick={this.handleDeletePrint} endIcon={<DeleteIcon />} > {onePieceReviewLabel.printItemName4} </Button> ) : ''
-                                            }
+                                            {print4 != null  && print4 != undefined  ?(
+                                                print4.map((print4) =>
+                                                    <Button
+                                                        style={{
+                                                            fontSize: 15,
+                                                            width: 200,
+                                                            borderRadius: 50,
+                                                            padding: 0
+                                                        }}
+                                                        variant="outlined"
+                                                        onClick={()=>this.handleDeletePrint(print4)}
+                                                        endIcon={<DeleteIcon/>}
+                                                    >
+                                                        {print4}
+                                                    </Button>
+                                                )) : ''}
+
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
@@ -210,9 +226,22 @@ class CategoryComponent4 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {onePieceReviewLabel.textureCategoryNo4 > 0 ?
-                                                (<Button style={{fontSize:15, width:200, borderRadius:50 ,padding:0}} variant="outlined" onClick={this.handleDeleteTexture} endIcon={<DeleteIcon />} > {onePieceReviewLabel.textureItemName4} </Button> ) : ''
-                                            }
+                                            {texture4 != null  && texture4 != undefined  ?(
+                                                texture4.map((texture4) =>
+                                                    <Button
+                                                        style={{
+                                                            fontSize: 15,
+                                                            width: 200,
+                                                            borderRadius: 50,
+                                                            padding: 0
+                                                        }}
+                                                        variant="outlined"
+                                                        onClick={()=>this.handleDeleteTexture(texture4)}
+                                                        endIcon={<DeleteIcon/>}
+                                                    >
+                                                        {texture4}
+                                                    </Button>
+                                                )) : ''}
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} lg={6}>

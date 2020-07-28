@@ -12,13 +12,21 @@ const EmptyNewOuterReviewLabel = {
     category1 : '',
     categoryCategoryNo1 : '',
     detailCount : 0,
+    printCount : 0,
+    textureCount : 0,
+
     detail1 : [],
     detailCategoryNo1 : [],
     detailItemName1 : [],
-    print1 : '',
-    printCategoryNo1 : '',
-    texture1 : '',
-    textureCategoryNo1 : '',
+
+    print1 : [],
+    printCategoryNo1 : [],
+    printItemName1 : [],
+
+    texture1 : [],
+    textureCategoryNo1 : [],
+    textureItemName1 : [],
+
     clothLength1 : '',
     clothLengthCategoryNo1 : '',
     neckLine1 : '',
@@ -32,13 +40,21 @@ const EmptyNewTopReviewLabel = {
     category2 : '',
     categoryCategoryNo2 : '',
     detailCount : 0,
+    printCount : 0,
+    textureCount : 0,
+
     detail2 : [],
     detailCategoryNo2 : [],
     detailItemName2 : [],
-    print2 : '',
-    printCategoryNo2 : '',
-    texture2 : '',
-    textureCategoryNo2 : '',
+
+    print2 : [],
+    printCategoryNo2 : [],
+    printItemName2 : [],
+
+    texture2 : [],
+    textureCategoryNo2 : [],
+    textureItemName2 : [],
+
     clothLength2 : '',
     clothLengthCategoryNo2 : '',
     neckLine2 : '',
@@ -52,13 +68,20 @@ const EmptyNewPantsReviewLabel = {
     category3 : '',
     categoryCategoryNo3 : '',
     detailCount : 0,
+    printCount : 0,
+    textureCount : 0,
     detail3 : [],
     detailCategoryNo3 : [],
     detailItemName3 : [],
-    print3 : '',
-    printCategoryNo3 : '',
-    texture3 : '',
-    textureCategoryNo3 : '',
+
+    print3 : [],
+    printCategoryNo3 : [],
+    printItemName3 : [],
+
+    texture3 : [],
+    textureCategoryNo3 : [],
+    textureItemName3 : [],
+
     clothLength3 : '',
     clothLengthCategoryNo3 : '',
     fit3 : '',
@@ -67,14 +90,23 @@ const EmptyNewPantsReviewLabel = {
 const EmptyNewOnePieceReviewLabel = {
     category4 : '',
     categoryCategoryNo4 : '',
+
     detailCount : 0,
+    printCount : 0,
+    textureCount : 0,
+
     detail4 : [],
     detailCategoryNo4 : [],
     detailItemName4 : [],
-    print4 : '',
-    printCategoryNo4 : '',
-    texture4 : '',
-    textureCategoryNo4 : '',
+
+    print4 : [],
+    printCategoryNo4 : [],
+    printItemName4 : [],
+
+    texture4 : [],
+    textureCategoryNo4 : [],
+    textureItemName4 : [],
+
     clothLength4 : '',
     clothLengthCategoryNo4 : '',
     neckLine4 : '',
@@ -129,22 +161,22 @@ const EmptyNewProfessionalLabel = {
     detailCategoryNo2 : [],
     detailCategoryNo3 : [],
     detailCategoryNo4 : [],
-    print1 : '',
-    print2 : '',
-    print3 : '',
-    print4 : '',
-    printCategoryNo1 : '',
-    printCategoryNo2 : '',
-    printCategoryNo3 : '',
-    printCategoryNo4 : '',
-    texture1 : '',
-    texture2 : '',
-    texture3 : '',
-    texture4 : '',
-    textureCategoryNo1 : '',
-    textureCategoryNo2 : '',
-    textureCategoryNo3 : '',
-    textureCategoryNo4 : '',
+    print1 : [],
+    print2 : [],
+    print3 : [],
+    print4 : [],
+    printCategoryNo1 : [],
+    printCategoryNo2 : [],
+    printCategoryNo3 : [],
+    printCategoryNo4 : [],
+    texture1 : [],
+    texture2 : [],
+    texture3 : [],
+    texture4 : [],
+    textureCategoryNo1 : [],
+    textureCategoryNo2 : [],
+    textureCategoryNo3 : [],
+    textureCategoryNo4 : [],
     clothLength1 : '',
     clothLength2 : '',
     clothLength3 : '',
@@ -184,14 +216,14 @@ const EmptyNewProfessionalLabel = {
     detailItemName2 : [],
     detailItemName3 : [],
     detailItemName4 : [],
-    printItemName1 : '',
-    printItemName2 : '',
-    printItemName3 : '',
-    printItemName4 : '',
-    textureItemName1 : '' ,
-    textureItemName2 : '' ,
-    textureItemName3 : '' ,
-    textureItemName4 : '' ,
+    printItemName1 : [],
+    printItemName2 : [],
+    printItemName3 : [],
+    printItemName4 : [],
+    textureItemName1 : [] ,
+    textureItemName2 : [] ,
+    textureItemName3 : [] ,
+    textureItemName4 : [] ,
     clothLengthItemName1 : '',
     clothLengthItemName2 : '',
     clothLengthItemName3 : '',
@@ -417,12 +449,6 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelDetail4 = (detail4) => {
-        console.log("this.onePieceReviewLabel.detail4 : " + this.onePieceReviewLabel.detail4);
-        console.log("this.onePieceReviewLabel.detailCategoryNo4 : " + this.onePieceReviewLabel.detailCategoryNo4);
-        console.log("this.onePieceReviewLabel.detailItemName4 : " + this.onePieceReviewLabel.detailItemName4);
-        console.log("detail4 : " + detail4);
-
-
         this.changeNewProfessionalLabelNo4(4);
         this.onePieceReviewLabel.detail4[this.onePieceReviewLabel.detailCount] = detail4.no;
         this.onePieceReviewLabel.detailCategoryNo4[this.onePieceReviewLabel.detailCount] = detail4.categoryNo;
@@ -480,110 +506,164 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelPrint1= (print1) => {
+        console.log(this.outerReviewLabel.print1)
         this.changeNewProfessionalLabelNo1(1);
-        this.outerReviewLabel.print1 = print1.no;
-        this.outerReviewLabel.printCategoryNo1 = print1.categoryNo;
-        this.outerReviewLabel.printItemName1 = print1.categoryItemName;
-        return this.outerReviewLabel
+        this.outerReviewLabel.print1[this.outerReviewLabel.printCount] = print1.no;
+        this.outerReviewLabel.printCategoryNo1[this.outerReviewLabel.printCount] = print1.categoryNo;
+        this.outerReviewLabel.printItemName1[this.outerReviewLabel.printCount] = print1.categoryItemName;
+        this.outerReviewLabel.printCount +=1;
     }
     @action changeNewProfessionalLabelPrint2= (print2) => {
+        console.log(this.topReviewLabel.print2)
         this.changeNewProfessionalLabelNo2(2);
-        this.topReviewLabel.print2 = print2.no;
-        this.topReviewLabel.printCategoryNo2 = print2.categoryNo;
-        this.topReviewLabel.printItemName2 = print2.categoryItemName;
-        return this.topReviewLabel;
+        this.topReviewLabel.print2[this.topReviewLabel.printCount] = print2.no;
+        this.topReviewLabel.printCategoryNo2[this.topReviewLabel.printCount] = print2.categoryNo;
+        this.topReviewLabel.printItemName2[this.topReviewLabel.printCount] = print2.categoryItemName;
+        this.topReviewLabel.printCount +=1;
     }
     @action changeNewProfessionalLabelPrint3= (print3) => {
+        console.log(this.pantsReviewLabel.print3)
         this.changeNewProfessionalLabelNo3(3);
-        this.pantsReviewLabel.print3 = print3.no;
-        this.pantsReviewLabel.printCategoryNo3 = print3.categoryNo;
-        this.pantsReviewLabel.printItemName3 = print3.categoryItemName;
-        return this.pantsReviewLabel;
+        this.pantsReviewLabel.print3[this.pantsReviewLabel.printCount] = print3.no;
+        this.pantsReviewLabel.printCategoryNo3[this.pantsReviewLabel.printCount] = print3.categoryNo;
+        this.pantsReviewLabel.printItemName3[this.pantsReviewLabel.printCount] = print3.categoryItemName;
+        this.pantsReviewLabel.printCount +=1;
     }
     @action changeNewProfessionalLabelPrint4= (print4) => {
+        console.log(this.onePieceReviewLabel.print4)
         this.changeNewProfessionalLabelNo4(4);
-        this.onePieceReviewLabel.print4 = print4.no;
-        this.onePieceReviewLabel.printCategoryNo4 = print4.categoryNo;
-        this.onePieceReviewLabel.printItemName4 = print4.categoryItemName;
-        return this.onePieceReviewLabel;
+        this.onePieceReviewLabel.print4[this.onePieceReviewLabel.printCount] = print4.no;
+        this.onePieceReviewLabel.printCategoryNo4[this.onePieceReviewLabel.printCount] = print4.categoryNo;
+        this.onePieceReviewLabel.printItemName4[this.onePieceReviewLabel.printCount] = print4.categoryItemName;
+        this.onePieceReviewLabel.printCount +=1;
     }
-    @action deletePrint1 = () => {
-        this.outerReviewLabel.print1 = '';
-        this.outerReviewLabel.printCategoryNo1 = 0;
-        this.outerReviewLabel.printItemName1 = '';
-        return this.outerReviewLabel;
+    @action deletePrint1 = (print1) => {
+        let index = 0;
+        for(let i = 0 ; i<this.outerReviewLabel.printItemName1.length ; i++){
+            if(print1 ==this.outerReviewLabel.printItemName1[i]){
+                index = i;
+            }
+        }
+        this.outerReviewLabel.print1.splice(index, 1);
+        this.outerReviewLabel.printCategoryNo1.splice(index, 1);
+        this.outerReviewLabel.printItemName1.splice(index, 1);
+        this.outerReviewLabel.printCount -=1;
     }
-    @action deletePrint2 = () => {
-        this.topReviewLabel.print2 = '';
-        this.topReviewLabel.printCategoryNo2 = 0;
-        this.topReviewLabel.printItemName2 = '';
-        return this.topReviewLabel;
+    @action deletePrint2 = (print2) => {
+        let index = 0;
+        for(let i = 0 ; i<this.topReviewLabel.printItemName2.length ; i++){
+            if(print2 ==this.topReviewLabel.printItemName2[i]){
+                index = i;
+            }
+        }
+        this.topReviewLabel.print2.splice(index, 1);
+        this.topReviewLabel.printCategoryNo2.splice(index, 1);
+        this.topReviewLabel.printItemName2.splice(index, 1);
+        this.topReviewLabel.printCount -=1;
     }
-    @action deletePrint3 = () => {
-        this.pantsReviewLabel.print3 = '';
-        this.pantsReviewLabel.printCategoryNo3 = 0;
-        this.pantsReviewLabel.printItemName3 = '';
-        return this.pantsReviewLabel;
+    @action deletePrint3 = (print3) => {
+        let index = 0;
+        for(let i = 0 ; i<this.pantsReviewLabel.printItemName3.length ; i++){
+            if(print3 ==this.pantsReviewLabel.printItemName3[i]){
+                index = i;
+            }
+        }
+        this.pantsReviewLabel.print3.splice(index, 1);
+        this.pantsReviewLabel.printCategoryNo3.splice(index, 1);
+        this.pantsReviewLabel.printItemName3.splice(index, 1);
+        this.pantsReviewLabel.printCount -=1;
+
     }
-    @action deletePrint4 = () => {
-        this.onePieceReviewLabel.print4 = '';
-        this.onePieceReviewLabel.printCategoryNo4 = 0;
-        this.onePieceReviewLabel.printItemName4 = '';
-        return this.onePieceReviewLabel;
+    @action deletePrint4 = (print4) => {
+        let index = 0;
+        for(let i = 0 ; i<this.onePieceReviewLabel.printItemName4.length ; i++){
+            if(print4 ==this.onePieceReviewLabel.printItemName4[i]){
+                index = i;
+            }
+        }
+        this.onePieceReviewLabel.print4.splice(index, 1);
+        this.onePieceReviewLabel.printCategoryNo4.splice(index, 1);
+        this.onePieceReviewLabel.printItemName4.splice(index, 1);
+        this.onePieceReviewLabel.printCount -=1;
     }
 
 
     @action changeNewProfessionalLabelTexture1 = (texture1) => {
         this.changeNewProfessionalLabelNo1(1);
-        this.outerReviewLabel.texture1 = texture1.no;
-        this.outerReviewLabel.textureCategoryNo1 = texture1.categoryNo;
-        this.outerReviewLabel.textureItemName1 = texture1.categoryItemName;
-        return this.outerReviewLabel
+        this.outerReviewLabel.texture1[this.outerReviewLabel.textureCount] = texture1.no;
+        this.outerReviewLabel.textureCategoryNo1[this.outerReviewLabel.textureCount] = texture1.categoryNo;
+        this.outerReviewLabel.textureItemName1[this.outerReviewLabel.textureCount] = texture1.categoryItemName;
+        this.outerReviewLabel.textureCount +=1;
     }
     @action changeNewProfessionalLabelTexture2 = (texture2) => {
         this.changeNewProfessionalLabelNo2(2);
-        this.topReviewLabel.texture2 = texture2.no;
-        this.topReviewLabel.textureCategoryNo2 = texture2.categoryNo;
-        this.topReviewLabel.textureItemName2 = texture2.categoryItemName;
-        return this.topReviewLabel;
+        this.topReviewLabel.texture2[this.topReviewLabel.textureCount] = texture2.no;
+        this.topReviewLabel.textureCategoryNo2[this.topReviewLabel.textureCount] = texture2.categoryNo;
+        this.topReviewLabel.textureItemName2[this.topReviewLabel.textureCount] = texture2.categoryItemName;
+        this.topReviewLabel.textureCount +=1;
     }
     @action changeNewProfessionalLabelTexture3 = (texture3) => {
         this.changeNewProfessionalLabelNo3(3);
-        this.pantsReviewLabel.texture3 = texture3.no;
-        this.pantsReviewLabel.textureCategoryNo3 = texture3.categoryNo;
-        this.pantsReviewLabel.textureItemName3 = texture3.categoryItemName;
-        return this.pantsReviewLabel;
+        this.pantsReviewLabel.texture3[this.pantsReviewLabel.textureCount] = texture3.no;
+        this.pantsReviewLabel.textureCategoryNo3[this.pantsReviewLabel.textureCount] = texture3.categoryNo;
+        this.pantsReviewLabel.textureItemName3[this.pantsReviewLabel.textureCount] = texture3.categoryItemName;
+        this.pantsReviewLabel.textureCount +=1;
     }
     @action changeNewProfessionalLabelTexture4 = (texture4) => {
+
         this.changeNewProfessionalLabelNo4(4);
-        this.onePieceReviewLabel.texture4 = texture4.no;
-        this.onePieceReviewLabel.textureCategoryNo4 = texture4.categoryNo;
-        this.onePieceReviewLabel.textureItemName4 = texture4.categoryItemName;
-        return this.onePieceReviewLabel;
+        this.onePieceReviewLabel.texture4[this.onePieceReviewLabel.textureCount] = texture4.no;
+        this.onePieceReviewLabel.textureCategoryNo4[this.onePieceReviewLabel.textureCount] = texture4.categoryNo;
+        this.onePieceReviewLabel.textureItemName4[this.onePieceReviewLabel.textureCount] = texture4.categoryItemName;
+        this.onePieceReviewLabel.textureCount +=1;
     }
-    @action deleteTexture1 = () => {
-        this.outerReviewLabel.texture1 = '';
-        this.outerReviewLabel.textureCategoryNo1 = 0;
-        this.outerReviewLabel.textureItemName1 = '';
-        return this.outerReviewLabel;
+    @action deleteTexture1 = (texture1) => {
+        let index = 0;
+        for(let i = 0 ; i<this.outerReviewLabel.textureItemName1.length ; i++){
+            if(texture1 ==this.outerReviewLabel.textureItemName1[i]){
+                index = i;
+            }
+        }
+        this.outerReviewLabel.texture1.splice(index, 1);
+        this.outerReviewLabel.textureCategoryNo1.splice(index, 1);
+        this.outerReviewLabel.textureItemName1.splice(index, 1);
+        this.outerReviewLabel.textureCount -=1;
     }
-    @action deleteTexture2 = () => {
-        this.topReviewLabel.texture2 = '';
-        this.topReviewLabel.textureCategoryNo2 = 0;
-        this.topReviewLabel.textureItemName2 = '';
-        return this.topReviewLabel;
+    @action deleteTexture2 = (texture2) => {
+        let index = 0;
+        for(let i = 0 ; i<this.topReviewLabel.textureItemName2.length ; i++){
+            if(texture2 ==this.topReviewLabel.textureItemName2[i]){
+                index = i;
+            }
+        }
+        this.topReviewLabel.texture2.splice(index, 1);
+        this.topReviewLabel.textureCategoryNo2.splice(index, 1);
+        this.topReviewLabel.textureItemName2.splice(index, 1);
+        this.topReviewLabel.textureCount -=1;
     }
-    @action deleteTexture3 = () => {
-        this.pantsReviewLabel.texture3 = '';
-        this.pantsReviewLabel.textureCategoryNo3 = 0;
-        this.pantsReviewLabel.textureItemName3 = '';
-        return this.pantsReviewLabel;
+    @action deleteTexture3 = (texture3) => {
+        let index = 0;
+        for(let i = 0 ; i<this.pantsReviewLabel.textureItemName3.length ; i++){
+            if(texture3 ==this.pantsReviewLabel.textureItemName3[i]){
+                index = i;
+            }
+        }
+        this.pantsReviewLabel.texture3.splice(index, 1);
+        this.pantsReviewLabel.textureCategoryNo3.splice(index, 1);
+        this.pantsReviewLabel.textureItemName3.splice(index, 1);
+        this.pantsReviewLabel.textureCount -=1;
     }
-    @action deleteTexture4 = () => {
-        this.onePieceReviewLabel.texture4 = '';
-        this.onePieceReviewLabel.textureCategoryNo4 = 0;
-        this.onePieceReviewLabel.textureItemName4 = '';
-        return this.onePieceReviewLabel;
+    @action deleteTexture4 = (texture4) => {
+        let index = 0;
+        for(let i = 0 ; i<this.onePieceReviewLabel.textureItemName4.length ; i++){
+            if(texture4 ==this.onePieceReviewLabel.textureItemName4[i]){
+                index = i;
+            }
+        }
+        this.onePieceReviewLabel.texture4.splice(index, 1);
+        this.onePieceReviewLabel.textureCategoryNo4.splice(index, 1);
+        this.onePieceReviewLabel.textureItemName4.splice(index, 1);
+        this.onePieceReviewLabel.textureCount -=1;
     }
 
     @action changeNewProfessionalLabelClothLength1 = (clothLength1) => {
@@ -913,28 +993,32 @@ export default class ProfessionalLabelStore {
                 this.newProfessionalLabel.styleCategoryNo = this.styleReviewLabel.styleCategoryNo;
                 this.newProfessionalLabel.styleCategorySubNo = this.styleReviewLabel.styleCategorySubNo;
             const param = toJS(this.newProfessionalLabel);
-            console.log("1 : "+ this.newProfessionalLabel.labelNo1);
-            console.log("2 : "+ this.newProfessionalLabel.labelNo2);
-            console.log("3 : "+ this.newProfessionalLabel.labelNo3);
-            console.log("4 : "+ this.newProfessionalLabel.labelNo4);
-            console.log("5 : "+ this.newProfessionalLabel.labelNo5);
-            console.log('param',param);
+            console.log("print1 : "+ this.newProfessionalLabel.print1);
+            console.log("print2 : "+ this.newProfessionalLabel.print2);
+            console.log("print3 : "+ this.newProfessionalLabel.print3);
+            console.log("print4 : "+ this.newProfessionalLabel.print4);
+
+            console.log("texture1 : "+ this.newProfessionalLabel.texture1);
+            console.log("texture2 : "+ this.newProfessionalLabel.texture2);
+            console.log("texture3 : "+ this.newProfessionalLabel.texture3);
+            console.log("texture4 : "+ this.newProfessionalLabel.texture4);
+
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
-                if (resp.status === 200) {
-                    const createdId =this.newProfessionalLabel.createdId;
-                    this.state = State.Success;
-                    this.LoadProfessionalList(createdId);
-                    this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
-                    this.topReviewLabel= {...EmptyNewTopReviewLabel};
-                    this.pantsReviewLabel= {...EmptyNewPantsReviewLabel};
-                    this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
-                    this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
-                    this.LoadRecentImage(createdId);
-                    changeWorkNo(0);
-                    alert("저장 완료");
-                } else {
-                    this.state = State.Fail;
-                }
+                // if (resp.status === 200) {
+                //     const createdId =this.newProfessionalLabel.createdId;
+                //     this.state = State.Success;
+                //     this.LoadProfessionalList(createdId);
+                //     this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
+                //     this.topReviewLabel= {...EmptyNewTopReviewLabel};
+                //     this.pantsReviewLabel= {...EmptyNewPantsReviewLabel};
+                //     this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
+                //     this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
+                //     this.LoadRecentImage(createdId);
+                //     changeWorkNo(0);
+                //     alert("저장 완료");
+                // } else {
+                //     this.state = State.Fail;
+                // }
         } catch (e) {
             console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
         }

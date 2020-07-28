@@ -50,6 +50,8 @@ export default class Texture1 extends React.Component {
     }
     render() {
         const textureList2= this.state.textureList2;
+        const {topReviewLabel} = this.props.professionalLabelStore;
+        const textureCheck =topReviewLabel.textureItemName2;
         return (
             <div>
                 <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>
@@ -67,7 +69,15 @@ export default class Texture1 extends React.Component {
                             {textureList2.map((texture) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
-                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClick(texture)}>
+                                        <Button
+                                            style={{width:'100%', height:30, padding:0}}
+                                            variant="outlined"
+                                            key={texture.no}
+                                            disabled = {textureCheck != undefined?
+                                                texture.categoryItemName == textureCheck.filter((check) => check==texture.categoryItemName
+                                                ) : ""
+                                            }
+                                            onClick={() => this.handleClick(texture)}>
                                             <h4>{texture.categoryItemName}</h4>
                                         </Button>
                                     </div>
