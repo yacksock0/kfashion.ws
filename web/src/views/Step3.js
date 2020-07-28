@@ -391,13 +391,12 @@ class Step3 extends React.Component {
                                 </Grid>
                         </Grid>
                         <div>
-                        <hr></hr>
+                            <hr></hr>
                         </div>
                         <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
                             <Button
                                     type="button"
                                     className={classes.buttonType2}
-                                    color="primary"
                                     variant="outlined"
                                     onClick={()=>this.handleSubmit()}
                             >
