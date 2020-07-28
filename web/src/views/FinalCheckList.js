@@ -134,7 +134,7 @@ class FinalCheckList extends React.Component {
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
-        this.props.imageStore.LoadInspectionList();
+        this.props.professionalLabelStore.LoadInspectionList();
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
         this.props.enqueueSnackbar("검수", {
@@ -553,8 +553,8 @@ class FinalCheckList extends React.Component {
                                     <TabPanel>
                                         <MaterialTable
                                             columns={this.state.columns}
-                                            data={!!this.props.imageStore.inspectionList ?
-                                                this.props.imageStore.inspectionList.map((item) => {
+                                            data={!!this.props.professionalLabelStore.inspectionList ?
+                                                this.props.professionalLabelStore.inspectionList.map((item) => {
                                                     return {
                                                         workNo: item.workNo,
                                                         fileName: item.fileName,
