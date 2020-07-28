@@ -39,7 +39,6 @@ const ProfessionalComplete = {
 }
 export default class ImageStore {
     @observable boundaryList = [];
-    @observable inspectionList = [];
     @observable files = [];
     @observable uploadFile = '';
     @observable addState = AddState.Closed;
@@ -97,15 +96,6 @@ export default class ImageStore {
 
 
 
-    LoadInspectionList = flow(function* loadInspectionList() {
-        this.inspectionList = [];
-        try {
-            const response = yield axios.get('/api/v1/kfashion/img/inspectionList')
-            this.inspectionList = response.data.inspectionList;
-        } catch (e) {
-            console.log('error')
-        }
-    });
 
     ProfessionalCompleteUp = flow(function* professionalCompleteUp(workNo,createdId) {
         this.state = State.Pending;
@@ -124,7 +114,6 @@ export default class ImageStore {
             console.log('에러좀 나지 마라')
         }
     });
-
 
 
     deleteImg = flow(function* (oldData) {
