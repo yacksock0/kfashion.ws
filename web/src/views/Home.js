@@ -58,7 +58,7 @@ class Home extends React.Component {
         return (
             <div className={classes.mainContainer} style={{backgroundImage: `url(/images/mainbanner.jpg)`, width:'100%', height:'90vh', backgroundSize:'cover'}}>
                 <div className={classes.appBarSpacer} />
-                    <Grid items xs={12} >
+                    <Grid item xs={12}>
                     <div className={classes.mainTitle}>
                         <Typography variant="h3" component="h3" style={{display:'inline'}} >
                             K-Fashion AI 데이터 시스템 구성

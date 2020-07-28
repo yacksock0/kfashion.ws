@@ -1153,7 +1153,6 @@ class Polygon extends React.Component {
                     <Button
                         type="button"
                         className={classes.buttonType2}
-                        color={`#000000`}
                         variant="outlined"
                         onClick={()=>{this.state.listIndex === 0 ? (history.push('/step2')) :alert('리스트에 남은 작업이 있습니다.')} }
                     >
