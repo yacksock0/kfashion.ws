@@ -84,10 +84,10 @@ export default class ReturnMsg extends React.Component {
         console.log(polyInfo);
         return (
             <div>
-                <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150}} disabled={this.props.checkHighLabelStore.workNo == ''}>
+                <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.workNo == ''}>
                     완료
                 </Button>
-                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150, marginRight:10}} disabled={this.props.checkHighLabelStore.workNo == ''}>
+                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150, marginRight:10, marginBottom:10}} disabled={this.props.checkHighLabelStore.workNo == ''}>
                     반송
                 </Button>
 

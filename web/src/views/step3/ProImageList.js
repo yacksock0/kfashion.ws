@@ -81,11 +81,11 @@ export default class ProImageList extends React.Component {
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
                     },
-                    {
-                        icon: Clear,
-                        tooltip: 'return',
-                        onClick: (event, rowData) => this.handleClickReturn()
-                    }
+                    // {
+                    //     icon: Clear,
+                    //     tooltip: 'return',
+                    //     onClick: (event, rowData) => this.handleClickReturn()
+                    // }
                 ]}
             />
         );
