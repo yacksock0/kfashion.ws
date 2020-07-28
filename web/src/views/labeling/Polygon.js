@@ -567,7 +567,7 @@ class Polygon extends React.Component {
         });
         this.canvas = canvas;
         this.canvas.renderAll.bind(canvas);
-
+        this
         this.canvas.on('mouse:move', function(e) {
 
                 x = canvas.getPointer(e, false).x;
@@ -577,7 +577,7 @@ class Polygon extends React.Component {
                     lens.set('top', -(scale - 1) * y);
                 }
                 console.log(lens);
-                // canvas.bringToFront(lens);
+                canvas.bringToFront(lens);
                 canvas.renderAll();
         });
     }
