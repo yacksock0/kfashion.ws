@@ -172,6 +172,7 @@ export default class CheckHighLabelStore {
     @observable msgDialog = '';
     @observable workNo = 0;
     @observable basicComplete = {...BasicComplete};
+    @observable polygonList = [];
 
     @action changeNewBasicLabelNo1 = (labelNo1) => {
         this.outerReviewHighLabel.labelNo1 = labelNo1;
@@ -229,6 +230,10 @@ export default class CheckHighLabelStore {
         this.outerReviewHighLabel.subColorCategoryNo1 = subcolor1.categoryNo;
         this.outerReviewHighLabel.subColorItemName1 = subcolor1.categoryItemName;
         this.outerReviewHighLabel.subColorItemMemo1 = subcolor1.categoryItemMemo;
+        console.log(this.outerReviewHighLabel.subColor1)
+        console.log(this.outerReviewHighLabel.subColorCategoryNo1)
+        console.log(this.outerReviewHighLabel.subColorItemName1)
+        console.log(this.outerReviewHighLabel.subColorItemMemo1)
         return this.outerReviewHighLabel
     }
     @action changeNewBasicLabelSubColor2= (subcolor2) => {
@@ -237,6 +242,10 @@ export default class CheckHighLabelStore {
         this.topReviewHighLabel.subColorCategoryNo2 = subcolor2.categoryNo;
         this.topReviewHighLabel.subColorItemName2 = subcolor2.categoryItemName;
         this.topReviewHighLabel.subColorItemMemo2 = subcolor2.categoryItemMemo;
+        console.log(this.topReviewHighLabel.subColor2)
+        console.log(this.topReviewHighLabel.subColorCategoryNo2)
+        console.log(this.topReviewHighLabel.subColorItemName2)
+        console.log(this.topReviewHighLabel.subColorItemMemo2)
         return this.topReviewHighLabel
     }
     @action changeNewBasicLabelSubColor3= (subcolor3) => {
@@ -245,7 +254,12 @@ export default class CheckHighLabelStore {
         this.pantsReviewHighLabel.subColorCategoryNo3 = subcolor3.categoryNo;
         this.pantsReviewHighLabel.subColorItemName3 = subcolor3.categoryItemName;
         this.pantsReviewHighLabel.subColorItemMemo3 = subcolor3.categoryItemMemo;
+        console.log(this.pantsReviewHighLabel.subColor3)
+        console.log(this.pantsReviewHighLabel.subColorCategoryNo3)
+        console.log(this.pantsReviewHighLabel.subColorItemName3)
+        console.log(this.pantsReviewHighLabel.subColorItemMemo3)
         return this.pantsReviewHighLabel
+
     }
     @action changeNewBasicLabelSubColor4= (subcolor4) => {
         this.changeNewBasicLabelNo4(4);
@@ -253,6 +267,10 @@ export default class CheckHighLabelStore {
         this.onePieceReviewHighLabel.subColorCategoryNo4 = subcolor4.categoryNo;
         this.onePieceReviewHighLabel.subColorItemName4 = subcolor4.categoryItemName;
         this.onePieceReviewHighLabel.subColorItemMemo4 = subcolor4.categoryItemMemo;
+        console.log(this.onePieceReviewHighLabel.subColor4)
+        console.log(this.onePieceReviewHighLabel.subColorCategoryNo4)
+        console.log(this.onePieceReviewHighLabel.subColorItemName4)
+        console.log(this.onePieceReviewHighLabel.subColorItemMemo4)
         return this.onePieceReviewHighLabel
     }
 
@@ -411,6 +429,7 @@ export default class CheckHighLabelStore {
             this.changeNewBasicLabel.labelNo4 = this.onePieceReviewHighLabel.labelNo4;
             this.changeNewBasicLabel.workNo = this.workNo;
             const param = toJS(this.changeNewBasicLabel);
+            console.log(param);
             const resp = yield axios.post('/api/v1/kfashion/label/basicLabel', param);
             console.log(resp);
             if(resp.status === 200) {
@@ -419,6 +438,7 @@ export default class CheckHighLabelStore {
                 this.topReviewHighLabel= {...TopReviewHighLabel};
                 this.pantsReviewHighLabel= {...PantsReviewHighLabel};
                 this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
+                this.LoadPolygonImage1(this.changeNewBasicLabel.createdId);
                 alert("저장 완료");
             } else {
                 this.state = State.Fail;
@@ -518,6 +538,7 @@ export default class CheckHighLabelStore {
             const resp = yield axios.post('/api/v1/kfashion/label/updateBasicLabel',param);
             if (resp.status === 200) {
                 alert("수정이 완료되었습니다.");
+                this.LoadPolygonImage1(this.changeNewBasicLabel.createdId);
             } else {
                 this.state = State.Fail;
             }
@@ -546,6 +567,16 @@ export default class CheckHighLabelStore {
     });
 
 
+
+    LoadPolygonImage1 = flow(function* LoadPolygonImage(createdId) {
+        this.polygonList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/polygon/polygonList?createdId='+createdId)
+            this.polygonList = response.data.polygonList;
+        } catch (e) {
+            console.log('error')
+        }
+    });
 
 
     // LoadProgressList = flow(function* loadProgressList(rowDataId) {

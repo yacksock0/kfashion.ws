@@ -23,7 +23,7 @@ class BasicImageList extends React.Component {
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
-        this.props.polygonStore.LoadPolygonImage(createdId);
+        this.props.checkHighLabelStore.LoadPolygonImage1(createdId);
         this.props.basicCategoryStore.LoadColorList();
         this.props.basicCategoryStore.LoadSleeveList();
     }
@@ -52,8 +52,8 @@ class BasicImageList extends React.Component {
         return (
             <MaterialTable
                 columns={this.state.columns}
-                data={!!this.props.polygonStore.polygonList ?
-                    this.props.polygonStore.polygonList.map((item) => {
+                data={!!this.props.checkHighLabelStore.polygonList ?
+                    this.props.checkHighLabelStore.polygonList.map((item) => {
                         return {
                             workNo: item.workNo,
                             fileName: item.fileName,

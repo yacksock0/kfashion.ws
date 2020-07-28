@@ -46,7 +46,6 @@ export default class ReturnMsg extends React.Component {
             this.props.messageStore.changeWorkNo(this.props.checkHighLabelStore.workNo);
             this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
             this.props.messageStore.sendMsg();
-
             this.setState({
                 open: false,
             })
