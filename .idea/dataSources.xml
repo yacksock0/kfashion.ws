@@ -7,5 +7,11 @@
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mariadb://192.168.111.90:3306/KFashion</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="KFashion@kfashiondb.c6ywfrbt2knn.ap-northeast-2.rds.amazonaws.com" uuid="b2b9de1f-cb11-44de-9466-51bb93fbfbc6">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://kfashiondb.c6ywfrbt2knn.ap-northeast-2.rds.amazonaws.com:3306/KFashion</jdbc-url>
+    </data-source>
   </component>
 </project>

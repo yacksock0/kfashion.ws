@@ -5,6 +5,7 @@ import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Stepper from "./Stepper";
+import AccountCircleSharpIcon from "@material-ui/icons/AccountCircleSharp";
 
 const logoWidth = 120;
 
@@ -67,17 +68,18 @@ export default function TopBar(props) {
                         {loginUser.id}
                         <ExitToAppIcon />
                     </IconButton>
-                ) : ( <Link to='/home' className={classes.link}>
+                ) : ( <div><Link to='/home' className={classes.link}>
                         <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
                     </Link>
-                    // <Link to="/SignUp" className={classes.link}>
-                    //     <IconButton color="inherit">
-                    //         <AssignmentIndIcon />
-                    //         <Typography variant="h6" noWrap className={classes.title}>
-                    //             회원가입
-                    //         </Typography>
-                    //     </IconButton>
-                    // </Link>
+                    <Link to="/SignUp" className={classes.link}>
+                        <IconButton color="inherit">
+                            <AccountCircleSharpIcon />
+                            <Typography variant="h6" noWrap className={classes.title}>
+                                회원가입
+                            </Typography>
+                        </IconButton>
+                    </Link>
+                    </div>
                 )}
             </Toolbar>
         </AppBar>):(
@@ -99,17 +101,18 @@ export default function TopBar(props) {
                                     {loginUser.id}
                                     <ExitToAppIcon />
                                 </IconButton>
-                            ) : ( <Link to='/home' className={classes.link}>
+                            ) : ( <div><Link to='/home' className={classes.link}>
                                     <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
                                 </Link>
-                                // <Link to="/SignUp" className={classes.link}>
-                                //     <IconButton color="inherit">
-                                //         <AssignmentIndIcon />
-                                //         <Typography variant="h6" noWrap className={classes.title}>
-                                //             회원가입
-                                //         </Typography>
-                                //     </IconButton>
-                                // </Link>
+                                <Link to="/SignUp" className={classes.link}>
+                                    <IconButton color="inherit">
+                                        <AccountCircleSharpIcon />
+                                        <Typography variant="h6" noWrap className={classes.title}>
+                                            회원가입
+                                        </Typography>
+                                    </IconButton>
+                                </Link>
+                                </div>
                             )}
                         </Toolbar>
                     </AppBar>)}
