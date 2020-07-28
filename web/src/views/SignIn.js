@@ -49,8 +49,6 @@ const style = theme => ({
 @inject('authStore')
 @observer
 class SignIn extends React.Component {
-
-    
     handleChangeId = (e) => {
         this.props.authStore.changeLoginId(e.target.value);
     }
@@ -67,7 +65,6 @@ class SignIn extends React.Component {
 
     handleSubmitForm = (e) => {
         this.props.authStore.doLogin();
-        this.props.history.push("/home");
     }
 
     render() {
@@ -106,7 +103,7 @@ class SignIn extends React.Component {
                                     className={classes.submit}
                                     variant="contained"
                                     disabled={loginState === store.State.Pending}
-                                    onClick={this.handleSubmitForm}
+                                    onClick={()=>this.handleSubmitForm}
                                     fullWidth >
                                 {loginState === store.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>

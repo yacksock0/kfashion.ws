@@ -74,7 +74,6 @@ export default class AuthStore {
 
     doLogin = flow(function* doLogin(history) {
         this.loginState = State.Pending;
-
         try {
             const param = this.login;
             const response = yield axios.post('/api/v1/kfashion/authentications/signin', param);
@@ -82,6 +81,7 @@ export default class AuthStore {
             const user = response.data.user;
             localStorage.setItem(LocalStorageTokenKey, token);
             console.log('doLogin');
+            window.location.assign('/home');
             this.loginState = State.Authenticated;
             this.loginToken = token;
             this.loginUser = user;
