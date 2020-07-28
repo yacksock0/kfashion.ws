@@ -3,6 +3,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Grid, Typography} from "@material-ui/core";
+import {inject, observer} from "mobx-react";
 
 
 const styles = theme => ({
@@ -37,8 +38,11 @@ const styles = theme => ({
     }
 });
 
+@inject('currentStepStore')
+@observer
 class Home extends React.Component {
     componentDidMount() {
+        this.props.currentStepStore.setStep(0);
         this.props.enqueueSnackbar("홈", {
             variant: 'success',
             anchorOrigin:{
