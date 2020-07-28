@@ -567,7 +567,7 @@ class Polygon extends React.Component {
         });
         this.canvas = canvas;
         this.canvas.renderAll.bind(canvas);
-        this
+
         this.canvas.on('mouse:move', function(e) {
 
                 x = canvas.getPointer(e, false).x;
