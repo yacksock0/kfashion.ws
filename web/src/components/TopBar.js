@@ -68,18 +68,17 @@ export default function TopBar(props) {
                         {loginUser.id}
                         <ExitToAppIcon />
                     </IconButton>
-                ) : ( <div><Link to='/home' className={classes.link}>
+                ) : ( <Link to='/home' className={classes.link}>
                         <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
                     </Link>
-                    <Link to="/SignUp" className={classes.link}>
-                        <IconButton color="inherit">
-                            <AccountCircleSharpIcon />
-                            <Typography variant="h6" noWrap className={classes.title}>
-                                회원가입
-                            </Typography>
-                        </IconButton>
-                    </Link>
-                    </div>
+                    // <Link to="/SignUp" className={classes.link}>
+                    //     <IconButton color="inherit">
+                    //         <AccountCircleSharpIcon />
+                    //         <Typography variant="h6" noWrap className={classes.title}>
+                    //             회원가입
+                    //         </Typography>
+                    //     </IconButton>
+                    // </Link>
                 )}
             </Toolbar>
         </AppBar>):(
@@ -101,18 +100,17 @@ export default function TopBar(props) {
                                     {loginUser.id}
                                     <ExitToAppIcon />
                                 </IconButton>
-                            ) : ( <div><Link to='/home' className={classes.link}>
+                            ) : ( <Link to='/home' className={classes.link}>
                                     <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
                                 </Link>
-                                <Link to="/SignUp" className={classes.link}>
-                                    <IconButton color="inherit">
-                                        <AccountCircleSharpIcon />
-                                        <Typography variant="h6" noWrap className={classes.title}>
-                                            회원가입
-                                        </Typography>
-                                    </IconButton>
-                                </Link>
-                                </div>
+                                // <Link to="/SignUp" className={classes.link}>
+                                //     <IconButton color="inherit">
+                                //         <AccountCircleSharpIcon />
+                                //         <Typography variant="h6" noWrap className={classes.title}>
+                                //             회원가입
+                                //         </Typography>
+                                //     </IconButton>
+                                // </Link>
                             )}
                         </Toolbar>
                     </AppBar>)}
