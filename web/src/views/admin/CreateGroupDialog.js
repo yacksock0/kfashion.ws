@@ -49,7 +49,7 @@ export default class CreateGroupDialog extends React.Component {
     render() {
         return (
             <div style={{maxWidth:"100%"}}>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>그룹 관리</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen}>그룹 관리</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}
                         maxWidth={"md"}
                         fullWidth={"100%"}
