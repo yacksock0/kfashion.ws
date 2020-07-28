@@ -780,6 +780,7 @@ export default class ProfessionalLabelStore {
 
     @action changeNewProfessionalLabelWorkNo = (workNo) => {
         this.workNo = workNo;
+        console.log(this.workNo);
     }
 
     @computed get isLabelNo1() {

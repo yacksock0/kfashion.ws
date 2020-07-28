@@ -23,7 +23,7 @@ export default class Print extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/print')
             .then(response => {
-                const printList2 = response.data.printList1;
+                const printList2 = response.data.printList2;
                 this.setState({ printList2 : printList2})
             })
             .catch(error => {
