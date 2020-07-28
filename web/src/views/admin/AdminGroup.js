@@ -25,8 +25,12 @@ const styles = theme => ({
 
 class AdminGroup extends React.Component {
     componentDidMount() {
-        this.props.enqueueSnackbar("AdminGroup Work", {
-            variant: 'info'
+        this.props.enqueueSnackbar("관리자그룹 작업", {
+            variant: 'success',
+            anchorOrigin:{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }
         });
     }
 
