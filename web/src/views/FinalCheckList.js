@@ -134,8 +134,8 @@ class FinalCheckList extends React.Component {
     componentDidMount() {
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
-        this.props.professionalLabelStore.LoadInspectionList();
         const id = this.props.authStore.loginUser.id;
+        this.props.professionalLabelStore.LoadInspectionList(id);
         this.setState({createdId : id});
         this.props.enqueueSnackbar("검수", {
             variant: 'success',
@@ -176,7 +176,7 @@ class FinalCheckList extends React.Component {
         if (basicComplateConfirm) {
             const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
             const createdId = this.props.authStore.loginUser.id;
-            this.props.imageStore.ProfessionalCompleteUp(workNo, createdId);
+            this.props.professionalLabelStore.ProfessionalCompleteUp(workNo, createdId);
             this.deleteAll();
             this.setState({
                 open: false,

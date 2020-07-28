@@ -97,25 +97,6 @@ export default class ImageStore {
 
 
 
-    ProfessionalCompleteUp = flow(function* professionalCompleteUp(workNo,createdId) {
-        this.state = State.Pending;
-        try {
-            this.professionalComplete.workNo = workNo;
-            this.professionalComplete.createdId = createdId;
-            const param = toJS(this.professionalComplete);
-            const resp = yield axios.post('/api/v1/kfashion/work/history/professionalComplete',param);
-            if (resp.status === 200) {
-                alert("검수가 완료 되었습니다.");
-                this.LoadInspectionList();
-            } else {
-                this.state = State.Fail;
-            }
-        } catch (e) {
-            console.log('에러좀 나지 마라')
-        }
-    });
-
-
     deleteImg = flow(function* (oldData) {
         console.log(oldData);
         try {
