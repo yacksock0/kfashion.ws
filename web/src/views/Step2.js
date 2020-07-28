@@ -602,14 +602,13 @@ class Step2 extends React.Component {
 
                                          <br></br>
                                          {outerReviewHighLabel.sleeveLengthCategoryNo1 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {outerReviewHighLabel.sleeveLengthItemName1} </Button> ) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined"  onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {outerReviewHighLabel.sleeveLengthItemName1} </Button> ) : ''
                                          }
 
                                          {polyLast === this.state.tabIndex2?(
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      disabled={!this.state.comment == ''}
                                                      onClick={() => (this.handleSave())}
@@ -620,7 +619,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      onClick={() => (this.nextTab())}
                                              >
@@ -631,7 +629,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20,marginRight:10}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      onClick={() => (this.handleUpdate())}
                                              >
@@ -680,14 +677,13 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
                                          }
 
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      disabled={!this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
@@ -698,7 +694,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      onClick={()=>(this.nextTab())}
                                              >
@@ -709,7 +704,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20,marginRight:10}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      onClick={() => (this.handleUpdate())}
                                              >
@@ -748,7 +742,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      disabled={! this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
@@ -759,7 +752,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      onClick={()=>(this.nextTab())}
                                              >
@@ -770,7 +762,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20, marginRight:10}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      onClick={() => (this.handleUpdate())}
                                              >
@@ -818,14 +809,13 @@ class Step2 extends React.Component {
                                          </div>
                                          <br></br>
                                          {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" color="primary" onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
+                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined"  onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
                                          }
 
                                          {polyLast === this.state.tabIndex2 ? (
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      disabled={!this.state.comment == ''}
                                                      onClick={()=>(this.handleSave())}
@@ -836,7 +826,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      onClick={()=>(this.nextTab())}
                                              >
@@ -847,7 +836,6 @@ class Step2 extends React.Component {
                                              <Button style={{marginTop: 20, marginRight:10}}
                                                      type="button"
                                                      className={classes.buttonType2}
-                                                     color="primary"
                                                      variant="outlined"
                                                      onClick={() => (this.handleUpdate())}
                                              >
@@ -896,7 +884,6 @@ class Step2 extends React.Component {
                         <Button
                             type="button"
                             className={classes.buttonType2}
-                            color="primary"
                             variant="outlined"
                             onClick={()=>history.push('/step3')}
                         >

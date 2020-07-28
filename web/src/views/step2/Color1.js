@@ -64,8 +64,8 @@ export default class Color1 extends React.Component {
 
         return (
             <div>
-            <Button variant="contained" color="primary" onClick={this.handleClickOpen} style={{marginRight:10}}>메인 색상</Button>
-            <Button variant="contained" color="primary" onClick={this.handleClickOpenSub}>서브 색상</Button>
+            <Button variant="outlined"  onClick={this.handleClickOpen} style={{marginRight:10}}>메인 색상</Button>
+            <Button variant="outlined"  onClick={this.handleClickOpenSub}>서브 색상</Button>
             <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%'}}
                     maxWidth={'sm'}
             >

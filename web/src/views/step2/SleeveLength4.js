@@ -48,7 +48,7 @@ export default class SleeveLength4 extends React.Component {
         const {sleeveList4}= this.props.basicCategoryStore;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>소매기장</Button>
+                <Button variant="outlined" onClick={this.handleClickOpen}>소매기장</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose} style={{marginLeft:'50%'}}
                         maxWidth={"sm"}
                         fullWidth={"100%"}
