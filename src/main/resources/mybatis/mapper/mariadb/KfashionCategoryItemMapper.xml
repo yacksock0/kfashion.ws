@@ -67,7 +67,7 @@
     <select id="selectStyleList" resultMap="kfashionCategoryItemResultMap">
         SELECT *
         FROM kfashion_category_item
-        WHERE category_no=38
+        WHERE category_no=39
         AND category_type=0
     </select>
 
