@@ -12,10 +12,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {fabric} from "fabric";
 import Style from "../views/step3/Style";
-import ProImageList from "../views/step3/ProImageList";
 import {toJS} from "mobx";
 import ErrorIcon from "@material-ui/icons/Error";
-import WorkedImg from "./step2/WorkedImg";
 
 
 const styles = theme => ({   root: {

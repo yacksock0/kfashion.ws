@@ -136,7 +136,7 @@
          AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                            FROM kfashion_work_history
                                            WHERE kfashion_work_history.work_step = 8)
-         GROUP BY kfashion_image.work_no
+         ORDER BY created_id = #{createdId} ASC, work_no;
     </select>
 
     <select id="selectInspectionHighList" resultMap="kfashionImageResultMap">

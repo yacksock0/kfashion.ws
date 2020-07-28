@@ -47,8 +47,8 @@ public class KfashionImageRepository {
         return mapper.selectProfessionalList(createdId);
     }
 
-    public List<KfashionImage> selectInspectionList() {
-        return mapper.selectInspectionList();
+    public List<KfashionImage> selectInspectionList(String createdId) {
+        return mapper.selectInspectionList(createdId);
     }
 
     public List<KfashionImage> selectInspectionHighList() {

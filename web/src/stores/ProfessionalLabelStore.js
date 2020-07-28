@@ -1113,14 +1113,14 @@ export default class ProfessionalLabelStore {
             if (resp.status === 200) {
                 const createdId =this.newProfessionalLabel.createdId;
                 this.state = State.Success;
-                this.LoadInspectionList();
+                alert("수정 완료되었습니다.");
+                this.LoadInspectionList(this.newProfessionalLabel.createdId);
                 this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
                 this.topReviewLabel= {...EmptyNewTopReviewLabel};
                 this.pantsReviewLabel= {...EmptyNewPantsReviewLabel};
                 this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
                 this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
                 changeWorkNo(0);
-                alert("수정 완료되었습니다.");
             } else {
                 this.state = State.Fail;
             }
@@ -1129,13 +1129,31 @@ export default class ProfessionalLabelStore {
         }
     });
 
-    LoadInspectionList = flow(function* loadInspectionList() {
+    LoadInspectionList = flow(function* loadInspectionList(createdId) {
         this.inspectionList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/img/inspectionList')
+            const response = yield axios.get('/api/v1/kfashion/img/inspectionList?createdId='+createdId);
             this.inspectionList = response.data.inspectionList;
         } catch (e) {
             console.log('error')
+        }
+    });
+
+    ProfessionalCompleteUp = flow(function* professionalCompleteUp(workNo,createdId) {
+        this.state = State.Pending;
+        try {
+            this.professionalComplete.workNo = workNo;
+            this.professionalComplete.createdId = createdId;
+            const param = toJS(this.professionalComplete);
+            const resp = yield axios.post('/api/v1/kfashion/work/history/professionalComplete',param);
+            if (resp.status === 200) {
+                alert("검수가 완료 되었습니다.");
+                this.LoadInspectionList(createdId);
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러좀 나지 마라')
         }
     });
 }
