@@ -573,7 +573,7 @@ class Polygon extends React.Component {
                     lens.set('top', -(scale - 1) * y);
                 }
                 console.log(lens);
-                canvas.bringToFront(lens);
+                // canvas.bringToFront(lens);
                 canvas.renderAll();
         });
     }
