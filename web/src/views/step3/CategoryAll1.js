@@ -151,6 +151,16 @@ export default class CategoryAll1 extends React.Component {
             this.props.onClick(detail1);
         }
     }
+    handleDeletePrint=(print1)=>{
+        if(this.props.onClickPrint1){
+            this.props.onClickPrint1(print1);
+        }
+    }
+    handleDeleteTexture=(texture1)=>{
+        if(this.props.onClickTexture1){
+            this.props.onClickTexture1(texture1);
+        }
+    }
     render() {
         const categoryList1= this.state.categoryList1;
         const lengthList1= this.state.lengthList1;
@@ -162,6 +172,8 @@ export default class CategoryAll1 extends React.Component {
         const textureList1= this.state.textureList1;
         const {outerReviewLabel} = this.props.professionalLabelStore;
         const detail1 =outerReviewLabel.detailItemName1;
+        const print1 =outerReviewLabel.printItemName1;
+        const texture1 =outerReviewLabel.textureItemName1;
         return (
             <div>
                 <Button variant="outlined"  onClick={this.handleClickOpen} style={{width:'100%', borderRadius:15, fontSize:20}}>항목 전체선택</Button>
@@ -234,12 +246,22 @@ export default class CategoryAll1 extends React.Component {
                             프린트
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {outerReviewLabel.printCategoryNo1 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={outerReviewLabel.printItemName1}
-                                />) : ''
-                            }
+                            {print1 != null  && print1 != undefined  ?(
+                                print1.map((print1) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        onClick={()=>this.handleDeletePrint(print1)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {print1}
+                                    </Button>
+                                )) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>
@@ -258,12 +280,22 @@ export default class CategoryAll1 extends React.Component {
                             소재감
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {outerReviewLabel.textureCategoryNo1 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={outerReviewLabel.textureItemName1}
-                                />) : ''
-                            }
+                            {texture1 != null  && texture1 != undefined  ?(
+                                texture1.map((texture1) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        onClick={()=>this.handleDeleteTexture(texture1)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {texture1}
+                                    </Button>
+                                )) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>

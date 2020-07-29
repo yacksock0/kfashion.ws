@@ -12,6 +12,7 @@ import Fit3 from "./Fit3";
 import {inject, observer} from "mobx-react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CategoryAll3 from "./CategoryAll3";
+import CategoryAll2 from "./CategoryAll2";
 
 const styles = theme => ({
     mainContainer: {
@@ -123,7 +124,7 @@ class CategoryComponent3 extends React.Component {
         return (
                     <Grid container spacing={3}>
                         <Grid items xs={11} style={{margin:"auto", marginTop:10}}>
-                            <CategoryAll3 onClick={this.handleDeleteDetail}/>
+                            <CategoryAll3 onClick={this.handleDeleteDetail}  onClickTexture3={this.handleDeleteTexture} onClickPrint3={this.handleDeletePrint}/>
                         </Grid>
                         <Grid item xs={12} lg={6}>
                             <div className={classes.content}  style={{display:'inline'}} >

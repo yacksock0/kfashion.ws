@@ -151,6 +151,17 @@ export default class CategoryAll2 extends React.Component {
             this.props.onClick(detail2);
         }
     }
+
+    handleDeletePrint=(print2)=>{
+        if(this.props.onClickPrint2){
+            this.props.onClickPrint2(print2);
+        }
+    }
+    handleDeleteTexture=(texture2)=>{
+        if(this.props.onClickTexture2){
+            this.props.onClickTexture2(texture2);
+        }
+    }
     render() {
         const categoryList2= this.state.categoryList2;
         const lengthList2= this.state.lengthList2;
@@ -162,6 +173,8 @@ export default class CategoryAll2 extends React.Component {
         const textureList2= this.state.textureList2;
         const {topReviewLabel} = this.props.professionalLabelStore;
         const detail2 =topReviewLabel.detailItemName2;
+        const print2 =topReviewLabel.printItemName2;
+        const texture2 =topReviewLabel.textureItemName2;
         return (
             <div>
                 <Button variant="outlined" onClick={this.handleClickOpen} style={{width:'100%', borderRadius:15, fontSize:20}}>항목 전체선택</Button>
@@ -237,13 +250,22 @@ export default class CategoryAll2 extends React.Component {
                             프린트
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {topReviewLabel.printCategoryNo2 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={topReviewLabel.printItemName2}
-                                    color="primary"
-                                />) : ''
-                            }
+                            {print2 != null  && print2 != undefined  ?(
+                                print2.map((print1) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        onClick={()=>this.handleDeletePrint(print1)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {print1}
+                                    </Button>
+                                )) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>
@@ -262,13 +284,22 @@ export default class CategoryAll2 extends React.Component {
                             소재감
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {topReviewLabel.textureCategoryNo2 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={topReviewLabel.textureItemName2}
-                                    color="primary"
-                                />) : ''
-                            }
+                            {texture2 != null  && texture2 != undefined  ?(
+                                texture2.map((texture2) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        onClick={()=>this.handleDeleteTexture(texture2)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {texture2}
+                                    </Button>
+                                )) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>

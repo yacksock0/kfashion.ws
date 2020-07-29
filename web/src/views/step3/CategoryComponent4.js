@@ -15,6 +15,7 @@ import {inject, observer} from "mobx-react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CategoryAll4 from "./CategoryAll4";
 import CategoryAll1 from "./CategoryAll1";
+import CategoryAll2 from "./CategoryAll2";
 
 const styles = theme => ({
     mainContainer: {
@@ -143,7 +144,7 @@ class CategoryComponent4 extends React.Component {
         return (
                     <Grid container spacing={3}>
                         <Grid items xs={11} style={{margin:"auto", marginTop:10}}>
-                            <CategoryAll4  onClick={this.handleDeleteDetail}/>
+                            <CategoryAll4  onClick={this.handleDeleteDetail}  onClickTexture4={this.handleDeleteTexture} onClickPrint4={this.handleDeletePrint}/>
                         </Grid>
                         <Grid item xs={12} lg={6}>
                             <div className={classes.content}  style={{display:'inline'}} >
