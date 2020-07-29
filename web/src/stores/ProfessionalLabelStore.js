@@ -1035,9 +1035,9 @@ export default class ProfessionalLabelStore {
 
 
             console.log(response.data.onePieceReviewLabel);
-            alert(response.data.pantsReviewLabel.category3);
-            alert(response.data.topReviewLabel.category2);
-            alert(response.data.onePieceReviewLabel);
+            // alert(response.data.pantsReviewLabel.category3);
+            // alert(response.data.topReviewLabel.category2);
+            // alert(response.data.onePieceReviewLabel);
             if(response.data.outerReviewLabel != null) {
                 this.changeNewProfessionalLabelNo1(1);
                 this.outerReviewLabel = response.data.outerReviewLabel;
