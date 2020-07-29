@@ -589,7 +589,8 @@ class FinalCheckList extends React.Component {
                                                 <TableBody>
                                                     <TableRow>
                                                         <TableCell align="center">스타일</TableCell>
-                                                        <TableCell align="center">메인 {styleReviewLabel.styleItemName ? <Chip
+                                                        <TableCell align="center">메인 {styleReviewLabel.styleItemName ?
+                                                            <Chip style={{marginRight : 10}}
                                                             variant="outlined"
                                                             label={styleReviewLabel.styleItemName}
                                                         /> : ''}
