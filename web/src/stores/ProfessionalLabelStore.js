@@ -1032,9 +1032,6 @@ export default class ProfessionalLabelStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/label/reviewLabelList?workNo='+workNo)
             console.log(response.data);
-            // alert(response.data.pantsReviewLabel.category3);
-            // alert(response.data.topReviewLabel.category2);
-            // alert(response.data.onePieceReviewLabel);
             if(response.data.outerReviewLabel != null) {
                 this.changeNewProfessionalLabelNo1(1);
                 this.outerReviewLabel = response.data.outerReviewLabel;
@@ -1042,16 +1039,25 @@ export default class ProfessionalLabelStore {
                     this.outerReviewLabel.detailCount = response.data.outerReviewLabel.detail1.length;
                 }else {
                     this.outerReviewLabel.detailCount = 0;
+                    this.outerReviewLabel.detailCategoryNo1= [];
+                    this.outerReviewLabel.detail1= [];
+                    this.outerReviewLabel.detailItemName1 = [];
                 }
                 if( response.data.outerReviewLabel.print1 != null) {
                     this.outerReviewLabel.printCount = response.data.outerReviewLabel.print1.length;
                 }else {
                     this.outerReviewLabel.printCount = 0;
+                    this.outerReviewLabel.printCategoryNo1= [];
+                    this.outerReviewLabel.print1= [];
+                    this.outerReviewLabel.printItemName1 = [];
                 }
                 if(response.data.outerReviewLabel.texture1 != null) {
                     this.outerReviewLabel.textureCount = response.data.outerReviewLabel.texture1.length;
                 }else {
                     this.outerReviewLabel.textureCount = 0;
+                    this.outerReviewLabel.textureCategoryNo1= [];
+                    this.outerReviewLabel.texture1= [];
+                    this.outerReviewLabel.textureItemName1 = [];
                 }
             }
             else {
@@ -1064,15 +1070,24 @@ export default class ProfessionalLabelStore {
                     this.topReviewLabel.detailCount = response.data.topReviewLabel.detail2.length;
                 }else {
                     this.topReviewLabel.detailCount =0;
+                    this.topReviewLabel.detailCategoryNo2= [];
+                    this.topReviewLabel.detail2= [];
+                    this.topReviewLabel.detailItemName2 = [];
                 }
                 if(response.data.topReviewLabel.print2 != null) {
                     this.topReviewLabel.printCount = response.data.topReviewLabel.print2.length;
                 }else {
                     this.topReviewLabel.printCount = 0;
+                    this.topReviewLabel.printCategoryNo2= [];
+                    this.topReviewLabel.print2= [];
+                    this.topReviewLabel.printItemName2 = [];
                 }if(response.data.topReviewLabel.texture2) {
                     this.topReviewLabel.textureCount = response.data.topReviewLabel.texture2.length;
                 }else {
                     this.topReviewLabel.textureCount = 0;
+                    this.topReviewLabel.textureCategoryNo2= [];
+                    this.topReviewLabel.texture2 = [];
+                    this.topReviewLabel.textureItemName2 = [];
                 }
             }else {
                 this.topReviewLabel = {...EmptyNewTopReviewLabel};
@@ -1084,16 +1099,25 @@ export default class ProfessionalLabelStore {
                     this.pantsReviewLabel.detailCount = response.data.pantsReviewLabel.detail3.length;
                 }else {
                     this.pantsReviewLabel.detailCount = 0;
+                    this.pantsReviewLabel.detailCategoryNo3= [];
+                    this.pantsReviewLabel.detail3= [];
+                    this.pantsReviewLabel.detailItemName3 = [];
                 }
                 if(response.data.pantsReviewLabel.print3 != null){
                     this.pantsReviewLabel.printCount = response.data.pantsReviewLabel.print3.length;
                 }else {
                     this.pantsReviewLabel.printCount = 0;
+                    this.pantsReviewLabel.printCategoryNo3= [];
+                    this.pantsReviewLabel.print3= [];
+                    this.pantsReviewLabel.printItemName3 = [];
                 }
                 if(response.data.pantsReviewLabel.texture3 != null){
                     this.pantsReviewLabel.textureCount = response.data.pantsReviewLabel.texture3.length;
                 }else {
                     this.pantsReviewLabel.textureCount = 0;
+                    this.pantsReviewLabel.textureCategoryNo3= [];
+                    this.pantsReviewLabel.texture3 = [];
+                    this.pantsReviewLabel.textureItemName3 = [];
                 }
             }else {
                 this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
@@ -1106,24 +1130,33 @@ export default class ProfessionalLabelStore {
                     this.onePieceReviewLabel.detailCount = response.data.onePieceReviewLabel.detail4.length;
                 }else {
                     this.onePieceReviewLabel.detailCount = 0;
+                    this.onePieceReviewLabel.detailCategoryNo4= [];
+                    this.onePieceReviewLabel.detail4= [];
+                    this.onePieceReviewLabel.detailItemName4 = [];
                 }
                 if(response.data.onePieceReviewLabel.print4 != null) {
                     this.onePieceReviewLabel.printCount = response.data.onePieceReviewLabel.print4.length;
                 }else {
                     this.onePieceReviewLabel.printCount = 0;
+                    this.onePieceReviewLabel.printCategoryNo4= [];
+                    this.onePieceReviewLabel.print4= [];
+                    this.onePieceReviewLabel.printItemName4 = [];
                 }
                 if(response.data.onePieceReviewLabel.texture4 != null){
                     this.onePieceReviewLabel.textureCount = response.data.onePieceReviewLabel.texture4.length;
                 }else {
                     this.onePieceReviewLabel.textureCount = 0;
+                    this.onePieceReviewLabel.textureCategoryNo4= [];
+                    this.onePieceReviewLabel.texture4 = [];
+                    this.onePieceReviewLabel.textureItemName4 = [];
                 }
             }else {
                 this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
             }
 
             if(response.data.styleReviewLabel != null) {
-                this.changeNewProfessionalLabelNo5(5);
                 this.styleReviewLabel = response.data.styleReviewLabel;
+                this.changeNewProfessionalLabelNo5(5);
             }else {
                 this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
             }
