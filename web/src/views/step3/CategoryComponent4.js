@@ -5,7 +5,7 @@ import {withStyles} from "@material-ui/core/styles";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Category4 from "./Category4";
 import Detail4 from "./Detail4";
-import Print4 from "../step3/Print4";
+import Print4 from "./Print4";
 import Texture4 from "./Texture4";
 import ClothLength4 from "./ClothLength4";
 import NeckLine4 from "./NeckLine4";
