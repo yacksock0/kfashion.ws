@@ -477,6 +477,7 @@ class Step2 extends React.Component {
                 });
             }
         }
+
     }
     handleUpdate = () => {
             const finalCheck = window.confirm("이미지 수정을 완료하셨습니까?");

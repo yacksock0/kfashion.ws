@@ -103,7 +103,7 @@ class SignIn extends React.Component {
                                     className={classes.submit}
                                     variant="contained"
                                     disabled={loginState === store.State.Pending}
-                                    onClick={()=>this.handleSubmitForm}
+                                    onClick={this.handleSubmitForm}
                                     fullWidth >
                                 {loginState === store.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>
