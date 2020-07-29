@@ -114,6 +114,10 @@ class ModifyStep3 extends React.Component {
     handleSubmit = () => {
         const check = window.confirm("수정하시겠습니까?");
         if (check) {
+            if(this.props.professionalLabelStore.styleReviewLabel.style == ''){
+                alert("스타일은 필수 항목입니다.");
+                return;
+            }
             const createdId = this.props.authStore.isUserId;
             this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
             this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);

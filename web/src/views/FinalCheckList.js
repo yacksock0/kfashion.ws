@@ -153,6 +153,7 @@ class FinalCheckList extends React.Component {
         this.setState({open:true,})
     }
     handleClick=(workNo, imgData)=>{
+        this.props.professionalLabelStore.cleanLabel();
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
         this.props.professionalLabelStore.LoadLabelList(workNo);
 
@@ -293,6 +294,7 @@ class FinalCheckList extends React.Component {
     }
 
     handleClickReturn=(workNo)=>{
+        this.props.professionalLabelStore.cleanLabel();
         this.props.professionalLabelStore.LoadLabelList(workNo);
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
         this.props.imageStore.changeWorkNo(workNo);

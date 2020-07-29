@@ -117,13 +117,13 @@ class Step3 extends React.Component {
     }
 
     handleSubmit = () => {
-
-
-        alert("!23123123"); this.canvas.backgroundImage = 'I\'m seriously an image!'
-        this.canvas.setBackgroundImage("null", this.canvas.renderAll.bind(this.canvas));
         if(this.state.workNo != 0){
-            const finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
+            let finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
             if(finalCheck){
+                if(this.props.professionalLabelStore.styleReviewLabel.style == ''){
+                    alert("스타일은 필수 항목입니다.");
+                    return;
+                }
                 const createdId = this.props.authStore.isUserId;
                 this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
                 this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.state.workNo);
