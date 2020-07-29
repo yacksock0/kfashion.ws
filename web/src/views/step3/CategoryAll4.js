@@ -192,7 +192,6 @@ export default class CategoryAll4 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={onePieceReviewLabel.categoryItemName4}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -200,7 +199,7 @@ export default class CategoryAll4 extends React.Component {
                         <Grid container>
                             {categoryList4.map((category) =>
                                 <Grid item xs={3}>
-                                    <div style={{textAlign:'center', margin:10}}>
+                                    <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>
                                             <h4>{category.categoryItemName}</h4>
                                         </Button>
@@ -223,7 +222,6 @@ export default class CategoryAll4 extends React.Component {
                                             padding: 0
                                         }}
                                         variant="outlined"
-                                        color="primary"
                                         onClick={()=>this.handleDeleteDetail(detail4)}
                                         endIcon={<DeleteIcon/>}
                                     >
@@ -346,7 +344,6 @@ export default class CategoryAll4 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={onePieceReviewLabel.clothLengthItemName4}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -371,7 +368,6 @@ export default class CategoryAll4 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={onePieceReviewLabel.neckLineItemName4}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -396,7 +392,6 @@ export default class CategoryAll4 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={onePieceReviewLabel.karaItemName4}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -421,7 +416,6 @@ export default class CategoryAll4 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={onePieceReviewLabel.fitItemName4}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>

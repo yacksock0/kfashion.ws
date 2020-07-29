@@ -61,9 +61,11 @@ export default class Detail1 extends React.Component {
         if(this.props.onClick) {
             this.props.onClick(detail);
         }
+    }
+    handledDetailClose(){
         this.setState({
             open: false
-        });
+        })
     }
     render() {
         const detailList2= this.state.detailList2;
@@ -78,9 +80,15 @@ export default class Detail1 extends React.Component {
                         height={'100%'}
                 >
                     <DialogContent>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h5" component="h2" style={{display:'inline'}}>
                             디테일
                         </Typography>
+                        <Button
+                            style={{width:20, height:40, padding:0, float:'right', marginTop:-3}}
+                            variant="outlined"
+                            onClick={() => this.handledDetailClose()}>
+                            <h4>닫기</h4>
+                        </Button>
                         <hr></hr>
                             <Grid container>
                                         {detailList2.map((detail) =>

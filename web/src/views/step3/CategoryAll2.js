@@ -193,7 +193,6 @@ export default class CategoryAll2 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={topReviewLabel.categoryItemName2}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -201,7 +200,7 @@ export default class CategoryAll2 extends React.Component {
                         <Grid container>
                             {categoryList2.map((category) =>
                                 <Grid item xs={3}>
-                                    <div style={{textAlign:'center', margin:10}}>
+                                    <div style={{textAlign:'center', margin:5}}>
                                         <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={category.no} onClick={() => this.handleClick(category)}>
                                             <h4>{category.categoryItemName}</h4>
                                         </Button>
@@ -224,7 +223,6 @@ export default class CategoryAll2 extends React.Component {
                                             padding: 0
                                         }}
                                         variant="outlined"
-                                        color="primary"
                                         onClick={()=>this.handleDeleteDetail(detail2)}
                                         endIcon={<DeleteIcon/>}
                                     >
@@ -346,7 +344,6 @@ export default class CategoryAll2 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={topReviewLabel.clothLengthItemName2}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -371,7 +368,6 @@ export default class CategoryAll2 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={topReviewLabel.neckLineItemName2}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -396,7 +392,6 @@ export default class CategoryAll2 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={topReviewLabel.karaItemName2}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>
@@ -421,7 +416,6 @@ export default class CategoryAll2 extends React.Component {
                                 (<Chip
                                     variant="outlined"
                                     label={topReviewLabel.fitItemName2}
-                                    color="primary"
                                 />) : ''
                             }
                         </div>

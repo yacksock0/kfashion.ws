@@ -43,10 +43,11 @@ export default class Texture1 extends React.Component {
         if(this.props.onClick) {
             this.props.onClick(texture);
         }
+    }
+    handledDetailClose(){
         this.setState({
             open:false,
         })
-
     }
     render() {
         const textureList4= this.state.textureList4;
@@ -61,9 +62,15 @@ export default class Texture1 extends React.Component {
                         height={'100%'}
                 >
                     <DialogContent>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h5" component="h2" style={{display:'inline'}}>
                             소재감
                         </Typography>
+                        <Button
+                            style={{width:20, height:40, padding:0, float:'right', marginTop:-3}}
+                            variant="outlined"
+                            onClick={() => this.handledDetailClose()}>
+                            <h4>닫기</h4>
+                        </Button>
                         <hr></hr>
                         <Grid container>
                             {textureList4.map((texture) =>
