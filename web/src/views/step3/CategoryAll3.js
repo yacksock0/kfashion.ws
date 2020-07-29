@@ -228,7 +228,15 @@ export default class CategoryAll3 extends React.Component {
                             {detailList3.map((detail) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
-                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={detail.no} onClick={() => this.handleClickDetail(detail)}>
+                                        <Button
+                                            style={{width:'100%', height:30, padding:0}}
+                                            variant="outlined"
+                                            key={detail.no}
+                                            disabled = {detail3 != undefined?
+                                                detail.categoryItemName == detail3.filter((check) => check==detail.categoryItemName
+                                                ) : ""
+                                            }
+                                            onClick={() => this.handleClickDetail(detail)}>
                                             <h4>{detail.categoryItemName}</h4>
                                         </Button>
                                     </div>
@@ -258,7 +266,15 @@ export default class CategoryAll3 extends React.Component {
                             {printList3.map((print) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
-                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClickPrint(print)}>
+                                        <Button
+                                            style={{width:'100%', height:30, padding:0}}
+                                            variant="outlined"
+                                            key={print.no}
+                                            disabled = {print3 != undefined?
+                                                print.categoryItemName == print3.filter((check) => check==print.categoryItemName
+                                                ) : ""
+                                            }
+                                            onClick={() => this.handleClickPrint(print)}>
                                             <h4>{print.categoryItemName}</h4>
                                         </Button>
                                     </div>
@@ -292,7 +308,15 @@ export default class CategoryAll3 extends React.Component {
                             {textureList3.map((texture) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
-                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={texture.no} onClick={() => this.handleClickTexture(texture)}>
+                                        <Button
+                                            style={{width:'100%', height:30, padding:0}}
+                                            variant="outlined"
+                                            key={texture.no}
+                                            disabled = {texture3 != undefined?
+                                                texture.categoryItemName == texture3.filter((check) => check==texture.categoryItemName
+                                                ) : ""
+                                            }
+                                            onClick={() => this.handleClickTexture(texture)}>
                                             <h4>{texture.categoryItemName}</h4>
                                         </Button>
                                     </div>
