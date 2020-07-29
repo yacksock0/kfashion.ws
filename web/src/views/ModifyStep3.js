@@ -308,31 +308,29 @@ class ModifyStep3 extends React.Component {
                                     </Tabs>
                         </Grid>
                     </Grid>
-                    <div>
-                        <hr></hr>
-                    </div>
-                        <Grid item xs={1} lg={2} style={{marginLeft:'auto'}}>
-                            <Button
-                                type="button"
-                                className={classes.buttonType2}
-                                color="primary"
-                                variant="outlined"
-                                onClick={()=>this.handleReturn()}
-                            >
-                               돌아가기
-                            </Button>
 
-                            <Button
-                            type="button"
-                            className={classes.buttonType2}
-                            color="primary"
-                            variant="outlined"
-                            onClick={()=>this.handleSubmit()}
-                        >
-                            수정완료
-                        </Button>
-                    </Grid>
                 </div>
+                <div>
+                    <hr></hr>
+                </div>
+                <Grid item xs={1} lg={2} style={{marginLeft:'auto'}}>
+                    <Button
+                        type="button"
+                        className={classes.buttonType2}
+                        variant="outlined"
+                        onClick={()=>this.handleSubmit()}
+                    >
+                        수정완료
+                    </Button>
+                    <Button
+                        type="button" style={{marginRight:10}}
+                        className={classes.buttonType2}
+                        variant="outlined"
+                        onClick={()=>this.handleReturn()}
+                    >
+                        돌아가기
+                    </Button>
+                </Grid>
                 <ErrorIcon/>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
                 </Typography>
