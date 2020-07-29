@@ -1032,8 +1032,6 @@ export default class ProfessionalLabelStore {
         this.state = State.Pending;
         try {
             const response = yield axios.get('/api/v1/kfashion/label/reviewLabelList?workNo='+workNo)
-
-
             console.log(response.data.onePieceReviewLabel);
             // alert(response.data.pantsReviewLabel.category3);
             // alert(response.data.topReviewLabel.category2);
@@ -1044,7 +1042,9 @@ export default class ProfessionalLabelStore {
                 this.outerReviewLabel.detailCount = response.data.outerReviewLabel.detail1.length;
                 this.outerReviewLabel.printCount = response.data.outerReviewLabel.print1.length;
                 this.outerReviewLabel.textureCount = response.data.outerReviewLabel.texture1.length;
-            }else {
+            }
+            else {
+
                 this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
             }
             if(response.data.topReviewLabel != null) {
@@ -1061,10 +1061,11 @@ export default class ProfessionalLabelStore {
                 this.pantsReviewLabel = response.data.pantsReviewLabel;
                 this.pantsReviewLabel.detailCount = response.data.pantsReviewLabel.detail3.length;
                 this.pantsReviewLabel.printCount = response.data.pantsReviewLabel.print3.length;
-                this.pantsReviewLabel.textureCount = response.data.pantsReviewLabel.texture2.length;
+                this.pantsReviewLabel.textureCount = response.data.pantsReviewLabel.texture3.length;
             }else {
                 this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
             }
+
             if(response.data.onePieceReviewLabel != null) {
                 this.changeNewProfessionalLabelNo4(4);
                 this.onePieceReviewLabel = response.data.onePieceReviewLabel;
@@ -1073,7 +1074,9 @@ export default class ProfessionalLabelStore {
                 this.onePieceReviewLabel.textureCount = response.data.onePieceReviewLabel.texture4.length;
             }else {
                 this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
-            }if(response.data.styleReviewLabel != null) {
+            }
+
+            if(response.data.styleReviewLabel != null) {
                 this.styleReviewLabel = response.data.styleReviewLabel;
                 this.changeNewProfessionalLabelNo5(5);
             }else {
