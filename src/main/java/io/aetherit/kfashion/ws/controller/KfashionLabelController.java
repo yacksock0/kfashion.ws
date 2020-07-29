@@ -165,6 +165,16 @@ public class KfashionLabelController {
                 System.out.println("444444 : " +professionalLabel.getLabelNo4());
                 System.out.println("555555 : " +professionalLabel.getLabelNo5());
                 System.out.println("getWorkNo : " +professionalLabel.getWorkNo());
+
+
+                System.out.println("getClothLengthCategoryNo2 : " +professionalLabel.getClothLengthCategoryNo2());
+                System.out.println("getClothLength2 : " +professionalLabel.getClothLength2());
+
+
+                System.out.println("getClothLengthCategoryNo3 : " +professionalLabel.getClothLengthCategoryNo3());
+                System.out.println("getClothLength3 : " +professionalLabel.getClothLength3());
+
+
                 KfashionWork work = new KfashionWork();
                 work.setNo(professionalLabel.getWorkNo());
                 work.setWorkState(professionalLabel.getWorkStep());
@@ -214,14 +224,6 @@ public class KfashionLabelController {
                                         professional1.setCategoryNo(professionalLabel.getDetailCategoryNo1().get(i));
                                         professional1.setCategoryItemNo(professionalLabel.getDetail1().get(i));
                                         kfashionLabelService.insertProfessionalLabel(professional1);
-                                }
-                        }
-
-
-                        if(professionalLabel.getDetailCategoryNo1().size() >0) {
-                                for (int i = 0; i < professionalLabel.getDetail1().size(); i++) {
-                                        System.out.println("getDetailCategoryNo1 : " +professionalLabel.getDetailCategoryNo1().get(i));
-                                        System.out.println("getDetail1 : " +professionalLabel.getDetail1().get(i));
                                 }
                         }
                         if(professionalLabel.getPrintCategoryNo1().size() > 0) {
@@ -278,8 +280,6 @@ public class KfashionLabelController {
                                         kfashionLabelService.insertProfessionalLabel(professional2);
                                 }
                         }
-
-
                         if(professionalLabel.getPrintCategoryNo2().size() > 0) {
                                 for (int i = 0; i < professionalLabel.getPrint2().size(); i++) {
                                         professional2.setCategoryNo(professionalLabel.getPrintCategoryNo2().get(i));
