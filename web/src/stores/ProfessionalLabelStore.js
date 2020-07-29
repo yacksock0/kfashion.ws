@@ -1006,21 +1006,21 @@ export default class ProfessionalLabelStore {
             console.log("texture4 : "+ this.newProfessionalLabel.texture4);
 
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
-                // if (resp.status === 200) {
-                //     const createdId =this.newProfessionalLabel.createdId;
-                //     this.state = State.Success;
-                //     this.LoadProfessionalList(createdId);
-                //     this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
-                //     this.topReviewLabel= {...EmptyNewTopReviewLabel};
-                //     this.pantsReviewLabel= {...EmptyNewPantsReviewLabel};
-                //     this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
-                //     this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
-                //     this.LoadRecentImage(createdId);
-                //     changeWorkNo(0);
-                //     alert("저장 완료");
-                // } else {
-                //     this.state = State.Fail;
-                // }
+                if (resp.status === 200) {
+                    const createdId =this.newProfessionalLabel.createdId;
+                    this.state = State.Success;
+                    this.LoadProfessionalList(createdId);
+                    this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
+                    this.topReviewLabel= {...EmptyNewTopReviewLabel};
+                    this.pantsReviewLabel= {...EmptyNewPantsReviewLabel};
+                    this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
+                    this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
+                    this.LoadRecentImage(createdId);
+                    changeWorkNo(0);
+                    alert("저장 완료");
+                } else {
+                    this.state = State.Fail;
+                }
         } catch (e) {
             console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
         }
