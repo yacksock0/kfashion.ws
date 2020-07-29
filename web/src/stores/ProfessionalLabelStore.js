@@ -239,7 +239,7 @@ const EmptyNewProfessionalLabel = {
     fitItemName3 : '',
     fitItemName4 : '',
 }
-const menuOpen = {
+const MenuOpen = {
     categoryDialLog : '',
     clothLengthDialLog: '',
     colorKaraDialLog:'',
@@ -253,6 +253,12 @@ const menuOpen = {
     categoryAll3 :'',
     categoryAll4 :'',
 }
+
+const ProfessionalComplete = {
+    workNo : '',
+    createdId : '',
+    workStep : 8,
+}
 export default class ProfessionalLabelStore {
     @observable state = State.Ready;
     @observable newProfessionalLabel = {...EmptyNewProfessionalLabel};
@@ -263,9 +269,10 @@ export default class ProfessionalLabelStore {
     @observable pantsReviewLabel= {...EmptyNewPantsReviewLabel};
     @observable onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
     @observable styleReviewLabel= {...EmptyNewStyleReviewLabel};
-    @observable menuOpen={...menuOpen};
+    @observable menuOpen={...MenuOpen};
     @observable workNo = 0;
     @observable inspectionList = [];
+    @observable professionalComplete = {...ProfessionalComplete};
 
     @action openCategoryAll1 =(value)=>{
         this.menuOpen.categoryAll1 = value;
@@ -1207,7 +1214,7 @@ export default class ProfessionalLabelStore {
     })
 
 
-    updateProfessionalLabelUp = flow(function* updateProfessionalLabelUp(changeWorkNo) {
+    updateProfessionalLabelUp = flow(function* updateProfessionalLabelUp() {
         this.state = State.Pending;
         try {
             this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
@@ -1306,7 +1313,6 @@ export default class ProfessionalLabelStore {
                 this.pantsReviewLabel= {...EmptyNewPantsReviewLabel};
                 this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
                 this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
-                changeWorkNo(0);
             } else {
                 this.state = State.Fail;
             }
@@ -1328,6 +1334,8 @@ export default class ProfessionalLabelStore {
     ProfessionalCompleteUp = flow(function* professionalCompleteUp(workNo,createdId) {
         this.state = State.Pending;
         try {
+            console.log(workNo);
+            console.log(createdId);
             this.professionalComplete.workNo = workNo;
             this.professionalComplete.createdId = createdId;
             const param = toJS(this.professionalComplete);
