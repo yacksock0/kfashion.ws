@@ -1039,20 +1039,26 @@ export default class ProfessionalLabelStore {
             if(response.data.outerReviewLabel != null) {
                 this.changeNewProfessionalLabelNo1(1);
                 this.outerReviewLabel = response.data.outerReviewLabel;
+
+
+
                 if(response.data.outerReviewLabel.detail1 != null) {
                     this.outerReviewLabel.detailCount = response.data.outerReviewLabel.detail1.length;
                 }else {
                     this.outerReviewLabel.detailCount = 0;
+                    this.outerReviewLabel.detail1 = [];
                 }
                 if( response.data.outerReviewLabel.print1 != null) {
                     this.outerReviewLabel.printCount = response.data.outerReviewLabel.print1.length;
                 }else {
                     this.outerReviewLabel.printCount = 0;
+                    this.outerReviewLabel.print1 = [];
                 }
                 if(response.data.outerReviewLabel.texture1 != null) {
                     this.outerReviewLabel.textureCount = response.data.outerReviewLabel.texture1.length;
                 }else {
                     this.outerReviewLabel.textureCount = 0;
+                    this.outerReviewLabel.texture1 = [];
                 }
             }
             else {
@@ -1065,15 +1071,18 @@ export default class ProfessionalLabelStore {
                     this.topReviewLabel.detailCount = response.data.topReviewLabel.detail2.length;
                 }else {
                     this.topReviewLabel.detailCount =0;
+                    this.topReviewLabel.detail2 = [];
                 }
                 if(response.data.topReviewLabel.print2 != null) {
                     this.topReviewLabel.printCount = response.data.topReviewLabel.print2.length;
                 }else {
                     this.topReviewLabel.printCount = 0;
+                    this.topReviewLabel.print2 = [];
                 }if(response.data.topReviewLabel.texture2) {
                     this.topReviewLabel.textureCount = response.data.topReviewLabel.texture2.length;
                 }else {
                     this.topReviewLabel.textureCount = 0;
+                    this.topReviewLabel.texture2 = [];
                 }
             }else {
                 this.topReviewLabel = {...EmptyNewTopReviewLabel};
@@ -1085,16 +1094,19 @@ export default class ProfessionalLabelStore {
                     this.pantsReviewLabel.detailCount = response.data.pantsReviewLabel.detail3.length;
                 }else {
                     this.pantsReviewLabel.detailCount = 0;
+                    this.pantsReviewLabel.detail3 = [];
                 }
                 if(response.data.pantsReviewLabel.print3 != null){
                     this.pantsReviewLabel.printCount = response.data.pantsReviewLabel.print3.length;
                 }else {
                     this.pantsReviewLabel.printCount = 0;
+                    this.pantsReviewLabel.print3 = [];
                 }
                 if(response.data.pantsReviewLabel.texture3 != null){
                     this.pantsReviewLabel.textureCount = response.data.pantsReviewLabel.texture3.length;
                 }else {
                     this.pantsReviewLabel.textureCount = 0;
+                    this.pantsReviewLabel.texture3 = [];
                 }
             }else {
                 this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
@@ -1107,16 +1119,19 @@ export default class ProfessionalLabelStore {
                     this.onePieceReviewLabel.detailCount = response.data.onePieceReviewLabel.detail4.length;
                 }else {
                     this.onePieceReviewLabel.detailCount = 0;
+                    this.onePieceReviewLabel.detail4 = [];
                 }
                 if(response.data.onePieceReviewLabel.print4 != null) {
                     this.onePieceReviewLabel.printCount = response.data.onePieceReviewLabel.print4.length;
                 }else {
                     this.onePieceReviewLabel.printCount = 0;
+                    this.onePieceReviewLabel.print4 = [];
                 }
                 if(response.data.onePieceReviewLabel.texture4 != null){
                     this.onePieceReviewLabel.textureCount = response.data.onePieceReviewLabel.texture4.length;
                 }else {
                     this.onePieceReviewLabel.textureCount = 0;
+                    this.onePieceReviewLabel.texture4 = [];
                 }
             }else {
                 this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
