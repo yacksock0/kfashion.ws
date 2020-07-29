@@ -113,6 +113,7 @@ class FinalCheckList extends React.Component {
             tabIndex1:1,
             tabIndex2: 0,
             createdId: '',
+            successCheckId : '',
             boundaryList: [],
             imgData:'',
             count: 0,
@@ -153,12 +154,14 @@ class FinalCheckList extends React.Component {
     handleClickMsgOpen(workNo){
         this.setState({open:true,})
     }
-    handleClick=(workNo, imgData)=>{
+    handleClick=(workNo, createdId ,imgData)=>{
+        this.setState({
+            successCheckId : createdId,
+        })
         this.props.professionalLabelStore.cleanLabel();
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
         this.props.professionalLabelStore.LoadLabelList(workNo);
-
-        this.props.workStore.LoadReviewLabelList(workNo);
+                this.props.workStore.LoadReviewLabelList(workNo);
         this.deleteAll();
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
@@ -649,7 +652,7 @@ class FinalCheckList extends React.Component {
                                                     {
                                                         icon: CheckIcon,
                                                         tooltip: 'Select Image',
-                                                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo=" + rowData.workNo)
+                                                        onClick: (event, rowData) => this.handleClick(rowData.workNo, rowData.createdId,"/api/v1/kfashion/img/getByteImage?workNo=" + rowData.workNo)
                                                     },
                                                     rowData => ({
                                                         icon: Edit,
@@ -667,7 +670,7 @@ class FinalCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}}>
+                <Button variant="outlined" onClick={this.handleComplete} disabled={this.state.successCheckId !== this.props.authStore.loginUser.id} style={{float:'right' , width:150, marginBottom:10}}>
                     완료
                 </Button>
             </Container>
