@@ -51,6 +51,8 @@ export default class Print extends React.Component {
     }
     render() {
         const printList4= this.state.printList4;
+        const {onePieceReviewLabel} = this.props.professionalLabelStore;
+        const printCheck =onePieceReviewLabel.printItemName4;
         return (
             <div>
                 <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>
@@ -68,7 +70,15 @@ export default class Print extends React.Component {
                             {printList4.map((print) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
-                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={print.no} onClick={() => this.handleClick(print)}>
+                                        <Button
+                                            style={{width:'100%', height:30, padding:0}}
+                                            variant="outlined"
+                                            key={print.no}
+                                            disabled = {printCheck != undefined?
+                                                print.categoryItemName == printCheck.filter((check) => check==print.categoryItemName
+                                                ) : ""
+                                            }
+                                            onClick={() => this.handleClick(print)}>
                                             <h4>{print.categoryItemName}</h4>
                                         </Button>
                                     </div>
