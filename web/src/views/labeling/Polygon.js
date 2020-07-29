@@ -1,16 +1,15 @@
-import React, { Component, ReactDOM } from 'react';
+import React from 'react';
 import {fabric} from 'fabric';
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 
-import {Container, Toolbar, Typography, Button, Grid} from "@material-ui/core";
+import {Container, Typography, Button, Grid} from "@material-ui/core";
 
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -22,7 +21,6 @@ import PolygonList from "./PolygonList";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ErrorIcon from "@material-ui/icons/Error";
-import {toJS} from "mobx";
 
 const styles = theme => ({
     root: {

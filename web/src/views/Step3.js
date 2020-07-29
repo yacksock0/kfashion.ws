@@ -117,10 +117,10 @@ class Step3 extends React.Component {
     }
 
     handleSubmit = () => {
-        if(this.state.workNo != 0){
+        if(this.state.workNo !== 0){
             let finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
             if(finalCheck){
-                if(this.props.professionalLabelStore.styleReviewLabel.style == ''){
+                if(this.props.professionalLabelStore.styleReviewLabel.style === ''){
                     alert("스타일은 필수 항목입니다.");
                     return;
                 }
@@ -145,7 +145,7 @@ class Step3 extends React.Component {
 
     handleClickItem = (workNo, imageData, polyNo,comment) => {
         let check = true;
-        if(this.state.workNo !=0){
+        if(this.state.workNo !== 0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
         if(check){
@@ -186,7 +186,7 @@ class Step3 extends React.Component {
         }
     }
     onSelectTab1(tabIndex1) {
-        if (this.state.workNo != 0) {
+        if (this.state.workNo !== 0) {
             this.setState({
                 tabIndex1: tabIndex1,
             });

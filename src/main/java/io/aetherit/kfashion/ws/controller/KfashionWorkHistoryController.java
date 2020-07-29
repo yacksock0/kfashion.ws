@@ -194,6 +194,7 @@ public class KfashionWorkHistoryController {
     @PostMapping(value = "/professionalComplete")
     public ResponseEntity<Object> professionalComplete(HttpServletRequest httpServletRequest,
                                                     @RequestBody KfashionWorkHistory workHistory) throws Exception {
+            System.out.println("워크히스토리 값 확인 " + workHistory);
         kfashionWorkHistoryService.insertWorkHistory(workHistory);
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
