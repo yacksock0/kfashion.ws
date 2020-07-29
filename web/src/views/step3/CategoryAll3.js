@@ -144,6 +144,16 @@ export default class CategoryAll3 extends React.Component {
             this.props.onClick(detail3);
         }
     }
+    handleDeletePrint=(print3)=>{
+        if(this.props.onClickPrint3){
+            this.props.onClickPrint3(print3);
+        }
+    }
+    handleDeleteTexture=(texture3)=>{
+        if(this.props.onClickTexture3){
+            this.props.onClickTexture3(texture3);
+        }
+    }
     render() {
         const categoryList3= this.state.categoryList3;
         const lengthList3= this.state.lengthList3;
@@ -153,6 +163,8 @@ export default class CategoryAll3 extends React.Component {
         const textureList3= this.state.textureList3;
         const {pantsReviewLabel} = this.props.professionalLabelStore;
         const detail3 =pantsReviewLabel.detailItemName3;
+        const print3 =pantsReviewLabel.printItemName3;
+        const texture3 =pantsReviewLabel.textureItemName3;
 
         return (
             <div>
@@ -228,13 +240,18 @@ export default class CategoryAll3 extends React.Component {
                             프린트
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {pantsReviewLabel.printCategoryNo3 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={pantsReviewLabel.printItemName3}
-                                    color="primary"
-                                />) : ''
-                            }
+                            {print3 != 0  && print3 != undefined  ?(
+                                print3.map((print3) =>
+                                    <Button
+                                        style={{fontSize:15, width:200, borderRadius:50 ,padding:0}}
+                                        variant="outlined"
+                                        onClick={() => this.handleDeletePrint(print3)}
+                                        endIcon={<DeleteIcon />}
+                                    >
+                                        {print3}
+                                    </Button>
+                                )
+                            ) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>
@@ -253,13 +270,22 @@ export default class CategoryAll3 extends React.Component {
                             소재감
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {pantsReviewLabel.textureCategoryNo3 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={pantsReviewLabel.textureItemName3}
-                                    color="primary"
-                                />) : ''
-                            }
+                            {texture3 != null  && texture3 != undefined  ?(
+                                texture3.map((texture3) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        onClick={()=>this.handleDeleteTexture(texture3)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {texture3}
+                                    </Button>
+                                )) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>
