@@ -694,7 +694,6 @@ public class KfashionLabelController {
                         ReviewLabel onePieceReviewLabel = new ReviewLabel();
                         for(int i = 0 ; i<onePieceReviewLabelList.size() ; i++){
                                 if(onePieceReviewLabelList.get(i).getCategoryName().equals("카테고리")){
-
                                         onePieceReviewLabel.setCategoryCategoryNo4(onePieceReviewLabelList.get(i).getCategoryNo());
                                         onePieceReviewLabel.setCategory4(onePieceReviewLabelList.get(i).getCategoryItemNo());
                                         onePieceReviewLabel.setCategoryItemName4(onePieceReviewLabelList.get(i).getCategoryItemName());
@@ -745,7 +744,6 @@ public class KfashionLabelController {
                         }
                         resultMap.put("onePieceReviewLabel", onePieceReviewLabel);
                         System.out.println(onePieceReviewLabel);
-                        System.out.println("asdfasdfasdfasdfasdfasdfasdfasdf");
                 }
                 if(labelNo5 == 5) {
                         List<KfashionLabel> styleReviewLabelList = kfashionLabelService.selectStyleReviewLabelList(workNo);
