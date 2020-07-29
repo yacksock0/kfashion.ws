@@ -1032,56 +1032,103 @@ export default class ProfessionalLabelStore {
         this.state = State.Pending;
         try {
             const response = yield axios.get('/api/v1/kfashion/label/reviewLabelList?workNo='+workNo)
-            console.log(response.status);
-            if (response.status === 200) {
-                // alert(response.data.pantsReviewLabel.category3);
-                // alert(response.data.topReviewLabel.category2);
-                // alert(response.data.onePieceReviewLabel);
-                if (response.data.outerReviewLabel != null) {
-                    this.changeNewProfessionalLabelNo1(1);
-                    this.outerReviewLabel = response.data.outerReviewLabel;
+            console.log(response.data);
+            // alert(response.data.pantsReviewLabel.category3);
+            // alert(response.data.topReviewLabel.category2);
+            // alert(response.data.onePieceReviewLabel);
+            if(response.data.outerReviewLabel != null) {
+                this.changeNewProfessionalLabelNo1(1);
+                this.outerReviewLabel = response.data.outerReviewLabel;
+                if(response.data.outerReviewLabel.detail1 != null) {
                     this.outerReviewLabel.detailCount = response.data.outerReviewLabel.detail1.length;
+                }else {
+                    this.outerReviewLabel.detailCount = 0;
+                }
+                if( response.data.outerReviewLabel.print1 != null) {
                     this.outerReviewLabel.printCount = response.data.outerReviewLabel.print1.length;
+                }else {
+                    this.outerReviewLabel.printCount = 0;
+                }
+                if(response.data.outerReviewLabel.texture1 != null) {
                     this.outerReviewLabel.textureCount = response.data.outerReviewLabel.texture1.length;
-                } else {
-                    this.outerReviewLabel = {...EmptyNewOuterReviewLabel};
-                }
-                if (response.data.topReviewLabel != null) {
-                    this.changeNewProfessionalLabelNo2(2);
-                    this.topReviewLabel = response.data.topReviewLabel;
-                    this.topReviewLabel.detailCount = response.data.topReviewLabel.detail2.length;
-                    this.topReviewLabel.printCount = response.data.topReviewLabel.print2.length;
-                    this.topReviewLabel.textureCount = response.data.topReviewLabel.texture2.length;
-
-                } else {
-                    this.topReviewLabel = {...EmptyNewTopReviewLabel};
-                }
-                if (response.data.pantsReviewLabel.length <=0) {
-                    this.changeNewProfessionalLabelNo3(3);
-                    this.pantsReviewLabel = response.data.pantsReviewLabel;
-                    this.pantsReviewLabel.detailCount = response.data.pantsReviewLabel.detail3.length;
-                    this.pantsReviewLabel.printCount = response.data.pantsReviewLabel.print3.length;
-                    this.pantsReviewLabel.textureCount = response.data.pantsReviewLabel.texture3.length;
-                } else {
-                    this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
-                }
-                if (response.data.onePieceReviewLabel != null) {
-                    this.changeNewProfessionalLabelNo4(4);
-                    this.onePieceReviewLabel = response.data.onePieceReviewLabel;
-                    this.onePieceReviewLabel.detailCount = response.data.onePieceReviewLabel.detail4.length;
-                    this.onePieceReviewLabel.printCount = response.data.onePieceReviewLabel.print4.length;
-                    this.onePieceReviewLabel.textureCount = response.data.onePieceReviewLabel.texture4.length;
-                } else {
-                    this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
-                }
-
-                if (response.data.styleReviewLabel != null) {
-                    this.styleReviewLabel = response.data.styleReviewLabel;
-                    this.changeNewProfessionalLabelNo5(5);
-                } else {
-                    this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
+                }else {
+                    this.outerReviewLabel.textureCount = 0;
                 }
             }
+            else {
+                this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
+            }
+            if(response.data.topReviewLabel != null) {
+                this.changeNewProfessionalLabelNo2(2);
+                this.topReviewLabel = response.data.topReviewLabel;
+                if(response.data.topReviewLabel.detail2 != null) {
+                    this.topReviewLabel.detailCount = response.data.topReviewLabel.detail2.length;
+                }else {
+                    this.topReviewLabel.detailCount =0;
+                }
+                if(response.data.topReviewLabel.print2 != null) {
+                    this.topReviewLabel.printCount = response.data.topReviewLabel.print2.length;
+                }else {
+                    this.topReviewLabel.printCount = 0;
+                }if(response.data.topReviewLabel.texture2) {
+                    this.topReviewLabel.textureCount = response.data.topReviewLabel.texture2.length;
+                }else {
+                    this.topReviewLabel.textureCount = 0;
+                }
+            }else {
+                this.topReviewLabel = {...EmptyNewTopReviewLabel};
+            }
+            if(response.data.pantsReviewLabel != null) {
+                this.changeNewProfessionalLabelNo3(3);
+                this.pantsReviewLabel = response.data.pantsReviewLabel;
+                if(response.data.pantsReviewLabel.detail3 != null){
+                    this.pantsReviewLabel.detailCount = response.data.pantsReviewLabel.detail3.length;
+                }else {
+                    this.pantsReviewLabel.detailCount = 0;
+                }
+                if(response.data.pantsReviewLabel.print3 != null){
+                    this.pantsReviewLabel.printCount = response.data.pantsReviewLabel.print3.length;
+                }else {
+                    this.pantsReviewLabel.printCount = 0;
+                }
+                if(response.data.pantsReviewLabel.texture3 != null){
+                    this.pantsReviewLabel.textureCount = response.data.pantsReviewLabel.texture3.length;
+                }else {
+                    this.pantsReviewLabel.textureCount = 0;
+                }
+            }else {
+                this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
+            }
+
+            if(response.data.onePieceReviewLabel != null) {
+                this.changeNewProfessionalLabelNo4(4);
+                this.onePieceReviewLabel = response.data.onePieceReviewLabel;
+                if(response.data.onePieceReviewLabel.detail4 != null) {
+                    this.onePieceReviewLabel.detailCount = response.data.onePieceReviewLabel.detail4.length;
+                }else {
+                    this.onePieceReviewLabel.detailCount = 0;
+                }
+                if(response.data.onePieceReviewLabel.print4 != null) {
+                    this.onePieceReviewLabel.printCount = response.data.onePieceReviewLabel.print4.length;
+                }else {
+                    this.onePieceReviewLabel.printCount = 0;
+                }
+                if(response.data.onePieceReviewLabel.texture4 != null){
+                    this.onePieceReviewLabel.textureCount = response.data.onePieceReviewLabel.texture4.length;
+                }else {
+                    this.onePieceReviewLabel.textureCount = 0;
+                }
+            }else {
+                this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
+            }
+
+            if(response.data.styleReviewLabel != null) {
+                this.styleReviewLabel = response.data.styleReviewLabel;
+                this.changeNewProfessionalLabelNo5(5);
+            }else {
+                this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
+            }
+
         } catch (e) {
             console.log('에러좀 나지 마라')
         }
@@ -1101,7 +1148,6 @@ export default class ProfessionalLabelStore {
 
             const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo='+ workNo);
             if (resp.status === 200) {
-                alert("삭제완료");
                 this.updateProfessionalLabelUp();
             } else {
                 this.state = State.Fail;
@@ -1129,7 +1175,6 @@ export default class ProfessionalLabelStore {
 
 
     updateProfessionalLabelUp = flow(function* updateProfessionalLabelUp(changeWorkNo) {
-        alert("수정 시작");
         this.state = State.Pending;
         try {
             this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
@@ -1223,7 +1268,11 @@ export default class ProfessionalLabelStore {
                 this.state = State.Success;
                 alert("수정 완료되었습니다.");
                 this.LoadInspectionList(this.newProfessionalLabel.createdId);
-                this.cleanLabel();
+                this.outerReviewLabel= {...EmptyNewOuterReviewLabel};
+                this.topReviewLabel= {...EmptyNewTopReviewLabel};
+                this.pantsReviewLabel= {...EmptyNewPantsReviewLabel};
+                this.onePieceReviewLabel= {...EmptyNewOnePieceReviewLabel};
+                this.styleReviewLabel= {...EmptyNewStyleReviewLabel};
                 changeWorkNo(0);
             } else {
                 this.state = State.Fail;

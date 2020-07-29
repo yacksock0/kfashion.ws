@@ -151,6 +151,16 @@ export default class CategoryAll4 extends React.Component {
             this.props.onClick(detail4);
         }
     }
+    handleDeletePrint=(print4)=>{
+        if(this.props.onClickPrint4){
+            this.props.onClickPrint4(print4);
+        }
+    }
+    handleDeleteTexture=(texture4)=>{
+        if(this.props.onClickTexture4){
+            this.props.onClickTexture4(texture4);
+        }
+    }
     render() {
         const categoryList4= this.state.categoryList4;
         const lengthList4= this.state.lengthList4;
@@ -162,6 +172,8 @@ export default class CategoryAll4 extends React.Component {
         const textureList4= this.state.textureList4;
         const {onePieceReviewLabel} =this.props.professionalLabelStore;
         const detail4 =onePieceReviewLabel.detailItemName4;
+        const print4 =onePieceReviewLabel.printItemName4;
+        const texture4 =onePieceReviewLabel.textureItemName4;
         return (
             <div>
                 <Button variant="outlined" onClick={this.handleClickOpen} style={{width:'100%', borderRadius:15, fontSize:20}}>항목 전체선택</Button>
@@ -236,13 +248,22 @@ export default class CategoryAll4 extends React.Component {
                             프린트
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {onePieceReviewLabel.printCategoryNo4 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={onePieceReviewLabel.printItemName4}
-                                    color="primary"
-                                />) : ''
-                            }
+                            {print4 != null  && print4 != undefined  ?(
+                                print4.map((print4) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        onClick={()=>this.handleDeletePrint(print4)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {print4}
+                                    </Button>
+                                )) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>
@@ -261,13 +282,22 @@ export default class CategoryAll4 extends React.Component {
                             소재감
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {onePieceReviewLabel.textureCategoryNo4 > 0 ?
-                                (<Chip
-                                    variant="outlined"
-                                    label={onePieceReviewLabel.textureItemName4}
-                                    color="primary"
-                                />) : ''
-                            }
+                            {texture4 != null  && texture4 != undefined  ?(
+                                texture4.map((texture4) =>
+                                    <Button
+                                        style={{
+                                            fontSize: 15,
+                                            width: 200,
+                                            borderRadius: 50,
+                                            padding: 0
+                                        }}
+                                        variant="outlined"
+                                        onClick={()=>this.handleDeleteTexture(texture4)}
+                                        endIcon={<DeleteIcon/>}
+                                    >
+                                        {texture4}
+                                    </Button>
+                                )) : ''}
                         </div>
                         <hr></hr>
                         <Grid container>
