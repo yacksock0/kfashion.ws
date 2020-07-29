@@ -595,7 +595,7 @@ public class KfashionLabelController {
                                         topReviewLabel.setTexture2(texture);
                                         topReviewLabel.setTextureItemName2(textureItemName);
 
-                                } else if(topReviewLabelList.get(i).getCategoryName().equals("기장(상의)")){
+                                } else if(topReviewLabelList.get(i).getCategoryName().equals("기장")){
                                         topReviewLabel.setClothLengthCategoryNo2(topReviewLabelList.get(i).getCategoryNo());
                                         topReviewLabel.setClothLength2(topReviewLabelList.get(i).getCategoryItemNo());
                                         topReviewLabel.setClothLengthItemName2(topReviewLabelList.get(i).getCategoryItemName());
@@ -664,7 +664,7 @@ public class KfashionLabelController {
                                         pantsReviewLabel.setTexture3(texture);
                                         pantsReviewLabel.setTextureItemName3(textureItemName);
 
-                                } else if(pantsReviewLabelList.get(i).getCategoryName().equals("기장(하의)")){
+                                } else if(pantsReviewLabelList.get(i).getCategoryName().equals("기장")){
                                         pantsReviewLabel.setClothLengthCategoryNo3(pantsReviewLabelList.get(i).getCategoryNo());
                                         pantsReviewLabel.setClothLength3(pantsReviewLabelList.get(i).getCategoryItemNo());
                                         pantsReviewLabel.setClothLengthItemName3(pantsReviewLabelList.get(i).getCategoryItemName());
