@@ -17,7 +17,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
-import {toJS} from "mobx";
+import {get, toJS} from "mobx";
 
 const styles = theme => ({   root: {
         width: "100%",
@@ -380,15 +380,22 @@ class FinalCheckList extends React.Component {
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">디테일</TableCell>
-                                                        <TableCell align="center"> {outerReviewLabel.detailItemName1}</TableCell>
+                                                        <TableCell align="center"> {outerReviewLabel.detailItemName1 ? outerReviewLabel.detailItemName1.map((detail1) =>
+                                                            (detail1 ? ' ('+detail1+') ' : '')
+                                                            ) : ''}
+                                                        </TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">프린트</TableCell>
-                                                        <TableCell align="center">{outerReviewLabel.printItemName1}</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.printItemName1 ? outerReviewLabel.printItemName1.map((print1) =>
+                                                            (print1 ? ' ('+print1+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">소재</TableCell>
-                                                        <TableCell align="center">{outerReviewLabel.textureItemName1}</TableCell>
+                                                        <TableCell align="center">{outerReviewLabel.textureItemName1 ? outerReviewLabel.textureItemName1.map((texture1)=>
+                                                            (texture1 ? ' ('+texture1+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">기장</TableCell>
@@ -430,15 +437,21 @@ class FinalCheckList extends React.Component {
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">디테일</TableCell>
-                                                        <TableCell align="center">{topReviewLabel.detailItemName2}</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.detailItemName2 ? topReviewLabel.detailItemName2.map((detail2)=>
+                                                            (detail2 ? ' ('+detail2+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">프린트</TableCell>
-                                                        <TableCell align="center">{topReviewLabel.printItemName2}</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.printItemName2 ? topReviewLabel.printItemName2.map((print2) =>
+                                                            (print2 ? ' ('+print2+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">소재</TableCell>
-                                                        <TableCell align="center">{topReviewLabel.textureItemName2}</TableCell>
+                                                        <TableCell align="center">{topReviewLabel.textureItemName2 ? topReviewLabel.textureItemName2.map((texture2)=>
+                                                            (texture2 ? ' ('+texture2+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">기장</TableCell>
@@ -480,15 +493,21 @@ class FinalCheckList extends React.Component {
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">디테일</TableCell>
-                                                        <TableCell align="center">{pantsReviewLabel.detailItemName3}</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.detailItemName3 ? pantsReviewLabel.detailItemName3.map((detail3)=>
+                                                            (detail3 ? ' ('+detail3+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">프린트</TableCell>
-                                                        <TableCell align="center">{pantsReviewLabel.printItemName3}</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.printItemName3 ? pantsReviewLabel.printItemName3.map((print3) =>
+                                                            (print3 ? ' ('+print3+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">소재</TableCell>
-                                                        <TableCell align="center">{pantsReviewLabel.textureItemName3}</TableCell>
+                                                        <TableCell align="center">{pantsReviewLabel.textureItemName3 ? pantsReviewLabel.textureItemName3.map((texture3)=>
+                                                            (texture3 ? ' ('+texture3+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">기장</TableCell>
@@ -522,15 +541,21 @@ class FinalCheckList extends React.Component {
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">디테일</TableCell>
-                                                        <TableCell align="center">{onePieceReviewLabel.detailItemName4}</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.detailItemName4 ? onePieceReviewLabel.detailItemName4.map((detail4)=>
+                                                            (detail4 ? ' ('+detail4+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">프린트</TableCell>
-                                                        <TableCell align="center">{onePieceReviewLabel.printItemName4}</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.printItemName4 ? onePieceReviewLabel.printItemName4.map((print4) =>
+                                                            (print4 ? ' ('+print4+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">소재</TableCell>
-                                                        <TableCell align="center">{onePieceReviewLabel.textureItemName4}</TableCell>
+                                                        <TableCell align="center">{onePieceReviewLabel.textureItemName4 ? onePieceReviewLabel.textureItemName4.map((texture4)=>
+                                                            (texture4 ? ' ('+texture4+') ' : '')
+                                                        ) : ''}</TableCell>
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableCell align="center">기장</TableCell>
