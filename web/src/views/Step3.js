@@ -145,14 +145,14 @@ class Step3 extends React.Component {
         if(check){
             this.deleteAll();
             this.setState({ comment:comment})
+            this.props.professionalLabelStore.cleanLabel();
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
         }
     }
     handleClickCallback= (polyInfo, workNo)=>{
-        let tabIndex2 =polyInfo[0] -1;
         this.setState({ polyInfo : polyInfo, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
+        this.setState({tabIndex1 : 0, tabIndex2 : 0});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: 800,
             height: 800,
