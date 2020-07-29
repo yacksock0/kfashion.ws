@@ -127,8 +127,8 @@ const EmptyNewStyleReviewLabel = {
     labelNo5 : 0,
     style : '',
     styleSub : '',
-    styleCategoryNo : '',
-    styleCategorySubNo : '',
+    styleCategoryNo : 0,
+    styleCategorySubNo : 0,
 }
 
 
@@ -143,8 +143,8 @@ const EmptyNewProfessionalLabel = {
     createdId : '',
     style : '',
     styleSub : '',
-    styleCategoryNo : '',
-    styleCategorySubNo : '',
+    styleCategoryNo : 0,
+    styleCategorySubNo : 0,
     category1 : '',
     category2 : '',
     category3 : '',
@@ -325,7 +325,6 @@ export default class ProfessionalLabelStore {
     @action changeNewProfessionalLabelNo1 = (labelNo1) => {
         this.styleReviewLabel.labelNo1 = labelNo1;
     }
-
     @action changeNewProfessionalLabelNo2 = (labelNo2) => {
         this.styleReviewLabel.labelNo2 = labelNo2;
     }
@@ -863,16 +862,16 @@ export default class ProfessionalLabelStore {
         return (this.styleReviewLabel.labelNo1 !== undefined) && (this.styleReviewLabel.labelNo1 !== null) && (this.styleReviewLabel.labelNo1.length > 0);
     }
     @computed get isLabelNo2() {
-        return (this.styleReviewLabel.labelNo2 !== undefined) && (this.styleReviewLabel.labelNo2 !== null) && (this.styleReviewLabe2.labelNo1.length > 0);
+        return (this.styleReviewLabel.labelNo2 !== undefined) && (this.styleReviewLabel.labelNo2 !== null) && (this.styleReviewLabel.labelNo2.length > 0);
     }
     @computed get isLabelNo3() {
-        return (this.styleReviewLabel.labelNo3 !== undefined) && (this.styleReviewLabel.labelNo3 !== null) && (this.styleReviewLabe3.labelNo1.length > 0);
+        return (this.styleReviewLabel.labelNo3 !== undefined) && (this.styleReviewLabel.labelNo3 !== null) && (this.styleReviewLabel.labelNo3.length > 0);
     }
     @computed get isLabelNo4() {
-        return (this.styleReviewLabel.labelNo4 !== undefined) && (this.styleReviewLabel.labelNo4 !== null) && (this.styleReviewLabe4.labelNo1.length > 0);
+        return (this.styleReviewLabel.labelNo4 !== undefined) && (this.styleReviewLabel.labelNo4 !== null) && (this.styleReviewLabel.labelNo4.length > 0);
     }
     @computed get isLabelNo5() {
-        return (this.styleReviewLabel.labelNo5 !== undefined) && (this.styleReviewLabel.labelNo5 !== null) && (this.styleReviewLabe5.labelNo1.length > 0);
+        return (this.styleReviewLabel.labelNo5 !== undefined) && (this.styleReviewLabel.labelNo5 !== null) && (this.styleReviewLabel.labelNo5.length > 0);
     }
 
     @computed get isPending() {
