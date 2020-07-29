@@ -139,6 +139,7 @@ class CategoryComponent4 extends React.Component {
         const detail4 = onePieceReviewLabel.detailItemName4;
         const print4 =onePieceReviewLabel.printItemName4;
         const texture4 =onePieceReviewLabel.textureItemName4;
+
         return (
                     <Grid container spacing={3}>
                         <Grid items xs={11} style={{margin:"auto", marginTop:10}}>

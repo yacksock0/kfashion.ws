@@ -156,7 +156,7 @@ class FinalCheckList extends React.Component {
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
         this.props.professionalLabelStore.LoadLabelList(workNo);
 
-        // this.props.workStore.LoadReviewLabelList(workNo);
+        this.props.workStore.LoadReviewLabelList(workNo);
         this.deleteAll();
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
@@ -310,6 +310,7 @@ class FinalCheckList extends React.Component {
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
         const detail1 = outerReviewLabel.detailItemName1;
+        console.log(onePieceReviewLabel);
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
