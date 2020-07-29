@@ -469,6 +469,8 @@ class Step2 extends React.Component {
                     this.setState({
                         tabIndex1 : 1,
                     });
+                    this.canvas.backgroundImage = 0;
+                    this.canvas.renderAll();
                 }
             }else{
                 alert("작업을 먼저 선택해 주세요.");

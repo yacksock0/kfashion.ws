@@ -180,7 +180,9 @@ class FinalCheckList extends React.Component {
             this.setState({
                 open: false,
                 tabIndex1 : 1,
-            })
+            });
+            this.canvas.backgroundImage = 0;
+            this.canvas.renderAll();
         }
     }
 

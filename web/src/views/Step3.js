@@ -117,6 +117,10 @@ class Step3 extends React.Component {
     }
 
     handleSubmit = () => {
+
+
+        alert("!23123123"); this.canvas.backgroundImage = 'I\'m seriously an image!'
+        this.canvas.setBackgroundImage("null", this.canvas.renderAll.bind(this.canvas));
         if(this.state.workNo != 0){
             const finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
             if(finalCheck){
@@ -127,6 +131,8 @@ class Step3 extends React.Component {
                 this.setState({
                     tabIndex1 : 1,
                 });
+                this.canvas.backgroundImage = 0;
+                this.canvas.renderAll();
             }
         }else{
             alert("작업을 먼저 선택해 주세요.");
