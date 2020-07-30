@@ -64,8 +64,6 @@ class SignIn extends React.Component {
     }
 
     handleSubmitForm = (e) => {
-        alert("환영합니다.");
-        console.log("환영합니다.");
         this.props.authStore.doLogin();
     }
 
