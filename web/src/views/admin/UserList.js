@@ -149,7 +149,6 @@ class UserList extends React.Component {
                                     })
                             }}
                             options={{
-                                maxBodyHeight:'65vh',
                                 sorting: false,
                                 rowStyle:{
                                   textAlign:'center'
@@ -158,7 +157,7 @@ class UserList extends React.Component {
                                   textAlign:"center",
                                 },
                                 /*padding:'dense',*/
-                                minBodyHeight: '65vh',
+                                minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
                                     backgroundColor: '#000000',

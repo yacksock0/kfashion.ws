@@ -29,8 +29,6 @@ const style = () => ({
         display: 'flex',
     }
 });
-
-
 @inject('authStore', 'currentStepStore')
 @observer
 class App extends React.Component {
@@ -39,12 +37,27 @@ class App extends React.Component {
 
         this.state = {
             mobileOpen: false,
+            height: window.innerHeight,
+            width: window.innerWidth,
+            count: 1
         };
-
+        this.updateDimensions = this.updateDimensions.bind(this);
         this.setMobileOpen = this.setMobileOpen.bind(this);
     }
-
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions);
+    }
+    updateDimensions() {
+        this.setState({
+            height: window.innerHeight,
+            width: window.innerWidth,
+            count: this.state.count++
+        });
+        console.log("count: ", this.state.count)
+    }
     componentDidMount() {
+        window.addEventListener("resize", this.updateDimensions);
+
         const axiosRequestInterceptors = (config) => {
             const token = localStorage.getItem(store.LocalStorageTokenKey);
             if(token) {
@@ -84,6 +97,11 @@ class App extends React.Component {
     }
 
     render() {
+            if (this.state.width < 1500) {
+                setTimeout(() => document.body.style.zoom = "68%", 100);
+            } else {
+                setTimeout(() => document.body.style.zoom = "100%", 100);
+            }
         const { classes } = this.props;
         const { loginState, loginUser} = this.props.authStore;
         return (

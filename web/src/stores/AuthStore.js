@@ -81,10 +81,10 @@ export default class AuthStore {
             const user = response.data.user;
             localStorage.setItem(LocalStorageTokenKey, token);
             console.log('doLogin');
-            window.location.assign('/home');
             this.loginState = State.Authenticated;
             this.loginToken = token;
             this.loginUser = user;
+            history.push('/home');
         } catch (e) {
             this.loginState = State.Failed;
             this.loginToken = '';
