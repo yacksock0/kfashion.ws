@@ -135,6 +135,7 @@ class FinalCheckList extends React.Component {
     }
 
     componentDidMount() {
+        setTimeout(() => document.body.style.zoom = "68%", 100);
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;

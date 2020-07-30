@@ -97,11 +97,11 @@ class App extends React.Component {
     }
 
     render() {
-            if (this.state.width < 1500) {
-                setTimeout(() => document.body.style.zoom = "68%", 100);
-            } else {
-                setTimeout(() => document.body.style.zoom = "100%", 100);
-            }
+            // if (this.state.width < 1500) {
+            //     setTimeout(() => document.body.style.zoom = "68%", 100);
+            // } else {
+            //     setTimeout(() => document.body.style.zoom = "100%", 100);
+            // }
         const { classes } = this.props;
         const { loginState, loginUser} = this.props.authStore;
         return (

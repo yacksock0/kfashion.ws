@@ -100,6 +100,7 @@ class Step3 extends React.Component {
     }
 
     componentDidMount() {
+        setTimeout(() => document.body.style.zoom = "68%", 100);
         this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
         const id = this.props.authStore.loginUser.id;
