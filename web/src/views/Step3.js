@@ -20,7 +20,7 @@ import WorkedImg from "./step3/WorkedImg";
 
 
 const styles = theme => ({   root: {
-        width: "100%",
+        width: "90%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
@@ -30,7 +30,7 @@ const styles = theme => ({   root: {
     mainContainer: {
         flexGrow: 1,
         marginTop:10,
-        maxWidth:'100%',
+        maxWidth:'90%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
