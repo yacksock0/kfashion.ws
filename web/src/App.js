@@ -24,7 +24,6 @@ import FinalCheckList from "./views/FinalCheckList";
 import HighCheckList from "./views/step2/HighCheckList";
 import ModifyStep3 from "./views/ModifyStep3";
 
-
 const style = () => ({
     root: {
         display: 'flex',
