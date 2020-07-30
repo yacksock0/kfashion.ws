@@ -49,6 +49,10 @@ const style = theme => ({
 @inject('authStore')
 @observer
 class SignIn extends React.Component {
+    componentDidMount() {
+        setTimeout(() => document.body.style.zoom = "100%", 100);
+    }
+
     handleChangeId = (e) => {
         this.props.authStore.changeLoginId(e.target.value);
     }
@@ -59,7 +63,7 @@ class SignIn extends React.Component {
 
     handleKeyUpPassword = (e) => {
         if(e.keyCode === 13) {
-            this.props.authStore.doLogin();
+            this.props.authStore.doLogin(this.props.history);
         }
     }
 

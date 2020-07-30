@@ -84,15 +84,15 @@ export default function TopBar(props) {
         </AppBar>):(
                     <AppBar position="fixed" className={classes.appBar1}>
                         <Toolbar>
-                            <IconButton
-                                color="inherit"
-                                aria-label="open drawer"
-                                edge="start"
-                                onClick={handleDrawerToggle}
-                                className={classes.menuButton}
-                            >
-                                <MenuIcon />
-                            </IconButton>
+                            {/*<IconButton*/}
+                            {/*    color="inherit"*/}
+                            {/*    aria-label="open drawer"*/}
+                            {/*    edge="start"*/}
+                            {/*    onClick={handleDrawerToggle}*/}
+                            {/*    className={classes.menuButton}*/}
+                            {/*>*/}
+                            {/*    <MenuIcon />*/}
+                            {/*</IconButton>*/}
                             { isLoggedIn ? (
                                 <Stepper currentStep = {props.setStep} />):''}
                             { isLoggedIn ? (

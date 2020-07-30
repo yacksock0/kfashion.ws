@@ -42,6 +42,7 @@ const styles = theme => ({
 @observer
 class Home extends React.Component {
     componentDidMount() {
+        setTimeout(() => document.body.style.zoom = "100%", 100);
         this.props.currentStepStore.setStep(0);
         this.props.enqueueSnackbar("홈", {
             variant: 'success',

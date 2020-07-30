@@ -18,8 +18,9 @@ import ErrorIcon from "@material-ui/icons/Error";
 import WorkedImg from "./step3/WorkedImg";
 
 
+
 const styles = theme => ({   root: {
-        width: "100%",
+        width: "90%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
@@ -29,7 +30,7 @@ const styles = theme => ({   root: {
     mainContainer: {
         flexGrow: 1,
         marginTop:10,
-        maxWidth:'100%',
+        maxWidth:'90%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -99,6 +100,7 @@ class Step3 extends React.Component {
     }
 
     componentDidMount() {
+        setTimeout(() => document.body.style.zoom = "68%", 100);
         this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
         const id = this.props.authStore.loginUser.id;
