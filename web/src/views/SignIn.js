@@ -68,7 +68,7 @@ class SignIn extends React.Component {
     }
 
     handleSubmitForm = (e) => {
-        this.props.authStore.doLogin();
+        this.props.authStore.doLogin(this.props.history);
     }
 
     render() {

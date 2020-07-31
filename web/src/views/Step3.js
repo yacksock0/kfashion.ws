@@ -85,7 +85,7 @@ const styles = theme => ({   root: {
 @observer
 class Step3 extends React.Component {
     constructor(props) {
-        super(...arguments);
+        super(props);
         this.state = {
             selectedNo:0,
             selectedName:'',
@@ -96,11 +96,24 @@ class Step3 extends React.Component {
             createdId: '',
             workNo : 0,
             polyInfo : [],
+            height: window.innerHeight,
+            width: window.innerWidth,
+            count: 1
         }
+        this.updateDimensions = this.updateDimensions.bind(this);
     }
-
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions);
+    }
+    updateDimensions() {
+        this.setState({
+            height: window.innerHeight,
+            width: window.innerWidth,
+            count: this.state.count++
+        });
+        console.log("count: ", this.state.count)
+    }
     componentDidMount() {
-        setTimeout(() => document.body.style.zoom = "68%", 100);
         this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
         const id = this.props.authStore.loginUser.id;
@@ -325,6 +338,11 @@ class Step3 extends React.Component {
         })
     }
     render() {
+        if(this.state.width < 1920){
+            setTimeout(() => document.body.style.zoom = "68%", 100);
+        }else{
+            setTimeout(() => document.body.style.zoom = "100%", 100);
+        }
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
 
