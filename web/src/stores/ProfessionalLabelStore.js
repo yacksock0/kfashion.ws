@@ -30,9 +30,6 @@ const EmptyNewOuterReviewLabel = {
     clothLength1 : '',
     clothLengthCategoryNo1 : '',
 
-    sleeveLength1 : '',
-    sleeveLengthCategoryNo1 : '',
-
     neckLine1 : '',
     neckLineCategoryNo1 : '',
     kara1 : '',
@@ -61,9 +58,6 @@ const EmptyNewTopReviewLabel = {
 
     clothLength2 : '',
     clothLengthCategoryNo2 : '',
-
-    sleeveLength2 : '',
-    sleeveLengthCategoryNo2 : '',
 
     neckLine2 : '',
     neckLineCategoryNo2 : '',
@@ -117,9 +111,6 @@ const EmptyNewOnePieceReviewLabel = {
 
     clothLength4 : '',
     clothLengthCategoryNo4 : '',
-
-    sleeveLength4 : '',
-    sleeveLengthCategoryNo4 : '',
 
     neckLine4 : '',
     neckLineCategoryNo4 : '',
@@ -197,14 +188,6 @@ const EmptyNewProfessionalLabel = {
     clothLengthCategoryNo2 : '',
     clothLengthCategoryNo3 : '',
     clothLengthCategoryNo4 : '',
-    sleeveLength1 : '',
-    sleeveLength2: '',
-    sleeveLength3 : '',
-    sleeveLength4 : '',
-    sleeveLengthCategoryNo1 : '',
-    sleeveLengthCategoryNo2 : '',
-    sleeveLengthCategoryNo3 : '',
-    sleeveLengthCategoryNo4 : '',
     neckLine1 : '',
     neckLine2 : '',
     neckLine4 : '',
@@ -250,10 +233,6 @@ const EmptyNewProfessionalLabel = {
     clothLengthItemName3 : '',
     clothLengthItemName4 : '',
 
-    sleeveLengthItemName1 : '',
-    sleeveLengthItemName2 : '',
-    sleeveLengthItemName3 : '',
-    sleeveLengthItemName4 : '',
     neckLineItemName1 : '',
     neckLineItemName2 : '',
     neckLineItemName4 : '',
@@ -746,8 +725,6 @@ export default class ProfessionalLabelStore {
         this.onePieceReviewLabel.clothLengthItemName4 = '';
         return this.onePieceReviewLabel;
     }
-
-
     @action changeNewProfessionalLabelNeckLine1 = (neckLine1) => {
         this.changeNewProfessionalLabelNo1(1);
         this.outerReviewLabel.neckLine1 = neckLine1.no;
