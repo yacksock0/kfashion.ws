@@ -338,11 +338,7 @@ class Step3 extends React.Component {
         })
     }
     render() {
-        if(this.state.width < 1920){
             setTimeout(() => document.body.style.zoom = "68%", 100);
-        }else{
-            setTimeout(() => document.body.style.zoom = "100%", 100);
-        }
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
 
