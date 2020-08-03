@@ -827,7 +827,7 @@ class FinalCheckList extends React.Component {
                     <p><ErrorIcon/> 우측 상단에 상호간 작업내용 체크 확인 할 이미지 선택</p>
                     <p><ErrorIcon/> 본인이 작업한 이미지 리스트는 맨 끝쪽에 번호대로 정렬되어 있음</p>
                     <p><ErrorIcon/> 본인이 작업한 이미지 리스트에만 수정 버튼 생성 및 완료 버튼 활성화</p>
-                    <p><ErrorIcon/> 수정 버튼 클릭시 수정 화면 이동 후 세부사항 선택 후 수정완료 버튼 해주세요.</p>
+                    <p><ErrorIcon/> 수정 버튼 클릭시 수정 화면 이동 후 세부사항 선택 후 수정완료 버튼 눌러주세요.</p>
                     <p><ErrorIcon/> 완료 버튼 클릭시 작업 완료</p>
                 </Typography>
             </Container>
