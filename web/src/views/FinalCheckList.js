@@ -22,7 +22,7 @@ import Chip from "@material-ui/core/Chip";
 import ErrorIcon from "@material-ui/icons/Error";
 
 const styles = theme => ({   root: {
-        width: "100%",
+        width: "90%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
@@ -32,7 +32,7 @@ const styles = theme => ({   root: {
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'100%',
+        maxWidth:'90%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -135,6 +135,7 @@ class FinalCheckList extends React.Component {
     }
 
     componentDidMount() {
+        setTimeout(() => document.body.style.zoom = "68%", 100);
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;

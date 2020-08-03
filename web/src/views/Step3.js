@@ -18,8 +18,9 @@ import ErrorIcon from "@material-ui/icons/Error";
 import WorkedImg from "./step3/WorkedImg";
 
 
+
 const styles = theme => ({   root: {
-        width: "100%",
+        width: "90%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
@@ -29,7 +30,7 @@ const styles = theme => ({   root: {
     mainContainer: {
         flexGrow: 1,
         marginTop:10,
-        maxWidth:'100%',
+        maxWidth:'90%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -84,7 +85,7 @@ const styles = theme => ({   root: {
 @observer
 class Step3 extends React.Component {
     constructor(props) {
-        super(...arguments);
+        super(props);
         this.state = {
             selectedNo:0,
             selectedName:'',
@@ -95,9 +96,23 @@ class Step3 extends React.Component {
             createdId: '',
             workNo : 0,
             polyInfo : [],
+            height: window.innerHeight,
+            width: window.innerWidth,
+            count: 1
         }
+        this.updateDimensions = this.updateDimensions.bind(this);
     }
-
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions);
+    }
+    updateDimensions() {
+        this.setState({
+            height: window.innerHeight,
+            width: window.innerWidth,
+            count: this.state.count++
+        });
+        console.log("count: ", this.state.count)
+    }
     componentDidMount() {
         this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
@@ -323,6 +338,11 @@ class Step3 extends React.Component {
         })
     }
     render() {
+        if(this.state.width < 1920){
+            setTimeout(() => document.body.style.zoom = "68%", 100);
+        }else{
+            setTimeout(() => document.body.style.zoom = "100%", 100);
+        }
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
 

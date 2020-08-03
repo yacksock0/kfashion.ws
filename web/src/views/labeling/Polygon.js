@@ -360,7 +360,6 @@ class Polygon extends React.Component {
     finishPath = () => {
         if(this.canvas.getObjects().length !=0) {
             this.canvas.setViewportTransform([1,0,0,1,0,0]);
-            console.log("여기는 피니시");
             this.onOff = '';
             let makePath = 'M' + this.polyPointX[0] + ' ' + this.polyPointY[0];
             for (let i = 1; i < this.polyCounter; i++) {
@@ -474,7 +473,6 @@ class Polygon extends React.Component {
                     alert("save 눌러 작업을 마무리 하세요.");
                 } else {
                     if(this.state.comment == null){
-                        alert("저장!!!");
                         // -- RectLocation 저장
                         this.props.rectStore.objGet(this.rectangle, this.polygon);
                         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
@@ -486,7 +484,6 @@ class Polygon extends React.Component {
                         // this.props.polygonStore.changeNewPolygonLocationWorkNo(this.props.imageStore.isWorkNo);
                         // this.props.polygonStore.doPolygonLocationUp();
                     }else{
-                        alert("수정!!!");
                         // -- RectLocation 수
                         this.props.rectStore.objGet(this.rectangle, this.polygon);
                         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
@@ -1159,7 +1156,10 @@ class Polygon extends React.Component {
                 </div>
                 <ErrorIcon/>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                    우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 각 영역 별 START버튼을 통해 영역지정 완료 후 FINISH 버튼 클릭 (삭제 버튼을 통해 한 점씩, 또는 전부삭제 버튼을 클릭해 삭제가능) / 필요한 영역의 작업이 모두 완료되면 작업완료 버튼 클릭
+                    <ErrorIcon/>우측 상단에 이미지리스트에서 작업 할 이미지 선택
+                    <ErrorIcon/>각 영역 별 START버튼을 통해 영역지정 완료 후 FINISH 버튼 클릭 (Start -> Finish -> Save)
+                    <ErrorIcon/>삭제 버튼을 통해 한 점씩, 또는 전부삭제 버튼을 클릭해 삭제가능
+                    <ErrorIcon/>필요한 영역의 작업이 모두 완료되면 작업완료 버튼 클릭
                 </Typography>
             </Container>
         );

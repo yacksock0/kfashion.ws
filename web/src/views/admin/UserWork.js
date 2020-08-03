@@ -49,6 +49,7 @@ class UserWork extends React.Component {
         }
     }
     componentDidMount() {
+        setTimeout(() => document.body.style.zoom = "100%", 100);
         const groupNo = this.props.authStore.loginUser.groupNo;
         this.props.userListStore.LoadGroupUserList(groupNo);
         this.props.enqueueSnackbar("작업 지정", {
@@ -108,6 +109,7 @@ class UserWork extends React.Component {
                             options={{
                                 emptyRowsWhenPaging : true,
                                 sorting: false,
+                                padding:'dense',
                                 minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
@@ -115,8 +117,13 @@ class UserWork extends React.Component {
                                     color: '#FFF',
                                     textAlign:'center',
                                 },
+                                cellStyle: {
+                                    textAlign: 'center',
+                                    padding : 0,
+                                    margin : 0,
+                                },
                                 pageSize: 10,
-                                pageSizeOptions: [5,10]
+                                pageSizeOptions: [5,10,20]
                             }}
                         />
                     </Grid>

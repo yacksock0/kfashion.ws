@@ -29,6 +29,7 @@ const EmptyNewOuterReviewLabel = {
 
     clothLength1 : '',
     clothLengthCategoryNo1 : '',
+
     neckLine1 : '',
     neckLineCategoryNo1 : '',
     kara1 : '',
@@ -57,6 +58,7 @@ const EmptyNewTopReviewLabel = {
 
     clothLength2 : '',
     clothLengthCategoryNo2 : '',
+
     neckLine2 : '',
     neckLineCategoryNo2 : '',
     kara2 : '',
@@ -109,6 +111,7 @@ const EmptyNewOnePieceReviewLabel = {
 
     clothLength4 : '',
     clothLengthCategoryNo4 : '',
+
     neckLine4 : '',
     neckLineCategoryNo4 : '',
     kara4 : '',
@@ -224,10 +227,12 @@ const EmptyNewProfessionalLabel = {
     textureItemName2 : [] ,
     textureItemName3 : [] ,
     textureItemName4 : [] ,
+
     clothLengthItemName1 : '',
     clothLengthItemName2 : '',
     clothLengthItemName3 : '',
     clothLengthItemName4 : '',
+
     neckLineItemName1 : '',
     neckLineItemName2 : '',
     neckLineItemName4 : '',
@@ -720,8 +725,6 @@ export default class ProfessionalLabelStore {
         this.onePieceReviewLabel.clothLengthItemName4 = '';
         return this.onePieceReviewLabel;
     }
-
-
     @action changeNewProfessionalLabelNeckLine1 = (neckLine1) => {
         this.changeNewProfessionalLabelNo1(1);
         this.outerReviewLabel.neckLine1 = neckLine1.no;

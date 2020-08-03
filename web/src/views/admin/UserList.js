@@ -53,6 +53,7 @@ class UserList extends React.Component {
         }
     }
     componentDidMount() {
+        setTimeout(() => document.body.style.zoom = "100%", 100);
         const groupNo = this.props.authStore.loginUser.groupNo;
         const id = this.props.authStore.loginUser.id;
         this.props.userListStore.LoadGroupUserList(groupNo);
@@ -131,25 +132,24 @@ class UserList extends React.Component {
                                             resolve();
                                         }, 1000);
                                     }),
-                                onRowDelete: rowData =>
-                                    new Promise((resolve, reject) => {
-                                            {
-                                                axios.delete(`/api/v1/kfashion/users/deleteGroupUser/${rowData.id}`, {
-                                                    data: {
-                                                        id: rowData.id
-                                                    }
-                                                }).then(res => {
-                                                    if(res.status === 200) {
-                                                        let groupNo=this.props.authStore.loginUser.groupNo;
-                                                        this.props.userListStore.LoadGroupUserList(groupNo);
-                                                    }
-                                                })
-                                            }
-                                            resolve();
-                                    })
+                                // onRowDelete: rowData =>
+                                //     new Promise((resolve, reject) => {
+                                //             {
+                                //                 axios.delete(`/api/v1/kfashion/users/deleteGroupUser/${rowData.id}`, {
+                                //                     data: {
+                                //                         id: rowData.id
+                                //                     }
+                                //                 }).then(res => {
+                                //                     if(res.status === 200) {
+                                //                         let groupNo=this.props.authStore.loginUser.groupNo;
+                                //                         this.props.userListStore.LoadGroupUserList(groupNo);
+                                //                     }
+                                //                 })
+                                //             }
+                                //             resolve();
+                                //     })
                             }}
                             options={{
-                                maxBodyHeight:'65vh',
                                 sorting: false,
                                 rowStyle:{
                                   textAlign:'center'
@@ -158,7 +158,7 @@ class UserList extends React.Component {
                                   textAlign:"center",
                                 },
                                 /*padding:'dense',*/
-                                minBodyHeight: '65vh',
+                                minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
                                     backgroundColor: '#000000',
@@ -166,7 +166,9 @@ class UserList extends React.Component {
                                     textAlign:'center',
                                 },
                                 cellStyle: {
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    padding : 12 ,
+                                    margin : 10,
                                 },
                                 actionsCellStyle: {
                                     textAlign: 'center'
