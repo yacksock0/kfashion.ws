@@ -493,8 +493,8 @@ class Polygon extends React.Component {
                         this.props.rectStore.changeNewRectLocationWorkNo(this.state.workNo);
                         this.props.rectStore.doRectUpdate(this.changeWorkNo);
                     }
-
-
+                    this.canvas.setWidth(0)
+                    this.canvas.setHeight(0)
                     this.deleteAll(1);
                     this.save1 = false;
                     this.save2 = false;
@@ -592,11 +592,13 @@ class Polygon extends React.Component {
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
         if(check) {
+            this.canvas.setWidth(0)
+            this.canvas.setHeight(0)
             this.deleteAll(1);
-            this.polygon.length = 0;
-            this.rectangle.length = 0;
             // this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
             this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
+            this.polygon.length = 0;
+            this.rectangle.length = 0;
             this.props.rectStore.LoadWorkTypeList(workNo, this.handleClickCallback);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
@@ -697,6 +699,7 @@ class Polygon extends React.Component {
         }
     }
     render() {
+        setTimeout(() => document.body.style.zoom = "100%", 100);
         const { classes,history } = this.props;
         const {isWorkNo} = this.props.imageStore;
         const {workTypeList} = this.props.rectStore;
@@ -705,7 +708,7 @@ class Polygon extends React.Component {
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
                             <div>
                                 {/*<Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>*/}
                                 <Button
@@ -720,9 +723,7 @@ class Polygon extends React.Component {
                                 >
                                     돋보기 끄기
                                 </Button>
-                                <div style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
-                                </div>
                             </div>
                         </Grid>
 

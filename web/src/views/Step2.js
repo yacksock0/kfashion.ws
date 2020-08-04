@@ -491,6 +491,7 @@ class Step2 extends React.Component {
                     });
                     this.canvas.backgroundImage = 0;
                     this.canvas.renderAll();
+                    this.deleteAll();
                 }
             }else{
                 alert("작업을 먼저 선택해 주세요.");
@@ -545,6 +546,7 @@ class Step2 extends React.Component {
         }this.onSelectTab2(tabIndex2);
     }
     render() {
+        setTimeout(() => document.body.style.zoom = "68%", 100);
         const {classes,history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
@@ -555,10 +557,8 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container>
-                     <Grid item xs={12} lg={5} xl={5}>
-                         <div style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                     <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
                              <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
-                         </div>
                      </Grid>
                      <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
                          <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
