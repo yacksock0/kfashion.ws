@@ -94,6 +94,8 @@ class ModifyStep3 extends React.Component {
             tabIndex1:0,
             createdId: '',
             workNo : 0 ,
+            canvasWidth: 0,
+            canvasHeight:0,
         }
     }
 
@@ -101,11 +103,12 @@ class ModifyStep3 extends React.Component {
         this.setState({workNo : this.props.professionalLabelStore.workNo});
         this.props.currentStepStore.setStep(5)
         const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
+        this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
         this.setState({createdId : this.props.authStore.loginUser.id});
         this.canvas = new fabric.Canvas('c');
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width : 800,
-            height : 800,
+            width : this.canvas.width,
+            height : this.canvas.height,
             originX: 'left',
             originY: 'top'
         });
@@ -114,7 +117,7 @@ class ModifyStep3 extends React.Component {
     handleSubmit = () => {
         const check = window.confirm("수정하시겠습니까?");
         if (check) {
-            if(this.props.professionalLabelStore.styleReviewLabel.style == ''){
+            if(this.props.professionalLabelStore.styleReviewLabel.style === ''){
                 alert("스타일은 필수 항목입니다.");
                 return;
             }
@@ -122,9 +125,26 @@ class ModifyStep3 extends React.Component {
             this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
             this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);
             this.props.history.push("/Step2/FinalCheckList");
+            this.deleteAll();
         }
     }
 
+
+    onImgLoad = (img) => {
+        const image = new Image();
+        image.src = img;
+        image.onload = this.handleImageLoaded;
+    };
+
+    handleImageLoaded = (e) => {
+        // alert(e.target.width +"+"+ e.target.height);
+        this.setState({
+            canvasWidth: e.target.width,
+            canvasHeight: e.target.height
+        });
+        this.canvas.setWidth(this.state.canvasWidth)
+        this.canvas.setHeight(this.state.canvasHeight)
+    }
 
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
         this.setState({
@@ -159,7 +179,7 @@ class ModifyStep3 extends React.Component {
                     this.x = selectedPoly[i].locationX;
                     this.y = selectedPoly[i].locationY;
 
-                    if (i != 0) {
+                    if (i !== 0) {
                         let x1 = this.lineTwoPoint[0];
                         let x2 = this.lineTwoPoint[2];
                         let x3 = 0;
@@ -235,7 +255,7 @@ class ModifyStep3 extends React.Component {
                 this.setState({
                     tabIndex1: tabIndex1,
                 })
-            } else if (tabIndex1 == 0) {
+            } else if (tabIndex1 === 0) {
                 this.deleteAll();
                 this.setState({
                     tabIndex1: tabIndex1,
@@ -257,7 +277,7 @@ class ModifyStep3 extends React.Component {
         }
     }
     render() {
-        const {classes,history} = this.props;
+        const {classes} = this.props;
         const polyLast = this.props.polygonStore;
 
         return (
@@ -265,11 +285,9 @@ class ModifyStep3 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5}>
-                            <div>
-                                <canvas id="c" width={800} height={800} className={classes.canvas} style={{display:'contain'}}>  </canvas>
-                            </div>
-                        </Grid>
+                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                                <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight} className={classes.canvas} style={{display:'contain'}}>  </canvas>
+                            </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
                                     <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                         <TabList>

@@ -862,7 +862,6 @@ export default class ProfessionalLabelStore {
     @action changeNewProfessionalLabelCreatedId = (createdId) => {
         this.styleReviewLabel.createdId = createdId;
     }
-
     @action changeNewProfessionalLabelWorkNo = (workNo) => {
         this.workNo = workNo;
         console.log(this.workNo);
@@ -1001,19 +1000,8 @@ export default class ProfessionalLabelStore {
                 this.newProfessionalLabel.styleCategoryNo = this.styleReviewLabel.styleCategoryNo;
                 this.newProfessionalLabel.styleCategorySubNo = this.styleReviewLabel.styleCategorySubNo;
             const param = toJS(this.newProfessionalLabel);
-            console.log("print1 : "+ this.newProfessionalLabel.print1);
-            console.log("print2 : "+ this.newProfessionalLabel.print2);
-            console.log("print3 : "+ this.newProfessionalLabel.print3);
-            console.log("print4 : "+ this.newProfessionalLabel.print4);
 
-            console.log("texture1 : "+ this.newProfessionalLabel.texture1);
-            console.log("texture2 : "+ this.newProfessionalLabel.texture2);
-            console.log("texture3 : "+ this.newProfessionalLabel.texture3);
-            console.log("texture4 : "+ this.newProfessionalLabel.texture4);
-
-            console.log("clothLength2 : "+ this.newProfessionalLabel.clothLength2);
-            console.log("clothLengthCategoryNo2 : "+ this.newProfessionalLabel.clothLengthCategoryNo2);
-            console.log("clothLength3 : "+ this.newProfessionalLabel.clothLength3);
+            console.log("param : ", param);
             console.log("clothLengthCategoryNo3 : "+ this.newProfessionalLabel.clothLengthCategoryNo3);
 
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);

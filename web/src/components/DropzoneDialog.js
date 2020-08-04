@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 DropzoneDialog.defaultProps = {
     clearOnUnmount: true,
-    filesLimit: 1000,
+    filesLimit: 5000,
     initialFiles: [],
 };
 

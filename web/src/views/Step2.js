@@ -113,6 +113,8 @@ class Step2 extends React.Component {
             tabIndex1:1,
             tabIndex2:0,
             tabController : [],
+            canvasWidth:0,
+            canvasHeight: 0,
         }
         this.handleClickSubColor1 = this.handleClickSubColor1.bind(this)
         this.handleDelete1 = this.handleDelete1.bind(this)
@@ -194,6 +196,7 @@ class Step2 extends React.Component {
             this.deleteAll();
             this.setState( {comment:comment})
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+            this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
             if(comment == null){
                 this.props.polygonStore.LoadPolygonLocation(workNo, this.polyListCallback);
             }else{
@@ -207,19 +210,36 @@ class Step2 extends React.Component {
         this.setState({ tabController : labelNoList, workNo : workNo});
         this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 800,
-            height: 800,
+            width: this.canvas.width,
+            height: this.canvas.height,
             originX: 'left',
             originY: 'top'
         });
     }
+
+    onImgLoad = (img) => {
+        const image = new Image();
+        image.src = img;
+        image.onload = this.handleImageLoaded;
+    };
+
+    handleImageLoaded = (e) => {
+        // alert(e.target.width +"+"+ e.target.height);
+        this.setState({
+            canvasWidth: e.target.width,
+            canvasHeight: e.target.height
+        });
+        this.canvas.setWidth(this.state.canvasWidth)
+        this.canvas.setHeight(this.state.canvasHeight)
+    }
+
     polyListCallback= (polyInfo, workNo)=>{
         let tabIndex2 =polyInfo[0] -1;
         this.setState({ tabController : polyInfo, workNo : workNo});
         this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 800,
-            height: 800,
+            width: this.canvas.width,
+            height: this.canvas.height,
             originX: 'left',
             originY: 'top'
         });
@@ -536,8 +556,8 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                  <Grid container>
                      <Grid item xs={12} lg={5} xl={5}>
-                         <div>
-                             <canvas id="c" width="800" height="800">  </canvas>
+                         <div style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                          </div>
                      </Grid>
                      <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>

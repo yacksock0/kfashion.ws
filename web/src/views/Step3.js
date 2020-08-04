@@ -98,7 +98,9 @@ class Step3 extends React.Component {
             polyInfo : [],
             height: window.innerHeight,
             width: window.innerWidth,
-            count: 1
+            count: 1,
+            canvasWidth: 0,
+            canvasHeight : 0
         }
         this.updateDimensions = this.updateDimensions.bind(this);
     }
@@ -147,7 +149,10 @@ class Step3 extends React.Component {
                     tabIndex1 : 1,
                 });
                 this.canvas.backgroundImage = 0;
+                this.canvas.setWidth(0);
+                this.canvas.setHeight(0);
                 this.canvas.renderAll();
+                this.deleteAll();
             }
         }else{
             alert("작업을 먼저 선택해 주세요.");
@@ -168,18 +173,36 @@ class Step3 extends React.Component {
             this.setState({ comment:comment})
             this.props.professionalLabelStore.cleanLabel();
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+            this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
             this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
         }
     }
     handleClickCallback= (polyInfo, workNo)=>{
         this.setState({ polyInfo : polyInfo, workNo : workNo});
         this.setState({tabIndex1 : 0, tabIndex2 : 0});
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 800,
-            height: 800,
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`
+            , this.canvas.renderAll.bind(this.canvas),{
+            width: this.canvas.width,
+            height: this.canvas.height,
             originX: 'left',
-            originY: 'top'
+            originY: 'top',
         });
+    }
+
+    onImgLoad = (img) => {
+        const image = new Image();
+        image.src = img;
+        image.onload = this.handleImageLoaded;
+    };
+
+    handleImageLoaded = (e) => {
+        // alert(e.target.width +"+"+ e.target.height);
+        this.setState({
+           canvasWidth: e.target.width,
+           canvasHeight: e.target.height
+        });
+        this.canvas.setWidth(this.state.canvasWidth)
+        this.canvas.setHeight(this.state.canvasHeight)
     }
 
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
@@ -223,7 +246,7 @@ class Step3 extends React.Component {
                     this.x = selectedPoly[i].locationX;
                     this.y = selectedPoly[i].locationY;
 
-                    if (i != 0) {
+                    if (i !== 0) {
                         let x1 = this.lineTwoPoint[0];
                         let x2 = this.lineTwoPoint[2];
                         let x3 = 0;
@@ -299,7 +322,7 @@ class Step3 extends React.Component {
                 this.setState({
                     tabIndex2: tabIndex2,
                 })
-            } else if (tabIndex2 == 0) {
+            } else if (tabIndex2 === 0) {
                 this.deleteAll();
                 this.setState({
                     tabIndex2: tabIndex2,
@@ -319,8 +342,7 @@ class Step3 extends React.Component {
         }
     }
     handleLabel=(item)=>{
-
-        if(this.state.workNo != 0){
+        if(this.state.workNo !== 0){
             console.log(this.props.imageStore.workNo);
             this.props.professionalLabelStore.cleanLabel();
             this.props.professionalLabelStore.LoadLabelList(this.state.workNo);
@@ -337,11 +359,13 @@ class Step3 extends React.Component {
             tabIndex1:tabIndex1
         })
     }
+
     render() {
             setTimeout(() => document.body.style.zoom = "68%", 100);
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
-
+        console.log(this.state.canvasWidth);
+        console.log(this.state.canvasHeight);
             return (
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
@@ -350,8 +374,8 @@ class Step3 extends React.Component {
                                 <WorkedImg onClick={this.handleLabel} />
                             </Grid>
                         <Grid container>
-                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                                    <canvas id="c" width={800} height={800} >  </canvas>
+                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                                    <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </Grid>
                             <Grid item xs={12} lg={5} xl={6} style={{marginLeft:"auto", marginTop:10}}>
                                     <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>

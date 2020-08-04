@@ -77,6 +77,7 @@ class CategoryComponent1 extends React.Component {
 
     handleClickCategory=(category)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelCategory1(category);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
 
 
@@ -86,21 +87,27 @@ class CategoryComponent1 extends React.Component {
     }
     handleClickPrint=(print)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelPrint1(print);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
     handleClickTexture=(texture)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelTexture1(texture);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
     handleClickCloth=(length)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelClothLength1(length);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
     handleClickNeckLine=(neckline)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelNeckLine1(neckline);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
     handleClickKara=(kara)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelKara1(kara);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
     handleClickFit=(fit)=>{
         this.props.professionalLabelStore.changeNewProfessionalLabelFit1(fit);
+        this.props.professionalLabelStore.changeNewProfessionalLabelNo1(1);
     }
 
     handleDelete(){

@@ -116,6 +116,8 @@ class FinalCheckList extends React.Component {
             createdId: '',
             successCheckId : '',
             boundaryList: [],
+            canvasWidth:0,
+            canvasHeight:0,
             imgData:'',
             count: 0,
             data: [],
@@ -162,19 +164,40 @@ class FinalCheckList extends React.Component {
         })
         this.props.professionalLabelStore.cleanLabel();
         this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(workNo);
+        this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
         this.props.professionalLabelStore.LoadLabelList(workNo);
                 this.props.workStore.LoadReviewLabelList(workNo);
         this.deleteAll();
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-        this.props.polygonStore.LoadPolygonLocation(workNo);
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: 800,
-            height: 800,
-            originX: 'left',
-            originY: 'top'
+        this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
+    }
+    handleClickCallback= (polyInfo, workNo)=>{
+        this.setState({ polyInfo : polyInfo, workNo : workNo});
+        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`
+            , this.canvas.renderAll.bind(this.canvas),{
+                width: this.canvas.width,
+                height: this.canvas.height,
+                originX: 'left',
+                originY: 'top',
+            });
+    }
+
+    onImgLoad = (img) => {
+        const image = new Image();
+        image.src = img;
+        image.onload = this.handleImageLoaded;
+    };
+
+    handleImageLoaded = (e) => {
+        // alert(e.target.width +"+"+ e.target.height);
+        this.setState({
+            canvasWidth: e.target.width,
+            canvasHeight: e.target.height
         });
-        this.setState({tabIndex1 : 0, tabIndex2 : 0})
+        this.canvas.setWidth(this.state.canvasWidth)
+        this.canvas.setHeight(this.state.canvasHeight)
     }
 
     handleComplete = () => {
@@ -326,10 +349,8 @@ class FinalCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5}>
-                            <div>
-                                <canvas id="c" width="800" height="800">  </canvas>
-                            </div>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                            <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
                             <div component={Paper}>

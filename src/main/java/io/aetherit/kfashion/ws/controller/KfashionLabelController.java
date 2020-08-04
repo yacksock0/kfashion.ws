@@ -167,12 +167,10 @@ public class KfashionLabelController {
                 System.out.println("getWorkNo : " +professionalLabel.getWorkNo());
 
 
-                System.out.println("getClothLengthCategoryNo2 : " +professionalLabel.getClothLengthCategoryNo2());
-                System.out.println("getClothLength2 : " +professionalLabel.getClothLength2());
+                System.out.println("getDetail4 : " +professionalLabel.getDetail4());
+                System.out.println("getDetailCategoryNo4 : " +professionalLabel.getDetailCategoryNo4());
 
 
-                System.out.println("getClothLengthCategoryNo3 : " +professionalLabel.getClothLengthCategoryNo3());
-                System.out.println("getClothLength3 : " +professionalLabel.getClothLength3());
 
 
                 KfashionWork work = new KfashionWork();
@@ -373,7 +371,7 @@ public class KfashionLabelController {
                                 kfashionLabelService.insertProfessionalLabel(professional4);
                         }
                         if(professionalLabel.getDetailCategoryNo4().size() > 0) {
-                                for(int i = 0 ; i<professionalLabel.getDetailCategoryNo3().size() ; i ++) {
+                                for(int i = 0 ; i<professionalLabel.getDetailCategoryNo4().size() ; i ++) {
                                         professional4.setCategoryNo(professionalLabel.getDetailCategoryNo4().get(i));
                                         professional4.setCategoryItemNo(professionalLabel.getDetail4().get(i));
                                         kfashionLabelService.insertProfessionalLabel(professional4);
@@ -768,6 +766,11 @@ public class KfashionLabelController {
                                         .styleCategoryNo(styleReviewLabelList.get(0).getCategoryNo())
                                         .style(styleReviewLabelList.get(0).getCategoryItemNo())
                                         .styleItemName(styleReviewLabelList.get(0).getCategoryItemName())
+                                        .labelNo1(labelNo1)
+                                        .labelNo2(labelNo2)
+                                        .labelNo3(labelNo3)
+                                        .labelNo4(labelNo4)
+                                        .labelNo5(labelNo5)
                                         .build();
                                 resultMap.put("styleReviewLabel", styleReviewLabel);
                         }

@@ -47,10 +47,22 @@ export default class ImageStore {
     @observable workNo = 0;
     @observable count = 0;
     @observable professionalComplete = {...ProfessionalComplete};
+    @observable canvasWidth = 0;
+    @observable canvasHeight = 0;
 
     @action countChange =()=>{
         this.count= this.count+1
     }
+
+    @action changeCanvasWidth = (width) => {
+        this.canvasWidth = width;
+    }
+
+    @action changeCanvasHeight = (height) => {
+        this.canvasHeight = height;
+    }
+
+
 
     @action countReset = (num) => {
         this.count = num;
@@ -82,6 +94,14 @@ export default class ImageStore {
         console.log("isBoundaryList", this.boundaryList)
         return this.boundaryList;
     }
+
+    @computed get isCanvasWidth() {
+        return this.canvasWidth;
+    }
+    @computed get isCanvasHeight() {
+        return this.canvasHeight;
+    }
+
 
     LoadImage = flow(function* loadImage() {
         this.boundaryList = [];

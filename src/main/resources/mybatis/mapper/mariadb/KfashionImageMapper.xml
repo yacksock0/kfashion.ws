@@ -62,7 +62,7 @@
                                                                                       WHERE kfashion_comment.work_step = 3
                                                                                       AND kfashion_comment.complete NOT IN ('Y')))
         HAVING complete = 'N'
-        ORDER BY kfashion_comment.comment DESC
+        ORDER BY kfashion_comment.comment DESC, work_no DESC
     </select>
 
     <select id="selectPolygonList" resultMap="kfashionImageResultMap" parameterType="String">
@@ -88,7 +88,7 @@
                                                                                       WHERE kfashion_comment.work_step = 4
                                                                                       AND kfashion_comment.complete NOT IN ('Y')))
         HAVING complete = 'N'
-        ORDER BY kfashion_comment.comment DESC
+        ORDER BY kfashion_comment.comment DESC, work_no DESC
     </select>
 
     <select id="getByteImage" parameterType="Long" resultType="java.util.Map">
@@ -136,7 +136,7 @@
          AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                            FROM kfashion_work_history
                                            WHERE kfashion_work_history.work_step = 8)
-         ORDER BY created_id = #{createdId} ASC, work_no;
+         ORDER BY created_id = #{createdId} ASC, work_no
     </select>
 
     <select id="selectInspectionHighList" resultMap="kfashionImageResultMap">

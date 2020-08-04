@@ -146,12 +146,12 @@ export default class Style extends React.Component {
                                     서브 스타일
                                 </Typography>
                                 <hr></hr>
-                                {!styleReviewLabel.styleCategoryNo == 0 ?
+                                {styleReviewLabel.styleCategoryNo !== 0 ?
                                     <Grid container>
                                         {styleList.map((style) =>
                                             <Grid item xs={3}>
                                                 <div style={{textAlign:'center', margin:5}}>
-                                                    <Button style={{width:'100%', height:40,padding:0}} variant="outlined" key={style.no} disabled ={style.categoryItemName == this.props.professionalLabelStore.styleReviewLabel.styleItemName} onClick={() => this.handleClickSub(style)}>
+                                                    <Button style={{width:'100%', height:40,padding:0}} variant="outlined" key={style.no} disabled ={style.categoryItemName === this.props.professionalLabelStore.styleReviewLabel.styleItemName} onClick={() => this.handleClickSub(style)}>
                                                         <h5>{style.categoryItemName}</h5>
                                                     </Button>
                                                 </div>

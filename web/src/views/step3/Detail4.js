@@ -53,8 +53,8 @@ export default class Detail1 extends React.Component {
 
     }
     handledDetail=(detail)=>{
-        if(this.props.onClick) {
-            this.props.onClick(detail);
+        if(this.props.onDetail4) {
+            this.props.onDetail4(detail);
         }
     }
     handledDetailClose(){

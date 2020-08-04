@@ -100,7 +100,9 @@ export default function TopBar(props) {
                                     {loginUser.id}
                                     <ExitToAppIcon />
                                 </IconButton>
-                            ) : ( <Link to='/home' className={classes.link}>
+                            ) : (
+
+                                <Link to='/home' className={classes.link}>
                                     <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
                                 </Link>
                                 // <Link to="/SignUp" className={classes.link}>

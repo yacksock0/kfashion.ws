@@ -110,6 +110,9 @@ class Polygon extends React.Component {
         buttonDis7 : true,
         tabIndex: 1,
         listIndex:0,
+        canvasWidth:0,
+        canvasHeight : 0,
+
     }
     save1 = false;
     save2 = false;
@@ -206,7 +209,7 @@ class Polygon extends React.Component {
 
 
         this.canvas.on('mouse:down', (e) => {
-            if (this.onOff == 'lineUse') {
+            if (this.onOff === 'lineUse') {
                 this.canvas.selection = false;
                 this.polyPointX[this.polyCounter] = this.canvas.getPointer(e, false).x;
                 this.polyPointY[this.polyCounter] = this.canvas.getPointer(e, false).y;
@@ -250,7 +253,7 @@ class Polygon extends React.Component {
                 y1 = y2;
                 y2 = y3;
             }
-            if(this.onOff == 'lineUse' && x1 !=0 ){
+            if(this.onOff === 'lineUse' && x1 !== 0 ){
                 let polyline = new fabric.Line(
                     [this.lineTwoPoint[0],
                         this.lineTwoPoint[1],
@@ -305,8 +308,8 @@ class Polygon extends React.Component {
         let line = 0;
         let circle = 0;
         this.canvas.getObjects().forEach(function( o) {
-            if(o.id == j-2 && o.type == 'line')     line = o;
-            if(o.id == j-1 && o.type == 'circle')   circle = o;
+            if(o.id === j-2 && o.type === 'line')     line = o;
+            if(o.id === j-1 && o.type === 'circle')   circle = o;
         })
         this.canvas.remove(line);
         this.canvas.remove(circle);
@@ -463,16 +466,16 @@ class Polygon extends React.Component {
 
     // -- Location Data 저장
     submit = () =>{
-        if(this.state.workNo != 0) {
+        if(this.state.workNo !== 0) {
             const check = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
             if (check) {
                 console.log(this.polygon);
-                if (this.onOff != "") {
+                if (this.onOff !== "") {
                     alert("finish를 눌러 작업을 마무리 하세요.");
                 } else if (this.state.savebtn) {
                     alert("save 눌러 작업을 마무리 하세요.");
                 } else {
-                    if(this.state.comment == null){
+                    if(this.state.comment === null){
                         // -- RectLocation 저장
                         this.props.rectStore.objGet(this.rectangle, this.polygon);
                         this.props.rectStore.changeNewRectLocationCreatedId(this.props.authStore.loginUser.id);
@@ -585,7 +588,7 @@ class Polygon extends React.Component {
         this.setState({
             workNo :workNo
         })
-        if(this.state.workNo != 0){
+        if(this.state.workNo !== 0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
         if(check) {
@@ -593,7 +596,7 @@ class Polygon extends React.Component {
             this.polygon.length = 0;
             this.rectangle.length = 0;
             // this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-
+            this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
             this.props.rectStore.LoadWorkTypeList(workNo, this.handleClickCallback);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
@@ -636,8 +639,8 @@ class Polygon extends React.Component {
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             top: 0,
             left: 0,
-            width: 800,
-            height: 800,
+            width: this.canvas.width,
+            height: this.canvas.height,
             scaleX: 1,
             scaleY: 1,
             originX: 'left',
@@ -645,7 +648,21 @@ class Polygon extends React.Component {
         });
     }
 
+    onImgLoad = (img) => {
+        const image = new Image();
+        image.src = img;
+        image.onload = this.handleImageLoaded;
+    };
 
+    handleImageLoaded = (e) => {
+        // alert(e.target.width +"+"+ e.target.height);
+        this.setState({
+            canvasWidth: e.target.width,
+            canvasHeight: e.target.height
+        });
+        this.canvas.setWidth(this.state.canvasWidth)
+        this.canvas.setHeight(this.state.canvasHeight)
+    }
 
 
     handleStepView = () =>{
@@ -703,7 +720,9 @@ class Polygon extends React.Component {
                                 >
                                     돋보기 끄기
                                 </Button>
-                                <canvas id="c" width={800} height={800}>  </canvas>
+                                <div style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                                <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
+                                </div>
                             </div>
                         </Grid>
 

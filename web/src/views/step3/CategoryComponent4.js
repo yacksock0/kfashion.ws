@@ -14,8 +14,6 @@ import Fit4 from "./Fit4";
 import {inject, observer} from "mobx-react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CategoryAll4 from "./CategoryAll4";
-import CategoryAll1 from "./CategoryAll1";
-import CategoryAll2 from "./CategoryAll2";
 
 const styles = theme => ({
     mainContainer: {
@@ -168,7 +166,7 @@ class CategoryComponent4 extends React.Component {
                                                 디테일
                                             </Typography>
                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                <Detail4 onClick={this.handleClickDetail}/>
+                                                <Detail4 onDetail4={this.handleClickDetail}/>
                                             </div>
                                             <div>
                                                 <hr></hr>
