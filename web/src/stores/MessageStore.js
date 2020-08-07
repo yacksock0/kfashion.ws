@@ -21,10 +21,41 @@ const CheckBox ={
     pants:false,
     onepiece:false
 }
+
+const Disabled = {
+    outerDisabled:false,
+    topDisabled:false,
+    pantsDisabled:false,
+    onepieceDisabled:false
+}
+
+const BasicComplete = {
+    createdId : '',
+    workNo : '',
+    workStep : 7,
+}
+
 export default class MessageStore {
-    @observable newMsg = {...State}
-    @observable checkBox = {...CheckBox}
-    @observable inspectionHighList =[]
+    @observable newMsg = {...State};
+    @observable checkBox = {...CheckBox};
+    @observable inspectionHighList =[];
+    @observable disabled = {...Disabled};
+    @observable basicComplete = {...BasicComplete};
+
+    @action changePolyInfo = (polyInfo) => {
+        if( "" === polyInfo.filter(poly => poly == 1)) {
+            this.disabled.onepieceDisabled = true;
+        }
+        if( "" === polyInfo.filter(poly => poly == 2)) {
+            this.disabled.topDisabled = true;
+        }
+        if( "" === polyInfo.filter(poly => poly == 3)) {
+            this.disabled.pantsDisabled = true;
+        }
+        if( "" === polyInfo.filter(poly => poly == 4)) {
+            this.disabled.onepieceDisabled = true;
+        }
+    }
 
     @action resetType=()=>{
         this.newMsg.workStep1='';
@@ -83,21 +114,25 @@ export default class MessageStore {
         if(value == 'outer'){
             this.newMsg.workType1 = 1;
             this.checkBox.outer = true;
+            this.newMsg.workStep1=3;
             this.polyInfo(true);
             console.log('changeWorkType',this.newMsg.workType1)
         }else if(value == 'top'){
             this.newMsg.workType2 = 2;
             this.checkBox.top = true;
+            this.newMsg.workStep1=3;
             this.polyInfo(true);
             console.log('changeWorkType',this.newMsg.workType2)
         }else if(value == 'pants'){
             this.newMsg.workType3 = 3;
             this.checkBox.pants = true;
+            this.newMsg.workStep1=3;
             this.polyInfo(true);
             console.log('changeWorkType',this.newMsg.workType3)
         }if(value == 'onepiece') {
             this.newMsg.workType4 = 4;
             this.checkBox.onepiece = true;
+            this.newMsg.workStep1=3;
             this.polyInfo(true);
             console.log('changeWorkType',this.newMsg.workType4)
         }
@@ -127,8 +162,9 @@ export default class MessageStore {
         try {
             const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
             if (resp.status === 200) {
-                this.checkBox ={...CheckBox}
+                this.checkBox ={...CheckBox};
                 this.LoadInspectionHighList1();
+                this.newMsg ={...State};
                 this.changeComment('')
                 alert('작업이 반송처리 되었습니다');
             } else {
@@ -138,6 +174,25 @@ export default class MessageStore {
             console.log('comment 에러')
         }
     });
+
+    BasicCompleteUp = flow(function* basicCompleteUp(workNo,createdId) {
+        this.state = State.Pending;
+        try {
+            this.basicComplete.workNo = workNo;
+            this.basicComplete.createdId =createdId;
+            const param = toJS(this.basicComplete);
+            const resp = yield axios.post('/api/v1/kfashion/work/history/basicComplete',param);
+            if (resp.status === 200) {
+                alert("검수가 완료 되었습니다.");
+                this.LoadInspectionHighList1();
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러좀 나지 마라')
+        }
+    });
+
 
     LoadInspectionHighList1 = flow(function* loadInspectionHighList() {
         this.state = State.Pending;

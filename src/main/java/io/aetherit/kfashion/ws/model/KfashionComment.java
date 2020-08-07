@@ -23,6 +23,7 @@ public class KfashionComment {
     private int workType3;
     private int workType4;
     private int commentNo;
+    private int count;
     private char complete;
     private String comment;
     private String sendId;

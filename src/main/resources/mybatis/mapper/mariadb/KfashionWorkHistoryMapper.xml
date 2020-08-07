@@ -73,4 +73,18 @@
         AND work_step = #{workStep}
     </delete>
 
+
+    <select id="selectWorkNoList" resultType="Long">
+        SELECT
+            A.work_no
+        FROM (
+                 SELECT work_no,
+                        count(work_no) AS count
+                 FROM kfashion_work_history
+                 WHERE work_step = 4
+                    OR work_step = 7
+                 GROUP BY work_no
+             ) AS A
+        WHERE A.count = 1
+    </select>
 </mapper>

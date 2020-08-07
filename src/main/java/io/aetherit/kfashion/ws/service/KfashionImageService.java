@@ -52,7 +52,7 @@ public class KfashionImageService {
         return repository.selectInspectionList(createdId);
     }
 
-    public List<KfashionImage> selectInspectionHighList() {
-        return repository.selectInspectionHighList();
+    public List<KfashionImage> selectInspectionHighList(Long workNo) {
+        return repository.selectInspectionHighList(workNo);
     }
 }

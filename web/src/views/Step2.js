@@ -161,33 +161,35 @@ class Step2 extends React.Component {
         this.props.basicLabelStore.doBasicLabelUp();
     }
 
-    handleClickItem = (workNo, imageData, polyNo,comment) => {
-        let check = true;
-        if(this.state.workNo !=0){
-            check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
-        }
-        if(check){
-            this.deleteAll();
-            this.props.imageStore.changeWorkNo(workNo);
-            this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
-            this.props.polygonStore.LoadPolygonLocation(workNo);
-            this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-                width: 800,
-                height: 800,
-                originX: 'left',
-                originY: 'top'
-            });
-            this.setState({
-                tabIndex2: 0,
-                tabIndex1: 0,
-                workNo : workNo,
-                comment:comment,
-            })
-        }
-    }
+    // handleClickItem = (workNo, imageData, polyNo,comment) => {
+    //     let check = true;
+    //     if(this.state.workNo !=0){
+    //         check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
+    //     }
+    //     if(check){
+    //         this.deleteAll();
+    //         this.canvas.setWidth(0);
+    //         this.canvas.setHeight(0);
+    //         this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
+    //         this.props.imageStore.changeWorkNo(workNo);
+    //         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+    //         this.props.polygonStore.LoadPolygonLocation(workNo);
+    //         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+    //             width: this.canvas.width,
+    //             height: this.canvas.height,
+    //             originX: 'left',
+    //             originY: 'top'
+    //         });
+    //         this.setState({
+    //             tabIndex2: 0,
+    //             tabIndex1: 0,
+    //             workNo : workNo,
+    //             comment:comment,
+    //         })
+    //     }
+    // }
 
     handleClickItem = (workNo, imageData, polyNo, comment) => {
-
         let check = true;
         if(this.state.workNo !=0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
@@ -196,6 +198,8 @@ class Step2 extends React.Component {
             this.deleteAll();
             this.setState( {comment:comment})
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
+            this.canvas.setWidth(0);
+            this.canvas.setHeight(0);
             this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
             if(comment == null){
                 this.props.polygonStore.LoadPolygonLocation(workNo, this.polyListCallback);
@@ -205,9 +209,21 @@ class Step2 extends React.Component {
             }
         }
     }
-    labelNoListCallback= (labelNoList, workNo)=>{
+    labelNoListCallback = (labelNoList, workNo)=>{
         let tabIndex2 =labelNoList[0] -1;
         this.setState({ tabController : labelNoList, workNo : workNo});
+        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
+        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
+            width: this.canvas.width,
+            height: this.canvas.height,
+            originX: 'left',
+            originY: 'top'
+        });
+    }
+
+    polyListCallback= (polyInfo, workNo)=>{
+        let tabIndex2 =polyInfo[0] -1;
+        this.setState({ tabController : polyInfo, workNo : workNo});
         this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: this.canvas.width,
@@ -233,17 +249,6 @@ class Step2 extends React.Component {
         this.canvas.setHeight(this.state.canvasHeight)
     }
 
-    polyListCallback= (polyInfo, workNo)=>{
-        let tabIndex2 =polyInfo[0] -1;
-        this.setState({ tabController : polyInfo, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
-        this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
-            width: this.canvas.width,
-            height: this.canvas.height,
-            originX: 'left',
-            originY: 'top'
-        });
-    }
 
     handleClickSubColor1(){
         if(this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
@@ -546,7 +551,7 @@ class Step2 extends React.Component {
         }this.onSelectTab2(tabIndex2);
     }
     render() {
-        setTimeout(() => document.body.style.zoom = "68%", 100);
+        setTimeout(() => document.body.style.zoom = "80%", 100);
         const {classes,history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
@@ -557,10 +562,10 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                  <Grid container>
-                     <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                     <Grid item xs={12} lg={6} xl={5} style={{marginTop:10, overflow:'auto',height: 800}}>
                              <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                      </Grid>
-                     <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
+                     <Grid item xs={12} lg={6} xl={5} style={{marginLeft:'auto'}}>
                          <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                              <TabList >
                                  <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>기본 레이블링</h3></Tab>

@@ -602,8 +602,6 @@ class Polygon extends React.Component {
             this.props.rectStore.LoadWorkTypeList(workNo, this.handleClickCallback);
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
-
-
         }
     }
 
@@ -708,23 +706,23 @@ class Polygon extends React.Component {
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
-                            <div>
-                                {/*<Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>*/}
-                                <Button
-                                    onClick={this.zoomON}
-                                    disabled={this.state.workNo ==0}
-                                >
-                                    돋보기 켜기
-                                </Button>
-                                <Button
-                                    onClick={this.zoomOFF}
-                                    disabled={this.state.workNo ==0}
-                                >
-                                    돋보기 끄기
-                                </Button>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto' ,width: 800,height: 800}}>
+                        {/*<div>*/}
+                        {/*    /!*<Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>*!/*/}
+                        {/*    <Button*/}
+                        {/*        onClick={this.zoomON}*/}
+                        {/*        disabled={this.state.workNo ==0}*/}
+                        {/*    >*/}
+                        {/*        돋보기 켜기*/}
+                        {/*    </Button>*/}
+                        {/*    <Button*/}
+                        {/*        onClick={this.zoomOFF}*/}
+                        {/*        disabled={this.state.workNo ==0}*/}
+                        {/*    >*/}
+                        {/*        돋보기 끄기*/}
+                        {/*    </Button>*/}
+                        {/*</div>*/}
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
-                            </div>
                         </Grid>
 
                         <Grid item xs={12} lg={5} xl={6} style={{marginLeft:'auto'}}>
@@ -1174,12 +1172,11 @@ class Polygon extends React.Component {
                         Next Step
                     </Button>
                 </div>
-                <ErrorIcon/>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                    <ErrorIcon/>우측 상단에 이미지리스트에서 작업 할 이미지 선택
-                    <ErrorIcon/>각 영역 별 START버튼을 통해 영역지정 완료 후 FINISH 버튼 클릭 (Start -> Finish -> Save)
-                    <ErrorIcon/>삭제 버튼을 통해 한 점씩, 또는 전부삭제 버튼을 클릭해 삭제가능
-                    <ErrorIcon/>필요한 영역의 작업이 모두 완료되면 작업완료 버튼 클릭
+                    <p><ErrorIcon/>우측 상단에 이미지리스트에서 작업 할 이미지 선택</p>
+                    <p><ErrorIcon/>각 영역 별 START버튼을 통해 영역지정 완료 후 FINISH 버튼 클릭 (Start -> Finish -> Save)</p>
+                    <p><ErrorIcon/>삭제 버튼을 통해 한 점씩, 또는 전부삭제 버튼을 클릭해 삭제가능</p>
+                    <p><ErrorIcon/>필요한 영역의 작업이 모두 완료되면 작업완료 버튼 클릭</p>
                 </Typography>
             </Container>
         );

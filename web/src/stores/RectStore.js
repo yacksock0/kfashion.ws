@@ -150,8 +150,6 @@ export default class RectStore {
                 workNo :this.NewRectLocation.workNo,
                 workStep : this.NewRectLocation.workStep
             }));
-            alert(kfashionRectList);
-            console.log(kfashionRectList);
             const resp = yield axios.post(`/api/v1/kfashion/rect/location`, kfashionRectList);
             if (resp.status === 200) {
                 // this.state = State.Success;
@@ -205,12 +203,11 @@ export default class RectStore {
             }));
             const resp = yield axios.post(`/api/v1/kfashion/polygon/location`, kfashionPolygonList);
             if (resp.status === 200) {
-                alert("작업이 저장되었습니다.");
                 this.state = State.Success;
-
                 //작업 완료 후 리스트 갱신.
                 const createdId = this.NewRectLocation.createdId;
                 this.LoadRectImage(createdId);
+                alert("작업이 저장되었습니다.");
                 changeWorkNo(0);
             }
         } catch (e) {

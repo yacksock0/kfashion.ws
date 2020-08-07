@@ -148,7 +148,6 @@ export default class ImageStore {
                 'Authorization': 'JWT ' + sessionStorage.getItem('token')
             });
             if (resp.status === 200) {
-                console.log(this.count);
                 this.countChange();
                 this.fileupload(fileList, userId, index + 1, max)
             }

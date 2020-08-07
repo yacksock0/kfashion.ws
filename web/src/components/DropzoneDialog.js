@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 DropzoneDialog.defaultProps = {
     clearOnUnmount: true,
-    filesLimit: 5000,
+    filesLimit: 20000,
     initialFiles: [],
 };
 
@@ -50,6 +50,7 @@ class DropzoneDialogExample extends Component {
 
         const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'});
         const sortedFile = file.sort((a, b) => collator.compare(a.name, b.name))
+        console.log(sortedFile);
         const userId = this.props.authStore.isUserId;
         this.props.imageStore.countReset(0);
         this.props.imageStore.fileupload(sortedFile, userId, 0, sortedFile.length);
@@ -57,10 +58,11 @@ class DropzoneDialogExample extends Component {
     }
 
     handelOnDrop(files) {
-        const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'});
-        files = files.sort((a, b) => collator.compare(a.name, b.name))
-        console.log(files);
+        // const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'});
+        // files = files.sort((a, b) => collator.compare(a.name, b.name));
+        console.log(files.length);
     }
+
 
     handleOpen() {
         this.setState({
@@ -80,9 +82,9 @@ class DropzoneDialogExample extends Component {
                 <DropzoneDialog
                     open={this.state.open}
                     onSave={this.handleSave.bind(this)}
-                    acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
-                    showPreviews={true}
-                    maxFileSize={5000000000}
+                    acceptedFiles={['image/jpeg', 'image/png', 'image/bmp','image/jpg','image/tiff']}
+                    showPreviews={false}
+                    maxFileSize={50000000000}
                     onChange={this.handelOnDrop.bind(this)}
                     onClose={this.handleClose.bind(this)}
                     showAlerts={false}

@@ -11,6 +11,7 @@ import {observer} from "mobx-react";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
+import {Typography} from "@material-ui/core";
 
 @inject('authStore', 'messageStore','checkHighLabelStore', 'polygonStore')
 @observer
@@ -46,6 +47,7 @@ export default class ReturnMsg extends React.Component {
             this.props.messageStore.changeWorkNo(this.props.checkHighLabelStore.workNo);
             this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
             this.props.messageStore.sendMsg();
+
             this.setState({
                 open: false,
             })
@@ -60,7 +62,7 @@ export default class ReturnMsg extends React.Component {
         if (basicComplateConfirm) {
         const workNo = this.props.checkHighLabelStore.workNo;
         const createdId = this.props.authStore.loginUser.id;
-        this.props.checkHighLabelStore.BasicCompleteUp(workNo, createdId);
+        this.props.messageStore.BasicCompleteUp(workNo, createdId);
         }
         this.props.onClick();
         }
@@ -68,6 +70,8 @@ export default class ReturnMsg extends React.Component {
      handleChangeMsg=(e)=>{
         this.props.messageStore.changeComment(e.target.value)
     }
+
+
     handleChange = (event) => {
         {this.props.messageStore.checkBox.poly == false? this.props.messageStore.checkPoly(true) : this.props.messageStore.checkPoly(false) }
     };
@@ -80,7 +84,6 @@ export default class ReturnMsg extends React.Component {
     render() {
         const comment = this.props.messageStore.newMsg.comment;
         const {polyInfo} = this.props.polygonStore
-        console.log(polyInfo);
         return (
             <div>
                 <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.workNo == ''}>
@@ -97,24 +100,15 @@ export default class ReturnMsg extends React.Component {
                             작업 반송 단계를 선택하세요 (중복선택 가능)
                         </DialogContentText>
                         <FormGroup row>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={this.props.messageStore.checkBox.poly}
-                                        value={3}
-                                        onChange={this.handleChange}
-                                        name="poly"
-                                    />}
-                                label="영역지정 : "
-                            />
-
+                            <h3>영역지정 : &nbsp;</h3>
                             <FormControlLabel
                                 control={
                                     <Checkbox
                                         checked={this.props.messageStore.checkBox.outer}
                                         onChange={this.handleChangeType}
                                         name="outer"
-                                        disabled={ "" == polyInfo.filter(poly => poly == 1) }
+                                        variant="h6"
+                                        disabled={ "" == polyInfo.filter(poly => poly == 1) ? true : false}
                                     />}
                                 label="아우터"
                             />
@@ -124,7 +118,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.top}
                                         onChange={this.handleChangeType}
                                         name="top"
-                                        disabled={"" == polyInfo.filter(poly => poly == 2)}
+                                        disabled={"" == polyInfo.filter(poly => poly == 2) ? true : false}
                                     />}
                                 label="상의"
                             />
@@ -134,7 +128,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.pants}
                                         onChange={this.handleChangeType}
                                         name="pants"
-                                        disabled={"" ==polyInfo.filter(poly => poly == 3)}
+                                        disabled={"" == polyInfo.filter(poly => poly == 3) ? true : false}
                                     />}
                                 label="하의"
                             />
@@ -144,7 +138,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.onepiece}
                                         onChange={this.handleChangeType}
                                         name="onepiece"
-                                        disabled={"" == polyInfo.filter(poly => poly == 4)}
+                                        disabled={"" == polyInfo.filter(poly => poly == 4) ? true : false}
                                     />}
                                 label="원피스"
                             />

@@ -194,6 +194,8 @@ class HighCheckList extends React.Component {
 
     handleClick=(workNo, imgData)=>{
         this.deleteAll();
+        this.canvas.setWidth(0);
+        this.canvas.setHeight(0);
         this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(workNo);
         this.props.checkHighLabelStore.LoadReviewHighLabelList(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
@@ -343,6 +345,9 @@ class HighCheckList extends React.Component {
     }
     handleSubmit(){
         this.props.messageStore.LoadInspectionHighList1();
+        this.canvas.backgroundImage = 0;
+        this.canvas.renderAll();
+        this.deleteAll();
         this.setState({
             tabIndex1:1
         })
@@ -357,7 +362,7 @@ class HighCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto' ,width: 800,height: 800}}>
                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>

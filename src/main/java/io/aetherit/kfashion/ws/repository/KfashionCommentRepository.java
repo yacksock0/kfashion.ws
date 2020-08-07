@@ -46,4 +46,12 @@ public class KfashionCommentRepository {
     public void updatePolyComment(Map<String, Object> updateMap) {
         mapper.updatePolyComment(updateMap);
     }
+
+    public List<KfashionComment> selectCommentWorkNoList() {
+        return mapper.selectCommentWorkNoList();
+    }
+
+    public List<KfashionComment> selectCommentComplete(Long workNo) {
+        return mapper.selectCommentComplete(workNo);
+    }
 }

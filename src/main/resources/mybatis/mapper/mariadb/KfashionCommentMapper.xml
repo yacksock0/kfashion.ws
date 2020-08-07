@@ -94,4 +94,26 @@
         AND work_type = #{workType}
     </update>
 
+    <select id="selectCommentWorkNoList" resultMap="kfashionCommentResultMap">
+        SELECT DISTINCT
+            kfashion_comment.work_no,
+            count(kfashion_comment.work_no) AS count
+        FROM kfashion_comment
+        WHERE kfashion_comment.work_no NOT IN (
+            SELECT kfashion_work_history.work_no
+            FROM kfashion_work_history
+                WHERE kfashion_work_history.work_step = 7)
+            GROUP BY work_no
+    </select>
+
+    <select id="selectCommentComplete" resultMap="kfashionCommentResultMap">
+        SELECT
+           work_no,
+           work_step,
+           work_type,
+           complete
+        FROM kfashion_comment
+        WHERE work_no = #{workNo}
+    </select>
+
 </mapper>

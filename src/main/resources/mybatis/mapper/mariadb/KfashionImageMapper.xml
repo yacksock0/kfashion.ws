@@ -140,7 +140,7 @@
     </select>
 
     <select id="selectInspectionHighList" resultMap="kfashionImageResultMap">
-        SELECT
+       SELECT
             DISTINCT
             kfashion_work_history.work_no,
             kfashion_work.work_name,
@@ -148,20 +148,9 @@
             kfashion_work.created_datetime
         FROM kfashion_work_history
                  INNER JOIN kfashion_work ON kfashion_work_history.work_no = kfashion_work.no
-        WHERE kfashion_work_history.work_no IN (
-            SELECT
-                A.work_no
-            FROM (
-                     SELECT work_no,
-                            count(work_no) AS count
-                     FROM kfashion_work_history
-                     WHERE work_step = 4
-                        OR work_step = 7
-                     GROUP BY work_no
-                 ) AS A
-            WHERE A.count = 1
-        )
+        WHERE kfashion_work_history.work_no IN (#{workNo})
     </select>
+
     <select id="recentlyImg" resultMap="kfashionImageResultMap" >
         SELECT DISTINCT
             kfashion_image.work_no,

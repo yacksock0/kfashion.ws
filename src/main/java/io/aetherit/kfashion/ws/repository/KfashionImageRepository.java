@@ -51,7 +51,7 @@ public class KfashionImageRepository {
         return mapper.selectInspectionList(createdId);
     }
 
-    public List<KfashionImage> selectInspectionHighList() {
-        return mapper.selectInspectionHighList();
+    public List<KfashionImage> selectInspectionHighList(Long workNo) {
+        return mapper.selectInspectionHighList(workNo);
     }
 }

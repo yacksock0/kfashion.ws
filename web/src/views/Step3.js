@@ -170,7 +170,9 @@ class Step3 extends React.Component {
         }
         if(check){
             this.deleteAll();
-            this.setState({ comment:comment})
+            this.canvas.setWidth(0);
+            this.canvas.setHeight(0);
+            this.setState({ comment:comment});
             this.props.professionalLabelStore.cleanLabel();
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
@@ -201,8 +203,8 @@ class Step3 extends React.Component {
            canvasWidth: e.target.width,
            canvasHeight: e.target.height
         });
-        this.canvas.setWidth(this.state.canvasWidth)
-        this.canvas.setHeight(this.state.canvasHeight)
+        this.canvas.setWidth(this.state.canvasWidth);
+        this.canvas.setHeight(this.state.canvasHeight);
     }
 
     handleClickStyle=(selectedMainNo, selectedMainName, selectedSubNo,selectedSubName)=>{
@@ -364,8 +366,6 @@ class Step3 extends React.Component {
             setTimeout(() => document.body.style.zoom = "68%", 100);
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
-        console.log(this.state.canvasWidth);
-        console.log(this.state.canvasHeight);
             return (
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
@@ -374,7 +374,7 @@ class Step3 extends React.Component {
                                 <WorkedImg onClick={this.handleLabel} />
                             </Grid>
                         <Grid container>
-                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 1200,height: 1200, zoom : "60%"}}>
                                     <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </Grid>
                             <Grid item xs={12} lg={5} xl={6} style={{marginLeft:"auto", marginTop:10}}>

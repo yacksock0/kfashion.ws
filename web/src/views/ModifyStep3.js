@@ -277,6 +277,7 @@ class ModifyStep3 extends React.Component {
         }
     }
     render() {
+        setTimeout(() => document.body.style.zoom = "68%", 100);
         const {classes} = this.props;
         const polyLast = this.props.polygonStore;
 
@@ -285,7 +286,7 @@ class ModifyStep3 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto',width: 800,height: 800}}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight} className={classes.canvas} style={{display:'contain'}}>  </canvas>
                             </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
@@ -349,8 +350,11 @@ class ModifyStep3 extends React.Component {
                         돌아가기
                     </Button>
                 </Grid>
-                <ErrorIcon/>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                    <p><ErrorIcon/> 스타일 선택 수정 완료후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택</p>
+                    <p><ErrorIcon/> 이미지에 해당되는 모든 탭의 정보를 수정</p>
+                    <p><ErrorIcon/> 수정이 끝나면 수정완료 버튼을 눌러주세요</p>
+                    <p><ErrorIcon/> 수정할 사항이 없으면 돌아가기 버튼을 눌러주세요</p>
                 </Typography>
             </Container>
         );

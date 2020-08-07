@@ -206,13 +206,13 @@ class FinalCheckList extends React.Component {
             const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
             const createdId = this.props.authStore.loginUser.id;
             this.props.professionalLabelStore.ProfessionalCompleteUp(workNo, createdId);
-            this.deleteAll();
             this.setState({
                 open: false,
                 tabIndex1 : 1,
             });
             this.canvas.backgroundImage = 0;
             this.canvas.renderAll();
+            this.deleteAll();
         }
     }
 
@@ -339,6 +339,7 @@ class FinalCheckList extends React.Component {
         const handleClickMsgOpen = () => {
             this.setState({open:true,})
         };
+        setTimeout(() => document.body.style.zoom = "68%", 100);
 
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
@@ -349,7 +350,7 @@ class FinalCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflowY:'scroll',width: 800,height: 800}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto',width: 1200,height: 1200, zoom: '70%'}}>
                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>

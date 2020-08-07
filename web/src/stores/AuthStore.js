@@ -101,11 +101,9 @@ export default class AuthStore {
                 const response = yield axios.get('/api/v1/kfashion/authentications/signcheck');
                 const token = response.data.token;
                 const user = response.data;
-                console.log( 'user:', user)
                 this.loginState = State.Authenticated;
                 this.loginToken = token;
                 this.loginUser = user;
-                console.log(this.loginUser)
             } catch(e) {
                 this.loginState = State.NotAuthenticated;
                 this.loginToken = '';
@@ -118,7 +116,6 @@ export default class AuthStore {
         localStorage.removeItem(LocalStorageTokenKey);
         try {
             yield axios.post('/api/v1/kfashion/authentications/signout');
-            console.log(this);
             this.login = Object.assign({}, EmptyLogin);
             this.loginState = State.NotAuthenticated;
             this.loginToken = '';

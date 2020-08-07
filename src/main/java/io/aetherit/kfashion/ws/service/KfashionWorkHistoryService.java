@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class KfashionWorkHistoryService {
@@ -46,4 +47,7 @@ public class KfashionWorkHistoryService {
         repository.deleteBasicLabelWorkHistory(deleteMap);
     }
 
+    public List<Long> selectWorkNoList() {
+        return repository.selectWorkNoList();
+    }
 }

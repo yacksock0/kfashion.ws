@@ -47,4 +47,7 @@ public class KfashionWorkHistoryRepository {
         mapper.deleteBasicLabelWorkHistory(deleteMap);
     }
 
+    public List<Long> selectWorkNoList() {
+        return mapper.selectWorkNoList();
+    }
 }
