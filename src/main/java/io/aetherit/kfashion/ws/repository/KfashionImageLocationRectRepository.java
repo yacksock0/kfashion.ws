@@ -33,4 +33,24 @@ public class KfashionImageLocationRectRepository {
     public void deleteRect(Map<String, Object> deleteMap) {
         mapper.deleteRect(deleteMap);
     }
+
+    public int[] selectRectNo(Long workNo) {
+        return mapper.selectRectNo(workNo);
+    }
+
+    public List<KfashionImageLocationRect> selectOuterRectList(Long workNo) {
+        return mapper.selectOuterRectList(workNo);
+    }
+
+    public List<KfashionImageLocationRect> selectTopRectList(Long workNo) {
+        return mapper.selectTopRectList(workNo);
+    }
+
+    public List<KfashionImageLocationRect> selectPantsRectList(Long workNo) {
+        return mapper.selectPantsRectList(workNo);
+    }
+
+    public List<KfashionImageLocationRect> selectOnePieceRectList(Long workNo) {
+        return mapper.selectOnePieceRectList(workNo);
+    }
 }

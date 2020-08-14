@@ -71,7 +71,6 @@ export default class Detail1 extends React.Component {
         const detailList3= this.state.detailList3;
         const {pantsReviewLabel} = this.props.professionalLabelStore;
         const detailCheck =pantsReviewLabel.detailItemName3;
-        console.log("@@@@@@@ : " +detailCheck);
         return (
             <div>
                 <Button variant="outlined" onClick={this.handleClickOpen}>선택</Button>

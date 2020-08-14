@@ -5,6 +5,7 @@ import io.aetherit.kfashion.ws.repository.KfashionImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,7 @@ public class KfashionImageService {
     }
 
     public Map<String, Object> getByteImage(Long workNo) {
-      return repository.getByteImage(workNo);
+        return repository.getByteImage(workNo);
     }
 
     public List<KfashionImage> selectPolygonList(String createdId) {
@@ -35,17 +36,19 @@ public class KfashionImageService {
     }
 
     public List<KfashionImage> selectRectList(String createdId) {
-        return  repository.selectRectList(createdId);
+        return repository.selectRectList(createdId);
     }
 
-    public List<KfashionImage> recentlyImg(String createdId) { return repository.recentlyImg(createdId);}
+    public List<KfashionImage> recentlyImg(String createdId) {
+        return repository.recentlyImg(createdId);
+    }
 
     public void deleteImage(KfashionImage workImage) {
         repository.deleteImage(workImage);
     }
 
-    public List<KfashionImage> selectProfessionalList(String createdId) {
-        return repository.selectProfessionalList(createdId);
+    public List<KfashionImage> selectProfessionalList(HashMap<String, Object> map) {
+        return repository.selectProfessionalList(map);
     }
 
     public List<KfashionImage> selectInspectionList(String createdId) {
@@ -54,5 +57,9 @@ public class KfashionImageService {
 
     public List<KfashionImage> selectInspectionHighList(Long workNo) {
         return repository.selectInspectionHighList(workNo);
+    }
+
+    public int selectTotalCount(HashMap<String, Object> map) {
+        return repository.selectTotalCount(map);
     }
 }

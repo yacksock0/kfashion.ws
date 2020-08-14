@@ -20,6 +20,7 @@ import {fabric} from "fabric";
 import {get, toJS} from "mobx";
 import Chip from "@material-ui/core/Chip";
 import ErrorIcon from "@material-ui/icons/Error";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const styles = theme => ({   root: {
         width: "90%",
@@ -100,6 +101,9 @@ class FinalCheckList extends React.Component {
     constructor(props) {
         super(...arguments , props);
         this.state = {
+            page: 0,
+            pageSize: 5,
+            selected: [],
             open:'',
             styleItemName :'',
             styleSubItemName : '',
@@ -120,8 +124,12 @@ class FinalCheckList extends React.Component {
             canvasHeight:0,
             imgData:'',
             count: 0,
+            workNo : 0,
             data: [],
             columns: [
+                {title: <Button onClick={this.allToggle.bind(this)} variant="outlined" ><b>전체선택</b></Button>,
+                    render : rowData => <Checkbox checked={this.state.selected.includes(rowData.workNo)}
+                                                  onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
                 {title: '번호', field: 'workNo',type: 'number'},
                 {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
@@ -130,6 +138,34 @@ class FinalCheckList extends React.Component {
             ],
         }
         this.handleClickMsgOpen = this.handleClickMsgOpen.bind(this)
+    }
+    allToggle = () => {
+        const checkList = toJS(this.props.professionalLabelStore.inspectionList);
+        checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).map(item => (
+            this.toggle(item.workNo)
+        ))
+    }
+
+    toggle = (workNo) => {
+        const selected = this.state.selected;
+        if (selected.includes(workNo)) selected.splice(selected.indexOf(workNo), 1);
+        else selected.push(workNo);
+        this.setState({ selected });
+        this.props.professionalLabelStore.changeSelectedItem(selected);
+    };
+
+    handleChangePagingPage = (event) => {
+        this.setState({
+            page : event,
+            selected : [],
+        })
+        this.props.professionalLabelStore.selectedItemReset();
+    }
+
+    handleChangePagingRowsPerPage = (event) => {
+        this.setState({
+            pageSize : event,
+        })
     }
 
     componentWillUnmount() {
@@ -225,7 +261,20 @@ class FinalCheckList extends React.Component {
             this.canvas.remove(objList[i]);
         }
     }
-
+    handleJson = () =>{
+        const jsonComplateConfirm = window.confirm("json파일을 가지고 오시겠습니까?");
+        if (jsonComplateConfirm) {
+            const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
+            this.props.professionalLabelStore.JsonCompleteUp(workNo);
+            this.setState({
+                open: false,
+                tabIndex1 : 1,
+            });
+            this.canvas.backgroundImage = 0;
+            this.canvas.renderAll();
+            this.deleteAll();
+        }
+    }
 
     onSelectTab2(tabIndex) {
         let polyNo = tabIndex  ;
@@ -333,24 +382,41 @@ class FinalCheckList extends React.Component {
     }
 
     onSelectTab1(tabIndex) {
-        this.setState({tabIndex1 : tabIndex});
+        if (this.state.workNo !== 0) {
+            if(tabIndex === 1) {
+                this.setState({
+                    selected : [],
+                    workNo : 0,
+                })
+                this.canvas.backgroundImage = 0;
+                this.canvas.setWidth(0);
+                this.canvas.setHeight(0);
+                this.canvas.renderAll();
+                this.deleteAll();
+                this.props.professionalLabelStore.selectedItemReset();
+            }
+            this.setState({
+                tabIndex1: tabIndex,
+            });
+        }else{
+            alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
+        }
     }
     render() {
         const handleClickMsgOpen = () => {
             this.setState({open:true,})
         };
-        setTimeout(() => document.body.style.zoom = "68%", 100);
+        setTimeout(() => document.body.style.zoom = "80%", 100);
 
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
         const detail1 = outerReviewLabel.detailItemName1;
-        console.log(onePieceReviewLabel);
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto',width: 1200,height: 1200, zoom: '70%'}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "90%"}}>
                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
@@ -811,14 +877,18 @@ class FinalCheckList extends React.Component {
                                                 search: true,
                                                 actionsColumnIndex: -1,
                                                 headerStyle: {
-                                                    backgroundColor: '#000000',
-                                                    color: '#FFF',
+                                                    backgroundColor: '#FFFFFF',
+                                                    color: '#000000',
                                                     textAlign:'center',
                                                 },
                                                 cellStyle: {
                                                     textAlign: 'center'
                                                 },
+                                                pageSize : this.state.pageSize,
+                                                pageSizeOptions : [5,10,25,50],
                                             }}
+                                            onChangePage={this.handleChangePagingPage}
+                                            onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                                             actions={
                                                 [
                                                     {
@@ -844,6 +914,9 @@ class FinalCheckList extends React.Component {
                 <hr></hr>
                 <Button variant="outlined" onClick={this.handleComplete} disabled={this.state.successCheckId !== this.props.authStore.loginUser.id} style={{float:'right' , width:150, marginBottom:10}}>
                     완료
+                </Button>
+                <Button variant="outlined" onClick={this.handleJson}>
+                    json가져오기
                 </Button>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
                     <p><ErrorIcon/> 우측 상단에 상호간 작업내용 체크 확인 할 이미지 선택</p>

@@ -27,7 +27,6 @@ export default class GroupList extends React.Component {
                         return userGroupList
                     })
                 })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error)

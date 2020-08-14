@@ -67,17 +67,7 @@ export default class Style extends React.Component {
     handleDeleteSub(){
         this.props.professionalLabelStore.deleteSubStyle();
     }
-    handleDeleteImg(tabIndex1){
-        if(this.props.onClick){
-            const workNo = this.props.workNo;
-            const createdId = this.props.authStore.loginUser.id;
-            const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
-            if (deleteConfirm) {
-                this.props.professionalLabelStore.deleteImg(workNo, createdId);
-            }
-            this.props.onClickDel(tabIndex1)
-        }
-    }
+
     render() {
         const styleList= this.state.styleList;
         const {styleReviewLabel} =this.props.professionalLabelStore;
@@ -164,11 +154,6 @@ export default class Style extends React.Component {
                         </Grid>
                     </DialogContent>
                 </Dialog>
-                <Grid item xs={12}>
-                    <Button variant="outlined" color="secondary" style={{width:'100%', marginTop:5}} onClick={()=>this.handleDeleteImg(1)}>
-                        이미지 삭제
-                    </Button>
-                </Grid>
             </div>
         );
     }

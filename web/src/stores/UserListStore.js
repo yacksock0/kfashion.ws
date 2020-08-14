@@ -96,7 +96,6 @@ export default class UserListStore {
         }else {
                 console.log("error");
                 this.state = State.NotAvailableId;
-                console.log(this.state);
             }
         } catch (e) {
             console.log('에러좀 나지 마라')

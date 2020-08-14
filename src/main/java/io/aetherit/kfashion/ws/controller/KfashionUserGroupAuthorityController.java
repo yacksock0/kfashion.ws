@@ -17,27 +17,28 @@ import java.util.List;
 @RequestMapping("/api/v1/kfashion/userGroupAuthority")
 public class KfashionUserGroupAuthorityController {
 
-        private KfashionUserGroupAuthorityService kfashionUserGroupAuthorityService;
+    private KfashionUserGroupAuthorityService kfashionUserGroupAuthorityService;
 
-        @Autowired
-        public KfashionUserGroupAuthorityController(KfashionUserGroupAuthorityService kfashionUserGroupAuthorityService) {
-            this.kfashionUserGroupAuthorityService = kfashionUserGroupAuthorityService;
-        }
+    @Autowired
+    public KfashionUserGroupAuthorityController(KfashionUserGroupAuthorityService kfashionUserGroupAuthorityService) {
+        this.kfashionUserGroupAuthorityService = kfashionUserGroupAuthorityService;
+    }
 
-        /**
-         * 유저 그룹 권한 리스트
-         * @param httpRequest
-         * @return userGroupAuthorityList
-         * @throws
-         */
+    /**
+     * 유저 그룹 권한 리스트
+     *
+     * @param httpRequest
+     * @return userGroupAuthorityList
+     * @throws
+     */
 
-    @GetMapping(value="/userGroupAuthorityList")
-        public ResponseEntity<Object> userGroupAuthorityList(HttpServletRequest httpRequest) {
-            HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            List<KfashionCategoryItem> userGroupAuthorityList = kfashionUserGroupAuthorityService.selectUserGroupAuthorityList();
-            resultMap.put("userGroupAuthorityList", userGroupAuthorityList);
-            return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
-        }
+    @GetMapping(value = "/userGroupAuthorityList")
+    public ResponseEntity<Object> userGroupAuthorityList(HttpServletRequest httpRequest) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        List<KfashionCategoryItem> userGroupAuthorityList = kfashionUserGroupAuthorityService.selectUserGroupAuthorityList();
+        resultMap.put("userGroupAuthorityList", userGroupAuthorityList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
 
 
 }

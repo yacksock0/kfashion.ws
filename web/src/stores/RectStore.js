@@ -60,7 +60,6 @@ export default class RectStore {
 
     @action changeNewRectLocationX = (locationX) => {
         this.NewRectLocation.locationX = locationX;
-        console.log(locationX);
     }
 
     @action changeNewRectLocationY = (locationY) => {
@@ -100,7 +99,6 @@ export default class RectStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/rect/locationRectList?workNo='+workNo)
             this.locationRectList = response.data.locationRectList;
-            console.log(this.locationRectList);
         } catch (e) {
             console.log('error')
         }
@@ -111,7 +109,6 @@ export default class RectStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/comment/workTypeList?workNo='+workNo)
             this.workTypeList = response.data.workTypeList;
-            console.log("workTypeList",this.workTypeList);
             handleClickCallback(this.workTypeList, workNo);
         } catch (e) {
             console.log('error')
@@ -218,7 +215,6 @@ export default class RectStore {
 
 
     deleteImg = flow(function* deleteImg(workNo,createdId) {
-        console.log(workNo);
         try {
             const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${workNo}`, {
                 data: {

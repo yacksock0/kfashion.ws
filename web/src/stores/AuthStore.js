@@ -80,7 +80,6 @@ export default class AuthStore {
             const token = response.data.token;
             const user = response.data.user;
             localStorage.setItem(LocalStorageTokenKey, token);
-            console.log('doLogin');
             this.loginState = State.Authenticated;
             this.loginToken = token;
             this.loginUser = user;

@@ -56,8 +56,8 @@ public class KfashionUserInfoRepository {
 
     public void updateUserGroup(int groupNo, String id) {
         Map<String, Object> map = new HashMap<>();
-        map.put("groupNo",groupNo);
-        map.put("id",id);
+        map.put("groupNo", groupNo);
+        map.put("id", id);
         mapper.updateUserGroup(map);
     }
 

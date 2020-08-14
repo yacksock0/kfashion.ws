@@ -2,8 +2,8 @@
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionUserGroupAuthorityMapper">
     <resultMap id="kfashionUserGroupAuthorityResultMap" type="KfashionUserGroupAuthority">
         <id property="authorityNo"                          column="authority_no" />
-        <id property="authorityName"                          column="authority_name" />
-        <id property="groupName"                          column="group_name" />
+        <id property="authorityName"                        column="authority_name" />
+        <id property="groupName"                            column="group_name" />
         <result property="groupNo"                          column="group_no" />
         <result property="createdDatetime"                  column="created_datetime" />
         <result property="updatedDatetime"                  column="updated_datetime" />

@@ -278,6 +278,18 @@ export default class ProfessionalLabelStore {
     @observable workNo = 0;
     @observable inspectionList = [];
     @observable professionalComplete = {...ProfessionalComplete};
+    @observable selectedItem = [];
+    @observable jsonObject = null;
+
+
+    @action changeSelectedItem = (workNo) => {
+        this.selectedItem = workNo;
+    }
+
+    @action selectedItemReset = () => {
+        this.selectedItem = [];
+    }
+
 
     @action openCategoryAll1 =(value)=>{
         this.menuOpen.categoryAll1 = value;
@@ -432,7 +444,6 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelDetail1 = (detail1) => {
-        console.log(this.outerReviewLabel.detail1)
         this.changeNewProfessionalLabelNo1(1);
         this.outerReviewLabel.detail1[this.outerReviewLabel.detailCount] = detail1.no;
         this.outerReviewLabel.detailCategoryNo1[this.outerReviewLabel.detailCount] = detail1.categoryNo;
@@ -513,7 +524,6 @@ export default class ProfessionalLabelStore {
     }
 
     @action changeNewProfessionalLabelPrint1= (print1) => {
-        console.log(this.outerReviewLabel.print1)
         this.changeNewProfessionalLabelNo1(1);
         this.outerReviewLabel.print1[this.outerReviewLabel.printCount] = print1.no;
         this.outerReviewLabel.printCategoryNo1[this.outerReviewLabel.printCount] = print1.categoryNo;
@@ -521,7 +531,6 @@ export default class ProfessionalLabelStore {
         this.outerReviewLabel.printCount +=1;
     }
     @action changeNewProfessionalLabelPrint2= (print2) => {
-        console.log(this.topReviewLabel.print2)
         this.changeNewProfessionalLabelNo2(2);
         this.topReviewLabel.print2[this.topReviewLabel.printCount] = print2.no;
         this.topReviewLabel.printCategoryNo2[this.topReviewLabel.printCount] = print2.categoryNo;
@@ -529,7 +538,6 @@ export default class ProfessionalLabelStore {
         this.topReviewLabel.printCount +=1;
     }
     @action changeNewProfessionalLabelPrint3= (print3) => {
-        console.log(this.pantsReviewLabel.print3)
         this.changeNewProfessionalLabelNo3(3);
         this.pantsReviewLabel.print3[this.pantsReviewLabel.printCount] = print3.no;
         this.pantsReviewLabel.printCategoryNo3[this.pantsReviewLabel.printCount] = print3.categoryNo;
@@ -537,7 +545,6 @@ export default class ProfessionalLabelStore {
         this.pantsReviewLabel.printCount +=1;
     }
     @action changeNewProfessionalLabelPrint4= (print4) => {
-        console.log(this.onePieceReviewLabel.print4)
         this.changeNewProfessionalLabelNo4(4);
         this.onePieceReviewLabel.print4[this.onePieceReviewLabel.printCount] = print4.no;
         this.onePieceReviewLabel.printCategoryNo4[this.onePieceReviewLabel.printCount] = print4.categoryNo;
@@ -858,13 +865,15 @@ export default class ProfessionalLabelStore {
         return this.onePieceReviewLabel;
     }
 
+    @action setRef = (ref) => {
+        this.tableRef = ref;
+    }
 
     @action changeNewProfessionalLabelCreatedId = (createdId) => {
         this.styleReviewLabel.createdId = createdId;
     }
     @action changeNewProfessionalLabelWorkNo = (workNo) => {
         this.workNo = workNo;
-        console.log(this.workNo);
     }
 
     @computed get isLabelNo1() {
@@ -900,7 +909,7 @@ export default class ProfessionalLabelStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/img/professionalList?createdId='+createdId)
             this.professionalList = response.data.professionalList;
-            console.log(' this.professionalList', this.professionalList)
+            // this.paging.totalCount = response.data.totalCount;
         } catch (e) {
             console.log('error')
         }
@@ -917,6 +926,7 @@ export default class ProfessionalLabelStore {
     });
 
     doProfessionalLabelUp = flow(function* doProfessionalLabelUp(changeWorkNo) {
+
         this.state = State.Pending;
         try {
                 this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
@@ -999,10 +1009,7 @@ export default class ProfessionalLabelStore {
                 this.newProfessionalLabel.styleSub = this.styleReviewLabel.styleSub;
                 this.newProfessionalLabel.styleCategoryNo = this.styleReviewLabel.styleCategoryNo;
                 this.newProfessionalLabel.styleCategorySubNo = this.styleReviewLabel.styleCategorySubNo;
-            const param = toJS(this.newProfessionalLabel);
-
-            console.log("param : ", param);
-            console.log("clothLengthCategoryNo3 : "+ this.newProfessionalLabel.clothLengthCategoryNo3);
+                 const param = toJS(this.newProfessionalLabel);
 
                 const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
                 if (resp.status === 200) {
@@ -1023,13 +1030,15 @@ export default class ProfessionalLabelStore {
         } catch (e) {
             console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
         }
-    });
+   });
+
+
+
 
     LoadLabelList = flow(function* LoadLabelList(workNo) {
         this.state = State.Pending;
         try {
             const response = yield axios.get('/api/v1/kfashion/label/reviewLabelList?workNo='+workNo)
-            console.log(response.data);
             if(response.data.outerReviewLabel != null) {
                 this.changeNewProfessionalLabelNo1(1);
                 this.outerReviewLabel = response.data.outerReviewLabel;
@@ -1197,6 +1206,7 @@ export default class ProfessionalLabelStore {
             })
             if(resp.status === 200) {
                 this.LoadProfessionalList(createdId);
+                this.selectedItemReset();
             }
         } catch (err) {
             console.log(err);
@@ -1340,4 +1350,273 @@ export default class ProfessionalLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
+
+    JsonCompleteUp = flow(function* jsonCompleteUp(workNo) {
+        this.state = State.Pending;
+        try {
+            const resp = yield axios.get('/api/v1/kfashion/label/jsonfile?workNo='+workNo);
+                console.log("resp",resp);
+                this.jsonObject = resp.data;
+                alert("파일을 가져왔습니다.");
+                alert(JSON.stringify((resp.data)));
+                console.log("jsonObject", resp.data);
+                console.log("jsonObject", this.jsonObject);
+        } catch (e) {
+            console.log('에러좀 나지 마라')
+        }
+    });
+
+
+    doSelectedProfessionalLabelUp = flow(function* doSelectedProfessionalLabelUp(selected) {
+        this.state = State.Pending;
+        if(selected.length > 0) {
+            for(let i=0; i < selected.length; i++) {
+                try {
+                    this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
+                    this.newProfessionalLabel.categoryCategoryNo1 = this.outerReviewLabel.categoryCategoryNo1;
+                    this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
+                    this.newProfessionalLabel.detail1 = this.outerReviewLabel.detail1;
+                    this.newProfessionalLabel.detailCategoryNo1 = this.outerReviewLabel.detailCategoryNo1;
+                    this.newProfessionalLabel.print1 = this.outerReviewLabel.print1;
+                    this.newProfessionalLabel.printCategoryNo1 = this.outerReviewLabel.printCategoryNo1;
+                    this.newProfessionalLabel.texture1 = this.outerReviewLabel.texture1;
+                    this.newProfessionalLabel.textureCategoryNo1 = this.outerReviewLabel.textureCategoryNo1;
+                    this.newProfessionalLabel.clothLength1 = this.outerReviewLabel.clothLength1;
+                    this.newProfessionalLabel.clothLengthCategoryNo1 = this.outerReviewLabel.clothLengthCategoryNo1;
+                    this.newProfessionalLabel.neckLine1 = this.outerReviewLabel.neckLine1;
+                    this.newProfessionalLabel.neckLineCategoryNo1 = this.outerReviewLabel.neckLineCategoryNo1;
+                    this.newProfessionalLabel.kara1 = this.outerReviewLabel.kara1;
+                    this.newProfessionalLabel.karaCategoryNo1 = this.outerReviewLabel.karaCategoryNo1;
+                    this.newProfessionalLabel.fit1 = this.outerReviewLabel.fit1;
+                    this.newProfessionalLabel.fitCategoryNo1 = this.outerReviewLabel.fitCategoryNo1;
+
+                    this.newProfessionalLabel.category2 = this.topReviewLabel.category2;
+                    this.newProfessionalLabel.categoryCategoryNo2 = this.topReviewLabel.categoryCategoryNo2;
+                    this.newProfessionalLabel.detail2 = this.topReviewLabel.detail2;
+                    this.newProfessionalLabel.detailCategoryNo2 = this.topReviewLabel.detailCategoryNo2;
+                    this.newProfessionalLabel.print2 = this.topReviewLabel.print2;
+                    this.newProfessionalLabel.printCategoryNo2 = this.topReviewLabel.printCategoryNo2;
+                    this.newProfessionalLabel.texture2 = this.topReviewLabel.texture2;
+                    this.newProfessionalLabel.textureCategoryNo2 = this.topReviewLabel.textureCategoryNo2;
+                    this.newProfessionalLabel.clothLength2 = this.topReviewLabel.clothLength2;
+                    this.newProfessionalLabel.clothLengthCategoryNo2 = this.topReviewLabel.clothLengthCategoryNo2;
+                    this.newProfessionalLabel.neckLine2 = this.topReviewLabel.neckLine2;
+                    this.newProfessionalLabel.neckLineCategoryNo2 = this.topReviewLabel.neckLineCategoryNo2;
+                    this.newProfessionalLabel.kara2 = this.topReviewLabel.kara2;
+                    this.newProfessionalLabel.karaCategoryNo2 = this.topReviewLabel.karaCategoryNo2;
+                    this.newProfessionalLabel.fit2 = this.topReviewLabel.fit2;
+                    this.newProfessionalLabel.fitCategoryNo2 = this.topReviewLabel.fitCategoryNo2;
+
+                    this.newProfessionalLabel.category3 = this.pantsReviewLabel.category3;
+                    this.newProfessionalLabel.categoryCategoryNo3 = this.pantsReviewLabel.categoryCategoryNo3;
+                    this.newProfessionalLabel.detail3 = this.pantsReviewLabel.detail3;
+                    this.newProfessionalLabel.detailCategoryNo3 = this.pantsReviewLabel.detailCategoryNo3;
+                    this.newProfessionalLabel.print3 = this.pantsReviewLabel.print3;
+                    this.newProfessionalLabel.printCategoryNo3 = this.pantsReviewLabel.printCategoryNo3;
+                    this.newProfessionalLabel.texture3 = this.pantsReviewLabel.texture3;
+                    this.newProfessionalLabel.textureCategoryNo3 = this.pantsReviewLabel.textureCategoryNo3;
+                    this.newProfessionalLabel.clothLength3 = this.pantsReviewLabel.clothLength3;
+
+
+                    this.newProfessionalLabel.clothLengthCategoryNo3 = this.pantsReviewLabel.clothLengthCategoryNo3;
+                    this.newProfessionalLabel.fit3 = this.pantsReviewLabel.fit3;
+                    this.newProfessionalLabel.fitCategoryNo3 = this.pantsReviewLabel.fitCategoryNo3;
+
+                    this.newProfessionalLabel.category4 = this.onePieceReviewLabel.category4;
+                    this.newProfessionalLabel.categoryCategoryNo4 = this.onePieceReviewLabel.categoryCategoryNo4;
+                    this.newProfessionalLabel.detail4 = this.onePieceReviewLabel.detail4;
+                    this.newProfessionalLabel.detailCategoryNo4 = this.onePieceReviewLabel.detailCategoryNo4;
+                    this.newProfessionalLabel.print4 = this.onePieceReviewLabel.print4;
+                    this.newProfessionalLabel.printCategoryNo4 = this.onePieceReviewLabel.printCategoryNo4;
+                    this.newProfessionalLabel.texture4 = this.onePieceReviewLabel.texture4;
+                    this.newProfessionalLabel.textureCategoryNo4 = this.onePieceReviewLabel.textureCategoryNo4;
+                    this.newProfessionalLabel.clothLength4 = this.onePieceReviewLabel.clothLength4;
+                    this.newProfessionalLabel.category4 = this.onePieceReviewLabel.category4;
+                    this.newProfessionalLabel.clothLengthCategoryNo4 = this.onePieceReviewLabel.clothLengthCategoryNo4;
+                    this.newProfessionalLabel.neckLine4 = this.onePieceReviewLabel.neckLine4;
+                    this.newProfessionalLabel.neckLineCategoryNo4 = this.onePieceReviewLabel.neckLineCategoryNo4;
+                    this.newProfessionalLabel.kara4 = this.onePieceReviewLabel.kara4;
+                    this.newProfessionalLabel.karaCategoryNo4 = this.onePieceReviewLabel.karaCategoryNo4;
+                    this.newProfessionalLabel.fit4 = this.onePieceReviewLabel.fit4;
+                    this.newProfessionalLabel.fitCategoryNo4 = this.onePieceReviewLabel.fitCategoryNo4;
+
+                    this.newProfessionalLabel.createdId = this.styleReviewLabel.createdId;
+                    this.newProfessionalLabel.workNo = selected[i];
+                    this.newProfessionalLabel.workStep = 6;
+                    this.newProfessionalLabel.labelNo1 = this.styleReviewLabel.labelNo1;
+                    this.newProfessionalLabel.labelNo2 = this.styleReviewLabel.labelNo2;
+                    this.newProfessionalLabel.labelNo3 = this.styleReviewLabel.labelNo3;
+                    this.newProfessionalLabel.labelNo4 = this.styleReviewLabel.labelNo4;
+                    this.newProfessionalLabel.labelNo5 = this.styleReviewLabel.labelNo5;
+                    this.newProfessionalLabel.style = this.styleReviewLabel.style;
+                    this.newProfessionalLabel.styleSub = this.styleReviewLabel.styleSub;
+                    this.newProfessionalLabel.styleCategoryNo = this.styleReviewLabel.styleCategoryNo;
+                    this.newProfessionalLabel.styleCategorySubNo = this.styleReviewLabel.styleCategorySubNo;
+                    const param = toJS(this.newProfessionalLabel);
+                    const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
+                    if (resp.status === 200) {
+                        this.state = State.Success;
+                    }else {
+                        this.state = State.Fail;
+                    }
+                } catch (e) {
+                    console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
+                }
+            }
+            if (this.state = State.Success) {
+                const createdId = this.newProfessionalLabel.createdId;
+                this.LoadProfessionalList(createdId);
+                this.outerReviewLabel = {...EmptyNewOuterReviewLabel};
+                this.topReviewLabel = {...EmptyNewTopReviewLabel};
+                this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
+                this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
+                this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
+                this.LoadRecentImage(createdId);
+                this.selectedItemReset();
+                alert("저장 완료되었습니다.");
+            }else {
+                alert("저장 실패하였습니다.")
+            }
+        }
+    });
+
+
+    deleteSelectedProfessionalLabel = flow(function* deleteSelectedProfessionalLabel(selected) {
+        this.state = State.Pending;
+        if(selected.length > 0) {
+            for (let i = 0; i < selected.length; i++) {
+                try {
+                    const resp = yield axios.get('/api/v1/kfashion/label/deleteProfessionalLabel?workNo=' + selected[i]);
+                    if (resp.status === 200) {
+                        this.state = State.Success;
+                    } else {
+                        this.state = State.Fail;
+                    }
+                } catch (e) {
+                    console.log('에러좀 나지 마라')
+                }
+            }
+            if (this.state = State.Success) {
+                this.updateSeletedProfessionalLabelUp(selected);
+            }else {
+            }
+        }
+    });
+
+
+    updateSeletedProfessionalLabelUp = flow(function* updateSeletedProfessionalLabelUp(selected) {
+        this.state = State.Pending;
+        if(selected.length > 0) {
+            for(let i=0; i < selected.length; i++) {
+                try {
+                    this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
+                    this.newProfessionalLabel.categoryCategoryNo1 = this.outerReviewLabel.categoryCategoryNo1;
+                    this.newProfessionalLabel.category1 = this.outerReviewLabel.category1;
+                    this.newProfessionalLabel.detail1 = this.outerReviewLabel.detail1;
+                    this.newProfessionalLabel.detailCategoryNo1 = this.outerReviewLabel.detailCategoryNo1;
+                    this.newProfessionalLabel.print1 = this.outerReviewLabel.print1;
+                    this.newProfessionalLabel.printCategoryNo1 = this.outerReviewLabel.printCategoryNo1;
+                    this.newProfessionalLabel.texture1 = this.outerReviewLabel.texture1;
+                    this.newProfessionalLabel.textureCategoryNo1 = this.outerReviewLabel.textureCategoryNo1;
+                    this.newProfessionalLabel.clothLength1 = this.outerReviewLabel.clothLength1;
+                    this.newProfessionalLabel.clothLengthCategoryNo1 = this.outerReviewLabel.clothLengthCategoryNo1;
+                    this.newProfessionalLabel.neckLine1 = this.outerReviewLabel.neckLine1;
+                    this.newProfessionalLabel.neckLineCategoryNo1 = this.outerReviewLabel.neckLineCategoryNo1;
+                    this.newProfessionalLabel.kara1 = this.outerReviewLabel.kara1;
+                    this.newProfessionalLabel.karaCategoryNo1 = this.outerReviewLabel.karaCategoryNo1;
+                    this.newProfessionalLabel.fit1 = this.outerReviewLabel.fit1;
+                    this.newProfessionalLabel.fitCategoryNo1 = this.outerReviewLabel.fitCategoryNo1;
+
+                    this.newProfessionalLabel.category2 = this.topReviewLabel.category2;
+                    this.newProfessionalLabel.categoryCategoryNo2 = this.topReviewLabel.categoryCategoryNo2;
+                    this.newProfessionalLabel.detail2 = this.topReviewLabel.detail2;
+                    this.newProfessionalLabel.detailCategoryNo2 = this.topReviewLabel.detailCategoryNo2;
+                    this.newProfessionalLabel.print2 = this.topReviewLabel.print2;
+                    this.newProfessionalLabel.printCategoryNo2 = this.topReviewLabel.printCategoryNo2;
+                    this.newProfessionalLabel.texture2 = this.topReviewLabel.texture2;
+                    this.newProfessionalLabel.textureCategoryNo2 = this.topReviewLabel.textureCategoryNo2;
+                    this.newProfessionalLabel.clothLength2 = this.topReviewLabel.clothLength2;
+                    this.newProfessionalLabel.clothLengthCategoryNo2 = this.topReviewLabel.clothLengthCategoryNo2;
+                    this.newProfessionalLabel.neckLine2 = this.topReviewLabel.neckLine2;
+                    this.newProfessionalLabel.neckLineCategoryNo2 = this.topReviewLabel.neckLineCategoryNo2;
+                    this.newProfessionalLabel.kara2 = this.topReviewLabel.kara2;
+                    this.newProfessionalLabel.karaCategoryNo2 = this.topReviewLabel.karaCategoryNo2;
+                    this.newProfessionalLabel.fit2 = this.topReviewLabel.fit2;
+                    this.newProfessionalLabel.fitCategoryNo2 = this.topReviewLabel.fitCategoryNo2;
+
+                    this.newProfessionalLabel.category3 = this.pantsReviewLabel.category3;
+                    this.newProfessionalLabel.categoryCategoryNo3 = this.pantsReviewLabel.categoryCategoryNo3;
+                    this.newProfessionalLabel.detail3 = this.pantsReviewLabel.detail3;
+                    this.newProfessionalLabel.detailCategoryNo3 = this.pantsReviewLabel.detailCategoryNo3;
+                    this.newProfessionalLabel.print3 = this.pantsReviewLabel.print3;
+                    this.newProfessionalLabel.printCategoryNo3 = this.pantsReviewLabel.printCategoryNo3;
+                    this.newProfessionalLabel.texture3 = this.pantsReviewLabel.texture3;
+                    this.newProfessionalLabel.textureCategoryNo3 = this.pantsReviewLabel.textureCategoryNo3;
+                    this.newProfessionalLabel.clothLength3 = this.pantsReviewLabel.clothLength3;
+
+
+                    this.newProfessionalLabel.clothLengthCategoryNo3 = this.pantsReviewLabel.clothLengthCategoryNo3;
+                    this.newProfessionalLabel.fit3 = this.pantsReviewLabel.fit3;
+                    this.newProfessionalLabel.fitCategoryNo3 = this.pantsReviewLabel.fitCategoryNo3;
+
+                    this.newProfessionalLabel.category4 = this.onePieceReviewLabel.category4;
+                    this.newProfessionalLabel.categoryCategoryNo4 = this.onePieceReviewLabel.categoryCategoryNo4;
+                    this.newProfessionalLabel.detail4 = this.onePieceReviewLabel.detail4;
+                    this.newProfessionalLabel.detailCategoryNo4 = this.onePieceReviewLabel.detailCategoryNo4;
+                    this.newProfessionalLabel.print4 = this.onePieceReviewLabel.print4;
+                    this.newProfessionalLabel.printCategoryNo4 = this.onePieceReviewLabel.printCategoryNo4;
+                    this.newProfessionalLabel.texture4 = this.onePieceReviewLabel.texture4;
+                    this.newProfessionalLabel.textureCategoryNo4 = this.onePieceReviewLabel.textureCategoryNo4;
+                    this.newProfessionalLabel.clothLength4 = this.onePieceReviewLabel.clothLength4;
+                    this.newProfessionalLabel.category4 = this.onePieceReviewLabel.category4;
+                    this.newProfessionalLabel.clothLengthCategoryNo4 = this.onePieceReviewLabel.clothLengthCategoryNo4;
+                    this.newProfessionalLabel.neckLine4 = this.onePieceReviewLabel.neckLine4;
+                    this.newProfessionalLabel.neckLineCategoryNo4 = this.onePieceReviewLabel.neckLineCategoryNo4;
+                    this.newProfessionalLabel.kara4 = this.onePieceReviewLabel.kara4;
+                    this.newProfessionalLabel.karaCategoryNo4 = this.onePieceReviewLabel.karaCategoryNo4;
+                    this.newProfessionalLabel.fit4 = this.onePieceReviewLabel.fit4;
+                    this.newProfessionalLabel.fitCategoryNo4 = this.onePieceReviewLabel.fitCategoryNo4;
+
+                    this.newProfessionalLabel.createdId = this.styleReviewLabel.createdId;
+                    this.newProfessionalLabel.workNo = selected[i];
+                    this.newProfessionalLabel.workStep = 6;
+                    this.newProfessionalLabel.labelNo1 = this.styleReviewLabel.labelNo1;
+                    this.newProfessionalLabel.labelNo2 = this.styleReviewLabel.labelNo2;
+                    this.newProfessionalLabel.labelNo3 = this.styleReviewLabel.labelNo3;
+                    this.newProfessionalLabel.labelNo4 = this.styleReviewLabel.labelNo4;
+                    this.newProfessionalLabel.labelNo5 = this.styleReviewLabel.labelNo5;
+                    this.newProfessionalLabel.style = this.styleReviewLabel.style;
+                    this.newProfessionalLabel.styleSub = this.styleReviewLabel.styleSub;
+                    this.newProfessionalLabel.styleCategoryNo = this.styleReviewLabel.styleCategoryNo;
+                    this.newProfessionalLabel.styleCategorySubNo = this.styleReviewLabel.styleCategorySubNo;
+                    const param = toJS(this.newProfessionalLabel);
+                    const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
+                    if (resp.status === 200) {
+                        this.state = State.Success;
+                    }else {
+                        this.state = State.Fail;
+                    }
+                } catch (e) {
+                    console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
+                }
+            }
+            if (this.state = State.Success) {
+                const createdId = this.newProfessionalLabel.createdId;
+                this.LoadProfessionalList(createdId);
+                this.outerReviewLabel = {...EmptyNewOuterReviewLabel};
+                this.topReviewLabel = {...EmptyNewTopReviewLabel};
+                this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
+                this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
+                this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
+                this.LoadRecentImage(createdId);
+                this.selectedItemReset();
+                alert("수정이 완료되었습니다.");
+            }else {
+                alert("수정이 실패하였습니다.")
+            }
+        }
+    });
+
+
+
 }

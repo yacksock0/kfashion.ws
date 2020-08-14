@@ -17,4 +17,6 @@ public interface KfashionImageLocationPolygonPointMapper {
     int[] selectLabelNo(Long workNo);
 
     void deletePolyPoint(Map<String, Object> deleteMap);
+
+    List<KfashionImageLocationPolygonPoint> selectPolygonList(KfashionImageLocationPolygonPoint polygon);
 }

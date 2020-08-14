@@ -41,4 +41,8 @@ public class KfashionImageLocationPolygonPointRepository {
     public void deletePolyPoint(Map<String, Object> deleteMap) {
         mapper.deletePolyPoint(deleteMap);
     }
+
+    public List<KfashionImageLocationPolygonPoint> selectPolygonList(KfashionImageLocationPolygonPoint polygon) {
+        return mapper.selectPolygonList(polygon);
+    }
 }

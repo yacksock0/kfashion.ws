@@ -27,7 +27,7 @@ public class KfashionWorkHistoryService {
     }
 
 
-    public  KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId) {
+    public KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId) {
         return repository.selectWorkProgressRate(createdId);
     }
 

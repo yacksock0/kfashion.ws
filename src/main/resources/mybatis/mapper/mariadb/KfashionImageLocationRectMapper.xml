@@ -3,7 +3,7 @@
     <resultMap id="kfashionImageLocationRectResultMap" type="KfashionImageLocationRect">
         <id property="workNo"                        column="work_no" />
         <result property="workStep"                  column="work_step" />
-        <result property="rectNo"                        column="rect_no" />
+        <result property="rectNo"                    column="rect_no" />
         <result property="locationX"                 column="location_x" />
         <result property="locationY"                 column="location_y" />
         <result property="locationWidth"             column="location_width" />
@@ -64,6 +64,41 @@
         WHERE work_no = #{workNo}
         AND rect_no = #{rectNo}
     </delete>
+
+    <select id="selectRectNo" resultType="int">
+        SELECT rect_no
+        FROM kfashion_image_location_rect
+        WHERE work_no = #{workNo}
+    </select>
+
+    <select id="selectOuterRectList" resultMap="kfashionImageLocationRectResultMap">
+        SELECT *
+        FROM kfashion_image_location_rect
+        WHERE work_no = #{workNo}
+        AND rect_no = 1
+    </select>
+    <select id="selectTopRectList" resultMap="kfashionImageLocationRectResultMap">
+        SELECT *
+        FROM kfashion_image_location_rect
+        WHERE work_no = #{workNo}
+        AND rect_no = 2
+    </select>
+
+    <select id="selectPantsRectList" resultMap="kfashionImageLocationRectResultMap">
+        SELECT *
+        FROM kfashion_image_location_rect
+        WHERE work_no = #{workNo}
+        AND rect_no = 3
+    </select>
+
+    <select id="selectOnePieceRectList" resultMap="kfashionImageLocationRectResultMap">
+        SELECT *
+        FROM kfashion_image_location_rect
+        WHERE work_no = #{workNo}
+        AND rect_no = 4
+    </select>
+
+
 
 
 </mapper>

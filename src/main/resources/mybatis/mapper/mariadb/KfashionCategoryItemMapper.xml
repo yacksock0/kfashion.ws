@@ -3,7 +3,7 @@
     <resultMap id="kfashionCategoryItemResultMap" type="KfashionCategoryItem">
         <id property="no"                            column="no" />
         <result property="categoryNo"                column="category_no" />
-        <result property="categoryType"                column="category_type" />
+        <result property="categoryType"              column="category_type" />
         <result property="categoryItemName"          column="category_item_name" />
         <result property="categoryItemMemo"          column="category_item_memo" />
         <result property="createdId"                 column="created_id" />

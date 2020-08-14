@@ -1,12 +1,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionUserGroupMapper">
     <resultMap id="kfashionUserGroupResultMap" type="KfashionUserGroup">
-        <id property="no"                       column="no" />
-        <result property="groupName"             column="group_name" />
+        <id property="no"                          column="no" />
+        <result property="groupName"               column="group_name" />
         <result property="authorityNo"             column="authority_no" />
-        <result property="authorityName"             column="authority_name" />
-        <result property="createdDatetime"                 column="created_datetime" />
-        <result property="updatedDatetime"                 column="updated_datetime" />
+        <result property="authorityName"           column="authority_name" />
+        <result property="createdDatetime"         column="created_datetime" />
+        <result property="updatedDatetime"         column="updated_datetime" />
     </resultMap>
 
     

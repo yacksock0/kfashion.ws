@@ -9,6 +9,7 @@ public interface KfashionLabelMapper {
     void insertBasicLabel(KfashionLabel basic);
 
     void insertProfessionalLabel(KfashionLabel professional);
+
     List<KfashionLabel> selectBasicLabelList(String createdId);
 
     List<KfashionLabel> selectOuterReviewLabelList(Long workNo);

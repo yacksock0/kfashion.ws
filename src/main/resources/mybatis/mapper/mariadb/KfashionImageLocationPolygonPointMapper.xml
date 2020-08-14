@@ -76,4 +76,11 @@
         AND poly_no = #{polyNo}
     </delete>
 
+    <select id="selectPolygonList" resultMap="kfashionImageLocationPolygonPointResultMap">
+        SELECT *
+        FROM kfashion_image_location_polygon_point
+        WHERE work_no = #{workNo}
+        AND poly_no = #{polyNo}
+    </select>
+
 </mapper>

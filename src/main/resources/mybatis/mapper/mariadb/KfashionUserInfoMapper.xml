@@ -12,7 +12,7 @@
         <result property="isAdmin"              column="is_admin" />
         <result property="isApproved"           column="is_approved" />
         <result property="authorityNo"          column="authority_no" />
-        <result property="groupAdmin"          column="group_admin" />
+        <result property="groupAdmin"           column="group_admin" />
         <result property="createdDatetime"      column="created_datetime" />
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>

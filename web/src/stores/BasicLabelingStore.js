@@ -32,8 +32,6 @@ export default class BasicLabelingStore {
     @observable NewBasicInsertList2 = {...EmptyNewBasicValue};
     @observable NewBasicInsertList3 = {...EmptyNewBasicValue};
     @action changeData = (tabIndex1, no, name, memo, subNo, subName, subMemo, sleeveNo, sleeveName) => {
-        console.log('tabIndex1@@@@@@',tabIndex1)
-        console.log('info@@@@@@@',no)
         if(tabIndex1 === 0) {
             this.tabIndex1 = tabIndex1;
             this.NewBasicInsertList.no = no;

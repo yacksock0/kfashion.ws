@@ -2,10 +2,10 @@
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionEmailAuthorityMapper">
     <resultMap id="kfashionEmailAuthorityResultMap" type="KfashionEmailAuthority">
         <id property="userId"                       column="user_id" />
-        <result property="authKey"             column="authKey" />
-        <result property="expirationDatetime"                 column="expiration_datetime" />
-        <result property="createdDatetime"                 column="created_datetime" />
-        <result property="authorityDatetime"            column="authority_datetime" />
+        <result property="authKey"                  column="authKey" />
+        <result property="expirationDatetime"       column="expiration_datetime" />
+        <result property="createdDatetime"          column="created_datetime" />
+        <result property="authorityDatetime"        column="authority_datetime" />
     </resultMap>
 
     <insert id="insertAuthkey" parameterType="KfashionEmailAuthority">

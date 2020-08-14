@@ -14,7 +14,6 @@ export default class CreateGroupDialogStore {
             if(response.status === 200) {
                 const Authority =response.data.userGroupAuthorityList;
                 this.userGroupAuthorityList=Authority;
-                console.log(this.userGroupAuthorityList);
             }
         } catch(error) {
             console.log("error getGroupList", error);

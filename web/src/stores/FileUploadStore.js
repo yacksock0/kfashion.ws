@@ -34,10 +34,8 @@ export default class FileUploadStore {
     }
 */
     @action changeUploadFile = (file) => {
-        console.log('changeUploadFile 실행...:',file )
         this.uploadFile = file;
         const uploadFile = this.uploadFile;
-        console.log("this.uploadFile:", uploadFile);
     }
 
     @action fileUpdateSuccess = (Uploaded) => {

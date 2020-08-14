@@ -6,6 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import {Button, Typography} from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
+import { CircularProgress } from '@material-ui/core';
 
 @inject('authStore','workStore', 'userListStore')
 @observer
@@ -18,6 +19,7 @@ class WorkDetail extends React.Component {
             open1: false,
             selectedId:'',
             basicLabelList: [],
+            loadingIndicator: false,
             value:'',
             CancelValue:'',
             count: 0,
@@ -100,6 +102,7 @@ class WorkDetail extends React.Component {
     }
 
     handleWorkUserCancelQuantitySubmit=()=>{
+
         axios.post(`/api/v1/kfashion/work/history/assignmentCancel?workId=${this.props.rowDataId}&workCount=${this.state.CancelValue}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
             .then(res =>{
                 if (res.status === 200) {
@@ -118,6 +121,7 @@ class WorkDetail extends React.Component {
     render() {
         return (
             <div>
+                {this.state.loadingIndicator === true ? <CircularProgress className="spinner" /> : null}
                 <Button variant="outlined" style={{padding:4}} onClick={this.handleClickOpen}>작업지정</Button>
                 &nbsp;&nbsp;
                 <Button variant="outlined" style={{padding:4}} onClick={this.handleClickOpen1}>작업취소</Button>

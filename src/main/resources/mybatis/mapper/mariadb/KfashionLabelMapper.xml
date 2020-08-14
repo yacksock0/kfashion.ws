@@ -7,9 +7,9 @@
         <result property="no"                       column="no" />
         <result property="categoryNo"               column="category_no" />
         <result property="categoryItemNo"           column="category_item_no" />
-        <result property="categoryName"           column="category_name" />
-        <result property="categoryItemName"           column="category_item_name" />
-        <result property="categoryItemMemo"           column="category_item_memo" />
+        <result property="categoryName"             column="category_name" />
+        <result property="categoryItemName"         column="category_item_name" />
+        <result property="categoryItemMemo"         column="category_item_memo" />
         <result property="createdId"                column="created_id" />
         <result property="createdDatetime"          column="created_datetime" />
         <result property="updatedDatetime"          column="updated_datetime" />

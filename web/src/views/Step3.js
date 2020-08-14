@@ -49,7 +49,6 @@ const styles = theme => ({   root: {
     buttonType2:{
         width: 150,
         float:'right',
-
     },
     toolButton:{
         border:'1px solid black',
@@ -96,6 +95,7 @@ class Step3 extends React.Component {
             createdId: '',
             workNo : 0,
             polyInfo : [],
+            selected: [],
             height: window.innerHeight,
             width: window.innerWidth,
             count: 1,
@@ -113,7 +113,6 @@ class Step3 extends React.Component {
             width: window.innerWidth,
             count: this.state.count++
         });
-        console.log("count: ", this.state.count)
     }
     componentDidMount() {
         this.props.currentStepStore.setStep(3);
@@ -144,9 +143,16 @@ class Step3 extends React.Component {
                 const createdId = this.props.authStore.isUserId;
                 this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
                 this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.state.workNo);
-                this.props.professionalLabelStore.doProfessionalLabelUp(this.changeWorkNo);
+                const selected = toJS(this.props.professionalLabelStore.selectedItem);
+                if(selected.length > 0 && selected !== null) {
+                    this.props.professionalLabelStore.doSelectedProfessionalLabelUp(selected);
+                }
+                else {
+                    this.props.professionalLabelStore.doProfessionalLabelUp(this.changeWorkNo);
+                }
                 this.setState({
                     tabIndex1 : 1,
+                    workNo : 0,
                 });
                 this.canvas.backgroundImage = 0;
                 this.canvas.setWidth(0);
@@ -227,6 +233,18 @@ class Step3 extends React.Component {
     }
     onSelectTab1(tabIndex1) {
         if (this.state.workNo !== 0) {
+            if(tabIndex1 === 1) {
+                this.setState({
+                    selected : [],
+                    workNo : 0,
+                })
+                this.canvas.backgroundImage = 0;
+                this.canvas.setWidth(0);
+                this.canvas.setHeight(0);
+                this.canvas.renderAll();
+                this.deleteAll();
+                this.props.professionalLabelStore.selectedItemReset();
+            }
             this.setState({
                 tabIndex1: tabIndex1,
             });
@@ -243,7 +261,6 @@ class Step3 extends React.Component {
             if (selectedPoly.length !== 0) {
                 this.deleteAll();
                 for (let i = 0; i < selectedPoly.length; i++) {
-                    console.log(this.lineTwoPoint);
                     this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                     this.x = selectedPoly[i].locationX;
                     this.y = selectedPoly[i].locationY;
@@ -343,9 +360,17 @@ class Step3 extends React.Component {
             this.props.onChange(polyLast)
         }
     }
+    // handleDeleteImg(){
+    //         const workNo = this.props.workNo;
+    //         const createdId = this.props.authStore.loginUser.id;
+    //         const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
+    //         if (deleteConfirm) {
+    //             this.props.professionalLabelStore.deleteImg(workNo, createdId);
+    //         }
+    //     }
+    // }
     handleLabel=(item)=>{
         if(this.state.workNo !== 0){
-            console.log(this.props.imageStore.workNo);
             this.props.professionalLabelStore.cleanLabel();
             this.props.professionalLabelStore.LoadLabelList(this.state.workNo);
             this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.state.workNo);
@@ -360,10 +385,29 @@ class Step3 extends React.Component {
         this.setState({
             tabIndex1:tabIndex1
         })
+        this.canvas.backgroundImage = 0;
+        this.canvas.setWidth(0);
+        this.canvas.setHeight(0);
+        this.canvas.renderAll();
+        this.deleteAll();
+    }
+
+    handleDeleteImg = () => {
+        const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
+        const createdId = this.props.authStore.loginUser.id;
+        if (deleteConfirm) {
+            const workNo =toJS(this.props.professionalLabelStore.selectedItem);
+            if(workNo.length > 0) {
+                for(let i=0; i < workNo.length; i++) {
+                    this.props.professionalLabelStore.deleteImg(workNo[i],createdId);
+                }
+                alert("삭제가 완료되었습니다.")
+            }
+        }
     }
 
     render() {
-            setTimeout(() => document.body.style.zoom = "68%", 100);
+            setTimeout(() => document.body.style.zoom = "100%", 100);
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
             return (
@@ -374,7 +418,7 @@ class Step3 extends React.Component {
                                 <WorkedImg onClick={this.handleLabel} />
                             </Grid>
                         <Grid container>
-                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 1200,height: 1200, zoom : "60%"}}>
+                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 1000,height: 1000, zoom : "70%"}}>
                                     <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </Grid>
                             <Grid item xs={12} lg={5} xl={6} style={{marginLeft:"auto", marginTop:10}}>
@@ -442,14 +486,21 @@ class Step3 extends React.Component {
                         <div>
                             <hr></hr>
                         </div>
-                        <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
+                        <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}>
                             <Button
                                     type="button"
                                     className={classes.buttonType2}
+                                    disabled={this.state.tabIndex1 === 1 ? true : false}
                                     variant="outlined"
                                     onClick={()=>this.handleSubmit()}
                             >
                                 저장
+                            </Button>
+                            <Button variant="outlined" color="secondary"
+                                    className={classes.buttonType2}
+                                    disabled={this.state.tabIndex1 === 0 ? true : false}
+                                    style={{display:'inline', marginRight:5}} onClick={this.handleDeleteImg}>
+                                이미지 삭제
                             </Button>
                         </Grid>
 
@@ -457,6 +508,7 @@ class Step3 extends React.Component {
                         <p><ErrorIcon/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 </p>
                         <p><ErrorIcon/> 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 </p>
                         <p><ErrorIcon/> 이미지에 해당되는 모든 탭의 정보를 입력한 후 저장버튼을 눌러주세요.</p>
+                        <p><ErrorIcon/> 전체선택 후 페이지이동시 이전 선택은 무효 처리 됩니다.</p>
                     </Typography>
                 </Container>
             );

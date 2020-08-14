@@ -9,7 +9,9 @@ import java.util.Map;
 
 public interface KfashionWorkMapper {
     Long insertWork(KfashionWork work);
+
     void updateWork(KfashionWork work);
+
     Long selectWorkNo(String workName);
 
     void updateWorkName(KfashionWork work);
@@ -26,4 +28,7 @@ public interface KfashionWorkMapper {
 
     List<Long> selectWorkAssignmentCancel(HashMap<String, Object> workAssignmentCancelMap);
 
+    String selectWorkName(Long workNo);
+
+    Long[] selectJsonWorkList();
 }

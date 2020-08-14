@@ -57,7 +57,7 @@ export default class Detail1 extends React.Component {
         })
 
     }
-    handledDetail=(detail)=>{console.log("1111 : 실행");
+    handledDetail=(detail)=>{
         if(this.props.onClick) {
             this.props.onClick(detail);
         }

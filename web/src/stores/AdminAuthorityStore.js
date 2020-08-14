@@ -41,7 +41,6 @@ export default class AdminAuthorityStore {
          const formData = new FormData();
          formData.append("id",this.newAdmin.id);
          formData.append("groupNo",this.newAdmin.groupNo);
-          console.log(formData);
         const resp = yield axios.post('/api/v1/kfashion/group/updateUser', formData);
             if (resp.status === 200) {
                 this.LoadUserList();

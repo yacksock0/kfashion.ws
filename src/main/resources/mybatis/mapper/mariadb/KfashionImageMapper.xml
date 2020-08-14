@@ -1,11 +1,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.aetherit.kfashion.ws.repository.mapper.KfashionImageMapper">
     <resultMap id="kfashionImageResultMap" type="KfashionImage">
-        <id property="workNo"                       column="work_no" />
-        <result property="imgData"             column="img_data" />
+        <id property="workNo"                   column="work_no" />
+        <result property="imgData"              column="img_data" />
         <result property="workName"             column="work_name" />
         <result property="fileName"             column="file_name" />
-        <result property="createdId"             column="created_id" />
+        <result property="createdId"            column="created_id" />
         <result property="createdDatetime"      column="created_datetime" />
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
@@ -103,7 +103,7 @@
         WHERE work_no=#{workNo}
     </delete>
 
-    <select id="selectProfessionalList" resultMap="kfashionImageResultMap" parameterType="String">
+    <select id="selectProfessionalList" resultMap="kfashionImageResultMap">
         SELECT DISTINCT
         kfashion_image.work_no,
         kfashion_work.work_name,
@@ -136,7 +136,7 @@
          AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                            FROM kfashion_work_history
                                            WHERE kfashion_work_history.work_step = 8)
-         ORDER BY created_id = #{createdId} ASC, work_no
+         ORDER BY created_id = #{createdId} DESC, kfashion_work_history.updated_datetime DESC
     </select>
 
     <select id="selectInspectionHighList" resultMap="kfashionImageResultMap">
@@ -163,6 +163,18 @@
             INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
         WHERE kfashion_work_history.work_step = 6 And  kfashion_work_history.created_id = #{created_Id}
         ORDER BY kfashion_work_history.updated_datetime DESC LIMIT 5
+    </select>
+    
+    <select id="selectTotalCount" resultType="int">
+        SELECT DISTINCT
+            COUNT(kfashion_work_history.work_no)AS totalCount
+        FROM kfashion_image
+                 INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+        WHERE kfashion_work_history.created_id =  #{createdId}
+          AND kfashion_work_history.work_step = 5
+          AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                   FROM kfashion_work_history
+                                                   WHERE kfashion_work_history.work_step = 6)
     </select>
 
 </mapper>

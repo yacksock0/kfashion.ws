@@ -15,5 +15,6 @@ public class DatabaseProperties {
     private int minIdle;
     private int maxPoolSize;
     private String configLocation;
+
 }
 

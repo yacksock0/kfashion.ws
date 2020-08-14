@@ -23,7 +23,10 @@ public class KfashionWorkService {
     public Long insertWork(KfashionWork work) {
         return repository.insertWork(work);
     }
-    public void updateWork(KfashionWork work) { repository.updateWork(work); }
+
+    public void updateWork(KfashionWork work) {
+        repository.updateWork(work);
+    }
 
     public Long selectWorkNo(String workName) {
         return repository.selectWorkNo(workName);
@@ -55,5 +58,13 @@ public class KfashionWorkService {
 
     public List<Long> selectWorkAssignmentCancel(HashMap<String, Object> workAssignmentCancelMap) {
         return repository.selectWorkAssignmentCancel(workAssignmentCancelMap);
+    }
+
+    public String selectWorkName(Long workNo) {
+        return repository.selectWorkName(workNo);
+    }
+
+    public Long[] selectJsonWorkList() {
+        return repository.selectJsonWorkList();
     }
 }

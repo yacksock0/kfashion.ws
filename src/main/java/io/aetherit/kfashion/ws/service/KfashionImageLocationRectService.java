@@ -1,6 +1,5 @@
 package io.aetherit.kfashion.ws.service;
 
-import io.aetherit.kfashion.ws.model.KfashionCategoryItem;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationRect;
 import io.aetherit.kfashion.ws.repository.KfashionImageLocationRectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class KfashionImageLocationRectService {
     }
 
     public String insertLocationRect(KfashionImageLocationRect rect) {
-        String msg ="success";
+        String msg = "success";
         repository.insertLocationRect(rect);
         return msg;
     }
@@ -34,5 +33,25 @@ public class KfashionImageLocationRectService {
 
     public void deleteRect(Map<String, Object> deleteMap) {
         repository.deleteRect(deleteMap);
+    }
+
+    public int[] selectRectNo(Long workNo) {
+        return repository.selectRectNo(workNo);
+    }
+
+    public List<KfashionImageLocationRect> selectOuterRectList(Long workNo) {
+        return repository.selectOuterRectList(workNo);
+    }
+
+    public List<KfashionImageLocationRect> selectTopRectList(Long workNo) {
+        return repository.selectTopRectList(workNo);
+    }
+
+    public List<KfashionImageLocationRect> selectPantsRectList(Long workNo) {
+        return repository.selectPantsRectList(workNo);
+    }
+
+    public List<KfashionImageLocationRect> selectOnePieceRectList(Long workNo) {
+        return repository.selectOnePieceRectList(workNo);
     }
 }

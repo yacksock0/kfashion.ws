@@ -20,8 +20,12 @@ public class KfashionWorkRepository {
     }
 
     public Long insertWork(KfashionWork work) {
-        return mapper.insertWork(work); }
-    public void updateWork(KfashionWork work) { mapper.updateWork(work); }
+        return mapper.insertWork(work);
+    }
+
+    public void updateWork(KfashionWork work) {
+        mapper.updateWork(work);
+    }
 
     public Long selectWorkNo(String workName) {
         return mapper.selectWorkNo(workName);
@@ -53,5 +57,13 @@ public class KfashionWorkRepository {
 
     public List<Long> selectWorkAssignmentCancel(HashMap<String, Object> workAssignmentCancelMap) {
         return mapper.selectWorkAssignmentCancel(workAssignmentCancelMap);
+    }
+
+    public String selectWorkName(Long workNo) {
+        return mapper.selectWorkName(workNo);
+    }
+
+    public Long[] selectJsonWorkList() {
+        return mapper.selectJsonWorkList();
     }
 }

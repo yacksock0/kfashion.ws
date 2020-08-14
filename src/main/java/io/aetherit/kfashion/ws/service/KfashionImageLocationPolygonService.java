@@ -5,7 +5,6 @@ import io.aetherit.kfashion.ws.repository.KfashionImageLocationPolygonRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -18,7 +17,7 @@ public class KfashionImageLocationPolygonService {
     }
 
     public String insertLocationPolygon(KfashionImageLocationPolygon polygon) {
-        String msg="";
+        String msg = "";
         repository.insertLocationPolygon(polygon);
         return msg;
     }

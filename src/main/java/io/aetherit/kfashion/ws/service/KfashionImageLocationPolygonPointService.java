@@ -1,13 +1,10 @@
 package io.aetherit.kfashion.ws.service;
 
-import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygon;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygonPoint;
 import io.aetherit.kfashion.ws.repository.KfashionImageLocationPolygonPointRepository;
-import io.aetherit.kfashion.ws.repository.KfashionImageLocationPolygonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +18,9 @@ public class KfashionImageLocationPolygonPointService {
     }
 
     public String insertLocationPolygonPoint(KfashionImageLocationPolygonPoint polygonPoint) {
-        String msg ="";
+        String msg = "";
         repository.insertLocationPolygonPoint(polygonPoint);
-        return msg="success";
+        return msg = "success";
     }
 
     public List<KfashionImageLocationPolygonPoint> selectPolyNoList(Long workNo) {
@@ -39,10 +36,14 @@ public class KfashionImageLocationPolygonPointService {
     }
 
     public int[] selectLabelNo(Long workNo) {
-        return  repository.selectLabelNo(workNo);
+        return repository.selectLabelNo(workNo);
     }
 
     public void deletePolyPoint(Map<String, Object> deleteMap) {
         repository.deletePolyPoint(deleteMap);
+    }
+
+    public List<KfashionImageLocationPolygonPoint> selectPolygonList(KfashionImageLocationPolygonPoint polygon) {
+        return repository.selectPolygonList(polygon);
     }
 }

@@ -110,35 +110,29 @@ export default class MessageStore {
         this.newMsg.sendId = value;
     }
     @action changeWorkType=(value)=>{
-        console.log('changeWorkType',value)
         if(value == 'outer'){
             this.newMsg.workType1 = 1;
             this.checkBox.outer = true;
             this.newMsg.workStep1=3;
             this.polyInfo(true);
-            console.log('changeWorkType',this.newMsg.workType1)
         }else if(value == 'top'){
             this.newMsg.workType2 = 2;
             this.checkBox.top = true;
             this.newMsg.workStep1=3;
             this.polyInfo(true);
-            console.log('changeWorkType',this.newMsg.workType2)
         }else if(value == 'pants'){
             this.newMsg.workType3 = 3;
             this.checkBox.pants = true;
             this.newMsg.workStep1=3;
             this.polyInfo(true);
-            console.log('changeWorkType',this.newMsg.workType3)
         }if(value == 'onepiece') {
             this.newMsg.workType4 = 4;
             this.checkBox.onepiece = true;
             this.newMsg.workStep1=3;
             this.polyInfo(true);
-            console.log('changeWorkType',this.newMsg.workType4)
         }
     }
     @action changeWorkType1=(value)=>{
-        console.log('changeWorkType',value)
         if(value == 'outer'){
             this.newMsg.workType1 = '';
             this.checkBox.outer = false;
@@ -158,7 +152,6 @@ export default class MessageStore {
 
     sendMsg = flow(function* sendMsg() {
         const param = toJS(this.newMsg);
-        console.log('param', param)
         try {
             const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
             if (resp.status === 200) {

@@ -97,7 +97,6 @@ export default class PolygonStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/label/labelNoList?workNo='+workNo);
             this.labelNoList = response.data.labelNoList;
-            console.log("labelNoList",this.labelNoList);
             labelNoListCallback(response.data.labelNoList, workNo);
         } catch (e) {
             console.log('error')

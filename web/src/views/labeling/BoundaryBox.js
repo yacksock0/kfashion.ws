@@ -198,7 +198,6 @@ class BoundaryBox extends React.Component {
                 this.add(rect);
                 this.setActiveObject(rect);
                 this.selection = false;
-                console.log(rect);
                 // this.add(upX, upY, width, height);
             }
         });
@@ -277,12 +276,11 @@ class BoundaryBox extends React.Component {
             buttonDis3: true,
             buttonDis4: true,
         });
-        console.log(rectNo);
         switch (rectNo) {
-            case 1 : console.log('1'); this.setState({buttonDis1: false}); break;
-            case 2 : console.log('2');this.setState({buttonDis2: false}); break;
-            case 3 : console.log('3');this.setState({buttonDis3: false}); break;
-            case 4 : console.log('4');this.setState({buttonDis4: false}); break;
+            case 1 : this.setState({buttonDis1: false}); break;
+            case 2 : this.setState({buttonDis2: false}); break;
+            case 3 : this.setState({buttonDis3: false}); break;
+            case 4 : this.setState({buttonDis4: false}); break;
         }
     }
 
@@ -316,19 +314,15 @@ class BoundaryBox extends React.Component {
         this.deleteAll();
         switch (rectNo) {
             case 1 :
-                console.log('1');
                 this.save1 = true;
                 break;
             case 2 :
-                console.log('2');
                 this.save2 = true;
                 break;
             case 3 :
-                console.log('3');
                 this.save3 = true;
                 break;
             case 4 :
-                console.log('4');
                 this.save4 = true;
                 break;
         }

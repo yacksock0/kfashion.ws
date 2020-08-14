@@ -42,6 +42,7 @@ public class KfashionUserInfoService {
         notAcceptableIdMap.put("logout", false);
         notAcceptableIdMap.put("logincheck", false);
     }
+
     private KfashionUserInfoRepository repository;
     private PasswordEncoder passwordEncoder;
     private JavaMailSender mailSender;
@@ -63,7 +64,7 @@ public class KfashionUserInfoService {
         char isAdmin = 'Y';
         final List<KfashionUserInfo> users = getUsers(isAdmin);
 
-        if((users == null) || (users.size() < 1)) {
+        if ((users == null) || (users.size() < 1)) {
             logger.info("Admin account not exists : create a default admin account");
 
             final KfashionUserInfo newAdmin = KfashionUserInfo.builder()
@@ -85,7 +86,7 @@ public class KfashionUserInfoService {
 
     @Transactional
     public String createNewUser(KfashionUserInfo user) throws Exception {
-        String msg="";
+        String msg = "";
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repository.createNewUser(user);
 
@@ -94,7 +95,6 @@ public class KfashionUserInfoService {
         emailAuthority.setUserId(user.getId());
         emailAuthority.setAuthKey(authKey);
         kfashionEmailAuthorityRepository.insertAuthkey(emailAuthority);
-
 
 
         // mail 작성 관련
@@ -113,11 +113,12 @@ public class KfashionUserInfoService {
         sendMail.setTo(user.getEmail());
         sendMail.send();
         msg = "인증 메일이 발송 되었 습니다.";
-            return msg;
+        return msg;
     }
 
     /**
      * 사용자 등록 인증메일 검증
+     *
      * @param authMail
      * @return
      * @throws Exception
@@ -126,21 +127,21 @@ public class KfashionUserInfoService {
         String msg = "";
         try {
             String id = kfashionEmailAuthorityRepository.selectCheckAuthMail(authMail);
-            if(id != null) {
+            if (id != null) {
                 kfashionEmailAuthorityRepository.updateAuthority(authMail);
                 repository.updateAuthUser(id);
                 URI redirectUri = new URI("http://localhost:80/sign/success");
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.setLocation(redirectUri);
                 return new ResponseEntity<Object>(httpHeaders, HttpStatus.SEE_OTHER);
-            }else {
+            } else {
                 URI redirectUri = new URI("http://localhost:80/sign/fail");
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.setLocation(redirectUri);
                 return new ResponseEntity<Object>(httpHeaders, HttpStatus.NOT_FOUND);
             }
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             URI redirectUri = new URI("http://localhost:80/sign/fail");
             HttpHeaders httpHeaders = new HttpHeaders();
@@ -162,7 +163,7 @@ public class KfashionUserInfoService {
     private boolean isNotAcceptableId(String id) {
         boolean isNotAcceptable = false;
 
-        if((id == null) || (id.length() < 1) || (id.contains(" ")) || (notAcceptableIdMap.containsKey(id.toLowerCase()))) {
+        if ((id == null) || (id.length() < 1) || (id.contains(" ")) || (notAcceptableIdMap.containsKey(id.toLowerCase()))) {
             isNotAcceptable = true;
         }
 

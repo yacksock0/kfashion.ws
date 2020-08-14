@@ -11,7 +11,7 @@ import SleeveLength1 from "./step2/SleeveLength1";
 import SleeveLength2 from "./step2/SleeveLength2";
 import SleeveLength4 from "./step2/SleeveLength4";
 import {inject, observer} from "mobx-react";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import BasicImageList from "./step2/BasicImageList";
 import {fabric} from "fabric";
@@ -39,8 +39,8 @@ const styles = theme => ({
 
     mainContainer: {
         flexGrow: 1,
-        marginTop:20,
-        maxWidth:'100%',
+        marginTop: 20,
+        maxWidth: '100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -50,31 +50,31 @@ const styles = theme => ({
     },
     toolbar: {
         width: '100%',
-        padding:0,
+        padding: 0,
     },
-    buttonType1:{
+    buttonType1: {
         width: 100,
         marginRight: theme.spacing(2),
     },
-    buttonType2:{
+    buttonType2: {
         width: 150,
-        float:'right',
+        float: 'right',
 
     },
-    toolButton:{
-        border:'1px solid black',
-        height:50,
-        width:'100%',
+    toolButton: {
+        border: '1px solid black',
+        height: 50,
+        width: '100%',
     },
-    toolBox:{
-        border:'1px solid black',
+    toolBox: {
+        border: '1px solid black',
         marginRight: 1,
-        height:'100%',
+        height: '100%',
     },
-    canvas:{
-        width:'100%',
-        minWidth:'100%',
-        height:'100vh',
+    canvas: {
+        width: '100%',
+        minWidth: '100%',
+        height: '100vh',
     },
     fileText: {
         paddingTop: 32,
@@ -98,22 +98,23 @@ const styles = theme => ({
         border: 0,
         borderRadius: 12,
     },
-    });
+});
 
-@inject('basicLabelStore','authStore','imageStore','polygonStore', 'currentStepStore','basicCategoryStore', 'checkHighLabelStore')
+@inject('basicLabelStore', 'authStore', 'imageStore', 'polygonStore', 'currentStepStore', 'basicCategoryStore', 'checkHighLabelStore')
 @observer
 class Step2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            comment:'',
-            workNo : 0,
-            imageData:'',
-            polyNo:'',
-            tabIndex1:1,
-            tabIndex2:0,
-            tabController : [],
-            canvasWidth:0,
+            selected : [],
+            comment: '',
+            workNo: 0,
+            imageData: '',
+            polyNo: '',
+            tabIndex1: 1,
+            tabIndex2: 0,
+            tabController: [],
+            canvasWidth: 0,
             canvasHeight: 0,
         }
         this.handleClickSubColor1 = this.handleClickSubColor1.bind(this)
@@ -140,7 +141,7 @@ class Step2 extends React.Component {
         this.setState({createdId: id});
         this.props.enqueueSnackbar("기본 레이블링", {
             variant: 'success',
-            anchorOrigin:{
+            anchorOrigin: {
                 vertical: 'bottom',
                 horizontal: 'left',
             }
@@ -191,28 +192,28 @@ class Step2 extends React.Component {
 
     handleClickItem = (workNo, imageData, polyNo, comment) => {
         let check = true;
-        if(this.state.workNo !=0){
+        if (this.state.workNo != 0) {
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
         }
-        if(check){
+        if (check) {
             this.deleteAll();
-            this.setState( {comment:comment})
+            this.setState({comment: comment})
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.canvas.setWidth(0);
             this.canvas.setHeight(0);
             this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
-            if(comment == null){
+            if (comment == null) {
                 this.props.polygonStore.LoadPolygonLocation(workNo, this.polyListCallback);
-            }else{
+            } else {
                 this.props.polygonStore.LoadPolygonLocation(workNo);
                 this.props.polygonStore.LoadLabelNoList(workNo, this.labelNoListCallback);
             }
         }
     }
-    labelNoListCallback = (labelNoList, workNo)=>{
-        let tabIndex2 =labelNoList[0] -1;
-        this.setState({ tabController : labelNoList, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
+    labelNoListCallback = (labelNoList, workNo) => {
+        let tabIndex2 = labelNoList[0] - 1;
+        this.setState({tabController: labelNoList, workNo: workNo});
+        this.setState({tabIndex1: 0, tabIndex2: tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: this.canvas.width,
             height: this.canvas.height,
@@ -221,10 +222,10 @@ class Step2 extends React.Component {
         });
     }
 
-    polyListCallback= (polyInfo, workNo)=>{
-        let tabIndex2 =polyInfo[0] -1;
-        this.setState({ tabController : polyInfo, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : tabIndex2});
+    polyListCallback = (polyInfo, workNo) => {
+        let tabIndex2 = polyInfo[0] - 1;
+        this.setState({tabController: polyInfo, workNo: workNo});
+        this.setState({tabIndex1: 0, tabIndex2: tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: this.canvas.width,
             height: this.canvas.height,
@@ -250,22 +251,34 @@ class Step2 extends React.Component {
     }
 
 
-    handleClickSubColor1(){
-        if(this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
-            this.props.checkHighLabelStore.deleteSubColor1();}
+    handleClickSubColor1() {
+        if (this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0) {
+            alert('메인 색상을 먼저 선택해 주세요');
+            this.props.checkHighLabelStore.deleteSubColor1();
+        }
     }
-    handleClickSubColor2(){
-        if(this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
-            this.props.checkHighLabelStore.deleteSubColor2();}
+
+    handleClickSubColor2() {
+        if (this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0) {
+            alert('메인 색상을 먼저 선택해 주세요');
+            this.props.checkHighLabelStore.deleteSubColor2();
+        }
     }
-    handleClickSubColor3(){
-        if(this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
-            this.props.checkHighLabelStore.deleteSubColor3();}
+
+    handleClickSubColor3() {
+        if (this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0) {
+            alert('메인 색상을 먼저 선택해 주세요');
+            this.props.checkHighLabelStore.deleteSubColor3();
+        }
     }
-    handleClickSubColor4(){
-        if(this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0 ){ alert('메인 색상을 먼저 선택해 주세요');
-            this.props.checkHighLabelStore.deleteSubColor4();}
+
+    handleClickSubColor4() {
+        if (this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0) {
+            alert('메인 색상을 먼저 선택해 주세요');
+            this.props.checkHighLabelStore.deleteSubColor4();
+        }
     }
+
     handleDelete1() {
         this.props.checkHighLabelStore.deleteSleeveLength1();
     }
@@ -314,20 +327,18 @@ class Step2 extends React.Component {
         this.props.checkHighLabelStore.deleteSubColor4();
     }
 
-    lineTwoPoint =[];
+    lineTwoPoint = [];
     x;
     y;
 
     onSelectTab2(tabIndex2) {
-        console.log(this.props.polygonStore.polyLast);
         let polyNo = tabIndex2 + 1;
         const {locationPolygonList} = this.props.polygonStore;
         const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
 
         if (selectedPoly.length !== 0) {
             this.deleteAll();
-            for(let i = 0 ; i <selectedPoly.length; i++) {
-                console.log( this.lineTwoPoint);
+            for (let i = 0; i < selectedPoly.length; i++) {
                 this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
@@ -345,7 +356,7 @@ class Step2 extends React.Component {
                 // this.canvas.add(circle);
                 // this.canvas.bringToFront(circle)
 
-                if(i !=0) {
+                if (i != 0) {
                     let x1 = this.lineTwoPoint[0];
                     let x2 = this.lineTwoPoint[2];
                     let x3 = 0;
@@ -383,10 +394,10 @@ class Step2 extends React.Component {
                     this.canvas.sendToBack(polyline);
                 }
             }
-            let x1 = selectedPoly[selectedPoly.length-1].locationX;
+            let x1 = selectedPoly[selectedPoly.length - 1].locationX;
             let x2 = selectedPoly[0].locationX;
             let x3 = 0;
-            let y1 = selectedPoly[selectedPoly.length-1].locationY;
+            let y1 = selectedPoly[selectedPoly.length - 1].locationY;
             let y2 = selectedPoly[0].locationY;
             let y3 = 0;
             this.lineTwoPoint = [x1, y1, x2, y2];
@@ -433,9 +444,7 @@ class Step2 extends React.Component {
     handleSave = () => {
         const {polyInfo} = this.props.polygonStore;
         let savebtn = true;
-        console.log(polyInfo);
         for (let i = 0; i < polyInfo.length; i++) {
-            console.log("!!!!!!" + polyInfo[i]);
             switch (polyInfo[i]) {
                 case 1 :
                     if (this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0) {
@@ -464,7 +473,7 @@ class Step2 extends React.Component {
                     }
                     break;
                 case 3 :
-                    if (this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 ==0) {
+                    if (this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0) {
                         alert("하의의 메인색상을 선택해주세요");
                         savebtn = false;
                         i = polyInfo.length;
@@ -487,18 +496,27 @@ class Step2 extends React.Component {
             }
         }
         if (savebtn) {
-            if(this.state.workNo != 0){
+            if (this.state.workNo != 0) {
                 const finalCheck = window.confirm("이미지에 필요한 정보를 입력하셨습니까?");
-                if(finalCheck){
-                    this.props.checkHighLabelStore.DoBasicLabelUp();
+                if (finalCheck) {
+                    const selected = toJS(this.props.checkHighLabelStore.selectedItem);
+                    if(selected.length > 0 && selected !== null) {
+                        this.props.checkHighLabelStore.DoSelectedBasicLabelUp(selected);
+                    }
+                    else {
+                        this.props.checkHighLabelStore.DoBasicLabelUp();
+                    }
                     this.setState({
-                        tabIndex1 : 1,
+                        tabIndex1: 1,
+                        workNo : 0,
                     });
                     this.canvas.backgroundImage = 0;
+                    this.canvas.setWidth(0);
+                    this.canvas.setHeight(0);
                     this.canvas.renderAll();
                     this.deleteAll();
                 }
-            }else{
+            } else {
                 alert("작업을 먼저 선택해 주세요.");
                 this.setState({
                     tabIndex1: 1,
@@ -508,21 +526,32 @@ class Step2 extends React.Component {
 
     }
     handleUpdate = () => {
-            const finalCheck = window.confirm("이미지 수정을 완료하셨습니까?");
-            if(finalCheck){
+        const finalCheck = window.confirm("이미지 수정을 완료하셨습니까?");
+        if (finalCheck) {
+            const selected = toJS(this.props.checkHighLabelStore.selectedItem);
+            if(selected.length > 0 && selected !== null) {
+                this.props.checkHighLabelStore.DeleteSelectedBasicLabel(selected);
+            }
+            else {
                 this.props.checkHighLabelStore.DeleteBasicLabel();
-                this.deleteAll();
-                this.setState({
-                    tabIndex1 : 1,
-                });
-        }else{
+            }
+            this.canvas.backgroundImage = 0;
+            this.canvas.setWidth(0);
+            this.canvas.setHeight(0);
+            this.canvas.renderAll();
+            this.deleteAll();
+            this.setState({
+                workNo : 0,
+                tabIndex1: 1,
+            });
+        } else {
             this.setState({
                 tabIndex1: 1,
             });
         }
     }
 
-    deleteAll = () =>{
+    deleteAll = () => {
         let objList = [];
         this.canvas.getObjects().forEach(function (o) {
             objList.push(o);
@@ -531,400 +560,498 @@ class Step2 extends React.Component {
             this.canvas.remove(objList[i]);
         }
     }
-    onSelectTab1 =( tabIndex1 ) => {
-        if(this.state.workNo != 0){
-            this.setState({tabIndex1 : tabIndex1 });
-        }else{
+    onSelectTab1 = (tabIndex1) => {
+        if (this.state.workNo != 0) {
+            if(tabIndex1 === 1) {
+                this.setState({
+                    selected : [],
+                    workNo : 0,
+                })
+                this.canvas.backgroundImage = 0;
+                this.canvas.setWidth(0);
+                this.canvas.setHeight(0);
+                this.canvas.renderAll();
+                this.deleteAll();
+            }
+            this.setState({tabIndex1: tabIndex1});
+        } else {
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
 
     }
-    nextTab =() => {
+    nextTab = () => {
         const {polyInfo} = this.props.polygonStore;
         const currentTap = this.state.tabIndex2;
-        let tabIndex2 =0;
-        for(let i=0;i < polyInfo.length; i++){
-            if(polyInfo[i] == this.state.tabIndex2+1 ){
-                tabIndex2 = (polyInfo[i+1]-1);
-                this.setState({tabIndex2 : tabIndex2});
+        let tabIndex2 = 0;
+        for (let i = 0; i < polyInfo.length; i++) {
+            if (polyInfo[i] == this.state.tabIndex2 + 1) {
+                tabIndex2 = (polyInfo[i + 1] - 1);
+                this.setState({tabIndex2: tabIndex2});
             }
-        }this.onSelectTab2(tabIndex2);
+        }
+        this.onSelectTab2(tabIndex2);
     }
+
     render() {
-        setTimeout(() => document.body.style.zoom = "80%", 100);
-        const {classes,history} = this.props;
+        setTimeout(() => document.body.style.zoom = "100%", 100);
+        const {classes, history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
-        const {polyLast,polyInfo,polygonList} = this.props.polygonStore;
-        const {outerReviewHighLabel, topReviewHighLabel , pantsReviewHighLabel, onepieceReviewHighLabel, }= this.props.checkHighLabelStore;
+        const {polyLast, polyInfo, polygonList} = this.props.polygonStore;
+        const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onepieceReviewHighLabel,} = this.props.checkHighLabelStore;
         return (
             <Container component="main" className={classes.mainContainer}>
-                <div className={classes.appBarSpacer} />
+                <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
-                 <Grid container>
-                     <Grid item xs={12} lg={6} xl={5} style={{marginTop:10, overflow:'auto',height: 800}}>
-                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
-                     </Grid>
-                     <Grid item xs={12} lg={6} xl={5} style={{marginLeft:'auto'}}>
-                         <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
-                             <TabList >
-                                 <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>기본 레이블링</h3></Tab>
-                                 <Tab  style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
-                             </TabList>
+                    <Grid container>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "70%"}}>
+                            <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
+                        </Grid>
+                        <Grid item xs={12} lg={6} xl={5} style={{marginLeft: 'auto'}}>
+                            <Tabs selectedIndex={this.state.tabIndex1}
+                                  onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
+                                <TabList>
+                                    <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>기본 레이블링</h3></Tab>
+                                    <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>이미지 리스트</h3></Tab>
+                                </TabList>
 
-                         <TabPanel>
-                             <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
-                                 <TabList >
-                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                           disabled={"" == this.state.tabController.filter((poly=> poly == 1))}
-                                     ><h3>아우터</h3></Tab>
-                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                           disabled={"" == this.state.tabController.filter((poly=> poly == 2))}
-                                     ><h3>상의</h3></Tab>
-                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                           disabled={"" == this.state.tabController.filter((poly=> poly == 3))}
-                                     ><h3>하의</h3></Tab>
-                                     <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                           disabled={"" == this.state.tabController.filter((poly=> poly == 4))}
-                                     ><h3>원피스</h3></Tab>
-                                 </TabList>
+                                <TabPanel>
+                                    <Tabs selectedIndex={this.state.tabIndex2}
+                                          onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
+                                        <TabList>
+                                            <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
+                                                 disabled={"" == this.state.tabController.filter((poly => poly == 1))}
+                                            ><h3>아우터</h3></Tab>
+                                            <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
+                                                 disabled={"" == this.state.tabController.filter((poly => poly == 2))}
+                                            ><h3>상의</h3></Tab>
+                                            <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
+                                                 disabled={"" == this.state.tabController.filter((poly => poly == 3))}
+                                            ><h3>하의</h3></Tab>
+                                            <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
+                                                 disabled={"" == this.state.tabController.filter((poly => poly == 4))}
+                                            ><h3>원피스</h3></Tab>
+                                        </TabList>
 
-                             <TabPanel>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                     <Typography variant="h5" component="h2" style={{display:'inline'}}>
-                                         색상
-                                     </Typography>
-                                         &nbsp;&nbsp;{!outerReviewHighLabel.colorCategoryNo1 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
-                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                 <Color1 onClickSub={this.handleClickSubColor1} style={{display:'inline', float:'right'}}/>
-                                             </div>
-                                     <div>
-                                         <hr></hr>
-                                     </div>
-                                     <div>
-                                             <br></br>
-                                         {outerReviewHighLabel.colorCategoryNo1 >0 ?
-                                             (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${outerReviewHighLabel.colorItemMemo1}`}} onClick={this.colorDelete1}>
+                                        <TabPanel>
+                                            <div className={classes.content} style={{display: 'inline'}}>
+                                                <Typography variant="h5" component="h2" style={{display: 'inline'}}>
+                                                    색상
+                                                </Typography>
+                                                &nbsp;&nbsp;{!outerReviewHighLabel.colorCategoryNo1 == 0 ?
+                                                <Typography style={{display: 'inline-block', color: 'red'}}>색상버튼 클릭 시
+                                                    색상이 삭제 됩니다.</Typography> : ''}
+                                                <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
+                                                    <Color1 onClickSub={this.handleClickSubColor1}
+                                                            style={{display: 'inline', float: 'right'}}/>
+                                                </div>
+                                                <div>
+                                                    <hr></hr>
+                                                </div>
+                                                <div>
+                                                    <br></br>
+                                                    {outerReviewHighLabel.colorCategoryNo1 > 0 ?
+                                                        (<div style={{
+                                                            display: 'inline-block',
+                                                            textAlign: 'center',
+                                                            width: 85,
+                                                            height: 85,
+                                                            margin: 'auto',
+                                                            border: '1px solid black',
+                                                            backgroundColor: `${outerReviewHighLabel.colorItemMemo1}`
+                                                        }} onClick={this.colorDelete1}>
 
-                                     </div>) : ''
-                                         }
-                                         &nbsp;
-                                         {outerReviewHighLabel.subColorCategoryNo1 >0 ?
-                                             (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${outerReviewHighLabel.subColorItemMemo1}`}} onClick={this.colorDeleteSub1}>
-                                             </div>) : ''
-                                         }
-                                     </div>
-                                     </div>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                             <Typography variant="h5" component="h5" style={{display:'inline'}} >
-                                                 소매길이
-                                             </Typography>
-                                             <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                                 <SleeveLength1 />
-                                             </div>
-                                         <div>
-                                             <hr></hr>
-                                         </div>
+                                                        </div>) : ''
+                                                    }
+                                                    &nbsp;
+                                                    {outerReviewHighLabel.subColorCategoryNo1 > 0 ?
+                                                        (<div style={{
+                                                            display: 'inline-block',
+                                                            textAlign: 'center',
+                                                            width: 85,
+                                                            height: 85,
+                                                            margin: 'auto',
+                                                            border: '1px solid black',
+                                                            backgroundColor: `${outerReviewHighLabel.subColorItemMemo1}`
+                                                        }} onClick={this.colorDeleteSub1}>
+                                                        </div>) : ''
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div className={classes.content} style={{display: 'inline'}}>
+                                                <Typography variant="h5" component="h5" style={{display: 'inline'}}>
+                                                    소매길이
+                                                </Typography>
+                                                <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
+                                                    <SleeveLength1/>
+                                                </div>
+                                                <div>
+                                                    <hr></hr>
+                                                </div>
 
-                                         <br></br>
-                                         {outerReviewHighLabel.sleeveLengthCategoryNo1 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined"  onClick={this.handleDelete1} endIcon={<DeleteIcon />} > {outerReviewHighLabel.sleeveLengthItemName1} </Button> ) : ''
-                                         }
+                                                <br></br>
+                                                {outerReviewHighLabel.sleeveLengthCategoryNo1 > 0 ?
+                                                    (<Button style={{fontSize: 20, width: 150, borderRadius: 50}}
+                                                             variant="outlined" onClick={this.handleDelete1} endIcon={
+                                                        <DeleteIcon/>}> {outerReviewHighLabel.sleeveLengthItemName1} </Button>) : ''
+                                                }
 
-                                         {polyLast === this.state.tabIndex2?(
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     disabled={!this.state.comment == ''}
-                                                     onClick={() => (this.handleSave())}
-                                             >
-                                                 저장
-                                             </Button>
-                                         ) : (
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     onClick={() => (this.nextTab())}
-                                             >
-                                                 다음
-                                             </Button>
-                                         )}
-                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
-                                             <Button style={{marginTop: 20,marginRight:10}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     onClick={() => (this.handleUpdate())}
-                                             >
-                                                 수정
-                                             </Button>
-                                             :''
-                                         }
-                                     </div>
-                                 </TabPanel>
+                                                {polyLast === this.state.tabIndex2 ? (
+                                                    <Button style={{marginTop: 20}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            disabled={!this.state.comment == ''}
+                                                            onClick={() => (this.handleSave())}
+                                                    >
+                                                        저장
+                                                    </Button>
+                                                ) : (
+                                                    <Button style={{marginTop: 20}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            onClick={() => (this.nextTab())}
+                                                    >
+                                                        다음
+                                                    </Button>
+                                                )}
+                                                {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                                    <Button style={{marginTop: 20, marginRight: 10}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            onClick={() => (this.handleUpdate())}
+                                                    >
+                                                        수정
+                                                    </Button>
+                                                    : ''
+                                                }
+                                            </div>
+                                        </TabPanel>
 
-                                 <TabPanel>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
-                                             색상
-                                         </Typography>
-                                         &nbsp;&nbsp;{!this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
-                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color2 onClickSub={()=>this.handleClickSubColor2()} style={{display:'inline', float:'right'}}/>
-                                         </div>
-                                         <div>
-                                             <hr></hr>
-                                         </div>
-                                         <div>
-                                             <br></br>
-                                             {this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2>0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.props.checkHighLabelStore.topReviewHighLabel.colorItemMemo2}`}} onClick={this.colorDelete2}>
+                                        <TabPanel>
+                                            <div className={classes.content} style={{display: 'inline'}}>
+                                                <Typography variant="h5" component="h2" style={{display: 'inline'}}>
+                                                    색상
+                                                </Typography>
+                                                &nbsp;&nbsp;{!this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0 ?
+                                                <Typography style={{display: 'inline-block', color: 'red'}}>색상버튼 클릭 시
+                                                    색상이 삭제 됩니다.</Typography> : ''}
+                                                <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
+                                                    <Color2 onClickSub={() => this.handleClickSubColor2()}
+                                                            style={{display: 'inline', float: 'right'}}/>
+                                                </div>
+                                                <div>
+                                                    <hr></hr>
+                                                </div>
+                                                <div>
+                                                    <br></br>
+                                                    {this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 > 0 ?
+                                                        (<div style={{
+                                                            display: 'inline-block',
+                                                            textAlign: 'center',
+                                                            width: 85,
+                                                            height: 85,
+                                                            margin: 'auto',
+                                                            border: '1px solid black',
+                                                            backgroundColor: `${this.props.checkHighLabelStore.topReviewHighLabel.colorItemMemo2}`
+                                                        }} onClick={this.colorDelete2}>
 
-                                                 </div>) : ''
-                                             }
-                                             &nbsp;
-                                             {this.props.checkHighLabelStore.topReviewHighLabel.subColorCategoryNo2 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.props.checkHighLabelStore.topReviewHighLabel.subColorItemMemo2}`}} onClick={this.colorDeleteSub2}>
-                                                 </div>) : ''
-                                             }
-                                         </div>
-                                     </div>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                         <Typography variant="h5" component="h5" style={{display:'inline'}} >
-                                             소매길이
-                                         </Typography>
-                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <SleeveLength2 />
-                                         </div>
-                                         <div>
-                                             <hr></hr>
-                                         </div>
-                                         <br></br>
-                                         {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined" onClick={this.handleDelete2} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button> ) : ''
-                                         }
+                                                        </div>) : ''
+                                                    }
+                                                    &nbsp;
+                                                    {this.props.checkHighLabelStore.topReviewHighLabel.subColorCategoryNo2 > 0 ?
+                                                        (<div style={{
+                                                            display: 'inline-block',
+                                                            textAlign: 'center',
+                                                            width: 85,
+                                                            height: 85,
+                                                            margin: 'auto',
+                                                            border: '1px solid black',
+                                                            backgroundColor: `${this.props.checkHighLabelStore.topReviewHighLabel.subColorItemMemo2}`
+                                                        }} onClick={this.colorDeleteSub2}>
+                                                        </div>) : ''
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div className={classes.content} style={{display: 'inline'}}>
+                                                <Typography variant="h5" component="h5" style={{display: 'inline'}}>
+                                                    소매길이
+                                                </Typography>
+                                                <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
+                                                    <SleeveLength2/>
+                                                </div>
+                                                <div>
+                                                    <hr></hr>
+                                                </div>
+                                                <br></br>
+                                                {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 > 0 ?
+                                                    (<Button style={{fontSize: 20, width: 150, borderRadius: 50}}
+                                                             variant="outlined" onClick={this.handleDelete2} endIcon={
+                                                        <DeleteIcon/>}> {this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthItemName2} </Button>) : ''
+                                                }
 
-                                         {polyLast === this.state.tabIndex2 ? (
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     disabled={!this.state.comment == ''}
-                                                     onClick={()=>(this.handleSave())}
-                                             >
-                                                 저장
-                                             </Button>
-                                         ):(
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     onClick={()=>(this.nextTab())}
-                                             >
-                                                 다음
-                                             </Button>
-                                         )}
-                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
-                                             <Button style={{marginTop: 20,marginRight:10}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     onClick={() => (this.handleUpdate())}
-                                             >
-                                                 수정
-                                             </Button>
-                                             :''
-                                         }
-                                     </div>
-                                 </TabPanel>
-                                 <TabPanel>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
-                                             색상
-                                         </Typography>
-                                         &nbsp;&nbsp;{!this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
-                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color3 onClickSub={()=>this.handleClickSubColor3()} style={{display:'inline', float:'right'}}/>
-                                         </div>
-                                         <div>
-                                             <hr></hr>
-                                         </div>
-                                         <div>
-                                             {this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.props.checkHighLabelStore.pantsReviewHighLabel.colorItemMemo3}`}} onClick={this.colorDelete3}>
+                                                {polyLast === this.state.tabIndex2 ? (
+                                                    <Button style={{marginTop: 20}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            disabled={!this.state.comment == ''}
+                                                            onClick={() => (this.handleSave())}
+                                                    >
+                                                        저장
+                                                    </Button>
+                                                ) : (
+                                                    <Button style={{marginTop: 20}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            onClick={() => (this.nextTab())}
+                                                    >
+                                                        다음
+                                                    </Button>
+                                                )}
+                                                {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                                    <Button style={{marginTop: 20, marginRight: 10}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            onClick={() => (this.handleUpdate())}
+                                                    >
+                                                        수정
+                                                    </Button>
+                                                    : ''
+                                                }
+                                            </div>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <div className={classes.content} style={{display: 'inline'}}>
+                                                <Typography variant="h5" component="h2" style={{display: 'inline'}}>
+                                                    색상
+                                                </Typography>
+                                                &nbsp;&nbsp;{!this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ?
+                                                <Typography style={{display: 'inline-block', color: 'red'}}>색상버튼 클릭 시
+                                                    색상이 삭제 됩니다.</Typography> : ''}
+                                                <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
+                                                    <Color3 onClickSub={() => this.handleClickSubColor3()}
+                                                            style={{display: 'inline', float: 'right'}}/>
+                                                </div>
+                                                <div>
+                                                    <hr></hr>
+                                                </div>
+                                                <div>
+                                                    {this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 > 0 ?
+                                                        (<div style={{
+                                                            display: 'inline-block',
+                                                            textAlign: 'center',
+                                                            width: 85,
+                                                            height: 85,
+                                                            margin: 'auto',
+                                                            border: '1px solid black',
+                                                            backgroundColor: `${this.props.checkHighLabelStore.pantsReviewHighLabel.colorItemMemo3}`
+                                                        }} onClick={this.colorDelete3}>
 
-                                                 </div>) : ''
-                                             }
-                                             &nbsp;
-                                             {this.props.checkHighLabelStore.pantsReviewHighLabel.subColorCategoryNo3 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.props.checkHighLabelStore.pantsReviewHighLabel.subColorItemMemo3}`}} onClick={this.colorDeleteSub3}>
-                                                 </div>) : ''
-                                             }
-                                         </div>
+                                                        </div>) : ''
+                                                    }
+                                                    &nbsp;
+                                                    {this.props.checkHighLabelStore.pantsReviewHighLabel.subColorCategoryNo3 > 0 ?
+                                                        (<div style={{
+                                                            display: 'inline-block',
+                                                            textAlign: 'center',
+                                                            width: 85,
+                                                            height: 85,
+                                                            margin: 'auto',
+                                                            border: '1px solid black',
+                                                            backgroundColor: `${this.props.checkHighLabelStore.pantsReviewHighLabel.subColorItemMemo3}`
+                                                        }} onClick={this.colorDeleteSub3}>
+                                                        </div>) : ''
+                                                    }
+                                                </div>
 
-                                         {polyLast === this.state.tabIndex2 ? (
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     disabled={! this.state.comment == ''}
-                                                     onClick={()=>(this.handleSave())}
-                                             >
-                                                 저장
-                                             </Button>
-                                         ):(
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     onClick={()=>(this.nextTab())}
-                                             >
-                                                 다음
-                                             </Button>
-                                         )}
-                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
-                                             <Button style={{marginTop: 20, marginRight:10}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     onClick={() => (this.handleUpdate())}
-                                             >
-                                                 수정
-                                             </Button>
-                                             :''
-                                         }
-                                     </div>
-                                 </TabPanel>
-                                 <TabPanel>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                         <Typography variant="h5" component="h2" style={{display:'inline'}}>
-                                             색상
-                                         </Typography>
-                                         &nbsp;&nbsp;{!this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0 ? <Typography style={{display:'inline-block', color:'red'}}>색상버튼 클릭 시 색상이 삭제 됩니다.</Typography>:''}
-                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <Color4 onClickSub={()=>this.handleClickSubColor4()} style={{display:'inline', float:'right'}}/>
-                                         </div>
-                                         <div>
-                                             <hr></hr>
-                                         </div>
-                                         <div>
-                                             <br></br>
-                                             {this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center',width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.props.checkHighLabelStore.onePieceReviewHighLabel.colorItemMemo4}`}} onClick={this.colorDelete4}>
+                                                {polyLast === this.state.tabIndex2 ? (
+                                                    <Button style={{marginTop: 20}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            disabled={!this.state.comment == ''}
+                                                            onClick={() => (this.handleSave())}
+                                                    >
+                                                        저장
+                                                    </Button>
+                                                ) : (
+                                                    <Button style={{marginTop: 20}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            onClick={() => (this.nextTab())}
+                                                    >
+                                                        다음
+                                                    </Button>
+                                                )}
+                                                {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                                    <Button style={{marginTop: 20, marginRight: 10}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            onClick={() => (this.handleUpdate())}
+                                                    >
+                                                        수정
+                                                    </Button>
+                                                    : ''
+                                                }
+                                            </div>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <div className={classes.content} style={{display: 'inline'}}>
+                                                <Typography variant="h5" component="h2" style={{display: 'inline'}}>
+                                                    색상
+                                                </Typography>
+                                                &nbsp;&nbsp;{!this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0 ?
+                                                <Typography style={{display: 'inline-block', color: 'red'}}>색상버튼 클릭 시
+                                                    색상이 삭제 됩니다.</Typography> : ''}
+                                                <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
+                                                    <Color4 onClickSub={() => this.handleClickSubColor4()}
+                                                            style={{display: 'inline', float: 'right'}}/>
+                                                </div>
+                                                <div>
+                                                    <hr></hr>
+                                                </div>
+                                                <div>
+                                                    <br></br>
+                                                    {this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 > 0 ?
+                                                        (<div style={{
+                                                            display: 'inline-block',
+                                                            textAlign: 'center',
+                                                            width: 85,
+                                                            height: 85,
+                                                            margin: 'auto',
+                                                            border: '1px solid black',
+                                                            backgroundColor: `${this.props.checkHighLabelStore.onePieceReviewHighLabel.colorItemMemo4}`
+                                                        }} onClick={this.colorDelete4}>
 
-                                                 </div>) : ''
-                                             }
-                                             &nbsp;
-                                             {this.props.checkHighLabelStore.onePieceReviewHighLabel.subColorCategoryNo4 >0 ?
-                                                 (<div style={{display:'inline-block',textAlign: 'center', width: 85, height: 85,margin:'auto',border:'1px solid black', backgroundColor: `${this.props.checkHighLabelStore.onePieceReviewHighLabel.subColorItemMemo4}`}} onClick={this.colorDeleteSub4}>
-                                                 </div>) : ''
-                                             }
-                                         </div>
-                                     </div>
-                                     <div className={classes.content} style={{display:'inline'}}>
-                                         <Typography variant="h5" component="h5" style={{display:'inline'}} >
-                                             소매길이
-                                         </Typography>
-                                         <div style={{display:'inline-block', float:'right', marginTop : -3}}>
-                                             <SleeveLength4 />
-                                         </div>
-                                         <div>
-                                             <hr></hr>
-                                         </div>
-                                         <br></br>
-                                         {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 >0 ?
-                                             (<Button style={{fontSize:20, width:150, borderRadius:50}} variant="outlined"  onClick={this.handleDelete4} endIcon={<DeleteIcon />} > {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button> ) : ''
-                                         }
+                                                        </div>) : ''
+                                                    }
+                                                    &nbsp;
+                                                    {this.props.checkHighLabelStore.onePieceReviewHighLabel.subColorCategoryNo4 > 0 ?
+                                                        (<div style={{
+                                                            display: 'inline-block',
+                                                            textAlign: 'center',
+                                                            width: 85,
+                                                            height: 85,
+                                                            margin: 'auto',
+                                                            border: '1px solid black',
+                                                            backgroundColor: `${this.props.checkHighLabelStore.onePieceReviewHighLabel.subColorItemMemo4}`
+                                                        }} onClick={this.colorDeleteSub4}>
+                                                        </div>) : ''
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div className={classes.content} style={{display: 'inline'}}>
+                                                <Typography variant="h5" component="h5" style={{display: 'inline'}}>
+                                                    소매길이
+                                                </Typography>
+                                                <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
+                                                    <SleeveLength4/>
+                                                </div>
+                                                <div>
+                                                    <hr></hr>
+                                                </div>
+                                                <br></br>
+                                                {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 > 0 ?
+                                                    (<Button style={{fontSize: 20, width: 150, borderRadius: 50}}
+                                                             variant="outlined" onClick={this.handleDelete4} endIcon={
+                                                        <DeleteIcon/>}> {this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthItemName4} </Button>) : ''
+                                                }
 
-                                         {polyLast === this.state.tabIndex2 ? (
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     disabled={!this.state.comment == ''}
-                                                     onClick={()=>(this.handleSave())}
-                                             >
-                                                 저장
-                                             </Button>
-                                         ):(
-                                             <Button style={{marginTop: 20}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     onClick={()=>(this.nextTab())}
-                                             >
-                                                 다음
-                                             </Button>
-                                         )}
-                                         {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
-                                             <Button style={{marginTop: 20, marginRight:10}}
-                                                     type="button"
-                                                     className={classes.buttonType2}
-                                                     variant="outlined"
-                                                     onClick={() => (this.handleUpdate())}
-                                             >
-                                                 수정
-                                             </Button>
-                                             :''
-                                         }
-                                     </div>
-                                 </TabPanel>
+                                                {polyLast === this.state.tabIndex2 ? (
+                                                    <Button style={{marginTop: 20}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            disabled={!this.state.comment == ''}
+                                                            onClick={() => (this.handleSave())}
+                                                    >
+                                                        저장
+                                                    </Button>
+                                                ) : (
+                                                    <Button style={{marginTop: 20}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            onClick={() => (this.nextTab())}
+                                                    >
+                                                        다음
+                                                    </Button>
+                                                )}
+                                                {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                                    <Button style={{marginTop: 20, marginRight: 10}}
+                                                            type="button"
+                                                            className={classes.buttonType2}
+                                                            variant="outlined"
+                                                            onClick={() => (this.handleUpdate())}
+                                                    >
+                                                        수정
+                                                    </Button>
+                                                    : ''
+                                                }
+                                            </div>
+                                        </TabPanel>
 
 
-                             </Tabs>
-                         </TabPanel>
-                             <TabPanel>
-                            <BasicImageList onClick={this.handleClickItem} />
-                          </TabPanel>
-                         </Tabs>
-                     </Grid>
-                 </Grid>
+                                    </Tabs>
+                                </TabPanel>
+                                <TabPanel>
+                                    <BasicImageList onClick={this.handleClickItem}/>
+                                </TabPanel>
+                            </Tabs>
+                        </Grid>
+                    </Grid>
                 </div>
 
                 <hr></hr>
                 <Grid container>
-                    <Grid item xs={3} lg={1} style={{marginRight:10}}>
-                {/*<Button*/}
-                {/*    type="submit"*/}
-                {/*    className={classes.buttonType1}*/}
-                {/*    variant="outlined"*/}
-                {/*    onClick={this.handlePrevious.bind(this)}*/}
-                {/*>*/}
-                {/*    Previous*/}
-                {/*</Button>*/}
-                {/*    </Grid>*/}
-                {/*    <Grid item xs={3} lg={1}>*/}
-                {/*<Button*/}
-                {/*    type="submit"*/}
-                {/*    className={classes.buttonType1}*/}
-                {/*    variant="outlined"*/}
-                {/*    onClick={this.handleNext.bind(this)}*/}
-                {/*>*/}
-                {/*    Next*/}
-                {/*</Button>*/}
+                    <Grid item xs={3} lg={1} style={{marginRight: 10}}>
+                        {/*<Button*/}
+                        {/*    type="submit"*/}
+                        {/*    className={classes.buttonType1}*/}
+                        {/*    variant="outlined"*/}
+                        {/*    onClick={this.handlePrevious.bind(this)}*/}
+                        {/*>*/}
+                        {/*    Previous*/}
+                        {/*</Button>*/}
+                        {/*    </Grid>*/}
+                        {/*    <Grid item xs={3} lg={1}>*/}
+                        {/*<Button*/}
+                        {/*    type="submit"*/}
+                        {/*    className={classes.buttonType1}*/}
+                        {/*    variant="outlined"*/}
+                        {/*    onClick={this.handleNext.bind(this)}*/}
+                        {/*>*/}
+                        {/*    Next*/}
+                        {/*</Button>*/}
                     </Grid>
                     {authorityNo > 3 ? (
-                    <Grid item xs={4} lg={2} style={{marginLeft:'auto'}}>
-                        <Button
-                            type="button"
-                            className={classes.buttonType2}
-                            variant="outlined"
-                            onClick={()=>history.push('/step3')}
-                        >
-                            Next Step
-                        </Button>
-                    </Grid>
-                        ): ''}
+                        <Grid item xs={4} lg={2} style={{marginLeft: 'auto'}}>
+                            <Button
+                                type="button"
+                                className={classes.buttonType2}
+                                variant="outlined"
+                                onClick={() => history.push('/step3')}
+                            >
+                                Next Step
+                            </Button>
+                        </Grid>
+                    ) : ''}
                 </Grid>
                 <ErrorIcon/>
-                <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                    우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 색상 및 소매길이 선택 후 다음 탭으로 이동 / 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭
+                <Typography variant="h6" component="h4" style={{display: 'inline'}}>
+                    우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 색상 및 소매길이 선택 후 다음 탭으로 이동 / 영역정보가 존재하는
+                    마지막 탭 입력 후 저장버튼 클릭
                 </Typography>
             </Container>
         );
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (Step2)));
+export default withSnackbar(withRouter(withStyles(styles)(Step2)));

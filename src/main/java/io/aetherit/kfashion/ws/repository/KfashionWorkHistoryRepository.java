@@ -6,7 +6,6 @@ import io.aetherit.kfashion.ws.repository.mapper.KfashionWorkHistoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,12 +26,12 @@ public class KfashionWorkHistoryRepository {
         mapper.deleteWorkHistory(workImage);
     }
 
-    public  KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId) {
+    public KfashionWorkHistory selectWorkProgressRate(HashMap<String, Object> createdId) {
         return mapper.selectWorkProgressRate(createdId);
     }
 
     public void deleteAssignmentCancelWorkHistory(KfashionWorkHistory workHistory) {
-       mapper.deleteAssignmentCancelWorkHistory(workHistory);
+        mapper.deleteAssignmentCancelWorkHistory(workHistory);
     }
 
     public String selectReceiveId(Long workNo) {

@@ -123,7 +123,13 @@ class ModifyStep3 extends React.Component {
             }
             const createdId = this.props.authStore.isUserId;
             this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
-            this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);
+            const selected = toJS(this.props.professionalLabelStore.selectedItem);
+            if(selected.length > 0 && selected !== null) {
+                this.props.professionalLabelStore.deleteSelectedProfessionalLabel(selected);
+            }
+            else {
+                this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);
+            }
             this.props.history.push("/Step2/FinalCheckList");
             this.deleteAll();
         }
@@ -167,14 +173,11 @@ class ModifyStep3 extends React.Component {
     onSelectTab(tabIndex1) {
         let polyNo = tabIndex1;
         const {locationPolygonList} = this.props.polygonStore;
-        // console.log(locationPolygonList);
-        // console.log(locationPolygonList.length);
         if (locationPolygonList.length > 0 ) {
             const selectedPoly = (toJS(locationPolygonList).filter(poly => poly.polyNo === polyNo));
             if (selectedPoly.length !== 0) {
                 this.deleteAll();
                 for (let i = 0; i < selectedPoly.length; i++) {
-                    // console.log(this.lineTwoPoint);
                     this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                     this.x = selectedPoly[i].locationX;
                     this.y = selectedPoly[i].locationY;
@@ -273,11 +276,12 @@ class ModifyStep3 extends React.Component {
     handleReturn = () => {
         const check = window.confirm("돌아가시면 변경된 값은 저장되지 않습니다.");
         if(check){
+            this.props.professionalLabelStore.selectedItemReset();
             this.props.history.push("/Step2/FinalCheckList");
         }
     }
     render() {
-        setTimeout(() => document.body.style.zoom = "68%", 100);
+        setTimeout(() => document.body.style.zoom = "100%", 100);
         const {classes} = this.props;
         const polyLast = this.props.polygonStore;
 
@@ -286,7 +290,7 @@ class ModifyStep3 extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto',width: 800,height: 800}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight} className={classes.canvas} style={{display:'contain'}}>  </canvas>
                             </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
@@ -332,7 +336,7 @@ class ModifyStep3 extends React.Component {
                 <div>
                     <hr></hr>
                 </div>
-                <Grid item xs={1} lg={2} style={{marginLeft:'auto'}}>
+                <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}>
                     <Button
                         type="button"
                         className={classes.buttonType2}

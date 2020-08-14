@@ -39,13 +39,13 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 
         final int groupAdmin = kfashionUserInfoService.getGroupUser(userId);
 
-        if(groupAdmin == 1) {
+        if (groupAdmin == 1) {
             final KfashionUserInfo user = kfashionUserInfoService.getAdmin(userId);
-            if(user == null) {
+            if (user == null) {
                 throw new UsernameNotFoundException("Username not found : " + userId);
             }
 
-            if(user.getIsApproved() == 'N') {
+            if (user.getIsApproved() == 'N') {
                 throw new DisabledException("User is not enabled : " + userId);
             }
 
@@ -60,13 +60,13 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
             }
 
             return result;
-        }else {
+        } else {
             final KfashionUserInfo user = kfashionUserInfoService.getUser(userId);
-            if(user == null) {
+            if (user == null) {
                 throw new UsernameNotFoundException("Username not found : " + userId);
             }
 
-            if(user.getIsApproved() == 'N') {
+            if (user.getIsApproved() == 'N') {
                 throw new DisabledException("User is not enabled : " + userId);
             }
 

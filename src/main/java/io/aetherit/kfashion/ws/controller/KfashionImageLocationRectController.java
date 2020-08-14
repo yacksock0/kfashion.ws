@@ -42,16 +42,17 @@ public class KfashionImageLocationRectController {
 
     /**
      * 렉트 인서트
+     *
      * @param httpServletRequest
      * @param rectList
      * @return String
      * @throws Exception
      */
 
-    @PostMapping(value="/location")
+    @PostMapping(value = "/location")
     public ResponseEntity<String> insertLocationRect(HttpServletRequest httpServletRequest,
                                                      @RequestBody List<KfashionRectList> rectList) throws Exception {
-        String msg= "";
+        String msg = "";
         KfashionWork work = new KfashionWork();
         work.setNo(rectList.get(0).getWorkNo());
         work.setWorkState(rectList.get(0).getWorkStep());
@@ -65,7 +66,7 @@ public class KfashionImageLocationRectController {
 
 
         KfashionImageLocationRect rect = new KfashionImageLocationRect();
-        for(int i = 0; i<rectList.size();i++){
+        for (int i = 0; i < rectList.size(); i++) {
             rect.setWorkNo(rectList.get(i).getWorkNo());
             rect.setWorkStep(rectList.get(i).getWorkStep());
             rect.setRectNo(rectList.get(i).getId());
@@ -82,31 +83,30 @@ public class KfashionImageLocationRectController {
 
     /**
      * 렉트 수
+     *
      * @param httpServletRequest
      * @param rectList
      * @return String
      * @throws Exception
      */
 
-    @PostMapping(value="/updateLocation")
+    @PostMapping(value = "/updateLocation")
     public ResponseEntity<String> updateLocationRect(HttpServletRequest httpServletRequest,
                                                      @RequestBody List<KfashionRectList> rectList) throws Exception {
-        String msg= "";
+        String msg = "";
 
 
-        for(int i = 0; i<rectList.size();i++){
+        for (int i = 0; i < rectList.size(); i++) {
             rectList.get(i).getId();
         }
 
 
-
-
         KfashionImageLocationRect rect = new KfashionImageLocationRect();
-        for(int i = 0; i<rectList.size();i++){
-            Map<String,Object> updateMap = new HashMap<>();
-            updateMap.put("workNo",rectList.get(i).getWorkNo());
-            updateMap.put("workStep",3);
-            updateMap.put("workType",rectList.get(i).getId());
+        for (int i = 0; i < rectList.size(); i++) {
+            Map<String, Object> updateMap = new HashMap<>();
+            updateMap.put("workNo", rectList.get(i).getWorkNo());
+            updateMap.put("workStep", 3);
+            updateMap.put("workType", rectList.get(i).getId());
             kfashionCommentService.updatePolyComment(updateMap);
 
             rect.setWorkNo(rectList.get(i).getWorkNo());
@@ -125,27 +125,26 @@ public class KfashionImageLocationRectController {
 
     /**
      * 렉트 좌표값 리스트
+     *
      * @param httpRequest
      * @param workNo
      * @return locationRectList
      * @throws
      */
 
-    @GetMapping(value="/locationRectList")
+    @GetMapping(value = "/locationRectList")
     public ResponseEntity<Object> locationRectList(HttpServletRequest httpRequest,
-                                              @RequestParam(value="workNo")Long workNo){
+                                                   @RequestParam(value = "workNo") Long workNo) {
         List<KfashionImageLocationRect> rectNoList = kfashionImageLocationRectService.selectRectNoList(workNo);
-        System.out.println(rectNoList);
         KfashionImageLocationRect rect = new KfashionImageLocationRect();
         List<KfashionImageLocationRect> locationRectList = new ArrayList<>();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        if(rectNoList != null) {
-            for(int i=0; i < rectNoList.size(); i++) {
+        if (rectNoList != null) {
+            for (int i = 0; i < rectNoList.size(); i++) {
                 rect.setWorkNo(rectNoList.get(i).getWorkNo());
                 rect.setRectNo(rectNoList.get(i).getRectNo());
                 locationRectList.addAll(kfashionImageLocationRectService.selectLocationRectList(rect));
             }
-            System.out.println(locationRectList);
             resultMap.put("locationRectList", locationRectList);
         }
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
@@ -153,15 +152,16 @@ public class KfashionImageLocationRectController {
 
     /**
      * 렉트 이미지 리스트
+     *
      * @param httpRequest
      * @param createdId
      * @return rectList
      * @throws
      */
 
-    @GetMapping(value="/rectList")
+    @GetMapping(value = "/rectList")
     public ResponseEntity<Object> polygonList(HttpServletRequest httpRequest,
-                                              @RequestParam(value="createdId")String createdId) {
+                                              @RequestParam(value = "createdId") String createdId) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionImage> rectList = kfashionImageService.selectRectList(createdId);
         resultMap.put("rectList", rectList);

@@ -237,6 +237,14 @@ class HighCheckList extends React.Component {
         if(tabIndex1 ==0){
             this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(this.state.workNo);
         }else{
+                this.setState({
+                    workNo : 0,
+                })
+                this.canvas.backgroundImage = 0;
+                this.canvas.setWidth(0);
+                this.canvas.setHeight(0);
+                this.canvas.renderAll();
+                this.deleteAll();
             this.props.checkHighLabelStore.changeNewBasicLabelWorkNo('');
         }
 
@@ -249,7 +257,6 @@ class HighCheckList extends React.Component {
         if (selectedPoly.length !== 0) {
             this.deleteAll();
             for (let i = 0; i < selectedPoly.length; i++) {
-                console.log(this.lineTwoPoint);
                 this.lineTwoPoint = [this.x, this.y, selectedPoly[i].locationX, selectedPoly[i].locationY];
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
@@ -353,7 +360,7 @@ class HighCheckList extends React.Component {
         })
     }
     render() {
-        setTimeout(() => document.body.style.zoom = "68%", 100);
+        setTimeout(() => document.body.style.zoom = "80%", 100);
         const {inspectionHighList} = this.props.messageStore;
         const {classes} = this.props;
         const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onePieceReviewHighLabel} =this.props.checkHighLabelStore;
@@ -362,7 +369,7 @@ class HighCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto' ,width: 800,height: 800}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 800, zoom : "100%"}}>
                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>

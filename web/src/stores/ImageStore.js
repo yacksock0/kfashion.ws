@@ -91,7 +91,6 @@ export default class ImageStore {
         return this.workNo;
     }
     @computed get isBoundaryList(){
-        console.log("isBoundaryList", this.boundaryList)
         return this.boundaryList;
     }
 
@@ -118,7 +117,6 @@ export default class ImageStore {
 
 
     deleteImg = flow(function* (oldData) {
-        console.log(oldData);
         try {
             const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${oldData.workNo}`, {
                 data:

@@ -4,12 +4,12 @@
         <id property="no"                       column="no" />
         <result property="categoryType"             column="category_type" />
         <result property="categoryName"             column="category_name" />
-        <result property="categoryStep"                 column="category_step" />
-        <result property="GroupNo"                 column="group_no" />
-        <result property="createdId"                 column="created_id" />
-        <result property="updatedId"                 column="updated_id" />
-        <result property="createdDatetime"                 column="created_datetime" />
-        <result property="updatedDatetime"                 column="updated_datetime" />
+        <result property="categoryStep"             column="category_step" />
+        <result property="GroupNo"                  column="group_no" />
+        <result property="createdId"                column="created_id" />
+        <result property="updatedId"                column="updated_id" />
+        <result property="createdDatetime"          column="created_datetime" />
+        <result property="updatedDatetime"          column="updated_datetime" />
     </resultMap>
 
 </mapper>

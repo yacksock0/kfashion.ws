@@ -294,12 +294,11 @@ class Polygon extends React.Component {
             buttonDis3: true,
             buttonDis4: true,
         });
-        console.log(polyNo);
         switch (polyNo) {
-            case 1 : console.log('1'); this.setState({buttonDis1: false}); break;
-            case 2 : console.log('2');this.setState({buttonDis2: false}); break;
-            case 3 : console.log('3');this.setState({buttonDis3: false}); break;
-            case 4 : console.log('4');this.setState({buttonDis4: false}); break;
+            case 1 : this.setState({buttonDis1: false}); break;
+            case 2 : this.setState({buttonDis2: false}); break;
+            case 3 : this.setState({buttonDis3: false}); break;
+            case 4 : this.setState({buttonDis4: false}); break;
         }
     }
 
@@ -339,7 +338,6 @@ class Polygon extends React.Component {
             this.canvas.remove(objList[i]);
         }
         if( b != -1) {
-            console.log(b);
             this.x = 0;
             this.y = 0;
             this.polyCounter =0;
@@ -438,19 +436,15 @@ class Polygon extends React.Component {
 
                 switch (newPolyNo) {
                     case 1 :
-                        console.log('1');
                         this.save1 = true;
                         break;
                     case 2 :
-                        console.log('2');
                         this.save2 = true;
                         break;
                     case 3 :
-                        console.log('3');
                         this.save3 = true;
                         break;
                     case 4 :
-                        console.log('4');
                         this.save4 = true;
                         break;
                 }
@@ -469,7 +463,6 @@ class Polygon extends React.Component {
         if(this.state.workNo !== 0) {
             const check = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
             if (check) {
-                console.log(this.polygon);
                 if (this.onOff !== "") {
                     alert("finish를 눌러 작업을 마무리 하세요.");
                 } else if (this.state.savebtn) {
@@ -518,10 +511,8 @@ class Polygon extends React.Component {
     zoomOFF = () =>{
         let lens = null;
         this.canvas.getObjects().forEach(function( o) {
-            console.log("o : "+ o);
             if(o.id == "lens")     lens = o;
         })
-        console.log(lens);
         this.canvas.remove(lens);
         this.canvas.off('mouse:move');
     }
@@ -574,7 +565,6 @@ class Polygon extends React.Component {
                     lens.set('left', -(scale - 1) * x );
                     lens.set('top', -(scale - 1) * y);
                 }
-                console.log(lens);
                 canvas.bringToFront(lens);
                 canvas.renderAll();
         });
@@ -666,7 +656,6 @@ class Polygon extends React.Component {
 
 
     handleStepView = () =>{
-        console.log("stepView");
     }
     handleListChange=(listIndex)=>{
         this.setState({

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/")
 public class KfashionEmailAuthorityController {
 
-        private KfashionEmailAuthorityService kfashionEmailAuthorityService;
+    private KfashionEmailAuthorityService kfashionEmailAuthorityService;
 
-        @Autowired
-        public KfashionEmailAuthorityController(KfashionEmailAuthorityService kfashionEmailAuthorityService) {
-            this.kfashionEmailAuthorityService = kfashionEmailAuthorityService;
-        }
+    @Autowired
+    public KfashionEmailAuthorityController(KfashionEmailAuthorityService kfashionEmailAuthorityService) {
+        this.kfashionEmailAuthorityService = kfashionEmailAuthorityService;
+    }
 }

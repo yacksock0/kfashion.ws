@@ -139,7 +139,6 @@ class CategoryComponent2 extends React.Component {
         const detail2 = topReviewLabel.detailItemName2;
         const print2 =topReviewLabel.printItemName2;
         const texture2 =topReviewLabel.textureItemName2;
-        console.log( detail2 );
         return (
                     <Grid container spacing={3}>
                         <Grid items xs={11} style={{margin:"auto", marginTop:10}}>

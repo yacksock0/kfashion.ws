@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.repository.mapper;
 
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
+
 import java.util.List;
 import java.util.Map;
 

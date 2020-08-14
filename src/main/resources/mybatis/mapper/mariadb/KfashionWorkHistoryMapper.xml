@@ -3,12 +3,12 @@
     <resultMap id="kfashionWorkHistoryResultMap" type="KfashionWorkHistory">
         <id property="workNo"                       column="work_no" />
         <result property="workStep"                 column="work_step" />
-        <result property="workSubStep"                 column="work_sub_step" />
-        <result property="createdId"                 column="created_id" />
+        <result property="workSubStep"              column="work_sub_step" />
+        <result property="createdId"                column="created_id" />
         <result property="createdDatetime"          column="created_datetime" />
         <result property="updatedDatetime"          column="updated_datetime" />
-        <result property="totalWork"          column="total_work" />
-        <result property="finishWork"          column="finish_work" />
+        <result property="totalWork"                column="total_work" />
+        <result property="finishWork"               column="finish_work" />
     </resultMap>
 
     <insert id="insertWorkHistory" parameterType="KfashionWorkHistory">

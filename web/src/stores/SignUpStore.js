@@ -181,9 +181,7 @@ export default class SignUpStore {
         const response = yield axios.get(`/api/v1/kfashion/users/signupcheck/email?email=${this.newMember.email}`)
         const responseId = yield axios.get(`/api/v1/kfashion/users/signupcheck/id?id=${this.newMember.id}`)
         const isNotAvailEmail = response.data.result;
-        console.log('isNotAvailEmail',isNotAvailEmail)
         const isNotAvailId = responseId.data.result;
-            console.log('isNotAvailId',isNotAvailId)
         if(!isNotAvailEmail && !isNotAvailId) {
             const param = toJS(this.newMember);
             delete param.passwordConfirm;

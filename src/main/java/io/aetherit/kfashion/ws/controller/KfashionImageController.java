@@ -20,13 +20,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import javax.imageio.ImageIO;
-import java.util.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -42,6 +43,7 @@ public class KfashionImageController {
 
     @Autowired
     private CommonUtil commonUtil;
+
     @Autowired
     public KfashionImageController(KfashionImageService kfashionImageService,
                                    KfashionWorkService kfashionWorkService,
@@ -55,6 +57,7 @@ public class KfashionImageController {
 
     /**
      * 단일 파일 업로드
+     *
      * @param userId
      * @param file
      * @return UploadFileResponse
@@ -62,11 +65,10 @@ public class KfashionImageController {
      */
 
     @PostMapping("/uploadFile")
-    public ResponseEntity<Object> uploadFile(@RequestParam(value="userId", required = true) String userId,
-                                         @RequestParam("file") MultipartFile file) {
-        System.out.println("file"+file.getOriginalFilename());
+    public ResponseEntity<Object> uploadFile(@RequestParam(value = "userId", required = true) String userId,
+                                             @RequestParam("file") MultipartFile file) {
         int pos = file.getOriginalFilename().lastIndexOf(".");
-        String fileType = file.getOriginalFilename().substring(pos+1);
+        String fileType = file.getOriginalFilename().substring(pos + 1);
         String workName = file.getOriginalFilename();
         KfashionWork work = new KfashionWork();
         work.setWorkName(workName);
@@ -83,10 +85,10 @@ public class KfashionImageController {
             int imageWidth = image.getWidth(null);
             int imageHeight = image.getHeight(null);
 
-            if(mainPosition.equals("W")){    // 넓이기준
-                ratio = (double)newWidth/(double)imageWidth;
-                width = (int)(imageWidth * ratio);
-                height = (int)(imageHeight * ratio);
+            if (mainPosition.equals("W")) {    // 넓이기준
+                ratio = (double) newWidth / (double) imageWidth;
+                width = (int) (imageWidth * ratio);
+                height = (int) (imageHeight * ratio);
             }
             // 이미지 리사이즈
             // Image.SCALE_DEFAULT : 기본 이미지 스케일링 알고리즘 사용
@@ -109,19 +111,20 @@ public class KfashionImageController {
             kfashionImage.setWorkNo(no);
             kfashionImage.setImgData(imageInByte);
             kfashionImageService.insertImgUpload(kfashionImage);
-            KfashionWorkHistory workHistory= new KfashionWorkHistory();
+            KfashionWorkHistory workHistory = new KfashionWorkHistory();
             workHistory.setCreatedId(userId);
             workHistory.setWorkNo(no);
             workHistory.setWorkStep(1);
             kfashionWorkHistoryService.insertWorkHistory(workHistory);
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<Object>(file.getOriginalFilename(),HttpStatus.OK);
+        return new ResponseEntity<Object>(file.getOriginalFilename(), HttpStatus.OK);
     }
 
     /**
      * 다중 파일 업로드
+     *
      * @param userId
      * @param files
      * @return uploadFile
@@ -129,30 +132,30 @@ public class KfashionImageController {
      */
 
     @PostMapping("/uploadMultipleFiles")
-    public List<ResponseEntity<Object>> uploadMultipleFiles(@RequestParam(value="userId", required = true) String userId,
-                                                        @RequestParam(value ="files", required = false) MultipartFile[] files)  throws IOException {
-        System.out.println("files"+files.length);
+    public List<ResponseEntity<Object>> uploadMultipleFiles(@RequestParam(value = "userId", required = true) String userId,
+                                                            @RequestParam(value = "files", required = false) MultipartFile[] files) throws IOException {
         return Arrays.asList(files)
                 .stream()
-                .map(file -> uploadFile(userId,file))
+                .map(file -> uploadFile(userId, file))
                 .collect(Collectors.toList());
     }
 
     /**
      * 이미지업로드 리스트
+     *
      * @param
      * @return ResponseEntity
      * @throws
      */
 
-    @GetMapping(value="/boundaryList")
+    @GetMapping(value = "/boundaryList")
     public ResponseEntity<Object> boundaryList(HttpServletRequest httpRequest) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionImage> boundaryList = kfashionImageService.selectBoundaryList();
-        if(boundaryList != null) {
-            for(int i=0; i <  boundaryList.size(); i++) {
-            int workNameType = boundaryList.get(i).getWorkName().lastIndexOf(".");
-                boundaryList.get(i).setWorkName(boundaryList.get(i).getWorkName().substring(0,workNameType));
+        if (boundaryList != null) {
+            for (int i = 0; i < boundaryList.size(); i++) {
+                int workNameType = boundaryList.get(i).getWorkName().lastIndexOf(".");
+                boundaryList.get(i).setWorkName(boundaryList.get(i).getWorkName().substring(0, workNameType));
             }
         }
 //        for(int i=0; i< boundaryList.size(); i++) {
@@ -165,12 +168,13 @@ public class KfashionImageController {
 
     /**
      * 이미지 화면
+     *
      * @param workNo
      * @return ResponseEntity
      * @throws
      */
-    @RequestMapping(value="/getByteImage")
-    public ResponseEntity<byte[]> getByteImage(@RequestParam(value="workNo")Long workNo) {
+    @RequestMapping(value = "/getByteImage")
+    public ResponseEntity<byte[]> getByteImage(@RequestParam(value = "workNo") Long workNo) {
         Map<String, Object> map = kfashionImageService.getByteImage(workNo);
         byte[] imageContent = (byte[]) map.get("img_data");
 
@@ -181,12 +185,13 @@ public class KfashionImageController {
 
     /**
      * 이미지 삭제
+     *
      * @param workImage
      * @return ResponseEntity
      * @throws
      */
 
-    @DeleteMapping(value="/deleteImage/{workNo}")
+    @DeleteMapping(value = "/deleteImage/{workNo}")
     public ResponseEntity<Void> deleteImage(@RequestBody KfashionImage workImage) {
         kfashionWorkHistoryService.deleteWorkHistory(workImage);
         kfashionImageService.deleteImage(workImage);
@@ -196,29 +201,42 @@ public class KfashionImageController {
 
     /**
      * 전문가 작업리스트
+     *
      * @param createdId
      * @return ResponseEntity
      * @throws
      */
 
-    @GetMapping(value="/professionalList")
+    @GetMapping(value = "/professionalList")
     public ResponseEntity<Object> professionalList(HttpServletRequest httpRequest,
-                                                   @RequestParam(value="createdId")String createdId) {
+                                                      @RequestParam(value = "createdId") String createdId
+//                                                    , @RequestParam(value = "paging", required=false, defaultValue="yes") String paging
+//                                                    , @RequestParam(value = "rows-per-page", required=false, defaultValue="5") int rowsPerPage
+//                                                    , @RequestParam(value = "page", required=false, defaultValue="1") int page)
+                                                                                                                             )   throws Exception{
+        System.out.println("실행해라");
+        HashMap<String, Object> map = new HashMap<String, Object>();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImage> professionalList = kfashionImageService.selectProfessionalList(createdId);
-        resultMap.put("professionalList", professionalList);
+            map.put("createdId", createdId);
+//            map.put("rowsPerPage", rowsPerPage);
+//            map.put("page", ((page)-1)*rowsPerPage);
+            List<KfashionImage> professionalList = kfashionImageService.selectProfessionalList(map);
+//            int totalCount = kfashionImageService.selectTotalCount(map);
+            resultMap.put("professionalList", professionalList);
+//            resultMap.put("totalCount", totalCount);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
     /**
      * 최종검수 리스트
+     *
      * @return ResponseEntity
      * @throws
      */
 
-    @GetMapping(value="inspectionList")
+    @GetMapping(value = "inspectionList")
     public ResponseEntity<Object> inspectionList(HttpServletRequest httpRequest,
-                                                 @RequestParam (value="createdId") String createdId) {
+                                                 @RequestParam(value = "createdId") String createdId) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList(createdId);
         resultMap.put("inspectionList", inspectionList);
@@ -227,61 +245,60 @@ public class KfashionImageController {
 
     /**
      * 고등학생 검수리스트
+     *
      * @return ResponseEntity
      * @throws
      */
 
-    @GetMapping(value="inspectionHighList")
+    @GetMapping(value = "inspectionHighList")
     public ResponseEntity<Object> inspectionHighList(HttpServletRequest httpRequest) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<Long> HistoryWorkNo = kfashionWorkHistoryService.selectWorkNoList();
-        System.out.println("@@!@@#!@#!@#!@#    "+HistoryWorkNo);
         List<KfashionComment> commentWorkNoList = kfashionCommentService.selectCommentWorkNoList();
 
 
         List<Long> commentWorkNoStep3 = new ArrayList<>();
         List<Long> commentWorkNoStep4 = new ArrayList<>();
         Long workNo = null;
-        for(int i=0; i < commentWorkNoList.size(); i++) {
-            System.out.println("commentWorkNoListCount"+commentWorkNoList.get(i).getCount());
-            if(commentWorkNoList.get(i).getCount() >= 2) {
+        for (int i = 0; i < commentWorkNoList.size(); i++) {
+            if (commentWorkNoList.get(i).getCount() >= 2) {
                 workNo = commentWorkNoList.get(i).getWorkNo();
                 List<KfashionComment> commentComplete = kfashionCommentService.selectCommentComplete(workNo);
-                for(int j=0; j < commentComplete.size(); j++) {
-                    if(commentComplete.get(j).getWorkStep() == 3) {
-                        if(commentComplete.get(j).getWorkType() == 1) {
-                            if(commentComplete.get(j).getComplete() == 'N') {
+                for (int j = 0; j < commentComplete.size(); j++) {
+                    if (commentComplete.get(j).getWorkStep() == 3) {
+                        if (commentComplete.get(j).getWorkType() == 1) {
+                            if (commentComplete.get(j).getComplete() == 'N') {
                                 commentWorkNoStep3.addAll(Collections.singleton(commentComplete.get(j).getWorkNo()));
                             }
                         }
-                        if(commentComplete.get(j).getWorkType() == 2) {
-                            if(commentComplete.get(j).getComplete() == 'N') {
+                        if (commentComplete.get(j).getWorkType() == 2) {
+                            if (commentComplete.get(j).getComplete() == 'N') {
                                 commentWorkNoStep3.addAll(Collections.singleton(commentComplete.get(j).getWorkNo()));
                             }
                         }
-                        if(commentComplete.get(j).getWorkType() == 3) {
-                            if(commentComplete.get(j).getComplete() == 'N') {
+                        if (commentComplete.get(j).getWorkType() == 3) {
+                            if (commentComplete.get(j).getComplete() == 'N') {
                                 commentWorkNoStep3.addAll(Collections.singleton(commentComplete.get(j).getWorkNo()));
                             }
                         }
-                        if(commentComplete.get(j).getWorkType() == 4) {
-                            if(commentComplete.get(j).getComplete() == 'N') {
+                        if (commentComplete.get(j).getWorkType() == 4) {
+                            if (commentComplete.get(j).getComplete() == 'N') {
                                 commentWorkNoStep3.addAll(Collections.singleton(commentComplete.get(j).getWorkNo()));
                             }
                         }
 
                     }
-                    if(commentComplete.get(j).getWorkStep() == 4){
-                        if(commentComplete.get(j).getComplete() == 'N') {
+                    if (commentComplete.get(j).getWorkStep() == 4) {
+                        if (commentComplete.get(j).getComplete() == 'N') {
                             commentWorkNoStep4.addAll(Collections.singleton(commentComplete.get(j).getWorkNo()));
                         }
                     }
                 }
             }
-            if(commentWorkNoList.get(i).getCount() == 1){
-                workNo =commentWorkNoList.get(i).getWorkNo();
+            if (commentWorkNoList.get(i).getCount() == 1) {
+                workNo = commentWorkNoList.get(i).getWorkNo();
                 List<KfashionComment> commentComplete = kfashionCommentService.selectCommentComplete(workNo);
-                for(int k=0; k < commentComplete.size(); k++) {
+                for (int k = 0; k < commentComplete.size(); k++) {
                     if (commentComplete.get(k).getWorkStep() == 3) {
                         if (commentComplete.get(k).getWorkType() == 1) {
                             if (commentComplete.get(k).getComplete() == 'N') {
@@ -304,34 +321,36 @@ public class KfashionImageController {
                             }
                         }
                     }
-                    if(commentComplete.get(k).getWorkStep() == 4) {
-                        if(commentComplete.get(k).getComplete() == 'N') {
+                    if (commentComplete.get(k).getWorkStep() == 4) {
+                        if (commentComplete.get(k).getComplete() == 'N') {
                             commentWorkNoStep4.addAll(Collections.singleton(commentComplete.get(k).getWorkNo()));
                         }
                     }
                 }
             }
-         }
+        }
         HistoryWorkNo.removeAll(commentWorkNoStep3);
         HistoryWorkNo.removeAll(commentWorkNoStep4);
         List<KfashionImage> inspectionHighList = new ArrayList<>();
-        for(int a=0; a < HistoryWorkNo.size(); a++){
+        for (int a = 0; a < HistoryWorkNo.size(); a++) {
             workNo = HistoryWorkNo.get(a);
             inspectionHighList.addAll(kfashionImageService.selectInspectionHighList(workNo));
         }
         resultMap.put("inspectionHighList", inspectionHighList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
+
     /**
      * 최근작업 이미지 리스트
+     *
      * @param
      * @return ResponseEntity
      * @throws
      */
 
-    @GetMapping(value="/recentlyImg")
+    @GetMapping(value = "/recentlyImg")
     public ResponseEntity<Object> recentlyImg(HttpServletRequest httpRequest,
-                                              @RequestParam(value="createdId", required=true)String createdId) {
+                                              @RequestParam(value = "createdId", required = true) String createdId) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionImage> recentlyImg = kfashionImageService.recentlyImg(createdId);
         resultMap.put("recentlyImg", recentlyImg);
