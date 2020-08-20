@@ -1,7 +1,7 @@
 package io.aetherit.kfashion.ws.repository;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygonPoint;
-import io.aetherit.kfashion.ws.repository.mapper.KfashionImageLocationPolygonMapper;
 import io.aetherit.kfashion.ws.repository.mapper.KfashionImageLocationPolygonPointMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,5 +44,9 @@ public class KfashionImageLocationPolygonPointRepository {
 
     public List<KfashionImageLocationPolygonPoint> selectPolygonList(KfashionImageLocationPolygonPoint polygon) {
         return mapper.selectPolygonList(polygon);
+    }
+
+    public void deletePolyPointAll(KfashionImage workImage) {
+        mapper.deletePolyPointAll(workImage);
     }
 }

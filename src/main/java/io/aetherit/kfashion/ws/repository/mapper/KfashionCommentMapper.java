@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.repository.mapper;
 
 import io.aetherit.kfashion.ws.model.KfashionComment;
+import io.aetherit.kfashion.ws.model.KfashionImage;
 
 import java.util.List;
 import java.util.Map;
@@ -24,4 +25,6 @@ public interface KfashionCommentMapper {
     List<KfashionComment> selectCommentWorkNoList();
 
     List<KfashionComment> selectCommentComplete(Long workNo);
+
+    void deleteCommentAll(KfashionImage workImage);
 }

@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.service;
 
 import io.aetherit.kfashion.ws.model.KfashionComment;
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.repository.KfashionCommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,5 +54,9 @@ public class KfashionCommentService {
 
     public List<KfashionComment> selectCommentComplete(Long workNo) {
         return repository.selectCommentComplete(workNo);
+    }
+
+    public void deleteCommentAll(KfashionImage workImage) {
+        repository.deleteCommentAll(workImage);
     }
 }

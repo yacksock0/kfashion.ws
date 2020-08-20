@@ -98,6 +98,11 @@
         AND rect_no = 4
     </select>
 
+    <delete id="deleteRectAll">
+        DELETE
+        FROM kfashion_image_location_rect
+        WHERE work_no = #{workNo}
+    </delete>
 
 
 

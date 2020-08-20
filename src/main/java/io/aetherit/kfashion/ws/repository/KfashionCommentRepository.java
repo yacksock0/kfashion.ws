@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.repository;
 
 import io.aetherit.kfashion.ws.model.KfashionComment;
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.repository.mapper.KfashionCommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -53,5 +54,9 @@ public class KfashionCommentRepository {
 
     public List<KfashionComment> selectCommentComplete(Long workNo) {
         return mapper.selectCommentComplete(workNo);
+    }
+
+    public void deleteCommentAll(KfashionImage workImage) {
+        mapper.deleteCommentAll(workImage);
     }
 }

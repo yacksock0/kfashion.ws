@@ -403,7 +403,7 @@ class HighCheckList extends React.Component {
     };
 
     render() {
-        setTimeout(() => document.body.style.zoom = "80%", 100);
+        setTimeout(() => document.body.style.zoom = "90%", 100);
         const {inspectionHighList} = this.props.messageStore;
         const {classes} = this.props;
         const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onePieceReviewHighLabel} =this.props.checkHighLabelStore;
@@ -412,10 +412,12 @@ class HighCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
-                            <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
+                            <div style={{overflow:'auto', width: 800,height: 800}}>
+                                <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
+                            </div>
                         </Grid>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto',zoom:"80%"}}>
                             <div component={Paper}>
                                 <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                     <TabList >

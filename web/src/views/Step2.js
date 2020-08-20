@@ -212,6 +212,7 @@ class Step2 extends React.Component {
     }
     labelNoListCallback = (labelNoList, workNo) => {
         let tabIndex2 = labelNoList[0] - 1;
+        this.onSelectTab2(tabIndex2)
         this.setState({tabController: labelNoList, workNo: workNo});
         this.setState({tabIndex1: 0, tabIndex2: tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
@@ -224,6 +225,7 @@ class Step2 extends React.Component {
 
     polyListCallback = (polyInfo, workNo) => {
         let tabIndex2 = polyInfo[0] - 1;
+        this.onSelectTab2(tabIndex2);
         this.setState({tabController: polyInfo, workNo: workNo});
         this.setState({tabIndex1: 0, tabIndex2: tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
@@ -605,10 +607,12 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
-                            <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
+                            <div style={{overflow:'auto', width: 800,height: 800}}>
+                                <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
+                            </div>
                         </Grid>
-                        <Grid item xs={12} lg={6} xl={5} style={{marginLeft: 'auto'}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft: 'auto'}}>
                             <Tabs selectedIndex={this.state.tabIndex1}
                                   onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                 <TabList>

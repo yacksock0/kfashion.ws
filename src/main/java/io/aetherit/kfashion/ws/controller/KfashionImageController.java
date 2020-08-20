@@ -5,10 +5,7 @@ import io.aetherit.kfashion.ws.model.KfashionComment;
 import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionWork;
 import io.aetherit.kfashion.ws.model.KfashionWorkHistory;
-import io.aetherit.kfashion.ws.service.KfashionCommentService;
-import io.aetherit.kfashion.ws.service.KfashionImageService;
-import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
-import io.aetherit.kfashion.ws.service.KfashionWorkService;
+import io.aetherit.kfashion.ws.service.*;
 import io.aetherit.kfashion.ws.util.CommonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +37,10 @@ public class KfashionImageController {
     private KfashionWorkService kfashionWorkService;
     private KfashionWorkHistoryService kfashionWorkHistoryService;
     private KfashionCommentService kfashionCommentService;
+    private KfashionImageLocationPolygonService kfashionImageLocationPolygonService;
+    private KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService;
+    private KfashionImageLocationRectService kfashionImageLocationRectService;
+    private KfashionLabelService kfashionLabelService;
 
     @Autowired
     private CommonUtil commonUtil;
@@ -48,11 +49,21 @@ public class KfashionImageController {
     public KfashionImageController(KfashionImageService kfashionImageService,
                                    KfashionWorkService kfashionWorkService,
                                    KfashionWorkHistoryService kfashionWorkHistoryService,
-                                   KfashionCommentService kfashionCommentService) {
+                                   KfashionCommentService kfashionCommentService,
+                                   KfashionImageLocationPolygonService kfashionImageLocationPolygonService,
+                                   KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService,
+                                   KfashionImageLocationRectService kfashionImageLocationRectService,
+                                   KfashionLabelService kfashionLabelService) {
+
         this.kfashionImageService = kfashionImageService;
         this.kfashionWorkService = kfashionWorkService;
         this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         this.kfashionCommentService = kfashionCommentService;
+        this.kfashionImageLocationPolygonService = kfashionImageLocationPolygonService;
+        this.kfashionImageLocationPolygonPointService = kfashionImageLocationPolygonPointService;
+        this.kfashionImageLocationRectService = kfashionImageLocationRectService;
+        this.kfashionLabelService = kfashionLabelService;
+
     }
 
     /**
@@ -355,5 +366,28 @@ public class KfashionImageController {
         List<KfashionImage> recentlyImg = kfashionImageService.recentlyImg(createdId);
         resultMap.put("recentlyImg", recentlyImg);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+
+
+    /**
+     * 이미지 삭제
+     *
+     * @param workImage
+     * @return ResponseEntity
+     * @throws
+     */
+
+    @DeleteMapping(value = "/deleteCheckListImage/{workNo}")
+    public ResponseEntity<Void> deleteCheckListImage(@RequestBody KfashionImage workImage) {
+        kfashionLabelService.deleteLabelAll(workImage);
+        kfashionCommentService.deleteCommentAll(workImage);
+        kfashionImageLocationPolygonPointService.deletePolyPointAll(workImage);
+        kfashionImageLocationPolygonService.deletePolyAll(workImage);
+        kfashionImageLocationRectService.deleteRectAll(workImage);
+        kfashionWorkHistoryService.deleteWorkHistory(workImage);
+        kfashionImageService.deleteImage(workImage);
+        kfashionWorkService.deleteWork(workImage);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

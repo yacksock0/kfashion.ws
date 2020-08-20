@@ -66,4 +66,8 @@ public class KfashionWorkRepository {
     public Long[] selectJsonWorkList() {
         return mapper.selectJsonWorkList();
     }
+
+    public Long selectTotalWork() {
+        return mapper.selectTotalWork();
+    }
 }

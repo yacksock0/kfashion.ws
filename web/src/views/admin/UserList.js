@@ -37,20 +37,6 @@ class UserList extends React.Component {
             name:'',
             password:'',
             hidden : true,
-            columns: [
-                {
-                    title: '아이디',
-                    field: 'id',
-                    filterPlaceholder: 'GroupNo filter',
-                    tooltip: 'GroupNo로 정렬',
-                    editPlaceholder: '아이디 입력',
-                    editable:false
-                },
-                {title: '이름', field: 'name', type: 'text'},
-                {title: '비밀번호', field: 'password' },
-                {title: '생성일', field: 'createdDatetime', type: 'date', editable: 'never'},
-                // {title: '비고', field: 'etc', type: 'text'},
-            ],
         }
     }
 
@@ -101,7 +87,20 @@ class UserList extends React.Component {
                                 editRow: { deleteText: '정말 삭제 하시겠습니까?'} } ,
                                 }
                             }
-                            columns={this.state.columns}
+                            columns={[
+                                {
+                                    title: '아이디',
+                                    field: 'id',
+                                    filterPlaceholder: 'GroupNo filter',
+                                    tooltip: 'GroupNo로 정렬',
+                                    editPlaceholder: '아이디 입력',
+                                    editable : "onAdd",
+                                },
+                                {title: '이름', field: 'name', type: 'text'},
+                                {title: '비밀번호', field: 'password' },
+                                {title: '생성일', field: 'createdDatetime', type: 'date', editable: 'never'},
+                                // {title: '비고', field: 'etc', type: 'text'},
+                            ]}
                             data={!!this.props.userListStore.groupUserList ?
                                 this.props.userListStore.groupUserList.map((item) => {
                                     return {
@@ -139,6 +138,7 @@ class UserList extends React.Component {
                                                 this.props.userListStore.changeNewMemberUserName(rowData.name)
                                                 this.props.userListStore.changeNewMemberGroupNo(groupNo)
                                                 this.props.userListStore.UpdatedGroupUser();
+
                                             } catch (e) {
                                                 console.log('여기 에러 났음')
                                             }

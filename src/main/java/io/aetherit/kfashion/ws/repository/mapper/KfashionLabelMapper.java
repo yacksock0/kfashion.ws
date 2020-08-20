@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.repository.mapper;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionLabel;
 
 import java.util.HashMap;
@@ -39,4 +40,6 @@ public interface KfashionLabelMapper {
     void deleteBasicLabel(HashMap<String, Object> deleteMap);
 
     List<Integer> selectLabelNoList(Long workNo);
+
+    void deleteLabelAll(KfashionImage workImage);
 }

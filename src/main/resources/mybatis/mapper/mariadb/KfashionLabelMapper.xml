@@ -261,4 +261,11 @@
         AND work_step = 4
     </select>
 
+    <delete id="deleteLabelAll">
+        DELETE
+        FROM kfashion_label
+        WHERE work_no = #{workNo}
+    </delete>
+
+
 </mapper>

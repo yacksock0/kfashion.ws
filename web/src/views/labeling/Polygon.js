@@ -113,7 +113,8 @@ class Polygon extends React.Component {
         listIndex:0,
         canvasWidth:0,
         canvasHeight : 0,
-
+        zoom : "100%",
+        tableSize : 6,
     }
     save1 = false;
     save2 = false;
@@ -161,7 +162,6 @@ class Polygon extends React.Component {
     onOff = '';
     onOff2 = 1;
     i=0;
-
     // Wheel Scale Test
     // delta;
     // zoom;
@@ -194,15 +194,19 @@ class Polygon extends React.Component {
         this.canvas = new fabric.Canvas('c');
 
         // let canvas = this.canvas;
-        // canvas.on('mouse:wheel', function(opt) {
+        // canvas.on(
+        //     'mouse:wheel', function(opt) {
+        //
         //     let delta = opt.e.deltaY;
         //     let zoom = canvas.getZoom();
         //     zoom *= 0.999 ** delta;
         //     if (zoom > 10) zoom = 10;
         //     if (zoom < 0.1) zoom = 0.1;
-        //     canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+        //     canvas.zoomToPoint({ x: 400, y: 400 }, zoom);
         //     opt.e.preventDefault();
         //     opt.e.stopPropagation();
+        //
+        //
         // })
         // this.canvas = canvas;
 
@@ -576,11 +580,11 @@ class Polygon extends React.Component {
 
 
     handleClickItem = (workNo, imageData,polyNo, comment) => {
-        this.setState({comment : comment})
+        this.setState({comment : comment,zoom : '80%',tableSize : 5})
         // alert(comment);
         let check = true;
         this.setState({
-            workNo :workNo
+            workNo :workNo,
         })
         if(this.state.workNo !== 0){
             check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
@@ -638,7 +642,7 @@ class Polygon extends React.Component {
             scaleX: 1,
             scaleY: 1,
             originX: 'left',
-            originY: 'top'
+            originY: 'top',
         });
     }
 
@@ -676,6 +680,8 @@ class Polygon extends React.Component {
                 this.setState({
                     selected : [],
                     workNo : 0,
+                    zoom : '100%',
+                    tableSize : 6,
                 })
                 this.canvas.setWidth(0);
                 this.canvas.setHeight(0);
@@ -712,7 +718,7 @@ class Polygon extends React.Component {
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={7} xl={7} style={{marginTop:10, overflow:'auto' ,width: 1000,height: 800}}>
+                        <Grid item xs={12} lg={6} xl={6} style={{marginTop:10}}>
                         {/*<div>*/}
                         {/*    /!*<Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>*!/*/}
                         {/*    <Button*/}
@@ -728,10 +734,12 @@ class Polygon extends React.Component {
                         {/*        돋보기 끄기*/}
                         {/*    </Button>*/}
                         {/*</div>*/}
-                                <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
+                        <div style={{overflow:'auto' ,width: 800,height: 800}}>
+                            <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
+                        </div>
                         </Grid>
 
-                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft:"auto", zoom: "70%"}}>
+                        <Grid item xs={12} lg={this.state.tableSize} xl={this.state.tableSize} style={{marginLeft:"auto", zoom:"100%"}} >
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTap( tabIndex )}>
                                 <TabList>
                                     <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>

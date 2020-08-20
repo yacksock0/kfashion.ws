@@ -108,5 +108,18 @@ public class KfashionWorkController {
     }
 
 
+    /**
+     * 전체 작업 수량
+     *
+     * @return ResponseEntity
+     * @throws
+     */
+    @GetMapping(value = "totalWork")
+    public ResponseEntity<Object> totalWork(HttpServletRequest httpRequest){
+        Long totalWork = kfashionWorkService.selectTotalWork();
+        return new ResponseEntity<Object>(totalWork, HttpStatus.OK);
+    }
+
+
 }
 

@@ -32,6 +32,7 @@ export default class UserListStore {
     @observable groupUserList = [];
     @observable listState = ListState.Loaded;
     @observable loading = false;
+    @observable totalWork = 0;
 
     @action initStore = () => {
         this.groupUserList = [];
@@ -92,6 +93,17 @@ export default class UserListStore {
                 this.listState = ListState.LoadFailed;
             }
         });
+
+    LoadTotalWork= flow(function* loadTotalWork() {
+        this.state = State.Pending;
+        try {
+            const response = yield axios.get('/api/v1/kfashion/work/totalWork')
+            this.totalWork = response.data;
+        } catch (e) {
+            console.log('error')
+            this.state = State.Fail;
+        }
+    });
 
 
     AddGroupUser = flow(function* addGroupUser() {

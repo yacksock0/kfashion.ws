@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.service;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygonPoint;
 import io.aetherit.kfashion.ws.repository.KfashionImageLocationPolygonPointRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,9 @@ public class KfashionImageLocationPolygonPointService {
 
     public List<KfashionImageLocationPolygonPoint> selectPolygonList(KfashionImageLocationPolygonPoint polygon) {
         return repository.selectPolygonList(polygon);
+    }
+
+    public void deletePolyPointAll(KfashionImage workImage) {
+        repository.deletePolyPointAll(workImage);
     }
 }

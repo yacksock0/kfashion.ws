@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.repository;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionLabel;
 import io.aetherit.kfashion.ws.repository.mapper.KfashionLabelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,4 +84,7 @@ public class KfashionLabelRepository {
         return mapper.selectLabelNoList(workNo);
     }
 
+    public void deleteLabelAll(KfashionImage workImage) {
+        mapper.deleteLabelAll(workImage);
+    }
 }

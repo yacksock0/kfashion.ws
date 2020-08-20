@@ -54,6 +54,7 @@ class UserWork extends React.Component {
                 horizontal: 'left',
             }
         });
+        this.props.userListStore.LoadTotalWork();
     }
     render() {
         const { classes } = this.props;
@@ -77,7 +78,7 @@ class UserWork extends React.Component {
                                         name: item.name,
                                     }
                                 }) : []}
-                            title="그룹 회원 리스트"
+                            title={<h2>그룹 회원 리스트 ( 총 등록된 이미지 수량 : <b style={{color:"blue"}}>{this.props.userListStore.totalWork}</b> )</h2>}
                             editable={{
                                 // onRowUpdate:rowData =>
                                 //     new Promise((resolve, reject) => {

@@ -31,4 +31,6 @@ public interface KfashionWorkMapper {
     String selectWorkName(Long workNo);
 
     Long[] selectJsonWorkList();
+
+    Long selectTotalWork();
 }

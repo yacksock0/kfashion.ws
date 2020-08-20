@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.repository.mapper;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygonPoint;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface KfashionImageLocationPolygonPointMapper {
     void deletePolyPoint(Map<String, Object> deleteMap);
 
     List<KfashionImageLocationPolygonPoint> selectPolygonList(KfashionImageLocationPolygonPoint polygon);
+
+    void deletePolyPointAll(KfashionImage workImage);
 }

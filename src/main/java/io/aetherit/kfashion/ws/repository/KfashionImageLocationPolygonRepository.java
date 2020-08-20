@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.repository;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationPolygon;
 import io.aetherit.kfashion.ws.repository.mapper.KfashionImageLocationPolygonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,9 @@ public class KfashionImageLocationPolygonRepository {
 
     public void deletePoly(Map<String, Object> deleteMap) {
         mapper.deletePoly(deleteMap);
+    }
+
+    public void deletePolyAll(KfashionImage workImage) {
+        mapper.deletePolyAll(workImage);
     }
 }

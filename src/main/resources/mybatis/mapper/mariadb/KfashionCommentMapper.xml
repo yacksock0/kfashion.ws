@@ -116,4 +116,10 @@
         WHERE work_no = #{workNo}
     </select>
 
+    <delete id="deleteCommentAll">
+        DELETE
+        FROM kfashion_comment
+        WHERE work_no = #{workNo}
+    </delete>
+
 </mapper>

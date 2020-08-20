@@ -16,6 +16,7 @@ import ProImageList from "../views/step3/ProImageList";
 import {toJS} from "mobx";
 import ErrorIcon from "@material-ui/icons/Error";
 import WorkedImg from "./step3/WorkedImg";
+import axios from "axios";
 
 
 
@@ -100,7 +101,9 @@ class Step3 extends React.Component {
             width: window.innerWidth,
             count: 1,
             canvasWidth: 0,
-            canvasHeight : 0
+            canvasHeight : 0,
+            total : 0,
+            complete : 0,
         }
         this.updateDimensions = this.updateDimensions.bind(this);
     }
@@ -118,6 +121,8 @@ class Step3 extends React.Component {
         this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
         const id = this.props.authStore.loginUser.id;
+        const authorityNo = this.props.authStore.loginUser.authorityNo;
+        this.props.professionalLabelStore.doProfessionalCompleteUp(id,authorityNo);
         this.setState({createdId : id});
         this.props.enqueueSnackbar("전문 레이블링", {
             variant: 'success',
@@ -402,7 +407,7 @@ class Step3 extends React.Component {
     }
 
     render() {
-            setTimeout(() => document.body.style.zoom = "80%", 100);
+            setTimeout(() => document.body.style.zoom = "85%", 100);
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
             return (
@@ -412,15 +417,17 @@ class Step3 extends React.Component {
                             <Grid item xs={12} style={{padding:3, textAlign:'center'}}>
                                 <WorkedImg onClick={this.handleLabel} />
                             </Grid>
-                        <Grid container>
-                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
+                        <Grid container >
+                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
+                                <div style={{overflow:'auto', width: 800,height: 800}}>
                                     <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
+                                </div>
                             </Grid>
-                            <Grid item xs={12} lg={5} xl={6} style={{marginLeft:"auto", marginTop:10}}>
+                            <Grid item xs={12} lg={5} xl={5} style={{marginLeft:"auto"}}>
                                     <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                         <TabList >
                                             <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
-                                            <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                            <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트 ( <b style={{color:"red"}}>{this.props.professionalLabelStore.complete}</b> / <b>{this.props.professionalLabelStore.total}</b> )</h3></Tab>
                                         </TabList>
 
                                         <TabPanel>

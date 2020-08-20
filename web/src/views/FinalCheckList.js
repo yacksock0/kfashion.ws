@@ -126,6 +126,11 @@ class FinalCheckList extends React.Component {
             count: 0,
             workNo : 0,
             data: [],
+            selectedIdList : [],
+            selectedId : '',
+            selectedReturn : true,
+            checkBoxListLength : 1,
+
         }
         this.handleClickMsgOpen = this.handleClickMsgOpen.bind(this)
     }
@@ -133,21 +138,50 @@ class FinalCheckList extends React.Component {
     allToggle = () => {
         const checkList = toJS(this.props.professionalLabelStore.inspectionList);
         const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
-        const selected = toJS(this.props.professionalLabelStore.selectedItem);
-        if(selected.length > 0 && selectList.length > selected.length)
-            for(let i=0; i < selected.length; i++) {
-                const idx = selectList.findIndex(function(item,index) {return item.workNo === selected[i]})
-                if (idx > -1) selectList.splice(idx, 1)
-            }
+        const checkBoxList = []
+        const id = this.props.authStore.loginUser.id;
         selectList.map((item, index) => {
-            this.toggle(item.workNo)
+            if (item.createdId === id) {
+                checkBoxList.push(item);
+            }
         })
+        if (checkBoxList === null || checkBoxList.length === 0) {
+            this.setState({
+                checkBoxListLength : 1,
+            })
+        } else {
+            this.setState({
+                checkBoxListLength: checkBoxList.length,
+            })
+            const selected = toJS(this.props.professionalLabelStore.selectedItem);
+            if (selected.length > 0 && checkBoxList.length > selected.length) {
+                for (let i = 0; i < selected.length; i++) {
+                    const idx = checkBoxList.findIndex(function (item, index) {
+                        return item.workNo === selected[i]
+                    })
+                    if (idx > -1) checkBoxList.splice(idx, 1)
+                }
+            }
+            checkBoxList.map((item, index) => {
+                this.toggle(item.workNo, item.createdId);
+            })
+        }
     }
 
-    toggle = (workNo) => {
+    toggle = (workNo,createdId) => {
         const selected = toJS(this.props.professionalLabelStore.selectedItem);
-        if (selected.includes(workNo)) selected.splice(selected.indexOf(workNo), 1);
-        else selected.push(workNo);
+        if (selected.includes(workNo)){
+            selected.splice(selected.indexOf(workNo), 1);
+            this.setState({
+                selectedId : '',
+            })
+        }
+        else{
+            selected.push(workNo);
+            this.setState({
+                selectedId : createdId,
+            })
+        }
         this.props.professionalLabelStore.changeSelectedItem(selected);
     };
 
@@ -170,7 +204,6 @@ class FinalCheckList extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(() => document.body.style.zoom = "68%", 100);
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;
@@ -411,11 +444,21 @@ class FinalCheckList extends React.Component {
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
     }
+
+    handleDeleteImg = () => {
+        const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
+        const createdId = this.props.authStore.loginUser.id;
+        if (deleteConfirm) {
+            const selected =toJS(this.props.professionalLabelStore.selectedItem);
+            this.props.professionalLabelStore.deleteCheckListImg(selected,createdId);
+        }
+    }
+
     render() {
         const handleClickMsgOpen = () => {
             this.setState({open:true,})
         };
-        setTimeout(() => document.body.style.zoom = "80%", 100);
+        setTimeout(() => document.body.style.zoom = "75%", 100);
 
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
@@ -425,8 +468,10 @@ class FinalCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
-                            <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
+                            <div style={{overflow:'auto', width: 800,height: 800}}>
+                                <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
+                            </div>
                         </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
                             <div component={Paper}>
@@ -875,11 +920,11 @@ class FinalCheckList extends React.Component {
                                         <MaterialTable
                                             columns={[
                                                 {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                                                  checked={this.props.professionalLabelStore.selectedItem.length === this.props.professionalLabelStore.inspectionList.slice
-                                                    (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}>
+                                                                  checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false}>
                                                         </Checkbox>,
                                                     render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
-                                                                                  onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
+                                                                                  onChange={this.toggle.bind(this, rowData.workNo,rowData.createdId)}
+                                                                                    disabled={this.props.authStore.isUserId === rowData.createdId ? false : true}></Checkbox>},
                                                 {title: '번호', field: 'workNo',type: 'number'},
                                                 {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                                                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
@@ -937,8 +982,11 @@ class FinalCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <Button variant="outlined" onClick={this.handleComplete} disabled={this.state.successCheckId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10}}>
+                <Button variant="outlined" onClick={this.handleComplete} disabled={this.state.selectedId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10}}>
                     완료
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={this.handleDeleteImg} disabled={this.state.selectedId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10}}>
+                    이미지삭제
                 </Button>
                 <Button variant="outlined" onClick={this.handleJson}>
                     json가져오기

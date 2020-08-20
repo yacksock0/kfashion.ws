@@ -34,4 +34,10 @@
         AND poly_no = #{polyNo}
     </delete>
 
+    <delete id="deletePolyAll">
+        DELETE
+        FROM kfashion_image_location_polygon
+        WHERE work_no = #{workNo}
+    </delete>
+
 </mapper>

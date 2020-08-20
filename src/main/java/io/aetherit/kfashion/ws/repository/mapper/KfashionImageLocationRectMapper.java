@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.repository.mapper;
 
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationRect;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface KfashionImageLocationRectMapper {
     List<KfashionImageLocationRect> selectPantsRectList(Long workNo);
 
     List<KfashionImageLocationRect> selectOnePieceRectList(Long workNo);
+
+    void deleteRectAll(KfashionImage workImage);
 }

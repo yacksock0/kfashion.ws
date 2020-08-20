@@ -18,8 +18,8 @@ import java.util.List;
 public class KfashionImageLocationPolygonController {
 
     private KfashionImageLocationPolygonService kfashionImageLocationPolygonService;
-    private KfashionWorkHistoryService kfashionWorkHistoryService;
     private KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService;
+    private KfashionWorkHistoryService kfashionWorkHistoryService;
     private KfashionWorkService kfashionWorkService;
     private KfashionImageService kfashionImageService;
 

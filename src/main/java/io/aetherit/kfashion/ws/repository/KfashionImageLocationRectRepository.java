@@ -1,6 +1,6 @@
 package io.aetherit.kfashion.ws.repository;
 
-import io.aetherit.kfashion.ws.model.KfashionCategoryItem;
+import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.model.KfashionImageLocationRect;
 import io.aetherit.kfashion.ws.repository.mapper.KfashionImageLocationRectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +52,9 @@ public class KfashionImageLocationRectRepository {
 
     public List<KfashionImageLocationRect> selectOnePieceRectList(Long workNo) {
         return mapper.selectOnePieceRectList(workNo);
+    }
+
+    public void deleteRectAll(KfashionImage workImage) {
+        mapper.deleteRectAll(workImage);
     }
 }

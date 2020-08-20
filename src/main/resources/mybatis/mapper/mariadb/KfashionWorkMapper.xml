@@ -115,4 +115,10 @@
         WHERE kfashion_work_history.work_step = 6
         LIMIT 5000
     </select>
+
+    <select id="selectTotalWork" resultType="Long">
+        SELECT
+        count(*) AS totalWork
+        FROM kfashion_work
+    </select>
 </mapper>
