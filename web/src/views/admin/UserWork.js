@@ -40,12 +40,7 @@ class UserWork extends React.Component {
             selectedId:'',
             groupUserList:[],
             newMember:[],
-            columns: [
-                {title: '아이디',field: 'id',cellStyle: {minWidth: 150,textAlign: 'center'}},
-                {title: '이름', field: 'name', type: 'text', cellStyle: {minWidth:100,textAlign: 'center'}},
-                {title: '작업진도', field: 'progress', cellStyle: {minWidth:500,textAlign: 'left', paddingLeft:150},render: rowData => <ProgressBar rowDataId={rowData.id}/>,},
-                {title: '작업지정', field: 'workDetail',cellStyle: {minWidth:100,textAlign: 'center'},render: rowData => <WorkDetail rowDataId={rowData.id}/>},
-            ],
+
         }
     }
     componentDidMount() {
@@ -69,7 +64,12 @@ class UserWork extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid item xs={12} lg={12}>
                         <MaterialTable
-                            columns={this.state.columns}
+                            columns={[
+                                {title: '아이디',field: 'id',cellStyle: {minWidth: 150,textAlign: 'center'}},
+                                {title: '이름', field: 'name', type: 'text', cellStyle: {minWidth:100,textAlign: 'center'}},
+                                {title: '작업진도', field: 'progress', cellStyle: {minWidth:500,textAlign: 'left', paddingLeft:150},render: rowData => <ProgressBar rowDataId={rowData.id}/>,},
+                                {title: '작업지정', field: 'workDetail',cellStyle: {minWidth:100,textAlign: 'center'},render: rowData => <WorkDetail rowDataId={rowData.id}/>},
+                            ]}
                             data={!!this.props.userListStore.groupUserList ?
                                 this.props.userListStore.groupUserList.map((item) => {
                                     return {
@@ -125,6 +125,7 @@ class UserWork extends React.Component {
                                 pageSize: 10,
                                 pageSizeOptions: [5,10,20]
                             }}
+                            isLoading={this.props.userListStore.loading === true ? true : false}
                         />
                     </Grid>
                 </div>

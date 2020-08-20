@@ -35,13 +35,17 @@ class WorkDetail extends React.Component {
         this.handleClose = this.handleClose.bind(this)
         this.handleClose1 = this.handleClose1.bind(this)
         this.handleClickId = this.handleClickId.bind(this)
+        this.handleWorkQuantityChange = this.handleWorkQuantityChange.bind(this)
+        this.handleWorkQuantitySubmit = this.handleWorkQuantitySubmit.bind(this)
+        this.handleKeyUpWorkQuantity = this.handleKeyUpWorkQuantity.bind(this)
+        this.handleWorkUserCancelQuantityChange = this.handleWorkUserCancelQuantityChange.bind(this)
+        this.handleWorkUserCancelQuantitySubmit = this.handleWorkUserCancelQuantitySubmit.bind(this)
+        this.handleKeyUpCancel = this.handleKeyUpCancel.bind(this)
     }
     componentDidMount() {
         this.setState({
             userId : this.props.rowDataId,
         })
-
-
     }
 
     selectedId=(selectedId)=>{
@@ -54,6 +58,7 @@ class WorkDetail extends React.Component {
         this.props.workStore.LoadWorkQuantity(authorityNo);
         this.setState({
             open: true,
+            value : '',
         });
     }
     handleClose() {
@@ -67,6 +72,7 @@ class WorkDetail extends React.Component {
         this.props.workStore.LoadWorkUserCancelQuantity(authorityNo,userId);
         this.setState({
             open1: true,
+            CancelValue : '',
         });
     }
     handleClose1() {
@@ -80,43 +86,94 @@ class WorkDetail extends React.Component {
         })
     }
    handleWorkQuantityChange = (event) => {
-        this.setState({value: event.target.value});
-    }
-
+       const curValue = event.target.value;
+       const newValue = curValue.replace(/[^0-9]/g, '');
+           this.setState({
+               value: newValue,
+               }
+           )
+   }
     handleWorkUserCancelQuantityChange = (event) => {
-        this.setState({CancelValue: event.target.value});
-    }
-    handleWorkQuantitySubmit=()=>{
-        axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
-            .then(res =>{
-                if (res.status === 200) {
-                    this.setState({
-                        value:'',
-                        open:false,
-                    })
-                    const groupNo = this.props.authStore.loginUser.groupNo;
-                    this.props.userListStore.LoadGroupUserList(groupNo);
-                    alert("작업지정이 완료되었습니다.");
-                }
+        const curValue = event.target.value;
+        const newValue = curValue.replace(/[^0-9]/g, '');
+            this.setState({
+                CancelValue: newValue,
             })
     }
 
-    handleWorkUserCancelQuantitySubmit=()=>{
-
-        axios.post(`/api/v1/kfashion/work/history/assignmentCancel?workId=${this.props.rowDataId}&workCount=${this.state.CancelValue}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
-            .then(res =>{
-                if (res.status === 200) {
-                    this.setState({
-                        value:'',
-                        open:false,
+    handleWorkQuantitySubmit=(e)=>{
+        if(this.state.value === '' || this.state.value < 0 || this.state.value === null) {
+            alert("값을 입력해주세요.");
+        }else {
+            if(this.state.value > this.props.workStore.workQuantity) {
+                alert("남은작업을 확인해주세요.")
+                this.setState({
+                    value : '',
+                })
+                document.getElementById("workQuantity").focus();
+            }else {
+                this.props.userListStore.changeLoadingUp()
+                this.setState({
+                    open: false,
+                })
+                axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
+                    .then(res => {
+                        if (res.status === 200) {
+                            this.setState({
+                                value: '',
+                            })
+                            const groupNo = this.props.authStore.loginUser.groupNo;
+                            this.props.userListStore.LoadGroupUserList(groupNo);
+                            alert("작업지정이 완료되었습니다.");
+                            this.props.userListStore.changeLoadingDown()
+                        }
                     })
-                    const groupNo = this.props.authStore.loginUser.groupNo;
-                    this.props.userListStore.LoadGroupUserList(groupNo);
-                    alert("작업취소가 완료되었습니다.");
-                }
-            })
+            }
+        }
     }
 
+    handleWorkUserCancelQuantitySubmit=(e)=>{
+        if(this.state.CancelValue === '' || this.state.CancelValue < 0 || this.state.CancelValue === null) {
+            alert("값을 입력해주세요.");
+        }else {
+            if(this.state.CancelValue > this.props.workStore.workUserCancelQuantity) {
+                alert("남은작업을 확인해주세요.");
+                this.setState({
+                    CancelValue : '',
+                })
+                document.getElementById("workUserCancelQuantity").focus();
+            }else {
+                this.props.userListStore.changeLoadingUp()
+                this.setState({
+                    open1: false,
+                })
+                axios.post(`/api/v1/kfashion/work/history/assignmentCancel?workId=${this.props.rowDataId}&workCount=${this.state.CancelValue}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
+                    .then(res => {
+                        if (res.status === 200) {
+                            this.setState({
+                                CancelValue: '',
+                            })
+                            const groupNo = this.props.authStore.loginUser.groupNo;
+                            this.props.userListStore.LoadGroupUserList(groupNo);
+                            alert("작업취소가 완료되었습니다.");
+                            this.props.userListStore.changeLoadingDown()
+                        }
+                    })
+            }
+        }
+    }
+
+    handleKeyUpCancel = (e) =>{
+        if(e.key === 'Enter') {
+            this.handleWorkUserCancelQuantitySubmit();
+        }
+    }
+
+    handleKeyUpWorkQuantity = (e) => {
+        if(e.key === 'Enter') {
+            this.handleWorkQuantitySubmit();
+        }
+    }
 
     render() {
         return (
@@ -135,10 +192,20 @@ class WorkDetail extends React.Component {
                     작업지정  (남은 작업: {this.props.workStore.workQuantity})
                 </Typography>
                 <hr></hr>
-                <form noValidate autoComplete="off">
-                    <TextField id="number" label="작업수량 입력" onChange={this.handleWorkQuantityChange}/>
+                <div>
+                    <TextField
+                        id="workQuantity"
+                        label="작업수량 입력"
+                        value={this.state.value}
+                        onChange={this.handleWorkQuantityChange}
+                        onKeyPress={this.handleKeyUpWorkQuantity}
+                        autoFocus={true}
+                        InputProps={{
+                            inputProps: {maxLength: this.props.workStore.workQuantityLength},
+                        }}
+                    />
                     <Button variant="outlined" style={{marginTop:10}} onClick={this.handleWorkQuantitySubmit}>확인 </Button>
-                </form>
+                </div>
             </DialogContent>
             </Dialog>
                 <Dialog open={this.state.open1} onClose={this.handleClose1}
@@ -151,10 +218,19 @@ class WorkDetail extends React.Component {
                             작업회수  (남은 작업: {this.props.workStore.workUserCancelQuantity})
                         </Typography>
                         <hr></hr>
-                        <form noValidate autoComplete="off">
-                            <TextField id="number" label="작업수량 입력" onChange={this.handleWorkUserCancelQuantityChange}/>
+                        <div>
+                            <TextField id="workUserCancelQuantity"
+                                       label="작업수량 입력"
+                                       value={this.state.CancelValue}
+                                       onChange={this.handleWorkUserCancelQuantityChange}
+                                       onKeyPress={this.handleKeyUpCancel}
+                                       autoFocus={true}
+                                       InputProps={{
+                                           inputProps: { maxLength: this.props.workStore.workUserCancelQuantityLength},
+                                       }}
+                            />
                             <Button variant="outlined" style={{marginTop:10}} onClick={this.handleWorkUserCancelQuantitySubmit}>확인 </Button>
-                        </form>
+                        </div>
                     </DialogContent>
                 </Dialog>
             </div>

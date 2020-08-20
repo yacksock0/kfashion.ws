@@ -12,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import {Typography} from "@material-ui/core";
+import {toJS} from "mobx";
 
 @inject('authStore', 'messageStore','checkHighLabelStore', 'polygonStore')
 @observer
@@ -62,7 +63,13 @@ export default class ReturnMsg extends React.Component {
         if (basicComplateConfirm) {
         const workNo = this.props.checkHighLabelStore.workNo;
         const createdId = this.props.authStore.loginUser.id;
-        this.props.messageStore.BasicCompleteUp(workNo, createdId);
+        const selected = toJS(this.props.checkHighLabelStore.selectedItem);
+            if(selected.length > 0 && selected !== null) {
+                this.props.messageStore.BasicSelectedCompleteUp(selected,createdId);
+            }
+            else {
+                this.props.messageStore.BasicCompleteUp(workNo, createdId);
+            }
         }
         this.props.onClick();
         }
@@ -86,10 +93,10 @@ export default class ReturnMsg extends React.Component {
         const {polyInfo} = this.props.polygonStore
         return (
             <div>
-                <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.workNo == ''}>
+                <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.successDisabled === true ? true : false }>
                     완료
                 </Button>
-                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150, marginRight:10, marginBottom:10}} disabled={this.props.checkHighLabelStore.workNo == ''}>
+                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150, marginRight:10, marginBottom:10}} disabled={this.props.checkHighLabelStore.workNo === 0 ? true : false}>
                     반송
                 </Button>
 

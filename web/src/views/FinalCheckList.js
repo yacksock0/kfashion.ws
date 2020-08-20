@@ -126,31 +126,28 @@ class FinalCheckList extends React.Component {
             count: 0,
             workNo : 0,
             data: [],
-            columns: [
-                {title: <Button onClick={this.allToggle.bind(this)} variant="outlined" ><b>전체선택</b></Button>,
-                    render : rowData => <Checkbox checked={this.state.selected.includes(rowData.workNo)}
-                                                  onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
-                {title: '번호', field: 'workNo',type: 'number'},
-                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
-                {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
-                {title: '생성자', field: 'createdId', type: 'string'},
-            ],
         }
         this.handleClickMsgOpen = this.handleClickMsgOpen.bind(this)
     }
+
     allToggle = () => {
         const checkList = toJS(this.props.professionalLabelStore.inspectionList);
-        checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).map(item => (
+        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
+        const selected = toJS(this.props.professionalLabelStore.selectedItem);
+        if(selected.length > 0 && selectList.length > selected.length)
+            for(let i=0; i < selected.length; i++) {
+                const idx = selectList.findIndex(function(item,index) {return item.workNo === selected[i]})
+                if (idx > -1) selectList.splice(idx, 1)
+            }
+        selectList.map((item, index) => {
             this.toggle(item.workNo)
-        ))
+        })
     }
 
     toggle = (workNo) => {
-        const selected = this.state.selected;
+        const selected = toJS(this.props.professionalLabelStore.selectedItem);
         if (selected.includes(workNo)) selected.splice(selected.indexOf(workNo), 1);
         else selected.push(workNo);
-        this.setState({ selected });
         this.props.professionalLabelStore.changeSelectedItem(selected);
     };
 
@@ -241,12 +238,21 @@ class FinalCheckList extends React.Component {
         if (basicComplateConfirm) {
             const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
             const createdId = this.props.authStore.loginUser.id;
-            this.props.professionalLabelStore.ProfessionalCompleteUp(workNo, createdId);
+            const selected = toJS(this.props.professionalLabelStore.selectedItem);
+            if(selected.length > 0 && selected !== null) {
+                this.props.professionalLabelStore.ProfessionalSelectedCompleteUp(selected,createdId);
+            }
+            else {
+                this.props.professionalLabelStore.ProfessionalCompleteUp(workNo, createdId);
+            }
             this.setState({
                 open: false,
                 tabIndex1 : 1,
+                successCheckId : '',
             });
             this.canvas.backgroundImage = 0;
+            this.canvas.setWidth(0);
+            this.canvas.setHeight(0);
             this.canvas.renderAll();
             this.deleteAll();
         }
@@ -271,6 +277,8 @@ class FinalCheckList extends React.Component {
                 tabIndex1 : 1,
             });
             this.canvas.backgroundImage = 0;
+            this.canvas.setWidth(0);
+            this.canvas.setHeight(0);
             this.canvas.renderAll();
             this.deleteAll();
         }
@@ -387,6 +395,7 @@ class FinalCheckList extends React.Component {
                 this.setState({
                     selected : [],
                     workNo : 0,
+                    successCheckId : '',
                 })
                 this.canvas.backgroundImage = 0;
                 this.canvas.setWidth(0);
@@ -416,7 +425,7 @@ class FinalCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "90%"}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
@@ -431,10 +440,14 @@ class FinalCheckList extends React.Component {
                                 <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
                                     <TabList >
                                         <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>아우터</h3></Tab>
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>상의</h3></Tab>
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>하의</h3></Tab>
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>원피스</h3></Tab>
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo1 === 1 ? false : true}><h3>아우터</h3></Tab>
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo2 === 2 ? false : true}><h3>상의</h3></Tab>
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo3 === 3 ? false : true}><h3>하의</h3></Tab>
+                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo4 === 4 ? false : true}><h3>원피스</h3></Tab>
                                     </TabList>
                                     <TabPanel>
                                         <TableContainer>
@@ -860,7 +873,19 @@ class FinalCheckList extends React.Component {
                                     </TabPanel>
                                     <TabPanel>
                                         <MaterialTable
-                                            columns={this.state.columns}
+                                            columns={[
+                                                {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                                                  checked={this.props.professionalLabelStore.selectedItem.length === this.props.professionalLabelStore.inspectionList.slice
+                                                    (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}>
+                                                        </Checkbox>,
+                                                    render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
+                                                                                  onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
+                                                {title: '번호', field: 'workNo',type: 'number'},
+                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                                                {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
+                                                {title: '생성일', field: 'createdDatetime', type: 'date'},
+                                                {title: '생성자', field: 'createdId', type: 'string'},
+                                            ]}
                                             data={!!this.props.professionalLabelStore.inspectionList ?
                                                 this.props.professionalLabelStore.inspectionList.map((item) => {
                                                     return {
@@ -912,7 +937,7 @@ class FinalCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <Button variant="outlined" onClick={this.handleComplete} disabled={this.state.successCheckId !== this.props.authStore.loginUser.id} style={{float:'right' , width:150, marginBottom:10}}>
+                <Button variant="outlined" onClick={this.handleComplete} disabled={this.state.successCheckId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10}}>
                     완료
                 </Button>
                 <Button variant="outlined" onClick={this.handleJson}>

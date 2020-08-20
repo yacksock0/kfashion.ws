@@ -1,8 +1,13 @@
 import {action, computed, flow, observable, toJS} from "mobx";
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-
 const State = {
+    Ready: 'Ready',
+    Pending: 'Pending',
+    Success: 'Success',
+    Fail: 'Fail',
+}
+const Message = {
     comment:'',
     workNo:0,
     sendId:'',
@@ -36,11 +41,12 @@ const BasicComplete = {
 }
 
 export default class MessageStore {
-    @observable newMsg = {...State};
+    @observable newMsg = {...Message};
     @observable checkBox = {...CheckBox};
     @observable inspectionHighList =[];
     @observable disabled = {...Disabled};
     @observable basicComplete = {...BasicComplete};
+    @observable state = {...State}
 
     @action changePolyInfo = (polyInfo) => {
         if( "" === polyInfo.filter(poly => poly == 1)) {
@@ -149,6 +155,17 @@ export default class MessageStore {
         {!!this.checkBox.outer == false && !!this.checkBox.top == false && !!this.checkBox.pants == false && !!this.checkBox.onepiece == false ? this.checkBox.poly=false :this.checkBox.poly=true}
     }
 
+    @computed get isPending() {
+        return this.state === State.Pending;
+    }
+
+    @computed get isLabelUpSuccess() {
+        return this.state === State.Success;
+    }
+
+    @computed get isLabelUpFailed() {
+        return this.state === State.Fail;
+    }
 
     sendMsg = flow(function* sendMsg() {
         const param = toJS(this.newMsg);
@@ -157,7 +174,7 @@ export default class MessageStore {
             if (resp.status === 200) {
                 this.checkBox ={...CheckBox};
                 this.LoadInspectionHighList1();
-                this.newMsg ={...State};
+                this.newMsg ={...Message};
                 this.changeComment('')
                 alert('작업이 반송처리 되었습니다');
             } else {
@@ -185,6 +202,34 @@ export default class MessageStore {
             console.log('에러좀 나지 마라')
         }
     });
+
+    BasicSelectedCompleteUp = flow(function* basicSelectedCompleteUp(selected,createdId) {
+        this.state = State.Pending;
+        if(selected.length > 0) {
+            for (let i = 0; i < selected.length; i++) {
+                try {
+                    this.basicComplete.workNo = selected[i];
+                    this.basicComplete.createdId = createdId;
+                    const param = toJS(this.basicComplete);
+                    const resp = yield axios.post('/api/v1/kfashion/work/history/basicComplete', param);
+                    if (resp.status === 200) {
+                        this.state = State.Success;
+                    } else {
+                        this.state = State.Fail;
+                    }
+                } catch (e) {
+                    console.log('에러좀 나지 마라')
+                }
+            }
+            if (this.state = State.Success) {
+                alert("검수가 완료 되었습니다.");
+                this.LoadInspectionHighList1();
+            }
+        }
+    });
+
+
+
 
 
     LoadInspectionHighList1 = flow(function* loadInspectionHighList() {

@@ -281,7 +281,7 @@ class ModifyStep3 extends React.Component {
         }
     }
     render() {
-        setTimeout(() => document.body.style.zoom = "100%", 100);
+        setTimeout(() => document.body.style.zoom = "80%", 100);
         const {classes} = this.props;
         const polyLast = this.props.polygonStore;
 

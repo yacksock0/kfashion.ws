@@ -205,5 +205,22 @@
         WHERE id=#{id}
     </delete>
 
+    <update id="updateGroupUser">
+        UPDATE kfashion_user_info
+        SET
+        password = #{password},
+        name = #{name},
+        updated_datetime = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateGroupUserName">
+        UPDATE kfashion_user_info
+        SET
+        name = #{name},
+        updated_datetime = NOW()
+        WHERE id = #{id}
+    </update>
+
 
 </mapper>

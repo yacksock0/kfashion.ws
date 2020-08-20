@@ -82,4 +82,11 @@ public class KfashionUserInfoRepository {
         return mapper.getGroupUser(userId);
     }
 
+    public void updateGroupUser(KfashionUserInfo user) {
+        mapper.updateGroupUser(user);
+    }
+
+    public void updateGroupUserName(KfashionUserInfo user) {
+        mapper.updateGroupUserName(user);
+    }
 }

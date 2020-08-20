@@ -104,6 +104,8 @@ export default class WorkStore {
     @observable pantsReviewLabel = {...ReviewLabel};
     @observable onePieceReviewLabel = {...ReviewLabel};
     @observable WorkProgressRate = [];
+    @observable workQuantityLength = 1;
+    @observable workUserCancelQuantityLength = 1;
 
     @action initStore = () => {
         this.professionalList = 0;
@@ -120,12 +122,20 @@ export default class WorkStore {
         this.authorityNo = authorityNo;
     }
 
+    @action changeWorkQuantityLength = (workQuantity) => {
+        this.workQuantityLength = workQuantity.toString().length;
+    }
+    @action changeWorkUserCancelQuantityLength = (workUserCancelQuantity) => {
+        this.workUserCancelQuantityLength = workUserCancelQuantity.toString().length;
+    }
+
 
     LoadWorkQuantity = flow(function* loadWorkQuantity(authorityNo) {
         this.workQuantity = 0;
         try {
             const response = yield axios.get('/api/v1/kfashion/work/workQuantity?authorityNo='+authorityNo)
             this.workQuantity = response.data.workQuantity;
+            this.changeWorkQuantityLength(this.workQuantity);
         } catch (e) {
             console.log('error')
         }
@@ -136,6 +146,7 @@ export default class WorkStore {
         try {
             const response = yield axios.get('/api/v1/kfashion/work/workUserCancelQuantity?authorityNo='+authorityNo+'&userId='+userId)
             this.workUserCancelQuantity = response.data.workUserCancelQuantity;
+            this.changeWorkUserCancelQuantityLength(this.workUserCancelQuantity);
         } catch (e) {
             console.log('error')
         }

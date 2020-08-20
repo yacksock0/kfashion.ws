@@ -194,4 +194,16 @@ public class KfashionUserInfoController {
     }
 
 
+    @PutMapping("/updateGroupUser")
+    public ResponseEntity<Object> updateGroupUser(HttpServletRequest httpRequest,
+                                                       @RequestBody KfashionUserInfo user) {
+        if(user.getPassword() != null) {
+            kfashionUserInfoService.updateGroupUser(user);
+        }else {
+            kfashionUserInfoService.updateGroupUserName(user);
+        }
+        return new ResponseEntity<Object>("success", HttpStatus.OK);
+    }
+
+
 }

@@ -23,31 +23,28 @@ export default class ProImageList extends React.Component {
             professionalList: [],
             count: 0,
             data: [],
-            columns: [
-                {title: <Button onClick={this.allToggle.bind(this)} variant="outlined" ><b>전체선택</b></Button>,
-                    render : rowData => <Checkbox checked={this.state.selected.includes(rowData.workNo)}
-                                                            onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
-                {title: '번호', field: 'workNo',type: 'button'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
-                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
-                {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',hidden:true},
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
-            ],
+
         }
     }
 
     allToggle = () => {
         const checkList = toJS(this.props.professionalLabelStore.professionalList);
-            checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).map(item => (
+        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
+        const selected = toJS(this.props.professionalLabelStore.selectedItem);
+        if(selected.length > 0 && selectList.length > selected.length)
+            for(let i=0; i < selected.length; i++) {
+                const idx = selectList.findIndex(function(item,index) {return item.workNo === selected[i]})
+                if (idx > -1) selectList.splice(idx, 1)
+            }
+        selectList.map((item, index) => {
                 this.toggle(item.workNo)
-            ))
+        })
     }
 
     toggle = (workNo) => {
-        const selected = this.state.selected;
+        const selected = toJS(this.props.professionalLabelStore.selectedItem);
         if (selected.includes(workNo)) selected.splice(selected.indexOf(workNo), 1);
         else selected.push(workNo);
-        this.setState({ selected });
         this.props.professionalLabelStore.changeSelectedItem(selected);
     };
 
@@ -81,13 +78,25 @@ export default class ProImageList extends React.Component {
             pageSize : event,
         })
     }
-
-
+    
     render() {
-        const {isPending} = this.props.professionalLabelStore;
+        const {selectedItem} = this.props.professionalLabelStore;
         return (
                 <MaterialTable
-                columns={this.state.columns}
+                columns={[
+                    {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                      checked={this.props.professionalLabelStore.selectedItem.length === this.props.professionalLabelStore.professionalList.slice
+                                      (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}
+                        >
+                        </Checkbox>,
+                        render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
+                                                      onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
+                    {title: '번호', field: 'workNo',type: 'button'},
+                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                    {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
+                    {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',hidden:true},
+                    {title: '생성일', field: 'createdDatetime', type: 'date'},
+                ]}
                 data={this.props.professionalLabelStore.professionalList.map((item) => {
                         return {
                                     workNo: item.workNo,

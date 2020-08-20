@@ -396,18 +396,13 @@ class Step3 extends React.Component {
         const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
         const createdId = this.props.authStore.loginUser.id;
         if (deleteConfirm) {
-            const workNo =toJS(this.props.professionalLabelStore.selectedItem);
-            if(workNo.length > 0) {
-                for(let i=0; i < workNo.length; i++) {
-                    this.props.professionalLabelStore.deleteImg(workNo[i],createdId);
-                }
-                alert("삭제가 완료되었습니다.")
+            const selected =toJS(this.props.professionalLabelStore.selectedItem);
+                    this.props.professionalLabelStore.deleteImg(selected,createdId);
             }
-        }
     }
 
     render() {
-            setTimeout(() => document.body.style.zoom = "100%", 100);
+            setTimeout(() => document.body.style.zoom = "80%", 100);
         const {classes,history} = this.props;
         const polyLast = this.props.polygonStore;
             return (
@@ -418,7 +413,7 @@ class Step3 extends React.Component {
                                 <WorkedImg onClick={this.handleLabel} />
                             </Grid>
                         <Grid container>
-                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 1000,height: 1000, zoom : "70%"}}>
+                            <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
                                     <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </Grid>
                             <Grid item xs={12} lg={5} xl={6} style={{marginLeft:"auto", marginTop:10}}>

@@ -21,6 +21,7 @@ import PolygonList from "./PolygonList";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ErrorIcon from "@material-ui/icons/Error";
+import {toJS} from "mobx";
 
 const styles = theme => ({
     root: {
@@ -489,12 +490,15 @@ class Polygon extends React.Component {
                     this.canvas.setWidth(0)
                     this.canvas.setHeight(0)
                     this.deleteAll(1);
+                    this.canvas.backgroundImage = 0;
+                    this.canvas.renderAll();
                     this.save1 = false;
                     this.save2 = false;
                     this.save3 = false;
                     this.save4 = false;
                     this.buttonState();
                     // -- Tap Menu List로 전환
+
                     this.setState({
                         tabIndex: 1,
                         workNo: 0
@@ -668,23 +672,36 @@ class Polygon extends React.Component {
 
     onSelectTap = (tabIndex) => {
         if(this.state.workNo != 0 ){
+            if(tabIndex === 1) {
+                this.setState({
+                    selected : [],
+                    workNo : 0,
+                })
+                this.canvas.setWidth(0);
+                this.canvas.setHeight(0);
+                this.canvas.backgroundImage = 0;
+                this.canvas.renderAll();
+                this.props.rectStore.selectedItemReset();
+                this.deleteAll(1);
+            }
             this.setState({tabIndex : tabIndex});
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
     }
+
     handleDelete =()=>{
         const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
+        const createdId = this.props.authStore.loginUser.id
         if(deleteConfirm) {
-            const workNo = this.state.workNo
-            const createdId = this.props.authStore.loginUser.id
-            this.props.rectStore.deleteImg(workNo, createdId)
+            const selected =toJS(this.props.rectStore.selectedItem);
+                    this.props.rectStore.deleteImg(selected,createdId);
             this.setState({
-                tabIndex: 1,
+                tabIndex : 1,
             })
-
         }
     }
+
     render() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         const { classes,history } = this.props;
@@ -695,7 +712,7 @@ class Polygon extends React.Component {
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto' ,width: 800,height: 800}}>
+                        <Grid item xs={12} lg={7} xl={7} style={{marginTop:10, overflow:'auto' ,width: 1000,height: 800}}>
                         {/*<div>*/}
                         {/*    /!*<Button id="btnReset" onClick={this.btnReset}>Zoom reSet</Button>*!/*/}
                         {/*    <Button*/}
@@ -714,7 +731,7 @@ class Polygon extends React.Component {
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </Grid>
 
-                        <Grid item xs={12} lg={5} xl={6} style={{marginLeft:'auto'}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft:"auto", zoom: "70%"}}>
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTap( tabIndex )}>
                                 <TabList>
                                     <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
@@ -1117,11 +1134,6 @@ class Polygon extends React.Component {
                                             <Button onClick={this.submit}  style={{color:'white', minHeight:70,  fontSize:20, width:'100%', height:'100%' }} >작업 완료 </Button>
                                         </div>
                                     </div>
-                                    <Grid item xs={12}>
-                                        <Button variant="outlined" color="secondary" style={{width:'100%', marginTop:5}} onClick={this.handleDelete}>
-                                            이미지 삭제
-                                        </Button>
-                                    </Grid>
                                 </TabPanel>
                                 <TabPanel value={this.state.value} index={1}>
                                     <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange}/>
@@ -1151,7 +1163,8 @@ class Polygon extends React.Component {
                     {/*    onClick={this.handleSubmitForm} >*/}
                     {/*    Next*/}
                     {/*</Button>*/}
-
+                </div>
+                <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}>
                     <Button
                         type="button"
                         className={classes.buttonType2}
@@ -1160,7 +1173,13 @@ class Polygon extends React.Component {
                     >
                         Next Step
                     </Button>
-                </div>
+                    <Button variant="outlined" color="secondary"
+                            className={classes.buttonType2}
+                            style={{display:'inline', marginRight:5}}  onClick={this.handleDelete}
+                    disabled={this.state.tabIndex === 0 ? true : false}>
+                        이미지 삭제
+                    </Button>
+                </Grid>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
                     <p><ErrorIcon/>우측 상단에 이미지리스트에서 작업 할 이미지 선택</p>
                     <p><ErrorIcon/>각 영역 별 START버튼을 통해 영역지정 완료 후 FINISH 버튼 클릭 (Start -> Finish -> Save)</p>

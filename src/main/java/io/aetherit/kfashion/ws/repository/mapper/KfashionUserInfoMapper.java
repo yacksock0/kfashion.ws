@@ -35,4 +35,8 @@ public interface KfashionUserInfoMapper {
     void deleteGroupUser(KfashionUserInfo user);
 
     int getGroupUser(String userId);
+
+    void updateGroupUser(KfashionUserInfo user);
+
+    void updateGroupUserName(KfashionUserInfo user);
 }

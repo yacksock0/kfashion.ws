@@ -31,6 +31,7 @@ export default class UserListStore {
     @observable newMember = {...EmptyNewMember}
     @observable groupUserList = [];
     @observable listState = ListState.Loaded;
+    @observable loading = false;
 
     @action initStore = () => {
         this.groupUserList = [];
@@ -61,9 +62,23 @@ export default class UserListStore {
         this.state = State.Ready;
     }
 
+    @action reSetNewMember = () => {
+        this.newMember = {...EmptyNewMember};
+    }
+
+    @action changeLoadingUp = () => {
+        this.loading = true;
+    }
+
+    @action changeLoadingDown = () => {
+        this.loading = false;
+    }
+
     @computed get isNotAvailableId() {
         return this.state === State.NotAvailableId;
     }
+
+
 
         LoadGroupUserList= flow(function* loadGroupUserList(groupNo) {
             this.listState = ListState.Loading;
@@ -91,6 +106,7 @@ export default class UserListStore {
                     if (res.status === 200) {
                         let groupNo= this.newMember.groupNo;
                         this.LoadGroupUserList(groupNo);
+                        this.reSetNewMember();
                     }
                 })
         }else {
@@ -101,4 +117,23 @@ export default class UserListStore {
             console.log('에러좀 나지 마라')
         }
     });
+
+
+    UpdatedGroupUser = flow(function* updatedGroupUser() {
+        this.state = State.Pending;
+        try {
+                const param = toJS(this.newMember);
+                axios.put('/api/v1/kfashion/users/updateGroupUser', param)
+                    .then(res =>{
+                        if (res.status === 200) {
+                            let groupNo= this.newMember.groupNo;
+                            this.LoadGroupUserList(groupNo);
+                            this.reSetNewMember();
+                        }
+                    })
+        } catch (e) {
+            console.log('에러좀 나지 마라')
+        }
+    });
+
 }

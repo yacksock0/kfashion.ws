@@ -212,4 +212,13 @@ public class KfashionUserInfoService {
     }
 
 
+    public void updateGroupUser(KfashionUserInfo user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println("비번이다"+user.getPassword());
+        repository.updateGroupUser(user);
+    }
+
+    public void updateGroupUserName(KfashionUserInfo user) {
+        repository.updateGroupUserName(user);
+    }
 }

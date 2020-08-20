@@ -17,4 +17,5 @@ public class KfashionEmailAuthorityService {
     public void deleteUserId(KfashionUserInfo user) {
         repository.deleteUserId(user);
     }
+
 }

@@ -174,13 +174,20 @@ export default class CheckHighLabelStore {
     @observable basicComplete = {...BasicComplete};
     @observable polygonList = [];
     @observable selectedItem = [];
+    @observable successDisabled = true;
 
     @action changeSelectedItem = (workNo) => {
         this.selectedItem = workNo;
+        if(this.selectedItem === null || this.selectedItem === '' || this.selectedItem.length === 0){
+            this.successDisabled = true;
+        }else {
+            this.successDisabled = false;
+        }
     }
 
     @action selectedItemReset = () => {
         this.selectedItem = [];
+        this.successDisabled = true;
     }
 
     @action changeNewBasicLabelNo1 = (labelNo1) => {
@@ -364,6 +371,11 @@ export default class CheckHighLabelStore {
 
     @action changeNewBasicLabelWorkNo = (workNo) => {
         this.workNo = workNo;
+        if(this.workNo === 0) {
+            this.successDisabled = true;
+        }else {
+            this.successDisabled = false;
+        }
     }
 
 

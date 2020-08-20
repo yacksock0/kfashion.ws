@@ -571,6 +571,7 @@ class Step2 extends React.Component {
                 this.canvas.setWidth(0);
                 this.canvas.setHeight(0);
                 this.canvas.renderAll();
+                this.props.checkHighLabelStore.selectedItemReset();
                 this.deleteAll();
             }
             this.setState({tabIndex1: tabIndex1});
@@ -593,7 +594,7 @@ class Step2 extends React.Component {
     }
 
     render() {
-        setTimeout(() => document.body.style.zoom = "100%", 100);
+        setTimeout(() => document.body.style.zoom = "80%", 100);
         const {classes, history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
@@ -604,7 +605,7 @@ class Step2 extends React.Component {
                 <div className={classes.appBarSpacer}/>
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "70%"}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
                         </Grid>
                         <Grid item xs={12} lg={6} xl={5} style={{marginLeft: 'auto'}}>

@@ -44,6 +44,7 @@ class UserList extends React.Component {
                     filterPlaceholder: 'GroupNo filter',
                     tooltip: 'GroupNo로 정렬',
                     editPlaceholder: '아이디 입력',
+                    editable:false
                 },
                 {title: '이름', field: 'name', type: 'text'},
                 {title: '비밀번호', field: 'password' },
@@ -52,6 +53,7 @@ class UserList extends React.Component {
             ],
         }
     }
+
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         const groupNo = this.props.authStore.loginUser.groupNo;
@@ -70,7 +72,6 @@ class UserList extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.userListStore.isNotAvailableId) {
             alert("이미 사용중인 아이디입니다.")
-
             this.props.userListStore.clearState();
         }
     }
@@ -98,10 +99,6 @@ class UserList extends React.Component {
                         <MaterialTable
                             localization={{ body: {
                                 editRow: { deleteText: '정말 삭제 하시겠습니까?'} } ,
-                                pagination: {
-                                    labelDisplayedRows: '10',
-                                    labelRowsPerPage: '5',
-                                    }
                                 }
                             }
                             columns={this.state.columns}
@@ -126,6 +123,22 @@ class UserList extends React.Component {
                                                 this.props.userListStore.changeNewMemberUserName(rowData.name)
                                                 this.props.userListStore.changeNewMemberGroupNo(groupNo)
                                                 this.props.userListStore.AddGroupUser();
+                                            } catch (e) {
+                                                console.log('여기 에러 났음')
+                                            }
+                                            resolve();
+                                        }, 1000);
+                                    }),
+
+                                onRowUpdate: rowData =>
+                                    new Promise((resolve, reject) => {
+                                        setTimeout(() => {
+                                            try {
+                                                this.props.userListStore.changeNewMemberId(rowData.id)
+                                                this.props.userListStore.changeNewMemberPassword(rowData.password)
+                                                this.props.userListStore.changeNewMemberUserName(rowData.name)
+                                                this.props.userListStore.changeNewMemberGroupNo(groupNo)
+                                                this.props.userListStore.UpdatedGroupUser();
                                             } catch (e) {
                                                 console.log('여기 에러 났음')
                                             }
@@ -176,7 +189,6 @@ class UserList extends React.Component {
                                 pageSize: 10,
                                 pageSizeOptions: [5,10,20]
                             }}
-
                         />
                     </Grid>
                 </div>

@@ -18,27 +18,25 @@ class BasicImageList extends React.Component {
             basicLabelList: [],
             count: 0,
             data: [],
-            columns: [
-                {title: <Button onClick={this.allToggle.bind(this)} variant="outlined" ><b>전체선택</b></Button>,
-                    render : rowData => <Checkbox checked={this.state.selected.includes(rowData.workNo)}
-                                                  onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
-                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
-                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
-                {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
-            ],
         }
     }
+
     allToggle = () => {
         const checkList = toJS(this.props.checkHighLabelStore.polygonList);
-        checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).map(item => (
+        const selectList =checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
+        const selected = toJS(this.props.checkHighLabelStore.selectedItem);
+        if(selected.length > 0 && selectList.length > selected.length)
+            for(let i=0; i < selected.length; i++) {
+                const idx = selectList.findIndex(function(item,index) {return item.workNo === selected[i]})
+                if (idx > -1) selectList.splice(idx, 1)
+            }
+        selectList.map((item, index) => {
             this.toggle(item.workNo)
-        ))
+        })
     }
 
     toggle = (workNo) => {
-        const selected = this.state.selected;
+        const selected = toJS(this.props.checkHighLabelStore.selectedItem);
         if (selected.includes(workNo)) selected.splice(selected.indexOf(workNo), 1);
         else selected.push(workNo);
         this.setState({ selected });
@@ -77,7 +75,7 @@ class BasicImageList extends React.Component {
             page : event,
             selected : [],
         })
-        this.props.professionalLabelStore.selectedItemReset();
+        this.props.checkHighLabelStore.selectedItemReset();
     }
 
     handleChangePagingRowsPerPage = (event) => {
@@ -91,7 +89,20 @@ class BasicImageList extends React.Component {
         const polyNo = this.props.polygonStore.tabIndex1-1;
         return (
             <MaterialTable
-                columns={this.state.columns}
+                columns={[
+                {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                  checked={this.props.checkHighLabelStore.selectedItem.length ===
+                                  this.props.checkHighLabelStore.polygonList.slice
+                                  (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}>
+                        </Checkbox>,
+                    render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)}
+                    onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
+                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
+                {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
+                {title: '생성일', field: 'createdDatetime', type: 'date'},
+                    ]}
                 data={!!this.props.checkHighLabelStore.polygonList ?
                     this.props.checkHighLabelStore.polygonList.map((item) => {
                         return {

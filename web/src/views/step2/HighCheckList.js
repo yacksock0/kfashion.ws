@@ -19,6 +19,7 @@ import {fabric} from "fabric";
 import ReturnMsg from "./ReturnMsg";
 import {toJS} from "mobx";
 import Chip from "@material-ui/core/Chip";
+import Checkbox from "@material-ui/core/Checkbox";
 const styles = theme => ({   root: {
         width: "100%",
         marginTop: theme.spacing.unit * 3,
@@ -160,12 +161,8 @@ class HighCheckList extends React.Component {
             data: [],
             canvasWidth : 0,
             canvasHeight : 0,
-            columns: [
-                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
-                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
-                {title: '생성일', field: 'createdDatetime', type: 'date'},
-            ],
+            page: 0,
+            pageSize: 5,
         }
     }
 
@@ -203,10 +200,11 @@ class HighCheckList extends React.Component {
         this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
     }
 
-
     handleClickCallback= (polyInfo, workNo)=>{
-        this.setState({ polyInfo : polyInfo, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        const polyNo = polyInfo[0]-1;
+        this.onSelectTab1(polyNo);
+        this.setState({ polyInfo : polyInfo, workNo : workNo,
+            tabIndex1 : 0, tabIndex2 : polyNo});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: this.canvas.width,
             height: this.canvas.height,
@@ -232,20 +230,26 @@ class HighCheckList extends React.Component {
     }
 
 
+
     onSelectTab(tabIndex1) {
-        this.setState({tabIndex1:tabIndex1})
-        if(tabIndex1 ==0){
-            this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(this.state.workNo);
-        }else{
+        if(this.state.workNo !== 0) {
+            this.setState({tabIndex1:tabIndex1})
+            if (tabIndex1 === 0) {
+                this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(this.state.workNo);
+            } else {
                 this.setState({
-                    workNo : 0,
+                    workNo: 0,
                 })
                 this.canvas.backgroundImage = 0;
                 this.canvas.setWidth(0);
                 this.canvas.setHeight(0);
                 this.canvas.renderAll();
                 this.deleteAll();
-            this.props.checkHighLabelStore.changeNewBasicLabelWorkNo('');
+                this.props.checkHighLabelStore.selectedItemReset();
+                this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(0);
+            }
+        }else {
+            alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
 
     }
@@ -351,14 +355,53 @@ class HighCheckList extends React.Component {
         }
     }
     handleSubmit(){
-        this.props.messageStore.LoadInspectionHighList1();
         this.canvas.backgroundImage = 0;
         this.canvas.renderAll();
         this.deleteAll();
+        this.canvas.setWidth(0);
+        this.canvas.setHeight(0);
+        this.props.checkHighLabelStore.selectedItemReset();
         this.setState({
             tabIndex1:1
         })
     }
+
+    handleChangePagingPage = (event) => {
+        this.setState({
+            page : event,
+            selected : [],
+        })
+        this.props.checkHighLabelStore.selectedItemReset();
+    }
+
+    handleChangePagingRowsPerPage = (event) => {
+        this.setState({
+            pageSize : event,
+        })
+    }
+
+    allToggle = () => {
+        const checkList = toJS(this.props.messageStore.inspectionHighList);
+        const selectList =checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
+        const selected = toJS(this.props.checkHighLabelStore.selectedItem);
+        if(selected.length > 0 && selectList.length > selected.length)
+            for(let i=0; i < selected.length; i++) {
+                const idx = selectList.findIndex(function(item,index) {return item.workNo === selected[i]})
+                if (idx > -1) selectList.splice(idx, 1)
+            }
+        selectList.map((item, index) => {
+            this.toggle(item.workNo)
+        })
+    }
+
+    toggle = (workNo) => {
+        const selected = toJS(this.props.checkHighLabelStore.selectedItem);
+        if (selected.includes(workNo)) selected.splice(selected.indexOf(workNo), 1);
+        else selected.push(workNo);
+        this.setState({ selected });
+        this.props.checkHighLabelStore.changeSelectedItem(selected);
+    };
+
     render() {
         setTimeout(() => document.body.style.zoom = "80%", 100);
         const {inspectionHighList} = this.props.messageStore;
@@ -369,7 +412,7 @@ class HighCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 800, zoom : "100%"}}>
+                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10, overflow:'auto', width: 900,height: 900, zoom : "80%"}}>
                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </Grid>
                         <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
@@ -564,7 +607,19 @@ class HighCheckList extends React.Component {
 
                         <TabPanel>
                             <MaterialTable
-                                columns={this.state.columns}
+                                columns={[
+                                    {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                                      checked={this.props.checkHighLabelStore.selectedItem.length ===
+                                                      this.props.messageStore.inspectionHighList.slice
+                                                      (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}>
+                                        </Checkbox>,
+                                        render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)}
+                                                                      onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
+                                    {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                                    {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
+                                    {title: '생성일', field: 'createdDatetime', type: 'date'},
+                                ]}
                                 data={
                                     inspectionHighList.map((item) => {
                                         return {
@@ -580,14 +635,18 @@ class HighCheckList extends React.Component {
                                     search: true,
                                     actionsColumnIndex: -1,
                                     headerStyle: {
-                                        backgroundColor: '#000000',
-                                        color: '#FFF',
+                                        backgroundColor: '#FFFFFF',
+                                        color: '#000000',
                                         textAlign:'center',
                                     },
                                     cellStyle: {
                                         textAlign: 'center'
                                     },
+                                    pageSize : this.state.pageSize,
+                                    pageSizeOptions : [5,10,25,50],
                                 }}
+                                onChangePage={this.handleChangePagingPage}
+                                onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                                 actions={[
                                     {
                                         icon: CheckIcon,

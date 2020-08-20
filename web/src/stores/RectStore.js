@@ -34,6 +34,15 @@ export default class RectStore {
     @observable polygonList= [];
     @observable locationPolygonList = [];
     @observable workTypeList = [];
+    @observable selectedItem = [];
+
+    @action changeSelectedItem = (workNo) => {
+        this.selectedItem = workNo;
+    }
+
+    @action selectedItemReset = () => {
+        this.selectedItem = [];
+    }
 
     @action objGet = (rectangle, polygon) => {
         this.rectInsertList = rectangle;
@@ -214,19 +223,29 @@ export default class RectStore {
 
 
 
-    deleteImg = flow(function* deleteImg(workNo,createdId) {
-        try {
-            const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${workNo}`, {
-                data: {
-                    workNo: workNo
+    deleteImg = flow(function* deleteImg(selected,createdId) {
+        if(selected.length > 0) {
+            for (let i = 0; i < selected.length; i++) {
+                try {
+                    const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${selected[i]}`, {
+                        data: {
+                            workNo: selected[i]
+                        }
+                    })
+                    if (resp.status === 200) {
+                        this.state = State.Success;
+                    } else {
+                        this.state = State.Fail;
+                    }
+                } catch (err) {
+                    console.log(err);
                 }
-            })
-            if(resp.status === 200) {
-                alert('이미지가 삭제 되었습니다.')
-                this.LoadRectImage(createdId);
             }
-        } catch (err) {
-            console.log(err);
+            if (this.state = State.Success) {
+                alert("이미지 삭제가 완료되었습니다.")
+                this.LoadRectImage(createdId);
+                this.selectedItemReset();
+            }
         }
     })
 

@@ -1196,20 +1196,29 @@ export default class ProfessionalLabelStore {
         }
     });
 
-    deleteImg = flow(function* deleteImg(workNo,createdId) {
-        console.log(workNo);
-        try {
-            const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${workNo}`, {
-                data: {
-                    workNo: workNo
+    deleteImg = flow(function* deleteImg(selected,createdId) {
+        if(selected.length > 0) {
+            for (let i = 0; i < selected.length; i++) {
+                try {
+                    const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${selected[i]}`, {
+                        data: {
+                            workNo: selected[i]
+                        }
+                    })
+                    if (resp.status === 200) {
+                        this.state = State.Success;
+                    } else {
+                        this.state = State.Fail;
+                    }
+                } catch (err) {
+                    console.log(err);
                 }
-            })
-            if(resp.status === 200) {
+            }
+            if (this.state = State.Success) {
+                alert("이미지 삭제가 완료되었습니다.")
                 this.LoadProfessionalList(createdId);
                 this.selectedItemReset();
             }
-        } catch (err) {
-            console.log(err);
         }
     })
 
@@ -1334,8 +1343,6 @@ export default class ProfessionalLabelStore {
     ProfessionalCompleteUp = flow(function* professionalCompleteUp(workNo,createdId) {
         this.state = State.Pending;
         try {
-            console.log(workNo);
-            console.log(createdId);
             this.professionalComplete.workNo = workNo;
             this.professionalComplete.createdId = createdId;
             const param = toJS(this.professionalComplete);
@@ -1350,6 +1357,34 @@ export default class ProfessionalLabelStore {
             console.log('에러좀 나지 마라')
         }
     });
+
+    ProfessionalSelectedCompleteUp = flow(function* professionalSelectedCompleteUp(selected,createdId) {
+        this.state = State.Pending;
+        if(selected.length > 0) {
+            for (let i = 0; i < selected.length; i++) {
+                try {
+                    this.professionalComplete.workNo = selected[i];
+                    this.professionalComplete.createdId = createdId;
+                    const param = toJS(this.professionalComplete);
+                    const resp = yield axios.post('/api/v1/kfashion/work/history/professionalComplete', param);
+                    if (resp.status === 200) {
+                      this.state = State.Success;
+                    } else {
+                        this.state = State.Fail;
+                    }
+                } catch (e) {
+                    console.log('에러좀 나지 마라')
+                }
+            }
+            if(this.state = State.Success) {
+                this.selectedItemReset();
+                this.LoadInspectionList(createdId);
+                alert("검수가 완료 되었습니다.");
+            }
+        }
+    });
+
+
 
     JsonCompleteUp = flow(function* jsonCompleteUp(workNo) {
         this.state = State.Pending;
