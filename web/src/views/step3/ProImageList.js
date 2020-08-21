@@ -78,6 +78,10 @@ export default class ProImageList extends React.Component {
             pageSize : event,
         })
     }
+
+    handleRowClick = (event, rowData) => {
+        this.toggle(rowData.workNo);
+    };
     
     render() {
         const {selectedItem} = this.props.professionalLabelStore;
@@ -90,7 +94,7 @@ export default class ProImageList extends React.Component {
                         >
                         </Checkbox>,
                         render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
-                                                      onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
+                                                      ></Checkbox>},
                     {title: '번호', field: 'workNo',type: 'button'},
                     {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
@@ -123,7 +127,7 @@ export default class ProImageList extends React.Component {
                     pageSize : this.state.pageSize,
                     pageSizeOptions : [5,10,25,50],
                 }}
-
+                onRowClick={this.handleRowClick}
                 onChangePage={this.handleChangePagingPage}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                 actions={[

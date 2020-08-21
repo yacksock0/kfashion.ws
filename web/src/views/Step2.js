@@ -139,6 +139,7 @@ class Step2 extends React.Component {
         this.props.currentStepStore.setStep(2);
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId: id});
+        this.props.checkHighLabelStore.doBasicLabelCompleteUp(id,2);
         this.props.enqueueSnackbar("기본 레이블링", {
             variant: 'success',
             anchorOrigin: {
@@ -596,7 +597,7 @@ class Step2 extends React.Component {
     }
 
     render() {
-        setTimeout(() => document.body.style.zoom = "80%", 100);
+        setTimeout(() => document.body.style.zoom = "100%", 100);
         const {classes, history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {isWorkNo} = this.props.imageStore;
@@ -608,16 +609,16 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div style={{overflow:'auto', width: 800,height: 800}}>
+                            <div style={{overflow:'auto', width: 800,height: 800, zoom :"80%"}}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
                             </div>
                         </Grid>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft: 'auto'}}>
+                        <Grid item xs={12} lg={6} xl={6} style={{marginLeft: 'auto'}}>
                             <Tabs selectedIndex={this.state.tabIndex1}
                                   onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                 <TabList>
                                     <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>기본 레이블링</h3></Tab>
-                                    <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>이미지 리스트</h3></Tab>
+                                    <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>이미지 리스트 ( <b style={{color:"red"}}>{this.props.checkHighLabelStore.complete}</b> / <b>{this.props.checkHighLabelStore.total}</b> )</h3></Tab>
                                 </TabList>
 
                                 <TabPanel>

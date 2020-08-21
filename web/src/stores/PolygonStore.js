@@ -32,6 +32,7 @@ export default class PolygonStore {
     @observable labelNoList;
     @observable polyInfo = [];
 
+
     @action objGet = (obj) => {
         this.polygonInsertList = obj;
     }
@@ -121,6 +122,7 @@ export default class PolygonStore {
                 this.state = State.Success;
                 const createdId = this.NewPolygonLocation.createdId;
                 this.LoadPolygonImage(createdId);
+
             } else {
             }
         } catch (e) {

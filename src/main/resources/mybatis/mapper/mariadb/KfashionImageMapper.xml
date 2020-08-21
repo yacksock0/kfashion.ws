@@ -136,7 +136,7 @@
          AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                            FROM kfashion_work_history
                                            WHERE kfashion_work_history.work_step = 8)
-         ORDER BY created_id = #{createdId} DESC, kfashion_work_history.updated_datetime DESC
+         ORDER BY FIELD(created_id,#{createdId}),created_id DESC, kfashion_work_history.updated_datetime DESC, kfashion_work.no DESC
     </select>
 
     <select id="selectInspectionHighList" resultMap="kfashionImageResultMap">

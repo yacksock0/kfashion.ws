@@ -175,6 +175,8 @@ export default class CheckHighLabelStore {
     @observable polygonList = [];
     @observable selectedItem = [];
     @observable successDisabled = true;
+    @observable total = 0;
+    @observable complete = 0;
 
     @action changeSelectedItem = (workNo) => {
         this.selectedItem = workNo;
@@ -442,6 +444,7 @@ export default class CheckHighLabelStore {
                 this.pantsReviewHighLabel= {...PantsReviewHighLabel};
                 this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
                 this.LoadPolygonImage1(this.changeNewBasicLabel.createdId);
+                this.doBasicLabelCompleteUp(this.changeNewBasicLabel.createdId,2);
                 alert("저장 완료");
             } else {
                 this.state = State.Fail;
@@ -636,6 +639,7 @@ export default class CheckHighLabelStore {
                 this.pantsReviewHighLabel= {...PantsReviewHighLabel};
                 this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
                 this.LoadPolygonImage1(this.changeNewBasicLabel.createdId);
+                this.doBasicLabelCompleteUp(this.changeNewBasicLabel.createdId,2);
                 this.selectedItemReset();
                 alert("저장 완료");
             }
@@ -737,4 +741,20 @@ export default class CheckHighLabelStore {
     //         console.log("error LoadProgressList", e);
     //     }
     // })
+
+    doBasicLabelCompleteUp = flow(function* doBasicLabelCompleteUp(id,authorityNo) {
+        this.state = State.Pending;
+        try {
+            const resp = yield axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${id}&authorityNo=${authorityNo}`);
+            if (resp.status === 200) {
+                const selectWorkProgressRate = resp.data.selectWorkProgressRate;
+                this.total = selectWorkProgressRate.totalWork;
+                this.complete = selectWorkProgressRate.finishWork;
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
+        }
+    });
 }

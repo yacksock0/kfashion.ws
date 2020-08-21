@@ -186,6 +186,10 @@ public class KfashionWorkHistoryController {
             KfashionWorkHistory selectWorkProgressRate = kfashionWorkHistoryService.selectWorkProgressRate(workHistoryMap);
             selectWorkProgressRate.setCreatedId(createdId);
             resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
+            workHistoryMap.put("workStep", 3);
+            KfashionWorkHistory selectWorPolygonRate = kfashionWorkHistoryService.selectWorkProgressRate(workHistoryMap);
+            resultMap.put("selectWorkProgressRate", selectWorkProgressRate);
+            resultMap.put("selectWorPolygonRate", selectWorPolygonRate);
         }
 
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);

@@ -15,7 +15,9 @@ class PolygonList extends React.Component {
             pageSize: 5,
             selected: [],
             rectList: [],
+            checkBoxListLength : -1,
             count: 0,
+            comment : '',
             data: [],
         }
     }
@@ -26,23 +28,50 @@ class PolygonList extends React.Component {
 
     allToggle = () => {
         const checkList = toJS(this.props.rectStore.rectList);
-        const selectList =checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
-        const selected = toJS(this.props.rectStore.selectedItem);
-        if(selected.length > 0 && selectList.length > selected.length)
-            for(let i=0; i < selected.length; i++) {
-                const idx = selectList.findIndex(function(item,index) {return item.workNo === selected[i]})
-                if (idx > -1) selectList.splice(idx, 1)
-            }
+        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
+        const checkBoxList = []
         selectList.map((item, index) => {
-            this.toggle(item.workNo)
+            if (item.comment === '' || item.comment === null) {
+                checkBoxList.push(item);
+            }
         })
+        if (checkBoxList === null || checkBoxList.length === 0) {
+            this.setState({
+                checkBoxListLength : 0,
+            })
+        } else {
+            this.setState({
+                checkBoxListLength: checkBoxList.length,
+            })
+            const selected = toJS(this.props.rectStore.selectedItem);
+            if (selected.length > 0 && checkBoxList.length > selected.length) {
+                for (let i = 0; i < selected.length; i++) {
+                    const idx = checkBoxList.findIndex(function (item, index) {
+                        return item.workNo === selected[i]
+                    })
+                    if (idx > -1) checkBoxList.splice(idx, 1)
+                }
+            }
+            checkBoxList.map((item, index) => {
+                this.toggle(item.workNo);
+            })
+        }
     }
 
-    toggle = (workNo) => {
+    toggle = (workNo,comment) => {
         const selected = toJS(this.props.rectStore.selectedItem);
-        if (selected.includes(workNo)) selected.splice(selected.indexOf(workNo), 1);
-        else selected.push(workNo);
-        this.setState({ selected });
+        if (selected.includes(workNo)){
+            selected.splice(selected.indexOf(workNo), 1);
+            this.setState({
+                comment : comment,
+            })
+        }
+        else{
+            selected.push(workNo);
+            this.setState({
+                comment : comment,
+            })
+        }
         this.props.rectStore.changeSelectedItem(selected);
     };
 
@@ -81,6 +110,29 @@ class PolygonList extends React.Component {
             pageSize : event,
         })
     }
+    handleRowClick = (event, rowData) => {
+        console.log(rowData.comment);
+        const checkList = toJS(this.props.rectStore.rectList);
+        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
+        const checkBoxList = []
+        selectList.map((item, index) => {
+            if (item.comment === '' || item.comment === null) {
+                checkBoxList.push(item);
+            }
+        })
+        if (checkBoxList === null || checkBoxList.length === 0) {
+            this.setState({
+                checkBoxListLength: 0,
+            })
+        } else {
+            this.setState({
+                checkBoxListLength: checkBoxList.length,
+            })
+            if (rowData.comment === '' || rowData.comment === null ) {
+                this.toggle(rowData.workNo,rowData.comment);
+            }
+        }
+    }
 
     render() {
         const comment = this.props.rectStore.rectList;
@@ -89,12 +141,10 @@ class PolygonList extends React.Component {
             <MaterialTable
                 columns={[
                     {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                      checked={this.props.rectStore.selectedItem.length ===
-                                      this.props.rectStore.rectList.slice
-                                      (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}>
+                                      checked={this.props.rectStore.selectedItem.length === this.state.checkBoxListLength ? true : false}>
                         </Checkbox>,
                         render : rowData => <Checkbox checked={this.props.rectStore.selectedItem.includes(rowData.workNo)}
-                                                      onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
+                                                      disabled={rowData.comment === null || rowData.comment === ''? false : true}></Checkbox>},
                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
                     {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
@@ -128,6 +178,7 @@ class PolygonList extends React.Component {
                     pageSize : this.state.pageSize,
                     pageSizeOptions : [5,10,25,50],
                 }}
+                onRowClick={this.handleRowClick}
                 onChangePage={this.handleChangePagingPage}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
 

@@ -23,7 +23,7 @@ import ErrorIcon from "@material-ui/icons/Error";
 import Checkbox from "@material-ui/core/Checkbox";
 
 const styles = theme => ({   root: {
-        width: "90%",
+        width: "100%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
@@ -33,7 +33,7 @@ const styles = theme => ({   root: {
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
-        maxWidth:'90%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -129,7 +129,8 @@ class FinalCheckList extends React.Component {
             selectedIdList : [],
             selectedId : '',
             selectedReturn : true,
-            checkBoxListLength : 1,
+            checkBoxListLength : -1,
+            tableSize : 6,
 
         }
         this.handleClickMsgOpen = this.handleClickMsgOpen.bind(this)
@@ -147,7 +148,7 @@ class FinalCheckList extends React.Component {
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
-                checkBoxListLength : 1,
+                checkBoxListLength : 0,
             })
         } else {
             this.setState({
@@ -197,6 +198,7 @@ class FinalCheckList extends React.Component {
         this.setState({
             pageSize : event,
         })
+        this.props.professionalLabelStore.selectedItemReset();
     }
 
     componentWillUnmount() {
@@ -454,11 +456,34 @@ class FinalCheckList extends React.Component {
         }
     }
 
+
+    handleRowClick = (event, rowData) => {
+        const checkList = toJS(this.props.professionalLabelStore.inspectionList);
+        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
+        const checkBoxList = []
+        selectList.map((item, index) => {
+            if (item.createdId === this.props.authStore.isUserId) {
+                checkBoxList.push(item);
+            }
+        })
+        if (checkBoxList === null || checkBoxList.length === 0) {
+            this.setState({
+                checkBoxListLength: 0,
+            })
+        } else {
+            this.setState({
+                checkBoxListLength: checkBoxList.length,
+            })
+            if (rowData.createdId === this.props.authStore.isUserId) {
+                this.toggle(rowData.workNo, rowData.createdId);
+            }
+        }
+    }
     render() {
         const handleClickMsgOpen = () => {
             this.setState({open:true,})
         };
-        setTimeout(() => document.body.style.zoom = "75%", 100);
+        setTimeout(() => document.body.style.zoom = "100%", 100);
 
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
@@ -469,11 +494,11 @@ class FinalCheckList extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div style={{overflow:'auto', width: 800,height: 800}}>
+                            <div style={{overflow:'auto', width: 800,height: 800, zoom : "80%"}}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </div>
                         </Grid>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginLeft:'auto'}}>
+                        <Grid item xs={12} lg={this.state.tableSize} xl={this.state.tableSize} style={{marginLeft:'auto'}}>
                             <div component={Paper}>
                                 <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                     <TabList >
@@ -923,7 +948,6 @@ class FinalCheckList extends React.Component {
                                                                   checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false}>
                                                         </Checkbox>,
                                                     render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
-                                                                                  onChange={this.toggle.bind(this, rowData.workNo,rowData.createdId)}
                                                                                     disabled={this.props.authStore.isUserId === rowData.createdId ? false : true}></Checkbox>},
                                                 {title: '번호', field: 'workNo',type: 'number'},
                                                 {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
@@ -957,6 +981,7 @@ class FinalCheckList extends React.Component {
                                                 pageSize : this.state.pageSize,
                                                 pageSizeOptions : [5,10,25,50],
                                             }}
+                                            onRowClick={this.handleRowClick}
                                             onChangePage={this.handleChangePagingPage}
                                             onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                                             actions={

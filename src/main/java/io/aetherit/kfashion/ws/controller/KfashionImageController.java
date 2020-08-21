@@ -220,21 +220,12 @@ public class KfashionImageController {
 
     @GetMapping(value = "/professionalList")
     public ResponseEntity<Object> professionalList(HttpServletRequest httpRequest,
-                                                      @RequestParam(value = "createdId") String createdId
-//                                                    , @RequestParam(value = "paging", required=false, defaultValue="yes") String paging
-//                                                    , @RequestParam(value = "rows-per-page", required=false, defaultValue="5") int rowsPerPage
-//                                                    , @RequestParam(value = "page", required=false, defaultValue="1") int page)
-                                                                                                                             )   throws Exception{
-        System.out.println("실행해라");
+                                                      @RequestParam(value = "createdId") String createdId)throws Exception{
         HashMap<String, Object> map = new HashMap<String, Object>();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
             map.put("createdId", createdId);
-//            map.put("rowsPerPage", rowsPerPage);
-//            map.put("page", ((page)-1)*rowsPerPage);
             List<KfashionImage> professionalList = kfashionImageService.selectProfessionalList(map);
-//            int totalCount = kfashionImageService.selectTotalCount(map);
             resultMap.put("professionalList", professionalList);
-//            resultMap.put("totalCount", totalCount);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
@@ -390,4 +381,5 @@ public class KfashionImageController {
         kfashionWorkService.deleteWork(workImage);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }

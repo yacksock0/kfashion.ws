@@ -176,7 +176,7 @@ class Polygon extends React.Component {
             originalWidth = 600,
             originalHeight = 600;
 
-
+        this.props.rectStore.doPolygonCompleteUp(this.props.authStore.isUserId,2);
 
         this.props.currentStepStore.setStep(1);
         this.props.enqueueSnackbar("영역지정", {
@@ -502,10 +502,10 @@ class Polygon extends React.Component {
                     this.save4 = false;
                     this.buttonState();
                     // -- Tap Menu List로 전환
-
                     this.setState({
                         tabIndex: 1,
-                        workNo: 0
+                        workNo: 0,
+                        tableSize : 6
                     });
                 }
             }
@@ -743,7 +743,7 @@ class Polygon extends React.Component {
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTap( tabIndex )}>
                                 <TabList>
                                     <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
-                                    <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                    <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트 ( <b style={{color:"red"}}>{this.props.rectStore.complete}</b> / <b>{this.props.rectStore.total}</b> )</h3></Tab>
                                 </TabList>
 
                                 <TabPanel value={this.state.value} index={0}>

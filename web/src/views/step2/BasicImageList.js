@@ -16,6 +16,7 @@ class BasicImageList extends React.Component {
             pageSize: 5,
             selected: [],
             basicLabelList: [],
+            checkBoxListLength : -1,
             count: 0,
             data: [],
         }
@@ -84,6 +85,10 @@ class BasicImageList extends React.Component {
         })
     }
 
+    handleRowClick = (event, rowData) => {
+        this.toggle(rowData.workNo);
+    };
+
 
     render() {
         const polyNo = this.props.polygonStore.tabIndex1-1;
@@ -95,8 +100,7 @@ class BasicImageList extends React.Component {
                                   this.props.checkHighLabelStore.polygonList.slice
                                   (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}>
                         </Checkbox>,
-                    render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)}
-                    onChange={this.toggle.bind(this, rowData.workNo)} ></Checkbox>},
+                    render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)}></Checkbox>},
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
                 {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
@@ -129,6 +133,7 @@ class BasicImageList extends React.Component {
                     pageSize : this.state.pageSize,
                     pageSizeOptions : [5,10,25,50],
                 }}
+                onRowClick={this.handleRowClick}
                 onChangePage={this.handleChangePagingPage}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                 actions={[

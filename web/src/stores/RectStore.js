@@ -35,6 +35,8 @@ export default class RectStore {
     @observable locationPolygonList = [];
     @observable workTypeList = [];
     @observable selectedItem = [];
+    @observable total = 0;
+    @observable complete = 0;
 
     @action changeSelectedItem = (workNo) => {
         this.selectedItem = workNo;
@@ -213,6 +215,7 @@ export default class RectStore {
                 //작업 완료 후 리스트 갱신.
                 const createdId = this.NewRectLocation.createdId;
                 this.LoadRectImage(createdId);
+                this.doPolygonCompleteUp(createdId,2)
                 alert("작업이 저장되었습니다.");
                 changeWorkNo(0);
             }
@@ -244,10 +247,27 @@ export default class RectStore {
             if (this.state = State.Success) {
                 alert("이미지 삭제가 완료되었습니다.")
                 this.LoadRectImage(createdId);
+                this.doPolygonCompleteUp(createdId,2)
                 this.selectedItemReset();
             }
         }
     })
 
+
+    doPolygonCompleteUp = flow(function* doPolygonCompleteUp(id,authorityNo) {
+        this.state = State.Pending;
+        try {
+            const resp = yield axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${id}&authorityNo=${authorityNo}`);
+            if (resp.status === 200) {
+                const selectWorPolygonRate = resp.data.selectWorPolygonRate;
+                this.total = selectWorPolygonRate.totalWork;
+                this.complete = selectWorPolygonRate.finishWork;
+            } else {
+                this.state = State.Fail;
+            }
+        } catch (e) {
+            console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
+        }
+    });
 
 }
