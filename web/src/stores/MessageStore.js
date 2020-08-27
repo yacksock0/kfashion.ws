@@ -53,6 +53,10 @@ export default class MessageStore {
     @observable totalCount = 0;
     @observable keyword = '';
 
+    @action checkBoxReset = () => {
+        this.checkBox = {...CheckBox};
+    }
+
     @action pageResetAll = () => {
         this.pageSize = 5;
         this.page = 0;
@@ -207,6 +211,39 @@ export default class MessageStore {
             console.log('comment 에러')
         }
     });
+
+
+    sendSelectMsg = flow(function* sendSelectMsg(selected,createdId) {
+        this.state = State.Pending;
+        if(selected.length > 0) {
+            for (let i = 0; i < selected.length; i++) {
+                try {
+                    this.changeWorkNo(selected[i]);
+                    this.changeSendId(createdId)
+                    const param = toJS(this.newMsg);
+                    const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
+                    if (resp.status === 200) {
+                        this.state = State.Success;
+                    } else {
+                        this.state = State.Fail;
+                    }
+                } catch (e) {
+                    console.log('에러좀 나지 마라')
+                }
+            }
+            if (this.state = State.Success) {
+                alert("작업이 반송처리 되었습니다");
+                this.checkBox ={...CheckBox};
+                this.LoadInspectionHighList1();
+                this.newMsg ={...Message};
+                this.changeComment('')
+            }
+        }
+    });
+
+
+
+
 
     BasicCompleteUp = flow(function* basicCompleteUp(workNo,createdId) {
         this.state = State.Pending;

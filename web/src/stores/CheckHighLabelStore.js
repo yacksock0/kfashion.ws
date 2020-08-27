@@ -190,6 +190,10 @@ export default class CheckHighLabelStore {
         this.keyword = '';
     }
 
+    @action workNoReset =  () => {
+        this.workNo = 0;
+    }
+
     @action changePageSize = (pageSize) => {
         this.pageSize = pageSize;
     }
@@ -199,6 +203,7 @@ export default class CheckHighLabelStore {
     @action changeKeyword = (keyword) => {
         this.keyword = keyword;
     }
+
 
     @action changeSelectedItem = (workNo) => {
         this.selectedItem = workNo;

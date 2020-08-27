@@ -402,7 +402,7 @@ class Step3 extends React.Component {
         const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
         const createdId = this.props.authStore.loginUser.id;
         if (deleteConfirm) {
-            const selected =toJS(this.props.professionalLabelStore.selectedItem);
+                   const selected =toJS(this.props.professionalLabelStore.selectedItem);
                     this.props.professionalLabelStore.deleteImg(selected,createdId);
             }
     }
@@ -501,7 +501,7 @@ class Step3 extends React.Component {
                             </Button>
                             <Button variant="outlined" color="secondary"
                                     className={classes.buttonType2}
-                                    disabled={this.state.tabIndex1 === 0 ? true : false}
+                                    disabled={this.state.tabIndex1 === 0 || this.props.professionalLabelStore.selectedItem.length === 0 ? true : false}
                                     style={{display:'inline', marginRight:5}} onClick={this.handleDeleteImg}>
                                 이미지 삭제
                             </Button>

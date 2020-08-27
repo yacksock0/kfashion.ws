@@ -21,6 +21,7 @@ export default class ReturnMsg extends React.Component {
         super(...arguments, props);
         this.state ={
             open:false,
+            openBasic : false,
             workNo:'',
             poly:'',
             label:'',
@@ -28,11 +29,30 @@ export default class ReturnMsg extends React.Component {
             top:'',
         }
     }
-
+    componentDidMount() {
+        this.props.checkHighLabelStore.workNoReset();
+        this.props.checkHighLabelStore.selectedItemReset();
+        this.props.messageStore.changeComment('');
+        this.props.messageStore.checkBoxReset();
+    }
 
     handleClickOpen = () => {
         this.setState({
             open:true,
+        })
+        this.props.checkHighLabelStore.selectedItemReset();
+    };
+
+    handleBasicOpen = () => {
+        this.setState({
+            openBasic:true,
+        })
+        this.props.messageStore.checkLabel(true)
+    };
+
+    handleBasicClose = () => {
+        this.setState({
+            openBasic:false,
         })
     };
 
@@ -43,15 +63,35 @@ export default class ReturnMsg extends React.Component {
     };
     handleSubmit = () => {
         if(this.props.onClick){
-        if(this.props.messageStore.newMsg.comment == ''){alert('반송 단계 및 사유를 입력해 주세요')}
+        if(this.props.messageStore.newMsg.comment == ''){
+            alert('반송 단계 및 사유를 입력해 주세요');
+            document.getElementById("returnText").focus();
+        }
         else {
-            this.props.messageStore.changeWorkNo(this.props.checkHighLabelStore.workNo);
-            this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
-            this.props.messageStore.sendMsg();
-
-            this.setState({
-                open: false,
-            })
+            if(this.state.open === true) {
+                this.props.messageStore.changeWorkNo(this.props.checkHighLabelStore.workNo);
+                this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
+                this.props.messageStore.sendMsg();
+                this.props.checkHighLabelStore.workNoReset();
+                this.setState({
+                    open: false,
+                })
+            }
+            if(this.state.openBasic === true) {
+                const selected = toJS(this.props.checkHighLabelStore.selectedItem);
+                if(this.props.messageStore.checkBox.label === false) {
+                    alert("레이블링 체크를 해주세요.")
+                    this.props.messageStore.checkLabel(true);
+                    document.getElementById("returnText").focus();
+                }else {
+                    if(selected.length > 0 && selected !== null) {
+                        this.props.messageStore.sendSelectMsg(selected,this.props.authStore.loginUser.id);
+                    }
+                    this.setState({
+                        openBasic: false,
+                    })
+                }
+            }
         }
         this.props.onClick();
         }
@@ -96,12 +136,24 @@ export default class ReturnMsg extends React.Component {
                 <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.successDisabled === true ? true : false }>
                     완료
                 </Button>
-                <Button variant="outlined" color="secondary" onClick={this.handleClickOpen} style={{float:'right' , width:150, marginRight:10, marginBottom:10}} disabled={this.props.checkHighLabelStore.workNo === 0 ? true : false}>
-                    반송
+                <Button variant="outlined"
+                        color="secondary"
+                        onClick={this.handleClickOpen}
+                        style={{float:'right' , width:150, marginRight:10, marginBottom:10}}
+                        disabled={this.props.checkHighLabelStore.workNo === 0 ? true : false}>
+                    영역반송
+                </Button>
+                <Button variant="outlined"
+                        color="secondary"
+                        onClick={this.handleBasicOpen}
+                        style={{float:'right' , width:150, marginRight:10, marginBottom:10}}
+                        disabled={this.props.checkHighLabelStore.workNo === 0
+                        && this.props.checkHighLabelStore.selectedItem.length > 0? false : true}>
+                    레이블반송
                 </Button>
 
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">반송</DialogTitle>
+                    <DialogTitle id="form-dialog-title">영역지정 반송</DialogTitle>
                     <DialogContent style={{width: 600}}>
                         <DialogContentText>
                             작업 반송 단계를 선택하세요 (중복선택 가능)
@@ -150,6 +202,37 @@ export default class ReturnMsg extends React.Component {
                                 label="원피스"
                             />
                         </FormGroup>
+                        {/*<FormGroup>*/}
+                        {/*<FormControlLabel*/}
+                        {/*    control={<Checkbox checked={this.props.messageStore.checkBox.label} value={4} onChange={this.handleChange1} name="label" />}*/}
+                        {/*    label="레이블링"*/}
+                        {/*/>*/}
+                        {/*</FormGroup>*/}
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="returnText"
+                            label="반송사유"
+                            value={comment}
+                            onChange={this.handleChangeMsg}
+                            type="text"
+                            fullWidth
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                            취소
+                        </Button>
+                        <Button onClick={this.handleSubmit} color="primary">
+                            확인
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
+
+                <Dialog open={this.state.openBasic} onClose={this.handleBasicClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">기본 레이블링 반송</DialogTitle>
+                    <DialogContent style={{width: 600}}>
                         <FormGroup>
                         <FormControlLabel
                             control={<Checkbox checked={this.props.messageStore.checkBox.label} value={4} onChange={this.handleChange1} name="label" />}
@@ -159,7 +242,7 @@ export default class ReturnMsg extends React.Component {
                         <TextField
                             autoFocus
                             margin="dense"
-                            id="name"
+                            id="returnText"
                             label="반송사유"
                             value={comment}
                             onChange={this.handleChangeMsg}

@@ -177,7 +177,7 @@ class Polygon extends React.Component {
             originalHeight = 600;
 
         this.props.rectStore.doPolygonCompleteUp(this.props.authStore.isUserId,2);
-
+        this.props.rectStore.selectedItemReset();
         this.props.currentStepStore.setStep(1);
         this.props.enqueueSnackbar("영역지정", {
             variant: 'success',
@@ -1184,7 +1184,7 @@ class Polygon extends React.Component {
                     <Button variant="outlined" color="secondary"
                             className={classes.buttonType2}
                             style={{display:'inline', marginRight:5}}  onClick={this.handleDelete}
-                    disabled={this.state.tabIndex === 0 ? true : false}>
+                    disabled={this.state.tabIndex === 0 || this.props.rectStore.selectedItem.length === 0 ? true : false}>
                         이미지 삭제
                     </Button>
                 </Grid>
