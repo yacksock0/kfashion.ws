@@ -163,6 +163,15 @@
         ON kfashion_user_group_admin.group_no = kfashion_user_info.group_no;
     </select>
 
+    <sql id="COMMON_PAGING_HEADER">
+	    select R1.* FROM(
+    </sql>
+
+    <sql id="COMMON_PAGING_TAIL">
+	    ) R1
+	    LIMIT #{pageSize, jdbcType=INTEGER} OFFSET #{page, jdbcType=INTEGER}
+    </sql>
+
     <select id="selectGroupUserList" resultMap="kfashionUserInfoResultMap" parameterType="hashMap">
         SELECT *
         FROM kfashion_user_info
@@ -171,8 +180,27 @@
         <foreach collection="adminIdList" item="adminIdList" index="index" separator="," open="(" close=")">
             (#{adminIdList})
         </foreach>
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_user_info.name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
         ORDER BY created_datetime DESC
-     </select>
+        LIMIT #{pageSize}
+        OFFSET #{startPage}
+    </select>
+
+    <select id="selectGroupUserListTotal" resultType="Long">
+        SELECT
+        count(*) AS totalCount
+        FROM kfashion_user_info
+        WHERE group_no= #{groupNo}
+        AND id NOT IN
+        <foreach collection="adminIdList" item="adminIdList" index="index" separator="," open="(" close=")">
+            (#{adminIdList})
+        </foreach>
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_user_info.name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
 
     <insert id="createGroupUser" parameterType="KfashionUserInfo">
         INSERT

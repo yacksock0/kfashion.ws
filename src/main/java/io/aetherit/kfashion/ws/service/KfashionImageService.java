@@ -31,12 +31,12 @@ public class KfashionImageService {
         return repository.getByteImage(workNo);
     }
 
-    public List<KfashionImage> selectPolygonList(String createdId) {
-        return repository.selectPolygonList(createdId);
+    public List<KfashionImage> selectPolygonList(HashMap<String, Object> pageMap) {
+        return repository.selectPolygonList(pageMap);
     }
 
-    public List<KfashionImage> selectRectList(String createdId) {
-        return repository.selectRectList(createdId);
+    public List<KfashionImage> selectRectList(HashMap<String, Object> pageMap) {
+        return repository.selectRectList(pageMap);
     }
 
     public List<KfashionImage> recentlyImg(String createdId) {
@@ -47,19 +47,56 @@ public class KfashionImageService {
         repository.deleteImage(workImage);
     }
 
-    public List<KfashionImage> selectProfessionalList(HashMap<String, Object> map) {
-        return repository.selectProfessionalList(map);
+    public List<KfashionImage> selectProfessionalList(HashMap<String, Object> pageMap) {
+        return repository.selectProfessionalList(pageMap);
     }
 
-    public List<KfashionImage> selectInspectionList(String createdId) {
-        return repository.selectInspectionList(createdId);
+    public List<KfashionImage> selectInspectionList(Map<String, Object> pageMap) {
+        return repository.selectInspectionList(pageMap);
     }
 
-    public List<KfashionImage> selectInspectionHighList(Long workNo) {
-        return repository.selectInspectionHighList(workNo);
+    public List<KfashionImage> selectInspectionHighList(HashMap<String, Object> pageMap) {
+        return repository.selectInspectionHighList(pageMap);
     }
 
     public int selectTotalCount(HashMap<String, Object> map) {
         return repository.selectTotalCount(map);
+    }
+
+    public List<KfashionImage> selectSuccessList(HashMap<String, Object> pageMap) {
+        return repository.selectSuccessList(pageMap);
+    }
+
+    public Long selectInspectionListTotal(Map<String, Object> pageMap) {
+        return repository.selectInspectionListTotal(pageMap);
+    }
+
+    public List<KfashionImage> selectProfessionalInspectionList(Map<String, Object> pageMap) {
+        return repository.selectProfessionalInspectionList(pageMap);
+    }
+
+
+    public Long selectProfessionalInspectionListTotal(Map<String, Object> pageMap) {
+        return repository.selectProfessionalInspectionListTotal(pageMap);
+    }
+
+    public Long selectProfessionalListTotal(HashMap<String, Object> pageMap) {
+        return repository.selectProfessionalListTotal(pageMap);
+    }
+
+    public Long selectSuccessListTotal(HashMap<String, Object> pageMap) {
+        return repository.selectSuccessListTotal(pageMap);
+    }
+
+    public Long selectRectListTotal(HashMap<String, Object> pageMap) {
+        return repository.selectRectListTotal(pageMap);
+    }
+
+    public Long selectPolygonListTotal(HashMap<String, Object> pageMap) {
+        return repository.selectPolygonListTotal(pageMap);
+    }
+
+    public Long selectInspectionHighListTotal(HashMap<String, Object> pageMap) {
+        return repository.selectInspectionHighListTotal(pageMap);
     }
 }

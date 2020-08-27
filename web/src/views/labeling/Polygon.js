@@ -92,7 +92,7 @@ const styles = theme => ({
 
 
 
-@inject('rectStore','imageStore', 'rectStore','authStore','polygonStore', 'currentStepStore')
+@inject('rectStore','imageStore','authStore','polygonStore', 'currentStepStore')
 @observer
 class Polygon extends React.Component {
     state = {
@@ -788,7 +788,7 @@ class Polygon extends React.Component {
 
                                                 <TableCell style={{textAlign:"center"}}>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis1}>
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteOne()} onKeyUp={this.handleKeyUp} disabled={this.state.buttonDis1}>
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>
@@ -1189,10 +1189,12 @@ class Polygon extends React.Component {
                     </Button>
                 </Grid>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                    <p><ErrorIcon/>우측 상단에 이미지리스트에서 작업 할 이미지 선택</p>
+                    <p><ErrorIcon/>우측 상단에 이미지리스트에서 작업 할 이미지 선택 </p>
                     <p><ErrorIcon/>각 영역 별 START버튼을 통해 영역지정 완료 후 FINISH 버튼 클릭 (Start -> Finish -> Save)</p>
                     <p><ErrorIcon/>삭제 버튼을 통해 한 점씩, 또는 전부삭제 버튼을 클릭해 삭제가능</p>
                     <p><ErrorIcon/>필요한 영역의 작업이 모두 완료되면 작업완료 버튼 클릭</p>
+                    <p><ErrorIcon/>검수 후 반송 된 이미지는 코멘트가 적용되어 확인후 다시 작업하시면 됩니다.(반송된 이미지는 삭제 불가능)</p>
+                    <p><ErrorIcon/>체크박스 활용하여 이미지 일괄삭제 가능</p>
                 </Typography>
             </Container>
         );

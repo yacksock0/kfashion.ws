@@ -160,10 +160,24 @@ public class KfashionImageLocationRectController {
      */
 
     @GetMapping(value = "/rectList")
-    public ResponseEntity<Object> polygonList(HttpServletRequest httpRequest,
-                                              @RequestParam(value = "createdId") String createdId) {
+    public ResponseEntity<Object> rectList(HttpServletRequest httpRequest,
+                                              @RequestParam(value = "createdId") String createdId,
+                                              @RequestParam(value = "page", required = true, defaultValue = "0") int page,
+                                              @RequestParam(value = "pageSize", required = true, defaultValue = "5") int pageSize,
+                                              @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImage> rectList = kfashionImageService.selectRectList(createdId);
+
+        int startPage = page * pageSize;
+        HashMap<String, Object> pageMap = new HashMap<>();
+        pageMap.put("createdId",createdId);
+        pageMap.put("pageSize",pageSize);
+        pageMap.put("startPage",startPage);
+        pageMap.put("keyword", keyword);
+        List<KfashionImage> rectList = kfashionImageService.selectRectList(pageMap);
+        Long totalCount = kfashionImageService.selectRectListTotal(pageMap);
+        resultMap.put("page", page);
+        resultMap.put("totalCount", totalCount);
+        resultMap.put("pageSize", pageSize);
         resultMap.put("rectList", rectList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }

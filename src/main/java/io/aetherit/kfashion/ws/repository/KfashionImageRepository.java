@@ -30,12 +30,12 @@ public class KfashionImageRepository {
         return mapper.getByteImage(workNo);
     }
 
-    public List<KfashionImage> selectPolygonList(String createdId) {
-        return mapper.selectPolygonList(createdId);
+    public List<KfashionImage> selectPolygonList(HashMap<String, Object> pageMap) {
+        return mapper.selectPolygonList(pageMap);
     }
 
-    public List<KfashionImage> selectRectList(String createdId) {
-        return mapper.selectRectList(createdId);
+    public List<KfashionImage> selectRectList(HashMap<String, Object> pageMap) {
+        return mapper.selectRectList(pageMap);
     }
 
     public List<KfashionImage> recentlyImg(String createdId) {
@@ -46,19 +46,55 @@ public class KfashionImageRepository {
         mapper.deleteImage(workImage);
     }
 
-    public List<KfashionImage> selectProfessionalList(HashMap<String, Object> map) {
-        return mapper.selectProfessionalList(map);
+    public List<KfashionImage> selectProfessionalList(HashMap<String, Object> pageMap) {
+        return mapper.selectProfessionalList(pageMap);
     }
 
-    public List<KfashionImage> selectInspectionList(String createdId) {
-        return mapper.selectInspectionList(createdId);
+    public List<KfashionImage> selectInspectionList(Map<String, Object> pageMap) {
+        return mapper.selectInspectionList(pageMap);
     }
 
-    public List<KfashionImage> selectInspectionHighList(Long workNo) {
-        return mapper.selectInspectionHighList(workNo);
+    public List<KfashionImage> selectInspectionHighList(HashMap<String, Object> pageMap) {
+        return mapper.selectInspectionHighList(pageMap);
     }
 
     public int selectTotalCount(HashMap<String, Object> map) {
         return mapper.selectTotalCount(map);
+    }
+
+    public List<KfashionImage> selectSuccessList(HashMap<String, Object> pageMap) {
+        return mapper.selectSuccessList(pageMap);
+    }
+
+    public Long selectInspectionListTotal(Map<String, Object> pageMap) {
+        return mapper.selectInspectionListTotal(pageMap);
+    }
+
+    public List<KfashionImage> selectProfessionalInspectionList(Map<String, Object> pageMap) {
+        return mapper.selectProfessionalInspectionList(pageMap);
+    }
+
+    public Long selectProfessionalInspectionListTotal(Map<String, Object> pageMap) {
+        return mapper.selectProfessionalInspectionListTotal(pageMap);
+    }
+
+    public Long selectProfessionalListTotal(HashMap<String, Object> pageMap) {
+        return mapper.selectProfessionalListTotal(pageMap);
+    }
+
+    public Long selectSuccessListTotal(HashMap<String, Object> pageMap) {
+        return mapper.selectSuccessListTotal(pageMap);
+    }
+
+    public Long selectRectListTotal(HashMap<String, Object> pageMap) {
+        return mapper.selectRectListTotal(pageMap);
+    }
+
+    public Long selectPolygonListTotal(HashMap<String, Object> pageMap) {
+        return mapper.selectPolygonListTotal(pageMap);
+    }
+
+    public Long selectInspectionHighListTotal(HashMap<String, Object> pageMap) {
+        return mapper.selectInspectionHighListTotal(pageMap);
     }
 }

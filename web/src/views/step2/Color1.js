@@ -5,7 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import {Button, Typography} from "@material-ui/core";
 
-@inject('basicLabelStore','authStore','basicCategoryStore','checkHighLabelStore')
+@inject('authStore','basicCategoryStore','checkHighLabelStore')
 @observer
 export default class Color1 extends React.Component {
     constructor(props) {

@@ -22,4 +22,8 @@ public interface KfashionWorkHistoryMapper {
     void deleteBasicLabelWorkHistory(HashMap<String, Object> deleteMap);
 
     List<Long> selectWorkNoList();
+
+    Long selectCompleteWork(int workStep);
+
+    Long selectSuccessWorkNo(KfashionWorkHistory workHistory);
 }

@@ -5,6 +5,7 @@ import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.service.KfashionEmailAuthorityService;
 import io.aetherit.kfashion.ws.service.KfashionUserGroupAdminService;
 import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
+import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +27,20 @@ public class KfashionUserInfoController {
     private JavaMailSender mailSender;
     private KfashionUserGroupAdminService kfashionUserGroupAdminService;
     private KfashionEmailAuthorityService kfashionEmailAuthorityService;
+    private KfashionWorkHistoryService kfashionWorkHistoryService;
 
 
     @Autowired
     public KfashionUserInfoController(KfashionUserInfoService kfashionUserInfoService,
                                       JavaMailSender mailSender,
                                       KfashionUserGroupAdminService kfashionUserGroupAdminService,
-                                      KfashionEmailAuthorityService kfashionEmailAuthorityService) {
+                                      KfashionEmailAuthorityService kfashionEmailAuthorityService,
+                                      KfashionWorkHistoryService kfashionWorkHistoryService) {
         this.kfashionUserInfoService = kfashionUserInfoService;
         this.mailSender = mailSender;
         this.kfashionUserGroupAdminService = kfashionUserGroupAdminService;
         this.kfashionEmailAuthorityService = kfashionEmailAuthorityService;
+        this.kfashionWorkHistoryService = kfashionWorkHistoryService;
     }
 
     /**
@@ -124,6 +128,27 @@ public class KfashionUserInfoController {
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
+//    /**
+//     * 그룹 지정된 회원 리스트
+//     *
+//     * @param httpRequest
+//     * @return List
+//     * @throws Exception
+//     */
+//    @GetMapping(value = "/groupUserList")
+//    public ResponseEntity<Object> groupUserList(HttpServletRequest httpRequest,
+//                                                @RequestParam(value = "groupNo", required = true) int groupNo) throws Exception {
+//        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+//        List<String> adminIdList = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
+//        Map<String, Object> adminMap = new HashMap<>();
+//        adminMap.put("groupNo", groupNo);
+//        adminMap.put("adminIdList", adminIdList);
+//
+//        List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(adminMap);
+//        resultMap.put("groupUserList", groupUserList);
+//        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+//    }
+
     /**
      * 그룹 지정된 회원 리스트
      *
@@ -132,16 +157,32 @@ public class KfashionUserInfoController {
      * @throws Exception
      */
     @GetMapping(value = "/groupUserList")
-    public ResponseEntity<Object> groupUserList(HttpServletRequest httpRequest,
-                                                @RequestParam(value = "groupNo", required = true) int groupNo) throws Exception {
+    public ResponseEntity<Object> testUserList(HttpServletRequest httpRequest,
+                                                @RequestParam(value = "groupNo", required = true) int groupNo,
+                                                @RequestParam(value="pageSize",required = true,defaultValue = "10") int pageSize,
+                                                @RequestParam(value="page",required =  true,defaultValue = "0")int page,
+                                                @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) throws Exception {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        int startPage = page * pageSize;
         List<String> adminIdList = kfashionUserGroupAdminService.selectGroupAdminId(groupNo);
         Map<String, Object> adminMap = new HashMap<>();
+        adminMap.put("pageSize",pageSize);
+        adminMap.put("startPage",startPage);
         adminMap.put("groupNo", groupNo);
+        adminMap.put("keyword",keyword);
         adminMap.put("adminIdList", adminIdList);
 
         List<KfashionUserInfo> groupUserList = kfashionUserInfoService.selectGroupUserList(adminMap);
+        Map<String, Object> totalMap = new HashMap<>();
+        totalMap.put("groupNo", groupNo);
+        totalMap.put("adminIdList", adminIdList);
+        totalMap.put("keyword",keyword);
+        Long totalCount = kfashionUserInfoService.selectGroupUserListTotal(totalMap);
         resultMap.put("groupUserList", groupUserList);
+        resultMap.put("page", page);
+        resultMap.put("pageSize", pageSize);
+        resultMap.put("totalCount", totalCount);
+
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 

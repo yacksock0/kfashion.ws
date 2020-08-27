@@ -13,19 +13,37 @@ public interface KfashionImageMapper {
 
     Map<String, Object> getByteImage(Long workNo);
 
-    List<KfashionImage> selectPolygonList(String createdId);
+    List<KfashionImage> selectPolygonList(HashMap<String, Object> pageMap);
 
-    List<KfashionImage> selectRectList(String createdId);
+    List<KfashionImage> selectRectList(HashMap<String, Object> pageMap);
 
     void deleteImage(KfashionImage workNo);
 
-    List<KfashionImage> selectProfessionalList(HashMap<String, Object> map);
+    List<KfashionImage> selectProfessionalList(HashMap<String, Object> pageMap);
 
-    List<KfashionImage> selectInspectionList(String createdId);
+    List<KfashionImage> selectInspectionList(Map<String, Object> pageMap);
 
     List<KfashionImage> recentlyImg(String createdId);
 
-    List<KfashionImage> selectInspectionHighList(Long workNo);
+    List<KfashionImage> selectInspectionHighList(HashMap<String, Object> pageMap);
 
     int selectTotalCount(HashMap<String, Object> map);
+
+    List<KfashionImage> selectSuccessList(HashMap<String, Object> pageMap);
+
+    Long selectInspectionListTotal(Map<String, Object> pageMap);
+
+    List<KfashionImage> selectProfessionalInspectionList(Map<String, Object> pageMap);
+
+    Long selectProfessionalInspectionListTotal(Map<String, Object> pageMap);
+
+    Long selectProfessionalListTotal(HashMap<String, Object> pageMap);
+
+    Long selectSuccessListTotal(HashMap<String, Object> pageMap);
+
+    Long selectRectListTotal(HashMap<String, Object> pageMap);
+
+    Long selectPolygonListTotal(HashMap<String, Object> pageMap);
+
+    Long selectInspectionHighListTotal(HashMap<String, Object> pageMap);
 }

@@ -218,14 +218,25 @@ public class KfashionImageController {
      * @throws
      */
 
-    @GetMapping(value = "/professionalList")
+    @GetMapping(value = "professionalList")
     public ResponseEntity<Object> professionalList(HttpServletRequest httpRequest,
-                                                      @RequestParam(value = "createdId") String createdId)throws Exception{
-        HashMap<String, Object> map = new HashMap<String, Object>();
+                                                 @RequestParam(value = "createdId") String createdId,
+                                                 @RequestParam(value = "page", required = true, defaultValue = "0") int page,
+                                                 @RequestParam(value = "pageSize", required = true, defaultValue = "5") int pageSize,
+                                                 @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) {
+        int startPage = page * pageSize;
+        HashMap<String, Object> pageMap = new HashMap<>();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-            map.put("createdId", createdId);
-            List<KfashionImage> professionalList = kfashionImageService.selectProfessionalList(map);
-            resultMap.put("professionalList", professionalList);
+        pageMap.put("pageSize",pageSize);
+        pageMap.put("startPage",startPage);
+        pageMap.put("keyword", keyword);
+        pageMap.put("createdId",createdId);
+        List<KfashionImage> professionalList = kfashionImageService.selectProfessionalList(pageMap);
+        Long totalCount = kfashionImageService.selectProfessionalListTotal(pageMap);
+        resultMap.put("professionalList", professionalList);
+        resultMap.put("page", page);
+        resultMap.put("totalCount", totalCount);
+        resultMap.put("pageSize", pageSize);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
@@ -238,10 +249,52 @@ public class KfashionImageController {
 
     @GetMapping(value = "inspectionList")
     public ResponseEntity<Object> inspectionList(HttpServletRequest httpRequest,
-                                                 @RequestParam(value = "createdId") String createdId) {
+                                                 @RequestParam(value = "createdId") String createdId,
+                                                 @RequestParam(value = "page", required = true, defaultValue = "0") int page,
+                                                 @RequestParam(value = "pageSize", required = true, defaultValue = "5") int pageSize,
+                                                 @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) {
+        int startPage = page * pageSize;
+        Map<String, Object> pageMap = new HashMap<>();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList(createdId);
+        pageMap.put("pageSize",pageSize);
+        pageMap.put("startPage",startPage);
+        pageMap.put("keyword", keyword);
+        pageMap.put("createdId",createdId);
+        List<KfashionImage> inspectionList = kfashionImageService.selectInspectionList(pageMap);
+        Long totalCount = kfashionImageService.selectInspectionListTotal(pageMap);
         resultMap.put("inspectionList", inspectionList);
+        resultMap.put("page", page);
+        resultMap.put("totalCount", totalCount);
+        resultMap.put("pageSize", pageSize);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+
+    /**
+     * 최종검수 리스트
+     *
+     * @return ResponseEntity
+     * @throws
+     */
+
+    @GetMapping(value = "professionalInspectionList")
+    public ResponseEntity<Object> professionalInspectionList(HttpServletRequest httpRequest,
+                                                 @RequestParam(value = "page", required = true, defaultValue = "0") int page,
+                                                 @RequestParam(value = "pageSize", required = true, defaultValue = "5") int pageSize,
+                                                 @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) {
+        System.out.println("실행한다");
+        int startPage = page * pageSize;
+        Map<String, Object> pageMap = new HashMap<>();
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        pageMap.put("pageSize",pageSize);
+        pageMap.put("startPage",startPage);
+        pageMap.put("keyword", keyword);
+        List<KfashionImage> professionalInspectionList = kfashionImageService.selectProfessionalInspectionList(pageMap);
+        Long totalCount = kfashionImageService.selectProfessionalInspectionListTotal(pageMap);
+        resultMap.put("professionalInspectionList", professionalInspectionList);
+        resultMap.put("page", page);
+        resultMap.put("totalCount", totalCount);
+        resultMap.put("pageSize", pageSize);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
@@ -253,7 +306,10 @@ public class KfashionImageController {
      */
 
     @GetMapping(value = "inspectionHighList")
-    public ResponseEntity<Object> inspectionHighList(HttpServletRequest httpRequest) {
+    public ResponseEntity<Object> inspectionHighList(HttpServletRequest httpRequest,
+                                                     @RequestParam(value = "page", required = true, defaultValue = "0") int page,
+                                                     @RequestParam(value = "pageSize", required = true, defaultValue = "5") int pageSize,
+                                                     @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<Long> HistoryWorkNo = kfashionWorkHistoryService.selectWorkNoList();
         List<KfashionComment> commentWorkNoList = kfashionCommentService.selectCommentWorkNoList();
@@ -333,12 +389,20 @@ public class KfashionImageController {
         }
         HistoryWorkNo.removeAll(commentWorkNoStep3);
         HistoryWorkNo.removeAll(commentWorkNoStep4);
-        List<KfashionImage> inspectionHighList = new ArrayList<>();
-        for (int a = 0; a < HistoryWorkNo.size(); a++) {
-            workNo = HistoryWorkNo.get(a);
-            inspectionHighList.addAll(kfashionImageService.selectInspectionHighList(workNo));
-        }
+
+
+        int startPage = page * pageSize;
+        HashMap<String, Object> pageMap = new HashMap<>();
+        pageMap.put("HistoryWorkNo",HistoryWorkNo);
+        pageMap.put("pageSize",pageSize);
+        pageMap.put("startPage",startPage);
+        pageMap.put("keyword", keyword);
+        List<KfashionImage> inspectionHighList = kfashionImageService.selectInspectionHighList(pageMap);
+        Long totalCount = kfashionImageService.selectInspectionHighListTotal(pageMap);
         resultMap.put("inspectionHighList", inspectionHighList);
+        resultMap.put("page", page);
+        resultMap.put("totalCount", totalCount);
+        resultMap.put("pageSize", pageSize);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
@@ -381,5 +445,37 @@ public class KfashionImageController {
         kfashionWorkService.deleteWork(workImage);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    /**
+     * 완료된 이미지 리스트
+     *
+     * @param
+     * @return ResponseEntity
+     * @throws
+     */
+
+    @GetMapping(value = "/successList")
+    public ResponseEntity<Object> successList(HttpServletRequest httpRequest,
+                                              @RequestParam(value = "page", required = true, defaultValue = "0") int page,
+                                              @RequestParam(value = "pageSize", required = true, defaultValue = "5") int pageSize,
+                                              @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        int startPage = page * pageSize;
+        HashMap<String, Object> pageMap = new HashMap<>();
+        pageMap.put("pageSize",pageSize);
+        pageMap.put("startPage",startPage);
+        pageMap.put("keyword", keyword);
+        List<KfashionImage> successList = kfashionImageService.selectSuccessList(pageMap);
+        Long totalCount = kfashionImageService.selectSuccessListTotal(pageMap);
+        resultMap.put("page", page);
+        resultMap.put("totalCount", totalCount);
+        resultMap.put("pageSize", pageSize);
+        resultMap.put("successList", successList);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+
+
 
 }

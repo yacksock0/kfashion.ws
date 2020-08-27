@@ -38,6 +38,28 @@ export default class RectStore {
     @observable total = 0;
     @observable complete = 0;
 
+    @observable pageSize = 5;
+    @observable page = 0;
+    @observable totalCount = 0;
+    @observable keyword = '';
+
+    @action pageResetAll = () => {
+        this.pageSize = 5;
+        this.page = 0;
+        this.totalCount = 0;
+        this.keyword = '';
+    }
+
+    @action changePageSize = (pageSize) => {
+        this.pageSize = pageSize;
+    }
+    @action changePage = (page) => {
+        this.page = page;
+    }
+    @action changeKeyword = (keyword) => {
+        this.keyword = keyword;
+    }
+
     @action changeSelectedItem = (workNo) => {
         this.selectedItem = workNo;
     }
@@ -129,9 +151,22 @@ export default class RectStore {
     LoadRectImage = flow(function* LoadRectImage(createdId, handleListChange) {
         this.rectList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/rect/rectList?createdId='+createdId)
-            this.rectList = response.data.rectList;
-
+            const response = yield axios.get('/api/v1/kfashion/rect/rectList', {
+              params : {
+                  createdId : createdId,
+                  page : this.page,
+                  pageSize : this.pageSize,
+                  keyword : this.keyword,
+              }
+            })
+            if(response.status === 200) {
+                this.rectList = response.data.rectList;
+                this.page =  response.data.page;
+                this.totalCount = response.data.totalCount;
+                this.pageSize = response.data.pageSize;
+            }else {
+                this.state = State.Fail;
+            }
             //polygon 입력하고 호출될 땐 핸들러가 없어서 오류남.
             if(handleListChange != null){
                 handleListChange(this.rectList.length);

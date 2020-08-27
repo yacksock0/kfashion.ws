@@ -51,6 +51,7 @@ public class KfashionWorkHistoryController {
                                                  @RequestParam(value = "authorityNo", required = true) int authorityNo
     ) {
 
+        System.out.println(workId+workCount);
 
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         HashMap<String, Object> workMap = new HashMap<String, Object>();
@@ -199,6 +200,14 @@ public class KfashionWorkHistoryController {
     public ResponseEntity<Object> professionalComplete(HttpServletRequest httpServletRequest,
                                                        @RequestBody KfashionWorkHistory workHistory) throws Exception {
         kfashionWorkHistoryService.insertWorkHistory(workHistory);
+        workHistory.setWorkStep(7);
+        Long no = kfashionWorkHistoryService.selectSuccessWorkNo(workHistory);
+        if(no != null || no > 0) {
+            KfashionWork work = new KfashionWork();
+            work.setNo(no);
+            work.setWorkState(7);
+            kfashionWorkService.updateWork(work);
+        }
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
@@ -206,6 +215,14 @@ public class KfashionWorkHistoryController {
     public ResponseEntity<Object> basicComplete(HttpServletRequest httpServletRequest,
                                                 @RequestBody KfashionWorkHistory workHistory) throws Exception {
         kfashionWorkHistoryService.insertWorkHistory(workHistory);
+        workHistory.setWorkStep(8);
+        Long no = kfashionWorkHistoryService.selectSuccessWorkNo(workHistory);
+        if(no != null || no > 0) {
+            KfashionWork work = new KfashionWork();
+            work.setNo(no);
+            work.setWorkState(7);
+            kfashionWorkService.updateWork(work);
+        }
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 }

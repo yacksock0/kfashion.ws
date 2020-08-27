@@ -5,8 +5,9 @@ import {inject, observer} from "mobx-react";
 import {toJS} from "mobx";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
+import TablePagination from "@material-ui/core/TablePagination";
 
-@inject('fileUploadStore','authStore','imageStore','polygonStore','basicCategoryStore','checkHighLabelStore')
+@inject('authStore','polygonStore','basicCategoryStore','checkHighLabelStore')
 @observer
 class BasicImageList extends React.Component {
     constructor(props) {
@@ -46,7 +47,9 @@ class BasicImageList extends React.Component {
 
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
+        this.props.checkHighLabelStore.pageResetAll();
         this.props.checkHighLabelStore.LoadPolygonImage1(createdId);
+        this.props.checkHighLabelStore.selectedItemReset();
         this.props.basicCategoryStore.LoadColorList();
         this.props.basicCategoryStore.LoadSleeveList();
     }
@@ -71,11 +74,12 @@ class BasicImageList extends React.Component {
         }
     }
 
-    handleChangePagingPage = (event) => {
+    handleChangePagingPage = (event,page) => {
         this.setState({
-            page : event,
             selected : [],
         })
+        this.props.checkHighLabelStore.changePage(page);
+        this.props.checkHighLabelStore.LoadPolygonImage1(this.props.authStore.isUserId);
         this.props.checkHighLabelStore.selectedItemReset();
     }
 
@@ -83,7 +87,17 @@ class BasicImageList extends React.Component {
         this.setState({
             pageSize : event,
         })
+        this.props.checkHighLabelStore.changePageSize(event);
+        this.props.checkHighLabelStore.LoadPolygonImage1(this.props.authStore.isUserId);
+        this.props.checkHighLabelStore.selectedItemReset();
     }
+
+    handleSearchChange = (event) =>{
+        this.props.checkHighLabelStore.changeKeyword(event);
+        this.props.checkHighLabelStore.LoadPolygonImage1(this.props.authStore.isUserId);
+        this.props.checkHighLabelStore.selectedItemReset();
+    }
+
 
     handleRowClick = (event, rowData) => {
         this.toggle(rowData.workNo);
@@ -97,8 +111,7 @@ class BasicImageList extends React.Component {
                 columns={[
                 {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
                                   checked={this.props.checkHighLabelStore.selectedItem.length ===
-                                  this.props.checkHighLabelStore.polygonList.slice
-                                  (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}>
+                                  this.props.checkHighLabelStore.polygonList.length ? true : false}>
                         </Checkbox>,
                     render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)}></Checkbox>},
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
@@ -123,19 +136,32 @@ class BasicImageList extends React.Component {
                     sorting:false,
                     actionsColumnIndex: -1,
                     headerStyle: {
-                        backgroundColor: '#FFFFFF',
+                        backgroundColor: '#E2E2E2',
                         color: '#000000',
                         textAlign:'center',
                     },
                     cellStyle: {
                         textAlign: 'center',
                     },
-                    pageSize : this.state.pageSize,
+                    pageSize : this.props.checkHighLabelStore.pageSize,
                     pageSizeOptions : [5,10,25,50],
                 }}
                 onRowClick={this.handleRowClick}
-                onChangePage={this.handleChangePagingPage}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
+                onSearchChange={this.handleSearchChange}
+                components={{
+                    Pagination: props => (
+                        <TablePagination
+                            {...props}
+                            component="div"
+                            count={this.props.checkHighLabelStore.totalCount}
+                            rowsPerPage={this.props.checkHighLabelStore.pageSize}
+                            page={this.props.checkHighLabelStore.page}
+                            onChangePage={this.handleChangePagingPage}
+                        />
+                    )
+                }}
+
                 actions={[
                     {
                         icon: 'check',

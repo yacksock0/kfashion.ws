@@ -290,18 +290,44 @@ export default function SideMenu(props) {
                 </Link>
                     ):''}
                 {loginUser.groupAdmin === 1 &&  loginUser.authorityNo > 1 ? (
-                    <Link to="/Step2/FinalCheckList" className={classes.link}>
+                    <div>
+                    <Link to="/SuccessList" className={classes.link}>
                         <Collapse in={open2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem type="button" className={classes.nested}>
                                     <ListItemIcon>
                                         <PlaylistAddCheckIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="검수" />
+                                    <ListItemText primary="완료된 이미지"/>
                                 </ListItem>
                             </List>
                         </Collapse>
                     </Link>
+                        <Link to="/ProfessionalCheckList" className={classes.link}>
+                            <Collapse in={open2} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <ListItem type="button" className={classes.nested}>
+                                        <ListItemIcon>
+                                            <PlaylistAddCheckIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="전문가 작업내용" />
+                                    </ListItem>
+                                </List>
+                            </Collapse>
+                        </Link>
+                        <Link to="/Step2/HighCheckList" className={classes.link}>
+                            <Collapse in={open2} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <ListItem type="button" className={classes.nested}>
+                                        <ListItemIcon>
+                                            <PlaylistAddCheckIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="고등학생 작업 내용" />
+                                    </ListItem>
+                                </List>
+                            </Collapse>
+                        </Link>
+                    </div>
                 ):''}
                 {loginUser.groupAdmin !== 1 &&  loginUser.authorityNo === 3 ? (
                     <div>
@@ -324,7 +350,7 @@ export default function SideMenu(props) {
                                         <ListItemIcon>
                                             <PlaylistAddCheckIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary="작업내용 상호간체크" />
+                                        <ListItemText primary="작업내용 체크" />
                                     </ListItem>
                                 </List>
                             </Collapse>

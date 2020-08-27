@@ -44,6 +44,7 @@ export default class AdminAuthorityStore {
         const resp = yield axios.post('/api/v1/kfashion/group/updateUser', formData);
             if (resp.status === 200) {
                 this.LoadUserList();
+                alert("승인처리가 완료되었습니다.");
             this.state = State.Success;
             } else {
                 this.state = State.Fail;

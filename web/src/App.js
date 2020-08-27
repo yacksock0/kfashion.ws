@@ -23,6 +23,8 @@ import UserWork from "./views/admin/UserWork";
 import FinalCheckList from "./views/FinalCheckList";
 import HighCheckList from "./views/step2/HighCheckList";
 import ModifyStep3 from "./views/ModifyStep3";
+import SuccessList from "./views/SuccessList";
+import ProfessionalCheckList from "./views/ProfessionalCheckList";
 
 const style = () => ({
     root: {
@@ -125,6 +127,8 @@ class App extends React.Component {
                                 <Switch>
                                     <Route exact path="/home" component={Home}/>
                                     <Route exact path="/step" component={Step} />
+                                    <Route exact path="/SuccessList" component={SuccessList} />
+                                    <Route exact path="/ProfessionalCheckList" component={ProfessionalCheckList} />
                                     <Route exact path="/step2" component={Step2} />
                                     <Route exact path="/step3" component={Step3}/>
                                     <Route exact path="/Step/ImageUpload" component={ImageUpload}/>

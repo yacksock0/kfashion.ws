@@ -13,7 +13,7 @@ import ErrorIcon from "@material-ui/icons/Error";
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
-        maxWidth:'80%',
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -72,7 +72,7 @@ const styles = theme => ({
 });
 
 
-@inject('fileUploadStore','authStore','imageStore', 'currentStepStore')
+@inject('authStore','imageStore', 'currentStepStore')
 @observer
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -84,13 +84,6 @@ class ImageUpload extends React.Component {
             imgData : '',
             count: 0,
             data: [],
-            columns: [
-                {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬', editable:false},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/>, editable:false},
-                {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter'},
-                {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',editable:false},
-                {title: '등록일 ', field: 'createdDatetime', type: 'date',editable:false},
-            ],
         }
     }
 
@@ -166,7 +159,13 @@ class ImageUpload extends React.Component {
                         <Grid item xs={12} lg={7}>
                             <div>
                             <MaterialTable
-                                columns={this.state.columns}
+                                columns={[
+                                    {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬', editable:false},
+                                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/>, editable:false},
+                                    {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter'},
+                                    {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',editable:false},
+                                    {title: '등록일 ', field: 'createdDatetime', type: 'date',editable:false},
+                                ]}
                                 data={!!this.props.imageStore.boundaryList ?
                                     this.props.imageStore.boundaryList.map((item) => {
                                         return {
@@ -178,10 +177,19 @@ class ImageUpload extends React.Component {
                                         }
                                     }) : []}
                                 title="이미지 리스트"
-                                           options={{
-                                               actionsColumnIndex: -1,
-                                               editCellStyle:'',
-                                           }}
+                                options={{
+                                    sorting:false,
+                                    actionsColumnIndex: -1,
+                                    headerStyle: {
+                                        backgroundColor: '#E2E2E2',
+                                        color: '#000000',
+                                        textAlign:'center',
+                                    },
+                                    cellStyle: {
+                                        textAlign: 'center'
+                                    },
+                                    pageSizeOptions : [5,10,25,50],
+                                }}
                                            actions={[
                                                {
                                                    icon: CheckIcon,

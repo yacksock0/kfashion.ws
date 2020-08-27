@@ -4,6 +4,7 @@ import axios from "axios";
 import {inject, observer} from "mobx-react";
 import Checkbox from "@material-ui/core/Checkbox";
 import {toJS} from "mobx";
+import TablePagination from "@material-ui/core/TablePagination";
 
 @inject('authStore','imageStore','rectStore', 'polygonStore')
 @observer
@@ -23,14 +24,15 @@ class PolygonList extends React.Component {
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
+        this.props.rectStore.pageResetAll();
         this.props.rectStore.LoadRectImage(createdId, this.handleListChange)
+        this.props.rectStore.selectedItemReset();
     }
 
     allToggle = () => {
         const checkList = toJS(this.props.rectStore.rectList);
-        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
         const checkBoxList = []
-        selectList.map((item, index) => {
+        checkList.map((item, index) => {
             if (item.comment === '' || item.comment === null) {
                 checkBoxList.push(item);
             }
@@ -97,11 +99,13 @@ class PolygonList extends React.Component {
         }
     }
 
-    handleChangePagingPage = (event) => {
+    handleChangePagingPage = (event,page) => {
         this.setState({
-            page : event,
             selected : [],
         })
+
+        this.props.rectStore.changePage(page);
+        this.props.rectStore.LoadRectImage(this.props.authStore.isUserId, this.handleListChange)
         this.props.rectStore.selectedItemReset();
     }
 
@@ -109,13 +113,21 @@ class PolygonList extends React.Component {
         this.setState({
             pageSize : event,
         })
+        this.props.rectStore.changePageSize(event);
+        this.props.rectStore.LoadRectImage(this.props.authStore.isUserId, this.handleListChange)
+        this.props.rectStore.selectedItemReset();
     }
+
+    handleSearchChange = (event) =>{
+        this.props.rectStore.changeKeyword(event);
+        this.props.rectStore.LoadRectImage(this.props.authStore.isUserId, this.handleListChange)
+        this.props.rectStore.selectedItemReset();
+    }
+
     handleRowClick = (event, rowData) => {
-        console.log(rowData.comment);
         const checkList = toJS(this.props.rectStore.rectList);
-        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
         const checkBoxList = []
-        selectList.map((item, index) => {
+        checkList.map((item, index) => {
             if (item.comment === '' || item.comment === null) {
                 checkBoxList.push(item);
             }
@@ -168,20 +180,32 @@ class PolygonList extends React.Component {
                     sorting:false,
                     actionsColumnIndex: -1,
                     headerStyle: {
-                        backgroundColor: '#FFFFFF',
+                        backgroundColor: '#E2E2E2',
                         color: '#000000',
                         textAlign:'center',
                     },
                     cellStyle: {
                         textAlign: 'center'
                     },
-                    pageSize : this.state.pageSize,
+
+                    pageSize : this.props.rectStore.pageSize,
                     pageSizeOptions : [5,10,25,50],
                 }}
                 onRowClick={this.handleRowClick}
-                onChangePage={this.handleChangePagingPage}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
-
+                onSearchChange={this.handleSearchChange}
+                components={{
+                    Pagination: props => (
+                        <TablePagination
+                            {...props}
+                            component="div"
+                            count={this.props.rectStore.totalCount}
+                            rowsPerPage={this.props.rectStore.pageSize}
+                            page={this.props.rectStore.page}
+                            onChangePage={this.handleChangePagingPage}
+                        />
+                    )
+                }}
                 actions={[
                     {
                         icon: 'check',

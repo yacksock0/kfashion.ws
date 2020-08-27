@@ -5,7 +5,7 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
-import {Container, Grid} from "@material-ui/core";
+import {Container, Grid, Typography} from "@material-ui/core";
 import 'react-tabs/style/react-tabs.css';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -20,6 +20,8 @@ import ReturnMsg from "./ReturnMsg";
 import {toJS} from "mobx";
 import Chip from "@material-ui/core/Chip";
 import Checkbox from "@material-ui/core/Checkbox";
+import ErrorIcon from "@material-ui/icons/Error";
+import TablePagination from "@material-ui/core/TablePagination";
 const styles = theme => ({   root: {
         width: "100%",
         marginTop: theme.spacing.unit * 3,
@@ -175,7 +177,9 @@ class HighCheckList extends React.Component {
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
+        this.props.messageStore.pageResetAll();
         this.props.messageStore.LoadInspectionHighList1();
+        this.props.checkHighLabelStore.selectedItemReset();
         this.props.enqueueSnackbar("고등학생 검수", {
             variant: 'success',
             anchorOrigin:{
@@ -366,30 +370,40 @@ class HighCheckList extends React.Component {
         })
     }
 
-    handleChangePagingPage = (event) => {
+    handleChangePagingPage = (event,page) => {
         this.setState({
-            page : event,
             selected : [],
         })
+        this.props.messageStore.changePage(page);
+        this.props.messageStore.LoadInspectionHighList1();
         this.props.checkHighLabelStore.selectedItemReset();
+
     }
 
     handleChangePagingRowsPerPage = (event) => {
         this.setState({
             pageSize : event,
         })
+        this.props.messageStore.changePageSize(event);
+        this.props.messageStore.LoadInspectionHighList1();
+        this.props.checkHighLabelStore.selectedItemReset();
+    }
+
+    handleSearchChange = (event) =>{
+        this.props.messageStore.changeKeyword(event);
+        this.props.messageStore.LoadInspectionHighList1();
+        this.props.checkHighLabelStore.selectedItemReset();
     }
 
     allToggle = () => {
         const checkList = toJS(this.props.messageStore.inspectionHighList);
-        const selectList =checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
         const selected = toJS(this.props.checkHighLabelStore.selectedItem);
-        if(selected.length > 0 && selectList.length > selected.length)
+        if(selected.length > 0 && checkList.length > selected.length)
             for(let i=0; i < selected.length; i++) {
-                const idx = selectList.findIndex(function(item,index) {return item.workNo === selected[i]})
-                if (idx > -1) selectList.splice(idx, 1)
+                const idx = checkList.findIndex(function(item,index) {return item.workNo === selected[i]})
+                if (idx > -1) checkList.splice(idx, 1)
             }
-        selectList.map((item, index) => {
+        checkList.map((item, index) => {
             this.toggle(item.workNo)
         })
     }
@@ -616,13 +630,13 @@ class HighCheckList extends React.Component {
                                 columns={[
                                     {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
                                                       checked={this.props.checkHighLabelStore.selectedItem.length ===
-                                                      this.props.messageStore.inspectionHighList.slice
-                                                      (this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize).length ? true : false}>
+                                                      this.props.messageStore.inspectionHighList.length ? true : false}>
                                         </Checkbox>,
                                         render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)}></Checkbox>},
                                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
                                     {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
+                                    {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                                     {title: '생성일', field: 'createdDatetime', type: 'date'},
                                 ]}
                                 data={
@@ -631,6 +645,7 @@ class HighCheckList extends React.Component {
                                             workNo: item.workNo,
                                             fileName: item.fileName,
                                             workName: item.workName,
+                                            createdId : item.createdId,
                                             createdDatetime: item.createdDatetime,
                                         }
                                     })}
@@ -640,19 +655,31 @@ class HighCheckList extends React.Component {
                                     search: true,
                                     actionsColumnIndex: -1,
                                     headerStyle: {
-                                        backgroundColor: '#FFFFFF',
+                                        backgroundColor: '#E2E2E2',
                                         color: '#000000',
                                         textAlign:'center',
                                     },
                                     cellStyle: {
                                         textAlign: 'center'
                                     },
-                                    pageSize : this.state.pageSize,
+                                    pageSize : this.props.messageStore.pageSize,
                                     pageSizeOptions : [5,10,25,50],
                                 }}
                                 onRowClick={this.handleRowClick}
-                                onChangePage={this.handleChangePagingPage}
                                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
+                                onSearchChange={this.handleSearchChange}
+                                components={{
+                                    Pagination: props => (
+                                        <TablePagination
+                                            {...props}
+                                            component="div"
+                                            count={this.props.messageStore.totalCount}
+                                            rowsPerPage={this.props.messageStore.pageSize}
+                                            page={this.props.messageStore.page}
+                                            onChangePage={this.handleChangePagingPage}
+                                        />
+                                    )
+                                }}
                                 actions={[
                                     {
                                         icon: CheckIcon,
@@ -675,6 +702,14 @@ class HighCheckList extends React.Component {
                 </div>
                 <hr></hr>
                 <ReturnMsg onClick={()=> this.handleSubmit()}/><br></br><br></br>
+
+                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                    <p><ErrorIcon/> 우측 상단에 검수할 확인 할 이미지 선택</p>
+                    <p><ErrorIcon/> 작업한 폴리곤 좌표 및 레이블링 확인 </p>
+                    <p><ErrorIcon/> 확인 후 수정 사항 있으면 반송 버튼을 선택</p>
+                    <p><ErrorIcon/> 반송 시 수정 사항 있는 부분 체크 후 반송 사유 작성 후 확인</p>
+                    <p><ErrorIcon/> 체크 박스 활용하여 일괄적으로 완료 가능 합니다 ( 반송은 체크박스 활용 불가능합니다 )</p>
+                </Typography>
             </Container>
         );
     }

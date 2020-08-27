@@ -49,4 +49,12 @@ public class KfashionWorkHistoryRepository {
     public List<Long> selectWorkNoList() {
         return mapper.selectWorkNoList();
     }
+
+    public Long selectCompleteWork(int workStep) {
+        return mapper.selectCompleteWork(workStep);
+    }
+
+    public Long selectSuccessWorkNo(KfashionWorkHistory workHistory) {
+        return mapper.selectSuccessWorkNo(workHistory);
+    }
 }

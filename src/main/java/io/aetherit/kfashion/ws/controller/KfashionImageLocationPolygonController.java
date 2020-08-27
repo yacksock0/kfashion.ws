@@ -117,12 +117,28 @@ public class KfashionImageLocationPolygonController {
      */
     @GetMapping(value = "/polygonList")
     public ResponseEntity<Object> polygonList(HttpServletRequest httpRequest,
-                                              @RequestParam(value = "createdId") String createdId) {
+                                              @RequestParam(value = "createdId") String createdId,
+                                              @RequestParam(value = "page", required = true, defaultValue = "0") int page,
+                                              @RequestParam(value = "pageSize", required = true, defaultValue = "5") int pageSize,
+                                              @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) {
+
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        List<KfashionImage> polygonList = kfashionImageService.selectPolygonList(createdId);
+        int startPage = page * pageSize;
+        HashMap<String, Object> pageMap = new HashMap<>();
+        pageMap.put("createdId",createdId);
+        pageMap.put("pageSize",pageSize);
+        pageMap.put("startPage",startPage);
+        pageMap.put("keyword", keyword);
+        List<KfashionImage> polygonList = kfashionImageService.selectPolygonList(pageMap);
+        Long totalCount = kfashionImageService.selectPolygonListTotal(pageMap);
+        resultMap.put("page", page);
+        resultMap.put("totalCount", totalCount);
+        resultMap.put("pageSize", pageSize);
         resultMap.put("polygonList", polygonList);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+
     }
+
 
     /**
      * 폴리곤 좌표값 리스트

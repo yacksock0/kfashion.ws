@@ -17,7 +17,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
-import {get, toJS} from "mobx";
+import {action, get, toJS} from "mobx";
 import Chip from "@material-ui/core/Chip";
 import ErrorIcon from "@material-ui/icons/Error";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -139,9 +139,10 @@ class FinalCheckList extends React.Component {
 
     allToggle = () => {
         const checkList = toJS(this.props.professionalLabelStore.inspectionList);
+        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
         const checkBoxList = []
         const id = this.props.authStore.loginUser.id;
-        checkList.map((item, index) => {
+        selectList.map((item, index) => {
             if (item.createdId === id) {
                 checkBoxList.push(item);
             }
@@ -191,24 +192,22 @@ class FinalCheckList extends React.Component {
             page : page,
             selected : [],
         })
-        this.props.professionalLabelStore.changeFinalCheckListPage(page);
-        this.props.professionalLabelStore.LoadInspectionList(this.props.authStore.isUserId);
+        this.props.professionalLabelStore.changeProfessionalCheckListPage(page);
+        this.props.professionalLabelStore.LoadProfessionalInspectionList();
         this.props.professionalLabelStore.selectedItemReset();
+    }
+
+    handleSearchChange = (keyword) => {
+        this.props.professionalLabelStore.changeProfessionalCheckListKeyword(keyword);
+        this.props.professionalLabelStore.LoadProfessionalInspectionList();
     }
 
     handleChangePagingRowsPerPage = (event) => {
         this.setState({
             pageSize : event,
         })
-        this.props.professionalLabelStore.changeFinalCheckListPageSize(event);
-        this.props.professionalLabelStore.LoadInspectionList(this.props.authStore.isUserId);
-        this.props.professionalLabelStore.selectedItemReset();
-    }
-
-    handleSearchChange = (event) =>{
-        console.log(event);
-        this.props.professionalLabelStore.changeFinalCheckListKeyword(event);
-        this.props.professionalLabelStore.LoadInspectionList(this.props.authStore.isUserId);
+        this.props.professionalLabelStore.changeProfessionalCheckListPageSize(event);
+        this.props.professionalLabelStore.LoadProfessionalInspectionList();
         this.props.professionalLabelStore.selectedItemReset();
     }
 
@@ -221,7 +220,7 @@ class FinalCheckList extends React.Component {
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;
         this.props.professionalLabelStore.pageResetAll();
-        this.props.professionalLabelStore.LoadInspectionList(id);
+        this.props.professionalLabelStore.LoadProfessionalInspectionList();
         this.props.professionalLabelStore.selectedItemReset();
         this.setState({createdId : id});
         this.props.enqueueSnackbar("검수", {
@@ -477,8 +476,9 @@ class FinalCheckList extends React.Component {
 
     handleRowClick = (event, rowData) => {
         const checkList = toJS(this.props.professionalLabelStore.inspectionList);
+        const selectList = checkList.slice(this.state.pageSize * this.state.page, this.state.page * this.state.pageSize + this.state.pageSize);
         const checkBoxList = []
-        checkList.map((item, index) => {
+        selectList.map((item, index) => {
             if (item.createdId === this.props.authStore.isUserId) {
                 checkBoxList.push(item);
             }
@@ -961,20 +961,19 @@ class FinalCheckList extends React.Component {
                                     <TabPanel>
                                         <MaterialTable
                                             columns={[
-                                                {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                                                  checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false}>
-                                                        </Checkbox>,
-                                                    render : rowData => <Checkbox key={this.props.professionalLabelStore.inspectionList.workNo}
-                                                                                    checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
-                                                                                    disabled={this.props.authStore.isUserId === rowData.createdId ? false : true}></Checkbox>},
+                                                // {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                                //                   checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false}>
+                                                //         </Checkbox>,
+                                                //     render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
+                                                //                                     disabled={this.props.authStore.isUserId === rowData.createdId ? false : true}></Checkbox>},
                                                 {title: '번호', field: 'workNo',type: 'number'},
                                                 {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                                                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                                                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                                                 {title: '생성자', field: 'createdId', type: 'string'},
                                             ]}
-                                            data={!!this.props.professionalLabelStore.inspectionList ?
-                                                this.props.professionalLabelStore.inspectionList.map((item) => {
+                                            data={!!this.props.professionalLabelStore.professionalInspectionList ?
+                                                this.props.professionalLabelStore.professionalInspectionList.map((item) => {
                                                     return {
                                                         workNo: item.workNo,
                                                         fileName: item.fileName,
@@ -996,20 +995,22 @@ class FinalCheckList extends React.Component {
                                                 cellStyle: {
                                                     textAlign: 'center'
                                                 },
-                                                pageSize : this.props.professionalLabelStore.finalCheckListPageSize,
+                                                pageSize : this.props.professionalLabelStore.professionalCheckListPageSize,
                                                 pageSizeOptions : [5,10,25,50],
                                             }}
                                             onRowClick={this.handleRowClick}
+                                            // onChangePage={this.handleChangePagingPage}
                                             onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                                             onSearchChange={this.handleSearchChange}
                                             components={{
                                                 Pagination: props => (
                                                     <TablePagination
                                                         {...props}
+                                                        rowsPerPageOptions={[5, 10, 25]}
                                                         component="div"
-                                                        count={this.props.professionalLabelStore.finalCheckListTotalCount}
-                                                        rowsPerPage={this.props.professionalLabelStore.finalCheckListPageSize}
-                                                        page={this.props.professionalLabelStore.finalCheckListPage}
+                                                        count={this.props.professionalLabelStore.professionalCheckListTotalCount}
+                                                        rowsPerPage={this.props.professionalLabelStore.professionalCheckListPageSize}
+                                                        page={this.props.professionalLabelStore.professionalCheckListPage}
                                                         onChangePage={this.handleChangePagingPage}
                                                     />
                                                 )
@@ -1037,21 +1038,9 @@ class FinalCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <Button variant="outlined" onClick={this.handleComplete} disabled={this.state.selectedId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10}}>
-                    완료
-                </Button>
-                <Button variant="outlined" color="secondary" onClick={this.handleDeleteImg} disabled={this.state.selectedId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10}}>
-                    이미지삭제
-                </Button>
                 <Button variant="outlined" onClick={this.handleJson}>
                     json가져오기
                 </Button>
-                <Typography variant="h6" component="h6" style={{display:'inline'}}>
-                    <p><ErrorIcon/> 우측 상단에 상호간 작업내용 체크 확인 할 이미지 선택 / 본인이 작업한 이미지 리스트는 맨 앞쪽에 최근작업 한 순서로 정렬되어 있음</p>
-                    <p><ErrorIcon/> 수정 버튼 클릭시 수정 화면 이동 후 세부사항 선택 후 수정완료 버튼 눌러주세요.</p>
-                    <p><ErrorIcon/> 본인이 작업한 이미지 리스트에만 수정,삭제,완료 버튼 활성화</p>
-                    <p><ErrorIcon/> 체크박스 수정,완료,삭제 일괄적으로 가능 </p>
-                </Typography>
             </Container>
         );
     }

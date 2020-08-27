@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -403,7 +403,7 @@ public class KfashionLabelController {
                 professional4.setCategoryItemNo(professionalLabel.getFit4());
                 kfashionLabelService.insertProfessionalLabel(professional4);
             }
-        }
+         }
         return new ResponseEntity<Object>("success", HttpStatus.OK);
     }
 

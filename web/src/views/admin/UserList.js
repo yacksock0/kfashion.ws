@@ -7,6 +7,7 @@ import axios from "axios";
 import MaterialTable from "material-table";
 import {inject, observer} from "mobx-react";
 import ErrorIcon from "@material-ui/icons/Error";
+import TablePagination from "@material-ui/core/TablePagination";
 
 const styles = theme => ({
     mainContainer: {
@@ -43,6 +44,7 @@ class UserList extends React.Component {
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         const groupNo = this.props.authStore.loginUser.groupNo;
+        this.props.userListStore.changeAllReSet();
         const id = this.props.authStore.loginUser.id;
         this.props.userListStore.LoadGroupUserList(groupNo);
         this.props.enqueueSnackbar("작업자 등록", {
@@ -69,8 +71,25 @@ class UserList extends React.Component {
                 hidden : false,
             })
         }
-
     }
+
+    handleChangePagingPage = (event,page) => {
+        this.props.userListStore.changePage(page);
+        this.props.userListStore.LoadGroupUserList(this.props.authStore.loginUser.groupNo);
+    }
+
+    handleChangePagingRowsPerPage = (event) => {
+        this.props.userListStore.changePageSize(event);
+        this.props.userListStore.LoadGroupUserList(this.props.authStore.loginUser.groupNo);
+    }
+
+
+    handleSearchChange = (event) =>{
+        console.log(event);
+        this.props.userListStore.changeKeyword(event);
+        this.props.userListStore.LoadGroupUserList(this.props.authStore.loginUser.groupNo);
+    }
+
 
 
     render() {
@@ -174,8 +193,8 @@ class UserList extends React.Component {
                                 minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
-                                    backgroundColor: '#000000',
-                                    color: '#FFF',
+                                    backgroundColor: '#E2E2E2',
+                                    color: '#000000',
                                     textAlign:'center',
                                 },
                                 cellStyle: {
@@ -186,15 +205,28 @@ class UserList extends React.Component {
                                 actionsCellStyle: {
                                     textAlign: 'center'
                                 },
-                                pageSize: 10,
-                                pageSizeOptions: [5,10,20]
+                                pageSize: this.props.userListStore.pageSize,
+                                pageSizeOptions: [5,10,20],
                             }}
+                            components={{
+                                Pagination: props => (
+                                    <TablePagination
+                                        {...props}
+                                        component="div"
+                                        count={this.props.userListStore.totalCount}
+                                        page={this.props.userListStore.page}
+                                        onChangePage={this.handleChangePagingPage}
+                                    />
+                                )
+                            }}
+                            onSearchChange={this.handleSearchChange}
+                            onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                         />
                     </Grid>
                 </div>
                 <ErrorIcon/>
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                    우측상단 + 버튼을 통해 작업자 추가 / 작업 리스트의 액션버튼을 통해 작업자 삭제
+                    우측상단 + 버튼을 통해 작업자 추가 / 작업 리스트의 액션버튼을 통해 작업자 이름/비밀번호 수정
                 </Typography>
             </Container>
         );

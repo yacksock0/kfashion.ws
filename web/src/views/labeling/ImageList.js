@@ -39,7 +39,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-@inject('fileUploadStore','authStore','imageStore')
+@inject('authStore','imageStore')
 @observer
 class ImageList extends React.Component {
     constructor(props) {
@@ -89,8 +89,17 @@ class ImageList extends React.Component {
                     }) : []}
                 title="이미지 리스트"
                 options={{
-                    search: true,
+                    sorting:false,
                     actionsColumnIndex: -1,
+                    headerStyle: {
+                        backgroundColor: '#E2E2E2',
+                        color: '#000000',
+                        textAlign:'center',
+                    },
+                    cellStyle: {
+                        textAlign: 'center'
+                    },
+                    pageSizeOptions : [5,10,25,50],
                 }}
                 actions={[
                     {

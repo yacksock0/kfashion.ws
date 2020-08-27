@@ -21,7 +21,7 @@ import 'react-tabs/style/react-tabs.css';
 
 const styles = theme => ({
     root: {
-        width: "80%",
+        width: "100%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
     },
@@ -106,7 +106,7 @@ const styles = theme => ({
     },
 });
 
-@inject('fileUploadStore','imageStore','rectStore','authStore', 'currentStepStore')
+@inject('imageStore','rectStore','authStore', 'currentStepStore')
 @observer
 class BoundaryBox extends React.Component {
 

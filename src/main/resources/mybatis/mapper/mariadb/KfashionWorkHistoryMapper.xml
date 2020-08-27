@@ -87,4 +87,18 @@
              ) AS A
         WHERE A.count = 1
     </select>
+
+    <select id="selectCompleteWork" resultType="Long">
+        SELECT
+            count(*) AS completeWork
+        FROM kfashion_work_history
+        WHERE work_step = #{workStep};
+    </select>
+
+    <select id="selectSuccessWorkNo" resultType="Long">
+        SELECT work_no
+        FROM kfashion_work_history
+        WHERE work_no = #{workNo}
+        AND work_step = #{workStep}
+    </select>
 </mapper>

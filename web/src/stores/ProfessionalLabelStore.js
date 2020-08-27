@@ -144,6 +144,7 @@ const EmptyNewProfessionalLabel = {
     labelNo3: 0,
     labelNo4: 0,
     labelNo5: 0,
+    workNoList : [],
     createdId: '',
     style: '',
     styleSub: '',
@@ -277,13 +278,99 @@ export default class ProfessionalLabelStore {
     @observable styleReviewLabel = {...EmptyNewStyleReviewLabel};
     @observable menuOpen = {...MenuOpen};
     @observable workNo = 0;
-    @observable inspectionList = [];
     @observable professionalComplete = {...ProfessionalComplete};
     @observable selectedItem = [];
     @observable jsonObject = null;
     @observable total = 0;
     @observable complete = 0;
 
+    @observable pageSize = 5;
+    @observable page = 0;
+    @observable totalCount = 0;
+    @observable keyword = '';
+
+    @observable finalCheckListPageSize = 5;
+    @observable finalCheckListPage = 0;
+    @observable finalCheckListTotalCount = 0;
+    @observable finalCheckListKeyword = '';
+    @observable inspectionList = [];
+
+    @observable professionalCheckListPageSize = 5;
+    @observable professionalCheckListPage = 0;
+    @observable professionalCheckListTotalCount = 0;
+    @observable professionalCheckListKeyword = '';
+    @observable professionalInspectionList = [];
+
+    @observable successPageSize = 5;
+    @observable successPage = 0;
+    @observable successTotalCount = 0;
+    @observable successKeyword = '';
+    @observable successList = [];
+
+    @action pageResetAll = () => {
+        this.pageSize = 5;
+        this.page = 0;
+        this.totalCount = 0;
+        this.keyword = '';
+
+        this.finalCheckListPageSize = 5;
+        this.finalCheckListPage = 0;
+        this.finalCheckListTotalCount = 0;
+        this.finalCheckListKeyword = '';
+
+        this.professionalCheckListPageSize = 5;
+        this.professionalCheckListPage = 0;
+        this.professionalCheckListTotalCount = 0;
+        this.professionalCheckListKeyword = '';
+
+        this.successPageSize = 5;
+        this.successPage = 0;
+        this.successTotalCount = 0;
+        this.successKeyword = '';
+    }
+
+    @action changeSuccessPageSize = (pageSize) => {
+        this.successPageSize = pageSize;
+    }
+    @action changeSuccessPage = (page) => {
+        this.successPage = page;
+    }
+    @action changeSuccessKeyword = (keyword) => {
+        this.successKeyword = keyword;
+    }
+
+
+
+    @action changeProfessionalCheckListPageSize = (pageSize) => {
+        this.professionalCheckListPageSize = pageSize;
+    }
+    @action changeProfessionalCheckListPage = (page) => {
+        this.professionalCheckListPage = page;
+    }
+    @action changeProfessionalCheckListKeyword = (keyword) => {
+        this.professionalCheckListKeyword = keyword;
+    }
+
+
+    @action changePageSize = (pageSize) => {
+        this.pageSize = pageSize;
+    }
+    @action changePage = (page) => {
+        this.page = page;
+    }
+    @action changeKeyword = (keyword) => {
+        this.keyword = keyword;
+    }
+
+    @action changeFinalCheckListPageSize = (pageSize) => {
+        this.finalCheckListPageSize = pageSize;
+    }
+    @action changeFinalCheckListPage = (page) => {
+        this.finalCheckListPage = page;
+    }
+    @action changeFinalCheckListKeyword = (keyword) => {
+        this.finalCheckListKeyword = keyword;
+    }
 
 
     @action changeSelectedItem = (workNo) => {
@@ -912,12 +999,40 @@ export default class ProfessionalLabelStore {
         return this.state === State.Fail;
     }
 
+    LoadProfessionalInspectionList = flow(function* loadProfessionalInspectionList() {
+        this.inspectionList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/img/professionalInspectionList',{
+                params: {
+                    pageSize: this.professionalCheckListPageSize,
+                    page: this.professionalCheckListPage,
+                    keyword : this.professionalCheckListKeyword,
+                }
+            })
+            this.professionalInspectionList = response.data.professionalInspectionList;
+            this.professionalCheckListPage = response.data.page;
+            this.professionalCheckListTotalCount = response.data.totalCount;
+            this.professionalCheckListPageSize = response.data.pageSize;
+        } catch (e) {
+            console.log('error')
+        }
+    });
+
     LoadProfessionalList = flow(function* loadProfessionalList(createdId) {
         this.professionalList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/img/professionalList?createdId=' + createdId)
+            const response = yield axios.get('/api/v1/kfashion/img/professionalList', {
+                params: {
+                    createdId : createdId,
+                    pageSize: this.pageSize,
+                    page: this.page,
+                    keyword : this.keyword,
+                }
+            })
             this.professionalList = response.data.professionalList;
-            // this.paging.totalCount = response.data.totalCount;
+            this.page = response.data.page;
+            this.totalCount = response.data.totalCount;
+            this.pageSize = response.data.pageSize;
         } catch (e) {
             console.log('error')
         }
@@ -1314,11 +1429,6 @@ export default class ProfessionalLabelStore {
             this.newProfessionalLabel.styleCategoryNo = this.styleReviewLabel.styleCategoryNo;
             this.newProfessionalLabel.styleCategorySubNo = this.styleReviewLabel.styleCategorySubNo;
             const param = toJS(this.newProfessionalLabel);
-            console.log("1 : " + this.newProfessionalLabel.labelNo1);
-            console.log("2 : " + this.newProfessionalLabel.labelNo2);
-            console.log("3 : " + this.newProfessionalLabel.labelNo3);
-            console.log("4 : " + this.newProfessionalLabel.labelNo4);
-            console.log("5 : " + this.newProfessionalLabel.labelNo5);
             console.log('param', param);
             const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
             if (resp.status === 200) {
@@ -1342,8 +1452,19 @@ export default class ProfessionalLabelStore {
     LoadInspectionList = flow(function* loadInspectionList(createdId) {
         this.inspectionList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/img/inspectionList?createdId=' + createdId);
+            const response = yield axios.get('/api/v1/kfashion/img/inspectionList',{
+                params: {
+                    createdId : createdId,
+                    pageSize: this.finalCheckListPageSize,
+                    page: this.finalCheckListPage,
+                    keyword : this.finalCheckListKeyword,
+                }
+            })
             this.inspectionList = response.data.inspectionList;
+            this.finalCheckListPage = response.data.page;
+            this.finalCheckListTotalCount = response.data.totalCount;
+            this.finalCheckListPageSize = response.data.pageSize;
+
         } catch (e) {
             console.log('error')
         }
@@ -1705,5 +1826,25 @@ export default class ProfessionalLabelStore {
         }
     })
 
+
+
+    LoadSuccessList = flow(function* loadSuccessList(createdId) {
+        this.successList = [];
+        try {
+            const response = yield axios.get('/api/v1/kfashion/img/successList',{
+                params: {
+                    pageSize: this.successPageSize,
+                    page: this.successPage,
+                    keyword : this.successKeyword,
+                }
+            });
+            this.successList = response.data.successList;
+            this.successPage = response.data.page;
+            this.successTotalCount = response.data.totalCount;
+            this.successPageSize = response.data.pageSize;
+        } catch (e) {
+            console.log('error')
+        }
+    });
 
 }

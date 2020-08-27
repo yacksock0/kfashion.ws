@@ -39,4 +39,6 @@ public interface KfashionUserInfoMapper {
     void updateGroupUser(KfashionUserInfo user);
 
     void updateGroupUserName(KfashionUserInfo user);
+
+    Long selectGroupUserListTotal(Map<String, Object> totalMap);
 }

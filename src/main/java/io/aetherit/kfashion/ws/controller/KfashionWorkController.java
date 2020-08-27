@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.controller;
 
 import io.aetherit.kfashion.ws.model.KfashionWork;
+import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import io.aetherit.kfashion.ws.service.KfashionWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,13 @@ import java.util.Map;
 public class KfashionWorkController {
 
     private KfashionWorkService kfashionWorkService;
+    private KfashionWorkHistoryService kfashionWorkHistoryService;
 
     @Autowired
-    public KfashionWorkController(KfashionWorkService kfashionWorkService) {
+    public KfashionWorkController(KfashionWorkService kfashionWorkService,
+                                  KfashionWorkHistoryService kfashionWorkHistoryService) {
         this.kfashionWorkService = kfashionWorkService;
+        this.kfashionWorkHistoryService = kfashionWorkHistoryService;
     }
 
     /**
@@ -118,6 +122,46 @@ public class KfashionWorkController {
     public ResponseEntity<Object> totalWork(HttpServletRequest httpRequest){
         Long totalWork = kfashionWorkService.selectTotalWork();
         return new ResponseEntity<Object>(totalWork, HttpStatus.OK);
+    }
+
+    /**
+     * 전체 작업 저장 수량
+     *
+     * @return ResponseEntity
+     * @throws
+     */
+    @GetMapping(value = "completeWork")
+    public ResponseEntity<Object> completeWork(HttpServletRequest httpRequest,
+                                               @RequestParam(value = "authorityNo", required = true) int authorityNo){
+        Long completeWork = null;
+        if(authorityNo == 3) {
+            int workStep = 6;
+            completeWork = kfashionWorkHistoryService.selectCompleteWork(workStep);
+        }else {
+            int workStep = 4;
+            completeWork = kfashionWorkHistoryService.selectCompleteWork(workStep);
+        }
+        return new ResponseEntity<Object>(completeWork, HttpStatus.OK);
+    }
+
+    /**
+     * 전체 작업 완료 수량
+     *
+     * @return ResponseEntity
+     * @throws
+     */
+    @GetMapping(value = "successWork")
+    public ResponseEntity<Object> successWork(HttpServletRequest httpRequest,
+                                              @RequestParam(value = "authorityNo", required = true) int authorityNo){
+        Long successWork = null;
+        if(authorityNo == 3) {
+            int workStep = 8;
+            successWork = kfashionWorkHistoryService.selectCompleteWork(workStep);
+        }else {
+            int workStep = 7;
+            successWork = kfashionWorkHistoryService.selectCompleteWork(workStep);
+        }
+        return new ResponseEntity<Object>(successWork, HttpStatus.OK);
     }
 
 

@@ -39,7 +39,7 @@
         ORDER BY kfashion_image.work_no DESC
     </select>
 
-    <select id="selectRectList" resultMap="kfashionImageResultMap" parameterType="String">
+    <select id="selectRectList" resultMap="kfashionImageResultMap">
         SELECT DISTINCT
         kfashion_image.work_no,
         kfashion_work.work_name,
@@ -61,11 +61,37 @@
                                                                                       FROM kfashion_comment
                                                                                       WHERE kfashion_comment.work_step = 3
                                                                                       AND kfashion_comment.complete NOT IN ('Y')))
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
         HAVING complete = 'N'
         ORDER BY kfashion_comment.comment DESC, work_no DESC
+        LIMIT #{pageSize}
+        OFFSET #{startPage}
     </select>
 
-    <select id="selectPolygonList" resultMap="kfashionImageResultMap" parameterType="String">
+    <select id="selectRectListTotal" resultType="Long">
+        SELECT DISTINCT
+        count(kfashion_image.work_no) AS totalCount
+        FROM kfashion_image
+        INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+        INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =3)
+        WHERE kfashion_work_history.created_id = #{createdId}
+        AND kfashion_work_history.work_step = 2
+        AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                           FROM kfashion_work_history
+                                           WHERE kfashion_work_history.work_step = 3
+                                            AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
+                                                                                      FROM kfashion_comment
+                                                                                      WHERE kfashion_comment.work_step = 3
+                                                                                      AND kfashion_comment.complete NOT IN ('Y')))
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
+
+    <select id="selectPolygonList" resultMap="kfashionImageResultMap">
         SELECT DISTINCT
         kfashion_image.work_no,
         kfashion_work.work_name,
@@ -87,9 +113,36 @@
                                                                                       FROM kfashion_comment
                                                                                       WHERE kfashion_comment.work_step = 4
                                                                                       AND kfashion_comment.complete NOT IN ('Y')))
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
         HAVING complete = 'N'
         ORDER BY kfashion_comment.comment DESC, work_no DESC
+        LIMIT #{pageSize}
+        OFFSET #{startPage}
     </select>
+
+    <select id="selectPolygonListTotal" resultType="Long">
+        SELECT DISTINCT
+        count(kfashion_image.work_no) AS totalCount
+        FROM kfashion_image
+        INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+        INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        LEFT OUTER JOIN kfashion_comment ON(kfashion_image.work_no = kfashion_comment.work_no AND kfashion_comment.work_step =4)
+        WHERE kfashion_work_history.created_id = #{createdId}
+        AND kfashion_work_history.work_step = 3
+        AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                    FROM kfashion_work_history
+                                                    WHERE kfashion_work_history.work_step = 4
+                                                    AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
+                                                                                      FROM kfashion_comment
+                                                                                      WHERE kfashion_comment.work_step = 4
+                                                                                      AND kfashion_comment.complete NOT IN ('Y')))
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
+
 
     <select id="getByteImage" parameterType="Long" resultType="java.util.Map">
         SELECT img_data
@@ -113,42 +166,145 @@
         FROM kfashion_image
         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-        WHERE kfashion_work_history.created_id = #{createdId}
-        AND kfashion_work_history.work_step = 5
+        WHERE kfashion_work_history.work_step = 5
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                                     FROM kfashion_work_history
                                                     WHERE kfashion_work_history.work_step = 6)
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        AND kfashion_work_history.created_id = #{createdId}
         ORDER BY kfashion_image.work_no DESC
+        LIMIT #{pageSize}
+        OFFSET #{startPage}
+    </select>
+    
+    <select id="selectProfessionalListTotal" resultType="Long">
+        SELECT DISTINCT
+            count(kfashion_image.work_no) AS totalCount
+        FROM kfashion_image
+            INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+            INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        WHERE kfashion_work_history.work_step = 5
+        AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                    FROM kfashion_work_history
+                                                    WHERE kfashion_work_history.work_step = 6)
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        AND kfashion_work_history.created_id = #{createdId}
     </select>
 
 
     <select id="selectInspectionList" resultMap="kfashionImageResultMap">
          SELECT DISTINCT
-            kfashion_image.work_no,
+            kfashion_work_history.work_no,
             kfashion_work.work_name,
             CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
             kfashion_work_history.created_datetime,
-            (select kfashion_work_history.created_id from kfashion_work_history where kfashion_image.work_no = kfashion_work_history.work_no and  kfashion_work_history.work_step = 6) as created_id
+            kfashion_work_history.created_id
          FROM kfashion_image
              INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
              INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
-         WHERE kfashion_work_history.work_step = 6
-         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
-                                           FROM kfashion_work_history
-                                           WHERE kfashion_work_history.work_step = 8)
-         ORDER BY FIELD(created_id,#{createdId}),created_id DESC, kfashion_work_history.updated_datetime DESC, kfashion_work.no DESC
+        WHERE kfashion_work_history.work_step = 6
+        AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                FROM kfashion_work_history
+                                                WHERE kfashion_work_history.work_step = 8)
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        AND kfashion_work_history.created_id = #{createdId}
+            LIMIT #{pageSize}
+            OFFSET #{startPage}
     </select>
+
+    <select id="selectInspectionListTotal" resultType="Long">
+    SELECT DISTINCT
+          count(kfashion_work_history.work_no) AS totalCount
+    FROM kfashion_image
+         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        WHERE kfashion_work_history.work_step = 6
+        AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                FROM kfashion_work_history
+                                                WHERE kfashion_work_history.work_step = 8)
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        AND kfashion_work_history.created_id =#{createdId}
+    </select>
+
+    <select id="selectProfessionalInspectionList" resultMap="kfashionImageResultMap">
+        SELECT DISTINCT
+            kfashion_work_history.work_no,
+            kfashion_work.work_name,
+            CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
+            kfashion_work_history.created_datetime,
+            kfashion_work_history.created_id
+         FROM kfashion_image
+             INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+             INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        WHERE kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                FROM kfashion_work_history
+                                                WHERE kfashion_work_history.work_step = 8)
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        AND kfashion_work_history.work_step = 6
+            LIMIT #{pageSize}
+            OFFSET #{startPage}
+
+    </select>
+
+    <select id="selectProfessionalInspectionListTotal" resultType="Long">
+        SELECT DISTINCT
+          count(kfashion_work_history.work_no) AS totalCount
+    FROM kfashion_image
+         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
+         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
+        WHERE kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
+                                                FROM kfashion_work_history
+                                                WHERE kfashion_work_history.work_step = 8)
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        AND kfashion_work_history.work_step = 6
+    </select>
+
 
     <select id="selectInspectionHighList" resultMap="kfashionImageResultMap">
        SELECT
             DISTINCT
-            kfashion_work_history.work_no,
+            kfashion_work.no AS work_no,
             kfashion_work.work_name,
             CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
+            kfashion_work_history.created_id,
             kfashion_work.created_datetime
-        FROM kfashion_work_history
-                 INNER JOIN kfashion_work ON kfashion_work_history.work_no = kfashion_work.no
-        WHERE kfashion_work_history.work_no IN (#{workNo})
+        FROM kfashion_work
+            INNER JOIN kfashion_work_history ON kfashion_work.no = kfashion_work_history.work_no
+        WHERE kfashion_work.no IN
+        <foreach collection="HistoryWorkNo" item="HistoryWorkNo" index="index" separator="," open="(" close=")">
+            (#{HistoryWorkNo})
+        </foreach>
+        AND kfashion_work_history.work_step = 4
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        LIMIT #{pageSize}
+        OFFSET #{startPage}
+    </select>
+
+    <select id="selectInspectionHighListTotal" resultType="Long">
+        SELECT DISTINCT
+        count(kfashion_work.no) AS totalCount
+        FROM kfashion_work
+        WHERE kfashion_work.no IN
+        <foreach collection="HistoryWorkNo" item="HistoryWorkNo" index="index" separator="," open="(" close=")">
+            (#{HistoryWorkNo})
+        </foreach>
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
     </select>
 
     <select id="recentlyImg" resultMap="kfashionImageResultMap" >
@@ -175,6 +331,38 @@
           AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
                                                    FROM kfashion_work_history
                                                    WHERE kfashion_work_history.work_step = 6)
+    </select>
+
+    <select id="selectSuccessList" resultMap="kfashionImageResultMap">
+        SELECT
+            DISTINCT
+            kfashion_work.no AS work_no,
+            kfashion_work.work_name,
+            CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
+            kfashion_work.created_datetime,
+            kfashion_work_history.created_id
+        FROM kfashion_work
+            INNER JOIN kfashion_work_history ON kfashion_work.no = kfashion_work_history.work_no
+        WHERE kfashion_work.work_state = 7
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        AND kfashion_work_history.work_step = 8
+        LIMIT #{pageSize}
+        OFFSET #{startPage}
+    </select>
+
+    <select id="selectSuccessListTotal" resultType="Long">
+        SELECT
+            DISTINCT
+        count(kfashion_work.no) AS totalCount
+        FROM kfashion_work
+            INNER JOIN kfashion_work_history ON kfashion_work.no = kfashion_work_history.work_no
+        WHERE kfashion_work.work_state = 7
+        <if test="keyword != null and keyword != '' ">
+            AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        AND kfashion_work_history.work_step = 8
     </select>
 
 </mapper>

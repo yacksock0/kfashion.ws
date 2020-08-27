@@ -281,7 +281,7 @@ class ModifyStep3 extends React.Component {
         }
     }
     render() {
-        setTimeout(() => document.body.style.zoom = "90%", 100);
+        setTimeout(() => document.body.style.zoom = "100%", 100);
         const {classes} = this.props;
         const polyLast = this.props.polygonStore;
 
@@ -291,7 +291,7 @@ class ModifyStep3 extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div style={{overflow:'auto', width: 800,height: 800}}>
+                            <div style={{overflow:'auto', width: 800,height: 800, zoom : "80%"}}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight} className={classes.canvas} style={{display:'contain'}}>  </canvas>
                             </div>
                             </Grid>

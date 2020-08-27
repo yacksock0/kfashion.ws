@@ -15,6 +15,7 @@ import java.util.List;
 public class ProfessionalLabel {
 
     private Long workNo;
+    private List<Long> workNoList;
     private int workStep;
     private String createdId;
     private int labelNo5;

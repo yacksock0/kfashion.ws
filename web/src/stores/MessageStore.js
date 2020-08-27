@@ -46,7 +46,30 @@ export default class MessageStore {
     @observable inspectionHighList =[];
     @observable disabled = {...Disabled};
     @observable basicComplete = {...BasicComplete};
-    @observable state = {...State}
+    @observable state = {...State};
+
+    @observable pageSize = 5;
+    @observable page = 0;
+    @observable totalCount = 0;
+    @observable keyword = '';
+
+    @action pageResetAll = () => {
+        this.pageSize = 5;
+        this.page = 0;
+        this.totalCount = 0;
+        this.keyword = '';
+    }
+
+    @action changePageSize = (pageSize) => {
+        this.pageSize = pageSize;
+    }
+    @action changePage = (page) => {
+        this.page = page;
+    }
+    @action changeKeyword = (keyword) => {
+        this.keyword = keyword;
+    }
+
 
     @action changePolyInfo = (polyInfo) => {
         if( "" === polyInfo.filter(poly => poly == 1)) {
@@ -235,8 +258,21 @@ export default class MessageStore {
     LoadInspectionHighList1 = flow(function* loadInspectionHighList() {
         this.state = State.Pending;
         try {
-            const response = yield axios.get('/api/v1/kfashion/img/inspectionHighList')
-            this.inspectionHighList = response.data.inspectionHighList;
+            const response = yield axios.get('/api/v1/kfashion/img/inspectionHighList', {
+                params : {
+                    page : this.page,
+                    pageSize : this.pageSize,
+                    keyword : this.keyword,
+            }
+        })
+            if(response.status === 200) {
+                this.inspectionHighList = response.data.inspectionHighList;
+                this.page =  response.data.page;
+                this.totalCount = response.data.totalCount;
+                this.pageSize = response.data.pageSize;
+            }else {
+                this.state = State.Fail;
+            }
         } catch (e) {
             console.log('error')
         }

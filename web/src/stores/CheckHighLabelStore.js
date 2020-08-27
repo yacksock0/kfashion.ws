@@ -178,6 +178,28 @@ export default class CheckHighLabelStore {
     @observable total = 0;
     @observable complete = 0;
 
+    @observable pageSize = 5;
+    @observable page = 0;
+    @observable totalCount = 0;
+    @observable keyword = '';
+
+    @action pageResetAll = () => {
+        this.pageSize = 5;
+        this.page = 0;
+        this.totalCount = 0;
+        this.keyword = '';
+    }
+
+    @action changePageSize = (pageSize) => {
+        this.pageSize = pageSize;
+    }
+    @action changePage = (page) => {
+        this.page = page;
+    }
+    @action changeKeyword = (keyword) => {
+        this.keyword = keyword;
+    }
+
     @action changeSelectedItem = (workNo) => {
         this.selectedItem = workNo;
         if(this.selectedItem === null || this.selectedItem === '' || this.selectedItem.length === 0){
@@ -578,8 +600,22 @@ export default class CheckHighLabelStore {
     LoadPolygonImage1 = flow(function* LoadPolygonImage(createdId) {
         this.polygonList = [];
         try {
-            const response = yield axios.get('/api/v1/kfashion/polygon/polygonList?createdId='+createdId)
-            this.polygonList = response.data.polygonList;
+            const response = yield axios.get('/api/v1/kfashion/polygon/polygonList',{
+                params : {
+                    createdId : createdId,
+                    page : this.page,
+                    pageSize : this.pageSize,
+                    keyword : this.keyword,
+                }
+            })
+            if(response.status === 200) {
+                this.polygonList = response.data.polygonList;
+                this.page =  response.data.page;
+                this.totalCount = response.data.totalCount;
+                this.pageSize = response.data.pageSize;
+            }else {
+                this.state = State.Fail;
+            }
         } catch (e) {
             console.log('error')
         }

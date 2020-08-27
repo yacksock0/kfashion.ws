@@ -20,8 +20,6 @@ class WorkDetail extends React.Component {
             selectedId:'',
             basicLabelList: [],
             loadingIndicator: false,
-            value:'',
-            CancelValue:'',
             count: 0,
             data: [],
             columns: [
@@ -48,6 +46,14 @@ class WorkDetail extends React.Component {
         })
     }
 
+    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+        if (this.state.userId !== this.props.rowDataId) {
+            this.setState({
+                userId : this.props.rowDataId,
+            })
+        }
+    }
+
     selectedId=(selectedId)=>{
         this.setState({
             selectedId:selectedId,
@@ -58,8 +64,8 @@ class WorkDetail extends React.Component {
         this.props.workStore.LoadWorkQuantity(authorityNo);
         this.setState({
             open: true,
-            value : '',
         });
+        this.props.userListStore.changeValueReset();
     }
     handleClose() {
         this.setState({
@@ -72,8 +78,8 @@ class WorkDetail extends React.Component {
         this.props.workStore.LoadWorkUserCancelQuantity(authorityNo,userId);
         this.setState({
             open1: true,
-            CancelValue : '',
         });
+        this.props.userListStore.changeCancelValueReset();
     }
     handleClose1() {
         this.setState({
@@ -88,17 +94,12 @@ class WorkDetail extends React.Component {
    handleWorkQuantityChange = (event) => {
        const curValue = event.target.value;
        const newValue = curValue.replace(/[^0-9]/g, '');
-           this.setState({
-               value: newValue,
-               }
-           )
+       this.props.userListStore.changeValue(newValue);
    }
     handleWorkUserCancelQuantityChange = (event) => {
         const curValue = event.target.value;
         const newValue = curValue.replace(/[^0-9]/g, '');
-            this.setState({
-                CancelValue: newValue,
-            })
+        this.props.userListStore.changeCancelValue(newValue);
     }
 
     handleWorkQuantitySubmit=(e)=>{
@@ -107,27 +108,19 @@ class WorkDetail extends React.Component {
         }else {
             if(this.state.value > this.props.workStore.workQuantity) {
                 alert("남은작업을 확인해주세요.")
-                this.setState({
-                    value : '',
-                })
+                this.props.userListStore.changeValueReset();
                 document.getElementById("workQuantity").focus();
             }else {
+                this.props.userListStore.changeAuthorityNo(this.props.authStore.loginUser.authorityNo);
+                this.props.userListStore.changeWorkId(this.props.rowDataId);
                 this.props.userListStore.changeLoadingUp()
                 this.setState({
                     open: false,
                 })
-                axios.post(`/api/v1/kfashion/work/history/assignment?workId=${this.props.rowDataId}&workCount=${this.state.value}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
-                    .then(res => {
-                        if (res.status === 200) {
-                            this.setState({
-                                value: '',
-                            })
-                            const groupNo = this.props.authStore.loginUser.groupNo;
-                            this.props.userListStore.LoadGroupUserList(groupNo);
-                            alert("작업지정이 완료되었습니다.");
-                            this.props.userListStore.changeLoadingDown()
-                        }
-                    })
+                this.props.userListStore.DoAssignment(this.props.authStore.loginUser.groupNo);
+                    if(this.props.onChange) {
+                        this.props.onChange(this.props.rowDataId);
+                }
             }
         }
     }
@@ -138,27 +131,19 @@ class WorkDetail extends React.Component {
         }else {
             if(this.state.CancelValue > this.props.workStore.workUserCancelQuantity) {
                 alert("남은작업을 확인해주세요.");
-                this.setState({
-                    CancelValue : '',
-                })
+                this.props.userListStore.changeCancelValueReset();
                 document.getElementById("workUserCancelQuantity").focus();
             }else {
                 this.props.userListStore.changeLoadingUp()
                 this.setState({
                     open1: false,
                 })
-                axios.post(`/api/v1/kfashion/work/history/assignmentCancel?workId=${this.props.rowDataId}&workCount=${this.state.CancelValue}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
-                    .then(res => {
-                        if (res.status === 200) {
-                            this.setState({
-                                CancelValue: '',
-                            })
-                            const groupNo = this.props.authStore.loginUser.groupNo;
-                            this.props.userListStore.LoadGroupUserList(groupNo);
-                            alert("작업취소가 완료되었습니다.");
-                            this.props.userListStore.changeLoadingDown()
-                        }
-                    })
+                this.props.userListStore.changeCancelAuthorityNo(this.props.authStore.loginUser.authorityNo);
+                this.props.userListStore.changeCancelWorkId(this.props.rowDataId);
+                this.props.userListStore.DoAssignmentCancel(this.props.authStore.loginUser.groupNo);
+                if(this.props.onChange) {
+                    this.props.onChange(this.props.rowDataId);
+                }
             }
         }
     }
@@ -196,7 +181,7 @@ class WorkDetail extends React.Component {
                     <TextField
                         id="workQuantity"
                         label="작업수량 입력"
-                        value={this.state.value}
+                        value={this.props.userListStore.assignment.workCount}
                         onChange={this.handleWorkQuantityChange}
                         onKeyPress={this.handleKeyUpWorkQuantity}
                         autoFocus={true}
@@ -221,7 +206,7 @@ class WorkDetail extends React.Component {
                         <div>
                             <TextField id="workUserCancelQuantity"
                                        label="작업수량 입력"
-                                       value={this.state.CancelValue}
+                                       value={this.props.userListStore.assignmentCancel.workCount}
                                        onChange={this.handleWorkUserCancelQuantityChange}
                                        onKeyPress={this.handleKeyUpCancel}
                                        autoFocus={true}

@@ -50,4 +50,12 @@ public class KfashionWorkHistoryService {
     public List<Long> selectWorkNoList() {
         return repository.selectWorkNoList();
     }
+
+    public Long selectCompleteWork(int workStep) {
+        return repository.selectCompleteWork(workStep);
+    }
+
+    public Long selectSuccessWorkNo(KfashionWorkHistory workHistory) {
+        return repository.selectSuccessWorkNo(workHistory);
+    }
 }
