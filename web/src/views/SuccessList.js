@@ -1048,9 +1048,11 @@ class SuccessList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
+                {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Button variant="outlined" onClick={this.handleJson}>
                     json가져오기
                 </Button>
+                    ) : ''}
             </Container>
         );
     }

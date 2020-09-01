@@ -11,7 +11,7 @@ import {observer} from "mobx-react";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
-import {Typography} from "@material-ui/core";
+import {List, Typography} from "@material-ui/core";
 import {toJS} from "mobx";
 
 @inject('authStore', 'messageStore','checkHighLabelStore', 'polygonStore')
@@ -133,9 +133,12 @@ export default class ReturnMsg extends React.Component {
         const {polyInfo} = this.props.polygonStore
         return (
             <div>
+                {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.successDisabled === true ? true : false }>
                     완료
                 </Button>
+                ) : ''}
+                {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Button variant="outlined"
                         color="secondary"
                         onClick={this.handleClickOpen}
@@ -143,6 +146,8 @@ export default class ReturnMsg extends React.Component {
                         disabled={this.props.checkHighLabelStore.workNo === 0 ? true : false}>
                     영역반송
                 </Button>
+                    ) : ''}
+                {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Button variant="outlined"
                         color="secondary"
                         onClick={this.handleBasicOpen}
@@ -151,6 +156,7 @@ export default class ReturnMsg extends React.Component {
                         && this.props.checkHighLabelStore.selectedItem.length > 0? false : true}>
                     레이블반송
                 </Button>
+                    ) : ''}
 
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">영역지정 반송</DialogTitle>

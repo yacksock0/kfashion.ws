@@ -702,7 +702,7 @@ class HighCheckList extends React.Component {
                 </div>
                 <hr></hr>
                 <ReturnMsg onClick={()=> this.handleSubmit()}/><br></br><br></br>
-
+                {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
                     <p><ErrorIcon/> 우측 상단에 검수할 확인 할 이미지 선택</p>
                     <p><ErrorIcon/> 작업한 폴리곤 좌표 및 레이블링 확인 </p>
@@ -710,6 +710,7 @@ class HighCheckList extends React.Component {
                     <p><ErrorIcon/> 반송 시 수정 사항 있는 부분 체크 후 반송 사유 작성 후 확인</p>
                     <p><ErrorIcon/> 체크 박스 활용하여 일괄적으로 완료 가능 합니다 ( 반송은 체크박스 활용 불가능합니다 )</p>
                 </Typography>
+                    ) : ''}
             </Container>
         );
     }

@@ -105,7 +105,7 @@ export default function SideMenu(props) {
             <List>
                 {loginUser.isAdmin ==='Y' ? (
                 <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />마스터 관리자</h3></ListSubheader>):''}
-                {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 1? (
+                {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 4? (
                     <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />그룹 관리자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 1 ? (
                     <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />업로드 작업자</h3></ListSubheader>):''}
@@ -113,6 +113,8 @@ export default function SideMenu(props) {
                     <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}}/>기초 작업자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 3 && loginUser.groupAdmin === 0? (
                     <ListSubheader inset><h3>전문 작업자</h3></ListSubheader>):''}
+                {loginUser.groupAdmin === 1 && loginUser.authorityNo === 4? (
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />읽기 전용</h3></ListSubheader>):''}
                 <Link to="/home" className={classes.link}>
                     <ListItem type="button">
                         <ListItemIcon><ComputerIcon /></ListItemIcon>
@@ -322,7 +324,7 @@ export default function SideMenu(props) {
                                         <ListItemIcon>
                                             <PlaylistAddCheckIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary="고등학생 작업 내용" />
+                                        <ListItemText primary="기본 작업 내용" />
                                     </ListItem>
                                 </List>
                             </Collapse>
@@ -338,7 +340,7 @@ export default function SideMenu(props) {
                                         <ListItemIcon>
                                             <PlaylistAddCheckIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary="고등학생 검수" />
+                                        <ListItemText primary="기본작업 검수" />
                                     </ListItem>
                                 </List>
                             </Collapse>
@@ -415,7 +417,7 @@ export default function SideMenu(props) {
                         </Collapse>
                     </Link>
                     </div>):''}
-            {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 1?(
+            {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 1 && loginUser.authorityNo !== 4?(
                 <div>
                         <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>

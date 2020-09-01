@@ -86,6 +86,7 @@ class AddGroup extends React.Component {
                             <MenuItem value={1}>ImageUpload</MenuItem>
                             <MenuItem value={2}>Step1</MenuItem>
                             <MenuItem value={3}>Step2</MenuItem>
+                            <MenuItem value={4}>readOnly</MenuItem>
                         </Select>
                             </FormControl>
                         </div>
