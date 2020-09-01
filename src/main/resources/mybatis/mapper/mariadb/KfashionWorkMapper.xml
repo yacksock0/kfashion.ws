@@ -107,13 +107,19 @@
         WHERE no = #{workNo}
     </select>
 
+    <select id="selectWorkDataTime" resultType="String">
+        SELECT
+        DATE_FORMAT(created_datetime,'%Y-%m-%d %T')
+        FROM kfashion_work
+        WHERE no = #{workNo}
+    </select>
+
 
     <select id="selectJsonWorkList" resultType="Long">
         SELECT no
         FROM kfashion_work
         INNER JOIN kfashion_work_history ON kfashion_work.no = kfashion_work_history.work_no
         WHERE kfashion_work_history.work_step = 6
-        LIMIT 5000
     </select>
 
     <select id="selectTotalWork" resultType="Long">

@@ -22,6 +22,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ErrorIcon from "@material-ui/icons/Error";
 import {toJS} from "mobx";
+import {Backspace} from "@material-ui/icons";
 
 const styles = theme => ({
     root: {
@@ -115,6 +116,10 @@ class Polygon extends React.Component {
         canvasHeight : 0,
         zoom : "100%",
         tableSize : 6,
+        eventKey1 : true,
+        eventKey2 : true,
+        eventKey3 : true,
+        eventKey4 : true,
     }
     save1 = false;
     save2 = false;
@@ -210,7 +215,239 @@ class Polygon extends React.Component {
         // })
         // this.canvas = canvas;
 
+        document.addEventListener('keyup', eventKey => {
+            if(this.state.workNo === 0 || this.state.tabIndex === 1){
+                eventKey.preventDefault();
+            }else {
+                if (this.state.eventKey1 === false || this.state.eventKey2 === false || this.state.eventKey3 === false || this.state.eventKey4 === false) {
+                    if (eventKey.key === "d" || eventKey.key === "ㅇ") {
+                        this.deleteOne();
+                    }
+                }
+                if (this.state.eventKey1 === false || this.state.eventKey2 === false
+                    || this.state.eventKey3 === false || this.state.eventKey4 === false
+                    || this.state.finishbtn === true) {
+                    if (eventKey.key === "a" || eventKey.key === "ㅁ") {
+                        this.delete(this.polyNo);
+                    }
+                }
 
+                    if (eventKey.key === "1") {
+                        this.setState({
+                            eventKey2 : false,
+                            eventKey3 : false,
+                            eventKey4 : false,
+                        })
+                        if (this.state.eventKey1 === true) {
+                            if (this.polygon.length !== 0 && this.polygon !== null && this.polygon !== undefined) {
+                                for (let i = 0; i < this.polygon.length; i++) {
+                                    if (this.polygon[i].polyNo === 1) {
+                                        let result = window.confirm("이미 작업한 내용이 있습니다 삭제하시겠습니까?");
+                                        if (result) {
+                                            this.polygon.splice(i, 1);
+                                            this.rectangle.splice(i, 1);
+                                            this.save1 = false;
+                                            this.buttonState();
+                                            this.onOff = '';
+                                            this.setState({
+                                                savebtn: false,
+                                                eventKey1: true,
+                                                eventKey2: true,
+                                                eventKey3: true,
+                                                eventKey4: true,
+                                            })
+                                        }else {
+                                            this.setState({
+                                                savebtn: false,
+                                                eventKey1: true,
+                                                eventKey2: true,
+                                                eventKey3: true,
+                                                eventKey4: true,
+                                            })
+                                        }
+                                    } else {
+                                        if (this.state.buttonDis1 === false) {
+                                            this.startPoly(1);
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (this.state.buttonDis1 === false) {
+                                    this.startPoly(1);
+                                }
+                            }
+                        }
+                    }
+                    if (eventKey.key === "2") {
+                        this.setState({
+                            eventKey1: false,
+                            eventKey3: false,
+                            eventKey4: false,
+                        })
+                        if (this.state.eventKey2 === true) {
+                            if (this.polygon.length !== 0 && this.polygon !== null && this.polygon !== undefined) {
+                                for (let i = 0; i < this.polygon.length; i++) {
+                                    if (this.polygon[i].polyNo === 2) {
+                                        let result = window.confirm("이미 작업한 내용이 있습니다 삭제하시겠습니까?");
+                                        if (result) {
+                                            this.polygon.splice(i, 1);
+                                            this.rectangle.splice(i, 1);
+                                            this.save2 = false;
+                                            this.buttonState();
+                                            this.onOff = '';
+                                            this.setState({
+                                                savebtn: false,
+                                                eventKey1: true,
+                                                eventKey2: true,
+                                                eventKey3: true,
+                                                eventKey4: true,
+                                            })
+                                        }else {
+                                            this.setState({
+                                                savebtn: false,
+                                                eventKey1: true,
+                                                eventKey2: true,
+                                                eventKey3: true,
+                                                eventKey4: true,
+                                            })
+                                        }
+                                    } else {
+                                        if (this.state.buttonDis2 === false) {
+                                            this.startPoly(2);
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (this.state.buttonDis2 === false) {
+                                    this.startPoly(2);
+                                }
+                            }
+                        }
+                    }
+                    if (eventKey.key === "3") {
+                        this.setState({
+                            eventKey1: false,
+                            eventKey2: false,
+                            eventKey4: false,
+                        })
+                        if (this.state.eventKey3 === true) {
+                            if (this.polygon.length !== 0 && this.polygon !== null && this.polygon !== undefined || this.polygon.length > 0) {
+                                for (let i = 0; i < this.polygon.length; i++) {
+                                    if (this.polygon[i].polyNo === 3) {
+                                        let result = window.confirm("이미 작업한 내용이 있습니다 삭제하시겠습니까?");
+                                        if (result) {
+                                            this.polygon.splice(i, 1);
+                                            this.rectangle.splice(i, 1);
+                                            this.save3 = false;
+                                            this.buttonState();
+                                            this.onOff = '';
+                                            this.setState({
+                                                savebtn: false,
+                                                eventKey1: true,
+                                                eventKey2: true,
+                                                eventKey3: true,
+                                                eventKey4: true,
+                                            })
+                                        }else {
+                                            this.setState({
+                                                savebtn: false,
+                                                eventKey1: true,
+                                                eventKey2: true,
+                                                eventKey3: true,
+                                                eventKey4: true,
+                                            })
+                                        }
+                                    } else {
+                                        if (this.state.buttonDis3 === false) {
+                                            this.startPoly(3);
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (this.state.buttonDis3 === false) {
+                                    this.startPoly(3);
+                                }
+                            }
+                        }
+                    }
+
+                    if (eventKey.key === "4") {
+                        this.setState({
+                            eventKey1: false,
+                            eventKey2: false,
+                            eventKey3: false,
+                        })
+                        if (this.state.eventKey4 === true) {
+                            if (this.polygon.length !== 0 && this.polygon !== null && this.polygon !== undefined) {
+                                for (let i = 0; i < this.polygon.length; i++) {
+                                    if (this.polygon[i].polyNo === 4) {
+                                        let result = window.confirm("이미 작업한 내용이 있습니다 삭제하시겠습니까?");
+                                        if (result) {
+                                            this.polygon.splice(i, 1);
+                                            this.rectangle.splice(i, 1);
+                                            this.save4 = false;
+                                            this.buttonState();
+                                            this.onOff = '';
+                                            this.setState({
+                                                savebtn: false,
+                                                eventKey1: true,
+                                                eventKey2: true,
+                                                eventKey3: true,
+                                                eventKey4: true,
+                                            })
+                                        }else {
+                                            this.setState({
+                                                savebtn: false,
+                                                eventKey1: true,
+                                                eventKey2: true,
+                                                eventKey3: true,
+                                                eventKey4: true,
+                                            })
+                                        }
+                                    } else {
+                                        if (this.state.buttonDis4 === false) {
+                                            this.startPoly(4);
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (this.state.buttonDis4 === false) {
+                                    this.startPoly(4);
+                                }
+                            }
+                        }
+                    }
+                if (this.state.eventKey1 === false || this.state.eventKey2 === false
+                    || this.state.eventKey3 === false || this.state.eventKey4 === false
+                    || this.state.finishbtn === true) {
+                    if (eventKey.key === "f" || eventKey.key === "ㄹ") {
+                        this.finishPath();
+                    }
+                }
+                if(this.state.finishbtn === true) {
+                    if (eventKey.key === "s" || eventKey.key === "ㄴ") {
+                        this.doSave(this.polyNo);
+                    }
+                }
+
+                if (this.state.eventKey1 === false || this.state.eventKey2 === false
+                    || this.state.eventKey3 === false || this.state.eventKey4 === false
+                    || this.state.finishbtn === true) {
+                    if (eventKey.key === "c" || eventKey.key === "ㅊ") {
+                        let result = window.confirm("작업이 진행중입니다 취소하시겠습니까?");
+                        if (result) {
+                            this.handleCancel(this.polyNo);
+                        }
+                    }
+                }
+
+                if(this.polygon.length !== 0) {
+                    if(eventKey.key === " "){
+                        this.submit();
+                    }
+                }
+            }
+        })
 
 
         this.canvas.on('mouse:down', (e) => {
@@ -280,8 +517,11 @@ class Polygon extends React.Component {
                 this.lineCounter +=1;
             }
             this.canvas.selection = true;
+
         });
     }
+
+
 
     changeWorkNo = (workNo) => {
         this.setState({ workNo : workNo});
@@ -290,22 +530,27 @@ class Polygon extends React.Component {
     startPoly = (polyNo) => {
         // this.zoomAction(this.state.workNo);
         // this.polygonIndex +=1;
-        this.onOff = 'lineUse';
-        this.state.savebtn = true;
-        this.polyNo = polyNo;
-        this.setState({
-            buttonDis1: true,
-            buttonDis2: true,
-            buttonDis3: true,
-            buttonDis4: true,
-        });
-        switch (polyNo) {
-            case 1 : this.setState({buttonDis1: false}); break;
-            case 2 : this.setState({buttonDis2: false}); break;
-            case 3 : this.setState({buttonDis3: false}); break;
-            case 4 : this.setState({buttonDis4: false}); break;
-        }
+            this.onOff = 'lineUse';
+            this.state.savebtn = true;
+            this.polyNo = polyNo;
+            this.setState({
+                buttonDis1: true,
+                buttonDis2: true,
+                buttonDis3: true,
+                buttonDis4: true,
+            });
+            switch (polyNo) {
+                case 1 : this.setState({buttonDis1: false,eventKey1: false,}); break;
+                case 2 : this.setState({buttonDis2: false,eventKey2: false,}); break;
+                case 3 : this.setState({buttonDis3: false,eventKey3: false,}); break;
+                case 4 : this.setState({buttonDis4: false,eventKey4: false,}); break;
+            }
+        // document.getElementById("fname").onkeyup = function(event) {
+        //         console.log(event.key);
+        // };
     }
+
+
 
     deleteOne = () => {
         let j = (this.polyCounter);
@@ -331,10 +576,41 @@ class Polygon extends React.Component {
     delete = (b) => {
         let result = window.confirm("모두 지우시겠습니까?");
         if(result){
-            this.deleteAll(1);
+            this.deleteAll(b);
         }
     }
+
     deleteAll = (b) =>{
+        let objList = [];
+        this.canvas.getObjects().forEach(function (o) {
+            objList.push(o);
+        })
+        for (let i = 0; i <= objList.length; i++) {
+            this.canvas.remove(objList[i]);
+        }
+        if( b != -1) {
+            this.x = 0;
+            this.y = 0;
+            this.polyCounter =0;
+            this.lineCounter =0;
+            this.polyPointX.length =0;
+            this.polyPointY.length =0;
+            // this.buttonState();
+        }
+        this.zoomOFF();
+        this.onOff = 'lineUse';
+        this.setState({
+            savebtn : false,
+            // finishbtn : false,
+            // eventKey1: true,
+            // eventKey2: true,
+            // eventKey3: true,
+            // eventKey4: true,
+        })
+    }
+
+
+    handleCancel = (b) =>{
         let objList = [];
         this.canvas.getObjects().forEach(function (o) {
             objList.push(o);
@@ -352,7 +628,17 @@ class Polygon extends React.Component {
             this.buttonState();
         }
         this.zoomOFF();
+        this.onOff = '';
+        this.setState({
+            savebtn : false,
+            eventKey1: true,
+            eventKey2: true,
+            eventKey3: true,
+            eventKey4: true,
+            finishbtn : false,
+        })
     }
+
 
     buttonState = () => {
         this.setState({
@@ -374,7 +660,7 @@ class Polygon extends React.Component {
             makePath += ' z';
             let path = new fabric.Path(makePath);
             path.opacity = 0.5;
-            this.deleteAll(-1);
+            this.handleCancel(-1);
             this.canvas.add(path);
             this.state.finishbtn = true;
 
@@ -436,8 +722,14 @@ class Polygon extends React.Component {
                     newPolygon.points.push({x: x, y: y});
                 }
                 this.polygon.push(newPolygon);
-                this.state.savebtn = false;
-                this.deleteAll(newPolyNo);
+                this.setState({
+                    savebtn : false,
+                    eventKey1: true,
+                    eventKey2: true,
+                    eventKey3: true,
+                    eventKey4: true,
+                })
+                this.handleCancel(newPolyNo);
 
                 switch (newPolyNo) {
                     case 1 :
@@ -465,6 +757,7 @@ class Polygon extends React.Component {
 
     // -- Location Data 저장
     submit = () =>{
+        console.log(this.onOff);
         if(this.state.workNo !== 0) {
             const check = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
             if (check) {
@@ -472,7 +765,10 @@ class Polygon extends React.Component {
                     alert("finish를 눌러 작업을 마무리 하세요.");
                 } else if (this.state.savebtn) {
                     alert("save 눌러 작업을 마무리 하세요.");
-                } else {
+                } else if (this.polygon === null || this.polygon.length === 0 || this.polygon === undefined) {
+                   alert("폴리곤 입력값이 없습니다.")
+                }
+             else {
                     if(this.state.comment === null){
                         // -- RectLocation 저장
                         this.props.rectStore.objGet(this.rectangle, this.polygon);
@@ -493,7 +789,7 @@ class Polygon extends React.Component {
                     }
                     this.canvas.setWidth(0)
                     this.canvas.setHeight(0)
-                    this.deleteAll(1);
+                    this.handleCancel(1);
                     this.canvas.backgroundImage = 0;
                     this.canvas.renderAll();
                     this.save1 = false;
@@ -580,7 +876,7 @@ class Polygon extends React.Component {
 
 
     handleClickItem = (workNo, imageData,polyNo, comment) => {
-        this.setState({comment : comment,zoom : '80%',tableSize : 5})
+        this.setState({comment : comment,tableSize : 5})
         // alert(comment);
         let check = true;
         this.setState({
@@ -592,7 +888,7 @@ class Polygon extends React.Component {
         if(check) {
             this.canvas.setWidth(0)
             this.canvas.setHeight(0)
-            this.deleteAll(1);
+            this.handleCancel(1);
             // this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
             this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
             this.polygon.length = 0;
@@ -602,6 +898,7 @@ class Polygon extends React.Component {
             this.props.polygonStore.LoadPolygonLocation(workNo);
         }
     }
+
 
 
     handleClickCallback = (workTypeList, workNo)=>{
@@ -688,7 +985,7 @@ class Polygon extends React.Component {
                 this.canvas.backgroundImage = 0;
                 this.canvas.renderAll();
                 this.props.rectStore.selectedItemReset();
-                this.deleteAll(1);
+                this.handleCancel(1);
             }
             this.setState({tabIndex : tabIndex});
         }else{
@@ -707,6 +1004,7 @@ class Polygon extends React.Component {
             })
         }
     }
+
 
     render() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
@@ -788,7 +1086,7 @@ class Polygon extends React.Component {
 
                                                 <TableCell style={{textAlign:"center"}}>
                                                     <Tooltip title="Delete">
-                                                        <IconButton aria-label="delete" onClick={() => this.deleteOne()} onKeyUp={this.handleKeyUp} disabled={this.state.buttonDis1}>
+                                                        <IconButton aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis1}>
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>
@@ -845,7 +1143,7 @@ class Polygon extends React.Component {
                                                 </TableCell>
                                                 <TableCell style={{textAlign:"center"}}>
                                                     <Tooltip title="Delete">
-                                                        <IconButton  aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis2}>
+                                                        <IconButton id={"deleteButton"} aria-label="delete" onClick={() => this.deleteOne()} disabled={this.state.buttonDis2}>
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>

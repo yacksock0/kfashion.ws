@@ -134,7 +134,6 @@ class UserWork extends React.Component {
         const { classes } = this.props;
         const groupNo = this.props.authStore.loginUser.groupNo;
         const {page, pageSize, state} = this.props.userListStore;
-        console.log(this.state.changeId);
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />

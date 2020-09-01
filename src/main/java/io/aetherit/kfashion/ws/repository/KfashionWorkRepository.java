@@ -70,4 +70,8 @@ public class KfashionWorkRepository {
     public Long selectTotalWork() {
         return mapper.selectTotalWork();
     }
+
+    public String selectWorkDataTime(Long workNo) {
+        return mapper.selectWorkDataTime(workNo);
+    }
 }
