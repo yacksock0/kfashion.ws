@@ -75,4 +75,8 @@ public class KfashionWorkService {
     public String selectWorkDataTime(Long workNo) {
         return repository.selectWorkDataTime(workNo);
     }
+
+    public Long selectFileuploadCount(Long workNo) {
+        return repository.selectFileuploadCount(workNo);
+    }
 }

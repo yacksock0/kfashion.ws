@@ -5,6 +5,7 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
+import {toJS} from "mobx";
 
 const styles = theme => ({
     toolButton:{
@@ -44,8 +45,9 @@ class DropzoneDialogExample extends Component {
         this.setState({
             open: false,
             files: file,
-            fileTotal: file.length,
         });
+
+        this.props.imageStore.changeFileTotal(file.length);
 
 
         const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'});
@@ -53,8 +55,10 @@ class DropzoneDialogExample extends Component {
         console.log(sortedFile);
         const userId = this.props.authStore.isUserId;
         this.props.imageStore.countReset(0);
-        this.props.imageStore.fileupload(sortedFile, userId, 0, sortedFile.length);
-        this.props.imageStore.LoadImage();
+        this.props.imageStore.fileuploadAll(sortedFile,userId);
+        this.props.imageStore.fileuploadCount();
+        // this.props.imageStore.fileupload(sortedFile, userId, 0, sortedFile.length);
+        // this.props.imageStore.LoadImage();
     }
 
     handelOnDrop(files) {
@@ -72,12 +76,12 @@ class DropzoneDialogExample extends Component {
 
     render() {
         const { classes } = this.props;
-        const {count} = this.props.imageStore;
+        const {count,fileTotal} = this.props.imageStore;
         return (
             <div style={{display:'inline'}}>
                 <Button style={{display:'inline'}} onClick={this.handleOpen.bind(this)} className={classes.toolButton} variant="outlined"
                         >
-                    Add Image {this.state.fileTotal > 0 ?  `( ${count} / ${this.state.fileTotal} )` :  "" }
+                    Add Image {fileTotal > 0 ?  `( ${count} / ${fileTotal} )` :  "" }
                 </Button>
                 <DropzoneDialog
                     open={this.state.open}

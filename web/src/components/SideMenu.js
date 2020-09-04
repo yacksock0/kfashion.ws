@@ -105,9 +105,9 @@ export default function SideMenu(props) {
             <List>
                 {loginUser.isAdmin ==='Y' ? (
                 <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />마스터 관리자</h3></ListSubheader>):''}
-                {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 4? (
+                {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 4 && loginUser.authorityNo !== 1? (
                     <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />그룹 관리자</h3></ListSubheader>):''}
-                {loginUser.authorityNo === 1 ? (
+                {loginUser.authorityNo === 1 && loginUser.groupAdmin === 1 ? (
                     <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />업로드 작업자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 2 && loginUser.groupAdmin === 0? (
                     <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}}/>기초 작업자</h3></ListSubheader>):''}

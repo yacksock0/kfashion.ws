@@ -74,4 +74,8 @@ public class KfashionWorkRepository {
     public String selectWorkDataTime(Long workNo) {
         return mapper.selectWorkDataTime(workNo);
     }
+
+    public Long selectFileuploadCount(Long workNo) {
+        return mapper.selectFileuploadCount(workNo);
+    }
 }

@@ -66,6 +66,79 @@ public class KfashionImageController {
 
     }
 
+    @PostMapping("/uploadFileAll")
+    public ResponseEntity<Object> uploadFileAll(@RequestParam(value = "userId", required = true) String userId,
+                                             @RequestParam("files") MultipartFile[] files) {
+
+        if(files.length > 0) {
+            for(int i=0; i<files.length; i++) {
+                int pos = files[i].getOriginalFilename().lastIndexOf(".");
+                String fileType = files[i].getOriginalFilename().substring(pos + 1);
+                String workName = files[i].getOriginalFilename();
+                KfashionWork work = new KfashionWork();
+                work.setWorkName(workName);
+                kfashionWorkService.insertWork(work);
+                Long no = work.getNo();
+                try {
+                    String mainPosition = "W";
+                    int newWidth = 800;
+                    double ratio;// 변경 할 넓이
+                    int width = 0;
+                    int height = 0;
+                    BufferedImage image = ImageIO.read(files[i].getInputStream());
+                    // 원본 이미지 사이즈 가져오기
+                    int imageWidth = image.getWidth(null);
+                    int imageHeight = image.getHeight(null);
+
+                    if (mainPosition.equals("W")) {    // 넓이기준
+                        ratio = (double) newWidth / (double) imageWidth;
+                        width = (int) (imageWidth * ratio);
+                        height = (int) (imageHeight * ratio);
+                    }
+                    // 이미지 리사이즈
+                    // Image.SCALE_DEFAULT : 기본 이미지 스케일링 알고리즘 사용
+                    // Image.SCALE_FAST    : 이미지 부드러움보다 속도 우선
+                    // Image.SCALE_REPLICATE : ReplicateScaleFilter 클래스로 구체화 된 이미지 크기 조절 알고리즘
+                    // Image.SCALE_SMOOTH  : 속도보다 이미지 부드러움을 우선
+                    // Image.SCALE_AREA_AVERAGING  : 평균 알고리즘 사용
+                    Image resizeImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                    // 새 이미지  저장하기
+                    BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+                    Graphics g = newImage.getGraphics();
+                    g.drawImage(resizeImage, 0, 0, null);
+                    g.dispose();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ImageIO.write(newImage, fileType, baos);
+                    byte[] imageInByte = baos.toByteArray();
+
+                    KfashionImage kfashionImage = new KfashionImage();
+                    kfashionImage.setWorkNo(no);
+                    kfashionImage.setImgData(imageInByte);
+                    kfashionImageService.insertImgUpload(kfashionImage);
+                    KfashionWorkHistory workHistory = new KfashionWorkHistory();
+                    workHistory.setCreatedId(userId);
+                    workHistory.setWorkNo(no);
+                    workHistory.setWorkStep(1);
+                    kfashionWorkHistoryService.insertWorkHistory(workHistory);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return new ResponseEntity<Object>(HttpStatus.OK);
+    }
+    @GetMapping("/fileuploadCount")
+    public ResponseEntity<Object> fileuploadCount(@RequestParam(value = "workNo", required = true) Long workNo) {
+
+        Long count = kfashionWorkService.selectFileuploadCount(workNo);
+
+        return new ResponseEntity<Object>(count, HttpStatus.OK);
+    }
+
+
+
+
     /**
      * 단일 파일 업로드
      *

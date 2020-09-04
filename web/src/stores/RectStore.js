@@ -265,7 +265,7 @@ export default class RectStore {
         if(selected.length > 0) {
             for (let i = 0; i < selected.length; i++) {
                 try {
-                    const resp = yield axios.delete(`/api/v1/kfashion/img/deleteImage/${selected[i]}`, {
+                    const resp = yield axios.delete(`/api/v1/kfashion/img/deleteCheckListImage/${selected[i]}`, {
                         data: {
                             workNo: selected[i]
                         }

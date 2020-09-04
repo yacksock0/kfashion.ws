@@ -49,9 +49,11 @@ export default class ImageStore {
     @observable professionalComplete = {...ProfessionalComplete};
     @observable canvasWidth = 0;
     @observable canvasHeight = 0;
+    @observable lastWorkNo = 0;
+    @observable fileTotal = 0;
 
-    @action countChange =()=>{
-        this.count= this.count+1
+    @action countChange =(count)=>{
+        this.count= count;
     }
 
     @action changeCanvasWidth = (width) => {
@@ -60,6 +62,10 @@ export default class ImageStore {
 
     @action changeCanvasHeight = (height) => {
         this.canvasHeight = height;
+    }
+
+    @action changeFileTotal = (fileTotal) => {
+        this.fileTotal = fileTotal;
     }
 
 
@@ -107,6 +113,7 @@ export default class ImageStore {
         try {
           const response = yield axios.get('/api/v1/kfashion/img/boundaryList')
           this.boundaryList = response.data.boundaryList;
+          this.lastWorkNo = this.boundaryList[0].workNo;
             this.changeRecentlyImg(this.boundaryList);
         } catch (e) {
             console.log('error')
@@ -167,5 +174,45 @@ export default class ImageStore {
         //         }else {
         //         }
         //     })
+    });
+
+
+    fileuploadAll = flow(function* fileuploadAll (fileList, userId) {
+        this.updateState = UpdateState.Loading;
+        const formData = new FormData();
+        if(fileList.length > 0) {
+            for(let i=0; i<fileList.length; i++) {
+                formData.append("files", fileList[i]);
+            }
+        }
+        formData.append("userId", userId);
+        try {
+            const resp = yield axios.post('/api/v1/kfashion/img/uploadFileAll', formData, {
+                headers: {'Content-Type': 'multipart/form-data'},
+                'Authorization': 'JWT ' + sessionStorage.getItem('token')
+            });
+            if (resp.status === 200) {
+                this.updateState = UpdateState.Uploaded;
+                this.LoadImage();
+                this.fileTotal = 0;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+
+    fileuploadCount = flow(function* fileuploadCount () {
+           axios.get('/api/v1/kfashion/img/fileuploadCount?workNo='+this.lastWorkNo)
+               .then(resp =>{
+                    if (resp.status === 200) {
+                        if(this.fileTotal === resp.data && this.fileTotal === 0) {
+                            this.countChange(resp.data);
+                        }else {
+                            this.fileuploadCount();
+                            this.countChange(resp.data);
+                        }
+                    }
+        })
     });
 }

@@ -35,4 +35,6 @@ public interface KfashionWorkMapper {
     Long selectTotalWork();
 
     String selectWorkDataTime(Long workNo);
+
+    Long selectFileuploadCount(Long workNo);
 }

@@ -127,4 +127,10 @@
         count(*) AS totalWork
         FROM kfashion_work
     </select>
+
+    <select id="selectFileuploadCount" resultType="Long">
+        SELECT count(*)
+        FROM kfashion_work
+        WHERE no > #{workNo}
+    </select>
 </mapper>
