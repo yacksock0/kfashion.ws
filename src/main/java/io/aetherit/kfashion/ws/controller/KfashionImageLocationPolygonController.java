@@ -130,7 +130,8 @@ public class KfashionImageLocationPolygonController {
         pageMap.put("startPage",startPage);
         pageMap.put("keyword", keyword);
         List<KfashionImage> polygonList = kfashionImageService.selectPolygonList(pageMap);
-        Long totalCount = kfashionImageService.selectPolygonListTotal(pageMap);
+        List<KfashionImage> polygonListTotal = kfashionImageService.selectPolygonListTotal(pageMap);
+        int totalCount = polygonListTotal.size();
         resultMap.put("page", page);
         resultMap.put("totalCount", totalCount);
         resultMap.put("pageSize", pageSize);

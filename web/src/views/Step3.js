@@ -16,7 +16,6 @@ import ProImageList from "../views/step3/ProImageList";
 import {toJS} from "mobx";
 import ErrorIcon from "@material-ui/icons/Error";
 import WorkedImg from "./step3/WorkedImg";
-import axios from "axios";
 
 
 
@@ -117,6 +116,7 @@ class Step3 extends React.Component {
             count: this.state.count++
         });
     }
+
     componentDidMount() {
         this.props.currentStepStore.setStep(3);
         this.canvas = new fabric.Canvas('c');
@@ -409,7 +409,7 @@ class Step3 extends React.Component {
 
     render() {
             setTimeout(() => document.body.style.zoom = "100%", 100);
-        const {classes,history} = this.props;
+        const {classes} = this.props;
         const polyLast = this.props.polygonStore;
             return (
                 <Container component="main" className={classes.mainContainer}>
@@ -437,16 +437,16 @@ class Step3 extends React.Component {
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
                                                     ><h3>스타일</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly == 1)) && this.state.polyInfo.length > 0}
+                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly === 1)) && this.state.polyInfo.length > 0}
                                                     ><h3>아우터</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly == 2)) && this.state.polyInfo.length > 0}
+                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly === 2)) && this.state.polyInfo.length > 0}
                                                     ><h3>상의</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly == 3)) && this.state.polyInfo.length > 0}
+                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly === 3)) && this.state.polyInfo.length > 0}
                                                     ><h3>하의</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly == 4)) && this.state.polyInfo.length > 0}
+                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly === 4)) && this.state.polyInfo.length > 0}
                                                     ><h3>원피스</h3></Tab>
                                                 </TabList>
                                         <TabPanel>

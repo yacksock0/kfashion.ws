@@ -109,8 +109,9 @@ function getStepContent(step) {
 export default function HorizontalLinearStepper(props) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(props.setStep);
-    const [skipped, setSkipped] = React.useState(new Set());
+    const [skipped] = React.useState(new Set());
     const steps = getSteps();
+
     useEffect(() => {
         setActiveStep(props.currentStep);
         getStepContent(props.currentStep);
@@ -125,43 +126,43 @@ export default function HorizontalLinearStepper(props) {
         return skipped.has(step);
     };
 
-    const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
-            newSkipped = new Set(newSkipped.values());
-            newSkipped.delete(activeStep);
-        }
-
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleSkip = () => {
-        if (!isStepOptional(activeStep)) {
-            // You probably want to guard against something like this,
-            // it should never occur unless someone's actively trying to break something.
-            throw new Error("You can't skip a step that isn't optional.");
-        }
-
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped((prevSkipped) => {
-            const newSkipped = new Set(prevSkipped.values());
-            newSkipped.add(activeStep);
-            return newSkipped;
-        });
-    };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
-
-    const handleTapClick = () => {
-        setActiveStep(0);
-    };
+    // const handleNext = () => {
+    //     let newSkipped = skipped;
+    //     if (isStepSkipped(activeStep)) {
+    //         newSkipped = new Set(newSkipped.values());
+    //         newSkipped.delete(activeStep);
+    //     }
+    //
+    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    //     setSkipped(newSkipped);
+    // };
+    //
+    // const handleBack = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    // };
+    //
+    // const handleSkip = () => {
+    //     if (!isStepOptional(activeStep)) {
+    //         // You probably want to guard against something like this,
+    //         // it should never occur unless someone's actively trying to break something.
+    //         throw new Error("You can't skip a step that isn't optional.");
+    //     }
+    //
+    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    //     setSkipped((prevSkipped) => {
+    //         const newSkipped = new Set(prevSkipped.values());
+    //         newSkipped.add(activeStep);
+    //         return newSkipped;
+    //     });
+    // };
+    //
+    // const handleReset = () => {
+    //     setActiveStep(0);
+    // };
+    //
+    // const handleTapClick = () => {
+    //     setActiveStep(0);
+    // };
 
     return (
         <div className={classes.root}>

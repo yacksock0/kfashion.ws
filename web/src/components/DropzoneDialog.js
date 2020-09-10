@@ -5,7 +5,6 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
-import {toJS} from "mobx";
 
 const styles = theme => ({
     toolButton:{
@@ -55,15 +54,15 @@ class DropzoneDialogExample extends Component {
         console.log(sortedFile);
         const userId = this.props.authStore.isUserId;
         this.props.imageStore.countReset(0);
-        this.props.imageStore.fileuploadAll(sortedFile,userId);
-        this.props.imageStore.fileuploadCount();
-        // this.props.imageStore.fileupload(sortedFile, userId, 0, sortedFile.length);
-        // this.props.imageStore.LoadImage();
+        // this.props.imageStore.fileuploadAll(sortedFile,userId);
+        // this.props.imageStore.fileuploadCount();
+        this.props.imageStore.fileupload(sortedFile, userId, 66, sortedFile.length);
     }
 
     handelOnDrop(files) {
         // const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'});
         // files = files.sort((a, b) => collator.compare(a.name, b.name));
+        // console.log(files);
         console.log(files.length);
     }
 

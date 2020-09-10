@@ -15,7 +15,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import axios from "axios";
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
 
@@ -50,7 +49,7 @@ class ImageList extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} alt={""} style={{width: 50, height:50,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '등록일 ', field: 'createdDatetime', type: 'date'},

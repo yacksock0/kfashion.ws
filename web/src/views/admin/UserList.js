@@ -1,9 +1,8 @@
-import React, {forwardRef} from 'react'
-import {Container, Typography, Toolbar, Grid} from "@material-ui/core";
+import React from 'react'
+import {Container, Typography, Grid} from "@material-ui/core";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import axios from "axios";
 import MaterialTable from "material-table";
 import {inject, observer} from "mobx-react";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -45,7 +44,6 @@ class UserList extends React.Component {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         const groupNo = this.props.authStore.loginUser.groupNo;
         this.props.userListStore.changeAllReSet();
-        const id = this.props.authStore.loginUser.id;
         this.props.userListStore.LoadGroupUserList(groupNo);
         this.props.enqueueSnackbar("작업자 등록", {
             variant: 'success',
@@ -66,7 +64,7 @@ class UserList extends React.Component {
 
 
     handelOnChange=() => {
-        if(this.state.columns.hidden == true) {
+        if(this.state.columns.hidden === true) {
             this.setState({
                 hidden : false,
             })
@@ -94,7 +92,7 @@ class UserList extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const {isNotAvailableId} =this.props.userListStore.isNotAvailableId;
+        // const {isNotAvailableId} =this.props.userListStore.isNotAvailableId;
         const groupNo = this.props.authStore.loginUser.groupNo;
         return (
             <Container component="main" className={classes.mainContainer}>

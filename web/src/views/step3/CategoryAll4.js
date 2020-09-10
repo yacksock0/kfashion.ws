@@ -29,7 +29,7 @@ export default class CategoryAll4 extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
-        this.handleClick =this. handleClick.bind(this);
+        this.handleClick =this.handleClick.bind(this);
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/category')
@@ -212,7 +212,7 @@ export default class CategoryAll4 extends React.Component {
                             디테일
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {detail4 != null  && detail4 != undefined  ?(
+                            {detail4 !== null  && detail4 !== undefined  ?(
                                 detail4.map((detail4) =>
                                     <Button
                                         style={{
@@ -238,8 +238,8 @@ export default class CategoryAll4 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={detail.no}
-                                            disabled = {detail4 != undefined?
-                                                detail.categoryItemName == detail4.filter((check) => check==detail.categoryItemName
+                                            disabled = {detail4 !== undefined?
+                                                detail.categoryItemName === detail4.filter((check) => check===detail.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickDetail(detail)}
@@ -255,7 +255,7 @@ export default class CategoryAll4 extends React.Component {
                             프린트
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {print4 != null  && print4 != undefined  ?(
+                            {print4 !== null  && print4 !== undefined  ?(
                                 print4.map((print4) =>
                                     <Button
                                         style={{
@@ -281,8 +281,8 @@ export default class CategoryAll4 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={print.no}
-                                            disabled = {print4 != undefined?
-                                                print.categoryItemName == print4.filter((check) => check==print.categoryItemName
+                                            disabled = {print4 !== undefined?
+                                                print.categoryItemName === print4.filter((check) => check===print.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickPrint(print)}>
@@ -298,7 +298,7 @@ export default class CategoryAll4 extends React.Component {
                             소재감
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {texture4 != null  && texture4 != undefined  ?(
+                            {texture4 !== null  && texture4 !== undefined  ?(
                                 texture4.map((texture4) =>
                                     <Button
                                         style={{
@@ -324,8 +324,8 @@ export default class CategoryAll4 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={texture.no}
-                                            disabled = {texture4 != undefined?
-                                                texture.categoryItemName == texture4.filter((check) => check==texture.categoryItemName
+                                            disabled = {texture4 !== undefined?
+                                                texture.categoryItemName === texture4.filter((check) => check===texture.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickTexture(texture)}>

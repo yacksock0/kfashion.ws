@@ -1,13 +1,9 @@
 import React from 'react';
-import axios from "axios";
 import {inject, observer} from "mobx-react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import {Grid, Button, Typography} from "@material-ui/core";
 
-const columns = [
-    { id: '항목', label: '항목', minWidth: 170 },
-];
 
 @inject('authStore','basicCategoryStore', 'checkHighLabelStore')
 @observer
@@ -22,7 +18,6 @@ export default class SleeveLength1 extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
-        this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
 
@@ -45,7 +40,6 @@ export default class SleeveLength1 extends React.Component {
 
     }
     render() {
-        const {classes} = this.props;
         const {sleeveList1}= this.props.basicCategoryStore;
         return (
             <div>

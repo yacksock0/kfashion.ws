@@ -12,6 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class HighReviewLabel {
 
+    private int labelNo1;
+    private int labelNo2;
+    private int labelNo3;
+    private int labelNo4;
+
     private String colorItemName1;
     private String colorItemName2;
     private String colorItemName3;

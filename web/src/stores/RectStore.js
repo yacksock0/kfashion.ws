@@ -1,4 +1,4 @@
-import {action, computed, flow, observable, toJS} from "mobx";
+import {action, computed, flow, observable} from "mobx";
 import axios from "axios";
 
 const State = {
@@ -279,7 +279,7 @@ export default class RectStore {
                     console.log(err);
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 alert("이미지 삭제가 완료되었습니다.")
                 this.LoadRectImage(createdId);
                 this.doPolygonCompleteUp(createdId,2)

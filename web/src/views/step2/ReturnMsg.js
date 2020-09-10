@@ -11,7 +11,6 @@ import {observer} from "mobx-react";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
-import {List, Typography} from "@material-ui/core";
 import {toJS} from "mobx";
 
 @inject('authStore', 'messageStore','checkHighLabelStore', 'polygonStore')
@@ -32,7 +31,8 @@ export default class ReturnMsg extends React.Component {
     componentDidMount() {
         this.props.checkHighLabelStore.workNoReset();
         this.props.checkHighLabelStore.selectedItemReset();
-        this.props.messageStore.changeComment('');
+        this.props.messageStore.changeLabelComment('');
+        this.props.messageStore.changePolyComment('');
         this.props.messageStore.checkBoxReset();
     }
 
@@ -40,13 +40,16 @@ export default class ReturnMsg extends React.Component {
         this.setState({
             open:true,
         })
+        this.props.messageStore.resetType();
         this.props.checkHighLabelStore.selectedItemReset();
+        this.props.messageStore.checkLabel(false)
     };
 
     handleBasicOpen = () => {
         this.setState({
             openBasic:true,
         })
+        this.props.messageStore.resetType();
         this.props.messageStore.checkLabel(true)
     };
 
@@ -54,49 +57,58 @@ export default class ReturnMsg extends React.Component {
         this.setState({
             openBasic:false,
         })
+        this.props.messageStore.checkLabel(false)
     };
 
     handleClose = () => {
         this.setState({
             open:false,
         })
+        this.props.messageStore.resetType();
     };
-    handleSubmit = () => {
+
+    handlePolySubmit = () => {
         if(this.props.onClick){
-        if(this.props.messageStore.newMsg.comment == ''){
+        if(this.props.messageStore.polyMsg.comment === ''){
             alert('반송 단계 및 사유를 입력해 주세요');
             document.getElementById("returnText").focus();
         }
         else {
-            if(this.state.open === true) {
-                this.props.messageStore.changeWorkNo(this.props.checkHighLabelStore.workNo);
-                this.props.messageStore.changeSendId(this.props.authStore.loginUser.id);
+                this.props.messageStore.changePolyWorkNo(this.props.checkHighLabelStore.workNo);
+                this.props.messageStore.changePolySendId(this.props.authStore.loginUser.id);
                 this.props.messageStore.sendMsg();
                 this.props.checkHighLabelStore.workNoReset();
                 this.setState({
                     open: false,
                 })
             }
-            if(this.state.openBasic === true) {
-                const selected = toJS(this.props.checkHighLabelStore.selectedItem);
-                if(this.props.messageStore.checkBox.label === false) {
-                    alert("레이블링 체크를 해주세요.")
-                    this.props.messageStore.checkLabel(true);
-                    document.getElementById("returnText").focus();
-                }else {
-                    if(selected.length > 0 && selected !== null) {
-                        this.props.messageStore.sendSelectMsg(selected,this.props.authStore.loginUser.id);
-                    }
-                    this.setState({
-                        openBasic: false,
-                    })
-                }
-            }
-        }
         this.props.onClick();
         }
     }
 
+    handleLabelSubmit = () => {
+        if (this.props.onClick) {
+            if (this.props.messageStore.labelMsg.comment === '') {
+                alert('반송 단계 및 사유를 입력해 주세요');
+                document.getElementById("returnText").focus();
+            } else {
+                    const selected = toJS(this.props.checkHighLabelStore.selectedItem);
+                    if (this.props.messageStore.checkBox.label === false) {
+                        alert("레이블링 체크를 해주세요.")
+                        this.props.messageStore.checkLabel(true);
+                        document.getElementById("returnText").focus();
+                    }else {
+                        if (selected.length > 0 && selected !== null) {
+                            this.props.messageStore.sendSelectMsg(selected, this.props.authStore.loginUser.id);
+                        }
+                        this.setState({
+                            openBasic: false,
+                        })
+                    }
+            }
+            this.props.onClick();
+        }
+    }
     handleComplete = () => {
         if(this.props.onClick){
         const basicComplateConfirm = window.confirm("검수를 완료 하시겠습니까?");
@@ -114,22 +126,38 @@ export default class ReturnMsg extends React.Component {
         this.props.onClick();
         }
     }
-     handleChangeMsg=(e)=>{
-        this.props.messageStore.changeComment(e.target.value)
+     handleChangePolyMsg=(e)=>{
+        this.props.messageStore.changePolyComment(e.target.value)
+    }
+
+    handleChangeLabelMsg=(e)=>{
+        this.props.messageStore.changeLabelComment(e.target.value)
     }
 
 
     handleChange = (event) => {
-        {this.props.messageStore.checkBox.poly == false? this.props.messageStore.checkPoly(true) : this.props.messageStore.checkPoly(false) }
+        if(this.props.messageStore.checkBox.poly === false) {
+            this.props.messageStore.checkPoly(true)
+        }else {
+            this.props.messageStore.checkPoly(false)
+        }
     };
     handleChange1 = (event) => {
-        {this.props.messageStore.checkBox.label == false? this.props.messageStore.checkLabel(true) : this.props.messageStore.checkLabel(false) }
+        if(this.props.messageStore.checkBox.label === false) {
+            this.props.messageStore.checkLabel(true)
+        }else {
+            this.props.messageStore.checkLabel(false)
+        }
     };
     handleChangeType = (event) => {
-        {this.props.messageStore.checkBox[event.target.name] !== true ? this.props.messageStore.changeWorkType(event.target.name) :this.props.messageStore.changeWorkType1(event.target.name)}
+        console.log(event.target.name);
+        if(this.props.messageStore.checkBox[event.target.name] !== true) {
+            this.props.messageStore.changePolyWorkType(event.target.name);
+        }else {
+            this.props.messageStore.changePolyWorkType1(event.target.name)
+        }
     };
     render() {
-        const comment = this.props.messageStore.newMsg.comment;
         const {polyInfo} = this.props.polygonStore
         return (
             <div>
@@ -173,7 +201,7 @@ export default class ReturnMsg extends React.Component {
                                         onChange={this.handleChangeType}
                                         name="outer"
                                         variant="h6"
-                                        disabled={ "" == polyInfo.filter(poly => poly == 1) ? true : false}
+                                        disabled={"" == polyInfo.filter(poly => poly === 1) ? true : false}
                                     />}
                                 label="아우터"
                             />
@@ -183,7 +211,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.top}
                                         onChange={this.handleChangeType}
                                         name="top"
-                                        disabled={"" == polyInfo.filter(poly => poly == 2) ? true : false}
+                                        disabled={"" == polyInfo.filter(poly => poly === 2) ? true : false}
                                     />}
                                 label="상의"
                             />
@@ -193,7 +221,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.pants}
                                         onChange={this.handleChangeType}
                                         name="pants"
-                                        disabled={"" == polyInfo.filter(poly => poly == 3) ? true : false}
+                                        disabled={"" == polyInfo.filter(poly => poly === 3) ? true : false}
                                     />}
                                 label="하의"
                             />
@@ -203,24 +231,18 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.onepiece}
                                         onChange={this.handleChangeType}
                                         name="onepiece"
-                                        disabled={"" == polyInfo.filter(poly => poly == 4) ? true : false}
+                                        disabled={"" == polyInfo.filter(poly => poly === 4) ? true : false}
                                     />}
                                 label="원피스"
                             />
                         </FormGroup>
-                        {/*<FormGroup>*/}
-                        {/*<FormControlLabel*/}
-                        {/*    control={<Checkbox checked={this.props.messageStore.checkBox.label} value={4} onChange={this.handleChange1} name="label" />}*/}
-                        {/*    label="레이블링"*/}
-                        {/*/>*/}
-                        {/*</FormGroup>*/}
                         <TextField
                             autoFocus
                             margin="dense"
                             id="returnText"
                             label="반송사유"
-                            value={comment}
-                            onChange={this.handleChangeMsg}
+                            value={this.props.messageStore.polyMsg.comment}
+                            onChange={this.handleChangePolyMsg}
                             type="text"
                             fullWidth
                         />
@@ -229,7 +251,7 @@ export default class ReturnMsg extends React.Component {
                         <Button onClick={this.handleClose} color="primary">
                             취소
                         </Button>
-                        <Button onClick={this.handleSubmit} color="primary">
+                        <Button onClick={this.handlePolySubmit} color="primary">
                             확인
                         </Button>
                     </DialogActions>
@@ -250,17 +272,17 @@ export default class ReturnMsg extends React.Component {
                             margin="dense"
                             id="returnText"
                             label="반송사유"
-                            value={comment}
-                            onChange={this.handleChangeMsg}
+                            value={this.props.messageStore.labelMsg.comment}
+                            onChange={this.handleChangeLabelMsg}
                             type="text"
                             fullWidth
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={this.handleBasicClose} color="primary">
                             취소
                         </Button>
-                        <Button onClick={this.handleSubmit} color="primary">
+                        <Button onClick={this.handleLabelSubmit} color="primary">
                             확인
                         </Button>
                     </DialogActions>

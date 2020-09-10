@@ -29,7 +29,6 @@ export default class CategoryAll1 extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
-        this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/category')
@@ -200,7 +199,7 @@ export default class CategoryAll1 extends React.Component {
                             {categoryList1.map((category) =>
                                 <Grid item xs={3}>
                                     <div style={{textAlign:'center', margin:5}}>
-                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={category.no} disabled={category.no == this.props.professionalLabelStore.outerReviewLabel.new} onClick={() => this.handleClick(category)}>
+                                        <Button style={{width:'100%', height:30, padding:0}} variant="outlined" key={category.no} disabled={category.no === this.props.professionalLabelStore.outerReviewLabel.new} onClick={() => this.handleClick(category)}>
                                             <h4>{category.categoryItemName}</h4>
                                         </Button>
                                     </div>
@@ -212,7 +211,7 @@ export default class CategoryAll1 extends React.Component {
                             디테일
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {detail1 != null  && detail1 != undefined  ?(
+                            {detail1 !== null  && detail1 !== undefined  ?(
                                 detail1.map((detail1) =>
                                     <Button
                                         style={{
@@ -239,8 +238,8 @@ export default class CategoryAll1 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={detail.no}
-                                            disabled = {detail1 != undefined?
-                                                detail.categoryItemName == detail1.filter((check) => check==detail.categoryItemName
+                                            disabled = {detail1 !== undefined?
+                                                detail.categoryItemName === detail1.filter((check) => check===detail.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickDetail(detail)}>
@@ -265,7 +264,7 @@ export default class CategoryAll1 extends React.Component {
                             프린트
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {print1 != null  && print1 != undefined  ?(
+                            {print1 !== null  && print1 !== undefined  ?(
                                 print1.map((print1) =>
                                     <Button
                                         style={{
@@ -291,8 +290,8 @@ export default class CategoryAll1 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={print.no}
-                                            disabled = {print1 != undefined?
-                                                print.categoryItemName == print1.filter((check) => check==print.categoryItemName
+                                            disabled = {print1 !== undefined?
+                                                print.categoryItemName === print1.filter((check) => check===print.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickPrint(print)}>
@@ -307,7 +306,7 @@ export default class CategoryAll1 extends React.Component {
                             소재감
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {texture1 != null  && texture1 != undefined  ?(
+                            {texture1 !== null  && texture1 !== undefined  ?(
                                 texture1.map((texture1) =>
                                     <Button
                                         style={{
@@ -333,8 +332,8 @@ export default class CategoryAll1 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={texture.no}
-                                            disabled = {texture1 != undefined?
-                                                texture.categoryItemName == texture1.filter((check) => check==texture.categoryItemName
+                                            disabled = {texture1 !== undefined?
+                                                texture.categoryItemName === texture1.filter((check) => check===texture.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickTexture(texture)}>

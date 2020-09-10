@@ -69,6 +69,7 @@ public class KfashionImageController {
     @PostMapping("/uploadFileAll")
     public ResponseEntity<Object> uploadFileAll(@RequestParam(value = "userId", required = true) String userId,
                                              @RequestParam("files") MultipartFile[] files) {
+        System.out.println("files.length"+ files.length);
 
         if(files.length > 0) {
             for(int i=0; i<files.length; i++) {
@@ -463,20 +464,30 @@ public class KfashionImageController {
         HistoryWorkNo.removeAll(commentWorkNoStep3);
         HistoryWorkNo.removeAll(commentWorkNoStep4);
 
-
         int startPage = page * pageSize;
         HashMap<String, Object> pageMap = new HashMap<>();
         pageMap.put("HistoryWorkNo",HistoryWorkNo);
         pageMap.put("pageSize",pageSize);
         pageMap.put("startPage",startPage);
         pageMap.put("keyword", keyword);
-        List<KfashionImage> inspectionHighList = kfashionImageService.selectInspectionHighList(pageMap);
-        Long totalCount = kfashionImageService.selectInspectionHighListTotal(pageMap);
-        resultMap.put("inspectionHighList", inspectionHighList);
-        resultMap.put("page", page);
-        resultMap.put("totalCount", totalCount);
-        resultMap.put("pageSize", pageSize);
-        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+
+
+        if(HistoryWorkNo.size() == 0 || HistoryWorkNo == null) {
+//            List<KfashionImage> inspectionHighList = null;
+//            resultMap.put("inspectionHighList", inspectionHighList);
+            resultMap.put("page", page);
+            resultMap.put("totalCount", 0);
+            resultMap.put("pageSize", pageSize);
+            return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }else {
+            List<KfashionImage> inspectionHighList = kfashionImageService.selectInspectionHighList(pageMap);
+            Long totalCount = kfashionImageService.selectInspectionHighListTotal(pageMap);
+            resultMap.put("inspectionHighList", inspectionHighList);
+            resultMap.put("page", page);
+            resultMap.put("totalCount", totalCount);
+            resultMap.put("pageSize", pageSize);
+            return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+        }
     }
 
     /**

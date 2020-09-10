@@ -16,7 +16,6 @@ import 'react-tabs/style/react-tabs.css';
 import BasicImageList from "./step2/BasicImageList";
 import {fabric} from "fabric";
 import {toJS} from "mobx";
-import axios from "axios";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ErrorIcon from "@material-ui/icons/Error";
 
@@ -159,24 +158,23 @@ class Step2 extends React.Component {
     }
 
     handleClickItem = (workNo, imageData, polyNo, comment) => {
-        let check = true;
-        if (this.state.workNo != 0) {
-            check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
-        }
-        if (check) {
+        // let check = true;
+        // if (this.state.workNo != 0) {
+        //     check = window.confirm("작업을 변경하면 입력한 값이 초기화 됩니다. 변경하시겠습니까?");
+        // }
+        // if (check) {
             this.deleteAll();
             this.setState({comment: comment})
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.canvas.setWidth(0);
             this.canvas.setHeight(0);
             this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
-            if (comment == null) {
+            if (comment === null) {
                 this.props.polygonStore.LoadPolygonLocation(workNo, this.polyListCallback);
             } else {
-                this.props.polygonStore.LoadPolygonLocation(workNo);
+                this.props.polygonStore.LoadPolygonLocation(workNo,this.polyListCallback);
                 this.props.polygonStore.LoadLabelNoList(workNo, this.labelNoListCallback);
             }
-        }
     }
     labelNoListCallback = (labelNoList, workNo) => {
         let tabIndex2 = labelNoList[0] - 1;
@@ -222,28 +220,28 @@ class Step2 extends React.Component {
 
 
     handleClickSubColor1() {
-        if (this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0) {
+        if (this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 === 0) {
             alert('메인 색상을 먼저 선택해 주세요');
             this.props.checkHighLabelStore.deleteSubColor1();
         }
     }
 
     handleClickSubColor2() {
-        if (this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0) {
+        if (this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 === 0) {
             alert('메인 색상을 먼저 선택해 주세요');
             this.props.checkHighLabelStore.deleteSubColor2();
         }
     }
 
     handleClickSubColor3() {
-        if (this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0) {
+        if (this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 === 0) {
             alert('메인 색상을 먼저 선택해 주세요');
             this.props.checkHighLabelStore.deleteSubColor3();
         }
     }
 
     handleClickSubColor4() {
-        if (this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0) {
+        if (this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 === 0) {
             alert('메인 색상을 먼저 선택해 주세요');
             this.props.checkHighLabelStore.deleteSubColor4();
         }
@@ -326,7 +324,7 @@ class Step2 extends React.Component {
                 // this.canvas.add(circle);
                 // this.canvas.bringToFront(circle)
 
-                if (i != 0) {
+                if (i !== 0) {
                     let x1 = this.lineTwoPoint[0];
                     let x2 = this.lineTwoPoint[2];
                     let x3 = 0;
@@ -404,8 +402,6 @@ class Step2 extends React.Component {
                 tabIndex2: tabIndex2,
             })
         } else {
-            alert("poly정보가 존재하지 않습니다.\n" +
-                "poly작업후 수정 가능합니다.")
             this.setState({
                 tabIndex2: tabIndex2,
             })
@@ -418,12 +414,12 @@ class Step2 extends React.Component {
         for (let i = 0; i < polyInfo.length; i++) {
             switch (polyInfo[i]) {
                 case 1 :
-                    if (this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 == 0) {
+                    if (this.props.checkHighLabelStore.outerReviewHighLabel.colorCategoryNo1 === 0) {
                         alert("아우터의 메인색상을 선택해주세요");
                         savebtn = false;
                         i = polyInfo.length;
                         break;
-                    } else if (this.props.checkHighLabelStore.outerReviewHighLabel.sleeveLengthCategoryNo1 == "") {
+                    } else if (this.props.checkHighLabelStore.outerReviewHighLabel.sleeveLengthCategoryNo1 === "") {
                         alert("아우터의 소매길이를 선택해주세요");
                         savebtn = false;
                         i = polyInfo.length;
@@ -431,12 +427,12 @@ class Step2 extends React.Component {
                     }
                     break;
                 case 2 :
-                    if (this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0) {
+                    if (this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 === 0) {
                         alert("상의의 메인색상을 선택해주세요");
                         savebtn = false;
                         i = polyInfo.length;
                         break;
-                    } else if (this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 == "") {
+                    } else if (this.props.checkHighLabelStore.topReviewHighLabel.sleeveLengthCategoryNo2 === "") {
                         alert("상의의 소매길이를 선택해주세요");
                         savebtn = false;
                         i = polyInfo.length;
@@ -444,7 +440,7 @@ class Step2 extends React.Component {
                     }
                     break;
                 case 3 :
-                    if (this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0) {
+                    if (this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 === 0) {
                         alert("하의의 메인색상을 선택해주세요");
                         savebtn = false;
                         i = polyInfo.length;
@@ -452,22 +448,23 @@ class Step2 extends React.Component {
                     }
                     break;
                 case 4 :
-                    if (this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0) {
+                    if (this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 === 0) {
                         alert("원피스의 메인색상을 선택해주세요");
                         savebtn = false;
                         i = polyInfo.length;
                         break;
-                    } else if (this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 == "") {
+                    } else if (this.props.checkHighLabelStore.onePieceReviewHighLabel.sleeveLengthCategoryNo4 === "") {
                         alert("원피의 소매길이를 선택해주세요");
                         savebtn = false;
                         i = polyInfo.length;
                         break;
                     }
                     break;
+                default: break;
             }
         }
         if (savebtn) {
-            if (this.state.workNo != 0) {
+            if (this.state.workNo !== 0) {
                 const finalCheck = window.confirm("이미지에 필요한 정보를 입력하셨습니까?");
                 if (finalCheck) {
                     const selected = toJS(this.props.checkHighLabelStore.selectedItem);
@@ -515,10 +512,6 @@ class Step2 extends React.Component {
                 workNo : 0,
                 tabIndex1: 1,
             });
-        } else {
-            this.setState({
-                tabIndex1: 1,
-            });
         }
     }
 
@@ -532,7 +525,7 @@ class Step2 extends React.Component {
         }
     }
     onSelectTab1 = (tabIndex1) => {
-        if (this.state.workNo != 0) {
+        if (this.state.workNo !== 0) {
             if(tabIndex1 === 1) {
                 this.setState({
                     selected : [],
@@ -553,10 +546,10 @@ class Step2 extends React.Component {
     }
     nextTab = () => {
         const {polyInfo} = this.props.polygonStore;
-        const currentTap = this.state.tabIndex2;
+        // const currentTap = this.state.tabIndex2;
         let tabIndex2 = 0;
         for (let i = 0; i < polyInfo.length; i++) {
-            if (polyInfo[i] == this.state.tabIndex2 + 1) {
+            if (polyInfo[i] === this.state.tabIndex2 + 1) {
                 tabIndex2 = (polyInfo[i + 1] - 1);
                 this.setState({tabIndex2: tabIndex2});
             }
@@ -568,9 +561,9 @@ class Step2 extends React.Component {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         const {classes, history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
-        const {isWorkNo} = this.props.imageStore;
-        const {polyLast, polyInfo, polygonList} = this.props.polygonStore;
-        const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onepieceReviewHighLabel,} = this.props.checkHighLabelStore;
+        // const {isWorkNo} = this.props.imageStore;
+        const {polyLast} = this.props.polygonStore;
+        const {outerReviewHighLabel} = this.props.checkHighLabelStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>
@@ -594,16 +587,16 @@ class Step2 extends React.Component {
                                           onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
                                         <TabList>
                                             <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
-                                                 disabled={"" == this.state.tabController.filter((poly => poly == 1))}
+                                                 disabled={"" == this.state.tabController.filter((poly => poly === 1))}
                                             ><h3>아우터</h3></Tab>
                                             <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
-                                                 disabled={"" == this.state.tabController.filter((poly => poly == 2))}
+                                                 disabled={"" == this.state.tabController.filter((poly => poly === 2))}
                                             ><h3>상의</h3></Tab>
                                             <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
-                                                 disabled={"" == this.state.tabController.filter((poly => poly == 3))}
+                                                 disabled={"" == this.state.tabController.filter((poly => poly === 3))}
                                             ><h3>하의</h3></Tab>
                                             <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
-                                                 disabled={"" == this.state.tabController.filter((poly => poly == 4))}
+                                                 disabled={"" == this.state.tabController.filter((poly => poly === 4))}
                                             ><h3>원피스</h3></Tab>
                                         </TabList>
 
@@ -612,7 +605,7 @@ class Step2 extends React.Component {
                                                 <Typography variant="h5" component="h2" style={{display: 'inline'}}>
                                                     색상
                                                 </Typography>
-                                                &nbsp;&nbsp;{!outerReviewHighLabel.colorCategoryNo1 == 0 ?
+                                                &nbsp;&nbsp;{outerReviewHighLabel.colorCategoryNo1 !== 0 ?
                                                 <Typography style={{display: 'inline-block', color: 'red'}}>색상버튼 클릭 시
                                                     색상이 삭제 됩니다.</Typography> : ''}
                                                 <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
@@ -675,7 +668,7 @@ class Step2 extends React.Component {
                                                             type="button"
                                                             className={classes.buttonType2}
                                                             variant="outlined"
-                                                            disabled={!this.state.comment == ''}
+                                                            disabled={this.state.comment !== ''}
                                                             onClick={() => (this.handleSave())}
                                                     >
                                                         저장
@@ -690,7 +683,7 @@ class Step2 extends React.Component {
                                                         다음
                                                     </Button>
                                                 )}
-                                                {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                                {this.state.comment !== '' && polyLast === this.state.tabIndex2 ?
                                                     <Button style={{marginTop: 20, marginRight: 10}}
                                                             type="button"
                                                             className={classes.buttonType2}
@@ -709,7 +702,7 @@ class Step2 extends React.Component {
                                                 <Typography variant="h5" component="h2" style={{display: 'inline'}}>
                                                     색상
                                                 </Typography>
-                                                &nbsp;&nbsp;{!this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 == 0 ?
+                                                &nbsp;&nbsp;{this.props.checkHighLabelStore.topReviewHighLabel.colorCategoryNo2 !== 0 ?
                                                 <Typography style={{display: 'inline-block', color: 'red'}}>색상버튼 클릭 시
                                                     색상이 삭제 됩니다.</Typography> : ''}
                                                 <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
@@ -771,7 +764,7 @@ class Step2 extends React.Component {
                                                             type="button"
                                                             className={classes.buttonType2}
                                                             variant="outlined"
-                                                            disabled={!this.state.comment == ''}
+                                                            disabled={this.state.comment !== ''}
                                                             onClick={() => (this.handleSave())}
                                                     >
                                                         저장
@@ -786,7 +779,7 @@ class Step2 extends React.Component {
                                                         다음
                                                     </Button>
                                                 )}
-                                                {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                                {this.state.comment !== '' && polyLast === this.state.tabIndex2 ?
                                                     <Button style={{marginTop: 20, marginRight: 10}}
                                                             type="button"
                                                             className={classes.buttonType2}
@@ -804,7 +797,7 @@ class Step2 extends React.Component {
                                                 <Typography variant="h5" component="h2" style={{display: 'inline'}}>
                                                     색상
                                                 </Typography>
-                                                &nbsp;&nbsp;{!this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 == 0 ?
+                                                &nbsp;&nbsp;{this.props.checkHighLabelStore.pantsReviewHighLabel.colorCategoryNo3 !== 0 ?
                                                 <Typography style={{display: 'inline-block', color: 'red'}}>색상버튼 클릭 시
                                                     색상이 삭제 됩니다.</Typography> : ''}
                                                 <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
@@ -848,7 +841,7 @@ class Step2 extends React.Component {
                                                             type="button"
                                                             className={classes.buttonType2}
                                                             variant="outlined"
-                                                            disabled={!this.state.comment == ''}
+                                                            disabled={this.state.comment !== ''}
                                                             onClick={() => (this.handleSave())}
                                                     >
                                                         저장
@@ -863,7 +856,7 @@ class Step2 extends React.Component {
                                                         다음
                                                     </Button>
                                                 )}
-                                                {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                                {this.state.comment !== '' && polyLast === this.state.tabIndex2 ?
                                                     <Button style={{marginTop: 20, marginRight: 10}}
                                                             type="button"
                                                             className={classes.buttonType2}
@@ -881,7 +874,7 @@ class Step2 extends React.Component {
                                                 <Typography variant="h5" component="h2" style={{display: 'inline'}}>
                                                     색상
                                                 </Typography>
-                                                &nbsp;&nbsp;{!this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 == 0 ?
+                                                &nbsp;&nbsp;{this.props.checkHighLabelStore.onePieceReviewHighLabel.colorCategoryNo4 !== 0 ?
                                                 <Typography style={{display: 'inline-block', color: 'red'}}>색상버튼 클릭 시
                                                     색상이 삭제 됩니다.</Typography> : ''}
                                                 <div style={{display: 'inline-block', float: 'right', marginTop: -3}}>
@@ -943,7 +936,7 @@ class Step2 extends React.Component {
                                                             type="button"
                                                             className={classes.buttonType2}
                                                             variant="outlined"
-                                                            disabled={!this.state.comment == ''}
+                                                            disabled={this.state.comment !== ''}
                                                             onClick={() => (this.handleSave())}
                                                     >
                                                         저장
@@ -958,7 +951,7 @@ class Step2 extends React.Component {
                                                         다음
                                                     </Button>
                                                 )}
-                                                {!this.state.comment == '' && polyLast == this.state.tabIndex2 ?
+                                                {this.state.comment !== '' && polyLast === this.state.tabIndex2 ?
                                                     <Button style={{marginTop: 20, marginRight: 10}}
                                                             type="button"
                                                             className={classes.buttonType2}

@@ -1,13 +1,10 @@
 
 import React from "react";
 import MaterialTable from 'material-table';
-import Clear from '@material-ui/icons/Clear';
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
 import { TablePagination } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Checkbox from '@material-ui/core/Checkbox';
-import Button from '@material-ui/core/Button';
 import {toJS} from "mobx";
 
 @inject('professionalLabelStore','authStore')
@@ -32,8 +29,9 @@ export default class ProImageList extends React.Component {
         const id = this.props.authStore.loginUser.id;
         checkList.map((item, index) => {
             if (item.createdId === id) {
-                checkBoxList.push(item);
-            }
+                return checkBoxList.push(item);
+             }
+            return checkBoxList;
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
@@ -53,7 +51,7 @@ export default class ProImageList extends React.Component {
                 }
             }
             checkBoxList.map((item, index) => {
-                this.toggle(item.workNo, item.createdId);
+                return this.toggle(item.workNo, item.createdId);
             })
         }
     }
@@ -77,7 +75,6 @@ export default class ProImageList extends React.Component {
 
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
-        this.props.professionalLabelStore.pageResetAll();
         this.props.professionalLabelStore.selectedItemReset();
         this.props.professionalLabelStore.LoadProfessionalList(createdId);
     }
@@ -123,8 +120,9 @@ export default class ProImageList extends React.Component {
         const checkBoxList = []
         checkList.map((item, index) => {
             if (item.createdId === this.props.authStore.isUserId) {
-                checkBoxList.push(item);
+                return checkBoxList.push(item);
             }
+            return checkBoxList;
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
@@ -141,7 +139,6 @@ export default class ProImageList extends React.Component {
     };
     
     render() {
-        const {selectedItem} = this.props.professionalLabelStore;
         return (
                 <MaterialTable
                 columns={[
@@ -151,7 +148,7 @@ export default class ProImageList extends React.Component {
                         render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
                                                       ></Checkbox>},
                     {title: '번호', field: 'workNo',type: 'button'},
-                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                     {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',hidden:true},
                     {title: '생성일', field: 'createdDatetime', type: 'date'},

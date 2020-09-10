@@ -3,7 +3,6 @@ import React from "react";
 import MaterialTable from 'material-table';
 import {inject, observer} from "mobx-react";
 import {toJS} from "mobx";
-import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import TablePagination from "@material-ui/core/TablePagination";
 
@@ -33,7 +32,7 @@ class BasicImageList extends React.Component {
                 if (idx > -1) selectList.splice(idx, 1)
             }
         selectList.map((item, index) => {
-            this.toggle(item.workNo)
+            return this.toggle(item.workNo)
         })
     }
 
@@ -47,7 +46,6 @@ class BasicImageList extends React.Component {
 
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
-        this.props.checkHighLabelStore.pageResetAll();
         this.props.checkHighLabelStore.LoadPolygonImage1(createdId);
         this.props.checkHighLabelStore.selectedItemReset();
         this.props.basicCategoryStore.LoadColorList();
@@ -57,6 +55,7 @@ class BasicImageList extends React.Component {
     componentWillUnmount() {
         this.props.polygonStore.initStore();
     }
+
     handleClick = (workNo, imageData,polyNo, comment) => {
         this.props.checkHighLabelStore.LoadReviewHighLabelList(workNo);
         this.props.checkHighLabelStore.cleanLabel();
@@ -115,7 +114,7 @@ class BasicImageList extends React.Component {
                         </Checkbox>,
                     render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)}></Checkbox>},
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} alt={""} style={{width: 80, height:80, borderRadius:15}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},

@@ -18,7 +18,6 @@ export default class Print extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
-        this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/print')
@@ -75,8 +74,8 @@ export default class Print extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={print.no}
-                                            disabled = {printCheck != undefined?
-                                                print.categoryItemName == printCheck.filter((check) => check==print.categoryItemName
+                                            disabled = {printCheck !== undefined?
+                                                print.categoryItemName === printCheck.filter((check) => check===print.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClick(print)}>

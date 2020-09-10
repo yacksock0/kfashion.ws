@@ -22,7 +22,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ErrorIcon from "@material-ui/icons/Error";
 import {toJS} from "mobx";
-import {Backspace} from "@material-ui/icons";
 
 const styles = theme => ({
     root: {
@@ -172,14 +171,14 @@ class Polygon extends React.Component {
     // zoom;
 
     componentDidMount() {
-        let radius = 100,
-            x = 300,
-            y = 300,
-            lens,
-            img1,
-            scale = 2,
-            originalWidth = 600,
-            originalHeight = 600;
+        // let radius = 100,
+        //     x = 300,
+        //     y = 300,
+        //     lens,
+        //     img1,
+        //     scale = 2,
+        //     originalWidth = 600,
+        //     originalHeight = 600;
 
         this.props.rectStore.doPolygonCompleteUp(this.props.authStore.isUserId,2);
         this.props.rectStore.selectedItemReset();
@@ -331,7 +330,7 @@ class Polygon extends React.Component {
                             eventKey4: false,
                         })
                         if (this.state.eventKey3 === true) {
-                            if (this.polygon.length !== 0 && this.polygon !== null && this.polygon !== undefined || this.polygon.length > 0) {
+                            if (this.polygon.length !== 0 && this.polygon !== null && this.polygon !== undefined && this.polygon.length > 0) {
                                 for (let i = 0; i < this.polygon.length; i++) {
                                     if (this.polygon[i].polyNo === 3) {
                                         let result = window.confirm("이미 작업한 내용이 있습니다 삭제하시겠습니까?");
@@ -531,9 +530,10 @@ class Polygon extends React.Component {
         // this.zoomAction(this.state.workNo);
         // this.polygonIndex +=1;
             this.onOff = 'lineUse';
-            this.state.savebtn = true;
+            // this.state.savebtn = true;
             this.polyNo = polyNo;
             this.setState({
+                savebtn : true,
                 buttonDis1: true,
                 buttonDis2: true,
                 buttonDis3: true,
@@ -544,6 +544,7 @@ class Polygon extends React.Component {
                 case 2 : this.setState({buttonDis2: false,eventKey2: false,}); break;
                 case 3 : this.setState({buttonDis3: false,eventKey3: false,}); break;
                 case 4 : this.setState({buttonDis4: false,eventKey4: false,}); break;
+                default : break;
             }
         // document.getElementById("fname").onkeyup = function(event) {
         //         console.log(event.key);
@@ -588,7 +589,7 @@ class Polygon extends React.Component {
         for (let i = 0; i <= objList.length; i++) {
             this.canvas.remove(objList[i]);
         }
-        if( b != -1) {
+        if( b !== -1) {
             this.x = 0;
             this.y = 0;
             this.polyCounter =0;
@@ -597,7 +598,7 @@ class Polygon extends React.Component {
             this.polyPointY.length =0;
             // this.buttonState();
         }
-        this.zoomOFF();
+        // this.zoomOFF();
         this.onOff = 'lineUse';
         this.setState({
             savebtn : false,
@@ -618,7 +619,7 @@ class Polygon extends React.Component {
         for (let i = 0; i <= objList.length; i++) {
             this.canvas.remove(objList[i]);
         }
-        if( b != -1) {
+        if( b !== -1) {
             this.x = 0;
             this.y = 0;
             this.polyCounter =0;
@@ -627,7 +628,7 @@ class Polygon extends React.Component {
             this.polyPointY.length =0;
             this.buttonState();
         }
-        this.zoomOFF();
+        // this.zoomOFF();
         this.onOff = '';
         this.setState({
             savebtn : false,
@@ -650,7 +651,7 @@ class Polygon extends React.Component {
     }
 
     finishPath = () => {
-        if(this.canvas.getObjects().length !=0) {
+        if(this.canvas.getObjects().length !==0) {
             this.canvas.setViewportTransform([1,0,0,1,0,0]);
             this.onOff = '';
             let makePath = 'M' + this.polyPointX[0] + ' ' + this.polyPointY[0];
@@ -662,7 +663,10 @@ class Polygon extends React.Component {
             path.opacity = 0.5;
             this.handleCancel(-1);
             this.canvas.add(path);
-            this.state.finishbtn = true;
+            this.setState({
+                finishbtn : true,
+            })
+            // this.state.finishbtn = true;
 
             this.rectTop = path.top;
             this.rectLeft = path.left;
@@ -695,17 +699,17 @@ class Polygon extends React.Component {
             points: [{
             }],
         };
-        const newRectangle = [{
-            id : 0,
-            left : 0,
-            top : 0,
-            width : 0,
-            height : 0,
-            scaleX : 0,
-            scaleY : 0,
-        }];
+        // const newRectangle = [{
+        //     id : 0,
+        //     left : 0,
+        //     top : 0,
+        //     width : 0,
+        //     height : 0,
+        //     scaleX : 0,
+        //     scaleY : 0,
+        // }];
         if(this.state.finishbtn) {
-            if (this.canvas.getObjects().length != 0) {
+            if (this.canvas.getObjects().length !== 0) {
                 this.rectangle.push({
                     id: this.polyNo,
                     left: this.rectLeft,
@@ -744,12 +748,16 @@ class Polygon extends React.Component {
                     case 4 :
                         this.save4 = true;
                         break;
+                    default : break;
                 }
                 this.buttonState();
             } else {
                 alert("입력된 polygon이 존재하지 않습니다.");
             }
-            this.state.finishbtn = false;
+            this.setState({
+                finishbtn : false,
+            })
+            // this.state.finishbtn = false;
         }else{
             alert("finish를 눌러 작업을 마무리 하세요.");
         }
@@ -809,70 +817,70 @@ class Polygon extends React.Component {
     }
 
 
-    zoomON = () =>{
-        this.zoomAction(this.state.workNo);
-    }
-    zoomOFF = () =>{
-        let lens = null;
-        this.canvas.getObjects().forEach(function( o) {
-            if(o.id == "lens")     lens = o;
-        })
-        this.canvas.remove(lens);
-        this.canvas.off('mouse:move');
-    }
-
-    zoomAction=(workNo)=> {
-        let canvas = this.canvas;
-        let radius = 100,
-            x = 400,
-            y = 400,
-            lens,
-            img1,
-            scale = 2,
-            originalWidth = 800,
-            originalHeight = 800,
-            zoomBtn = this.state.zoomBtn;
-        fabric.Image.fromURL(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, function(img) {
-            img1 = img;
-            img.set({
-                width: originalWidth,
-                height: originalHeight,
-                evented: false,
-                selectable: false
-            });
-
-            lens = fabric.util.object.clone(img);
-            lens.set({
-                id : "lens",
-                top: -225,
-                left: 150,
-                width: scale * originalWidth,
-                height: scale * originalHeight,
-                clipTo: function(ctx) {
-                    ctx.arc(-this.left + x - this.width / 2, -this.top + y - this.height / 2, radius, 0, Math.PI * 2, true);
-                }
-            });
-
-            canvas.setBackgroundImage(img);
-            canvas.add(lens);
-            canvas.centerObject(img);//******* issue no longer here****
-
-        });
-        this.canvas = canvas;
-        this.canvas.renderAll.bind(canvas);
-
-        this.canvas.on('mouse:move', function(e) {
-
-                x = canvas.getPointer(e, false).x;
-                y =  canvas.getPointer(e, false).y;
-                if (x > 0 && x < 800) {
-                    lens.set('left', -(scale - 1) * x );
-                    lens.set('top', -(scale - 1) * y);
-                }
-                canvas.bringToFront(lens);
-                canvas.renderAll();
-        });
-    }
+    // zoomON = () =>{
+    //     this.zoomAction(this.state.workNo);
+    // }
+    // zoomOFF = () =>{
+    //     let lens = null;
+    //     this.canvas.getObjects().forEach(function( o) {
+    //         if(o.id === "lens")     lens = o;
+    //     })
+    //     this.canvas.remove(lens);
+    //     this.canvas.off('mouse:move');
+    // }
+    //
+    // zoomAction=(workNo)=> {
+    //     let canvas = this.canvas;
+    //     let radius = 100,
+    //         x = 400,
+    //         y = 400,
+    //         lens,
+    //         img1,
+    //         scale = 2,
+    //         originalWidth = 800,
+    //         originalHeight = 800,
+    //         zoomBtn = this.state.zoomBtn;
+    //     fabric.Image.fromURL(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, function(img) {
+    //         img1 = img;
+    //         img.set({
+    //             width: originalWidth,
+    //             height: originalHeight,
+    //             evented: false,
+    //             selectable: false
+    //         });
+    //
+    //         lens = fabric.util.object.clone(img);
+    //         lens.set({
+    //             id : "lens",
+    //             top: -225,
+    //             left: 150,
+    //             width: scale * originalWidth,
+    //             height: scale * originalHeight,
+    //             clipTo: function(ctx) {
+    //                 ctx.arc(-this.left + x - this.width / 2, -this.top + y - this.height / 2, radius, 0, Math.PI * 2, true);
+    //             }
+    //         });
+    //
+    //         canvas.setBackgroundImage(img);
+    //         canvas.add(lens);
+    //         canvas.centerObject(img);//******* issue no longer here****
+    //
+    //     });
+    //     this.canvas = canvas;
+    //     this.canvas.renderAll.bind(canvas);
+    //
+    //     this.canvas.on('mouse:move', function(e) {
+    //
+    //             x = canvas.getPointer(e, false).x;
+    //             y =  canvas.getPointer(e, false).y;
+    //             if (x > 0 && x < 800) {
+    //                 lens.set('left', -(scale - 1) * x );
+    //                 lens.set('top', -(scale - 1) * y);
+    //             }
+    //             canvas.bringToFront(lens);
+    //             canvas.renderAll();
+    //     });
+    // }
 
 
     handleClickItem = (workNo, imageData,polyNo, comment) => {
@@ -921,6 +929,7 @@ class Polygon extends React.Component {
                     case 4 :
                         this.save4 = false;
                         break;
+
                 }
             }
         }else{
@@ -972,7 +981,7 @@ class Polygon extends React.Component {
     // }
 
     onSelectTap = (tabIndex) => {
-        if(this.state.workNo != 0 ){
+        if(this.state.workNo !== 0 ){
             if(tabIndex === 1) {
                 this.setState({
                     selected : [],
@@ -1009,8 +1018,8 @@ class Polygon extends React.Component {
     render() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         const { classes,history } = this.props;
-        const {isWorkNo} = this.props.imageStore;
-        const {workTypeList} = this.props.rectStore;
+        // const {isWorkNo} = this.props.imageStore;
+        // const {workTypeList} = this.props.rectStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer}/>

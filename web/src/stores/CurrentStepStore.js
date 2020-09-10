@@ -1,5 +1,4 @@
-import {action, computed, flow, observable, values} from "mobx";
-import axios from "axios";
+import {action,observable} from "mobx";
 
 export default class CurrentStepStore {
     @observable currentStep = 0;

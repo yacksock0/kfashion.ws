@@ -834,6 +834,7 @@ public class KfashionLabelController {
                         .sleeveLengthCategoryNo1(outerReviewHighLabelList.get(1).getCategoryNo())
                         .sleeveLength1(outerReviewHighLabelList.get(1).getCategoryItemNo())
                         .sleeveLengthItemName1(outerReviewHighLabelList.get(1).getCategoryItemName())
+                        .labelNo1(labelNo1)
                         .build();
                 resultMap.put("outerReviewHighLabel", outerReviewHighLabel);
             } else {
@@ -849,6 +850,7 @@ public class KfashionLabelController {
                         .sleeveLengthCategoryNo1(outerReviewHighLabelList.get(2).getCategoryNo())
                         .sleeveLength1(outerReviewHighLabelList.get(2).getCategoryItemNo())
                         .sleeveLengthItemName1(outerReviewHighLabelList.get(2).getCategoryItemName())
+                        .labelNo1(labelNo1)
                         .build();
                 resultMap.put("outerReviewHighLabel", outerReviewHighLabel);
             }
@@ -864,6 +866,7 @@ public class KfashionLabelController {
                         .sleeveLengthCategoryNo2(topReviewHighLabelList.get(1).getCategoryNo())
                         .sleeveLength2(topReviewHighLabelList.get(1).getCategoryItemNo())
                         .sleeveLengthItemName2(topReviewHighLabelList.get(1).getCategoryItemName())
+                        .labelNo2(labelNo2)
                         .build();
                 resultMap.put("topReviewHighLabel", topReviewHighLabel);
             } else {
@@ -879,6 +882,7 @@ public class KfashionLabelController {
                         .sleeveLengthCategoryNo2(topReviewHighLabelList.get(2).getCategoryNo())
                         .sleeveLength2(topReviewHighLabelList.get(2).getCategoryItemNo())
                         .sleeveLengthItemName2(topReviewHighLabelList.get(2).getCategoryItemName())
+                        .labelNo2(labelNo2)
                         .build();
                 resultMap.put("topReviewHighLabel", topReviewHighLabel);
             }
@@ -891,6 +895,7 @@ public class KfashionLabelController {
                         .color3(pantsReviewHighLabelList.get(0).getCategoryItemNo())
                         .colorItemName3(pantsReviewHighLabelList.get(0).getCategoryItemName())
                         .colorItemMemo3(pantsReviewHighLabelList.get(0).getCategoryItemMemo())
+                        .labelNo3(labelNo3)
                         .build();
                 resultMap.put("pantsReviewHighLabel", pantsReviewHighLabel);
             } else {
@@ -903,6 +908,7 @@ public class KfashionLabelController {
                         .subColor3(pantsReviewHighLabelList.get(1).getCategoryItemNo())
                         .subColorItemName3(pantsReviewHighLabelList.get(1).getCategoryItemName())
                         .subColorItemMemo3(pantsReviewHighLabelList.get(1).getCategoryItemMemo())
+                        .labelNo3(labelNo3)
                         .build();
                 resultMap.put("pantsReviewHighLabel", pantsReviewHighLabel);
 
@@ -919,6 +925,7 @@ public class KfashionLabelController {
                         .sleeveLengthCategoryNo4(onePieceReviewHighLabelList.get(1).getCategoryNo())
                         .sleeveLength4(onePieceReviewHighLabelList.get(1).getCategoryItemNo())
                         .sleeveLengthItemName4(onePieceReviewHighLabelList.get(1).getCategoryItemName())
+                        .labelNo4(labelNo4)
                         .build();
                 resultMap.put("onePieceReviewHighLabel", onePieceReviewHighLabel);
             } else {
@@ -934,6 +941,7 @@ public class KfashionLabelController {
                         .sleeveLengthCategoryNo4(onePieceReviewHighLabelList.get(2).getCategoryNo())
                         .sleeveLength4(onePieceReviewHighLabelList.get(2).getCategoryItemNo())
                         .sleeveLengthItemName4(onePieceReviewHighLabelList.get(2).getCategoryItemName())
+                        .labelNo4(labelNo4)
                         .build();
                 resultMap.put("onePieceReviewHighLabel", onePieceReviewHighLabel);
             }

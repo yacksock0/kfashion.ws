@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Line } from 'rc-progress';
 import axios from "axios";
 import {inject, observer} from "mobx-react";
-import {toJS} from "mobx";
 
 @inject('authStore','userListStore')
 @observer
@@ -20,8 +19,6 @@ export class ProgressBar extends Component {
         this.changeState = this.changeState.bind(this);
     }
     componentDidMount() {
-        const totalWork = 0;
-        const finishWork = 0;
         axios.post(`/api/v1/kfashion/work/history/progressRate?createdId=${this.props.rowDataId}&authorityNo=${this.props.authStore.loginUser.authorityNo}`)
             .then(response => {
                 const selectWorkProgressRate = response.data.selectWorkProgressRate;
@@ -32,7 +29,7 @@ export class ProgressBar extends Component {
                     complete: complete,
                     percent : ((complete / total) *100).toFixed(1)
                 });
-                if(complete ==0 && total==0 ){
+                if(complete ===0 && total===0 ){
                     this.setState({
                         percent :   100
                     });
@@ -87,7 +84,7 @@ export class ProgressBar extends Component {
                             rowDataId: this.props.rowDataId,
                             percent : ((complete / total) *100).toFixed(1)
                         });
-                        if(complete ==0 && total==0 ){
+                        if(complete ===0 && total===0 ){
                             this.setState({
                                 percent :   100
                             });

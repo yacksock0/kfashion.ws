@@ -90,7 +90,7 @@ public class KfashionImageRepository {
         return mapper.selectRectListTotal(pageMap);
     }
 
-    public Long selectPolygonListTotal(HashMap<String, Object> pageMap) {
+    public List<KfashionImage> selectPolygonListTotal(HashMap<String, Object> pageMap) {
         return mapper.selectPolygonListTotal(pageMap);
     }
 

@@ -1,6 +1,5 @@
 import {action, computed, flow, observable, toJS} from "mobx";
 import axios from "axios";
-import {reset} from "react-tabs/lib/helpers/uuid";
 
 const State = {
     Ready: 'Ready',
@@ -423,13 +422,13 @@ export default class ProfessionalLabelStore {
         this.professionalList = [];
     }
     @action changeLabelNumber = (labelNo) => {
-        if (labelNo == 1) {
+        if (labelNo === 1) {
             this.styleReviewLabel.labelNo1 = labelNo;
             return this.styleReviewLabel;
-        } else if (labelNo == 2) {
+        } else if (labelNo === 2) {
             this.styleReviewLabel.labelNo2 = labelNo;
             return this.styleReviewLabel;
-        } else if (labelNo == 3) {
+        } else if (labelNo === 3) {
             this.styleReviewLabel.labelNo3 = labelNo;
             return this.styleReviewLabel;
         } else {
@@ -567,7 +566,7 @@ export default class ProfessionalLabelStore {
     @action deleteDetail1 = (detail1) => {
         let index = 0;
         for (let i = 0; i < this.outerReviewLabel.detailItemName1.length; i++) {
-            if (detail1 == this.outerReviewLabel.detailItemName1[i]) {
+            if (detail1 === this.outerReviewLabel.detailItemName1[i]) {
                 index = i;
             }
         }
@@ -579,7 +578,7 @@ export default class ProfessionalLabelStore {
     @action deleteDetail2 = (detail2) => {
         let index = 0;
         for (let i = 0; i < this.topReviewLabel.detailItemName2.length; i++) {
-            if (detail2 == this.topReviewLabel.detailItemName2[i]) {
+            if (detail2 === this.topReviewLabel.detailItemName2[i]) {
                 index = i;
             }
         }
@@ -591,7 +590,7 @@ export default class ProfessionalLabelStore {
     @action deleteDetail3 = (detail3) => {
         let index = 0;
         for (let i = 0; i < this.pantsReviewLabel.detailItemName3.length; i++) {
-            if (detail3 == this.pantsReviewLabel.detailItemName3[i]) {
+            if (detail3 === this.pantsReviewLabel.detailItemName3[i]) {
                 index = i;
             }
         }
@@ -604,7 +603,7 @@ export default class ProfessionalLabelStore {
     @action deleteDetail4 = (detail4) => {
         let index = 0;
         for (let i = 0; i < this.onePieceReviewLabel.detailItemName4.length; i++) {
-            if (detail4 == this.onePieceReviewLabel.detailItemName4[i]) {
+            if (detail4 === this.onePieceReviewLabel.detailItemName4[i]) {
                 index = i;
             }
         }
@@ -645,7 +644,7 @@ export default class ProfessionalLabelStore {
     @action deletePrint1 = (print1) => {
         let index = 0;
         for (let i = 0; i < this.outerReviewLabel.printItemName1.length; i++) {
-            if (print1 == this.outerReviewLabel.printItemName1[i]) {
+            if (print1 === this.outerReviewLabel.printItemName1[i]) {
                 index = i;
             }
         }
@@ -657,7 +656,7 @@ export default class ProfessionalLabelStore {
     @action deletePrint2 = (print2) => {
         let index = 0;
         for (let i = 0; i < this.topReviewLabel.printItemName2.length; i++) {
-            if (print2 == this.topReviewLabel.printItemName2[i]) {
+            if (print2 === this.topReviewLabel.printItemName2[i]) {
                 index = i;
             }
         }
@@ -669,7 +668,7 @@ export default class ProfessionalLabelStore {
     @action deletePrint3 = (print3) => {
         let index = 0;
         for (let i = 0; i < this.pantsReviewLabel.printItemName3.length; i++) {
-            if (print3 == this.pantsReviewLabel.printItemName3[i]) {
+            if (print3 === this.pantsReviewLabel.printItemName3[i]) {
                 index = i;
             }
         }
@@ -682,7 +681,7 @@ export default class ProfessionalLabelStore {
     @action deletePrint4 = (print4) => {
         let index = 0;
         for (let i = 0; i < this.onePieceReviewLabel.printItemName4.length; i++) {
-            if (print4 == this.onePieceReviewLabel.printItemName4[i]) {
+            if (print4 === this.onePieceReviewLabel.printItemName4[i]) {
                 index = i;
             }
         }
@@ -725,7 +724,7 @@ export default class ProfessionalLabelStore {
     @action deleteTexture1 = (texture1) => {
         let index = 0;
         for (let i = 0; i < this.outerReviewLabel.textureItemName1.length; i++) {
-            if (texture1 == this.outerReviewLabel.textureItemName1[i]) {
+            if (texture1 === this.outerReviewLabel.textureItemName1[i]) {
                 index = i;
             }
         }
@@ -737,7 +736,7 @@ export default class ProfessionalLabelStore {
     @action deleteTexture2 = (texture2) => {
         let index = 0;
         for (let i = 0; i < this.topReviewLabel.textureItemName2.length; i++) {
-            if (texture2 == this.topReviewLabel.textureItemName2[i]) {
+            if (texture2 === this.topReviewLabel.textureItemName2[i]) {
                 index = i;
             }
         }
@@ -749,7 +748,7 @@ export default class ProfessionalLabelStore {
     @action deleteTexture3 = (texture3) => {
         let index = 0;
         for (let i = 0; i < this.pantsReviewLabel.textureItemName3.length; i++) {
-            if (texture3 == this.pantsReviewLabel.textureItemName3[i]) {
+            if (texture3 === this.pantsReviewLabel.textureItemName3[i]) {
                 index = i;
             }
         }
@@ -761,7 +760,7 @@ export default class ProfessionalLabelStore {
     @action deleteTexture4 = (texture4) => {
         let index = 0;
         for (let i = 0; i < this.onePieceReviewLabel.textureItemName4.length; i++) {
-            if (texture4 == this.onePieceReviewLabel.textureItemName4[i]) {
+            if (texture4 === this.onePieceReviewLabel.textureItemName4[i]) {
                 index = i;
             }
         }
@@ -1297,11 +1296,11 @@ export default class ProfessionalLabelStore {
     });
 
     cleanLabel = flow(function* LoadLabelList(workNo) {
-        this.outerReviewLabel = {...EmptyNewOuterReviewLabel};
-        this.topReviewLabel = {...EmptyNewTopReviewLabel};
-        this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
-        this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
-        this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
+       yield this.outerReviewLabel = {...EmptyNewOuterReviewLabel};
+       yield this.topReviewLabel = {...EmptyNewTopReviewLabel};
+       yield this.pantsReviewLabel = {...EmptyNewPantsReviewLabel};
+       yield this.onePieceReviewLabel = {...EmptyNewOnePieceReviewLabel};
+       yield this.styleReviewLabel = {...EmptyNewStyleReviewLabel};
     });
 
     deleteProfessionalLabel = flow(function* deleteProfessionalLabel(workNo) {
@@ -1337,8 +1336,8 @@ export default class ProfessionalLabelStore {
                     console.log(err);
                 }
             }
-            if (this.state = State.Success) {
-                alert("이미지 삭제가 완료되었습니다.")
+            if (this.state === State.Success) {
+                alert("이미지 삭제가 완료되었습니다.");
                 this.LoadProfessionalList(createdId);
                 this.doProfessionalCompleteUp(createdId,this.newProfessionalLabel.authorityNo);
                 this.selectedItemReset();
@@ -1432,7 +1431,7 @@ export default class ProfessionalLabelStore {
             console.log('param', param);
             const resp = yield axios.post('/api/v1/kfashion/label/professionalLabel', param);
             if (resp.status === 200) {
-                const createdId = this.newProfessionalLabel.createdId;
+                // const createdId = this.newProfessionalLabel.createdId;
                 this.state = State.Success;
                 alert("수정 완료되었습니다.");
                 this.LoadInspectionList(this.newProfessionalLabel.createdId);
@@ -1506,7 +1505,7 @@ export default class ProfessionalLabelStore {
                     console.log('에러좀 나지 마라')
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 this.selectedItemReset();
                 this.LoadInspectionList(createdId);
                 alert("검수가 완료 되었습니다.");
@@ -1627,7 +1626,7 @@ export default class ProfessionalLabelStore {
                     console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 const createdId = this.newProfessionalLabel.createdId;
                 const authorityNo = this.newProfessionalLabel.authorityNo;
                 this.LoadProfessionalList(createdId);
@@ -1662,7 +1661,7 @@ export default class ProfessionalLabelStore {
                     console.log('에러좀 나지 마라')
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 this.updateSeletedProfessionalLabelUp(selected);
             } else {
             }
@@ -1766,7 +1765,7 @@ export default class ProfessionalLabelStore {
                     console.log('에러 좀 나지 마라 Label insert error (doProfessionalLabelUp check)');
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 const createdId = this.newProfessionalLabel.createdId;
                 this.LoadInspectionList(createdId);
                 this.outerReviewLabel = {...EmptyNewOuterReviewLabel};
@@ -1818,7 +1817,7 @@ export default class ProfessionalLabelStore {
                     console.log(err);
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 alert("이미지 삭제가 완료되었습니다.")
                 this.LoadInspectionList(createdId);
                 this.selectedItemReset();

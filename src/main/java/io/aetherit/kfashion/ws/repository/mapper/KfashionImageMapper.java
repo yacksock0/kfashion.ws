@@ -43,7 +43,7 @@ public interface KfashionImageMapper {
 
     Long selectRectListTotal(HashMap<String, Object> pageMap);
 
-    Long selectPolygonListTotal(HashMap<String, Object> pageMap);
+    List<KfashionImage> selectPolygonListTotal(HashMap<String, Object> pageMap);
 
     Long selectInspectionHighListTotal(HashMap<String, Object> pageMap);
 }

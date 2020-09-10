@@ -1,4 +1,4 @@
-import React, {forwardRef} from "react";
+import React from "react";
 import MaterialTable from 'material-table';
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
@@ -6,7 +6,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Edit from '@material-ui/icons/Edit';
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
-import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Button, Container, Grid, Typography} from "@material-ui/core";
 import 'react-tabs/style/react-tabs.css';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,7 +17,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
-import {get, toJS} from "mobx";
+import {toJS} from "mobx";
 import Chip from "@material-ui/core/Chip";
 import ErrorIcon from "@material-ui/icons/Error";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -143,8 +143,9 @@ class FinalCheckList extends React.Component {
         const id = this.props.authStore.loginUser.id;
         checkList.map((item, index) => {
             if (item.createdId === id) {
-                checkBoxList.push(item);
+                return checkBoxList.push(item);
             }
+            return checkBoxList;
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
@@ -164,7 +165,7 @@ class FinalCheckList extends React.Component {
                 }
             }
             checkBoxList.map((item, index) => {
-                this.toggle(item.workNo, item.createdId);
+                return this.toggle(item.workNo, item.createdId);
             })
         }
     }
@@ -220,7 +221,6 @@ class FinalCheckList extends React.Component {
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;
-        this.props.professionalLabelStore.pageResetAll();
         this.props.professionalLabelStore.LoadInspectionList(id);
         this.props.professionalLabelStore.selectedItemReset();
         this.setState({createdId : id});
@@ -344,7 +344,7 @@ class FinalCheckList extends React.Component {
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
 
-                if(i !=0) {
+                if(i !== 0) {
                     let x1 = this.lineTwoPoint[0];
                     let x2 = this.lineTwoPoint[2];
                     let x3 = 0;
@@ -480,8 +480,9 @@ class FinalCheckList extends React.Component {
         const checkBoxList = []
         checkList.map((item, index) => {
             if (item.createdId === this.props.authStore.isUserId) {
-                checkBoxList.push(item);
+                return checkBoxList.push(item);
             }
+            return checkBoxList;
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
@@ -497,14 +498,14 @@ class FinalCheckList extends React.Component {
         }
     }
     render() {
-        const handleClickMsgOpen = () => {
-            this.setState({open:true,})
-        };
+        // const handleClickMsgOpen = () => {
+        //     this.setState({open:true,})
+        // };
         setTimeout(() => document.body.style.zoom = "100%", 100);
 
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
-        const detail1 = outerReviewLabel.detailItemName1;
+        // const detail1 = outerReviewLabel.detailItemName1;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -968,7 +969,7 @@ class FinalCheckList extends React.Component {
                                                                                     checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
                                                                                     disabled={this.props.authStore.isUserId === rowData.createdId ? false : true}></Checkbox>},
                                                 {title: '번호', field: 'workNo',type: 'number'},
-                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                                                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                                                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                                                 {title: '생성자', field: 'createdId', type: 'string'},

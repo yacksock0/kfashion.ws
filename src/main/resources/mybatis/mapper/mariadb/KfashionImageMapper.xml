@@ -123,9 +123,15 @@
         OFFSET #{startPage}
     </select>
 
-    <select id="selectPolygonListTotal" resultType="Long">
+    <select id="selectPolygonListTotal" resultMap="kfashionImageResultMap">
         SELECT DISTINCT
-        count(kfashion_image.work_no) AS totalCount
+        kfashion_image.work_no,
+        kfashion_work.work_name,
+        CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
+        kfashion_work.created_datetime,
+        kfashion_work_history.created_id,
+        kfashion_comment.comment,
+        IF(kfashion_comment.complete = 'Y', 'Y' , 'N') AS complete
         FROM kfashion_image
         INNER JOIN kfashion_work_history ON kfashion_image.work_no = kfashion_work_history.work_no
         INNER JOIN kfashion_work ON kfashion_image.work_no = kfashion_work.no
@@ -133,15 +139,17 @@
         WHERE kfashion_work_history.created_id = #{createdId}
         AND kfashion_work_history.work_step = 3
         AND kfashion_work_history.work_no NOT IN(SELECT kfashion_work_history.work_no
-                                                    FROM kfashion_work_history
-                                                    WHERE kfashion_work_history.work_step = 4
-                                                    AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
-                                                                                      FROM kfashion_comment
-                                                                                      WHERE kfashion_comment.work_step = 4
-                                                                                      AND kfashion_comment.complete NOT IN ('Y')))
+                                            FROM kfashion_work_history
+                                            WHERE kfashion_work_history.work_step = 4
+        AND kfashion_work_history.work_no NOT IN (SELECT kfashion_comment.work_no
+                                            FROM kfashion_comment
+                                            WHERE kfashion_comment.work_step = 4
+                                            AND kfashion_comment.complete NOT IN ('Y')))
         <if test="keyword != null and keyword != '' ">
             AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
         </if>
+        HAVING complete = 'N'
+        ORDER BY kfashion_comment.comment DESC, work_no DESC
     </select>
 
 

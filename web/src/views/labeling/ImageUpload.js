@@ -2,7 +2,7 @@ import React from "react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
-import {Container, Toolbar, Typography, Button, Grid, List,} from "@material-ui/core";
+import {Container, Toolbar, Typography, Button, Grid, } from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import DropzoneDialogExample from "../../components/DropzoneDialog";
 import MaterialTable from 'material-table';
@@ -103,38 +103,37 @@ class ImageUpload extends React.Component {
         this.props.imageStore.initStore();
     }
 
-    handlePrevious(){
-        this.setState({
-            count: this.state.count-1
-        });
-        {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
-            : alert("첫번째 이미지 입니다.")
-        }
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.workNo
-        })
-    }
-    handleNext() {
-        this.setState({
-            count: this.state.count+1
-        });
-        {this.state.count < this.props.imageStore.boundaryList.length ?
-         this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].isWorkNo)
-         :alert("마지막 이미지 입니다.")
-        }
-        this.setState({
-            imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
-            workNo: this.props.imageStore.workNo
-        })
-    }
+    // handlePrevious(){
+    //     this.setState({
+    //         count: this.state.count-1
+    //     });
+    //     {this.state.boundaryList.length - this.state.count >=0 ?this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].workNo)
+    //         : alert("첫번째 이미지 입니다.")
+    //     }
+    //     this.setState({
+    //         imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+    //         workNo: this.props.imageStore.workNo
+    //     })
+    // }
+    // handleNext() {
+    //     this.setState({
+    //         count: this.state.count+1
+    //     });
+    //     {this.state.count < this.props.imageStore.boundaryList.length ?
+    //      this.props.imageStore.changeWorkNo(this.state.boundaryList[this.state.count].isWorkNo)
+    //      :alert("마지막 이미지 입니다.")
+    //     }
+    //     this.setState({
+    //         imgData: `/api/v1/kfashion/img/getByteImage?workNo=${this.props.imageStore.isWorkNo}`,
+    //         workNo: this.props.imageStore.workNo
+    //     })
+    // }
     handleClick=(workNo, imgData)=>{
         this.setState({
             imgData:imgData,
         })
     }
     render() {
-        const {boundaryList} = this.props.imageStore;
         const {classes, history} = this.props;
         const loginUser = this.props.authStore.isUserId;
         return (
@@ -153,7 +152,7 @@ class ImageUpload extends React.Component {
                     <Grid container>
                         <Grid item xs={12} lg={5}>
                             <div style={{marginRight:15}}>
-                                <img src={this.state.imgData} style={{display:"inline-block" , width:'750', height:'60vh'}}/>
+                                <img src={this.state.imgData} alt={"이미지"} style={{display:"inline-block" , width:'750', height:'60vh'}}/>
                             </div>
                         </Grid>
                         <Grid item xs={12} lg={7}>
@@ -161,7 +160,7 @@ class ImageUpload extends React.Component {
                             <MaterialTable
                                 columns={[
                                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬', editable:false},
-                                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/>, editable:false},
+                                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} alt={"이미지"} style={{width: 50, height:50,}}/>, editable:false},
                                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter'},
                                     {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',editable:false},
                                     {title: '등록일 ', field: 'createdDatetime', type: 'date',editable:false},
@@ -201,25 +200,23 @@ class ImageUpload extends React.Component {
                                                onRowUpdate: rowData =>
                                                    new Promise((resolve, reject) => {
                                                        setTimeout(() => {
-                                                           {axios.put(`/api/v1/kfashion/work/updateWorkName`,  {
+                                                           axios.put(`/api/v1/kfashion/work/updateWorkName`,  {
                                                                    no: rowData.workNo,
                                                                    workName: rowData.workName,
                                                                })
                                                                    .then(res => {
-                                                                        if(res.status === 200) {
-                                                               const userId = this.props.authStore.isUserId
-                                                               this.props.imageStore.LoadImage(userId);
-                                                                        }
+                                                                       if (res.status === 200) {
+                                                                           const userId = this.props.authStore.isUserId
+                                                                           this.props.imageStore.LoadImage(userId);
                                                                        }
-                                                                   )
-                                                           }
+                                                                   })
                                                            resolve();
                                                        }, 1000);
                                                    }),
                                                onRowDelete: rowData =>
                                                    new Promise((resolve, reject) => {
                                                        setTimeout(() => {
-                                                           {axios.delete(`/api/v1/kfashion/img/deleteImage/${rowData.workNo}`,  {
+                                                           axios.delete(`/api/v1/kfashion/img/deleteImage/${rowData.workNo}`,  {
                                                                data: {
                                                                workNo: rowData.workNo,
                                                                }
@@ -230,7 +227,6 @@ class ImageUpload extends React.Component {
                                                                            this.props.imageStore.LoadImage(userId);
                                                                        }
                                                                    })
-                                                           }
                                                            resolve();
                                                        }, 1000);
                                                    })
@@ -290,4 +286,4 @@ class ImageUpload extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (ImageUpload)));
+export default withSnackbar(withRouter(withStyles(styles) (ImageUpload)))

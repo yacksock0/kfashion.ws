@@ -92,7 +92,7 @@ public class KfashionImageService {
         return repository.selectRectListTotal(pageMap);
     }
 
-    public Long selectPolygonListTotal(HashMap<String, Object> pageMap) {
+    public List<KfashionImage> selectPolygonListTotal(HashMap<String, Object> pageMap) {
         return repository.selectPolygonListTotal(pageMap);
     }
 

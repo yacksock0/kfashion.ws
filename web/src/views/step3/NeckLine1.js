@@ -18,7 +18,6 @@ export default class NeckLine1 extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
-        this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/neckLine')
@@ -38,6 +37,7 @@ export default class NeckLine1 extends React.Component {
     handleClose() {
         this.props.professionalLabelStore.openNeckLineDialLog(false);
     }
+
     handleClick(neckLine){
         if(this.props.onClick) {
             this.props.onClick(neckLine);

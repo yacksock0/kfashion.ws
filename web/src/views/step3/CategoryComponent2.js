@@ -14,7 +14,6 @@ import Fit2 from "./Fit2";
 import {inject, observer} from "mobx-react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CategoryAll2 from "./CategoryAll2";
-import CategoryAll1 from "./CategoryAll1";
 
 const styles = theme => ({
     mainContainer: {
@@ -172,7 +171,7 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {detail2 != null && detail2 != undefined  ?(
+                                            {detail2 !== null && detail2 !== undefined  ?(
                                                 detail2.map((detail2) =>
                                                 <Button
                                                     style={{fontSize:15, width:200, borderRadius:50 ,padding:0}}
@@ -197,7 +196,7 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {print2 != null  && print2 != undefined  ?(
+                                            {print2 !== null  && print2 !== undefined  ?(
                                                 print2.map((print1) =>
                                                     <Button
                                                         style={{
@@ -227,7 +226,7 @@ class CategoryComponent2 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {texture2 != null  && texture2 != undefined  ?(
+                                            {texture2 !== null  && texture2 !== undefined  ?(
                                                 texture2.map((texture2) =>
                                                     <Button
                                                         style={{

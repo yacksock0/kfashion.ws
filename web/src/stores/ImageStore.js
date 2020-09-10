@@ -1,7 +1,5 @@
-import {action, computed, flow, observable, toJS} from "mobx";
-import React from "react";
+import {action, computed, flow, observable} from "mobx";
 import axios from "axios";
-import {formatMs} from "@material-ui/core";
 
 const State = {
     Ready: 'Ready',
@@ -141,7 +139,11 @@ export default class ImageStore {
     
     
     fileupload = flow(function* fileupload (fileList, userId, index, max){
-        if(index >= max) return this.LoadImage();
+        if(index >= max) {
+            this.countReset(0);
+            this.changeFileTotal(0);
+            this.LoadImage();
+        }
         const formData = new FormData();
         formData.append("userId",userId);
         formData.append("file",fileList[index]);
@@ -153,7 +155,7 @@ export default class ImageStore {
                 'Authorization': 'JWT ' + sessionStorage.getItem('token')
             });
             if (resp.status === 200) {
-                this.countChange();
+                this.countChange(index + 1);
                 this.fileupload(fileList, userId, index + 1, max)
             }
         } catch (error) {
@@ -205,9 +207,9 @@ export default class ImageStore {
     fileuploadCount = flow(function* fileuploadCount () {
            axios.get('/api/v1/kfashion/img/fileuploadCount?workNo='+this.lastWorkNo)
                .then(resp =>{
-                    if (resp.status === 200) {
-                        if(this.fileTotal === resp.data && this.fileTotal === 0) {
-                            this.countChange(resp.data);
+                    if (resp.status === 200 ) {
+                        if(this.fileTotal === resp.data || this.fileTotal === 0) {
+                           this.countChange(resp.data);
                         }else {
                             this.fileuploadCount();
                             this.countChange(resp.data);

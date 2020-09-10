@@ -1,5 +1,4 @@
-import {action, computed, flow, observable, toJS} from "mobx";
-import React from "react";
+import {action, flow, observable, toJS} from "mobx";
 import axios from "axios";
 
 const State = {
@@ -674,7 +673,7 @@ export default class CheckHighLabelStore {
                     console.log('에러 좀 나지 마라');
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 this.outerReviewHighLabel= {...OuterReviewHighLabel};
                 this.topReviewHighLabel= {...TopReviewHighLabel};
                 this.pantsReviewHighLabel= {...PantsReviewHighLabel};
@@ -703,7 +702,7 @@ export default class CheckHighLabelStore {
                     console.log('에러좀 나지 마라')
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 this.UpdateSelectedBasicLabel(selected);
             }
         }
@@ -756,7 +755,7 @@ export default class CheckHighLabelStore {
                     console.log('에러좀 나지 마라')
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 this.LoadPolygonImage1(this.changeNewBasicLabel.createdId);
                 this.cleanLabel();
                 alert("수정이 완료되었습니다.");

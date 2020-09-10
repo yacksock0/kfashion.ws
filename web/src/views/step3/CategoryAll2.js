@@ -29,7 +29,7 @@ export default class CategoryAll2 extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
-        this.handleClick =this. handleClick.bind(this);
+        this.handleClick =this.handleClick.bind(this);
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/category')
@@ -213,7 +213,7 @@ export default class CategoryAll2 extends React.Component {
                             디테일
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {detail2 != null  && detail2 != undefined  ?(
+                            {detail2 !== null  && detail2 !== undefined  ?(
                                 detail2.map((detail2) =>
                                     <Button
                                         style={{
@@ -240,8 +240,8 @@ export default class CategoryAll2 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={detail.no}
-                                            disabled = {detail2 != undefined?
-                                                detail.categoryItemName == detail2.filter((check) => check==detail.categoryItemName
+                                            disabled = {detail2 !== undefined?
+                                                detail.categoryItemName === detail2.filter((check) => check===detail.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickDetail(detail)}>
@@ -256,7 +256,7 @@ export default class CategoryAll2 extends React.Component {
                             프린트
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {print2 != null  && print2 != undefined  ?(
+                            {print2 !== null  && print2 !== undefined  ?(
                                 print2.map((print1) =>
                                     <Button
                                         style={{
@@ -282,8 +282,8 @@ export default class CategoryAll2 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={print.no}
-                                            disabled = {print2 != undefined?
-                                                print.categoryItemName == print2.filter((check) => check==print.categoryItemName
+                                            disabled = {print2 !== undefined?
+                                                print.categoryItemName === print2.filter((check) => check===print.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickPrint(print)}>
@@ -298,7 +298,7 @@ export default class CategoryAll2 extends React.Component {
                             소재감
                         </Typography>
                         <div style={{display:'inline-block',float:'right'}}>
-                            {texture2 != null  && texture2 != undefined  ?(
+                            {texture2 !== null  && texture2 !== undefined  ?(
                                 texture2.map((texture2) =>
                                     <Button
                                         style={{
@@ -324,8 +324,8 @@ export default class CategoryAll2 extends React.Component {
                                             style={{width: '100%', height: 30, padding: 0}}
                                             variant="outlined"
                                             key={texture.no}
-                                            disabled={texture2 != undefined ?
-                                                texture.categoryItemName == texture2.filter((check) => check == texture.categoryItemName
+                                            disabled={texture2 !== undefined ?
+                                                texture.categoryItemName === texture2.filter((check) => check === texture.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClickTexture(texture)}>

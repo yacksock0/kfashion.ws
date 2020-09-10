@@ -1,6 +1,5 @@
 
 import React from "react";
-import axios from "axios";
 import {inject, observer} from "mobx-react";
 import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
@@ -24,7 +23,7 @@ class WorkDetail extends React.Component {
             data: [],
             columns: [
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 50, height:50,}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 50, height:50,}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
             ],
         }

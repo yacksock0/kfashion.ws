@@ -117,6 +117,13 @@ public class KfashionCommentController {
                 kfashionImageLocationRectService.deleteRect(deleteMap);
             }
         }
+        return new ResponseEntity<Object>(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/highCommentLabel")
+    public ResponseEntity<Object> highCommentLabel(HttpServletRequest httpRequest,
+                                              @RequestBody KfashionComment kfashionComment) {
+        kfashionComment.setReceiveId(kfashionWorkHistoryService.selectReceiveId(kfashionComment.getWorkNo()));
         if (kfashionComment.getWorkStep2() == 4) {
             Map<String, Object> selectMap = new HashMap<>();
             selectMap.put("workNo", kfashionComment.getWorkNo());

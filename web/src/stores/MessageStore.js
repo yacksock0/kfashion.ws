@@ -1,23 +1,30 @@
 import {action, computed, flow, observable, toJS} from "mobx";
 import axios from "axios";
-import {inject, observer} from "mobx-react";
 const State = {
     Ready: 'Ready',
     Pending: 'Pending',
     Success: 'Success',
     Fail: 'Fail',
 }
-const Message = {
+const PolyMessage = {
     comment:'',
     workNo:0,
     sendId:'',
-    workStep1:'',
-    workStep2:'',
+    workStep1:3,
     workType1:'',
     workType2:'',
     workType3:'',
     workType4:'',
 }
+
+const LabelMessage = {
+    comment:'',
+    workNo:0,
+    sendId:'',
+    workStep2:4,
+}
+
+
 const CheckBox ={
     poly:false,
     label:false,
@@ -41,7 +48,8 @@ const BasicComplete = {
 }
 
 export default class MessageStore {
-    @observable newMsg = {...Message};
+    @observable polyMsg = {...PolyMessage};
+    @observable labelMsg = {...LabelMessage}
     @observable checkBox = {...CheckBox};
     @observable inspectionHighList =[];
     @observable disabled = {...Disabled};
@@ -76,110 +84,116 @@ export default class MessageStore {
 
 
     @action changePolyInfo = (polyInfo) => {
-        if( "" === polyInfo.filter(poly => poly == 1)) {
+        if( "" == polyInfo.filter(poly => poly === 1)) {
             this.disabled.onepieceDisabled = true;
         }
-        if( "" === polyInfo.filter(poly => poly == 2)) {
+        if( "" == polyInfo.filter(poly => poly === 2)) {
             this.disabled.topDisabled = true;
         }
-        if( "" === polyInfo.filter(poly => poly == 3)) {
+        if( "" == polyInfo.filter(poly => poly === 3)) {
             this.disabled.pantsDisabled = true;
         }
-        if( "" === polyInfo.filter(poly => poly == 4)) {
+        if( "" == polyInfo.filter(poly => poly === 4)) {
             this.disabled.onepieceDisabled = true;
         }
     }
 
     @action resetType=()=>{
-        this.newMsg.workStep1='';
-        this.newMsg.workType1='';
-        this.newMsg.workType2='';
-        this.newMsg.workType3='';
-        this.newMsg.workType4='';
+        this.polyMsg.workType1='';
+        this.polyMsg.workType2='';
+        this.polyMsg.workType3='';
+        this.polyMsg.workType4='';
+        this.checkBox.outer=false;
+        this.checkBox.top=false;
+        this.checkBox.pants=false;
+        this.checkBox.onepiece=false;
     }
     @action checkAll=()=>{
-        this.newMsg.workStep1=3;
-        this.newMsg.workType1=1;
-        this.newMsg.workType2=2;
-        this.newMsg.workType3=3;
-        this.newMsg.workType4=4;
+        this.polyMsg.workType1=1;
+        this.polyMsg.workType2=2;
+        this.polyMsg.workType3=3;
+        this.polyMsg.workType4=4;
     }
+
     @action checkPoly=(value)=>{
         this.checkBox.poly=value;
-        if(value==true){
+        if(value===true){
             this.checkBox.outer=true;
             this.checkBox.top=true;
             this.checkBox.pants=true;
             this.checkBox.onepiece=true;
             this.checkAll();
-            this.newMsg.workStep1=3;
         }else{
             this.checkBox.outer=false;
             this.checkBox.top=false;
             this.checkBox.pants=false;
             this.checkBox.onepiece=false;
             this.resetType();
-            this.newMsg.workStep1='';
         }
     }
     @action polyInfo =(value)=>{
         this.checkBox.poly = value;
     }
+
     @action checkLabel=(value)=>{
         this.checkBox.label=value;
-        if(value==true){
-            this.newMsg.workStep2=4;
-        }else{
-            this.newMsg.workStep2='';
-        }
     }
-    @action changeComment=(value)=>{
-        this.newMsg.comment = value;
+
+    @action changePolyComment=(value)=>{
+        this.polyMsg.comment = value;
     }
-    @action changeWorkNo=(value)=>{
-        this.newMsg.workNo = value;
+    @action changePolyWorkNo=(value)=>{
+        this.polyMsg.workNo = value;
     }
-    @action changeSendId=(value)=>{
-        this.newMsg.sendId = value;
+    @action changePolySendId=(value)=>{
+        this.polyMsg.sendId = value;
     }
-    @action changeWorkType=(value)=>{
-        if(value == 'outer'){
-            this.newMsg.workType1 = 1;
+
+    @action changeLabelComment=(value)=>{
+        this.labelMsg.comment = value;
+    }
+    @action changeLabelWorkNo=(value)=>{
+        this.labelMsg.workNo = value;
+    }
+    @action changeLabelSendId=(value)=>{
+        this.labelMsg.sendId = value;
+    }
+
+
+    @action changePolyWorkType=(value)=>{
+        if(value === 'outer'){
+            this.polyMsg.workType1 = 1;
             this.checkBox.outer = true;
-            this.newMsg.workStep1=3;
             this.polyInfo(true);
-        }else if(value == 'top'){
-            this.newMsg.workType2 = 2;
+        }else if(value === 'top'){
+            this.polyMsg.workType2 = 2;
             this.checkBox.top = true;
-            this.newMsg.workStep1=3;
             this.polyInfo(true);
-        }else if(value == 'pants'){
-            this.newMsg.workType3 = 3;
+        }else if(value === 'pants'){
+            this.polyMsg.workType3 = 3;
             this.checkBox.pants = true;
-            this.newMsg.workStep1=3;
             this.polyInfo(true);
-        }if(value == 'onepiece') {
-            this.newMsg.workType4 = 4;
+        }if(value === 'onepiece') {
+            this.polyMsg.workType4 = 4;
             this.checkBox.onepiece = true;
-            this.newMsg.workStep1=3;
             this.polyInfo(true);
         }
     }
-    @action changeWorkType1=(value)=>{
-        if(value == 'outer'){
-            this.newMsg.workType1 = '';
+    @action changePolyWorkType1=(value)=>{
+        if(value === 'outer'){
+            this.polyMsg.workType1 = '';
             this.checkBox.outer = false;
-        }else if(value == 'top'){
-            this.newMsg.workType2 = '';
+        }else if(value === 'top'){
+            this.polyMsg.workType2 = '';
             this.checkBox.top = false;
-        }else if(value == 'pants'){
-            this.newMsg.workType3 = '';
+        }else if(value === 'pants'){
+            this.polyMsg.workType3 = '';
             this.checkBox.pants = false;
-        }if(value == 'onepiece') {
-            this.newMsg.workType4 = '';
+        }if(value === 'onepiece') {
+            this.polyMsg.workType4 = '';
             this.checkBox.onepiece = false;
         }
-        {!!this.checkBox.outer == false && !!this.checkBox.top == false && !!this.checkBox.pants == false && !!this.checkBox.onepiece == false ? this.checkBox.poly=false :this.checkBox.poly=true}
+        {!!this.checkBox.outer === false && !!this.checkBox.top === false && !!this.checkBox.pants === false && !!this.checkBox.onepiece === false ? this.checkBox.poly=false :this.checkBox.poly=true}
     }
 
     @computed get isPending() {
@@ -195,14 +209,14 @@ export default class MessageStore {
     }
 
     sendMsg = flow(function* sendMsg() {
-        const param = toJS(this.newMsg);
+        const param = toJS(this.polyMsg);
         try {
             const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
             if (resp.status === 200) {
                 this.checkBox ={...CheckBox};
                 this.LoadInspectionHighList1();
-                this.newMsg ={...Message};
-                this.changeComment('')
+                this.polyMsg ={...PolyMessage};
+                this.changePolyComment('')
                 alert('작업이 반송처리 되었습니다');
             } else {
                 this.state = State.Fail;
@@ -218,10 +232,10 @@ export default class MessageStore {
         if(selected.length > 0) {
             for (let i = 0; i < selected.length; i++) {
                 try {
-                    this.changeWorkNo(selected[i]);
-                    this.changeSendId(createdId)
-                    const param = toJS(this.newMsg);
-                    const resp = yield axios.post('/api/v1/kfashion/comment/highComment', param);
+                    this.changeLabelWorkNo(selected[i]);
+                    this.changeLabelSendId(createdId)
+                    const param = toJS(this.labelMsg);
+                    const resp = yield axios.post('/api/v1/kfashion/comment/highCommentLabel', param);
                     if (resp.status === 200) {
                         this.state = State.Success;
                     } else {
@@ -231,12 +245,12 @@ export default class MessageStore {
                     console.log('에러좀 나지 마라')
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 alert("작업이 반송처리 되었습니다");
-                this.checkBox ={...CheckBox};
+                this.checkBox.label = false;
+                this.labelMsg ={...LabelMessage};
+                this.changeLabelComment('')
                 this.LoadInspectionHighList1();
-                this.newMsg ={...Message};
-                this.changeComment('')
             }
         }
     });
@@ -281,7 +295,7 @@ export default class MessageStore {
                     console.log('에러좀 나지 마라')
                 }
             }
-            if (this.state = State.Success) {
+            if (this.state === State.Success) {
                 alert("검수가 완료 되었습니다.");
                 this.LoadInspectionHighList1();
             }
@@ -292,7 +306,7 @@ export default class MessageStore {
 
 
 
-    LoadInspectionHighList1 = flow(function* loadInspectionHighList() {
+    LoadInspectionHighList1 = flow(function* loadInspectionHighList1() {
         this.state = State.Pending;
         try {
             const response = yield axios.get('/api/v1/kfashion/img/inspectionHighList', {
@@ -303,10 +317,12 @@ export default class MessageStore {
             }
         })
             if(response.status === 200) {
-                this.inspectionHighList = response.data.inspectionHighList;
-                this.page =  response.data.page;
-                this.totalCount = response.data.totalCount;
-                this.pageSize = response.data.pageSize;
+                if(response.data.totalCount !== 0) {
+                    this.inspectionHighList = response.data.inspectionHighList;
+                    this.page =  response.data.page;
+                    this.totalCount = response.data.totalCount;
+                    this.pageSize = response.data.pageSize;
+                }
             }else {
                 this.state = State.Fail;
             }

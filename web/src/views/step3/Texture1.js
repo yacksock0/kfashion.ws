@@ -17,7 +17,6 @@ export default class Texture1 extends React.Component {
         }
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
-        this.handleClick =this. handleClick.bind(this);
     }
     componentDidMount() {
         axios.get('/api/v1/kfashion/category/item/professional/texture')
@@ -71,8 +70,8 @@ export default class Texture1 extends React.Component {
                                             style={{width:'100%', height:30, padding:0}}
                                             variant="outlined"
                                             key={texture.no}
-                                            disabled = {textureCheck != undefined?
-                                                texture.categoryItemName == textureCheck.filter((check) => check==texture.categoryItemName
+                                            disabled = {textureCheck !== undefined?
+                                                texture.categoryItemName === textureCheck.filter((check) => check===texture.categoryItemName
                                                 ) : ""
                                             }
                                             onClick={() => this.handleClick(texture)}>

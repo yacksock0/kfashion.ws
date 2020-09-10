@@ -63,7 +63,6 @@ export default class AdminVerify extends React.Component {
                         onRowDelete: rowData =>
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
-                                    {
                                         axios.delete(`/api/v1/kfashion/users/deleteGroupAdminUser/${rowData.id}`, {
                                             data : {
                                                 id : rowData.id
@@ -73,7 +72,6 @@ export default class AdminVerify extends React.Component {
                                                 this.props.adminAuthorityStore.LoadUserList();
                                             }
                                         })
-                                    }
                                     resolve();
                                 }, 1000);
                             })

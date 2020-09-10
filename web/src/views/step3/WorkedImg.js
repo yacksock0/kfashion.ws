@@ -68,7 +68,7 @@ class WorkedImg extends React.Component  {
                         <h3>이전작업 </h3>
                     {recentlyImg.map((item) =>
                         <Button className={classes.imgBox} onClick={() => this.handleClick(item)}>
-                            <img src={item.fileName} key={item.fileName} style={{width: 80, height: 80, borderRadius:15}}/>
+                            <img alt={item.workName} src={item.fileName} key={item.fileName} style={{width: 80, height: 80, borderRadius:15}}/>
                         </Button>
                     )
                     }

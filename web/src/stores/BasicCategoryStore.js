@@ -1,5 +1,4 @@
-import {action, computed, flow, observable, toJS} from "mobx";
-import React from "react";
+import {action, flow, observable} from "mobx";
 import axios from "axios";
 
 const State = {

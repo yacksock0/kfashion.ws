@@ -1,4 +1,4 @@
-import React, {forwardRef} from "react";
+import React from "react";
 import MaterialTable from 'material-table';
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
@@ -177,7 +177,6 @@ class HighCheckList extends React.Component {
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;
         this.setState({createdId : id});
-        this.props.messageStore.pageResetAll();
         this.props.messageStore.LoadInspectionHighList1();
         this.props.checkHighLabelStore.selectedItemReset();
         this.props.enqueueSnackbar("고등학생 검수", {
@@ -269,7 +268,7 @@ class HighCheckList extends React.Component {
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
 
-                if (i != 0) {
+                if (i !== 0) {
                     let x1 = this.lineTwoPoint[0];
                     let x2 = this.lineTwoPoint[2];
                     let x3 = 0;
@@ -381,9 +380,6 @@ class HighCheckList extends React.Component {
     }
 
     handleChangePagingRowsPerPage = (event) => {
-        this.setState({
-            pageSize : event,
-        })
         this.props.messageStore.changePageSize(event);
         this.props.messageStore.LoadInspectionHighList1();
         this.props.checkHighLabelStore.selectedItemReset();
@@ -403,8 +399,8 @@ class HighCheckList extends React.Component {
                 const idx = checkList.findIndex(function(item,index) {return item.workNo === selected[i]})
                 if (idx > -1) checkList.splice(idx, 1)
             }
-        checkList.map((item, index) => {
-            this.toggle(item.workNo)
+        checkList.map((item) => {
+            return this.toggle(item.workNo)
         })
     }
 
@@ -422,7 +418,7 @@ class HighCheckList extends React.Component {
 
     render() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
-        const {inspectionHighList} = this.props.messageStore;
+        const {inspectionHighList,totalCount} = this.props.messageStore;
         const {classes} = this.props;
         const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onePieceReviewHighLabel} =this.props.checkHighLabelStore;
         return (
@@ -447,16 +443,16 @@ class HighCheckList extends React.Component {
                                     <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab1(tabIndex2)}>
                                         <TabList >
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly == 1))}
+                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly === 1))}
                                             ><h3>아우터</h3></Tab>
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly == 2))}
+                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly === 2))}
                                             ><h3>상의</h3></Tab>
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly == 3))}
+                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly === 3))}
                                             ><h3>하의</h3></Tab>
                                             <Tab  style={{width: '25%', height:60,textAlign:'center'}}
-                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly == 4))}
+                                                  disabled={"" == this.state.polyInfo.filter((poly=> poly === 4))}
                                             ><h3>원피스</h3></Tab>
                                         </TabList>
                                         <TabPanel>
@@ -633,14 +629,13 @@ class HighCheckList extends React.Component {
                                                       this.props.messageStore.inspectionHighList.length ? true : false}>
                                         </Checkbox>,
                                         render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)}></Checkbox>},
-                                    {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
-                                    {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
-                                    {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
+                                    {title: '번호', field: 'workNo', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                                    {title: '사진', field: 'fileName', render : rowData => <img alt={""} src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                                    {title: '이름', field: 'workName', filterPlaceholder: 'GroupNo filter',},
+                                    {title: '등록자', field: 'createdId', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                                     {title: '생성일', field: 'createdDatetime', type: 'date'},
                                 ]}
-                                data={
-                                    inspectionHighList.map((item) => {
+                                data={totalCount > 0 ?inspectionHighList.map((item) => {
                                         return {
                                             workNo: item.workNo,
                                             fileName: item.fileName,
@@ -648,7 +643,7 @@ class HighCheckList extends React.Component {
                                             createdId : item.createdId,
                                             createdDatetime: item.createdDatetime,
                                         }
-                                    })}
+                                    }) : []}
                                 title="이미지 리스트"
                                 options={{
                                     sorting: false,

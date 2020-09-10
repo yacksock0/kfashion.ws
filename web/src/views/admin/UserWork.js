@@ -1,5 +1,5 @@
-import React, {forwardRef} from 'react'
-import {Container, Typography, Toolbar, Grid} from "@material-ui/core";
+import React from 'react'
+import {Container, Typography, Grid} from "@material-ui/core";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
@@ -9,8 +9,6 @@ import {ProgressBar} from "../../components/ProgressBar";
 import WorkDetail from "./WorkDetail";
 import ErrorIcon from "@material-ui/icons/Error";
 import TablePagination from '@material-ui/core/TablePagination';
-import {toJS} from "mobx";
-import axios from "axios";
 const styles = theme => ({
     mainContainer: {
         flexGrow: 1,
@@ -125,15 +123,9 @@ class UserWork extends React.Component {
         })
 
     }
-    //
-    // handleProgressBar = (id) => {
-    //     console.log(id);
-    // }
 
     render() {
         const { classes } = this.props;
-        const groupNo = this.props.authStore.loginUser.groupNo;
-        const {page, pageSize, state} = this.props.userListStore;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />

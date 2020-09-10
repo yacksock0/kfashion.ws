@@ -1,5 +1,4 @@
 import {action, computed, flow, observable, toJS} from "mobx";
-import React from "react";
 import axios from "axios";
 
 
@@ -125,7 +124,7 @@ export default class UserListStore {
     }
 
     @computed get isFirstPage () {
-        return this.page == 0;
+        return this.page === 0;
     }
 
     @computed get isLastPage () {
@@ -251,7 +250,7 @@ export default class UserListStore {
         this.state = State.Pending;
         try {
                 const param = toJS(this.newMember);
-                axios.put('/api/v1/kfashion/users/updateGroupUser', param)
+                 yield axios.put('/api/v1/kfashion/users/updateGroupUser', param)
                     .then(res =>{
                         if (res.status === 200) {
                             let groupNo= this.newMember.groupNo;
@@ -330,7 +329,7 @@ export default class UserListStore {
             const total = selectWorkProgressRate.totalWork;
             const complete = selectWorkProgressRate.finishWork;
             let percent = ((complete / total) *100).toFixed(1)
-            if(complete == 0 && total== 0 ) {
+            if(complete === 0 && total === 0 ) {
                percent = 100;
             }
             this.progressBar.total = total;

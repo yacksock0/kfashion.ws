@@ -171,7 +171,7 @@ class CategoryComponent4 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {detail4 != 0  && detail4 != undefined  ?(
+                                            {detail4 !== 0  && detail4 !== undefined  ?(
                                                 detail4.map((detail4) =>
                                                     <Button
                                                         style={{fontSize:15, width:200, borderRadius:50 ,padding:0}}
@@ -196,7 +196,7 @@ class CategoryComponent4 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {print4 != null  && print4 != undefined  ?(
+                                            {print4 !== null  && print4 !== undefined  ?(
                                                 print4.map((print4) =>
                                                     <Button
                                                         style={{
@@ -226,7 +226,7 @@ class CategoryComponent4 extends React.Component {
                                             <div>
                                                 <hr></hr>
                                             </div>
-                                            {texture4 != null  && texture4 != undefined  ?(
+                                            {texture4 !== null  && texture4 !== undefined  ?(
                                                 texture4.map((texture4) =>
                                                     <Button
                                                         style={{

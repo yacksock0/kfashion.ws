@@ -1,11 +1,11 @@
-import React, {forwardRef} from "react";
+import React from "react";
 import MaterialTable from 'material-table';
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import CheckIcon from '@material-ui/icons/Check';
-import {Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Button, Container, Grid} from "@material-ui/core";
 import 'react-tabs/style/react-tabs.css';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,7 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {fabric} from "fabric";
-import {get, toJS} from "mobx";
+import {toJS} from "mobx";
 import Chip from "@material-ui/core/Chip";
 import Checkbox from "@material-ui/core/Checkbox";
 import TablePagination from "@material-ui/core/TablePagination";
@@ -138,9 +138,9 @@ class SuccessList extends React.Component {
     allToggle = () => {
         const checkList = toJS(this.props.professionalLabelStore.successList);
         const checkBoxList = []
-        const id = this.props.authStore.loginUser.id;
-        checkList.map((item, index) => {
-                checkBoxList.push(item);
+        // const id = this.props.authStore.loginUser.id;
+        checkList.map((item) => {
+            return checkBoxList.push(item);
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
@@ -159,8 +159,8 @@ class SuccessList extends React.Component {
                     if (idx > -1) checkBoxList.splice(idx, 1)
                 }
             }
-            checkBoxList.map((item, index) => {
-                this.toggle(item.workNo);
+            checkBoxList.map((item) => {
+                return this.toggle(item.workNo);
             })
         }
     }
@@ -208,7 +208,6 @@ class SuccessList extends React.Component {
         this.canvas = new fabric.Canvas('c');
         this.props.currentStepStore.setStep(4);
         const id = this.props.authStore.loginUser.id;
-        this.props.professionalLabelStore.pageResetAll();
         this.props.professionalLabelStore.LoadSuccessList();
         this.props.professionalLabelStore.selectedItemReset();
         this.setState({createdId : id});
@@ -334,7 +333,7 @@ class SuccessList extends React.Component {
                 this.x = selectedPoly[i].locationX;
                 this.y = selectedPoly[i].locationY;
 
-                if(i !=0) {
+                if(i !==0) {
                     let x1 = this.lineTwoPoint[0];
                     let x2 = this.lineTwoPoint[2];
                     let x3 = 0;
@@ -454,8 +453,8 @@ class SuccessList extends React.Component {
     handleRowClick = (event, rowData) => {
         const checkList = toJS(this.props.professionalLabelStore.successList);
         const checkBoxList = []
-        checkList.map((item, index) => {
-                checkBoxList.push(item);
+        checkList.map((item) => {
+            return checkBoxList.push(item);
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
@@ -469,15 +468,15 @@ class SuccessList extends React.Component {
         }
     }
     render() {
-        const handleClickMsgOpen = () => {
-            this.setState({open:true,})
-        };
+        // const handleClickMsgOpen = () => {
+        //     this.setState({open:true,})
+        // };
         setTimeout(() => document.body.style.zoom = "100%", 100);
 
         const {classes} = this.props;
         const {outerReviewLabel, topReviewLabel, pantsReviewLabel, onePieceReviewLabel, styleReviewLabel} =this.props.professionalLabelStore;
         const {outerReviewHighLabel, topReviewHighLabel, pantsReviewHighLabel, onePieceReviewHighLabel} =this.props.checkHighLabelStore;
-        const detail1 = outerReviewLabel.detailItemName1;
+        // const detail1 = outerReviewLabel.detailItemName1;
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
@@ -985,7 +984,7 @@ class SuccessList extends React.Component {
                                                     render : rowData => <Checkbox key={this.props.professionalLabelStore.successList.workNo}
                                                                                   checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}></Checkbox>},
                                                 {title: '번호', field: 'workNo',type: 'number'},
-                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img alt={""} src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                                                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                                                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                                                 {title: '생성자', field: 'createdId', type: 'string'},

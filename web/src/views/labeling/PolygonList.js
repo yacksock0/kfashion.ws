@@ -1,6 +1,5 @@
-import React, {forwardRef} from "react";
+import React from "react";
 import MaterialTable from 'material-table';
-import axios from "axios";
 import {inject, observer} from "mobx-react";
 import Checkbox from "@material-ui/core/Checkbox";
 import {toJS} from "mobx";
@@ -24,7 +23,6 @@ class PolygonList extends React.Component {
     }
     componentDidMount() {
         const createdId = this.props.authStore.isUserId;
-        this.props.rectStore.pageResetAll();
         this.props.rectStore.LoadRectImage(createdId, this.handleListChange)
         this.props.rectStore.selectedItemReset();
     }
@@ -34,8 +32,9 @@ class PolygonList extends React.Component {
         const checkBoxList = []
         checkList.map((item, index) => {
             if (item.comment === '' || item.comment === null) {
-                checkBoxList.push(item);
+                return checkBoxList.push(item);
             }
+            return checkBoxList;
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
@@ -55,7 +54,7 @@ class PolygonList extends React.Component {
                 }
             }
             checkBoxList.map((item, index) => {
-                this.toggle(item.workNo);
+                return this.toggle(item.workNo);
             })
         }
     }
@@ -129,8 +128,9 @@ class PolygonList extends React.Component {
         const checkBoxList = []
         checkList.map((item, index) => {
             if (item.comment === '' || item.comment === null) {
-                checkBoxList.push(item);
+                return checkBoxList.push(item);
             }
+            return checkBoxList;
         })
         if (checkBoxList === null || checkBoxList.length === 0) {
             this.setState({
@@ -147,7 +147,6 @@ class PolygonList extends React.Component {
     }
 
     render() {
-        const comment = this.props.rectStore.rectList;
         const polyNo = this.props.polygonStore.tabIndex1-1;
         return (
             <MaterialTable
@@ -158,7 +157,7 @@ class PolygonList extends React.Component {
                         render : rowData => <Checkbox checked={this.props.rectStore.selectedItem.includes(rowData.workNo)}
                                                       disabled={rowData.comment === null || rowData.comment === ''? false : true}></Checkbox>},
                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                     {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                     {title: '등록일 ', field: 'createdDatetime', type: 'date'},

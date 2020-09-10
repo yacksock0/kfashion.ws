@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import {inject, observer} from "mobx-react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";

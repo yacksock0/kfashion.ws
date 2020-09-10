@@ -1,6 +1,6 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import {Button, Container, Grid} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import AddGroup from "./AddGroup";
