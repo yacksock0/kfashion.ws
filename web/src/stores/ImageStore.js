@@ -205,7 +205,7 @@ export default class ImageStore {
 
 
     fileuploadCount = flow(function* fileuploadCount () {
-           axios.get('/api/v1/kfashion/img/fileuploadCount?workNo='+this.lastWorkNo)
+        yield axios.get('/api/v1/kfashion/img/fileuploadCount?workNo='+this.lastWorkNo)
                .then(resp =>{
                     if (resp.status === 200 ) {
                         if(this.fileTotal === resp.data || this.fileTotal === 0) {

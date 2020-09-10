@@ -104,17 +104,6 @@ class Step3 extends React.Component {
             total : 0,
             complete : 0,
         }
-        this.updateDimensions = this.updateDimensions.bind(this);
-    }
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.updateDimensions);
-    }
-    updateDimensions() {
-        this.setState({
-            height: window.innerHeight,
-            width: window.innerWidth,
-            count: this.state.count++
-        });
     }
 
     componentDidMount() {
@@ -437,16 +426,16 @@ class Step3 extends React.Component {
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
                                                     ><h3>스타일</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly === 1)) && this.state.polyInfo.length > 0}
+                                                          disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 1))) && this.state.polyInfo.length > 0}
                                                     ><h3>아우터</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly === 2)) && this.state.polyInfo.length > 0}
+                                                          disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 2))) && this.state.polyInfo.length > 0}
                                                     ><h3>상의</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly === 3)) && this.state.polyInfo.length > 0}
+                                                          disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 3))) && this.state.polyInfo.length > 0}
                                                     ><h3>하의</h3></Tab>
                                                     <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                          disabled={"" == this.state.polyInfo.filter((poly=> poly === 4)) && this.state.polyInfo.length > 0}
+                                                          disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 4))) && this.state.polyInfo.length > 0}
                                                     ><h3>원피스</h3></Tab>
                                                 </TabList>
                                         <TabPanel>

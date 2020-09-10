@@ -1,8 +1,6 @@
 import {action, computed, flow, observable, toJS} from "mobx";
-import React from "react";
 import axios from "axios";
 import * as validation from "../common/Validation";
-import SimpleAlerts from "../components/alert";
 
 const MinUserId = 4;
 const MinUserName = 2;
@@ -118,7 +116,7 @@ export default class SignUpStore {
         const userName = this.newMember.name.length >= MinUserName;
         const phone = this.newMember.phone.length >= MinPhone;
 
-        return emailVerification && agreements && passwordConfirm && password && userName && phone;
+        return id && emailVerification && agreements && passwordConfirm && password && userName && phone;
     }
 
     @computed get canAdminSignUp() {
@@ -129,7 +127,7 @@ export default class SignUpStore {
         const userName = this.newMember.name.length >= MinUserName;
         const phone = this.newMember.phone.length >= MinPhone;
 
-        return emailVerification && passwordConfirm && password && userName && phone;
+        return id && emailVerification && passwordConfirm && password && userName && phone;
     }
 
     @computed get isValidId() {

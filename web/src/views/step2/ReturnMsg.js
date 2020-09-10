@@ -150,7 +150,6 @@ export default class ReturnMsg extends React.Component {
         }
     };
     handleChangeType = (event) => {
-        console.log(event.target.name);
         if(this.props.messageStore.checkBox[event.target.name] !== true) {
             this.props.messageStore.changePolyWorkType(event.target.name);
         }else {
@@ -201,7 +200,7 @@ export default class ReturnMsg extends React.Component {
                                         onChange={this.handleChangeType}
                                         name="outer"
                                         variant="h6"
-                                        disabled={"" == polyInfo.filter(poly => poly === 1) ? true : false}
+                                        disabled={"" === String(polyInfo.filter(poly => poly === 1)) ? true : false}
                                     />}
                                 label="아우터"
                             />
@@ -211,7 +210,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.top}
                                         onChange={this.handleChangeType}
                                         name="top"
-                                        disabled={"" == polyInfo.filter(poly => poly === 2) ? true : false}
+                                        disabled={"" === String(polyInfo.filter(poly => poly === 2)) ? true : false}
                                     />}
                                 label="상의"
                             />
@@ -221,7 +220,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.pants}
                                         onChange={this.handleChangeType}
                                         name="pants"
-                                        disabled={"" == polyInfo.filter(poly => poly === 3) ? true : false}
+                                        disabled={"" === String(polyInfo.filter(poly => poly === 3)) ? true : false}
                                     />}
                                 label="하의"
                             />
@@ -231,7 +230,7 @@ export default class ReturnMsg extends React.Component {
                                         checked={this.props.messageStore.checkBox.onepiece}
                                         onChange={this.handleChangeType}
                                         name="onepiece"
-                                        disabled={"" == polyInfo.filter(poly => poly === 4) ? true : false}
+                                        disabled={"" === String(polyInfo.filter(poly => poly === 4)) ? true : false}
                                     />}
                                 label="원피스"
                             />

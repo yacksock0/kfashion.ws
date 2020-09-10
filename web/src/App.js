@@ -43,23 +43,10 @@ class App extends React.Component {
             width: window.innerWidth,
             count: 1
         };
-        this.updateDimensions = this.updateDimensions.bind(this);
         this.setMobileOpen = this.setMobileOpen.bind(this);
     }
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.updateDimensions);
-    }
-    updateDimensions() {
-        this.setState({
-            height: window.innerHeight,
-            width: window.innerWidth,
-            count: this.state.count++
-        });
-        console.log("count: ", this.state.count)
-    }
-    componentDidMount() {
-        window.addEventListener("resize", this.updateDimensions);
 
+    componentDidMount() {
         const axiosRequestInterceptors = (config) => {
             const token = localStorage.getItem(store.LocalStorageTokenKey);
             if(token) {

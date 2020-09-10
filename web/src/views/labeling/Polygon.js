@@ -929,7 +929,7 @@ class Polygon extends React.Component {
                     case 4 :
                         this.save4 = false;
                         break;
-
+                    default:break;
                 }
             }
         }else{

@@ -481,10 +481,10 @@ export default class CheckHighLabelStore {
     });
 
     cleanLabel = flow(function* LoadLabelList(workNo) {
-        this.outerReviewHighLabel= {...OuterReviewHighLabel};
-        this.topReviewHighLabel= {...TopReviewHighLabel};
-        this.pantsReviewHighLabel= {...PantsReviewHighLabel};
-        this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
+        yield this.outerReviewHighLabel= {...OuterReviewHighLabel};
+        yield this.topReviewHighLabel= {...TopReviewHighLabel};
+        yield this.pantsReviewHighLabel= {...PantsReviewHighLabel};
+        yield this.onePieceReviewHighLabel= {...OnePieceReviewHighLabel};
     });
 
 

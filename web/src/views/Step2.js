@@ -587,16 +587,16 @@ class Step2 extends React.Component {
                                           onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
                                         <TabList>
                                             <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
-                                                 disabled={"" == this.state.tabController.filter((poly => poly === 1))}
+                                                 disabled={"" === String(this.state.tabController.filter((poly => poly === 1)))}
                                             ><h3>아우터</h3></Tab>
                                             <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
-                                                 disabled={"" == this.state.tabController.filter((poly => poly === 2))}
+                                                 disabled={"" === String(this.state.tabController.filter((poly => poly === 2)))}
                                             ><h3>상의</h3></Tab>
                                             <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
-                                                 disabled={"" == this.state.tabController.filter((poly => poly === 3))}
+                                                 disabled={"" === String(this.state.tabController.filter((poly => poly === 3)))}
                                             ><h3>하의</h3></Tab>
                                             <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
-                                                 disabled={"" == this.state.tabController.filter((poly => poly === 4))}
+                                                 disabled={"" === String(this.state.tabController.filter((poly => poly === 4)))}
                                             ><h3>원피스</h3></Tab>
                                         </TabList>
 

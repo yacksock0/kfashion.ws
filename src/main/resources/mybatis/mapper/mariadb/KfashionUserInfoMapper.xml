@@ -184,8 +184,12 @@
             AND kfashion_user_info.name LIKE CONCAT('%', #{keyword}, '%')
         </if>
         ORDER BY created_datetime DESC
-        LIMIT #{pageSize}
-        OFFSET #{startPage}
+        <if test="pageSize!=null and pageSize!=0">
+            LIMIT  #{pageSize}
+        </if>
+        <if test="startPage!=null and startPage!=0">
+            OFFSET #{startPage}
+        </if>
     </select>
 
     <select id="selectGroupUserListTotal" resultType="Long">

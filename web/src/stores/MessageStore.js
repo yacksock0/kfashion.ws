@@ -84,16 +84,16 @@ export default class MessageStore {
 
 
     @action changePolyInfo = (polyInfo) => {
-        if( "" == polyInfo.filter(poly => poly === 1)) {
+        if( "" === String(polyInfo.filter(poly => poly === 1))) {
             this.disabled.onepieceDisabled = true;
         }
-        if( "" == polyInfo.filter(poly => poly === 2)) {
+        if( "" === String(polyInfo.filter(poly => poly === 2))) {
             this.disabled.topDisabled = true;
         }
-        if( "" == polyInfo.filter(poly => poly === 3)) {
+        if( "" === String(polyInfo.filter(poly => poly === 3))) {
             this.disabled.pantsDisabled = true;
         }
-        if( "" == polyInfo.filter(poly => poly === 4)) {
+        if( "" === String(polyInfo.filter(poly => poly === 4))) {
             this.disabled.onepieceDisabled = true;
         }
     }
@@ -193,7 +193,6 @@ export default class MessageStore {
             this.polyMsg.workType4 = '';
             this.checkBox.onepiece = false;
         }
-        {!!this.checkBox.outer === false && !!this.checkBox.top === false && !!this.checkBox.pants === false && !!this.checkBox.onepiece === false ? this.checkBox.poly=false :this.checkBox.poly=true}
     }
 
     @computed get isPending() {
@@ -225,7 +224,6 @@ export default class MessageStore {
             console.log('comment 에러')
         }
     });
-
 
     sendSelectMsg = flow(function* sendSelectMsg(selected,createdId) {
         this.state = State.Pending;
