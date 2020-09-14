@@ -60,6 +60,12 @@ const styles = theme => ({   root: {
         height:50,
         width:'100%',
     },
+    ErrorIcon: {
+        dispaly : 'inline-block',
+        verticalAlign : 'middle',
+        fontSize : 26,
+        marginBottom : 3
+    },
     test:{
         border:'1px solid black',
         height: '50%',
@@ -963,13 +969,13 @@ class FinalCheckList extends React.Component {
                                         <MaterialTable
                                             columns={[
                                                 {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                                                  checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false}>
+                                                                  checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
                                                         </Checkbox>,
                                                     render : rowData => <Checkbox key={this.props.professionalLabelStore.inspectionList.workNo}
                                                                                     checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
                                                                                     disabled={this.props.authStore.isUserId === rowData.createdId ? false : true}></Checkbox>},
                                                 {title: '번호', field: 'workNo',type: 'number'},
-                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
                                                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                                                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                                                 {title: '생성자', field: 'createdId', type: 'string'},
@@ -990,8 +996,8 @@ class FinalCheckList extends React.Component {
                                                 search: true,
                                                 actionsColumnIndex: -1,
                                                 headerStyle: {
-                                                    backgroundColor: '#E2E2E2',
-                                                    color: '#000000',
+                                                    backgroundColor: '#000000',
+                                                    color: '#ffffff',
                                                     textAlign:'center',
                                                 },
                                                 cellStyle: {
@@ -1048,10 +1054,10 @@ class FinalCheckList extends React.Component {
                     json가져오기
                 </Button>
                 <Typography variant="h6" component="h6" style={{display:'inline'}}>
-                    <p><ErrorIcon/> 우측 상단에 상호간 작업내용 체크 확인 할 이미지 선택 / 본인이 작업한 이미지 리스트는 맨 앞쪽에 최근작업 한 순서로 정렬되어 있음</p>
-                    <p><ErrorIcon/> 수정 버튼 클릭시 수정 화면 이동 후 세부사항 선택 후 수정완료 버튼 눌러주세요.</p>
-                    <p><ErrorIcon/> 본인이 작업한 이미지 리스트에만 수정,삭제,완료 버튼 활성화</p>
-                    <p><ErrorIcon/> 체크박스 수정,완료,삭제 일괄적으로 가능 </p>
+                    <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 상호간 작업내용 체크 확인 할 이미지 선택 / 본인이 작업한 이미지 리스트는 맨 앞쪽에 최근작업 한 순서로 정렬되어 있음</p>
+                    <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 수정 버튼 클릭시 수정 화면 이동 후 세부사항 선택 후 수정완료 버튼 눌러주세요.</p>
+                    <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 본인이 작업한 이미지 리스트에만 수정,삭제,완료 버튼 활성화</p>
+                    <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크박스 수정,완료,삭제 일괄적으로 가능 </p>
                 </Typography>
             </Container>
         );

@@ -152,12 +152,12 @@ class PolygonList extends React.Component {
             <MaterialTable
                 columns={[
                     {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                      checked={this.props.rectStore.selectedItem.length === this.state.checkBoxListLength ? true : false}>
+                                      checked={this.props.rectStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
                         </Checkbox>,
                         render : rowData => <Checkbox checked={this.props.rectStore.selectedItem.includes(rowData.workNo)}
-                                                      disabled={rowData.comment === null || rowData.comment === ''? false : true}></Checkbox>},
+                                                      disabled={rowData.comment === null || rowData.comment === ''? false : true} style={{color:'#000000'}}></Checkbox>},
                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                     {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                     {title: '등록일 ', field: 'createdDatetime', type: 'date'},
@@ -179,8 +179,8 @@ class PolygonList extends React.Component {
                     sorting:false,
                     actionsColumnIndex: -1,
                     headerStyle: {
-                        backgroundColor: '#E2E2E2',
-                        color: '#000000',
+                        backgroundColor: '#000000',
+                        color: '#ffffff',
                         textAlign:'center',
                     },
                     cellStyle: {

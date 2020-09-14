@@ -129,7 +129,7 @@ class UserWork extends React.Component {
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
-                <div className={classes.mainContent}>
+                <div className={classes.mainContent} style={{marginBottom: 15}}>
                     <Grid item xs={12} lg={12}>
                         <MaterialTable
                             tableRef={this.tableRef}
@@ -195,8 +195,8 @@ class UserWork extends React.Component {
                                 minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
-                                    backgroundColor: '#E2E2E2',
-                                    color: '#000000',
+                                    backgroundColor: '#000000',
+                                    color: '#ffffff',
                                     textAlign:'center',
                                 },
                                 cellStyle: {
@@ -227,8 +227,8 @@ class UserWork extends React.Component {
                         />
                     </Grid>
                 </div>
-                <ErrorIcon/>
-                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                <ErrorIcon style={{display: 'inline-block', verticalAlign: 'middle', marginBottom: 3, marginRight: 5}}/>
+                <Typography variant="h6" component="h4" style={{display:'inline' , fontSize: '15px'}}>
                    그룹 회원 리스트의 작업지정 버튼을 통해 해당 작업자에게 작업분배
                 </Typography>
             </Container>

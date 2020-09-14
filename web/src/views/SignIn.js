@@ -42,7 +42,8 @@ const style = theme => ({
         margin: theme.spacing(3, 0, 2),
         backgroundColor: '#000000',
         fontSize : '20px',
-        color:'white'
+        color:'white',
+        fontFamily:'NotoSansCJKkr',     
     },
 });
 
@@ -81,7 +82,7 @@ class SignIn extends React.Component {
             <Container component="main" maxWidth="xs" className={classes.container}>
                 <div className={classes.appBarSpacer} />
                     <div className={classes.paper}>
-                        <Typography component="h1" variant="h4">
+                        <Typography component="h1" variant="h4" style={{fontFamily:'NotoSansCJKkr', fontWeight:'600'}}>
                             {loginState === store.State.Failed ? '로그인 실패.' : '로그인'}
                         </Typography>
                         <div className={classes.form}>
@@ -92,7 +93,8 @@ class SignIn extends React.Component {
                                        margin="normal"
                                        value={login.id}
                                        onChange={this.handleChangeId}
-                                       required fullWidth />
+                                       required fullWidth
+                                       />
                             <TextField id="password"
                                        name="password"
                                        label="Password"
@@ -108,7 +110,9 @@ class SignIn extends React.Component {
                                     variant="contained"
                                     disabled={loginState === store.State.Pending}
                                     onClick={this.handleSubmitForm}
-                                    fullWidth >
+                                    fullWidth
+                                    // style={{borderRadius:'0'}} 
+                                    >
                                 {loginState === store.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>
                         </div>

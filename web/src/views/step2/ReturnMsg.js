@@ -13,6 +13,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import {toJS} from "mobx";
 
+
 @inject('authStore', 'messageStore','checkHighLabelStore', 'polygonStore')
 @observer
 export default class ReturnMsg extends React.Component {
@@ -262,7 +263,7 @@ export default class ReturnMsg extends React.Component {
                     <DialogContent style={{width: 600}}>
                         <FormGroup>
                         <FormControlLabel
-                            control={<Checkbox checked={this.props.messageStore.checkBox.label} value={4} onChange={this.handleChange1} name="label" />}
+                            control={<Checkbox checked={this.props.messageStore.checkBox.label} value={4} onChange={this.handleChange1} name="label" style={{color:'#000000'}}/>}
                             label="레이블링"
                         />
                         </FormGroup>
