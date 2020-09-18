@@ -14,7 +14,7 @@ export class ProgressBar extends Component {
             total: 0,
             rowDataId : '',
             complete:0,
-            color: '#3FC7FA',
+            color: '#45ce7c',
         };
         this.changeState = this.changeState.bind(this);
     }

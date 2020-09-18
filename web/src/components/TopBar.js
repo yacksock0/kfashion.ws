@@ -64,11 +64,13 @@ export default function TopBar(props) {
                 <Stepper currentStep = {props.setStep} />):''}
                 { isLoggedIn ? (
                     <IconButton color="inherit" onClick={doLogout}>
-                        {loginUser.id}
-                        <ExitToAppIcon />
+                        <span style={{fontSize:'16px'}}>{loginUser.id}</span>
+                        <span style={{backgroundImage:'url(/images/exiticon.png)' , width:'28px', height:'28px'}}></span>
+                        {/* <ExitToAppIcon /> */}
                     </IconButton>
                 ) : ( <Link to='/home' className={classes.link}>
-                        <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
+                        <h1 style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></h1>
+                        {/* <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1> */}
                     </Link>
                     // <Link to="/SignUp" className={classes.link}>
                     //     <IconButton color="inherit">
@@ -102,7 +104,8 @@ export default function TopBar(props) {
                             ) : (
 
                                 <Link to='/home' className={classes.link}>
-                                    <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1>
+                                    <h1 style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></h1>
+                                    {/* <h1 style={{color:'#5ded9a', display:'inline' , fontFamily:'NotoSans'}}>K</h1><h1 style={{color:'#fff', display:'inline' , fontFamily:'NotoSans'}}>-FASHION</h1> */}
                                 </Link>
                                 // <Link to="/SignUp" className={classes.link}>
                                 //     <IconButton color="inherit">

@@ -34,11 +34,6 @@ const useStyles = makeStyles((theme) => ({
             flexShrink: 0,
         },
     },
-    AspectRatioIcon : {
-        fontSize:30,
-        verticalAlign: 'middle',
-        marginBottom:5,
-    },
     appBar: {
         width: theme.drawerWidth,
         paddingLeft: 0,
@@ -109,17 +104,17 @@ export default function SideMenu(props) {
         <div className={classes.menu}>
             <List>
                 {loginUser.isAdmin ==='Y' ? (
-                <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon} />마스터 관리자</h3></ListSubheader>):''}
+                <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}} />마스터 관리자</h3></ListSubheader>):''}
                 {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 4 && loginUser.authorityNo !== 1? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon}/>그룹 관리자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}} />그룹 관리자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 1 && loginUser.groupAdmin === 1 ? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon}/>업로드 작업자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}} />업로드 작업자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 2 && loginUser.groupAdmin === 0? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon}/>기초 작업자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}}/>기초 작업자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 3 && loginUser.groupAdmin === 0? (
-                    <ListSubheader inset><h3><AssignmentIndIcon className={classes.AspectRatioIcon}/>전문 작업자</h3></ListSubheader>):''}
+                    <ListSubheader inset><h3>전문 작업자</h3></ListSubheader>):''}
                 {loginUser.groupAdmin === 1 && loginUser.authorityNo === 4? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon} />읽기 전용</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}} />읽기 전용</h3></ListSubheader>):''}
                 <Link to="/home" className={classes.link}>
                     <ListItem type="button">
                         <ListItemIcon><ComputerIcon /></ListItemIcon>
@@ -477,7 +472,8 @@ export default function SideMenu(props) {
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h6" noWrap className={classes.title}>
                             <Link to='/home' className={classes.link1}>
-                                <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION
+                                <h4 style={{backgroundImage:'url(/images/sidelogo.png)' , backgroundSize:'cover' , width:'120px', height:'17px', backgroundRepeat:'no-repeat' , margin:'0 auto'}}></h4>
+                                {/* <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION */}
                             </Link>
                         </Typography>
                     </Toolbar>
@@ -498,7 +494,8 @@ export default function SideMenu(props) {
                             <Toolbar className={classes.toolbar}>
                                 <Typography variant="h6" noWrap className={classes.title}>
                                     <Link to='/home' className={classes.link1}>
-                                        <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION
+                                        <h4 style={{backgroundImage:'url(/images/sidelogo.png)' , width:'120px', height:'17px', backgroundRepeat:'no-repeat' , margin:'0 auto'}}></h4>
+                                        {/* <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION */}
                                     </Link>
                                 </Typography>
                             </Toolbar>

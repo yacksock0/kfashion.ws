@@ -97,7 +97,7 @@ class UserList extends React.Component {
         return (
             <Container component="main" className={classes.mainContainer}>
                 <div className={classes.appBarSpacer} />
-                <div className={classes.mainContent}>
+                <div className={classes.mainContent} style={{marginBottom: 15}}>
                     <Grid item xs={12} lg={12}>
                         <MaterialTable
                             localization={{ body: {
@@ -191,8 +191,8 @@ class UserList extends React.Component {
                                 minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
-                                    backgroundColor: '#E2E2E2',
-                                    color: '#000000',
+                                    backgroundColor: '#000000',
+                                    color: '#ffffff',
                                     textAlign:'center',
                                 },
                                 cellStyle: {
@@ -222,8 +222,8 @@ class UserList extends React.Component {
                         />
                     </Grid>
                 </div>
-                <ErrorIcon/>
-                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                <ErrorIcon style={{display: 'inline-block', verticalAlign: 'middle', marginBottom: 3, marginRight: 5}}/>
+                <Typography variant="h6" component="h4" style={{display:'inline' , fontSize:'15px'}}>
                     우측상단 + 버튼을 통해 작업자 추가 / 작업 리스트의 액션버튼을 통해 작업자 이름/비밀번호 수정
                 </Typography>
             </Container>

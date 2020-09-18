@@ -6,8 +6,9 @@ import {inject, observer} from "mobx-react";
 const style = theme => ({
     root: {
         justifyContent: 'space-around',
-        border: '1px solid black',
-        borderRadius: 15,
+        border: '1px solid #cccccc',
+        borderRadius: 10,
+        paddingBottom: 5,
     },
     topBox:{
         borderBottom:'1px solid black',
@@ -66,9 +67,10 @@ class WorkedImg extends React.Component  {
         return (
             <div className={classes.root}>
                         <h3>이전작업 </h3>
+                        <hr></hr>
                     {recentlyImg.map((item) =>
                         <Button className={classes.imgBox} onClick={() => this.handleClick(item)}>
-                            <img alt={item.workName} src={item.fileName} key={item.fileName} style={{width: 80, height: 80, borderRadius:15}}/>
+                            <img alt={item.workName} src={item.fileName} key={item.fileName} style={{width: 80, height: 80, borderRadius:10}}/>
                         </Button>
                     )
                     }

@@ -966,7 +966,7 @@ class FinalCheckList extends React.Component {
                                                 //     render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
                                                 //                                     disabled={this.props.authStore.isUserId === rowData.createdId ? false : true}></Checkbox>},
                                                 {title: '번호', field: 'workNo',type: 'number'},
-                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:15}}/> },
+                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
                                                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                                                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                                                 {title: '생성자', field: 'createdId', type: 'string'},
@@ -987,8 +987,8 @@ class FinalCheckList extends React.Component {
                                                 search: true,
                                                 actionsColumnIndex: -1,
                                                 headerStyle: {
-                                                    backgroundColor: '#E2E2E2',
-                                                    color: '#000000',
+                                                    backgroundColor: '#000000',
+                                                    color: '#ffffff',
                                                     textAlign:'center',
                                                 },
                                                 cellStyle: {

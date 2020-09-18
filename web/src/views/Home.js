@@ -57,7 +57,7 @@ class Home extends React.Component {
         const { classes } = this.props;
 
         return (
-            <div className={classes.mainContainer} style={{backgroundImage: `url(/images/mainbanner.jpg)`, width:'100%', height:'90vh', backgroundSize:'cover'}}>
+            <div className={classes.mainContainer} style={{backgroundImage: `url(/images/mainbanner.jpg)`, width:'100%',height:'90vh' , backgroundSize:'cover'}}>
                 <div className={classes.appBarSpacer} />
                     <Grid item xs={12}>
                     <div className={classes.mainTitle}>
