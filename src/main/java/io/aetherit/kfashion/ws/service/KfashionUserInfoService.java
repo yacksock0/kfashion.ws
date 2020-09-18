@@ -221,7 +221,7 @@ public class KfashionUserInfoService {
         repository.updateGroupUserName(user);
     }
 
-    public Long selectGroupUserListTotal(Map<String, Object> totalMap) {
+    public long selectGroupUserListTotal(Map<String, Object> totalMap) {
         return repository.selectGroupUserListTotal(totalMap);
     }
 }

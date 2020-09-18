@@ -90,7 +90,7 @@ public class KfashionUserInfoRepository {
         mapper.updateGroupUserName(user);
     }
 
-    public Long selectGroupUserListTotal(Map<String, Object> totalMap) {
+    public long selectGroupUserListTotal(Map<String, Object> totalMap) {
         return mapper.selectGroupUserListTotal(totalMap);
     }
 }

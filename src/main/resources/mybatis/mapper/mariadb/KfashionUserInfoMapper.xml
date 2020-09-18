@@ -192,7 +192,7 @@
         </if>
     </select>
 
-    <select id="selectGroupUserListTotal" resultType="Long">
+    <select id="selectGroupUserListTotal" resultType="long">
         SELECT
         count(*) AS totalCount
         FROM kfashion_user_info

@@ -356,7 +356,6 @@ public class KfashionImageController {
                                                  @RequestParam(value = "page", required = true, defaultValue = "0") int page,
                                                  @RequestParam(value = "pageSize", required = true, defaultValue = "5") int pageSize,
                                                  @RequestParam(value = "keyword",required = true, defaultValue = "")String keyword) {
-        System.out.println("실행한다");
         int startPage = page * pageSize;
         Map<String, Object> pageMap = new HashMap<>();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();

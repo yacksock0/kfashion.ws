@@ -32,6 +32,12 @@ const styles = theme => ({   root: {
         marginTop:10,
         maxWidth:'100%',
     },
+    ErrorIcon : {
+        display: 'inline-block',
+        verticalAlign : 'middle',
+        fontSize : 26,
+        marginBottom:3
+    },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
         display: 'flex',
@@ -497,11 +503,11 @@ class Step3 extends React.Component {
                         </Grid>
 
                     <Typography variant="h6" component="h6" style={{display:'inline'}}>
-                        <p><ErrorIcon/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 체크박스 클릭후 대표 이미지 선택하여 작업시 체크한 이미지 전부 동일한 값으로 입력됩니다. </p>
-                        <p><ErrorIcon/> 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 </p>
-                        <p><ErrorIcon/> 이미지에 해당되는 모든 탭의 정보를 입력한 후 저장버튼을 눌러주세요.</p>
-                        <p><ErrorIcon/> 전체선택 후 페이지이동시 이전 선택은 무효 처리 됩니다.</p>
-                        <p><ErrorIcon/> 체크박스는 삭제, 저장 일괄적으로 사용가능</p>
+                        <p><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 체크박스 클릭후 대표 이미지 선택하여 작업시 체크한 이미지 전부 동일한 값으로 입력됩니다. </p>
+                        <p><ErrorIcon className={classes.ErrorIcon}/> 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 </p>
+                        <p><ErrorIcon className={classes.ErrorIcon}/> 이미지에 해당되는 모든 탭의 정보를 입력한 후 저장버튼을 눌러주세요.</p>
+                        <p><ErrorIcon className={classes.ErrorIcon}/> 전체선택 후 페이지이동시 이전 선택은 무효 처리 됩니다.</p>
+                        <p><ErrorIcon className={classes.ErrorIcon}/> 체크박스는 삭제, 저장 일괄적으로 사용가능</p>
                     </Typography>
                 </Container>
             );

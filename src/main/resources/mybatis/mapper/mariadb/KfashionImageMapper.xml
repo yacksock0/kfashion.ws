@@ -223,6 +223,7 @@
             AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
         </if>
         AND kfashion_work_history.created_id = #{createdId}
+        ORDER BY kfashion_work_history.created_datetime desc
             LIMIT #{pageSize}
             OFFSET #{startPage}
     </select>

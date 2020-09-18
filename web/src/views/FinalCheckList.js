@@ -31,6 +31,12 @@ const styles = theme => ({   root: {
     table: {
         minWidth: 500,
     },
+    ErrorIcon : {
+        display: 'inline-block',
+        verticalAlign : 'middle',
+        fontSize : 26,
+        marginBottom:3
+    },
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
@@ -1048,10 +1054,10 @@ class FinalCheckList extends React.Component {
                     json가져오기
                 </Button>
                 <Typography variant="h6" component="h6" style={{display:'inline'}}>
-                    <p><ErrorIcon/> 우측 상단에 상호간 작업내용 체크 확인 할 이미지 선택 / 본인이 작업한 이미지 리스트는 맨 앞쪽에 최근작업 한 순서로 정렬되어 있음</p>
-                    <p><ErrorIcon/> 수정 버튼 클릭시 수정 화면 이동 후 세부사항 선택 후 수정완료 버튼 눌러주세요.</p>
-                    <p><ErrorIcon/> 본인이 작업한 이미지 리스트에만 수정,삭제,완료 버튼 활성화</p>
-                    <p><ErrorIcon/> 체크박스 수정,완료,삭제 일괄적으로 가능 </p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 상호간 작업내용 체크 확인 할 이미지 선택 / 본인이 작업한 이미지 리스트는 맨 앞쪽에 최근작업 한 순서로 정렬되어 있음</p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 수정 버튼 클릭시 수정 화면 이동 후 세부사항 선택 후 수정완료 버튼 눌러주세요.</p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 본인이 작업한 이미지 리스트에만 수정,삭제,완료 버튼 활성화</p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 체크박스 수정,완료,삭제 일괄적으로 가능 </p>
                 </Typography>
             </Container>
         );

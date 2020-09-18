@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
             flexShrink: 0,
         },
     },
+    AspectRatioIcon : {
+        fontSize:30,
+        verticalAlign: 'middle',
+        marginBottom:5,
+    },
     appBar: {
         width: theme.drawerWidth,
         paddingLeft: 0,
@@ -104,17 +109,17 @@ export default function SideMenu(props) {
         <div className={classes.menu}>
             <List>
                 {loginUser.isAdmin ==='Y' ? (
-                <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />마스터 관리자</h3></ListSubheader>):''}
+                <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon} />마스터 관리자</h3></ListSubheader>):''}
                 {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 4 && loginUser.authorityNo !== 1? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />그룹 관리자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon}/>그룹 관리자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 1 && loginUser.groupAdmin === 1 ? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />업로드 작업자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon}/>업로드 작업자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 2 && loginUser.groupAdmin === 0? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}}/>기초 작업자</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon}/>기초 작업자</h3></ListSubheader>):''}
                 {loginUser.authorityNo === 3 && loginUser.groupAdmin === 0? (
-                    <ListSubheader inset><h3>전문 작업자</h3></ListSubheader>):''}
+                    <ListSubheader inset><h3><AssignmentIndIcon className={classes.AspectRatioIcon}/>전문 작업자</h3></ListSubheader>):''}
                 {loginUser.groupAdmin === 1 && loginUser.authorityNo === 4? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30}} />읽기 전용</h3></ListSubheader>):''}
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon className={classes.AspectRatioIcon} />읽기 전용</h3></ListSubheader>):''}
                 <Link to="/home" className={classes.link}>
                     <ListItem type="button">
                         <ListItemIcon><ComputerIcon /></ListItemIcon>

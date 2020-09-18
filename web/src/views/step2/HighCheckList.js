@@ -31,6 +31,13 @@ const styles = theme => ({   root: {
         minWidth: 500,
     },
 
+    ErrorIcon : {
+        display: 'inline-block',
+        verticalAlign : 'middle',
+        fontSize : 26,
+        marginBottom:3
+    },
+
     mainContainer: {
         flexGrow: 1,
         marginTop:20,
@@ -426,12 +433,12 @@ class HighCheckList extends React.Component {
                 <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
-                        <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
+                        <Grid item xs={12} sm={7} lg={5} xl={5} style={{marginTop:10}}>
                             <div style={{overflow:'auto', width: 800,height: 800, zoom : "80%"}}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </div>
                         </Grid>
-                        <Grid item xs={12} lg={6} xl={6} style={{marginLeft:'auto'}}>
+                        <Grid item xs={12} sm={5} lg={6} xl={6} style={{marginLeft:'auto'}}>
                             <div component={Paper}>
                                 <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                     <TabList >
@@ -699,11 +706,11 @@ class HighCheckList extends React.Component {
                 <ReturnMsg onClick={()=> this.handleSubmit()}/><br></br><br></br>
                 {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
-                    <p><ErrorIcon/> 우측 상단에 검수할 확인 할 이미지 선택</p>
-                    <p><ErrorIcon/> 작업한 폴리곤 좌표 및 레이블링 확인 </p>
-                    <p><ErrorIcon/> 확인 후 수정 사항 있으면 반송 버튼을 선택</p>
-                    <p><ErrorIcon/> 반송 시 수정 사항 있는 부분 체크 후 반송 사유 작성 후 확인</p>
-                    <p><ErrorIcon/> 체크 박스 활용하여 일괄적으로 완료 가능 합니다 ( 반송은 체크박스 활용 불가능합니다 )</p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 검수할 확인 할 이미지 선택</p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 작업한 폴리곤 좌표 및 레이블링 확인 </p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 확인 후 수정 사항 있으면 반송 버튼을 선택</p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 반송 시 수정 사항 있는 부분 체크 후 반송 사유 작성 후 확인</p>
+                    <p><ErrorIcon className={classes.ErrorIcon}/> 체크 박스 활용하여 일괄적으로 완료 가능 합니다 ( 반송은 체크박스 활용 불가능합니다 )</p>
                 </Typography>
                     ) : ''}
             </Container>

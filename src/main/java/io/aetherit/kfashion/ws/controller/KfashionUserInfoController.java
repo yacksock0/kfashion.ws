@@ -177,7 +177,7 @@ public class KfashionUserInfoController {
         totalMap.put("groupNo", groupNo);
         totalMap.put("adminIdList", adminIdList);
         totalMap.put("keyword",keyword);
-        Long totalCount = kfashionUserInfoService.selectGroupUserListTotal(totalMap);
+        long totalCount = kfashionUserInfoService.selectGroupUserListTotal(totalMap);
         resultMap.put("groupUserList", groupUserList);
         resultMap.put("page", page);
         resultMap.put("pageSize", pageSize);
