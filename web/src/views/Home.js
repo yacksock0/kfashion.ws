@@ -60,17 +60,17 @@ class Home extends React.Component {
             <div className={classes.mainContainer} style={{backgroundImage: `url(/images/mainbanner.jpg)`, width:'100%',height:'90vh' , backgroundSize:'cover'}}>
                 <div className={classes.appBarSpacer} />
                     <Grid item xs={12}>
-                    <div className={classes.mainTitle}>
-                        <Typography variant="h3" component="h3" style={{display:'inline'}} >
-                            K-Fashion AI 데이터 시스템 구성
-                        </Typography>
-                    </div>
-                    <div className={classes.subTitle}>
-                        <Typography variant="h4" component="h4" style={{display:'inline'}} >
-                           풍부한 경험을 토대로 데이터 저장 및 레이블링<br />
-                           저작도구 운영을 위한 시스템구축을 준비하고있습니다.
-                        </Typography>
-                    </div>
+                        <div className={classes.mainTitle}>
+                            <Typography variant="h3" component="h3" style={{display:'inline'}} >
+                                K-Fashion AI 데이터 시스템 구성
+                            </Typography>
+                        </div>
+                        <div className={classes.subTitle}>
+                            <Typography variant="h4" component="h4" style={{display:'inline'}} >
+                            풍부한 경험을 토대로 데이터 저장 및 레이블링<br />
+                            저작도구 운영을 위한 시스템구축을 준비하고있습니다.
+                            </Typography>
+                        </div>
                     </Grid>
             </div>
         );
