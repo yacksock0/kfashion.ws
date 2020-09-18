@@ -102,10 +102,10 @@ class WorkDetail extends React.Component {
     }
 
     handleWorkQuantitySubmit=(e)=>{
-        if(this.state.value === '' || this.state.value < 0 || this.state.value === null) {
+        if(this.props.userListStore.assignment.workCount === '' || this.props.userListStore.assignment.workCount < 0 || this.props.userListStore.assignment.workCount === null) {
             alert("값을 입력해주세요.");
         }else {
-            if(this.state.value > this.props.workStore.workQuantity) {
+            if(this.props.userListStore.assignment.workCount > this.props.workStore.workQuantity) {
                 alert("남은작업을 확인해주세요.")
                 this.props.userListStore.changeValueReset();
                 document.getElementById("workQuantity").focus();
@@ -125,10 +125,10 @@ class WorkDetail extends React.Component {
     }
 
     handleWorkUserCancelQuantitySubmit=(e)=>{
-        if(this.state.CancelValue === '' || this.state.CancelValue < 0 || this.state.CancelValue === null) {
+        if(this.props.userListStore.assignmentCancel.workCount === '' || this.props.userListStore.assignmentCancel.workCount < 0 ||this.props.userListStore.assignmentCancel.workCount === null) {
             alert("값을 입력해주세요.");
         }else {
-            if(this.state.CancelValue > this.props.workStore.workUserCancelQuantity) {
+            if(this.props.userListStore.assignmentCancel.workCount > this.props.workStore.workUserCancelQuantity) {
                 alert("남은작업을 확인해주세요.");
                 this.props.userListStore.changeCancelValueReset();
                 document.getElementById("workUserCancelQuantity").focus();

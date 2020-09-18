@@ -97,7 +97,7 @@
         kfashion_image.work_no,
         kfashion_work.work_name,
         CONCAT('/api/v1/kfashion/img/getByteImage?workNo=',kfashion_work.no) file_name,
-        kfashion_work.created_datetime,
+        kfashion_work_history.created_datetime,
         kfashion_work_history.created_id,
         kfashion_comment.comment,
         IF(kfashion_comment.complete = 'Y', 'Y' , 'N') AS complete
@@ -118,7 +118,7 @@
             AND kfashion_work.work_name LIKE CONCAT('%', #{keyword}, '%')
         </if>
         HAVING complete = 'N'
-        ORDER BY kfashion_comment.comment DESC, work_no DESC
+        ORDER BY kfashion_comment.comment DESC, created_datetime DESC
         LIMIT #{pageSize}
         OFFSET #{startPage}
     </select>
