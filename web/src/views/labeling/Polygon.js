@@ -63,12 +63,13 @@ const styles = theme => ({
     buttonType2:{
         width: 150,
         float:'right',
-        color : '#45ce7c',
-        border: '1px solid rgba(69, 206, 124, 0.5)',
+        color:'#00943b',
+        border : '1px solid rgba(0,148,59,1)',
+
         "&:hover": {
-            backgroundColor: 'rgba(69, 206, 124, 1.5)',
-            border: '1px solid rgba(69, 206, 124, 0.5)',
-        }
+            backgroundColor: 'rgba(69,206,124,0.15)',
+            border : '1px solid rgba(0,148,59,1)'
+            }
     },
     buttonType3:{
         width: 150,

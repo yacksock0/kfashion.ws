@@ -37,12 +37,12 @@ const styles = theme => ({   root: {
         minWidth: 500,
     },
     outlinedSecondary : {
-        color:'#45ce7c',
-        border : '1px solid rgba(69,206,124,0.5)',
+        color:'#00943b',
+        border : '1px solid rgba(0,148,59,1)',
 
         "&:hover": {
             backgroundColor: 'rgba(69,206,124,0.15)',
-            border : '1px solid rgba(69,206,124,0.5)'
+            border : '1px solid rgba(0,148,59,1)'
             }
     },
     mainContainer: {
@@ -1073,10 +1073,10 @@ class FinalCheckList extends React.Component {
                     </Grid>
                 </div>
                 <hr></hr>
-                <Button variant="outlined" onClick={this.handleComplete} disabled={this.state.selectedId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10}}>
+                <Button variant="outlined" onClick={this.handleComplete} color="secondary" className={classes.outlinedSecondary} disabled={this.state.selectedId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10,}}>
                     완료
                 </Button>
-                <Button variant="outlined" className={classes.outlinedSecondary} color="secondary" onClick={this.handleDeleteImg} disabled={this.state.selectedId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10, marginRight:10}}>
+                <Button variant="outlined"   onClick={this.handleDeleteImg} disabled={this.state.selectedId !== this.props.authStore.loginUser.id ? true : false} style={{float:'right' , width:150, marginBottom:10, marginRight:10}}>
                     이미지삭제
                 </Button>
                 <Button variant="outlined" onClick={this.handleJson}>

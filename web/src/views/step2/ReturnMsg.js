@@ -17,12 +17,13 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
     outlinedSecondary : {
-        color : '#45ce7c',
-        border: '1px solid rgba(69, 206, 124, 0.5)',
+        color:'#00943b',
+        border : '1px solid rgba(0,148,59,1)',
+
         "&:hover": {
-            backgroundColor: 'rgba(69, 206, 124, 0.2)',
-            border: '1px solid rgba(69, 206, 124, 0.5)',
-          }
+            backgroundColor: 'rgba(69,206,124,0.15)',
+            border : '1px solid rgba(0,148,59,1)'
+            }
     }
 });
 
