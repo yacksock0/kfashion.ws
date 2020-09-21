@@ -177,15 +177,13 @@ class ReturnMsg extends React.Component {
         return (
             <div>
                 {this.props.authStore.loginUser.authorityNo !== 4? (
-                <Button variant="outlined" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.successDisabled === true ? true : false }>
+                <Button variant="outlined" className={classes.outlinedSecondary} color="secondary" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.successDisabled === true ? true : false }>
                     완료
                 </Button>
                 ) : ''}
                 {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Button variant="outlined"
-                        color="secondary"
                         onClick={this.handleClickOpen}
-                        className={classes.outlinedSecondary}
                         style={{float:'right' , width:150, marginRight:10, marginBottom:10}}
                         disabled={this.props.checkHighLabelStore.workNo === 0 ? true : false}>
                     영역반송
@@ -193,9 +191,6 @@ class ReturnMsg extends React.Component {
                     ) : ''}
                 {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Button variant="outlined"
-                        color="secondary"
-                        // className={styless.Button}
-                        className={classes.outlinedSecondary}
                         onClick={this.handleBasicOpen}
                         style={{float:'right' , width:150, marginRight:10, marginBottom:10}}
                         disabled={this.props.checkHighLabelStore.workNo === 0
