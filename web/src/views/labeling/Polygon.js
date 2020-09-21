@@ -25,6 +25,9 @@ import {toJS} from "mobx";
 
 const styles = theme => ({
     root: {
+        [theme.breakpoints.up('xl')]: {
+            width: "80%",
+        },
         width: "100%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
@@ -37,6 +40,9 @@ const styles = theme => ({
         marginRight: 4
     },
     mainContainer: {
+        [theme.breakpoints.up('xl')]: {
+            maxWidth:'80%',
+        },
         flexGrow: 1,
         marginTop:20,
         maxWidth:'100%',
@@ -57,7 +63,16 @@ const styles = theme => ({
     buttonType2:{
         width: 150,
         float:'right',
-
+        color : '#45ce7c',
+        border: '1px solid rgba(69, 206, 124, 0.5)',
+        "&:hover": {
+            backgroundColor: 'rgba(69, 206, 124, 1.5)',
+            border: '1px solid rgba(69, 206, 124, 0.5)',
+        }
+    },
+    buttonType3:{
+        width: 150,
+        float:'right',
     },
     toolButton:{
         border:'1px solid black',
@@ -94,6 +109,16 @@ const styles = theme => ({
     divStyle: {
         display: 'inline',
     },
+    canvas:{
+        [theme.breakpoints.up('xl')]: {
+            zoom : "100%",
+        },
+        overflow:'auto',
+        width: 800,
+        height: 800,
+        zoom : "80%",
+        marginLeft:'auto'
+    }
 });
 
 
@@ -1048,7 +1073,7 @@ class Polygon extends React.Component {
                         {/*        돋보기 끄기*/}
                         {/*    </Button>*/}
                         {/*</div>*/}
-                        <div style={{overflow:'auto' ,width: 800,height: 800}}>
+                        <div className={classes.canvas}>
                             <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                         </div>
                         </Grid>
@@ -1489,7 +1514,7 @@ class Polygon extends React.Component {
                 <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}>
                     <Button
                         type="button"
-                        className={classes.buttonType2}
+                        className={classes.buttonType3}
                         variant="outlined"
                         onClick={()=>{this.state.listIndex === 0 ? (history.push('/step2')) :alert('리스트에 남은 작업이 있습니다.')} }
                     >

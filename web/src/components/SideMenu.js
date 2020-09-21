@@ -472,7 +472,7 @@ export default function SideMenu(props) {
                     <Toolbar className={classes.toolbar}>
                         <Typography variant="h6" noWrap className={classes.title}>
                             <Link to='/home' className={classes.link1}>
-                                <h4 style={{backgroundImage:'url(/images/sidelogo.png)' , backgroundSize:'cover' , width:'120px', height:'17px', backgroundRepeat:'no-repeat' , margin:'0 auto'}}></h4>
+                                <div style={{backgroundImage:'url(/images/sidelogo.png)' , backgroundSize:'cover' , width:'120px', height:'17px', backgroundRepeat:'no-repeat' , margin:'0 auto'}}></div>
                                 {/* <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION */}
                             </Link>
                         </Typography>
@@ -494,7 +494,7 @@ export default function SideMenu(props) {
                             <Toolbar className={classes.toolbar}>
                                 <Typography variant="h6" noWrap className={classes.title}>
                                     <Link to='/home' className={classes.link1}>
-                                        <h4 style={{backgroundImage:'url(/images/sidelogo.png)' , width:'120px', height:'17px', backgroundRepeat:'no-repeat' , margin:'0 auto'}}></h4>
+                                        <div style={{backgroundImage:'url(/images/sidelogo.png)' , width:'120px', height:'17px', backgroundRepeat:'no-repeat' , margin:'0 auto'}}></div>
                                         {/* <h4 style={{color:'#5ded9a', display:'inline'}}>K</h4>-FASHION */}
                                     </Link>
                                 </Typography>

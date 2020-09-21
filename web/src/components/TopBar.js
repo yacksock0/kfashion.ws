@@ -69,7 +69,7 @@ export default function TopBar(props) {
                         {/* <ExitToAppIcon /> */}
                     </IconButton>
                 ) : ( <Link to='/home' className={classes.link}>
-                        <h1 style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></h1>
+                        <div style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></div>
                         {/* <h1 style={{color:'#5ded9a', display:'inline'}}>K</h1><h1 style={{color:'#fff', display:'inline'}}>-FASHION</h1> */}
                     </Link>
                     // <Link to="/SignUp" className={classes.link}>
@@ -104,7 +104,7 @@ export default function TopBar(props) {
                             ) : (
 
                                 <Link to='/home' className={classes.link}>
-                                    <h1 style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></h1>
+                                    <div style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></div>
                                     {/* <h1 style={{color:'#5ded9a', display:'inline' , fontFamily:'NotoSans'}}>K</h1><h1 style={{color:'#fff', display:'inline' , fontFamily:'NotoSans'}}>-FASHION</h1> */}
                                 </Link>
                                 // <Link to="/SignUp" className={classes.link}>

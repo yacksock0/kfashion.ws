@@ -21,6 +21,9 @@ import ErrorIcon from "@material-ui/icons/Error";
 
 const styles = theme => ({
     root: {
+        [theme.breakpoints.up('xl')]: {
+            width: "80%",
+        },
         width: "100%",
         marginTop: theme.spacing.unit * 3,
         overflowX: "auto"
@@ -43,9 +46,12 @@ const styles = theme => ({
     },
 
     mainContainer: {
+        [theme.breakpoints.up('xl')]: {
+            maxWidth:'80%',
+        },
         flexGrow: 1,
-        marginTop: 20,
-        maxWidth: '100%',
+        marginTop:20,
+        maxWidth:'100%',
     },
     appBarSpacer: theme.mixins.toolbar,
     mainContent: {
@@ -103,6 +109,16 @@ const styles = theme => ({
         border: 0,
         borderRadius: 12,
     },
+    canvas1:{
+        [theme.breakpoints.up('xl')]: {
+            zoom : "100%",
+        },
+        overflow:'auto',
+        width: 800,
+        height: 800,
+        zoom : "80%",
+        marginLeft:'auto'
+    }
 });
 
 @inject('authStore', 'imageStore', 'polygonStore', 'currentStepStore', 'basicCategoryStore', 'checkHighLabelStore')
@@ -576,7 +592,7 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div style={{overflow:'auto', width: 800,height: 800, zoom :"80%"}}>
+                            <div className={classes.canvas1}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
                             </div>
                         </Grid>

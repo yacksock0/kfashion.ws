@@ -20,16 +20,22 @@ import WorkedImg from "./step3/WorkedImg";
 
 
 const styles = theme => ({   root: {
-        width: "100%",
-        marginTop: theme.spacing.unit * 3,
-        overflowX: "auto"
+    [theme.breakpoints.up('xl')]: {
+        width: "80%",
     },
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto"
+},
     table: {
         minWidth: 500,
     },
     mainContainer: {
+        [theme.breakpoints.up('xl')]: {
+            maxWidth:'80%',
+        },
         flexGrow: 1,
-        marginTop:10,
+        marginTop:20,
         maxWidth:'100%',
     },
     ErrorIcon: {
@@ -53,6 +59,16 @@ const styles = theme => ({   root: {
         marginRight: theme.spacing(2),
     },
     buttonType2:{
+        width: 150,
+        float:'right',
+        color : '#45ce7c',
+        border: '1px solid rgba(69, 206, 124, 0.5)',
+        "&:hover": {
+            backgroundColor: 'rgba(69, 206, 124, 1.5)',
+            border: '1px solid rgba(69, 206, 124, 0.5)',
+        }
+    },
+    buttonType3:{
         width: 150,
         float:'right',
     },
@@ -83,6 +99,16 @@ const styles = theme => ({   root: {
     },
     divStyle: {
         display: 'inline',
+    },
+    canvas:{
+        [theme.breakpoints.up('xl')]: {
+            zoom : "100%",
+        },
+        overflow:'auto',
+        width: 800,
+        height: 800,
+        zoom : "80%",
+        marginLeft:'auto'
     }
 });
 
@@ -415,7 +441,7 @@ class Step3 extends React.Component {
                             </Grid>
                         <Grid container >
                             <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                                <div style={{overflow:'auto', width: 800,height: 800, zoom : "80%"}}>
+                                <div className={classes.canvas}>
                                     <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                                 </div>
                             </Grid>
@@ -487,7 +513,7 @@ class Step3 extends React.Component {
                         <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}>
                             <Button
                                     type="button"
-                                    className={classes.buttonType2}
+                                    className={classes.buttonType3}
                                     disabled={this.state.tabIndex1 === 1 ? true : false}
                                     variant="outlined"
                                     onClick={()=>this.handleSubmit()}

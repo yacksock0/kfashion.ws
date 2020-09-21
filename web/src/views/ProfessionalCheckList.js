@@ -22,14 +22,20 @@ import Chip from "@material-ui/core/Chip";
 import TablePagination from '@material-ui/core/TablePagination';
 
 const styles = theme => ({   root: {
-        width: "100%",
-        marginTop: theme.spacing.unit * 3,
-        overflowX: "auto"
+    [theme.breakpoints.up('xl')]: {
+        width: "80%",
     },
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto"
+},
     table: {
         minWidth: 500,
     },
     mainContainer: {
+        [theme.breakpoints.up('xl')]: {
+            maxWidth:'80%',
+        },
         flexGrow: 1,
         marginTop:20,
         maxWidth:'100%',
@@ -92,6 +98,16 @@ const styles = theme => ({   root: {
     divStyle: {
         display: 'inline',
     },
+    canvas:{
+        [theme.breakpoints.up('xl')]: {
+            zoom : "100%",
+        },
+        overflow:'auto',
+        width: 800,
+        height: 800,
+        zoom : "80%",
+        marginLeft:'auto'
+    }
 });
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore', 'polygonStore')
@@ -510,7 +526,7 @@ class FinalCheckList extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div style={{overflow:'auto', width: 800,height: 800, zoom : "80%"}}>
+                            <div className={classes.canvas}>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </div>
                         </Grid>
