@@ -6,6 +6,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import { TablePagination } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import {toJS} from "mobx";
+import Moment from "react-moment";
 
 @inject('professionalLabelStore','authStore')
 @observer
@@ -159,7 +160,7 @@ export default class ProImageList extends React.Component {
                                     fileName: item.fileName,
                                     workName: item.workName,
                                     createdId: item.createdId,
-                                    createdDatetime: item.createdDatetime,
+                                    createdDatetime: <Moment format="MM-DD">{item.createdDatetime}</Moment>,
                         }
                     })}
                 title="이미지 리스트"
@@ -172,9 +173,11 @@ export default class ProImageList extends React.Component {
                         backgroundColor: '#000000',
                         color: '#ffffff',
                         textAlign:'center',
+                        padding : 9
                     },
                     cellStyle: {
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        padding : 3
                     },
                     pageSize : this.props.professionalLabelStore.pageSize,
                     pageSizeOptions : [5,10,25,50],

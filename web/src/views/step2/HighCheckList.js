@@ -23,6 +23,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import ErrorIcon from "@material-ui/icons/Error";
 import TablePagination from "@material-ui/core/TablePagination";
 import { BorderClear } from "@material-ui/icons";
+import Moment from "react-moment";
 
 const styles = theme => ({   root: {
     [theme.breakpoints.up('xl')]: {
@@ -668,7 +669,7 @@ class HighCheckList extends React.Component {
                                             fileName: item.fileName,
                                             workName: item.workName,
                                             createdId : item.createdId,
-                                            createdDatetime: item.createdDatetime,
+                                            createdDatetime:  <Moment format="MM-DD">{item.createdDatetime}</Moment>,
                                         }
                                     }) : []}
                                 title="이미지 리스트"
@@ -680,9 +681,11 @@ class HighCheckList extends React.Component {
                                         backgroundColor: '#000000',
                                         color: '#ffffff',
                                         textAlign:'center',
+                                        padding : 9,
                                     },
                                     cellStyle: {
-                                        textAlign: 'center'
+                                        textAlign: 'center',
+                                        padding : 3,
                                     },
                                     pageSize : this.props.messageStore.pageSize,
                                     pageSizeOptions : [5,10,25,50],
