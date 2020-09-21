@@ -20,6 +20,7 @@ import {fabric} from "fabric";
 import {toJS} from "mobx";
 import Chip from "@material-ui/core/Chip";
 import TablePagination from '@material-ui/core/TablePagination';
+import Moment from "react-moment";
 
 const styles = theme => ({   root: {
     [theme.breakpoints.up('xl')]: {
@@ -993,7 +994,7 @@ class FinalCheckList extends React.Component {
                                                         workNo: item.workNo,
                                                         fileName: item.fileName,
                                                         workName: item.workName,
-                                                        createdDatetime: item.createdDatetime,
+                                                        createdDatetime: <Moment format="MM-DD">{item.createdDatetime}</Moment>,
                                                         createdId: item.createdId,
                                                     }
                                                 }) : []}
@@ -1006,9 +1007,11 @@ class FinalCheckList extends React.Component {
                                                     backgroundColor: '#000000',
                                                     color: '#ffffff',
                                                     textAlign:'center',
+                                                    padding : 9,
                                                 },
                                                 cellStyle: {
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    padding : 3,
                                                 },
                                                 pageSize : this.props.professionalLabelStore.professionalCheckListPageSize,
                                                 pageSizeOptions : [5,10,25,50],
