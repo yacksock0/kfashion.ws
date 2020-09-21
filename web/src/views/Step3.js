@@ -64,7 +64,7 @@ const styles = theme => ({   root: {
         color : '#45ce7c',
         border: '1px solid rgba(69, 206, 124, 0.5)',
         "&:hover": {
-            backgroundColor: 'rgba(69, 206, 124, 1.5)',
+            backgroundColor: 'rgba(69, 206, 124, 0.2)',
             border: '1px solid rgba(69, 206, 124, 0.5)',
         }
     },
@@ -513,7 +513,7 @@ class Step3 extends React.Component {
                         <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}>
                             <Button
                                     type="button"
-                                    className={classes.buttonType3}
+                                    className={classes.buttonType2}
                                     disabled={this.state.tabIndex1 === 1 ? true : false}
                                     variant="outlined"
                                     onClick={()=>this.handleSubmit()}
