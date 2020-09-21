@@ -4,6 +4,7 @@ import {inject, observer} from "mobx-react";
 import Checkbox from "@material-ui/core/Checkbox";
 import {toJS} from "mobx";
 import TablePagination from "@material-ui/core/TablePagination";
+import Moment from 'react-moment';
 
 @inject('authStore','imageStore','rectStore', 'polygonStore')
 @observer
@@ -158,7 +159,7 @@ class PolygonList extends React.Component {
                                                       disabled={rowData.comment === null || rowData.comment === ''? false : true} style={{color:'#000000'}}></Checkbox>},
                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
                     {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
-                    {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
+                    {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter'},
                     {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                     {title: '등록일 ', field: 'createdDatetime', type: 'date'},
                 ]}
@@ -169,7 +170,7 @@ class PolygonList extends React.Component {
                             fileName: item.fileName,
                             workName: item.workName,
                             createdId: item.createdId,
-                            createdDatetime: item.createdDatetime,
+                            createdDatetime: <Moment format="MM-DD">{item.createdDatetime}</Moment>,
                             comment : item.comment,
                         }
                     }) : []}
@@ -182,9 +183,11 @@ class PolygonList extends React.Component {
                         backgroundColor: '#000000',
                         color: '#ffffff',
                         textAlign:'center',
+                        padding : 9
                     },
                     cellStyle: {
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        padding : 3,
                     },
 
                     pageSize : this.props.rectStore.pageSize,

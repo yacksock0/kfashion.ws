@@ -5,6 +5,8 @@ import {inject, observer} from "mobx-react";
 import {toJS} from "mobx";
 import Checkbox from "@material-ui/core/Checkbox";
 import TablePagination from "@material-ui/core/TablePagination";
+import Moment from "react-moment";
+
 
 @inject('authStore','polygonStore','basicCategoryStore','checkHighLabelStore')
 @observer
@@ -126,7 +128,7 @@ class BasicImageList extends React.Component {
                             fileName: item.fileName,
                             workName: item.workName,
                             createdId: item.createdId,
-                            createdDatetime: item.createdDatetime,
+                            createdDatetime: <Moment format="MM-DD">{item.createdDatetime}</Moment>,
                             comment: item.comment
                         }
                     }) : []}
@@ -138,9 +140,11 @@ class BasicImageList extends React.Component {
                         backgroundColor: '#000000',
                         color: '#ffffff',
                         textAlign:'center',
+                        padding : 9
                     },
                     cellStyle: {
                         textAlign: 'center',
+                        padding : 3,
                     },
                     pageSize : this.props.checkHighLabelStore.pageSize,
                     pageSizeOptions : [5,10,25,50],

@@ -116,7 +116,7 @@ const styles = theme => ({
         overflow:'auto',
         width: 800,
         height: 800,
-        zoom : "80%",
+        zoom : "100%",
         marginLeft:'auto'
     }
 });
