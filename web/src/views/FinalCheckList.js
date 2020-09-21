@@ -1026,9 +1026,11 @@ class FinalCheckList extends React.Component {
                                                     backgroundColor: '#000000',
                                                     color: '#ffffff',
                                                     textAlign:'center',
+                                                    padding : 9,
                                                 },
                                                 cellStyle: {
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    padding : 3,
                                                 },
                                                 pageSize : this.props.professionalLabelStore.finalCheckListPageSize,
                                                 pageSizeOptions : [5,10,25,50],
