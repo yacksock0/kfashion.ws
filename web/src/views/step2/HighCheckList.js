@@ -22,7 +22,6 @@ import Chip from "@material-ui/core/Chip";
 import Checkbox from "@material-ui/core/Checkbox";
 import ErrorIcon from "@material-ui/icons/Error";
 import TablePagination from "@material-ui/core/TablePagination";
-import { BorderClear } from "@material-ui/icons";
 import Moment from "react-moment";
 
 const styles = theme => ({   root: {

@@ -13,7 +13,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import {toJS} from "mobx";
 import { withStyles } from '@material-ui/core/styles';
-// import styless from "../../css/Kfashion.css"
 
 const styles = (theme) => ({
     outlinedSecondary : {
