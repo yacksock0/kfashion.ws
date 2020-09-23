@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/kfashion/comment")
@@ -46,93 +45,14 @@ public class KfashionCommentController {
     @PostMapping(value = "/highComment")
     public ResponseEntity<Object> highComment(HttpServletRequest httpRequest,
                                               @RequestBody KfashionComment kfashionComment) {
-        kfashionComment.setReceiveId(kfashionWorkHistoryService.selectReceiveId(kfashionComment.getWorkNo()));
-        if (kfashionComment.getWorkStep1() == 3) {
-            if (kfashionComment.getWorkType1() == 1) {
-                Map<String, Object> selectMap = new HashMap<>();
-                selectMap.put("workNo", kfashionComment.getWorkNo());
-                selectMap.put("workStep", kfashionComment.getWorkStep1());
-                int commentNo = kfashionCommentService.selectCommentNo(selectMap);
-                kfashionComment.setCommentNo(commentNo);
-                kfashionComment.setWorkStep(3);
-                kfashionComment.setWorkType(1);
-                kfashionCommentService.insertHighPolyComment(kfashionComment);
-                Map<String, Object> deleteMap = new HashMap<>();
-                deleteMap.put("workNo", kfashionComment.getWorkNo());
-                deleteMap.put("polyNo", kfashionComment.getWorkType1());
-                deleteMap.put("rectNo", kfashionComment.getWorkType1());
-                kfashionImageLocationPolygonPointService.deletePolyPoint(deleteMap);
-                kfashionImageLocationPolygonService.deletePoly(deleteMap);
-                kfashionImageLocationRectService.deleteRect(deleteMap);
-            }
-            if (kfashionComment.getWorkType2() == 2) {
-                Map<String, Object> selectMap = new HashMap<>();
-                selectMap.put("workNo", kfashionComment.getWorkNo());
-                selectMap.put("workStep", kfashionComment.getWorkStep1());
-                int commentNo = kfashionCommentService.selectCommentNo(selectMap);
-                kfashionComment.setCommentNo(commentNo);
-                kfashionComment.setWorkStep(3);
-                kfashionComment.setWorkType(2);
-                kfashionCommentService.insertHighPolyComment(kfashionComment);
-                Map<String, Object> deleteMap = new HashMap<>();
-                deleteMap.put("workNo", kfashionComment.getWorkNo());
-                deleteMap.put("polyNo", kfashionComment.getWorkType2());
-                deleteMap.put("rectNo", kfashionComment.getWorkType2());
-                kfashionImageLocationPolygonPointService.deletePolyPoint(deleteMap);
-                kfashionImageLocationPolygonService.deletePoly(deleteMap);
-                kfashionImageLocationRectService.deleteRect(deleteMap);
-            }
-            if (kfashionComment.getWorkType3() == 3) {
-                Map<String, Object> selectMap = new HashMap<>();
-                selectMap.put("workNo", kfashionComment.getWorkNo());
-                selectMap.put("workStep", kfashionComment.getWorkStep1());
-                int commentNo = kfashionCommentService.selectCommentNo(selectMap);
-                kfashionComment.setCommentNo(commentNo);
-                kfashionComment.setWorkStep(3);
-                kfashionComment.setWorkType(3);
-                kfashionCommentService.insertHighPolyComment(kfashionComment);
-                Map<String, Object> deleteMap = new HashMap<>();
-                deleteMap.put("workNo", kfashionComment.getWorkNo());
-                deleteMap.put("polyNo", kfashionComment.getWorkType3());
-                deleteMap.put("rectNo", kfashionComment.getWorkType3());
-                kfashionImageLocationPolygonPointService.deletePolyPoint(deleteMap);
-                kfashionImageLocationPolygonService.deletePoly(deleteMap);
-                kfashionImageLocationRectService.deleteRect(deleteMap);
-            }
-            if (kfashionComment.getWorkType4() == 4) {
-                Map<String, Object> selectMap = new HashMap<>();
-                selectMap.put("workNo", kfashionComment.getWorkNo());
-                selectMap.put("workStep", kfashionComment.getWorkStep1());
-                int commentNo = kfashionCommentService.selectCommentNo(selectMap);
-                kfashionComment.setCommentNo(commentNo);
-                kfashionComment.setWorkStep(3);
-                kfashionComment.setWorkType(4);
-                kfashionCommentService.insertHighPolyComment(kfashionComment);
-                Map<String, Object> deleteMap = new HashMap<>();
-                deleteMap.put("workNo", kfashionComment.getWorkNo());
-                deleteMap.put("polyNo", kfashionComment.getWorkType4());
-                deleteMap.put("rectNo", kfashionComment.getWorkType4());
-                kfashionImageLocationPolygonPointService.deletePolyPoint(deleteMap);
-                kfashionImageLocationPolygonService.deletePoly(deleteMap);
-                kfashionImageLocationRectService.deleteRect(deleteMap);
-            }
-        }
+        kfashionCommentService.setHighComment(kfashionComment);
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
     @PostMapping(value = "/highCommentLabel")
     public ResponseEntity<Object> highCommentLabel(HttpServletRequest httpRequest,
                                               @RequestBody KfashionComment kfashionComment) {
-        kfashionComment.setReceiveId(kfashionWorkHistoryService.selectReceiveId(kfashionComment.getWorkNo()));
-        if (kfashionComment.getWorkStep2() == 4) {
-            Map<String, Object> selectMap = new HashMap<>();
-            selectMap.put("workNo", kfashionComment.getWorkNo());
-            selectMap.put("workStep", kfashionComment.getWorkStep2());
-            int commentNo = kfashionCommentService.selectCommentNo(selectMap);
-            kfashionComment.setCommentNo(commentNo);
-            kfashionComment.setWorkStep(4);
-            kfashionCommentService.insertHighLabelComment(kfashionComment);
-        }
+        kfashionCommentService.setHighCommentLabel(kfashionComment);
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 

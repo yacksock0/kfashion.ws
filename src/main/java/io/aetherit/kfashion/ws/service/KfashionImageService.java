@@ -4,7 +4,9 @@ import io.aetherit.kfashion.ws.model.KfashionImage;
 import io.aetherit.kfashion.ws.repository.KfashionImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +15,31 @@ import java.util.Map;
 @Service
 public class KfashionImageService {
     private KfashionImageRepository repository;
+    private KfashionWorkService kfashionWorkService;
+    private KfashionWorkHistoryService kfashionWorkHistoryService;
+    private KfashionCommentService kfashionCommentService;
+    private KfashionImageLocationPolygonService kfashionImageLocationPolygonService;
+    private KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService;
+    private KfashionImageLocationRectService kfashionImageLocationRectService;
+    private KfashionLabelService kfashionLabelService;
 
     @Autowired
-    public KfashionImageService(KfashionImageRepository repository) {
+    public KfashionImageService(KfashionImageRepository repository,
+                                KfashionWorkService kfashionWorkService,
+                                KfashionWorkHistoryService kfashionWorkHistoryService,
+                                KfashionCommentService kfashionCommentService,
+                                KfashionImageLocationPolygonService kfashionImageLocationPolygonService,
+                                KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService,
+                                KfashionImageLocationRectService kfashionImageLocationRectService,
+                                KfashionLabelService kfashionLabelService) {
         this.repository = repository;
+        this.kfashionWorkService = kfashionWorkService;
+        this.kfashionWorkHistoryService = kfashionWorkHistoryService;
+        this.kfashionCommentService = kfashionCommentService;
+        this.kfashionImageLocationPolygonService = kfashionImageLocationPolygonService;
+        this.kfashionImageLocationPolygonPointService = kfashionImageLocationPolygonPointService;
+        this.kfashionImageLocationRectService = kfashionImageLocationRectService;
+        this.kfashionLabelService = kfashionLabelService;
     }
 
     public void insertImgUpload(KfashionImage kfashionImage) {
@@ -43,8 +66,16 @@ public class KfashionImageService {
         return repository.recentlyImg(createdId);
     }
 
+    @Transactional(rollbackFor = {RuntimeException.class, SQLException.class, Exception.class})
     public void deleteImage(KfashionImage workImage) {
+        kfashionLabelService.deleteLabelAll(workImage);
+        kfashionCommentService.deleteCommentAll(workImage);
+        kfashionImageLocationPolygonPointService.deletePolyPointAll(workImage);
+        kfashionImageLocationPolygonService.deletePolyAll(workImage);
+        kfashionImageLocationRectService.deleteRectAll(workImage);
+        kfashionWorkHistoryService.deleteWorkHistory(workImage);
         repository.deleteImage(workImage);
+        kfashionWorkService.deleteWork(workImage);
     }
 
     public List<KfashionImage> selectProfessionalList(HashMap<String, Object> pageMap) {

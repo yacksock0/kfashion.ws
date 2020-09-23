@@ -583,8 +583,9 @@ class Step2 extends React.Component {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         const {classes, history} = this.props;
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
-        // const {isWorkNo} = this.props.imageStore;
         const {polyLast} = this.props.polygonStore;
+        // const {isWorkNo} = this.props.imageStore;
+        console.log(polyLast);
         const {outerReviewHighLabel} = this.props.checkHighLabelStore;
         return (
             <Container component="main" className={classes.mainContainer}>
@@ -690,7 +691,7 @@ class Step2 extends React.Component {
                                                             type="button"
                                                             className={classes.buttonType2}
                                                             variant="outlined"
-                                                            disabled={this.state.comment !== ''}
+                                                            disabled={this.state.comment !== null}
                                                             onClick={() => (this.handleSave())}
                                                     >
                                                         저장
@@ -705,7 +706,7 @@ class Step2 extends React.Component {
                                                         다음
                                                     </Button>
                                                 )}
-                                                {this.state.comment !== '' && polyLast === this.state.tabIndex2 ?
+                                                {this.state.comment !== null && polyLast === this.state.tabIndex2 ?
                                                     <Button style={{marginTop: 20, marginRight: 10}}
                                                             type="button"
                                                             className={classes.buttonType2}
@@ -786,7 +787,7 @@ class Step2 extends React.Component {
                                                             type="button"
                                                             className={classes.buttonType2}
                                                             variant="outlined"
-                                                            disabled={this.state.comment !== ''}
+                                                            disabled={this.state.comment !== null}
                                                             onClick={() => (this.handleSave())}
                                                     >
                                                         저장
@@ -801,7 +802,7 @@ class Step2 extends React.Component {
                                                         다음
                                                     </Button>
                                                 )}
-                                                {this.state.comment !== '' && polyLast === this.state.tabIndex2 ?
+                                                {this.state.comment !== null && polyLast === this.state.tabIndex2 ?
                                                     <Button style={{marginTop: 20, marginRight: 10}}
                                                             type="button"
                                                             className={classes.buttonType2}
@@ -863,7 +864,7 @@ class Step2 extends React.Component {
                                                             type="button"
                                                             className={classes.buttonType2}
                                                             variant="outlined"
-                                                            disabled={this.state.comment !== ''}
+                                                            disabled={this.state.comment !== null}
                                                             onClick={() => (this.handleSave())}
                                                     >
                                                         저장
@@ -878,7 +879,7 @@ class Step2 extends React.Component {
                                                         다음
                                                     </Button>
                                                 )}
-                                                {this.state.comment !== '' && polyLast === this.state.tabIndex2 ?
+                                                {this.state.comment !== null && polyLast === this.state.tabIndex2 ?
                                                     <Button style={{marginTop: 20, marginRight: 10}}
                                                             type="button"
                                                             className={classes.buttonType2}
@@ -958,7 +959,7 @@ class Step2 extends React.Component {
                                                             type="button"
                                                             className={classes.buttonType2}
                                                             variant="outlined"
-                                                            disabled={this.state.comment !== ''}
+                                                            disabled={this.state.comment !== null}
                                                             onClick={() => (this.handleSave())}
                                                     >
                                                         저장
@@ -973,7 +974,7 @@ class Step2 extends React.Component {
                                                         다음
                                                     </Button>
                                                 )}
-                                                {this.state.comment !== '' && polyLast === this.state.tabIndex2 ?
+                                                {this.state.comment !== null && polyLast === this.state.tabIndex2 ?
                                                     <Button style={{marginTop: 20, marginRight: 10}}
                                                             type="button"
                                                             className={classes.buttonType2}

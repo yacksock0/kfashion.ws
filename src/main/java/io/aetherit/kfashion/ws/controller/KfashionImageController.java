@@ -37,10 +37,7 @@ public class KfashionImageController {
     private KfashionWorkService kfashionWorkService;
     private KfashionWorkHistoryService kfashionWorkHistoryService;
     private KfashionCommentService kfashionCommentService;
-    private KfashionImageLocationPolygonService kfashionImageLocationPolygonService;
-    private KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService;
-    private KfashionImageLocationRectService kfashionImageLocationRectService;
-    private KfashionLabelService kfashionLabelService;
+
 
     @Autowired
     private CommonUtil commonUtil;
@@ -49,20 +46,12 @@ public class KfashionImageController {
     public KfashionImageController(KfashionImageService kfashionImageService,
                                    KfashionWorkService kfashionWorkService,
                                    KfashionWorkHistoryService kfashionWorkHistoryService,
-                                   KfashionCommentService kfashionCommentService,
-                                   KfashionImageLocationPolygonService kfashionImageLocationPolygonService,
-                                   KfashionImageLocationPolygonPointService kfashionImageLocationPolygonPointService,
-                                   KfashionImageLocationRectService kfashionImageLocationRectService,
-                                   KfashionLabelService kfashionLabelService) {
+                                   KfashionCommentService kfashionCommentService) {
 
         this.kfashionImageService = kfashionImageService;
         this.kfashionWorkService = kfashionWorkService;
         this.kfashionWorkHistoryService = kfashionWorkHistoryService;
         this.kfashionCommentService = kfashionCommentService;
-        this.kfashionImageLocationPolygonService = kfashionImageLocationPolygonService;
-        this.kfashionImageLocationPolygonPointService = kfashionImageLocationPolygonPointService;
-        this.kfashionImageLocationRectService = kfashionImageLocationRectService;
-        this.kfashionLabelService = kfashionLabelService;
 
     }
 
@@ -518,14 +507,7 @@ public class KfashionImageController {
 
     @DeleteMapping(value = "/deleteCheckListImage/{workNo}")
     public ResponseEntity<Void> deleteCheckListImage(@RequestBody KfashionImage workImage) {
-        kfashionLabelService.deleteLabelAll(workImage);
-        kfashionCommentService.deleteCommentAll(workImage);
-        kfashionImageLocationPolygonPointService.deletePolyPointAll(workImage);
-        kfashionImageLocationPolygonService.deletePolyAll(workImage);
-        kfashionImageLocationRectService.deleteRectAll(workImage);
-        kfashionWorkHistoryService.deleteWorkHistory(workImage);
         kfashionImageService.deleteImage(workImage);
-        kfashionWorkService.deleteWork(workImage);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

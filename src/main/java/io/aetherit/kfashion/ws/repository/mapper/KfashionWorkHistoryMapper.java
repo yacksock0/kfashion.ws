@@ -25,5 +25,5 @@ public interface KfashionWorkHistoryMapper {
 
     Long selectCompleteWork(int workStep);
 
-    Long selectSuccessWorkNo(KfashionWorkHistory workHistory);
+    long selectSuccessWorkNo(KfashionWorkHistory workHistory);
 }

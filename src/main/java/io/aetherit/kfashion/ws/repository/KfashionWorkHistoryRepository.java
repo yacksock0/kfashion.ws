@@ -54,7 +54,7 @@ public class KfashionWorkHistoryRepository {
         return mapper.selectCompleteWork(workStep);
     }
 
-    public Long selectSuccessWorkNo(KfashionWorkHistory workHistory) {
+    public long selectSuccessWorkNo(KfashionWorkHistory workHistory) {
         return mapper.selectSuccessWorkNo(workHistory);
     }
 }

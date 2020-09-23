@@ -1,6 +1,8 @@
 package io.aetherit.kfashion.ws.controller;
 
-import io.aetherit.kfashion.ws.model.*;
+import io.aetherit.kfashion.ws.model.KfashionImage;
+import io.aetherit.kfashion.ws.model.KfashionImageLocationRect;
+import io.aetherit.kfashion.ws.model.KfashionRectList;
 import io.aetherit.kfashion.ws.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @RestController
@@ -50,39 +51,15 @@ public class KfashionImageLocationRectController {
      */
 
     @PostMapping(value = "/location")
-    public ResponseEntity<String> insertLocationRect(HttpServletRequest httpServletRequest,
+    public ResponseEntity<Object> insertLocationRect(HttpServletRequest httpServletRequest,
                                                      @RequestBody List<KfashionRectList> rectList) throws Exception {
-        String msg = "";
-        KfashionWork work = new KfashionWork();
-        work.setNo(rectList.get(0).getWorkNo());
-        work.setWorkState(rectList.get(0).getWorkStep());
-        kfashionWorkService.updateWork(work);
-
-        KfashionWorkHistory workHistory = new KfashionWorkHistory();
-        workHistory.setWorkNo(rectList.get(0).getWorkNo());
-        workHistory.setWorkStep(rectList.get(0).getWorkStep());
-        workHistory.setCreatedId(rectList.get(0).getCreatedId());
-        kfashionWorkHistoryService.insertWorkHistory(workHistory);
-
-
-        KfashionImageLocationRect rect = new KfashionImageLocationRect();
-        for (int i = 0; i < rectList.size(); i++) {
-            rect.setWorkNo(rectList.get(i).getWorkNo());
-            rect.setWorkStep(rectList.get(i).getWorkStep());
-            rect.setRectNo(rectList.get(i).getId());
-            rect.setLocationX(rectList.get(i).getLeft());
-            rect.setLocationY(rectList.get(i).getTop());
-            rect.setLocationWidth(rectList.get(i).getWidth());
-            rect.setLocationHeight(rectList.get(i).getHeight());
-            rect.setScaleX(rectList.get(i).getScaleX());
-            rect.setScaleY(rectList.get(i).getScaleY());
-            msg = kfashionImageLocationRectService.insertLocationRect(rect);
-        }
-        return new ResponseEntity<String>(msg, HttpStatus.OK);
+        kfashionImageLocationRectService.setLocationRect(rectList);
+        return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
+
     /**
-     * 렉트 수
+     * 렉트 수정
      *
      * @param httpServletRequest
      * @param rectList
@@ -91,36 +68,10 @@ public class KfashionImageLocationRectController {
      */
 
     @PostMapping(value = "/updateLocation")
-    public ResponseEntity<String> updateLocationRect(HttpServletRequest httpServletRequest,
+    public ResponseEntity<Object> updateLocationRect(HttpServletRequest httpServletRequest,
                                                      @RequestBody List<KfashionRectList> rectList) throws Exception {
-        String msg = "";
-
-
-        for (int i = 0; i < rectList.size(); i++) {
-            rectList.get(i).getId();
-        }
-
-
-        KfashionImageLocationRect rect = new KfashionImageLocationRect();
-        for (int i = 0; i < rectList.size(); i++) {
-            Map<String, Object> updateMap = new HashMap<>();
-            updateMap.put("workNo", rectList.get(i).getWorkNo());
-            updateMap.put("workStep", 3);
-            updateMap.put("workType", rectList.get(i).getId());
-            kfashionCommentService.updatePolyComment(updateMap);
-
-            rect.setWorkNo(rectList.get(i).getWorkNo());
-            rect.setWorkStep(rectList.get(i).getWorkStep());
-            rect.setRectNo(rectList.get(i).getId());
-            rect.setLocationX(rectList.get(i).getLeft());
-            rect.setLocationY(rectList.get(i).getTop());
-            rect.setLocationWidth(rectList.get(i).getWidth());
-            rect.setLocationHeight(rectList.get(i).getHeight());
-            rect.setScaleX(rectList.get(i).getScaleX());
-            rect.setScaleY(rectList.get(i).getScaleY());
-            msg = kfashionImageLocationRectService.insertLocationRect(rect);
-        }
-        return new ResponseEntity<String>(msg, HttpStatus.OK);
+        kfashionImageLocationRectService.updateLocationRect(rectList);
+        return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
     /**
