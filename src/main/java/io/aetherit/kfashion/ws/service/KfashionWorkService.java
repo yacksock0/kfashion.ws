@@ -24,6 +24,7 @@ public class KfashionWorkService {
         return repository.insertWork(work);
     }
 
+
     public void updateWork(KfashionWork work) {
         repository.updateWork(work);
     }

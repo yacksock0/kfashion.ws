@@ -199,12 +199,14 @@ public class KfashionWorkHistoryController {
                                                        @RequestBody KfashionWorkHistory workHistory) throws Exception {
         kfashionWorkHistoryService.setProfessionalComplete(workHistory);
         return new ResponseEntity<Object>(HttpStatus.OK);
+
     }
 
     @PostMapping(value = "/basicComplete")
     public ResponseEntity<Object> basicComplete(HttpServletRequest httpServletRequest,
                                                 @RequestBody KfashionWorkHistory workHistory) throws Exception {
         kfashionWorkHistoryService.setBasicComplete(workHistory);
+
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 }

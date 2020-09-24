@@ -61,16 +61,16 @@ public class KfashionWorkHistoryService {
         return repository.selectCompleteWork(workStep);
     }
 
-    public long selectSuccessWorkNo(KfashionWorkHistory workHistory) {
+    public Long selectSuccessWorkNo(KfashionWorkHistory workHistory) {
         return repository.selectSuccessWorkNo(workHistory);
     }
 
     @Transactional(rollbackFor = {RuntimeException.class, SQLException.class, Exception.class})
     public void setProfessionalComplete(KfashionWorkHistory workHistory) {
         repository.insertWorkHistory(workHistory);
-        workHistory.setWorkStep(8);
-        long no = repository.selectSuccessWorkNo(workHistory);
-        if(no > 0) {
+        workHistory.setWorkStep(7);
+        Long no = repository.selectSuccessWorkNo(workHistory);
+        if(no == null || no > 0) {
             KfashionWork work = new KfashionWork();
             work.setNo(no);
             work.setWorkState(7);
@@ -81,9 +81,9 @@ public class KfashionWorkHistoryService {
     @Transactional(rollbackFor = {RuntimeException.class, SQLException.class, Exception.class})
     public void setBasicComplete(KfashionWorkHistory workHistory) {
         repository.insertWorkHistory(workHistory);
-        workHistory.setWorkStep(7);
-        long no = repository.selectSuccessWorkNo(workHistory);
-        if(no > 0) {
+        workHistory.setWorkStep(8);
+        Long no = repository.selectSuccessWorkNo(workHistory);
+        if(no == null || no > 0) {
             KfashionWork work = new KfashionWork();
             work.setNo(no);
             work.setWorkState(7);

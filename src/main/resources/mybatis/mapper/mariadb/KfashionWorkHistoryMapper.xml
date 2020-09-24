@@ -95,7 +95,7 @@
         WHERE work_step = #{workStep};
     </select>
 
-    <select id="selectSuccessWorkNo" resultType="long">
+    <select id="selectSuccessWorkNo" resultType="Long">
         SELECT work_no
         FROM kfashion_work_history
         WHERE work_no = #{workNo}
