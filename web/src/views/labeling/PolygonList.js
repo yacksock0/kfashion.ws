@@ -124,7 +124,7 @@ class PolygonList extends React.Component {
         this.props.rectStore.selectedItemReset();
     }
 
-    handleRowClick = (event, rowData) => {
+    handleRowClick = (workNo, comment) => {
         const checkList = toJS(this.props.rectStore.rectList);
         const checkBoxList = []
         checkList.map((item, index) => {
@@ -141,8 +141,8 @@ class PolygonList extends React.Component {
             this.setState({
                 checkBoxListLength: checkBoxList.length,
             })
-            if (rowData.comment === '' || rowData.comment === null ) {
-                this.toggle(rowData.workNo,rowData.comment);
+            if (comment === '' || comment=== null ) {
+                this.toggle(workNo,comment);
             }
         }
     }
@@ -155,10 +155,16 @@ class PolygonList extends React.Component {
                     {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
                                       checked={this.props.rectStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
                         </Checkbox>,
-                        render : rowData => <Checkbox checked={this.props.rectStore.selectedItem.includes(rowData.workNo)}
+                        render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo, rowData.comment)}
+                                                      checked={this.props.rectStore.selectedItem.includes(rowData.workNo)}
                                                       disabled={rowData.comment === null || rowData.comment === ''? false : true} style={{color:'#000000'}}></Checkbox>},
                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
+                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => {
+                            return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
+                                                                   onDoubleClick={() => this.props.imageStore.onImageDoubleClick({title: '', image: rowData.fileName} )} />
+                                : ''
+                        }},
+                            // <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter'},
                     {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                     {title: '등록일 ', field: 'createdDatetime', type: 'date'},
@@ -193,7 +199,7 @@ class PolygonList extends React.Component {
                     pageSize : this.props.rectStore.pageSize,
                     pageSizeOptions : [5,10,25,50],
                 }}
-                onRowClick={this.handleRowClick}
+                // onRowClick={this.handleRowClick}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                 onSearchChange={this.handleSearchChange}
                 components={{

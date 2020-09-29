@@ -22,6 +22,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ErrorIcon from "@material-ui/icons/Error";
 import {toJS} from "mobx";
+import ImagePopupModal from "../../components/ImagePopupModal";
 
 const styles = theme => ({
     root: {
@@ -1484,7 +1485,7 @@ class Polygon extends React.Component {
                                     </div>
                                 </TabPanel>
                                 <TabPanel value={this.state.value} index={1}>
-                                    <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange}/>
+                                    <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image) }/>
                                 </TabPanel>
                             </Tabs>
                         </Grid>
@@ -1536,6 +1537,7 @@ class Polygon extends React.Component {
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/>검수 후 반송 된 이미지는 코멘트가 적용되어 확인후 다시 작업하시면 됩니다.(반송된 이미지는 삭제 불가능)</p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/>체크박스 활용하여 이미지 일괄삭제 가능</p>
                 </Typography>
+                <ImagePopupModal store={this.props.imageStore} />
             </Container>
         );
     }

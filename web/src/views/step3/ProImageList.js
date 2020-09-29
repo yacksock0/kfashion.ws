@@ -116,7 +116,7 @@ export default class ProImageList extends React.Component {
         this.props.professionalLabelStore.selectedItemReset();
     }
 
-    handleRowClick = (event, rowData) => {
+    handleRowClick = (workNo, createdId) => {
         const checkList = toJS(this.props.professionalLabelStore.professionalList);
         const checkBoxList = []
         checkList.map((item, index) => {
@@ -133,8 +133,8 @@ export default class ProImageList extends React.Component {
             this.setState({
                 checkBoxListLength: checkBoxList.length,
             })
-            if (rowData.createdId === this.props.authStore.isUserId) {
-                this.toggle(rowData.workNo, rowData.createdId);
+            if (createdId=== this.props.authStore.isUserId) {
+                this.toggle(workNo, createdId);
             }
         }
     };
@@ -146,10 +146,16 @@ export default class ProImageList extends React.Component {
                     {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
                                       checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
                         </Checkbox>,
-                        render : rowData => <Checkbox checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}
+                        render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo, rowData.createdId)}
+                                                      checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}
                                                       ></Checkbox>},
                     {title: '번호', field: 'workNo',type: 'button'},
-                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
+                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => {
+                            return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
+                                                              onDoubleClick={() => this.props.onImageDoubleClick({title: '', image: rowData.fileName} )} />
+                                : ''
+                        }},
+                        // <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                     {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text',hidden:true},
                     {title: '생성일', field: 'createdDatetime', type: 'date'},
@@ -182,7 +188,7 @@ export default class ProImageList extends React.Component {
                     pageSize : this.props.professionalLabelStore.pageSize,
                     pageSizeOptions : [5,10,25,50],
                 }}
-                onRowClick={this.handleRowClick}
+                // onRowClick={this.handleRowClick}
                 onSearchChange={this.handleSearchChange}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                 components={{

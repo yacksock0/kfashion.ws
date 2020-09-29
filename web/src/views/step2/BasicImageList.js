@@ -100,8 +100,8 @@ class BasicImageList extends React.Component {
     }
 
 
-    handleRowClick = (event, rowData) => {
-        this.toggle(rowData.workNo);
+    handleRowClick = (workNo) => {
+        this.toggle(workNo);
     };
 
 
@@ -114,9 +114,15 @@ class BasicImageList extends React.Component {
                                   checked={this.props.checkHighLabelStore.selectedItem.length ===
                                   this.props.checkHighLabelStore.polygonList.length ? true : false} style={{color:'#ffffff'}}>
                         </Checkbox>,
-                    render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
+                    render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo)}
+                                                  checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => <img src={rowData.fileName} alt={""} style={{width: 80, height:80, borderRadius:10}}/> },
+                {title: '사진', field: 'fileName',type: 'Image', render : rowData => {
+                        return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
+                                                               onDoubleClick={() => this.props.onImageDoubleClick({title: '', image: rowData.fileName} )} />
+                            : ''
+                    }},
+                        // <img src={rowData.fileName} alt={""} style={{width: 80, height:80, borderRadius:10}}/> },
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
@@ -149,7 +155,7 @@ class BasicImageList extends React.Component {
                     pageSize : this.props.checkHighLabelStore.pageSize,
                     pageSizeOptions : [5,10,25,50],
                 }}
-                onRowClick={this.handleRowClick}
+                // onRowClick={this.handleRowClick}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                 onSearchChange={this.handleSearchChange}
                 components={{

@@ -23,6 +23,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import ErrorIcon from "@material-ui/icons/Error";
 import TablePagination from "@material-ui/core/TablePagination";
 import Moment from "react-moment";
+import ImagePopupModal from "../../components/ImagePopupModal";
 
 const styles = theme => ({   root: {
     [theme.breakpoints.up('xl')]: {
@@ -439,9 +440,9 @@ class HighCheckList extends React.Component {
         this.props.checkHighLabelStore.changeSelectedItem(selected);
     };
 
-    handleRowClick = (event, rowData) => {
-        this.toggle(rowData.workNo);
-    };
+    handleRowClick = (workNo) => {
+          this.toggle(workNo);
+    }
 
     render() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
@@ -655,9 +656,14 @@ class HighCheckList extends React.Component {
                                                       checked={this.props.checkHighLabelStore.selectedItem.length ===
                                                       this.props.messageStore.inspectionHighList.length ? true : false} style={{color:'#ffffff'}}>
                                         </Checkbox>,
-                                        render : rowData => <Checkbox checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
+                                        render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo)} checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
                                     {title: '번호', field: 'workNo', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                                    {title: '사진', field: 'fileName', render : rowData => <img alt={""} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
+                                    {title: '사진', field: 'fileName', render : rowData =>{
+                                            return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
+                                                                                   onDoubleClick={() => this.props.imageStore.onImageDoubleClick({title: '', image: rowData.fileName} )} />
+                                                : ''
+                                        }},
+                                            // <img alt={""} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
                                     {title: '이름', field: 'workName', filterPlaceholder: 'GroupNo filter',},
                                     {title: '등록자', field: 'createdId', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                                     {title: '생성일', field: 'createdDatetime', type: 'date'},
@@ -689,7 +695,7 @@ class HighCheckList extends React.Component {
                                     pageSize : this.props.messageStore.pageSize,
                                     pageSizeOptions : [5,10,25,50],
                                 }}
-                                onRowClick={this.handleRowClick}
+                                // onRowClick={this.handleRowClick}
                                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                                 onSearchChange={this.handleSearchChange}
                                 components={{
@@ -735,6 +741,7 @@ class HighCheckList extends React.Component {
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크 박스 활용하여 일괄적으로 완료 가능 합니다 ( 반송은 체크박스 활용 불가능합니다 )</p>
                 </Typography>
                     ) : ''}
+                <ImagePopupModal store={this.props.imageStore} />
             </Container>
         );
     }

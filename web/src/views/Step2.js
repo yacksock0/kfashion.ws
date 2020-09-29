@@ -18,6 +18,7 @@ import {fabric} from "fabric";
 import {toJS} from "mobx";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ErrorIcon from "@material-ui/icons/Error";
+import ImagePopupModal from "../components/ImagePopupModal";
 
 const styles = theme => ({
     root: {
@@ -585,7 +586,6 @@ class Step2 extends React.Component {
         const {authorityNo} = this.props.authStore.loginUser.authorityNo;
         const {polyLast} = this.props.polygonStore;
         // const {isWorkNo} = this.props.imageStore;
-        console.log(polyLast);
         const {outerReviewHighLabel} = this.props.checkHighLabelStore;
         return (
             <Container component="main" className={classes.mainContainer}>
@@ -992,7 +992,7 @@ class Step2 extends React.Component {
                                     </Tabs>
                                 </TabPanel>
                                 <TabPanel>
-                                    <BasicImageList onClick={this.handleClickItem}/>
+                                    <BasicImageList onClick={this.handleClickItem} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image) }/>
                                 </TabPanel>
                             </Tabs>
                         </Grid>
@@ -1041,6 +1041,7 @@ class Step2 extends React.Component {
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크박스 클릭후 대표 이미지 선택하여 작업시 체크한 이미지 전부 동일한 값으로 입력됩니다.</p>
                     
                 </Typography>
+                <ImagePopupModal store={this.props.imageStore} />
             </Container>
         );
     }

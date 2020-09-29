@@ -23,6 +23,7 @@ import ErrorIcon from "@material-ui/icons/Error";
 import Checkbox from "@material-ui/core/Checkbox";
 import TablePagination from '@material-ui/core/TablePagination';
 import Moment from 'react-moment';
+import ImagePopupModal from "../components/ImagePopupModal";
 
 
 const styles = theme => ({   root: {
@@ -508,7 +509,7 @@ class FinalCheckList extends React.Component {
     }
 
 
-    handleRowClick = (event, rowData) => {
+    handleRowClick = (workNo, createdId) => {
         const checkList = toJS(this.props.professionalLabelStore.inspectionList);
         const checkBoxList = []
         checkList.map((item, index) => {
@@ -525,8 +526,8 @@ class FinalCheckList extends React.Component {
             this.setState({
                 checkBoxListLength: checkBoxList.length,
             })
-            if (rowData.createdId === this.props.authStore.isUserId) {
-                this.toggle(rowData.workNo, rowData.createdId);
+            if (createdId === this.props.authStore.isUserId) {
+                this.toggle(workNo, createdId);
             }
         }
     }
@@ -999,10 +1000,16 @@ class FinalCheckList extends React.Component {
                                                                   checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
                                                         </Checkbox>,
                                                     render : rowData => <Checkbox key={this.props.professionalLabelStore.inspectionList.workNo}
+                                                                                  onChange={this.handleRowClick.bind(this, rowData.workNo, rowData.createdId)}
                                                                                     checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
                                                                                     disabled={this.props.authStore.isUserId === rowData.createdId ? false : true} style={{color:'#000000'}}></Checkbox>},
                                                 {title: '번호', field: 'workNo',type: 'number'},
-                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
+                                                {title: '사진', field: 'fileName',type: 'string', render : rowData => {
+                                                        return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
+                                                                                               onDoubleClick={() => this.props.imageStore.onImageDoubleClick({title: '', image: rowData.fileName} )} />
+                                                            : ''
+                                                    }},
+                                                        // <img alt={rowData.workName} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
                                                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                                                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                                                 {title: '생성자', field: 'createdId', type: 'string'},
@@ -1035,7 +1042,7 @@ class FinalCheckList extends React.Component {
                                                 pageSize : this.props.professionalLabelStore.finalCheckListPageSize,
                                                 pageSizeOptions : [5,10,25,50],
                                             }}
-                                            onRowClick={this.handleRowClick}
+                                            // onRowClick={this.handleRowClick}
                                             onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
                                             onSearchChange={this.handleSearchChange}
                                             components={{
@@ -1088,6 +1095,7 @@ class FinalCheckList extends React.Component {
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 본인이 작업한 이미지 리스트에만 수정,삭제,완료 버튼 활성화</p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크박스 수정,완료,삭제 일괄적으로 가능 </p>
                 </Typography>
+                <ImagePopupModal store={this.props.imageStore} />
             </Container>
         );
     }

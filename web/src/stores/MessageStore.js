@@ -304,7 +304,7 @@ export default class MessageStore {
 
 
 
-    LoadInspectionHighList1 = flow(function* loadInspectionHighList1() {
+     LoadInspectionHighList1 = flow(function* loadInspectionHighList1() {
         this.state = State.Pending;
         try {
             const response = yield axios.get('/api/v1/kfashion/img/inspectionHighList', {
@@ -317,6 +317,10 @@ export default class MessageStore {
             if(response.status === 200) {
                 if(response.data.totalCount !== 0) {
                     this.inspectionHighList = response.data.inspectionHighList;
+                    this.page =  response.data.page;
+                    this.totalCount = response.data.totalCount;
+                    this.pageSize = response.data.pageSize;
+                }else {
                     this.page =  response.data.page;
                     this.totalCount = response.data.totalCount;
                     this.pageSize = response.data.pageSize;

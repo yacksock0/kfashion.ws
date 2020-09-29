@@ -16,6 +16,7 @@ import ProImageList from "../views/step3/ProImageList";
 import {toJS} from "mobx";
 import ErrorIcon from "@material-ui/icons/Error";
 import WorkedImg from "./step3/WorkedImg";
+import ImagePopupModal from "../components/ImagePopupModal"
 
 
 
@@ -502,7 +503,7 @@ class Step3 extends React.Component {
 
                                      <TabPanel>
 
-                                    <ProImageList onClick={this.handleClickItem} />
+                                    <ProImageList onClick={this.handleClickItem} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image) } />
                                     </TabPanel>
                                     </Tabs>
                                 </Grid>
@@ -536,6 +537,7 @@ class Step3 extends React.Component {
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 전체선택 후 페이지이동시 이전 선택은 무효 처리 됩니다.</p>
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크박스는 삭제, 저장 일괄적으로 사용가능</p>
                     </Typography>
+                    <ImagePopupModal store={this.props.imageStore} />
                 </Container>
             );
         }

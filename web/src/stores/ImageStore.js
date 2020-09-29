@@ -36,6 +36,25 @@ const ProfessionalComplete = {
     workStep : 8,
 }
 export default class ImageStore {
+    // image popup
+    @observable isShowImagePopupModal = false;
+    @action setShowImagePopupModal = isShowImagePopupModal => this.isShowImagePopupModal = isShowImagePopupModal;
+    @observable popupTargetImage = {};
+    @action
+    onImageDoubleClick(image) {
+        this.setShowImagePopupModal(true);
+        this.popupTargetImage = image;
+    }
+
+    @action
+    onCloseImagePopupModal() {
+        this.setShowImagePopupModal(false);
+        this.popupTargetImage = {};
+    }
+    //
+
+
+
     @observable boundaryList = [];
     @observable files = [];
     @observable uploadFile = '';
