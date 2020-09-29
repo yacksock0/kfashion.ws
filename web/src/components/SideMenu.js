@@ -380,6 +380,18 @@ export default function SideMenu(props) {
                             <ListItemText type="button" onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
                             {open1 ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
+                    <Link to="/SignUp" className={classes.link}>
+                        <Collapse in={open1} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem type="button" className={classes.nested}>
+                                    <ListItemIcon>
+                                        <AspectRatioIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="관리자 추가" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </Link>
                     <Link to="/admin/createGroup" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>

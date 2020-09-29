@@ -204,7 +204,7 @@ class SignUp extends React.Component {
                         {!isSignUpSuccess ?
                             <div className={classes.mainContent}>
                                 <Typography className={classes.mainTitle} component="h1" variant="h3" >
-                                    회원가입
+                                    회원 추가
                                 </Typography>
 
                                 <Grid container>
@@ -276,102 +276,102 @@ class SignUp extends React.Component {
                                            InputLabelProps={{shrink: true}}
                                            helperText={isValidPhone ? '' : 'EX)010-1234-5678 입력해주세요.'}
                                            required fullWidth/>
-                                <div className={classes.titleArea}>
-                                    <Typography variant="h5" component="h5">
-                                        약관 동의자
-                                    </Typography>
-                                    <hr></hr>
-                                    <FormControlLabel
-                                        variant="body2"
-                                        name="checkAgreeTotal"
-                                        style={{paddingLeft: 9}}
-                                        control={
-                                            <Checkbox
-                                                checked={agreements.all}
-                                                onChange={this.handleChangeAllAgreements}
-                                                color="primary"
-                                                className={classes.checkAgreeTotal}
-                                            />
-                                        }
-                                        label="전체 동의"
-                                    />
-                                </div>
-                                <Grid item xs={12} style={{display: 'flex'}}>
-                                    <Grid item xs>
-                                        <FormControlLabel
-                                            name="checkAgreeService"
-                                            control={
-                                                <Checkbox
-                                                    checked={agreements.service}
-                                                    onChange={this.handleChangeServiceAgreements}
-                                                    color="primary"
-                                                />
-                                            }
-                                            label="서비스 이용 약관"
-                                        />
-                                    </Grid>
-                                    <Grid item xs align={"right"}>
-                                        <Link underline={"always"} href="/terms/terms"
-                                              className={classes.termsCaption}>내용보기</Link>
-                                    </Grid>
-                                </Grid>
-                                <Grid item xs={12} style={{display: 'flex'}}>
-                                    <Grid item xs>
-                                        <FormControlLabel
-                                            name="checkAgreePersonal"
-                                            control={
-                                                <Checkbox
-                                                    checked={agreements.privacy}
-                                                    onChange={this.handleChangePrivacyAgreements}
-                                                    color="primary"
-                                                />
-                                            }
-                                            label="개인 정보 처리 방침"
-                                        />
-                                    </Grid>
-                                    <Grid item xs align={"right"}>
-                                        <Link underline={"always"} href="/terms/privacy"
-                                              className={classes.termsCaption}>내용보기</Link>
-                                    </Grid>
-                                </Grid>
+                                {/*<div className={classes.titleArea}>*/}
+                                {/*    <Typography variant="h5" component="h5">*/}
+                                {/*        약관 동의자*/}
+                                {/*    </Typography>*/}
+                                {/*    <hr></hr>*/}
+                                {/*    <FormControlLabel*/}
+                                {/*        variant="body2"*/}
+                                {/*        name="checkAgreeTotal"*/}
+                                {/*        style={{paddingLeft: 9}}*/}
+                                {/*        control={*/}
+                                {/*            <Checkbox*/}
+                                {/*                checked={agreements.all}*/}
+                                {/*                onChange={this.handleChangeAllAgreements}*/}
+                                {/*                color="primary"*/}
+                                {/*                className={classes.checkAgreeTotal}*/}
+                                {/*            />*/}
+                                {/*        }*/}
+                                {/*        label="전체 동의"*/}
+                                {/*    />*/}
+                                {/*</div>*/}
+                                {/*<Grid item xs={12} style={{display: 'flex'}}>*/}
+                                {/*    <Grid item xs>*/}
+                                {/*        <FormControlLabel*/}
+                                {/*            name="checkAgreeService"*/}
+                                {/*            control={*/}
+                                {/*                <Checkbox*/}
+                                {/*                    checked={agreements.service}*/}
+                                {/*                    onChange={this.handleChangeServiceAgreements}*/}
+                                {/*                    color="primary"*/}
+                                {/*                />*/}
+                                {/*            }*/}
+                                {/*            label="서비스 이용 약관"*/}
+                                {/*        />*/}
+                                {/*    </Grid>*/}
+                                {/*    <Grid item xs align={"right"}>*/}
+                                {/*        <Link underline={"always"} href="/terms/terms"*/}
+                                {/*              className={classes.termsCaption}>내용보기</Link>*/}
+                                {/*    </Grid>*/}
+                                {/*</Grid>*/}
+                                {/*<Grid item xs={12} style={{display: 'flex'}}>*/}
+                                {/*    <Grid item xs>*/}
+                                {/*        <FormControlLabel*/}
+                                {/*            name="checkAgreePersonal"*/}
+                                {/*            control={*/}
+                                {/*                <Checkbox*/}
+                                {/*                    checked={agreements.privacy}*/}
+                                {/*                    onChange={this.handleChangePrivacyAgreements}*/}
+                                {/*                    color="primary"*/}
+                                {/*                />*/}
+                                {/*            }*/}
+                                {/*            label="개인 정보 처리 방침"*/}
+                                {/*        />*/}
+                                {/*    </Grid>*/}
+                                {/*    <Grid item xs align={"right"}>*/}
+                                {/*        <Link underline={"always"} href="/terms/privacy"*/}
+                                {/*              className={classes.termsCaption}>내용보기</Link>*/}
+                                {/*    </Grid>*/}
+                                {/*</Grid>*/}
                                 <Grid item xs={12} align={"center"}>
                                     <Button color="primary" variant="contained" className={classes.okButton}
                                             disabled={(!canSignUp) || (isPending)}
                                             onClick={this.handleClickOK}
                                             fullWidth>
-                                        {isPending ? <CircularProgress size={16}/> : '회원 가입'}
+                                        {isPending ? <CircularProgress size={16}/> : '회원 추가'}
                                     </Button>
                                 </Grid>
                             </div>
                             :
                             ''
                         }
-                        {isSignUpSuccess ?
-                            <div className={classes.successContainer}>
-                                {serverMode === 'SERVER' ?
-                                    <React.Fragment>
-                                        <Typography className={classes.successTitle}>회원 가입 신청 완료</Typography>
-                                        <Typography className={classes.successHeader}>{`${newMember.email}로 회원 가입 신청 되었습니다.`}</Typography>
-                                        <Typography className={classes.successHeader2}>가입이 완료 되려면 관리자의 승인이 필요합니다.</Typography>
-                                        <Typography className={classes.successBody}>승인 후에 ONTHELIVE의 서비스를<br/> 이용하실 수 있습니다.</Typography>
-                                    </React.Fragment>
-                                    :
-                                    <React.Fragment>
-                                        <Typography className={classes.successTitle}>회원 가입 완료</Typography>
-                                        <Typography className={classes.successHeader}>{`${newMember.email}로 전송된 이메일을 확인하여`}</Typography>
-                                        <Typography className={classes.successHeader2}>가입절차를 완료해 주세요.</Typography>
-                                        <Typography className={classes.successBody}>이메일인증 완료 후에 Kfashion의 서비스를<br/> 이용하실 수 있습니다.</Typography>
-                                    </React.Fragment>
-                                }
-                                <Button color="primary" variant="contained"
-                                        className={classes.successButton}
-                                        onClick={() => this.handleClickToHome()}>
-                                    메인으로 가기
-                                </Button>
-                            </div>
-                            :
-                            ''
-                        }
+                        {/*{isSignUpSuccess ?*/}
+                        {/*    <div className={classes.successContainer}>*/}
+                        {/*        {serverMode === 'SERVER' ?*/}
+                        {/*            <React.Fragment>*/}
+                        {/*                <Typography className={classes.successTitle}>회원 가입 신청 완료</Typography>*/}
+                        {/*                <Typography className={classes.successHeader}>{`${newMember.email}로 회원 가입 신청 되었습니다.`}</Typography>*/}
+                        {/*                <Typography className={classes.successHeader2}>가입이 완료 되려면 관리자의 승인이 필요합니다.</Typography>*/}
+                        {/*                <Typography className={classes.successBody}>승인 후에 ONTHELIVE의 서비스를<br/> 이용하실 수 있습니다.</Typography>*/}
+                        {/*            </React.Fragment>*/}
+                        {/*            :*/}
+                        {/*            <React.Fragment>*/}
+                        {/*                <Typography className={classes.successTitle}>회원 가입 완료</Typography>*/}
+                        {/*                <Typography className={classes.successHeader}>{`${newMember.email}로 전송된 이메일을 확인하여`}</Typography>*/}
+                        {/*                <Typography className={classes.successHeader2}>가입절차를 완료해 주세요.</Typography>*/}
+                        {/*                <Typography className={classes.successBody}>이메일인증 완료 후에 Kfashion의 서비스를<br/> 이용하실 수 있습니다.</Typography>*/}
+                        {/*            </React.Fragment>*/}
+                        {/*        }*/}
+                        {/*        <Button color="primary" variant="contained"*/}
+                        {/*                className={classes.successButton}*/}
+                        {/*                onClick={() => this.handleClickToHome()}>*/}
+                        {/*            메인으로 가기*/}
+                        {/*        </Button>*/}
+                        {/*    </div>*/}
+                        {/*    :*/}
+                        {/*    ''*/}
+                        {/*}*/}
                     </div>
                     <Grid container style={{ backgroundColor: '#fafafa', paddingBottom: 30}}>
                         <Grid container item xs={12} style={{paddingTop: 16}} >

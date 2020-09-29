@@ -110,13 +110,13 @@ export default class SignUpStore {
     @computed get canSignUp() {
         const id = this.newMember.id.length >= MinUserId;
         const emailVerification = validation.validateEmail(this.newMember.email);
-        const agreements = this.agreements.service && this.agreements.privacy;
+        // const agreements = this.agreements.service && this.agreements.privacy;
         const passwordConfirm = this.newMember.password === this.newMember.passwordConfirm;
         const password = this.newMember.password.length >= MinPassword;
         const userName = this.newMember.name.length >= MinUserName;
         const phone = this.newMember.phone.length >= MinPhone;
 
-        return id && emailVerification && agreements && passwordConfirm && password && userName && phone;
+        return id && emailVerification && passwordConfirm && password && userName && phone;
     }
 
     @computed get canAdminSignUp() {
@@ -187,6 +187,7 @@ export default class SignUpStore {
             const resp = yield axios.post('/api/v1/kfashion/users/signup', param);
             if (resp.status === 200) {
                 this.state = State.Success;
+                alert("관리자 추가 완료되었습니다.");
                 if (doAction !== undefined) doAction();
             } else {
                 this.state = State.NotAvailableEmail;

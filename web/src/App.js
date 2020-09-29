@@ -115,6 +115,7 @@ class App extends React.Component {
                                     <Route exact path="/home" component={Home}/>
                                     <Route exact path="/step" component={Step} />
                                     <Route exact path="/SuccessList" component={SuccessList} />
+                                    <Route path="/SignUp" component={SignUp} />
                                     <Route exact path="/ProfessionalCheckList" component={ProfessionalCheckList} />
                                     <Route exact path="/step2" component={Step2} />
                                     <Route exact path="/step3" component={Step3}/>

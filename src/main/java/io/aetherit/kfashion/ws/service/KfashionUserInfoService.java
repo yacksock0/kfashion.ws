@@ -4,8 +4,6 @@ import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.repository.KfashionEmailAuthorityRepository;
 import io.aetherit.kfashion.ws.repository.KfashionUserInfoRepository;
-import io.aetherit.kfashion.ws.util.MailUtils;
-import io.aetherit.kfashion.ws.util.TempKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,29 +88,29 @@ public class KfashionUserInfoService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repository.createNewUser(user);
 
-        String authKey = new TempKey().getKey(30, false);
-        KfashionEmailAuthority emailAuthority = new KfashionEmailAuthority();
-        emailAuthority.setUserId(user.getId());
-        emailAuthority.setAuthKey(authKey);
-        kfashionEmailAuthorityRepository.insertAuthkey(emailAuthority);
+//        String authKey = new TempKey().getKey(30, false);
+//        KfashionEmailAuthority emailAuthority = new KfashionEmailAuthority();
+//        emailAuthority.setUserId(user.getId());
+//        emailAuthority.setAuthKey(authKey);
+//        kfashionEmailAuthorityRepository.insertAuthkey(emailAuthority);
 
 
         // mail 작성 관련
-        MailUtils sendMail = new MailUtils(mailSender);
-
-        sendMail.setSubject("[Kfashion] 회원가입 이메일 인증");
-        sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
-                .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-                .append("<a href='http://localhost:80/api/v1/kfashion/users/signup/confirm?userId=")
-                .append(user.getId())
-                .append("&authKey=")
-                .append(authKey)
-                .append("' target='_blenk'>이메일 인증 확인</a>")
-                .toString());
-        sendMail.setFrom("yeol6845@gmail.com", "장성열");
-        sendMail.setTo(user.getEmail());
-        sendMail.send();
-        msg = "인증 메일이 발송 되었 습니다.";
+//        MailUtils sendMail = new MailUtils(mailSender);
+//
+//        sendMail.setSubject("[Kfashion] 회원가입 이메일 인증");
+//        sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
+//                .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+//                .append("<a href='http://localhost:80/api/v1/kfashion/users/signup/confirm?userId=")
+//                .append(user.getId())
+//                .append("&authKey=")
+//                .append(authKey)
+//                .append("' target='_blenk'>이메일 인증 확인</a>")
+//                .toString());
+//        sendMail.setFrom("yeol6845@gmail.com", "장성열");
+//        sendMail.setTo(user.getEmail());
+//        sendMail.send();
+//        msg = "인증 메일이 발송 되었 습니다.";
         return msg;
     }
 

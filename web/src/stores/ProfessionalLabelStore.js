@@ -1520,7 +1520,6 @@ export default class ProfessionalLabelStore {
             const resp = yield axios.get('/api/v1/kfashion/label/jsonfile?workNo=' + workNo);
             console.log("resp", resp);
             this.jsonObject = resp.data;
-            alert("파일을 가져왔습니다.");
             alert(JSON.stringify((resp.data)));
             console.log("jsonObject", resp.data);
             console.log("jsonObject", this.jsonObject);

@@ -6,7 +6,7 @@ import {Button} from "@material-ui/core";
 import GroupList from "./GroupList";
 import {inject, observer} from "mobx-react";
 
-@inject('adminAuthorityStore')
+@inject('adminAuthorityStore','userListStore')
 @observer
 export default class AdminVerify extends React.Component {
     constructor(props) {
@@ -15,14 +15,14 @@ export default class AdminVerify extends React.Component {
         userList : [],
             id: '',
             groupNo : '',
-        columns: [
-            { title: '아이디', field: 'id', type : 'text', value :'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
-            { title: '이메일', field: 'email',type: 'text', value: 'email'},
-            { title: '이름', field: 'name', type: 'text', value: 'name'},
-            { title: '연락처', field: 'phone', type: 'text', value: 'phone'},
-            { title: '소속', field: 'value', render: rowData => <GroupList rowDataId={rowData.id}/>},
-            { title: '신청일', field: 'createdDatetime', type: 'date'},
-            ],
+        // columns: [
+        //     { title: '아이디', field: 'id', type : 'text', value :'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
+        //     { title: '이메일', field: 'email',type: 'text', value: 'email'},
+        //     { title: '이름', field: 'name', type: 'text', value: 'name'},
+        //     { title: '연락처', field: 'phone', type: 'text', value: 'phone'},
+        //     { title: '소속', field: 'value', render: rowData => {rowData.value ? rowData.value : <GroupList rowDataId={rowData.id}/>}},
+        //     { title: '신청일', field: 'createdDatetime', type: 'date'},
+        //     ],
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onRowSelection = this.onRowSelection.bind(this);
@@ -46,7 +46,14 @@ export default class AdminVerify extends React.Component {
             <div>
             <div style={{ maxWidth: "100%" }}>
                 <MaterialTable
-                    columns={this.state.columns}
+                    columns={ [{ title: '아이디', field: 'id', type : 'text', value :'id', filterPlaceholder: 'GroupNo filter', tooltip: 'GroupNo로 정렬', editPlaceholder: 'GroupNo 입력'},
+                    { title: '이메일', field: 'email',type: 'text', value: 'email'},
+                    { title: '이름', field: 'name', type: 'text', value: 'name'},
+                    { title: '연락처', field: 'phone', type: 'text', value: 'phone'},
+                    { title: '소속', field: 'value', render: rowData => rowData.groupNo ? rowData.groupNo : <GroupList rowDataId={rowData.id}/>},
+                    { title: '신청일', field: 'createdDatetime', type: 'date',editable: 'never'},
+                    { title: '비밀번호', field: 'password', editable: 'onUpdate'},
+                        ]}
                     data={!!this.props.adminAuthorityStore.userList ?
                         this.props.adminAuthorityStore.userList.map((item) => {
                             return {
@@ -54,6 +61,7 @@ export default class AdminVerify extends React.Component {
                                 email: item.email,
                                 name: item.name,
                                 phone: item.phone,
+                                groupNo : item.groupNo,
                                 value: item.value,
                                 createdDatetime: item.createdDatetime,
                             }
@@ -74,7 +82,23 @@ export default class AdminVerify extends React.Component {
                                         })
                                     resolve();
                                 }, 1000);
-                            })
+                            }),
+                        onRowUpdate: rowData =>
+                            new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    try {
+                                        this.props.userListStore.changeNewMemberId(rowData.id)
+                                        this.props.userListStore.changeNewMemberPassword(rowData.password)
+                                        this.props.userListStore.changeNewMemberUserName(rowData.name)
+                                        this.props.userListStore.changeNewMemberGroupNo(rowData.groupNo)
+                                        this.props.userListStore.UpdatedGroupUser();
+
+                                    } catch (e) {
+                                        console.log('여기 에러 났음')
+                                    }
+                                    resolve();
+                                }, 1000);
+                            }),
                     }}
                     options={{
                         emptyRowsWhenPaging: true,

@@ -335,15 +335,15 @@ class FinalCheckList extends React.Component {
         if (jsonComplateConfirm) {
             const workNo = this.props.polygonStore.NewPolygonLocation.workNo;
             this.props.professionalLabelStore.JsonCompleteUp(workNo);
-            this.setState({
-                open: false,
-                tabIndex1 : 1,
-            });
-            this.canvas.backgroundImage = 0;
-            this.canvas.setWidth(0);
-            this.canvas.setHeight(0);
-            this.canvas.renderAll();
-            this.deleteAll();
+        //     this.setState({
+        //         open: false,
+        //         tabIndex1 : 1,
+        //     });
+        //     this.canvas.backgroundImage = 0;
+        //     this.canvas.setWidth(0);
+        //     this.canvas.setHeight(0);
+        //     this.canvas.renderAll();
+        //     this.deleteAll();
         }
     }
 
