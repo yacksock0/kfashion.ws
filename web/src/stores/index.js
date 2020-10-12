@@ -12,6 +12,10 @@ import WorkStore from "./WorkStore";
 import CheckHighLabelStore from "./CheckHighLabelStore";
 import BasicCategoryStore from "./BasicCategoryStore";
 import MessageStore from "./MessageStore";
+import TAuthStore from "./kTagging/TAuthStore";
+import SAuthStore from "./kSearching/SAuthStore";
+import MAuthStore from "./kMatching/MAuthStore";
+import AppStore from "./AppStore";
 
 
 
@@ -30,4 +34,9 @@ export const stores = {
     checkHighLabelStore : new CheckHighLabelStore(),
     basicCategoryStore : new BasicCategoryStore(),
     messageStore : new MessageStore(),
+
+    appStore : new AppStore(),
+    tAuthStore : new TAuthStore(),
+    sAuthStore : new SAuthStore(),
+    mAuthStore : new MAuthStore(),
 };

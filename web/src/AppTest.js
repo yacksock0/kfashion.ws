@@ -147,10 +147,9 @@
 // export default withStyles(style) (App);
 
 import React from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
-import * as aStore from "./stores/AppStore";
+import * as store from "./stores/AuthStore";
 import AppKfashion from "./AppKfashion";
 import AppKtagging from "./AppKtagging";
 import AppKsearching from "./AppKsearching";
@@ -161,51 +160,40 @@ const style = () => ({
         display: 'flex',
     }
 });
-@inject('appStore', 'authStore','tAuthStore', 'sAuthStore', 'mAuthStore', 'currentStepStore')
+@inject('authStore', 'currentStepStore')
 @observer
 class App extends React.Component {
+    // constructor(props) {
+    //     super(props);
+    //
+    //     this.state = {
+    //         mobileOpen: false,
+    //         height: window.innerHeight,
+    //         width: window.innerWidth,
+    //         count: 1
+    //     };
+    //     this.setMobileOpen = this.setMobileOpen.bind(this);
+    // }
+    //
     componentDidMount() {
         let url = window.location.href;
-
-        if(url.indexOf("tagging") !== -1) {
-            this.props.appStore.setLoginURL(aStore.WebURL.kTagging);
-            // this.props.authStore.setLoginURL(store.WebURL.kTagging);
-            // this.props.tAuthStore.setLoginURL(store.WebURL.kTagging);
-            // this.props.sAuthStore.setLoginURL(store.WebURL.kTagging);
-            // this.props.mAuthStore.setLoginURL(store.WebURL.kTagging);
-        }
-        else if(url.indexOf("searching") !== -1) {
-            this.props.appStore.setLoginURL(aStore.WebURL.kSearching);
-            // this.props.authStore.setLoginURL(store.WebURL.kSearching);
-            // this.props.tAuthStore.setLoginURL(store.WebURL.kSearching);
-            // this.props.sAuthStore.setLoginURL(store.WebURL.kSearching);
-            // this.props.mAuthStore.setLoginURL(store.WebURL.kSearching);
-        }
-        else if(url.indexOf("matching") !== -1) {
-            this.props.appStore.setLoginURL(aStore.WebURL.kMatching);
-            // this.props.authStore.setLoginURL(store.WebURL.kMatching);
-            // this.props.tAuthStore.setLoginURL(store.WebURL.kMatching);
-            // this.props.sAuthStore.setLoginURL(store.WebURL.kMatching);
-            // this.props.mAuthStore.setLoginURL(store.WebURL.kMatching);
-        }
-        else {
-            this.props.appStore.setLoginURL(aStore.WebURL.kFashion);
-            // this.props.authStore.setLoginURL(store.WebURL.kFashion);
-            // this.props.tAuthStore.setLoginURL(store.WebURL.kFashion);
-            // this.props.sAuthStore.setLoginURL(store.WebURL.kFashion);
-            // this.props.mAuthStore.setLoginURL(store.WebURL.kFashion);
-        }
+        if(url === "http://localhost:3000/") this.props.authStore.setLoginURL(store.WebURL.kFashion);
+        else if(url === "http://localhost:3000/tagging") this.props.authStore.setLoginURL(store.WebURL.kTagging);
+        else if(url === "http://localhost:3000/searching") this.props.authStore.setLoginURL(store.WebURL.kSearching);
+        else if(url === "http://localhost:3000/matching") this.props.authStore.setLoginURL(store.WebURL.kMatching);
     }
 
     render() {
+
         const { classes } = this.props;
-        const { loginURL} = this.props.appStore;
+        const { loginState, loginUser, loginURL} = this.props.authStore;
+
 
         let App;
-        if(loginURL === aStore.WebURL.kFashion) App =  <AppKfashion/>;
-        else if(loginURL === aStore.WebURL.kTagging)App =  <AppKtagging/>
-        else if(loginURL === aStore.WebURL.kSearching)App =  <AppKsearching/>
-        else if(loginURL === aStore.WebURL.kMatching)App =  <AppKmatching/>
+        if(loginURL === store.WebURL.kTagging)App =  <AppKtagging/>
+        else if(loginURL === store.WebURL.kSearching)App =  <AppKsearching/>
+        else if(loginURL === store.WebURL.kMatching)App =  <AppKmatching/>
+        else App =  <AppKfashion/>;
 
         return (
 

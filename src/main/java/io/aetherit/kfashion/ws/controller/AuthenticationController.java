@@ -39,6 +39,7 @@ public class AuthenticationController {
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
+
     /**
      * 로그아웃
      * @param httpRequest

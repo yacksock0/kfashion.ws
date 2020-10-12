@@ -5,8 +5,7 @@ import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import {Grid, Button, CircularProgress, Container, TextField, Typography} from "@material-ui/core";
 
-import * as store from "../stores/AuthStore";
-
+import * as sStore from "../../stores/kSearching/SAuthStore";
 
 const style = theme => ({
     main:{
@@ -47,7 +46,7 @@ const style = theme => ({
     },
 });
 
-@inject('authStore')
+@inject('sAuthStore')
 @observer
 class SignIn extends React.Component {
     componentDidMount() {
@@ -55,26 +54,26 @@ class SignIn extends React.Component {
     }
 
     handleChangeId = (e) => {
-        this.props.authStore.changeLoginId(e.target.value);
+        this.props.sAuthStore.changeLoginId(e.target.value);
     }
 
     handleChangePassword = (e) => {
-        this.props.authStore.changeLoginPassword(e.target.value);
+        this.props.sAuthStore.changeLoginPassword(e.target.value);
     }
 
     handleKeyUpPassword = (e) => {
         if(e.keyCode === 13) {
-            this.props.authStore.doLogin(this.props.history);
+            this.props.sAuthStore.doLogin(this.props.history);
         }
     }
 
     handleSubmitForm = (e) => {
-        this.props.authStore.doLogin(this.props.history);
+        this.props.sAuthStore.doLogin(this.props.history);
     }
 
     render() {
         const { classes } = this.props;
-        const { loginState, login } = this.props.authStore;
+        const { loginState, login } = this.props.sAuthStore;
 
         return (
             <Grid item xs={12}>
@@ -83,7 +82,7 @@ class SignIn extends React.Component {
                 <div className={classes.appBarSpacer} />
                     <div className={classes.paper}>
                         <Typography component="h1" variant="h4" style={{fontFamily:'NotoSansCJKkr', fontWeight:'600'}}>
-                            {loginState === store.State.Failed ? '로그인 실패.' : 'fashion'}
+                            {loginState === sStore.State.Failed ? '로그인 실패.' : 'Searching'}
                         </Typography>
                         <div className={classes.form}>
                             <TextField id="id"
@@ -108,12 +107,12 @@ class SignIn extends React.Component {
                             <Button type="submit"
                                     className={classes.submit}
                                     variant="contained"
-                                    disabled={loginState === store.State.Pending}
+                                    disabled={loginState === sStore.State.Pending}
                                     onClick={this.handleSubmitForm}
                                     fullWidth
                                     // style={{borderRadius:'0'}} 
                                     >
-                                {loginState === store.State.Pending ? <CircularProgress size={22}/> : '로그인'}
+                                {loginState === sStore.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>
                         </div>
                     </div>

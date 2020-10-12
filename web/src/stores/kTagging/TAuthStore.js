@@ -9,7 +9,7 @@ export const State = {
 };
 
 
-export const LocalStorageTokenKey = '_BASKITOP_AUTHENTICATION_TOKEN_';
+export const tLocalStorageTokenKey = '_BASKITOP_AUTHENTICATION_TOKEN_1';
 
 const EmptyLogin = {
     id: '',
@@ -51,20 +51,20 @@ export default class AuthStore {
         this.loginUser.authorityNo = authorityNo;
     };
     @action logOut = pathname => {
-         if(pathname.startsWith("/broadcast/")) {
-        if (window.confirm("로그아웃 하시겠습니까?")) {
+        if(pathname.startsWith("/broadcast/")) {
+            if (window.confirm("로그아웃 하시겠습니까?")) {
+                this.doLogout();
+            }
+        } else {
             this.doLogout();
         }
-         } else {
-             this.doLogout();
-         }
     };
     @computed get loginUserAuthorityNo(){
         return this.loginUser.groupNo;
     }
 
     @computed get isUserId() {
-       return this.loginUser.id;
+        return this.loginUser.id;
     }
 
     @action invalidateLogin = () => {
@@ -81,11 +81,11 @@ export default class AuthStore {
             const response = yield axios.post('/api/v1/kfashion/authentications/signin', param);
             const token = response.data.token;
             const user = response.data.user;
-            localStorage.setItem(LocalStorageTokenKey, token);
+            localStorage.setItem(tLocalStorageTokenKey, token);
             this.loginState = State.Authenticated;
             this.loginToken = token;
             this.loginUser = user;
-            history.push('/home');
+            history.push('/tagging/home');
         } catch (e) {
             this.loginState = State.Failed;
             this.loginToken = '';
@@ -95,8 +95,9 @@ export default class AuthStore {
     });
 
     checkLogin = flow(function* checkLogin() {
-        const token = localStorage.getItem(LocalStorageTokenKey);
-
+        const token = localStorage.getItem(tLocalStorageTokenKey);
+        // alert("t");
+        console.log("token", token);
         if(token) {
             try {
                 const response = yield axios.get('/api/v1/kfashion/authentications/signcheck');
@@ -114,7 +115,7 @@ export default class AuthStore {
     });
 
     doLogout = flow(function* doLogout() {
-        localStorage.removeItem(LocalStorageTokenKey);
+        localStorage.removeItem(tLocalStorageTokenKey);
         try {
             yield axios.post('/api/v1/kfashion/authentications/signout');
             this.login = Object.assign({}, EmptyLogin);
