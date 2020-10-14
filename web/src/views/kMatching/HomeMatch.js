@@ -40,7 +40,7 @@ const styles = theme => ({
 
 @inject('currentStepStore')
 @observer
-class Home extends React.Component {
+class HomeMatch extends React.Component {
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         this.props.currentStepStore.setStep(0);
@@ -55,14 +55,13 @@ class Home extends React.Component {
 
     render() {
         const { classes } = this.props;
-
         return (
             <div className={classes.mainContainer} style={{backgroundImage: `url(/images/mainbanner.jpg)`, width:'100%',height:'90vh' , backgroundSize:'cover'}}>
                 <div className={classes.appBarSpacer} />
                     <Grid item xs={12}>
                         <div className={classes.mainTitle}>
                             <Typography variant="h3" component="h3" style={{display:'inline'}} >
-                                K-Searching
+                               K- Matching
                             </Typography>
                         </div>
 
@@ -72,4 +71,4 @@ class Home extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (Home)));
+export default withSnackbar(withRouter(withStyles(styles) (HomeMatch)));

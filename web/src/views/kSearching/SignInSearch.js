@@ -6,6 +6,7 @@ import {inject, observer} from "mobx-react";
 import {Grid, Button, CircularProgress, Container, TextField, Typography} from "@material-ui/core";
 
 import * as sStore from "../../stores/kSearching/SAuthStore";
+import * as tStore from "../../stores/kTagging/TAuthStore";
 
 const style = theme => ({
     main:{
@@ -48,7 +49,7 @@ const style = theme => ({
 
 @inject('sAuthStore')
 @observer
-class SignIn extends React.Component {
+class SignInSearch extends React.Component {
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
     }
@@ -69,6 +70,10 @@ class SignIn extends React.Component {
 
     handleSubmitForm = (e) => {
         this.props.sAuthStore.doLogin(this.props.history);
+    }
+
+    JoinSearch = () => {
+        this.props.history.push('/searching/SignUp');
     }
 
     render() {
@@ -114,6 +119,15 @@ class SignIn extends React.Component {
                                     >
                                 {loginState === sStore.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>
+                            <Button type="submit"
+                                    className={classes.submit}
+                                    variant="contained"
+                                    disabled={loginState === tStore.State.Pending}
+                                    onClick={this.JoinSearch}
+                                    fullWidth
+                            >
+                                회원가입
+                            </Button>
                         </div>
                     </div>
             </Container>
@@ -123,4 +137,4 @@ class SignIn extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(style) (SignIn)));
+export default withSnackbar(withRouter(withStyles(style) (SignInSearch)));

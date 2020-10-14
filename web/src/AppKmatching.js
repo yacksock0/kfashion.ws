@@ -5,12 +5,13 @@ import {withStyles} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as mStore from "./stores/kMatching/MAuthStore";
-import mHome from "./views/kMatching/Home";
-import mSignUp from "./views/kMatching/SignUp";
-import mVerify from "./views/kMatching/verify";
-import mSignIn from "./views/kMatching/SignIn";
+import mHome from "./views/kMatching/HomeMatch";
+import mSignUp from "./views/kMatching/SignUpMatch";
+import mVerify from "./views/kMatching/VerifyMatch";
+import mSignIn from "./views/kMatching/SignInMatch";
 import TopBar from "./components/TopBar";
-import SideMenu from "./components/SideMenu";
+import SideMenuMatch from "./views/kMatching/SideMenuMatch";
+import test from "./views/kTagging/test";
 
 const style = () => ({
     root: {
@@ -88,7 +89,7 @@ class AppKmatching extends React.Component {
                                 doLogout={() => this.props.mAuthStore.doLogout()}
                                 setStep={this.props.currentStepStore.currentStep}
                         />
-                        <SideMenu mobileOpen={this.state.mobileOpen}
+                        <SideMenuMatch mobileOpen={this.state.mobileOpen}
                                   setMobileOpen={this.setMobileOpen}
                                   loginUser={loginUser}
                                   isLoggedIn={loginState === mStore.State.Authenticated} />
@@ -97,6 +98,7 @@ class AppKmatching extends React.Component {
                                 <Switch>
                                     <Route exact path="/matching/home" component={mHome}/>
                                     <Route exact path="/matching" component={mHome}/>
+                                    <Route exact path="/matching/test" component={test}/>
                                 </Switch>
                             </React.Fragment>
                         ) : (

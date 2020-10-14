@@ -6,6 +6,7 @@ import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import TopBar from "./components/TopBar";
 import SideMenu from "./components/SideMenu";
+import SideMenuFashion from "./components/SideMenuFashion";
 import Home from "./views/Home";
 import Step from "./views/Step";
 import Step2 from "./views/Step2";
@@ -94,6 +95,8 @@ class App extends React.Component {
 
         const { classes } = this.props;
         const { loginState, loginUser} = this.props.authStore;
+
+        // console.log("loginState : " ,loginState)
         return (
             <div className={classes.root}>
                 <Router>
@@ -106,6 +109,11 @@ class App extends React.Component {
                                 doLogout={() => this.props.authStore.doLogout()}
                                 setStep={this.props.currentStepStore.currentStep}
                         />
+                        {/*<SideMenu mobileOpen={this.state.mobileOpen}*/}
+                        {/*          setMobileOpen={this.setMobileOpen}*/}
+                        {/*          loginUser={loginUser}*/}
+                        {/*          isLoggedIn={loginState === kStore.State.Authenticated} />*/}
+
                         <SideMenu mobileOpen={this.state.mobileOpen}
                                   setMobileOpen={this.setMobileOpen}
                                   loginUser={loginUser}
@@ -114,7 +122,7 @@ class App extends React.Component {
                             <React.Fragment>
                                 <Switch>
                                     <Route exact path="/home" component={Home}/>
-                                    <Route path="/" component={Home} />
+
                                     <Route exact path="/step" component={Step} />
                                     <Route exact path="/SuccessList" component={SuccessList} />
                                     <Route path="/SignUp" component={SignUp} />

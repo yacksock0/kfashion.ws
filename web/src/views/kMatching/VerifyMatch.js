@@ -56,7 +56,7 @@ const styles = theme => ({
 
 class Verify extends React.Component {
     handleClickToHome = () => {
-        this.props.history.push("/");
+        this.props.history.push("/matching");
     }
 
     render() {

@@ -5,12 +5,13 @@ import {withStyles} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as tStore from "./stores/kTagging/TAuthStore";
-import tHome from "./views/kTagging/Home";
-import tSignUp from "./views/kTagging/SignUp";
-import tVerify from "./views/kTagging/verify";
-import tSignIn from "./views/kTagging/SignIn";
+import tHome from "./views/kTagging/HomeTag";
+import tSignUp from "./views/kTagging/SignUpTag";
+import tVerify from "./views/kTagging/VerifyTag";
+import tSignIn from "./views/kTagging/SignInTag";
 import TopBar from "./components/TopBar";
-import SideMenu from "./components/SideMenu";
+import SideMenuTag from "./views/kTagging/SideMenuTag";
+import test from "./views/kTagging/test";
 
 const style = () => ({
     root: {
@@ -86,7 +87,7 @@ class AppKtagging extends React.Component {
                                 doLogout={() => this.props.tAuthStore.doLogout()}
                                 setStep={this.props.currentStepStore.currentStep}
                         />
-                        <SideMenu mobileOpen={this.state.mobileOpen}
+                        <SideMenuTag mobileOpen={this.state.mobileOpen}
                                   setMobileOpen={this.setMobileOpen}
                                   loginUser={loginUser}
                                   isLoggedIn={loginState === tStore.State.Authenticated} />
@@ -96,6 +97,7 @@ class AppKtagging extends React.Component {
                                 <Switch>
                                     <Route exact path="/tagging/home" component={tHome}/>
                                     <Route exact path="/tagging" component={tHome}/>
+                                    <Route exact path="/tagging/test" component={test}/>
 
                                 </Switch>
                             </React.Fragment>

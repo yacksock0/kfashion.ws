@@ -78,7 +78,7 @@ export default class AuthStore {
         this.loginState = State.Pending;
         try {
             const param = this.login;
-            const response = yield axios.post('/api/v1/kfashion/authentications/signin', param);
+            const response = yield axios.post('/api/v1/kTagging/authentications/signin', param);
             const token = response.data.token;
             const user = response.data.user;
             localStorage.setItem(tLocalStorageTokenKey, token);
@@ -96,11 +96,11 @@ export default class AuthStore {
 
     checkLogin = flow(function* checkLogin() {
         const token = localStorage.getItem(tLocalStorageTokenKey);
-        // alert("t");
-        console.log("token", token);
+
+        // console.log("token", token);
         if(token) {
             try {
-                const response = yield axios.get('/api/v1/kfashion/authentications/signcheck');
+                const response = yield axios.get('/api/v1/kTagging/authentications/signcheck');
                 const token = response.data.token;
                 const user = response.data;
                 this.loginState = State.Authenticated;
@@ -117,7 +117,7 @@ export default class AuthStore {
     doLogout = flow(function* doLogout() {
         localStorage.removeItem(tLocalStorageTokenKey);
         try {
-            yield axios.post('/api/v1/kfashion/authentications/signout');
+            yield axios.post('/api/v1/kTagging/authentications/signout');
             this.login = Object.assign({}, EmptyLogin);
             this.loginState = State.NotAuthenticated;
             this.loginToken = '';

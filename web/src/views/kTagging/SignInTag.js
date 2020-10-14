@@ -1,6 +1,6 @@
 import React from "react";
 import {withSnackbar} from "notistack";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import {Grid, Button, CircularProgress, Container, TextField, Typography} from "@material-ui/core";
@@ -48,7 +48,7 @@ const style = theme => ({
 
 @inject('tAuthStore')
 @observer
-class SignIn extends React.Component {
+class SignInTag extends React.Component {
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
     }
@@ -71,6 +71,9 @@ class SignIn extends React.Component {
         this.props.tAuthStore.doLogin(this.props.history);
     }
 
+    JoinTag = () => {
+        this.props.history.push('/tagging/SignUp');
+    }
     render() {
         const { classes } = this.props;
         const { loginState, login } = this.props.tAuthStore;
@@ -114,6 +117,15 @@ class SignIn extends React.Component {
                                     >
                                 {loginState === tStore.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>
+                            <Button type="submit"
+                                    className={classes.submit}
+                                    variant="contained"
+                                    disabled={loginState === tStore.State.Pending}
+                                    onClick={this.JoinTag}
+                                    fullWidth
+                            >
+                                회원가입
+                            </Button>
                         </div>
                     </div>
             </Container>
@@ -123,4 +135,4 @@ class SignIn extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(style) (SignIn)));
+export default withSnackbar(withRouter(withStyles(style) (SignInTag)));

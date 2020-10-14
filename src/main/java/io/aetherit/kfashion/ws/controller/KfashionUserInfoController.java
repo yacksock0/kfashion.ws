@@ -6,10 +6,13 @@ import io.aetherit.kfashion.ws.service.KfashionEmailAuthorityService;
 import io.aetherit.kfashion.ws.service.KfashionUserGroupAdminService;
 import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +25,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/kfashion/users")
 public class KfashionUserInfoController {
-
+    Logger logger = LoggerFactory.getLogger(KfashionUserInfoController.class);
     private KfashionUserInfoService kfashionUserInfoService;
     private JavaMailSender mailSender;
     private KfashionUserGroupAdminService kfashionUserGroupAdminService;
@@ -125,6 +128,7 @@ public class KfashionUserInfoController {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         List<KfashionUserInfo> userList = kfashionUserInfoService.selectUserList();
         resultMap.put("userList", userList);
+        logger.debug("test {} ", SecurityContextHolder.getContext().getAuthentication());
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
@@ -244,6 +248,13 @@ public class KfashionUserInfoController {
             kfashionUserInfoService.updateGroupUserName(user);
         }
         return new ResponseEntity<Object>("success", HttpStatus.OK);
+    }
+
+
+    @GetMapping("/test")
+    public ResponseEntity<Object> test(){
+
+        return null;
     }
 
 

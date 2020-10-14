@@ -54,9 +54,9 @@ const styles = theme => ({
 });
 
 
-class Verify extends React.Component {
+class VerifyTag extends React.Component {
     handleClickToHome = () => {
-        this.props.history.push("/");
+        this.props.history.push("/tagging");
     }
 
     render() {
@@ -71,7 +71,7 @@ class Verify extends React.Component {
                     </React.Fragment>
                 <Button color="primary" variant="contained"
                         className={classes.successButton}
-                        onClick={() => this.handleClickToHome()}>
+                        onClick={this.handleClickToHome}>
                     로그인으로 이동
                 </Button>
                     </div>
@@ -79,4 +79,4 @@ class Verify extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (Verify)));
+export default withSnackbar(withRouter(withStyles(styles) (VerifyTag)));

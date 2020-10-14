@@ -121,87 +121,88 @@ const style = theme => ({
 //     }, {});
 // };
 
-@inject('signUpStore')
+@inject('tSignUpStore')
 @observer
-class SignUp extends React.Component {
+class SignUpTag extends React.Component {
     componentDidMount() {
         // const params = decodeURLParams(this.props.location.search);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.signUpStore.isSignUpFailed) {
+        if(this.props.tSignUpStore.isSignUpFailed) {
             this.props.enqueueSnackbar('회원 가입에 실패하였습니다.', {
                 variant: 'error'
             });
 
-            this.props.signUpStore.clearState();
+            this.props.tSignUpStore.clearState();
         }
 
-        if(this.props.signUpStore.isNotAvailableEmail) {
+        if(this.props.tSignUpStore.isNotAvailableEmail) {
             this.props.enqueueSnackbar('이미 사용중인 이메일 또는 아이디 입니다.', {
                 variant: 'error'
             });
 
-            this.props.signUpStore.clearState();
+            this.props.tSignUpStore.clearState();
         }
 
     }
     handleChangeId = (event) => {
-        this.props.signUpStore.changeNewMemberId(event.target.value);
+        this.props.tSignUpStore.changeNewMemberId(event.target.value);
     }
 
     handleChangeEmail = (event) => {
-        this.props.signUpStore.changeNewMemberEmail(event.target.value);
+        this.props.tSignUpStore.changeNewMemberEmail(event.target.value);
     }
 
     handleChangePassword = (event) => {
-        this.props.signUpStore.changeNewMemberPassword(event.target.value);
+        this.props.tSignUpStore.changeNewMemberPassword(event.target.value);
     }
 
     handleChangePasswordConfirm = (event) => {
-        this.props.signUpStore.changeNewMemberPasswordConfirm(event.target.value);
+        this.props.tSignUpStore.changeNewMemberPasswordConfirm(event.target.value);
     }
 
     handleChangeUserName = (event) => {
-        this.props.signUpStore.changeNewMemberUserName(event.target.value);
+        this.props.tSignUpStore.changeNewMemberUserName(event.target.value);
     }
 
     handleChangePhone = (event) => {
-        this.props.signUpStore.changeNewMemberPhone(event.target.value);
+        this.props.tSignUpStore.changeNewMemberPhone(event.target.value);
     }
 
     handleChangeAllAgreements = (event) => {
-        this.props.signUpStore.changeAgreementsAll(event.target.checked);
+        this.props.tSignUpStore.changeAgreementsAll(event.target.checked);
     }
 
     handleChangeServiceAgreements = (event) => {
-        this.props.signUpStore.changeAgreementsService(event.target.checked);
+        this.props.tSignUpStore.changeAgreementsService(event.target.checked);
     }
 
     handleChangePrivacyAgreements = (event) => {
-        this.props.signUpStore.changeAgreementsPrivacy(event.target.checked);
+        this.props.tSignUpStore.changeAgreementsPrivacy(event.target.checked);
     }
 
     handleClickOK = () => {
-        this.props.signUpStore.doSignUp();
+        this.props.tSignUpStore.doSignUp(this.props.history);
 
     }
 
     handleClickToHome = () => {
-        this.props.history.push("/");
+        this.props.history.push("/tagging");
     }
 
     render() {
         const { classes } = this.props;
-        const { isEmailInputed, isValidId, isValidEmail, isValidPassword, isPasswordConfirmed, isValidUsername, isValidPhone, isPending, isSignUpSuccess, canSignUp, newMember, agreements, serverMode} = this.props.signUpStore;
+        const { isEmailInputed, isValidId, isValidEmail, isValidPassword, isPasswordConfirmed,
+            isValidUsername, isValidPhone, isPending, isSignUpSuccess, canSignUp, newMember,
+            agreements, serverMode} = this.props.tSignUpStore;
 
         return (
             <React.Fragment>
                 <Container component="main" maxWidth="sm">
                     <div className={classes.appBarSpacer} />
                     <div className={classes.paper}>
-                        <img src="https://placeimg.com/100/100/any" alt={""}/>
-                        {!isSignUpSuccess ?
+                        {/*<img src="https://placeimg.com/100/100/any" alt={""}/>*/}
                             <div className={classes.mainContent}>
                                 <Typography className={classes.mainTitle} component="h1" variant="h3" >
                                     회원 추가
@@ -222,16 +223,6 @@ class SignUp extends React.Component {
                                            InputLabelProps={{shrink: true}}
                                            helperText={isValidPassword ? '' : '최소 4 글자 이상을 입력해 주세요.'}
                                            autoFocus={isValidId ? false : true} required fullWidth/>
-                                <TextField id="email"
-                                           name="email"
-                                           label="이메일 주소"
-                                           margin="dense"
-                                           value={newMember.email}
-                                           onChange={this.handleChangeEmail}
-                                           className={classes.gutterMargin}
-                                           InputLabelProps={{shrink: true}}
-                                           helperText={isValidEmail ? '' : '이메일 형식이 아닙니다.'}
-                                           autoFocus={isEmailInputed ? false : true} required fullWidth/>
                                 <TextField id="password"
                                            type="password"
                                            name="password"
@@ -266,74 +257,6 @@ class SignUp extends React.Component {
                                            InputLabelProps={{shrink: true}}
                                            helperText={isValidUsername ? '' : '최소 2 글자 이상을 입력해 주세요.'}
                                            required fullWidth/>
-                                <TextField id="phone"
-                                           name="phone"
-                                           label="휴대폰"
-                                           margin="dense"
-                                           value={newMember.phone}
-                                           onChange={this.handleChangePhone}
-                                           className={classes.gutterMargin}
-                                           InputLabelProps={{shrink: true}}
-                                           helperText={isValidPhone ? '' : 'EX)010-1234-5678 입력해주세요.'}
-                                           required fullWidth/>
-                                {/*<div className={classes.titleArea}>*/}
-                                {/*    <Typography variant="h5" component="h5">*/}
-                                {/*        약관 동의자*/}
-                                {/*    </Typography>*/}
-                                {/*    <hr></hr>*/}
-                                {/*    <FormControlLabel*/}
-                                {/*        variant="body2"*/}
-                                {/*        name="checkAgreeTotal"*/}
-                                {/*        style={{paddingLeft: 9}}*/}
-                                {/*        control={*/}
-                                {/*            <Checkbox*/}
-                                {/*                checked={agreements.all}*/}
-                                {/*                onChange={this.handleChangeAllAgreements}*/}
-                                {/*                color="primary"*/}
-                                {/*                className={classes.checkAgreeTotal}*/}
-                                {/*            />*/}
-                                {/*        }*/}
-                                {/*        label="전체 동의"*/}
-                                {/*    />*/}
-                                {/*</div>*/}
-                                {/*<Grid item xs={12} style={{display: 'flex'}}>*/}
-                                {/*    <Grid item xs>*/}
-                                {/*        <FormControlLabel*/}
-                                {/*            name="checkAgreeService"*/}
-                                {/*            control={*/}
-                                {/*                <Checkbox*/}
-                                {/*                    checked={agreements.service}*/}
-                                {/*                    onChange={this.handleChangeServiceAgreements}*/}
-                                {/*                    color="primary"*/}
-                                {/*                />*/}
-                                {/*            }*/}
-                                {/*            label="서비스 이용 약관"*/}
-                                {/*        />*/}
-                                {/*    </Grid>*/}
-                                {/*    <Grid item xs align={"right"}>*/}
-                                {/*        <Link underline={"always"} href="/terms/terms"*/}
-                                {/*              className={classes.termsCaption}>내용보기</Link>*/}
-                                {/*    </Grid>*/}
-                                {/*</Grid>*/}
-                                {/*<Grid item xs={12} style={{display: 'flex'}}>*/}
-                                {/*    <Grid item xs>*/}
-                                {/*        <FormControlLabel*/}
-                                {/*            name="checkAgreePersonal"*/}
-                                {/*            control={*/}
-                                {/*                <Checkbox*/}
-                                {/*                    checked={agreements.privacy}*/}
-                                {/*                    onChange={this.handleChangePrivacyAgreements}*/}
-                                {/*                    color="primary"*/}
-                                {/*                />*/}
-                                {/*            }*/}
-                                {/*            label="개인 정보 처리 방침"*/}
-                                {/*        />*/}
-                                {/*    </Grid>*/}
-                                {/*    <Grid item xs align={"right"}>*/}
-                                {/*        <Link underline={"always"} href="/terms/privacy"*/}
-                                {/*              className={classes.termsCaption}>내용보기</Link>*/}
-                                {/*    </Grid>*/}
-                                {/*</Grid>*/}
                                 <Grid item xs={12} align={"center"}>
                                     <Button color="primary" variant="contained" className={classes.okButton}
                                             disabled={(!canSignUp) || (isPending)}
@@ -342,36 +265,17 @@ class SignUp extends React.Component {
                                         {isPending ? <CircularProgress size={16}/> : '회원 추가'}
                                     </Button>
                                 </Grid>
+                                <br/>
+                                <Grid item xs={12} align={"center"}>
+                                    <Button color="primary" variant="contained" className={classes.okButton}
+                                            disabled={(isPending)}
+                                            onClick={this.handleClickToHome}
+                                            fullWidth>
+                                        HOME
+                                    </Button>
+
+                                </Grid>
                             </div>
-                            :
-                            ''
-                        }
-                        {/*{isSignUpSuccess ?*/}
-                        {/*    <div className={classes.successContainer}>*/}
-                        {/*        {serverMode === 'SERVER' ?*/}
-                        {/*            <React.Fragment>*/}
-                        {/*                <Typography className={classes.successTitle}>회원 가입 신청 완료</Typography>*/}
-                        {/*                <Typography className={classes.successHeader}>{`${newMember.email}로 회원 가입 신청 되었습니다.`}</Typography>*/}
-                        {/*                <Typography className={classes.successHeader2}>가입이 완료 되려면 관리자의 승인이 필요합니다.</Typography>*/}
-                        {/*                <Typography className={classes.successBody}>승인 후에 ONTHELIVE의 서비스를<br/> 이용하실 수 있습니다.</Typography>*/}
-                        {/*            </React.Fragment>*/}
-                        {/*            :*/}
-                        {/*            <React.Fragment>*/}
-                        {/*                <Typography className={classes.successTitle}>회원 가입 완료</Typography>*/}
-                        {/*                <Typography className={classes.successHeader}>{`${newMember.email}로 전송된 이메일을 확인하여`}</Typography>*/}
-                        {/*                <Typography className={classes.successHeader2}>가입절차를 완료해 주세요.</Typography>*/}
-                        {/*                <Typography className={classes.successBody}>이메일인증 완료 후에 Kfashion의 서비스를<br/> 이용하실 수 있습니다.</Typography>*/}
-                        {/*            </React.Fragment>*/}
-                        {/*        }*/}
-                        {/*        <Button color="primary" variant="contained"*/}
-                        {/*                className={classes.successButton}*/}
-                        {/*                onClick={() => this.handleClickToHome()}>*/}
-                        {/*            메인으로 가기*/}
-                        {/*        </Button>*/}
-                        {/*    </div>*/}
-                        {/*    :*/}
-                        {/*    ''*/}
-                        {/*}*/}
                     </div>
                     <Grid container style={{ backgroundColor: '#fafafa', paddingBottom: 30}}>
                         <Grid container item xs={12} style={{paddingTop: 16}} >
@@ -391,4 +295,4 @@ class SignUp extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(style) (SignUp)));
+export default withSnackbar(withRouter(withStyles(style) (SignUpTag)));

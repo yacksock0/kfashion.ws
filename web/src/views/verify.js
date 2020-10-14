@@ -71,7 +71,7 @@ class Verify extends React.Component {
                     </React.Fragment>
                 <Button color="primary" variant="contained"
                         className={classes.successButton}
-                        onClick={() => this.handleClickToHome()}>
+                        onClick={this.handleClickToHome}>
                     로그인으로 이동
                 </Button>
                     </div>

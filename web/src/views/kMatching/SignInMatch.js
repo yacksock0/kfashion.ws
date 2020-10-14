@@ -6,6 +6,7 @@ import {inject, observer} from "mobx-react";
 import {Grid, Button, CircularProgress, Container, TextField, Typography} from "@material-ui/core";
 
 import * as mStore from "../../stores/kMatching/MAuthStore";
+import * as tStore from "../../stores/kTagging/TAuthStore";
 
 
 const style = theme => ({
@@ -49,7 +50,7 @@ const style = theme => ({
 
 @inject('mAuthStore')
 @observer
-class SignIn extends React.Component {
+class SignInMatch extends React.Component {
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
     }
@@ -70,6 +71,11 @@ class SignIn extends React.Component {
 
     handleSubmitForm = (e) => {
         this.props.mAuthStore.doLogin(this.props.history);
+    }
+
+
+    JoinMatch = () => {
+        this.props.history.push('/matching/SignUp');
     }
 
     render() {
@@ -114,6 +120,16 @@ class SignIn extends React.Component {
                                     >
                                 {loginState === mStore.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>
+
+                            <Button type="submit"
+                                    className={classes.submit}
+                                    variant="contained"
+                                    disabled={loginState === tStore.State.Pending}
+                                    onClick={this.JoinMatch}
+                                    fullWidth
+                            >
+                                회원가입
+                            </Button>
                         </div>
                     </div>
             </Container>
@@ -123,4 +139,4 @@ class SignIn extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(style) (SignIn)));
+export default withSnackbar(withRouter(withStyles(style) (SignInMatch)));

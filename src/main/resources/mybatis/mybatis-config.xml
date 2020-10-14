@@ -37,6 +37,12 @@
         <typeAlias type="io.aetherit.kfashion.ws.model.KfashionComment" alias="KfashionComment" />
 
 
+
+
+        <typeAlias type="io.aetherit.kfashion.ws.model.kTagging.TaggingUser" alias="TaggingUser" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.kSearching.SearchingUser" alias="SearchingUser" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.kMatching.MatchingUser" alias="MatchingUser" />
+
     </typeAliases>
 
     <typeHandlers>
@@ -62,5 +68,13 @@
         <mapper resource="mybatis/mapper/mariadb/KfashionUserGroupAdminMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/KfashionCommentMapper.xml" />
 
+
+
+
+        <mapper resource="mybatis/mapper/mariadb/kTagging/TaggingUserMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/kSearching/SearchingUserMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/kMatching/MatchingUserMapper.xml" />
+
     </mappers>
+
 </configuration>

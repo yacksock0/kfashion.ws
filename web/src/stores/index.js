@@ -16,12 +16,14 @@ import TAuthStore from "./kTagging/TAuthStore";
 import SAuthStore from "./kSearching/SAuthStore";
 import MAuthStore from "./kMatching/MAuthStore";
 import AppStore from "./AppStore";
+import TSignUpStore from "./kTagging/TSignUpStore";
+import SSignUpStore from "./kSearching/SSignUpStore";
+import MSignUpStore from "./kMatching/MSignUpStore";
 
 
 
 export const stores = {
     signUpStore: new SignUpStore(),
-    authStore:  new AuthStore(),
     adminAuthorityStore : new AdminAuthorityStore(),
     professionalLabelStore : new ProfessionalLabelStore(),
     userListStore: new UserListStore(),
@@ -36,7 +38,11 @@ export const stores = {
     messageStore : new MessageStore(),
 
     appStore : new AppStore(),
+    authStore:  new AuthStore(),
     tAuthStore : new TAuthStore(),
     sAuthStore : new SAuthStore(),
     mAuthStore : new MAuthStore(),
+    tSignUpStore: new TSignUpStore(),
+    sSignUpStore: new SSignUpStore(),
+    mSignUpStore: new MSignUpStore(),
 };

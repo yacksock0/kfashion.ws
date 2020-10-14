@@ -36,6 +36,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                .antMatchers("/api/vi/kfashion/users/test").authenticated()
 
                 // To Do : 빠른 시일에 설정해야 함.
                 .antMatchers("/**").permitAll()
@@ -58,5 +59,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public HttpSessionIdResolver httpSessionIdResolver() {
         return new HeaderHttpSessionIdResolver("X-Auth-Token");
     }
+
+//    private HttpSessionIdResolver test(HTTP){
+//
+//    }
 }
 

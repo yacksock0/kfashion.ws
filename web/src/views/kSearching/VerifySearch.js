@@ -54,9 +54,9 @@ const styles = theme => ({
 });
 
 
-class Verify extends React.Component {
+class VerifySearch extends React.Component {
     handleClickToHome = () => {
-        this.props.history.push("/");
+        this.props.history.push("/searching");
     }
 
     render() {
@@ -67,7 +67,7 @@ class Verify extends React.Component {
                         <Typography className={classes.successTitle}>회원 가입 인증 완료</Typography>
                         <Typography className={classes.successHeader}>{`가입을 축하합니다.`}</Typography>
                         <Typography className={classes.successHeader2}>작업자를 등록 하려면 관리자의 승인이 필요합니다.</Typography>
-                        <Typography className={classes.successBody}>승인 후에 Kfashion의 서비스를<br/> 이용하실 수 있습니다.</Typography>
+                        <Typography className={classes.successBody}>승인 후에 kSearching 서비스를<br/> 이용하실 수 있습니다.</Typography>
                     </React.Fragment>
                 <Button color="primary" variant="contained"
                         className={classes.successButton}
@@ -79,4 +79,4 @@ class Verify extends React.Component {
     }
 };
 
-export default withSnackbar(withRouter(withStyles(styles) (Verify)));
+export default withSnackbar(withRouter(withStyles(styles) (VerifySearch)));

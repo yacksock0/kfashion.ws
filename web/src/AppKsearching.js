@@ -5,13 +5,15 @@ import {withStyles} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as sStore from "./stores/kSearching/SAuthStore";
-import sHome from "./views/kSearching/Home";
-import sSignUp from "./views/kSearching/SignUp";
-import sVerify from "./views/kSearching/verify";
-import sSignIn from "./views/kSearching/SignIn";
-import mHome from "./views/kMatching/Home";
+import sHome from "./views/kSearching/HomeSearch";
+import sSignUp from "./views/kSearching/SignUpSearch";
+import sVerify from "./views/kSearching/VerifySearch";
+import sSignIn from "./views/kSearching/SignInSearch";
+import mHome from "./views/kMatching/HomeMatch";
 import TopBar from "./components/TopBar";
 import SideMenu from "./components/SideMenu";
+import SideMenuSearch from "./views/kSearching/SideMenuSearch";
+import test from "./views/kTagging/test";
 
 const style = () => ({
     root: {
@@ -88,7 +90,7 @@ class AppKsearching extends React.Component {
                                     doLogout={() => this.props.sAuthStore.doLogout()}
                                     setStep={this.props.currentStepStore.currentStep}
                             />
-                            <SideMenu mobileOpen={this.state.mobileOpen}
+                            <SideMenuSearch mobileOpen={this.state.mobileOpen}
                                       setMobileOpen={this.setMobileOpen}
                                       loginUser={loginUser}
                                       isLoggedIn={loginState === sStore.State.Authenticated} />
@@ -97,6 +99,7 @@ class AppKsearching extends React.Component {
                                 <Switch>
                                     <Route exact path="/searching/home" component={sHome}/>
                                     <Route exact path="/searching" component={sHome}/>
+                                    <Route exact path="/searching/test" component={test}/>
 
                                 </Switch>
                             </React.Fragment>

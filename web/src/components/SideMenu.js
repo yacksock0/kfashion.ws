@@ -23,6 +23,8 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import Button from "@material-ui/core/Button";
+import {toJS} from "mobx";
 
 const logoWidth = 129;
 const logoHeight = 22;
@@ -82,6 +84,8 @@ export default function SideMenu(props) {
     const classes = useStyles();
     const theme = useTheme();
     const { mobileOpen, setMobileOpen, isLoggedIn, loginUser} = props;
+    // console.log("props : " , toJS(props));
+    // console.log("loginUser : " , toJS(loginUser));
 
     // const windowSet = () => { window.location.href; }
     const handleDrawerToggle = () => {
@@ -380,7 +384,7 @@ export default function SideMenu(props) {
                             <ListItemText type="button" onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
                             {open1 ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
-                    <Link to="/SignUp" className={classes.link}>
+                    <Link to="/SignUpTag" className={classes.link}>
                         <Collapse in={open1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem type="button" className={classes.nested}>

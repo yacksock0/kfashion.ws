@@ -2,6 +2,8 @@ package io.aetherit.kfashion.ws.service;
 
 import io.aetherit.kfashion.ws.model.KfashionSimpleUser;
 import io.aetherit.kfashion.ws.model.KfashionUserToken;
+import io.aetherit.kfashion.ws.model.kTagging.TaggingSimpleUser;
+import io.aetherit.kfashion.ws.model.kTagging.TaggingUserToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
