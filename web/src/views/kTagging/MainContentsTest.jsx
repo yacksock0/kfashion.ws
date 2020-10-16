@@ -3,12 +3,12 @@ import { WithStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import DropZone from './DropZone';
-import ImageUpload from '../MainTag/ImageUploadTag'
+import ImageUpload from './ImageUpload'
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-// import imgfile from './images/test1.png';
+import imgfile from './images/test1.png';
 
 
 //2020.10.15 inject 이지현 추가
@@ -98,12 +98,12 @@ const style = theme => ({
 
 
 
-@inject('testImageStore')
+@inject('imageStore')
 @observer
 class MainContents extends React.Component {
     render() {
         //20.10.16 이지현 추가
-        const { maxValue, fileTotal, count } = this.props.testImageStore;
+        const { maxValue, fileTotal, count } = this.props.imageStore;
         const { classes } = this.props;
         this.someImage = `태깅`;
         this.message = `완료 된 이미지가 없습니다`;

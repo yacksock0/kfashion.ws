@@ -29,7 +29,7 @@ const style = theme => ({
     },
   },
 });
-@inject('testImageStore')
+@inject('imageStore')
 @observer
 class DropFile extends Component {
     constructor(props) {
@@ -40,16 +40,15 @@ class DropFile extends Component {
         };
     }
     handleChange(files) {
-         console.log("@@@@@@");
         this.setState({
             files: files,
         });
-        this.props.testImageStore.changeFileTotal(files.length);
+        this.props.imageStore.changeFileTotal(files.length);
         console.log('file.lenght :>> ', files.length);
         console.log('file :>> ', files);
         const file = files;
-        this.props.testImageStore.countReset(0);
-        this.props.testImageStore.fileupload(file, 0, file.length);
+        this.props.imageStore.countReset(0);
+        this.props.imageStore.fileupload(file, 0, file.length);
     }
     render() {
         const { classes } = this.props;
