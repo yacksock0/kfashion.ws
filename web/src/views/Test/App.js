@@ -1,22 +1,22 @@
 import React from 'react';
 import './App.css';
-import TopBar from './TopBar';
+import TopBarTag from '../kTagging/TopBarTag';
 import Login from './Login';
 import Join from './Join';
-import MainContents from './MainContents';
-import Footer from './Footer';
+import MainContents from '../kTagging/MainTag/MainContentTag';
+import FooterTag from '../kTagging/FooterTag';
 
 
 function App() {
   return (
     <div className="App">
-      <TopBar />
+      <TopBarTag />
 
       {/* <Login /> */}
       {/* <Join /> */}
       <MainContents />
 
-      <Footer />
+      <FooterTag />
     </div>
   );
 }

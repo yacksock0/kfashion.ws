@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CheckBox from '../Test/CheckBox';
+import CheckBox from './CheckBox';
 import Paper from '@material-ui/core/Paper';
-import Modal1 from '../Test/Modal1';
+import Modal1 from './Modal1';
 
 const useStyles = makeStyles((theme) => ({
     root: {

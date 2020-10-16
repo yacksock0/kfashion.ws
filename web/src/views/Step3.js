@@ -163,8 +163,8 @@ class Step3 extends React.Component {
 
     handleSubmit = () => {
         if(this.state.workNo !== 0){
-            let finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
-            if(finalCheck){
+            // let finalCheck = window.confirm("이미지에 필요한 탭의 정보를 입력하셨습니까?");
+            // if(finalCheck){
                 if(this.props.professionalLabelStore.styleReviewLabel.style === ''){
                     alert("스타일은 필수 항목입니다.");
                     return;
@@ -188,7 +188,7 @@ class Step3 extends React.Component {
                 this.canvas.setHeight(0);
                 this.canvas.renderAll();
                 this.deleteAll();
-            }
+            // }
         }else{
             alert("작업을 먼저 선택해 주세요.");
             this.setState({

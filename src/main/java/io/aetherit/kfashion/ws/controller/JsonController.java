@@ -56,10 +56,14 @@ public class JsonController {
     public ResponseEntity<Object> jsonFileUp(HttpServletRequest httpRequest) throws IOException {
 
         Long[] workNo = kfashionWorkService.selectJsonWorkList();
-
+//        for (int z = 0; z <workNo.length ; z++) {
+//            System.out.println("@@@@@@@@@@ : " +  workNo[z]);
+//        }
 
         if (workNo.length > 0) {
-            for (int z = 0; z < workNo.length; z++) {
+
+            for (int z = 0; z <workNo.length ; z++) {
+                String styleItem = null;
                 JSONObject allObject = new JSONObject();
                 JSONObject jsonObject = new JSONObject();
                 JSONObject descriptionObject = new JSONObject();
@@ -276,11 +280,13 @@ public class JsonController {
                     }
                     if (labelNo5 == 5) {
                         List<KfashionLabel> styleReviewLabelList = kfashionLabelService.selectStyleReviewLabelList(workNo[z]);
+                        styleItem = styleReviewLabelList.get(0).getCategoryItemName();
                         if (styleReviewLabelList.size() == 2) {
                             styleMap.put(styleReviewLabelList.get(0).getCategoryName(), styleReviewLabelList.get(0).getCategoryItemName());
                             styleMap.put("서브" + styleReviewLabelList.get(1).getCategoryName(), styleReviewLabelList.get(1).getCategoryItemName());
                         } else {
                             styleMap.put(styleReviewLabelList.get(0).getCategoryName(), styleReviewLabelList.get(0).getCategoryItemName());
+
                         }
                     }
                 }
@@ -498,7 +504,23 @@ public class JsonController {
 
                 jsonObject.put("데이터셋 상세설명", descriptionObject);
 
-                String path = "/Users/jangseong-yeol/work/" + workNo[z]; //폴더 경로
+
+
+                String stylePath = "/Users/youngrackchoi/Desktop/test2/" + styleItem; //폴더 경로
+                File styleFolder = new File(stylePath);
+
+                // 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+                if (!styleFolder.exists()) {
+                    try {
+                        styleFolder.mkdirs(); //폴더 생성합니다.
+                    } catch (Exception e) {
+                        e.getStackTrace();
+                    }
+                }
+
+
+
+                String path = "/Users/youngrackchoi/Desktop/test2/" + styleItem + "/" + workNo[z]; //폴더 경로
                 File Folder = new File(path);
 
                 // 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
@@ -512,7 +534,6 @@ public class JsonController {
 
                 Map<String, Object> map = kfashionImageService.getByteImage(workNo[z]);
                 byte[] imageContent = (byte[]) map.get("img_data");
-
                 File imageFile = new File(path + "/" + workName);
 
                 OutputStream os = new FileOutputStream(imageFile);
@@ -528,7 +549,7 @@ public class JsonController {
                 allObject.put("데이터셋 정보", jsonObject);
 
 
-                FileWriter file = new FileWriter("/Users/jangseong-yeol/work/" + workNo[z] + "/" + workNo[z] + ".json");
+                FileWriter file = new FileWriter(path + "/" + workNo[z] + ".json");
                 file.write(allObject.toJSONString());
                 file.flush();
                 file.close();

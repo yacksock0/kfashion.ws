@@ -1147,7 +1147,6 @@ export default class ProfessionalLabelStore {
                 this.LoadRecentImage(createdId);
                 this.doProfessionalCompleteUp(createdId,authorityNo);
                 changeWorkNo(0);
-                alert("저장 완료");
             } else {
                 this.state = State.Fail;
             }

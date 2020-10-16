@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { DropzoneArea } from 'material-ui-dropzone'
 import { inject, observer } from "mobx-react";
 import { withStyles  } from '@material-ui/core/styles';
+import {STATE} from '../../../common/state';
 
 const style = theme => ({   
     root: {
@@ -29,7 +30,7 @@ const style = theme => ({
     },
   },
 });
-@inject('testImageStore')
+@inject('tImageStore')
 @observer
 class DropFile extends Component {
     constructor(props) {
@@ -40,24 +41,23 @@ class DropFile extends Component {
         };
     }
     handleChange(files) {
-         console.log("@@@@@@");
         this.setState({
             files: files,
         });
-        this.props.testImageStore.changeFileTotal(files.length);
+        this.props.tImageStore.changeFileTotal(files.length);
         console.log('file.lenght :>> ', files.length);
         console.log('file :>> ', files);
         const file = files;
-        this.props.testImageStore.countReset(0);
-        this.props.testImageStore.fileupload(file, 0, file.length);
+        this.props.tImageStore.countReset(0);
+        this.props.tImageStore.fileupload(file, 0, file.length);
     }
     render() {
         const { classes } = this.props;
+        const { State } = this.props.tImageStore;
 
         return (
             <div className={classes.root}>
-                
-                <DropzoneArea 
+                <DropzoneArea
                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp','image/gif','image/vnd.microsoft.icon','image/tiff','image/webp']}
                     maxFileSize={50000000000}
                     filesLimit={70000}
@@ -65,7 +65,10 @@ class DropFile extends Component {
                     dropzoneText='업로드할 이미지 또는 폴더를 드래그해주세요!'
                     showAlerts={false}
                     showPreviewsInDropzone={false}
-                    ></DropzoneArea>
+                    dropzoneProps={{
+                        disabled: State === STATE.PENDING,
+                    }}
+                    />
             </div>
         );
     }

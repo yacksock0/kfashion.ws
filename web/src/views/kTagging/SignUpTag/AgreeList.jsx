@@ -39,8 +39,6 @@ export default class AgreeList extends Component {
     }
 
     onCheckBoxChange(checkName, isChecked) {
-
-        // alert(checkName + "/" + isChecked);
         let isAllChecked = (checkName === 'all' && isChecked);
         let isAllUnChecked = (checkName === 'all' && !isChecked);
         const checked = isChecked;

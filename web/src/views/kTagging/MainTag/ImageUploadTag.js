@@ -4,6 +4,7 @@ import MaterialTable from 'material-table';
 import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
+import {STATE} from '../../../common/state';
 
 const style = theme => ({
     root: {
@@ -11,7 +12,7 @@ const style = theme => ({
     },
 });
 
-@inject('testImageStore')
+@inject('tImageStore')
 @observer
 class ImageUploadTag extends Component {
     constructor(props) {
@@ -22,27 +23,29 @@ class ImageUploadTag extends Component {
             imgData: '',
             count: 0,
             data: [],
+            pageSize : 3,
         }
     }
     componentDidMount() {
-        this.boundaryList = this.props.testImageStore.boundaryList;
+        this.boundaryList = this.props.tImageStore.boundaryList;
     }
     componentWillUnmount() {
-        this.props.testImageStore.initStore();
+        this.props.tImageStore.initStore();
     }
     render() {
         const { classes } = this.props;
-        const { count, fileTotal } = this.props.testImageStore;
+        const { count, fileTotal } = this.props.tImageStore;
         //진행바
         this.progress = 0;
         if (fileTotal <= 4 && fileTotal !==0) {
             this.progress = 100
         }
-        if (`${fileTotal}` >= 5) {
+        if (fileTotal >= 5) {
             this.progress = count / fileTotal * 100
-            if (`${fileTotal}` === `${count}`) {
+            if (fileTotal === count) {
                 this.progress = count / fileTotal * 100;
-                if (`${fileTotal}` !== `${count}`) {
+                this.setState({pageSize : 20});
+                if (fileTotal !== count) {
                     this.progress = 0;
                 }
             }
@@ -50,7 +53,7 @@ class ImageUploadTag extends Component {
         return (
             <Paper elevation={0}>
                 <div className={classes.root}>
-                 {/* <LinearProgress variant="determinate" value={this.progress} /> */}
+                  <LinearProgress variant="determinate" value={this.progress} />
                 </div>
                 <MaterialTable
                     columns={[
@@ -59,7 +62,7 @@ class ImageUploadTag extends Component {
                         { title: '비어보여서..', field: 'fileName', type: 'text', sorting: false, align: "center" },
                     ]}
                     data={
-                        this.props.testImageStore.boundaryList.map((item) => {
+                        this.props.tImageStore.boundaryList.map((item) => {
                             return {
                                 fileName: item.fileName,
                                 imgData: item.imgData,
@@ -69,7 +72,7 @@ class ImageUploadTag extends Component {
                     options={{
                         toolbar: false, //툴바(테이블위 테이블이름 등 버튼있는공간)X 있으면 너무 테이블이 작아보여 사용자가 답답할거같음.
                         showTitle: false,
-                        pageSize: 20,
+                        pageSize: this.state.pageSize,
                         //검색창
                         search: false,
                         //데이터 전체 출력 (export)

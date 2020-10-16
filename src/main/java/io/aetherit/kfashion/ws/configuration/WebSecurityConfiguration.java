@@ -60,8 +60,4 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new HeaderHttpSessionIdResolver("X-Auth-Token");
     }
 
-//    private HttpSessionIdResolver test(HTTP){
-//
-//    }
 }
-

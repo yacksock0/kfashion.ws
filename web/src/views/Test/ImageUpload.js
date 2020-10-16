@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Toolbar, Button, Grid, } from "@material-ui/core";
 import { inject, observer } from "mobx-react";
-import DropzoneDialogExample from "../../component/droganddrop/DropzoneDialog";
+import DropzoneDialogExample from "./DropzoneDialog";
 import MaterialTable from 'material-table';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-@inject('imageStore')
+@inject('testImageStore')
 @observer
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -22,11 +22,11 @@ class ImageUpload extends React.Component {
 
 
     componentDidMount() {
-        this.boundaryList = this.props.imageStore.boundaryList;
+        this.boundaryList = this.props.testImageStore.boundaryList;
 
     }
     componentWillUnmount() {
-        this.props.imageStore.initStore();
+        this.props.testImageStore.initStore();
     }
 
     //뒤로가기 버튼
@@ -35,7 +35,7 @@ class ImageUpload extends React.Component {
     }
 
     render() {
-        const { count, fileTotal } = this.props.imageStore;
+        const { count, fileTotal } = this.props.testImageStore;
         //상단 글
         this.total = '이미지 테이블';
         if (`${fileTotal}` >= 1) {
@@ -54,7 +54,7 @@ class ImageUpload extends React.Component {
             //로딩중 테이블 데이터 안보이게
             this.message = <CircularProgress />
             if (`${fileTotal}` === `${count}`) {
-                this.table = this.props.imageStore.boundaryList.map((item) => {
+                this.table = this.props.testImageStore.boundaryList.map((item) => {
                     return {
                         fileName: item.fileName,
                         imgData: item.imgData,

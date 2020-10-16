@@ -5,19 +5,28 @@ import {withStyles} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as tStore from "./stores/kTagging/TAuthStore";
-import tHome from "./views/kTagging/HomeTag";
-import tSignUp from "./views/kTagging/SignUpTag";
-import tVerify from "./views/kTagging/VerifyTag";
+import tSignUp from "./views/kTagging/SignUpTag/SignUpTag";
+import tVerify from "./views/kTagging/SignUpTag/VerifyTag";
 import tSignIn from "./views/kTagging/SignInTag";
 import TopBar from "./components/TopBar";
 import SideMenuTag from "./views/kTagging/SideMenuTag";
-import test from "./views/kTagging/test";
+import test from "./views/kTagging/testTagging";
+
+import './views/Test/App.css';
+import TopBarTest from './views/kTagging/TopBarTag';
+import FooterTag from './views/kTagging/FooterTag';
+import JoinAgreeTag from "./views/kTagging/SignUpTag/JoinAgreeTag";
+
+import MainContents from "./views/kTagging/MainTag/MainContentTag";
+import ImageUpload from "./views/kTagging/MainTag/ImageUploadTag";
 
 const style = () => ({
     root: {
         display: 'flex',
     }
 });
+
+
 @inject('tAuthStore', 'currentStepStore')
 @observer
 class AppKtagging extends React.Component {
@@ -72,46 +81,56 @@ class AppKtagging extends React.Component {
     }
 
     render() {
-
         const { classes } = this.props;
         const { loginState, loginUser} = this.props.tAuthStore;
-        return (
-            <div className={classes.root}>
-                <Router>
-                    <CssBaseline />
-                    <Route path="/tagging" component={tHome}>
-                        <TopBar mobileOpen={this.state.mobileOpen}
-                                setMobileOpen={this.setMobileOpen}
-                                isLoggedIn={loginState === tStore.State.Authenticated}
-                                loginUser={loginUser}
-                                doLogout={() => this.props.tAuthStore.doLogout()}
-                                setStep={this.props.currentStepStore.currentStep}
-                        />
-                        <SideMenuTag mobileOpen={this.state.mobileOpen}
-                                  setMobileOpen={this.setMobileOpen}
-                                  loginUser={loginUser}
-                                  isLoggedIn={loginState === tStore.State.Authenticated} />
 
+        return (
+            <div className="App">
+                <Router>
+                    <Route path="/tagging" component={MainContents}>
+                        <TopBarTest mobileOpen={this.state.mobileOpen}
+                                    setMobileOpen={this.setMobileOpen}
+                                    isLoggedIn={loginState === tStore.State.Authenticated}
+                                    loginUser={loginUser}
+                                    doLogout={() => this.props.tAuthStore.doLogout()}
+                                    setStep={this.props.currentStepStore.currentStep}
+                                    goHome={this.goHome}
+                        />
+                        {/*<SideMenuTag mobileOpen={this.state.mobileOpen}*/}
+                        {/*             setMobileOpen={this.setMobileOpen}*/}
+                        {/*             loginUser={loginUser}*/}
+                        {/*             isLoggedIn={loginState === tStore.State.Authenticated} />*/}
                         {loginState === tStore.State.Authenticated ? (
                             <React.Fragment>
                                 <Switch>
-                                    <Route exact path="/tagging/home" component={tHome}/>
-                                    <Route exact path="/tagging" component={tHome}/>
-                                    <Route exact path="/tagging/test" component={test}/>
-
+                                    <Route exact path="/tagging/home" component={MainContents}/>
+                                    <Route exact path="/tagging" component={MainContents}/>
                                 </Switch>
                             </React.Fragment>
                         ) : (
                             <Switch>
                                 <Route path="/tagging/SignUp" component={tSignUp} />
                                 <Route path="/tagging/sign/success" component={tVerify} />
+                                <Route path="/tagging/agree" component={JoinAgreeTag} />
                                 <Route path="/tagging" component={tSignIn} />
-
                             </Switch>
                         )}
+                        <FooterTag />
                     </Route>
                 </Router>
+
+
+
+
+
+                 {/*<LoginTest />*/}
+                 {/*<JoinTest />*/}
+                {/*<MainContents />*/}
+
+
             </div>
+
+
         );
     }
 };

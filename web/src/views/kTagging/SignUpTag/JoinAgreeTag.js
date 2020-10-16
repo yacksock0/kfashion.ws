@@ -66,8 +66,8 @@ const style = theme => ({
 @observer
 class JoinAgreeTag extends React.Component {
 
-    handleClickToHome = () => {
-        this.props.history.push("/tagging");
+    handleClickToSignUp = () => {
+        this.props.history.push("/tagging/SignUp");
     }
 
     render() {
@@ -85,7 +85,8 @@ class JoinAgreeTag extends React.Component {
                         <Paper elevation={0}>
                             <Button variant="contained"
                                     className={classes.btnjoinstyle}
-                                    disabled={!isAllSelected} >
+                                    disabled={!isAllSelected}
+                                    onClick={this.handleClickToSignUp}>
                                 동의하고 가입하기
                             </Button>
                         </Paper>

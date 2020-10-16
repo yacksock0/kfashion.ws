@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
-import { WithStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { Hidden, Grid, Container, Button, Typography, CircularProgress, Paper  } from '@material-ui/core';
 import DropZone from './DropZone';
-import ImageUpload from '../MainTag/ImageUploadTag'
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
-// import imgfile from './images/test1.png';
+import ImageUpload from './ImageUploadTag'
+import {STATE} from '../../../common/state';
 
 
 //2020.10.15 inject 이지현 추가
@@ -98,31 +92,27 @@ const style = theme => ({
 
 
 
-@inject('testImageStore')
+@inject('tImageStore')
 @observer
-class MainContents extends React.Component {
+class MainContentTag extends React.Component {
     render() {
         //20.10.16 이지현 추가
-        const { maxValue, fileTotal, count } = this.props.testImageStore;
+        const { maxValue, fileTotal, count, State } = this.props.tImageStore;
         const { classes } = this.props;
-        this.someImage = `태깅`;
-        this.message = `완료 된 이미지가 없습니다`;
+        this.someImage = '태깅';
+        this.message = '완료 된 이미지가 없습니다';
         if (maxValue === 0) {
-            if (`${fileTotal}` >= 1) {
-                // this.someImage = `${count} / ${fileTotal}`
-                // this.message = '건의 이미지 로딩중..???'
-                if (`${fileTotal}` === `${count}`) {
+            if (fileTotal >= 1) {
+                if (fileTotal === count) {
                     this.someImage = `총${maxValue}건`;
                     this.message = '의 이미지 태깅완료'
                 }
             }
         } else {
-            if (`${fileTotal}` >= 1) {
+            if (fileTotal >= 1) {
                 this.someImage = `총${maxValue}건`;
                 this.message = '의 이미지 태깅완료'
-                // this.someImage = `${count} / ${fileTotal}`;
-                // this.message = <CircularProgress />;
-                if (`${fileTotal}` === `${count}`) {
+                if (fileTotal === count) {
                     this.someImage = `총${maxValue}건`;
                     this.message = '의 이미지 태깅완료'
                 }
@@ -150,9 +140,22 @@ class MainContents extends React.Component {
                                             <Typography className={classes.imgtext}>
                                                 <span className={classes.countcolor}>{this.someImage}</span>{this.message}
                                             </Typography>
-                                            <Button variant="contained" className={classes.btnstyle} >TEXT다운로드</Button>
-                                            <Button variant="contained" className={classes.btnstyle}>CSV다운로드</Button>
-                                            <Button variant="contained" className={classes.btnstyle}>EXCEL다운로드</Button>
+                                            <Button variant="contained"
+                                                    className={classes.btnstyle}
+                                                    disabled={State === STATE.PENDING}>
+                                                {/*{State !== STATE.PENDING ? "TEXT다운로드" : <CircularProgress size={10}/>}*/}
+                                                TEXT다운로드
+                                            </Button>
+                                            <Button variant="contained"
+                                                    className={classes.btnstyle}
+                                                    disabled={State === STATE.PENDING}>
+                                                CSV다운로드
+                                            </Button>
+                                            <Button variant="contained"
+                                                    className={classes.btnstyle}
+                                                    disabled={State === STATE.PENDING}>
+                                                EXCEL다운로드
+                                            </Button>
                                             <br />
 
                                             {/* 업로드 이미지 들어가는영역 */}
@@ -181,15 +184,27 @@ class MainContents extends React.Component {
                                             </Typography>
 
                                             <Paper elevation={0}>
-                                                <Button variant="contained" className={classes.btnstyle} >TEXT다운로드</Button>
-                                                <Button variant="contained" className={classes.btnstyle} >CSV다운로드</Button>
-                                                <Button variant="contained" className={classes.btnstyle} >EXCEL다운로드</Button>
+                                                <Button variant="contained"
+                                                        className={classes.btnstyle}
+                                                        disabled={State === STATE.PENDING}>
+                                                    TEXT다운로드
+                                                </Button>
+                                                <Button variant="contained"
+                                                        className={classes.btnstyle}
+                                                        disabled={State === STATE.PENDING}>
+                                                    CSV다운로드
+                                                </Button>
+                                                <Button variant="contained"
+                                                        className={classes.btnstyle}
+                                                        disabled={State === STATE.PENDING}>
+                                                    EXCEL다운로드
+                                                </Button>
                                             </Paper>
                                             <br />
                                             {/* 업로드 이미지 들어가는영역 */}
                                             <Paper elevation={0} className={classes.imgboxin}>
                                                 {/* 2020.10.15 일단 테이블 삽입 이지현 */}
-                                                <ImageUpload />
+                                                {/*<ImageUpload />*/}
                                             </Paper>
                                         </Paper>
                                     </div>
@@ -204,4 +219,4 @@ class MainContents extends React.Component {
     }
 }
 
-export default withStyles(style)(MainContents);
+export default withStyles(style)(MainContentTag);

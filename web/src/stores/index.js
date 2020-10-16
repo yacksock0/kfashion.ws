@@ -19,7 +19,7 @@ import AppStore from "./AppStore";
 import TSignUpStore from "./kTagging/TSignUpStore";
 import SSignUpStore from "./kSearching/SSignUpStore";
 import MSignUpStore from "./kMatching/MSignUpStore";
-
+import TImageStore from "./kTagging/TImageStore";
 
 
 export const stores = {
@@ -45,4 +45,6 @@ export const stores = {
     tSignUpStore: new TSignUpStore(),
     sSignUpStore: new SSignUpStore(),
     mSignUpStore: new MSignUpStore(),
+
+    tImageStore : new TImageStore(),
 };

@@ -10,10 +10,21 @@ import sSignUp from "./views/kSearching/SignUpSearch";
 import sVerify from "./views/kSearching/VerifySearch";
 import sSignIn from "./views/kSearching/SignInSearch";
 import mHome from "./views/kMatching/HomeMatch";
-import TopBar from "./components/TopBar";
+// import TopBar from "./components/TopBar";
 import SideMenu from "./components/SideMenu";
 import SideMenuSearch from "./views/kSearching/SideMenuSearch";
-import test from "./views/kTagging/test";
+import test from "./views/kTagging/testTagging";
+import TopBar from "./views/Test/Test/TopBar";
+import TrendSearch from "./views/Test/Test/TrendSearch";
+import Footer from "./views/Test/Test/Footer";
+import MainContents from "./views/Test/Test/MainContents";
+
+// import React from 'react';
+// import './App.css';
+// import TopBar from './TopBar';
+// import MainContents from './MainContents';
+// import TrendSearch from './TrendSearch';
+// import Footer from './Footer';
 
 const style = () => ({
     root: {
@@ -79,10 +90,9 @@ class AppKsearching extends React.Component {
         const { classes } = this.props;
         const { loginState, loginUser} = this.props.sAuthStore;
         return (
-            <div className={classes.root}>
+            <div className="App">
                 <Router>
-                    <CssBaseline />
-                    <Route path="/searching" component={sHome}>
+                    <Route path="/searching" component={MainContents}>
                             <TopBar mobileOpen={this.state.mobileOpen}
                                     setMobileOpen={this.setMobileOpen}
                                     isLoggedIn={loginState === sStore.State.Authenticated}
@@ -90,16 +100,16 @@ class AppKsearching extends React.Component {
                                     doLogout={() => this.props.sAuthStore.doLogout()}
                                     setStep={this.props.currentStepStore.currentStep}
                             />
-                            <SideMenuSearch mobileOpen={this.state.mobileOpen}
-                                      setMobileOpen={this.setMobileOpen}
-                                      loginUser={loginUser}
-                                      isLoggedIn={loginState === sStore.State.Authenticated} />
+                            {/*<SideMenuSearch mobileOpen={this.state.mobileOpen}*/}
+                            {/*          setMobileOpen={this.setMobileOpen}*/}
+                            {/*          loginUser={loginUser}*/}
+                            {/*          isLoggedIn={loginState === sStore.State.Authenticated} />*/}
                         {loginState === sStore.State.Authenticated ? (
                             <React.Fragment>
                                 <Switch>
-                                    <Route exact path="/searching/home" component={sHome}/>
-                                    <Route exact path="/searching" component={sHome}/>
-                                    <Route exact path="/searching/test" component={test}/>
+                                    <Route exact path="/searching/home" component={MainContents}/>
+                                    <Route exact path="/searching" component={MainContents}/>
+                                    <Route exact path="/searching/text" component={TrendSearch}/>
 
                                 </Switch>
                             </React.Fragment>
@@ -110,9 +120,19 @@ class AppKsearching extends React.Component {
                                 <Route path="/searching" component={sSignIn} />
                             </Switch>
                         )}
+                        <Footer />
                     </Route>
                 </Router>
             </div>
+            //
+            // <div className="App">
+            //     <header className="App-header">
+            //         <TopBar />
+            //          <MainContents />
+            //         <TrendSearch />
+            //         <Footer />
+            //     </header>
+            // </div>
         );
     }
 };

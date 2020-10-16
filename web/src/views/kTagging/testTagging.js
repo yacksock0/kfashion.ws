@@ -4,6 +4,8 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {Grid, Typography} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
+import Button from "@material-ui/core/Button";
+import {DropzoneArea, DropzoneDialog} from "material-ui-dropzone";
 
 
 const styles = theme => ({
@@ -41,17 +43,36 @@ const styles = theme => ({
 @inject('currentStepStore')
 @observer
 class HomeTag extends React.Component {
+
+
+    constructor(props){
+        super(props);
+        this.state = {
+            files: []
+        };
+    }
+
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
         this.props.currentStepStore.setStep(0);
-        // this.props.enqueueSnackbar("test", {
-        //     variant: 'success',
-        //     anchorOrigin:{
-        //         vertical: 'bottom',
-        //         horizontal: 'left',
-        //     }
-        // });
     }
+
+    handleChange(files){
+        this.setState({
+            files: files
+        });
+    }
+
+    handleResult(){
+        console.log("file : ", this.state.files);
+    }
+
+
+    test = () =>{
+
+    }
+
+
 
     render() {
         const { classes } = this.props;
@@ -64,11 +85,40 @@ class HomeTag extends React.Component {
                             <Typography variant="h3" component="h3" style={{display:'inline'}} >
                                 test
                             </Typography>
+                            <DropzoneArea
+                                style = {{width : 100}}
+                                filesLimit = {1200000}
+                                onChange={this.test}
+                                // onChange={(files) => console.log('Files:', files)}
+                                showPreviews={false}
+                                // maxFileSize={50000000000}
+                                // onChange={this.handleChange.bind(this)}
+                                // dropzoneText={"이미지 파일 혹은 폴더를 올려주세요"}
+                                acceptedFiles={['image/jpeg', 'image/png', 'image/bmp','image/jpg','image/tiff']}
+                            />
+
+
                         </div>
+
+
+
+
+
+                        <Button onClick={this.handleResult.bind(this)}
+                        >
+                            test
+                        </Button>
                     </Grid>
+
             </div>
+
+
+
+
         );
     }
+
+
 };
 
 export default withSnackbar(withRouter(withStyles(styles) (HomeTag)));

@@ -11,7 +11,7 @@ import mVerify from "./views/kMatching/VerifyMatch";
 import mSignIn from "./views/kMatching/SignInMatch";
 import TopBar from "./components/TopBar";
 import SideMenuMatch from "./views/kMatching/SideMenuMatch";
-import test from "./views/kTagging/test";
+import test from "./views/kTagging/testTagging";
 
 const style = () => ({
     root: {

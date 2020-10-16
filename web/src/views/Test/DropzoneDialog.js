@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-@inject('imageStore')
+@inject('testImageStore')
 @observer
 class DropzoneDialogExample extends Component {
     constructor(props) {
@@ -15,21 +15,20 @@ class DropzoneDialogExample extends Component {
         };
     }
     handleSave(file) {
-        this.setState({
-            files: file,
-        });
+        alert("@@@@@@@");
+        // this.setState({
+        //     files: file,
+        // });
         
-        this.props.imageStore.changeFileTotal(file.length);
-        console.log('file.lenght :>> ', file.length);
-        console.log('file :>> ', file);
-        //const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'}); 파일정렬옵션!
+        this.props.testImageStore.changeFileTotal(file.length);
         const uploadfile = file;
-        this.props.imageStore.countReset(0);
-        this.props.imageStore.fileupload(uploadfile, 0, uploadfile.length);
+        this.props.testImageStore.countReset(0);
+        this.props.testImageStore.fileupload(uploadfile, 0, uploadfile.length);
+        alert("#######");
     }
 
     render() {
-        const { count, fileTotal,test } = this.props.imageStore;
+        const { count, fileTotal, test } = this.props.testImageStore;
         this.total = 'Click or DragAndDrop!!';
         if (`${fileTotal}` >= 1 ) {
         this.total = <CircularProgress/>//`${count} / ${fileTotal}`
@@ -45,7 +44,7 @@ class DropzoneDialogExample extends Component {
                     maxFileSize={50000000000}
                     filesLimit={70000}
                     onDrop={this.handleSave.bind(this)}
-                    //onChange={this.handleSave.bind(this)} 
+                    //onChange={this.handleSave.bind(this)}
                     dropzoneText={this.total}
                     showAlerts={false}
                     showPreviewsInDropzone={false}
