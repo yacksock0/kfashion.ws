@@ -79,7 +79,6 @@ public class TaggingUserService {
 
     @Transactional
     public String createNewUser(TaggingUser user) throws Exception {
-        System.out.println("asdasd");
         String msg = "";
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repository.createNewUser(user);
