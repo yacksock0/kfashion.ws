@@ -43,10 +43,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
 export default function TopBarTag(props){
     const classes = useStyles();
-    const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser, goHome} = props;
+    const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser} = props;
     return (
         <div className={classes.root}>
             <React.Fragment>
@@ -54,11 +53,16 @@ export default function TopBarTag(props){
                     <Grid item xs={12} className={classes.gridcontainer}>
                         <Paper elevation={0} className={classes.logobox}>
                             <Logo className={classes.logoimg}
-                                  onClick={goHome}/>
+                                  // onClick={goHome}
+                            />
                         </Paper>
                         <Paper elevation={0} className={classes.rightbox}>
-                            <Typography className={classes.userstyle} >  <JoinIcon /></Typography>
-                            <Typography className={classes.userstyle} >  <LoginIcon /></Typography>
+                            {!isLoggedIn &&
+                                <Typography className={classes.userstyle}> <JoinIcon/></Typography>
+                            }
+                            {!isLoggedIn &&
+                                <Typography className={classes.userstyle}> <LoginIcon/></Typography>
+                            }
                             {isLoggedIn &&
                                 <Typography className={classes.userstyle}
                                         onClick={doLogout}> <ExitToAppIcon/></Typography>

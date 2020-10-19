@@ -72,7 +72,7 @@ class ImageUploadTag extends Component {
                     options={{
                         toolbar: false, //툴바(테이블위 테이블이름 등 버튼있는공간)X 있으면 너무 테이블이 작아보여 사용자가 답답할거같음.
                         showTitle: false,
-                        pageSize: this.state.pageSize,
+                        pageSize: 20,
                         //검색창
                         search: false,
                         //데이터 전체 출력 (export)

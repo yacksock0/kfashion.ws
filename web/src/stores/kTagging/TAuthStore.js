@@ -132,4 +132,10 @@ export default class AuthStore {
     setLoginURL = flow(function* setLoginURL(web) {
         this.loginURL = web;
     });
+    goHome = flow(function* goHome(props) {
+        props.history.push("/tagging")
+    });
+    // goHome = flow(function* goHome() {
+    //     alert("Asd")
+    // });
 }

@@ -5,13 +5,13 @@ import {withStyles} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as tStore from "./stores/kTagging/TAuthStore";
-import tSignUp from "./views/kTagging/SignUpTag/SignUpTag";
-import tVerify from "./views/kTagging/SignUpTag/VerifyTag";
+import tSignUp from "./views/kTagging/SignInTag/SignUpTag";
+import tVerify from "./views/kTagging/SignInTag/VerifyTag";
 import tSignIn from "./views/kTagging/SignInTag";
 import './App.css';
 import TopBarTest from './views/kTagging/TopBarTag';
 import FooterTag from './views/kTagging/FooterTag';
-import JoinAgreeTag from "./views/kTagging/SignUpTag/JoinAgreeTag";
+import JoinAgreeTag from "./views/kTagging/SignInTag/JoinAgreeTag";
 
 import MainContents from "./views/kTagging/MainTag/MainContentTag";
 
@@ -89,7 +89,7 @@ class AppKtagging extends React.Component {
                                     loginUser={loginUser}
                                     doLogout={() => this.props.tAuthStore.doLogout()}
                                     setStep={this.props.currentStepStore.currentStep}
-                                    goHome={this.goHome}
+                                    goHome={this.props.tAuthStore.goHome}
                         />
                         {/*<SideMenuTag mobileOpen={this.state.mobileOpen}*/}
                         {/*             setMobileOpen={this.setMobileOpen}*/}
@@ -113,16 +113,6 @@ class AppKtagging extends React.Component {
                         <FooterTag />
                     </Route>
                 </Router>
-
-
-
-
-
-                 {/*<LoginTest />*/}
-                 {/*<JoinTest />*/}
-                {/*<MainContents />*/}
-
-
             </div>
 
 
