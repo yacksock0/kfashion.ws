@@ -1,9 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { ReactComponent as Logo } from '../Test/images/logo.svg';
-import { ReactComponent as Logout } from '../Test/images/logout.svg';
-import { ReactComponent as JoinIcon } from '../Test/images/JoinIcon.svg';
-import { ReactComponent as LoginIcon } from '../Test/images/LoginIcon.svg';
+import { ReactComponent as Logo } from '../../images/logo.svg';
+import { ReactComponent as Logout } from '../../images/logout.svg';
+import { ReactComponent as JoinIcon } from '../../images/JoinIcon.svg';
+import { ReactComponent as LoginIcon } from '../../images/LoginIcon.svg';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';

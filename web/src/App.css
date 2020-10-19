@@ -11,7 +11,7 @@ input[type=checkbox] {
 
 input[type=checkbox] + em{
   content: "";
-  background: url("images/Checkbox.png") no-repeat;
+  background: url("./images/Checkbox.png") no-repeat;
   height: 18px;
   width: 18px;
   display: inline-block;
@@ -21,7 +21,7 @@ input[type=checkbox] + em{
  
 }
 input[type=checkbox]:checked + em{
-  background: url("images/Checkbox1.png") no-repeat;
+  background: url("./images/Checkbox1.png") no-repeat;
   height: 18px;
   width: 18px;
   display: inline-block;

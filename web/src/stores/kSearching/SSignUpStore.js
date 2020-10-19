@@ -34,6 +34,7 @@ export default class SignUpStore {
     @observable newMember = {...EmptyNewMember}
     @observable agreements = {...EmptyAgreements}
     @observable serverMode = '';
+    @observable isAllSelected = false;
 
     @action initialize = (email) => {
         this.state = State.Ready;
@@ -119,6 +120,9 @@ export default class SignUpStore {
     @computed get isNotAvailableId() {
         return this.state === State.NotAvailableId;
     }
+    AllSelected = flow(function* isAllSelected(isAllSelected) {
+        this.isAllSelected = isAllSelected
+    })
 
     doSignUp = flow(function* doSignUp(history) {
         this.state = State.Pending;

@@ -8,17 +8,12 @@ import * as tStore from "./stores/kTagging/TAuthStore";
 import tSignUp from "./views/kTagging/SignUpTag/SignUpTag";
 import tVerify from "./views/kTagging/SignUpTag/VerifyTag";
 import tSignIn from "./views/kTagging/SignInTag";
-import TopBar from "./components/TopBar";
-import SideMenuTag from "./views/kTagging/SideMenuTag";
-import test from "./views/kTagging/testTagging";
-
-import './views/Test/App.css';
+import './App.css';
 import TopBarTest from './views/kTagging/TopBarTag';
 import FooterTag from './views/kTagging/FooterTag';
 import JoinAgreeTag from "./views/kTagging/SignUpTag/JoinAgreeTag";
 
 import MainContents from "./views/kTagging/MainTag/MainContentTag";
-import ImageUpload from "./views/kTagging/MainTag/ImageUploadTag";
 
 const style = () => ({
     root: {

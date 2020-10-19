@@ -2,29 +2,20 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
-import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as sStore from "./stores/kSearching/SAuthStore";
-import sHome from "./views/kSearching/HomeSearch";
 import sSignUp from "./views/kSearching/SignUpSearch";
 import sVerify from "./views/kSearching/VerifySearch";
-import sSignIn from "./views/kSearching/SignInSearch";
-import mHome from "./views/kMatching/HomeMatch";
-// import TopBar from "./components/TopBar";
-import SideMenu from "./components/SideMenu";
-import SideMenuSearch from "./views/kSearching/SideMenuSearch";
-import test from "./views/kTagging/testTagging";
-import TopBar from "./views/Test/Test/TopBar";
-import TrendSearch from "./views/Test/Test/TrendSearch";
-import Footer from "./views/Test/Test/Footer";
-import MainContents from "./views/Test/Test/MainContents";
+import sSignIn from "./views/kSearching/SinupSearch/SignInSearch";
+import TopBar from "./views/kSearching/TopBarSearch";
+import TrendSearchByText from "./views/kSearching/MainSearch/TrendSearchByText";
+import TrendSearchByImage from "./views/kSearching/MainSearch/TrendSearchByImage";
+import FooterSearch from "./views/kSearching/FooterSearch";
+import MainContents from "./views/kSearching/MainSearch/MainContentSearch";
+import JoinAgreeSearch from "./views/kSearching/SinupSearch/JoinAgreeSearch";
+import JoinId from "./views/Test/SignUpTest/JoinId";
+import JoinPw from "./views/Test/SignUpTest/JoinPw";
 
-// import React from 'react';
-// import './App.css';
-// import TopBar from './TopBar';
-// import MainContents from './MainContents';
-// import TrendSearch from './TrendSearch';
-// import Footer from './Footer';
 
 const style = () => ({
     root: {
@@ -109,7 +100,8 @@ class AppKsearching extends React.Component {
                                 <Switch>
                                     <Route exact path="/searching/home" component={MainContents}/>
                                     <Route exact path="/searching" component={MainContents}/>
-                                    <Route exact path="/searching/text" component={TrendSearch}/>
+                                    <Route exact path="/searching/text" component={TrendSearchByText}/>
+                                    <Route exact path="/searching/image" component={TrendSearchByImage}/>
 
                                 </Switch>
                             </React.Fragment>
@@ -117,22 +109,16 @@ class AppKsearching extends React.Component {
                             <Switch>
                                 <Route path="/searching/SignUp" component={sSignUp} />
                                 <Route path="/searching/sign/success" component={sVerify} />
+                                <Route path="/searching/agree" component={JoinAgreeSearch} />
+                                {/*<Route path="/searching/SignUp/id" component={JoinId} />*/}
+                                {/*<Route path="/searching/SignUp/pw" component={JoinPw} />*/}
                                 <Route path="/searching" component={sSignIn} />
                             </Switch>
                         )}
-                        <Footer />
+                        <FooterSearch />
                     </Route>
                 </Router>
             </div>
-            //
-            // <div className="App">
-            //     <header className="App-header">
-            //         <TopBar />
-            //          <MainContents />
-            //         <TrendSearch />
-            //         <Footer />
-            //     </header>
-            // </div>
         );
     }
 };
