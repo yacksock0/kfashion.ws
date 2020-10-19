@@ -112,11 +112,11 @@ class AgreeList extends Component {
                 </div>
                 <Paper elevation={0}>
                     <Button variant="contained"
-                                            className={classes.btnjoinstyle}
-                                            disabled={!isAllSelected}
-                                            onClick={handleClickToSignUp}>
-                                        동의하고 가입하기
-                                    </Button>
+                            className={classes.btnjoinstyle}
+                            disabled={!isAllSelected}
+                            onClick={handleClickToSignUp}>
+                        동의하고 가입하기
+                    </Button>
                 </Paper>
             </div>
         );

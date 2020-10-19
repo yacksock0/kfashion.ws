@@ -55,9 +55,7 @@ public class TaggingUserController {
     @PostMapping(value = "/signup")
     public ResponseEntity<String> signUpTagging(HttpServletRequest httpServletRequest, @RequestBody TaggingUser user)
             throws Exception {
-        System.out.println("1111111");
         String str = taggingUserService.createNewUser(user);
-        System.out.println("@@@@@@@");
         return new ResponseEntity<String>( HttpStatus.OK);
     }
 

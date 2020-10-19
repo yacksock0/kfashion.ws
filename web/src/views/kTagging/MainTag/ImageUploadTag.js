@@ -10,8 +10,19 @@ const style = theme => ({
     root: {
         width: '100%',
     },
+    LinearProgress: {
+        width: '100%',
+        color: '#526af2',
+    },
+    colorPrimary: {
+        backgroundColor: "#fff",
+        width: '100%'
+    },
+    barColorPrimary: {
+        backgroundColor: "#526af2",
+        width: '100%'
+    },
 });
-
 @inject('tImageStore')
 @observer
 class ImageUploadTag extends Component {

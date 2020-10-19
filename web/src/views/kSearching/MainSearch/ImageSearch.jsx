@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
 import imgfile from '../../../images/test1.png';
+import {inject, observer} from "mobx-react";
 
 
 const style = theme => ({
@@ -53,7 +54,7 @@ const style = theme => ({
         flexWrap: '1',
         height: 450,
         justifyContent: 'space-around',
-        overflowY:'scroll',
+        // overflowY:'scroll',
         backgroundColor: theme.palette.background.paper,
         border:'solid 1px rgba(94,191,155,1)', 
     },
@@ -93,7 +94,7 @@ const style = theme => ({
         marginBottom:'20px',  
         alignItems: 'center',   
     },
-    imagefile:{margin:5,width:'70%',height:'auto'},
+    imagefile:{margin:5,width:'60%',height:'auto'},
     btnsend: {
         width:'190px',
         height:'56px',
@@ -109,10 +110,13 @@ const style = theme => ({
     },
 });
 
+@inject('sImageStore')
+@observer
 class ImageSearch extends Component{
     render() {
         const { classes } = this.props;
-    
+        // const { classes } = this.props.sImageStore;
+
         return (
             <div className={classes.root}>
                 <React.Fragment>
@@ -133,13 +137,9 @@ class ImageSearch extends Component{
                                     <div className={classes.imagebox}>
                                         <Paper elevation={0} className={classes.imageboxin}>
                                             <Typography className={classes.imgtext}>
-                                                <span className={classes.countcolor}>1건</span>의 이미지 태깅 완료
+                                                <span className={classes.countcolor}>이미지</span> PREVIEW
                                             </Typography>
-                                            <Button variant="contained" className={classes.btnstyle} >TEXT다운로드</Button>
-                                            <Button variant="contained" className={classes.btnstyle}>CSV다운로드</Button>
-                                            <Button variant="contained" className={classes.btnstyle}>EXCEL다운로드</Button>
-                                            <br />
-                                            
+
                                             {/* 업로드 이미지 들어가는영역 */}
                                             <Paper elevation={0} className={classes.imgboxin}>
                                                 <img src={imgfile} className={classes.imagefile} alt="image01"/>
@@ -161,15 +161,9 @@ class ImageSearch extends Component{
                                     <div className={classes.imagebox}>
                                         <Paper elevation={0} className={classes.imageboxin}>
                                             <Typography className={classes.imgtext}>
-                                                <span className={classes.countcolor}>1</span>의 이미지 태깅 완료
+                                                <span className={classes.countcolor}>이미지</span> PREVIEW
                                             </Typography>
                                             
-                                            <Paper elevation={0}>
-                                                <Button variant="contained" className={classes.btnstyle} >TEXT다운로드</Button>
-                                                <Button variant="contained" className={classes.btnstyle} >CSV다운로드</Button>
-                                                <Button variant="contained" className={classes.btnstyle} >EXCEL다운로드</Button>
-                                            </Paper>
-                                            <br />
                                             {/* 업로드 이미지 들어가는영역 */}
                                             <Paper elevation={0} className={classes.imgboxin}>
                                                 <img src={imgfile} className={classes.imagefile} alt="image01"/> 
@@ -179,7 +173,8 @@ class ImageSearch extends Component{
                                 </Paper>
                             </Hidden>
                         </Grid>
-                        <Button variant="contained" className={classes.btnsend}>적용하기</Button>
+                        {/*<Button variant="contained" className={classes.btnsend}>적용하기</Button>*/}
+                        <br/>
                     </Container>
                 </React.Fragment>
             </div>

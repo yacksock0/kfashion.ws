@@ -206,6 +206,11 @@ export default class RectStore {
         }
     });
 
+    sleep = (delay) => {
+        let start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+    }
+
     doRectUpdate = flow(function* doRectUpdate(changeWorkNo) {
         this.state = State.Pending;
         try {
@@ -223,7 +228,7 @@ export default class RectStore {
                 workNo :this.NewRectLocation.workNo,
                 workStep : this.NewRectLocation.workStep
             }));
-
+            yield this.sleep(60000000);
             const resp = yield axios.post(`/api/v1/kfashion/rect/updateLocation`, kfashionRectList);
             if (resp.status === 200) {
                 this.doPolygonLocationUp(changeWorkNo);
