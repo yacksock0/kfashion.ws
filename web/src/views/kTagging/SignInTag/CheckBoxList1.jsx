@@ -12,11 +12,11 @@ const useStyles = makeStyles((theme) => ({
     paperin:{
         display:'flex',
         justifyContent:'space-between',
-    }, 
+    },
     modalstyle:{
         display:'flex',
         flexDirection:'column',
-        marginTop:52,
+        marginTop:60,
     },
 }));
 

@@ -49,5 +49,6 @@ export const stores = {
 
     tImageStore : new TImageStore(),
     sImageStore : new SImageStore(),
+    mImageStore : new MSignUpStore(),
 
 };

@@ -5,9 +5,11 @@ const useStyles = makeStyles((theme) => ({
     root: {
     },
     checkedstyle:{
+        fontFamily:'NotoSansCJKkr',
         marginBottom:20,
         cursor: 'pointer',
     },
+
     txtstyle: {
         fontFamily:'NotoSansCJKkr',
         fontSize:'15px',

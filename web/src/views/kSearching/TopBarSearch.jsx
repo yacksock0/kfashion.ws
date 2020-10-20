@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { withStyles  } from '@material-ui/core/styles';
 import { ReactComponent as LogoTrandSearch } from '../../images/LogoTrandSearch.svg';
 import { ReactComponent as LogoutIcon } from '../../images/LogoutIcon.svg';
-import { ReactComponent as JoinIcon } from '../../images/JoinIcon.svg';
 import { ReactComponent as AdminIcon } from '../../images/AdminIcon.svg';
-import { ReactComponent as LoginIcon } from '../../images/LoginIcon.svg';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -74,6 +72,7 @@ class TopBarSearch extends Component{
                             
                             <Paper elevation={0} className={classes.right}>
                                 <Paper elevation={0} className={classes.rightbox}>
+
                                     <Paper elevation={0} className={classes.adminbox}>
                                         <AdminIcon /><Typography >admin@admin</Typography>
                                     </Paper>

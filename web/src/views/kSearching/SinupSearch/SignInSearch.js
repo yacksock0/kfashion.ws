@@ -169,7 +169,6 @@ const style = theme => ({
         width:'390px',
         height:'39px',
         marginBottom:30,
-
         "& .MuiOutlinedInput-root": {
             borderRadius:0,
         }
@@ -185,7 +184,7 @@ const style = theme => ({
         borderRadius:0,
 
         "&:hover": {
-            background:'#526af2',
+            background:'#707070',
         },
     },
     btnjoinstyle:{

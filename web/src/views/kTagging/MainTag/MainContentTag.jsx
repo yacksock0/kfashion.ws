@@ -30,12 +30,27 @@ const style = theme => ({
         borderBottom: 'solid 4px #526af2',
         marginBottom: 26,
     },
+    // textstyle: {
+    //     fontFamily: 'NotoSansCJKkr',
+    //     fontSize: '15px',
+    //     textAlign: 'left',
+    //     height: '50px',
+    // },
+    // countcolor: {
+    //     color: '#526af2'
+    // },
     textstyle: {
-        fontFamily: 'NotoSansCJKkr',
-        fontSize: '15px',
-        textAlign: 'left',
-        height: '50px',
+        fontFamily:'NotoSansCJKkr',
+        fontSize:'17px',
+        textAlign:'left',
+        height:'30px',
+        fontWeight:'500',
     },
+    countcolor: {
+        fontFamily:'NotoSansCJKkr',
+        color:'#526af2',
+    },
+
     imagebox: {
         display: 'flex',
         flexWrap: '1',
@@ -56,9 +71,7 @@ const style = theme => ({
         fontWeight: 'bold',
         margin: '30px 0 10px',
     },
-    countcolor: {
-        color: '#526af2'
-    },
+
     btnstyle: {
         width: '120px',
         height: '32px',

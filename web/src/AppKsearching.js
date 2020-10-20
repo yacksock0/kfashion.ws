@@ -4,8 +4,8 @@ import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import * as sStore from "./stores/kSearching/SAuthStore";
-import sSignUp from "./views/kSearching/SignUpSearch";
-import sVerify from "./views/kSearching/VerifySearch";
+import sSignUp from "./views/kSearching/SinupSearch/SignUpSearch";
+import sVerify from "./views/kSearching/SinupSearch/VerifySearch";
 import sSignIn from "./views/kSearching/SinupSearch/SignInSearch";
 import TopBar from "./views/kSearching/TopBarSearch";
 import TrendSearchByText from "./views/kSearching/MainSearch/TrendSearchByText";
@@ -13,8 +13,6 @@ import TrendSearchByImage from "./views/kSearching/MainSearch/TrendSearchByImage
 import FooterSearch from "./views/kSearching/FooterSearch";
 import MainContents from "./views/kSearching/MainSearch/MainContentSearch";
 import JoinAgreeSearch from "./views/kSearching/SinupSearch/JoinAgreeSearch";
-import JoinId from "./views/Test/SignUpTest/JoinId";
-import JoinPw from "./views/Test/SignUpTest/JoinPw";
 
 
 const style = () => ({
@@ -91,10 +89,6 @@ class AppKsearching extends React.Component {
                                     doLogout={() => this.props.sAuthStore.doLogout()}
                                     setStep={this.props.currentStepStore.currentStep}
                             />
-                            {/*<SideMenuSearch mobileOpen={this.state.mobileOpen}*/}
-                            {/*          setMobileOpen={this.setMobileOpen}*/}
-                            {/*          loginUser={loginUser}*/}
-                            {/*          isLoggedIn={loginState === sStore.State.Authenticated} />*/}
                         {loginState === sStore.State.Authenticated ? (
                             <React.Fragment>
                                 <Switch>

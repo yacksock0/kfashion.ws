@@ -77,7 +77,10 @@ class MainContentSearch extends Component{
                         <Button variant="contained"
                                 className={classes.btnstyle}
                                 style={{background:'#5ebf9b'}}
-                                onClick={this.goText}>텍스트 검색</Button>
+                                onClick={this.goText}
+                        >
+                            텍스트 검색
+                        </Button>
                         <Button variant="contained"
                                 className={classes.btnstyle}
                                 style={{background:'#4c7364'}}

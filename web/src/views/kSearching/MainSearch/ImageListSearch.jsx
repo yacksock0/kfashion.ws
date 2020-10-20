@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Lightbox from "react-image-lightbox";
 import 'react-image-lightbox/style.css';
 
-// import imgfile from '../images/test1.png';
 
 
 const style = theme => ({ 

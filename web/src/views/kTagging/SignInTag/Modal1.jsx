@@ -52,9 +52,11 @@ const useStyles = makeStyles((theme) => ({
   },
   linestyle: {
     borderBottom: 'solid 4px #526af2',
+    marginTop:-20,
   },
   h2txt: {
-    fontSize:32,
+    fontfamily:'NotoSansCJKkr',
+    fontSize:'32px',
     fontWeight:'bold',
   },
   paperin:{

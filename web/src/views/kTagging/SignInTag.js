@@ -38,7 +38,7 @@ const style = theme => ({
         height:'50px',
         background:'#000',
         color:'#fff',
-        fontFamily:'Montserrat',
+        fontFamily:'NotoSansCJKkr',
         fontWeight:'bold',
         fontSize:'17px',
         borderRadius:0,
@@ -50,7 +50,7 @@ const style = theme => ({
     btnjoinstyle:{
         width:'390px',
         height:'50px',
-        fontFamily:'Montserrat',
+        fontFamily:'NotoSansCJKkr',
         fontWeight:'bold',
         fontSize:'17px',
         borderRadius:50,
@@ -68,7 +68,11 @@ const style = theme => ({
             color:'#526af2',
             fontWeight:'bold'
         },
-    }
+    },
+    spanfind:{
+        marginTop:5,
+    },
+
 });
 
 @inject('tAuthStore')
@@ -145,7 +149,7 @@ class SignInTag extends React.Component {
                         </Paper>
                         <Paper elevation={0} className={classes.findbox}>
                             {/*<Button className={classes.findbtn}>아이디찾기</Button>*/}
-                            {/*<Typography>|</Typography>*/}
+                            {/*<Typography className={classes.spanfind}>|</Typography>*/}
                             {/*<Button className={classes.findbtn}>비밀번호찾기</Button>*/}
                         </Paper>
                         <Paper elevation={0}>

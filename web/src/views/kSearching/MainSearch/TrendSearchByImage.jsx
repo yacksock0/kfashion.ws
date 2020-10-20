@@ -4,7 +4,6 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import TextSearch  from './TextSearch ';
 import ImageSearch  from './ImageSearch';
 import SearchImage from './ImageListSearch';
 import ScrollToTop from "react-scroll-to-top";
