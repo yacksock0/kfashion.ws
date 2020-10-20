@@ -7,7 +7,7 @@ import axios from "axios";
 import * as tStore from "./stores/kTagging/TAuthStore";
 import tSignUp from "./views/kTagging/SignInTag/SignUpTag";
 import tVerify from "./views/kTagging/SignInTag/VerifyTag";
-import tSignIn from "./views/kTagging/SignInTag";
+import tSignIn from "./views/kTagging/SignInTag/SignInTag";
 import './App.css';
 import TopBarTag from './views/kTagging/TopBarTag';
 import FooterTag from './views/kTagging/FooterTag';
