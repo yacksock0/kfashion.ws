@@ -66,6 +66,7 @@ export default class AuthStore {
         return this.loginUser.id;
     }
 
+
     @action invalidateLogin = () => {
         this.login = Object.assign({}, EmptyLogin);
         this.loginState = State.NotAuthenticated;
