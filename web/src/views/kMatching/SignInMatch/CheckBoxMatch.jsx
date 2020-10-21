@@ -18,7 +18,7 @@ export default function CheckBox({name, value, tick, onCheck}) {
 
     const classes = useStyles();
       return (
-        <div className="checkbox1">
+        <div className="checkbox3">
             <label>
                 <br />
                 <input

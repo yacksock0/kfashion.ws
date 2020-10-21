@@ -20,11 +20,11 @@ const style = theme => ({
     },
     titletext: {
         width:'390px',
-        fontFamily:'NotoSansCJKkr',
+        fontFamily:'Montserrat',
         fontSize:'45px',
         fontWeight:'bold',
         borderBottom: 'solid 4px #526af2',
-        paddingBottom: 15,
+        paddingBottom: 20,
         margin:'0 auto 25px',
     },
 });

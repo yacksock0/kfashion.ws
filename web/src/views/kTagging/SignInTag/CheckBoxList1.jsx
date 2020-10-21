@@ -55,7 +55,7 @@ export default function CheckBoxList1 ({options, isCheckedAll, onCheck}) {
                 </Paper>
                 <Paper elevation={0} className={classes.modalstyle}>
                     <Modal1 /><br/>
-                    <Modal1 />
+                    {/* <Modal1 /> */}
                 </Paper>
             </Paper>
         </div>
