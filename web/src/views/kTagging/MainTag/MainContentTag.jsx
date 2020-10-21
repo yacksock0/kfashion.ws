@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Hidden, Grid, Container, Button, Typography, CircularProgress, Paper  } from '@material-ui/core';
+import { Hidden, Grid, Container, Button, Typography,  Paper  } from '@material-ui/core';
 import DropZone from './DropZone';
 import ImageUpload from './ImageUploadTag'
 import {STATE} from '../../../common/state';
@@ -30,27 +30,12 @@ const style = theme => ({
         borderBottom: 'solid 4px #526af2',
         marginBottom: 26,
     },
-    // textstyle: {
-    //     fontFamily: 'NotoSansCJKkr',
-    //     fontSize: '15px',
-    //     textAlign: 'left',
-    //     height: '50px',
-    // },
-    // countcolor: {
-    //     color: '#526af2'
-    // },
     textstyle: {
-        fontFamily:'NotoSansCJKkr',
-        fontSize:'17px',
-        textAlign:'left',
-        height:'30px',
-        fontWeight:'500',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '15px',
+        textAlign: 'left',
+        height: '50px',
     },
-    countcolor: {
-        fontFamily:'NotoSansCJKkr',
-        color:'#526af2',
-    },
-
     imagebox: {
         display: 'flex',
         flexWrap: '1',
@@ -71,7 +56,9 @@ const style = theme => ({
         fontWeight: 'bold',
         margin: '30px 0 10px',
     },
-
+    countcolor: {
+        color: '#526af2'
+    },
     btnstyle: {
         width: '120px',
         height: '32px',
@@ -90,7 +77,7 @@ const style = theme => ({
     //20.10.16 이지현 변경
     imgboxin: {
         //80%
-        width: '100%',
+        width: '90%',
         margin: '0 auto',
         //disp = flex
         display: '',
@@ -109,28 +96,19 @@ const style = theme => ({
 @observer
 class MainContentTag extends React.Component {
     render() {
-        //20.10.16 이지현 추가
-        const { maxValue, fileTotal, count, State } = this.props.tImageStore;
+        //20.10.20 버튼 비활성화 && progressbar 비활성화일때 메세지가 먼저 바뀌지않도록....
+        const { message ,someImage, fileTotal, State } = this.props.tImageStore;
         const { classes } = this.props;
         this.someImage = '태깅';
-        this.message = '완료 된 이미지가 없습니다';
-        if (maxValue === 0) {
-            if (fileTotal >= 1) {
-                if (fileTotal === count) {
-                    this.someImage = `총${maxValue}건`;
-                    this.message = '의 이미지 태깅완료'
-                }
-            }
-        } else {
-            if (fileTotal >= 1) {
-                this.someImage = `총${maxValue}건`;
-                this.message = '의 이미지 태깅완료'
-                if (fileTotal === count) {
-                    this.someImage = `총${maxValue}건`;
-                    this.message = '의 이미지 태깅완료'
-                }
-            }
+        this.message = '된 이미지가 없습니다';
+        if (State === STATE.PENDING) {
+            this.someImage = someImage;
+            this.message = message;
         }
+                if (State === STATE.DONE) {
+                    this.someImage = someImage;
+                    this.message = message;
+                }
 
 
         return (
@@ -217,7 +195,7 @@ class MainContentTag extends React.Component {
                                             {/* 업로드 이미지 들어가는영역 */}
                                             <Paper elevation={0} className={classes.imgboxin}>
                                                 {/* 2020.10.15 일단 테이블 삽입 이지현 */}
-                                                {/*<ImageUpload />*/}
+                                                <ImageUpload />
                                             </Paper>
                                         </Paper>
                                     </div>

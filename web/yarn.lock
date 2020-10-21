@@ -7601,7 +7601,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-material-table@^1.66.0:
+material-table@^1.69.1:
   version "1.69.1"
   resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.69.1.tgz#8d1c8b23207f18bd3328cae1b5775ede284682e6"
   integrity sha512-7MA8kMtr8ToPE6gNUbOGIb4g+RGOLWK8s9gXZYNwFtg6fGAjWEJ+iqBrMmdq7fkMmTRcyOd7/sC/5OPPY8CNGg==
