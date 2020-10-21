@@ -5,11 +5,11 @@ const useStyles = makeStyles((theme) => ({
     root: {
     },
     checkedstyle:{
+        fontFamily:'NotoSansCJKkr',
         marginBottom:20,
         cursor: 'pointer',
     },
     txtstyle: {
-        fontFamily:'NotoSansCJKkr',
         fontSize:'15px',
     }
 }));
@@ -18,7 +18,7 @@ export default function CheckBox({name, value, tick, onCheck}) {
 
     const classes = useStyles();
       return (
-        <div className="checkbox1">
+        <div className="checkbox2">
             <label>
                 <br />
                 <input

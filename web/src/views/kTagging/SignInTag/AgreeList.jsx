@@ -96,10 +96,11 @@ const style = theme => ({
         fontSize:'17px',
         fontWeight:'bold',
         textAlign:'left',
-        paddingLeft:20,
-        marginBottom:20,
+        paddingLeft:3,
     },
     btnjoinstyle: {
+        fontFamily:'NotoSansCJKkr',
+        fontWeight:'500',
         width:'390px',
         boxShadow:'none',
         marginTop:44,
@@ -111,7 +112,7 @@ const style = theme => ({
         "&:hover": {
             background:'#526af2',
             color:'#fff',
-            borderRadius:0,
+            borderRadius:0, 
             boxShadow:'none',
         },
     },

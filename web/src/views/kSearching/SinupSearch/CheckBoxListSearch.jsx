@@ -7,7 +7,7 @@ import Modal1 from './ModalSearch';
 const useStyles = makeStyles((theme) => ({
     root: {
         textAlign:'left',
-        marginTop:20,
+        marginTop:5,
     },
     paperin:{
         display:'flex',
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     modalstyle:{
         display:'flex',
         flexDirection:'column',
-        marginTop:52,
+        marginTop:60,
     },
 }));
 

@@ -7,7 +7,7 @@ import Modal1 from './Modal1';
 const useStyles = makeStyles((theme) => ({
     root: {
         textAlign:'left',
-        marginTop:20,
+        marginTop:5,
     },
     paperin:{
         display:'flex',

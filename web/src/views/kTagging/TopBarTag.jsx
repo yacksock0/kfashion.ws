@@ -14,13 +14,16 @@ import {IconButton} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin:'52px auto 30px',
-        flexGrow: 1,
+        [theme.breakpoints.down('xs')]: {
+            marginTop:20
+        },
+        margin:'52px auto 30px',   
+        flexGrow: 1, 
     },
     gridcontainer:{
         display:'flex',
-        justifyContent:'space-between',
-        margin:'0 auto',
+        justifyContent:'space-between', 
+        margin:'0 auto', 
     },
     logobox:{
         width:'179px',
@@ -34,7 +37,30 @@ const useStyles = makeStyles((theme) => ({
     rightbox:{
         display:'flex',
         cursor:'pointer',
-        height:'30px',
+        justifyContent:'flex-end',
+        marginBottom:20,
+    },
+    right: {
+        [theme.breakpoints.down('sm')]: {
+            [theme.breakpoints.down('xs')]: {
+                width:'55%',
+            },
+            width:'70%',
+        },
+        width:'80%',
+    },
+    iconstyle:{
+        fontFamily:'Montserrat',
+    },
+    adminbox:{
+        width:'auto',
+        height:'38px',
+        borderRadius:'19px',
+        background:'#f5f5f5',
+        padding:'5px 15px',
+        display:'flex',
+        boxSizing:'border-box',
+        marginRight:10,
     },
     userstyle:{
         fontFamily:'Montserrat',
@@ -49,25 +75,29 @@ export default function TopBarTag(props){
     return (
         <div className={classes.root}>
             <React.Fragment>
-                <Container maxWidth="xl">
+                <Container minWidth="xl">
                     <Grid item xs={12} className={classes.gridcontainer}>
                         <Paper elevation={0} className={classes.logobox}>
                             <Logo className={classes.logoimg}
                                   // onClick={goHome}
                             />
                         </Paper>
-                        <Paper elevation={0} className={classes.rightbox}>
-                            {!isLoggedIn &&
-                                <Typography className={classes.userstyle}> <JoinIcon/></Typography>
-                            }
-                            {!isLoggedIn &&
-                                <Typography className={classes.userstyle}> <LoginIcon/></Typography>
-                            }
-                            {isLoggedIn &&
-                                <Typography className={classes.userstyle}
-                                        onClick={doLogout}> <ExitToAppIcon/></Typography>
-                            }
+                        <Paper elevation={0} className={classes.right}>
+                            <Paper elevation={0} className={classes.rightbox}>
+                                {!isLoggedIn &&
+                                    <Typography className={classes.userstyle}> <JoinIcon/></Typography>
+                                }
+                                {!isLoggedIn &&
+                                    <Typography className={classes.iconstyle}> <LoginIcon/></Typography>
+                                }
+                                {isLoggedIn &&
+                                    <Typography className={classes.iconstyle}
+                                            onClick={doLogout}> <ExitToAppIcon/></Typography>
+                                }
+                            </Paper>
+                            <hr />
                         </Paper>
+                        
                     </Grid>
                 </Container>
             </React.Fragment>

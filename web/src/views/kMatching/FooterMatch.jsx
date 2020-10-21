@@ -22,7 +22,6 @@ export default function FooterMatch(){
         <div className={classes.root}>
             <hr/>
             <Typography className={classes.footertext}>COPYRIGHT &copy; 2020 OPINION LIVE ALL RIGHTS RESERVED </Typography>
-            <hr/>
         </div>
     )
   
