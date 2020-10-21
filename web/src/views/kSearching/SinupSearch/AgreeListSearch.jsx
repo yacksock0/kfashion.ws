@@ -13,20 +13,21 @@ const style = theme => ({
         fontSize:'17px',
         fontWeight:'bold',
         textAlign:'left',
-        paddingLeft:20,
-        marginBottom:20,
+        paddingLeft:3,
     },
     btnjoinstyle: {
+        fontFamily:'NotoSansCJKkr',
+        fontWeight:'500',
         width:'390px',
         boxShadow:'none',
-        marginTop:44,
-        background:'#526af2',
+        marginTop:20,
+        background:'#38a67e',
         color:'#fff',
         borderRadius:0,
         padding:'10px 0',
 
         "&:hover": {
-            background:'#526af2',
+            background:'#38a67e',
             color:'#fff',
             borderRadius:0,
             boxShadow:'none',
@@ -53,16 +54,16 @@ class AgreeList extends Component {
                     value: " 이용약관 동의(필수)",
                     checked: false,
                 },
-                {
-                    name: "Agree",
-                    value: " 개인정보 수집 및 이용에 대한 안내(필수)",
-                    checked: false,
-                },
-                {
-                    name: "Agree",
-                    value: " 가입시 유의사항 동의(필수)",
-                    checked: false,
-                }
+                // {
+                //     name: "Agree",
+                //     value: " 개인정보 수집 및 이용에 대한 안내(필수)",
+                //     checked: false,
+                // },
+                // {
+                //     name: "Agree",
+                //     value: " 가입시 유의사항 동의(필수)",
+                //     checked: false,
+                // }
             ]
         };
     }
@@ -101,7 +102,7 @@ class AgreeList extends Component {
         const {isAllSelected} = this.props.sSignUpStore;
         return (
             <div>
-                <Typography className={classes.txtstyle1}>스타일 태깅 서비스 이용약관을 동의해주세요.</Typography>
+                <Typography className={classes.txtstyle1}>트렌드서치 서비스 이용약관을 동의해주세요.</Typography>
 
                 <div className="Check-list">
                     <CheckBoxList

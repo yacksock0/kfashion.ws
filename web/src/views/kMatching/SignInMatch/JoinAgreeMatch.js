@@ -23,7 +23,7 @@ const style = theme => ({
         fontFamily:'Montserrat',
         fontSize:'45px',
         fontWeight:'bold',
-        borderBottom: 'solid 4px #526af2',
+        borderBottom: 'solid 4px #f2ada7',
         paddingBottom: 20,
         margin:'0 auto 25px',
     },

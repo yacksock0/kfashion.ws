@@ -19,7 +19,7 @@ const style = theme => ({
     btnjoinstyle: {
         width:'390px',
         boxShadow:'none',
-        marginTop:44,
+        marginTop:20,
         background:'#526af2',
         color:'#fff',
         borderRadius:0,
@@ -53,16 +53,16 @@ class AgreeList extends Component {
                     value: " 이용약관 동의(필수)",
                     checked: false,
                 },
-                {
-                    name: "Agree",
-                    value: " 개인정보 수집 및 이용에 대한 안내(필수)",
-                    checked: false,
-                },
-                {
-                    name: "Agree",
-                    value: " 가입시 유의사항 동의(필수)",
-                    checked: false,
-                }
+                // {
+                //     name: "Agree",
+                //     value: " 개인정보 수집 및 이용에 대한 안내(필수)",
+                //     checked: false,
+                // },
+                // {
+                //     name: "Agree",
+                //     value: " 가입시 유의사항 동의(필수)",
+                //     checked: false,
+                // }
             ]
         };
     }
@@ -101,7 +101,7 @@ class AgreeList extends Component {
         const {isAllSelected} = this.props.mSignUpStore;
         return (
             <div>
-                <Typography className={classes.txtstyle1}>스타일 태깅 서비스 이용약관을 동의해주세요.</Typography>
+                <Typography className={classes.txtstyle1}>데일리코디 서비스 이용약관을 동의해주세요.</Typography>
 
                 <div className="Check-list">
                     <CheckBoxList

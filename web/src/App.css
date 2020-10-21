@@ -1,7 +1,7 @@
 .App {
   text-align: center;
 }
-.checkbox1{
+.checkbox1, .checkbox2, .checkbox3{
   position: relative;
   
 }
@@ -20,8 +20,28 @@ input[type=checkbox] + em{
   
  
 }
-input[type=checkbox]:checked + em{
+.checkbox1 input[type=checkbox]:checked + em{
   background: url("./images/Checkbox1.png") no-repeat;
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  padding: 0;
+  cursor: pointer;
+ 
+}
+
+.checkbox2 input[type=checkbox]:checked + em{
+  background: url("./images/Checkbox2.png") no-repeat;
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  padding: 0;
+  cursor: pointer;
+ 
+}
+
+.checkbox3 input[type=checkbox]:checked + em{
+  background: url("./images/Checkbox3.png") no-repeat;
   height: 18px;
   width: 18px;
   display: inline-block;

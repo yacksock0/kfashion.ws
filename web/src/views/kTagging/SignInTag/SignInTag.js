@@ -63,6 +63,7 @@ const style = theme => ({
         margin:'9px 0 45px',
     },
     findbtn: {
+        fontFamily:'NotoSansCJKkr',
         "&:hover": {
             background:'transparent',
             color:'#526af2',

@@ -20,7 +20,7 @@ const style = theme => ({
         fontFamily:'Montserrat',
         fontSize:'45px',
         fontWeight:'bold',
-        borderBottom: 'solid 4px #526af2',
+        borderBottom: 'solid 4px #38a67e',
         paddingBottom: 20,
         margin:'0 auto 66px',
     },
@@ -43,7 +43,7 @@ const style = theme => ({
         borderRadius:0,
 
         "&:hover": {
-            background:'#707070',
+            background:'#38a67e',
         },
     },
     btnjoinstyle:{
@@ -62,12 +62,16 @@ const style = theme => ({
         margin:'9px 0 45px',
     },
     findbtn: {
+        fontFamily:'NotoSansCJKkr',
         "&:hover": {
             background:'transparent',
             color:'#526af2',
             fontWeight:'bold'
         },
-    }
+    },
+    spanfind:{
+        marginTop:5,
+    },
 });
 
 @inject('sAuthStore')
@@ -146,7 +150,7 @@ class SignInSearch extends React.Component {
                         </Paper>
                         <Paper elevation={0} className={classes.findbox}>
                             {/*<Button className={classes.findbtn}>아이디찾기</Button>*/}
-                            {/*<Typography>|</Typography>*/}
+                            {/*<Typography className={classes.spanfind}>|</Typography>*/}
                             {/*<Button className={classes.findbtn}>비밀번호찾기</Button>*/}
                         </Paper>
                         <Paper elevation={0}>

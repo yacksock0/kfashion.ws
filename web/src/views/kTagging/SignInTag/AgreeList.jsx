@@ -96,13 +96,14 @@ const style = theme => ({
         fontSize:'17px',
         fontWeight:'bold',
         textAlign:'left',
-        paddingLeft:20,
-        marginBottom:20,
+        paddingLeft:3,
     },
     btnjoinstyle: {
+        fontFamily:'NotoSansCJKkr',
+        fontWeight:'500',
         width:'390px',
         boxShadow:'none',
-        marginTop:44,
+        marginTop:20,
         background:'#526af2',
         color:'#fff',
         borderRadius:0,
@@ -111,7 +112,7 @@ const style = theme => ({
         "&:hover": {
             background:'#526af2',
             color:'#fff',
-            borderRadius:0,
+            borderRadius:0, 
             boxShadow:'none',
         },
     },
@@ -136,16 +137,16 @@ class AgreeList extends Component {
                     value: " 이용약관 동의(필수)",
                     checked: false,
                 },
-                {
-                    name: "Agree",
-                    value: " 개인정보 수집 및 이용에 대한 안내(필수)",
-                    checked: false,
-                },
-                {
-                    name: "Agree",
-                    value: " 가입시 유의사항 동의(필수)",
-                    checked: false,
-                }
+                // {
+                //     name: "Agree",
+                //     value: " 개인정보 수집 및 이용에 대한 안내(필수)",
+                //     checked: false,
+                // },
+                // {
+                //     name: "Agree",
+                //     value: " 가입시 유의사항 동의(필수)",
+                //     checked: false,
+                // }
             ]
         };
     }
