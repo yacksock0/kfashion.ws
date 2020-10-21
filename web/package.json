@@ -19,7 +19,7 @@
     "image-resize": "^1.1.5",
     "js-file-download": "^0.4.11",
     "lodash": "^4.17.15",
-    "material-table": "^1.66.0",
+    "material-table": "^1.69.1",
     "material-ui-dropzone": "^3.3.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",

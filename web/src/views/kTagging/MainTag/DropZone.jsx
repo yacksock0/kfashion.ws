@@ -41,12 +41,13 @@ class DropFile extends Component {
         };
     }
     handleChange(files) {
+        if(this.props.tImageStore.progress !== 0) {
+            return(alert('이전 요청이 완료되지않았습니다!'));
+        }
         this.setState({
             files: files,
         });
         this.props.tImageStore.changeFileTotal(files.length);
-        console.log('file.lenght :>> ', files.length);
-        console.log('file :>> ', files);
         const file = files;
         this.props.tImageStore.countReset(0);
         this.props.tImageStore.fileupload(file, 0, file.length);
