@@ -141,7 +141,7 @@ class ImageSearch extends Component {
         this.boundaryList = this.props.sImageStore.boundaryList;
     }
     componentWillUnmount() {
-        this.props.tImageStore.initStore();
+        this.props.sImageStore.initStore();
     }
     render() {
         const { imgData, fileName, State } = this.props.sImageStore;
