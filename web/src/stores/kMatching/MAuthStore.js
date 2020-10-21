@@ -79,18 +79,16 @@ export default class AuthStore {
             const param = this.login;
             const response = yield axios.post('/api/v1/kMatching/authentications/signin', param);
             const token = response.data.token;
-            const user = response.data.user;
             localStorage.setItem(mLocalStorageTokenKey, token);
             this.loginState = State.Authenticated;
             this.loginToken = token;
-            // this.loginUser = user;
+            this.loginUser = response.data.user;
             history.push('/matching/home');
         } catch (e) {
             this.loginState = State.Failed;
             this.loginToken = '';
             this.loginUser = Object.assign({}, EmptyUser);
         }
-
     });
 
     checkLogin = flow(function* checkLogin() {

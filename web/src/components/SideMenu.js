@@ -23,8 +23,6 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
-import Button from "@material-ui/core/Button";
-import {toJS} from "mobx";
 
 const logoWidth = 129;
 const logoHeight = 22;

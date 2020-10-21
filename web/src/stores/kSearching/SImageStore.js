@@ -1,4 +1,4 @@
-import {action, computed, flow, observable} from "mobx";
+import {action, flow, observable} from "mobx";
 import axios from "axios";
 
 const STATE = {

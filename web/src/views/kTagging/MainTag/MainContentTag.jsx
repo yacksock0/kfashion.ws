@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Hidden, Grid, Container, Button, Typography, CircularProgress, Paper  } from '@material-ui/core';
+import React  from 'react'
+import { Hidden, Grid, Container, Button, Typography, Paper  } from '@material-ui/core';
 import DropZone from './DropZone';
 import ImageUpload from './ImageUploadTag'
 import {STATE} from '../../../common/state';

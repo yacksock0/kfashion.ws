@@ -2,7 +2,6 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
-import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as tStore from "./stores/kTagging/TAuthStore";
 import tSignUp from "./views/kTagging/SignInTag/SignUpTag";
@@ -76,7 +75,6 @@ class AppKtagging extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
         const { loginState, loginUser} = this.props.tAuthStore;
 
         return (

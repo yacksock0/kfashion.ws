@@ -126,6 +126,12 @@
         AND kfashion_label.work_step = 6
     </select>
 
+    <select id="getImageData" resultType="Long">
+        SELECT kfashion_work.no
+            FROM KFashion.kfashion_work
+            limit 20;
+    </select>
+
     <select id="selectTotalWork" resultType="Long">
         SELECT
         count(*) AS totalWork

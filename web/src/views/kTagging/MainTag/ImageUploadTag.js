@@ -4,7 +4,7 @@ import MaterialTable from 'material-table';
 import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
-import {STATE} from '../../../common/state';
+// import {STATE} from '../../../common/state';
 
 const style = theme => ({
     root: {

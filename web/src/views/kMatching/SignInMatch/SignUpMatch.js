@@ -6,12 +6,9 @@ import {inject, observer} from "mobx-react";
 
 import {
     Button,
-    Checkbox,
     CircularProgress,
     Container,
-    FormControlLabel,
     Grid,
-    Link,
     TextField,
     Typography
 } from "@material-ui/core";
@@ -103,7 +100,6 @@ const style = theme => ({
     },
 });
 
-
 @inject('mSignUpStore')
 @observer
 class SignUpSearch extends React.Component {
@@ -133,10 +129,6 @@ class SignUpSearch extends React.Component {
         this.props.mSignUpStore.changeNewMemberId(event.target.value);
     }
 
-    handleChangeEmail = (event) => {
-        this.props.mSignUpStore.changeNewMemberEmail(event.target.value);
-    }
-
     handleChangePassword = (event) => {
         this.props.mSignUpStore.changeNewMemberPassword(event.target.value);
     }
@@ -147,22 +139,6 @@ class SignUpSearch extends React.Component {
 
     handleChangeUserName = (event) => {
         this.props.mSignUpStore.changeNewMemberUserName(event.target.value);
-    }
-
-    handleChangePhone = (event) => {
-        this.props.mSignUpStore.changeNewMemberPhone(event.target.value);
-    }
-
-    handleChangeAllAgreements = (event) => {
-        this.props.mSignUpStore.changeAgreementsAll(event.target.checked);
-    }
-
-    handleChangeServiceAgreements = (event) => {
-        this.props.mSignUpStore.changeAgreementsService(event.target.checked);
-    }
-
-    handleChangePrivacyAgreements = (event) => {
-        this.props.mSignUpStore.changeAgreementsPrivacy(event.target.checked);
     }
 
     handleClickOK = () => {
@@ -176,9 +152,8 @@ class SignUpSearch extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { isEmailInputed, isValidId, isValidEmail, isValidPassword, isPasswordConfirmed,
-            isValidUsername, isValidPhone, isPending, isSignUpSuccess, canSignUp, newMember,
-            agreements, serverMode} = this.props.mSignUpStore;
+        const { isValidId, isValidPassword, isPasswordConfirmed,
+            isValidUsername, isPending, canSignUp, newMember} = this.props.mSignUpStore;
 
         return (
             <React.Fragment>

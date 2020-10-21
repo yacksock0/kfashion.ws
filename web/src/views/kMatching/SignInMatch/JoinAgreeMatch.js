@@ -39,7 +39,6 @@ class JoinAgreeTag extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const {isAllSelected} = this.props.mSignUpStore;
 
         return (
             <div className={classes.root}>

@@ -6,12 +6,9 @@ import {inject, observer} from "mobx-react";
 
 import {
     Button,
-    Checkbox,
     CircularProgress,
     Container,
-    FormControlLabel,
     Grid,
-    Link,
     TextField,
     Typography
 } from "@material-ui/core";
@@ -193,9 +190,8 @@ class SignUpTag extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { isEmailInputed, isValidId, isValidEmail, isValidPassword, isPasswordConfirmed,
-            isValidUsername, isValidPhone, isPending, isSignUpSuccess, canSignUp, newMember,
-            agreements, serverMode} = this.props.tSignUpStore;
+        const {  isValidId, isValidPassword, isPasswordConfirmed,
+            isValidUsername, isPending, canSignUp, newMember} = this.props.tSignUpStore;
 
         return (
             <React.Fragment>
