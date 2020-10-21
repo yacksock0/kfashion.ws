@@ -11,24 +11,11 @@ const STATE = {
 export default class ImageStore {
     //observable
     @observable State = STATE.INITIAL;
-    @observable boundaryList = [];
-    @observable imagesList = [];
-    @observable fileTotal = 0;
-    @observable count = 0;
-    @observable maxValue = 0;
+    @observable boundaryList = [];    
+    @observable imgData = '';
+    @observable fileName = '';
+    @observable fileType = '';
     //action
-    @action countChange = (max) => {
-        this.count = max;
-    }
-    @action restFileTotal = (num) => {
-        this.fileTotal = num;
-    }
-    @action changeFileTotal = (fileTotal) => {
-        this.fileTotal = fileTotal;
-    }
-    @action countReset = (count) => {
-        this.count = count;
-    }
     @action initStore = () => {
         this.boundaryList = [];
         this.State = STATE.INITIAL;
@@ -36,22 +23,28 @@ export default class ImageStore {
     @action setState = (state) => {
         this.State = state;
     }
+    @action changeImg = () => {
+        this.imgData = 'data:image/jpeg;base64,'+this.boundaryList.imgData;
+        this.fileName = this.boundaryList.fileName;
+        this.fileType = this.boundaryList.fileType;
+    }
     //드롭시 파일업로드
-    fileupload = flow(function* fileupload(file) {
+    fileupload = flow(function* fileupload(files) {
+        const formData = new FormData();
+        formData.append('file', files)
         try {
             this.setState(STATE.PENDING);
-                const formData = new FormData();
-                formData.append("file", file);
-                const resp = yield axios.post('/api/v1/kSearching/img/uploadFile', formData, {
-                    headers: { 'Content-Type': 'multipart/form-data' },
-                });
-                this.imagesList.push(resp.data);
-                this.boundaryList = this.imagesList;
+            const resp = yield axios.post('/api/v1/kSearching/img/uploadFile', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+            this.boundaryList = resp.data;
+            this.changeImg();
         } catch (error) {
             console.log(error);
         }finally {
             this.setState(STATE.ERROR);
         }
+        
     });
 }
 
