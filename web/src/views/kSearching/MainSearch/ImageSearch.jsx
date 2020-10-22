@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles, Paper, Typography, Button, Container, Grid, Hidden, CircularProgress } from '@material-ui/core';
 import DropZone from './DropZoneSearch';
-import Lightbox from "react-image-lightbox";
-
 import imgfile from '../../../images/test1.png';
 import { inject, observer } from "mobx-react";
 import { STATE } from '../../../common/state';
@@ -91,7 +89,8 @@ const style = theme => ({
         marginBottom: '20px',
         alignItems: 'center',
     },
-    imagefile: { margin: 5, width: '60%', height : 'auto', },
+    //화면이 좁은 상태에서 너무 이미지가 커지지않도록 maxWidth 추가 2020.10.22[이지현]
+    imagefile: { margin: 5, width: '60%', height : 'auto', maxWidth : '360px'},
     btnsend: {
         width: '190px',
         height: '56px',
@@ -141,7 +140,7 @@ class ImageSearch extends Component {
         this.boundaryList = this.props.sImageStore.boundaryList;
     }
     componentWillUnmount() {
-        this.props.tImageStore.initStore();
+        this.props.sImageStore.initStore();
     }
     render() {
         const { imgData, fileName, State } = this.props.sImageStore;
@@ -202,7 +201,13 @@ class ImageSearch extends Component {
 
                                             {/* 업로드 이미지 들어가는영역 */}
                                             <Paper elevation={0} className={classes.imgboxin}>
-                                                <img src={imgfile} className={classes.imagefile} alt="image01" />
+                                                {State === STATE.INITIAL && <span className={classes.textzone}>이미지를 업로드해주세요.</span>}
+                                                {State === STATE.PENDING && <CircularProgress className={classes.textzone}/>}
+                                                {State !== STATE.PENDING && State !== STATE.INITIAL &&
+                                                <Paper elevation={0} className={classes.imgboxscroll}>
+                                                    <img src={imgData} className={classes.imagefile} alt={fileName}/>
+                                                </Paper>
+                                                }
                                             </Paper>
                                         </Paper>
                                     </div>

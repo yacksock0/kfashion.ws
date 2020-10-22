@@ -22,15 +22,12 @@ const style = theme => ({
         width: '100%'
     },
 });
+
 @inject('tImageStore')
 @observer
 class ImageUploadTag extends Component {
-    componentDidMount() {
-        this.boundaryList = this.props.tImageStore.boundaryList;
-    }
-    componentWillUnmount() {
-        this.props.tImageStore.initStore();
-    }
+
+
     render() {
         const { classes } = this.props;
         const { progress, State } = this.props.tImageStore;
