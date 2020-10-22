@@ -7,7 +7,7 @@ import Modal1 from './Modal1';
 const useStyles = makeStyles((theme) => ({
     root: {
         textAlign:'left',
-        marginTop:20,
+        marginTop:5,
     },
     paperin:{
         display:'flex',
@@ -55,7 +55,7 @@ export default function CheckBoxList1 ({options, isCheckedAll, onCheck}) {
                 </Paper>
                 <Paper elevation={0} className={classes.modalstyle}>
                     <Modal1 /><br/>
-                    <Modal1 />
+                    {/* <Modal1 /> */}
                 </Paper>
             </Paper>
         </div>

@@ -74,7 +74,7 @@ const style = theme => ({
         fontSize: 10,
         color: '#fff',
         fontFamily: 'NotoSansCJKkr',
-        fontWeight: 'bold',
+        fontWeight: '300',
         margin: '0 10px 30px 0',
         "&:hover": {
             background: '#526af2',
@@ -126,7 +126,7 @@ class MainContentTag extends React.Component {
         return (
             <div className={classes.root}>
                 <React.Fragment>
-                    <Container maxWidth="xl">
+                    <Container minWidth="xl">
                         <Grid item xs={12} className={classes.gridcontainer}>
                             <Hidden smDown>
                                 <Paper elevation={0} style={{width: '49%'}}>
