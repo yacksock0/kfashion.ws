@@ -76,11 +76,6 @@ public class KimageController {
             exportMap.put("fileSize", fileSize);
             resultMap.put("boundaryList", boundaryList);
             resultMap.put("exportMap", exportMap);
-            System.out.println("!!"+boundaryList);
-            System.out.println("@@"+exportMap);
-            System.out.println("##"+resultMap);
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

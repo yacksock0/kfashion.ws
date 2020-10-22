@@ -58,8 +58,8 @@ class ImageUploadTag extends Component {
                         data={
                             this.props.tImageStore.boundaryList.map((item) => {
                                 return {
-                                    fileName: item.fileName,
                                     imgData: item.imgData,
+                                    fileName : item.fileName
                                 }
                             })
                         }
