@@ -74,9 +74,8 @@ export default class ImageStore {
                 this.boundaryList = this.imagesList;
                 this.dataList.push(resp.data.exportMap);
                 this.csvData = this.dataList;
+                console.log(this.csvData)
                 this.textData = JSON.stringify(this.csvData)
-
-                console.log(this.csvData);
                 //카운트 증가위함!
                 this.count = this.count+ 1;
                 if (this.count >= max) {
