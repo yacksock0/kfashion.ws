@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
             width: theme.drawerWidth,
             flexShrink: 0,
         },
+        
     },
     appBar: {
         width: theme.drawerWidth,
@@ -62,12 +63,18 @@ const useStyles = makeStyles((theme) => ({
     menu: {
         borderRight: '1px solid rgba(0,0,0,0.12)',
         height: '100%',
+        padding:0,
+        "& .MuiDivider-root": {
+            height:0,
+        }
     },
 
     link: {
         textDecoration: 'none',
         color: 'inherit',
-    },nested: {
+        textAlign:'center',
+    },
+    nested: {
         paddingLeft: theme.spacing(4),
     },
     title: {
@@ -77,6 +84,20 @@ const useStyles = makeStyles((theme) => ({
     link1: {
         textDecoration: 'none',
         color: 'white',
+    },
+    menutext:{
+        textAlign:'center',
+        "& .MuiTypography-body1":{
+            fontFamily: 'NotoSansCJKkr',
+            fontSize: '17px',
+            fontWeight: '600',
+        },
+
+    },
+    test:{
+        "& .MuiListSubheader-root":{
+            padding:0
+        }
     }
 }));
 
@@ -106,8 +127,20 @@ export default function SideMenu(props) {
     };
     const drawer = (
         <div className={classes.menu}>
-            <List>
+            <List className={classes.test}>
                 {loginUser.isAdmin ==='Y' ? (
+                <ListSubheader style={{textAlign: 'center'}}><h3>마스터 관리자</h3><hr style={{border:'none',height:'1px',background:'#707070'}} /></ListSubheader>):''}
+                {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 4 && loginUser.authorityNo !== 1? (
+                    <ListSubheader style={{textAlign: 'center'}}><h3>그룹 관리자</h3><hr style={{border:'none',height:'1px',background:'#707070'}} /></ListSubheader>):''}
+                {loginUser.authorityNo === 1 && loginUser.groupAdmin === 1 ? (
+                    <ListSubheader style={{textAlign: 'center'}}><h3>업로드 작업자</h3><hr style={{border:'none',height:'1px',background:'#707070'}} /></ListSubheader>):''}
+                {loginUser.authorityNo === 2 && loginUser.groupAdmin === 0? (
+                    <ListSubheader style={{textAlign: 'center'}}><h3>기초 작업자</h3><hr style={{border:'none',height:'1px',background:'#707070'}} /></ListSubheader>):''}
+                {loginUser.authorityNo === 3 && loginUser.groupAdmin === 0? (
+                    <ListSubheader inset style={{textAlign: 'center'}}><h3>전문 작업자</h3><hr style={{border:'none',height:'1px',background:'#707070'}} /></ListSubheader>):''}
+                {loginUser.groupAdmin === 1 && loginUser.authorityNo === 4? (
+                    <ListSubheader style={{textAlign: 'center'}}><h3>읽기 전용</h3><hr style={{border:'none',height:'1px',background:'#707070'}} /></ListSubheader>):''}
+                {/* {loginUser.isAdmin ==='Y' ? (
                 <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}} />마스터 관리자</h3></ListSubheader>):''}
                 {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 4 && loginUser.authorityNo !== 1? (
                     <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}} />그룹 관리자</h3></ListSubheader>):''}
@@ -118,14 +151,19 @@ export default function SideMenu(props) {
                 {loginUser.authorityNo === 3 && loginUser.groupAdmin === 0? (
                     <ListSubheader inset><h3>전문 작업자</h3></ListSubheader>):''}
                 {loginUser.groupAdmin === 1 && loginUser.authorityNo === 4? (
-                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}} />읽기 전용</h3></ListSubheader>):''}
-                <Link to="/home" className={classes.link}>
+                    <ListSubheader style={{textAlign: 'center'}}><h3><AssignmentIndIcon style={{fontSize:30 , display: 'inline-block', verticalAlign: 'middle', marginBottom: 4}} />읽기 전용</h3></ListSubheader>):''} */}
+                {/* <Link to="/home" className={classes.link}>
                     <ListItem type="button">
                         <ListItemIcon><ComputerIcon /></ListItemIcon>
                         <ListItemText primary="홈"></ListItemText>
                     </ListItem>
-                </Link>
-                {loginUser.authorityNo <  3 && loginUser.groupAdmin !== 1? (
+                </Link> */}
+
+
+
+
+
+                {/* {loginUser.authorityNo <  3 && loginUser.groupAdmin !== 1? (
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText type="button" onClick={handleClick} primary="영역지정"></ListItemText>
@@ -138,20 +176,25 @@ export default function SideMenu(props) {
                             <ListItemText type="button" onClick={handleClick} primary="영역지정"></ListItemText>
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
-                ):''}
+                ):''} */}
                 {loginUser.authorityNo === 1 || loginUser.isAdmin === 'Y' ? (
-                <Link to="/step/imageUpload" className={classes.link}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem type="button" className={classes.nested}>
-                                <ListItemIcon>
-                                    <AspectRatioIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="이미지 등록" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
+                    <Link to="/step/imageUpload" className={classes.link}>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="이미지 등록"></ListItemText>
+                        </ListItem>
+                    </Link>
+                // <Link to="/step/imageUpload" className={classes.link}>
+                //     <Collapse in={open} timeout="auto" unmountOnExit>
+                //         <List component="div" disablePadding>
+                //             <ListItem type="button" className={classes.nested}>
+                //                 <ListItemIcon>
+                //                     <AspectRatioIcon />
+                //                 </ListItemIcon>
+                //                 <ListItemText primary="이미지 등록" />
+                //             </ListItem>
+                //         </List>
+                //     </Collapse>
+                // </Link>
                     ):''}
                 {/*<Link to="/Step/boundaryBox" className={classes.link}>*/}
                 {/*    <Collapse in={open} timeout="auto" unmountOnExit>*/}
@@ -166,138 +209,198 @@ export default function SideMenu(props) {
                 {/*    </Collapse>*/}
                 {/*</Link>*/}
                 {loginUser.authorityNo === 2 && loginUser.groupAdmin === 0? (
-                <Link to="/step/polygon" className={classes.link}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem type="button" className={classes.nested}>
-                                <ListItemIcon>
-                                    <FormatShapesIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="다각형 지정" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
+                    <Link to="/step/polygon" className={classes.link}>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="다각형 지정"></ListItemText>
+                        </ListItem>
+                    </Link>
+
+                    // <Link to="/step/polygon" className={classes.link}>
+                    //     <Collapse in={open} timeout="auto" unmountOnExit>
+                    //         <List component="div" disablePadding>
+                    //             <ListItem type="button" className={classes.nested}>
+                    //                 <ListItemIcon>
+                    //                     <FormatShapesIcon />
+                    //                 </ListItemIcon>
+                    //                 <ListItemText primary="다각형 지정" />
+                    //             </ListItem>
+                    //         </List>
+                    //     </Collapse>
+                    // </Link>
                 ):''}
 
                 {loginUser.isAdmin === 'Y'? (
+
                     <Link to="/step/polygon" className={classes.link}>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <ListItem type="button" className={classes.nested}>
-                                    <ListItemIcon>
-                                        <FormatShapesIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="다각형 지정" />
-                                </ListItem>
-                            </List>
-                        </Collapse>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="다각형 지정"></ListItemText>
+                        </ListItem>
                     </Link>
+                    // <Link to="/step/polygon" className={classes.link}>
+                    //     <Collapse in={open} timeout="auto" unmountOnExit>
+                    //         <List component="div" disablePadding>
+                    //             <ListItem type="button" className={classes.nested}>
+                    //                 <ListItemIcon>
+                    //                     <FormatShapesIcon />
+                    //                 </ListItemIcon>
+                    //                 <ListItemText primary="다각형 지정" />
+                    //             </ListItem>
+                    //         </List>
+                    //     </Collapse>
+                    // </Link>
 
                 ):''}
-                { loginUser.isAdmin === 'Y'?  (
+                {/* { loginUser.isAdmin === 'Y'?  (
                         <ListItem button>
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText type="button" onClick={handleClick2} primary="레이블링"></ListItemText>
                             {open2 ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
-                ):''}
-                {loginUser.authorityNo > 1 ? (
+                ):''} */}
+                {/* {loginUser.authorityNo > 1 ? (
                     <ListItem button>
                         <ListItemIcon><WallpaperIcon /></ListItemIcon>
                         <ListItemText type="button" onClick={handleClick2} primary="레이블링"></ListItemText>
                         {open2 ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                ):''}
+                ):''} */}
                 {loginUser.isAdmin === 'Y'? (
                     <Link to="/step2" className={classes.link}>
-                        <Collapse in={open2} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <ListItem type="button" className={classes.nested}>
-                                    <ListItemIcon>
-                                        <FormatListBulletedIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="기본 레이블링" />
-                                </ListItem>
-                            </List>
-                        </Collapse>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="기본 레이블링"></ListItemText>
+                        </ListItem>
                     </Link>
+
+                    // <Link to="/step2" className={classes.link}>
+                    //     <Collapse in={open2} timeout="auto" unmountOnExit>
+                    //         <List component="div" disablePadding>
+                    //             <ListItem type="button" className={classes.nested}>
+                    //                 <ListItemIcon>
+                    //                     <FormatListBulletedIcon />
+                    //                 </ListItemIcon>
+                    //                 <ListItemText primary="기본 레이블링" />
+                    //             </ListItem>
+                    //         </List>
+                    //     </Collapse>
+                    // </Link>
                 ):''}
 
                 {loginUser.authorityNo === 1 && loginUser.groupAdmin !== 1? (
-                <Link to="/step2" className={classes.link}>
-                    <Collapse in={open2} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem type="button" className={classes.nested}>
-                                <ListItemIcon>
-                                    <FormatListBulletedIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="기본 레이블링" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
+
+                    <Link to="/step2" className={classes.link}>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="기본 레이블링"></ListItemText>
+                        </ListItem>
+                    </Link>
+                // <Link to="/step2" className={classes.link}>
+                //     <Collapse in={open2} timeout="auto" unmountOnExit>
+                //         <List component="div" disablePadding>
+                //             <ListItem type="button" className={classes.nested}>
+                //                 <ListItemIcon>
+                //                     <FormatListBulletedIcon />
+                //                 </ListItemIcon>
+                //                 <ListItemText primary="기본 레이블링" />
+                //             </ListItem>
+                //         </List>
+                //     </Collapse>
+                // </Link>
                     ):''}
                 {loginUser.authorityNo === 2 && loginUser.groupAdmin !== 1? (
+
                     <Link to="/step2" className={classes.link}>
-                        <Collapse in={open2} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <ListItem type="button" className={classes.nested}>
-                                    <ListItemIcon>
-                                        <FormatListBulletedIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="기본 레이블링" />
-                                </ListItem>
-                            </List>
-                        </Collapse>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="기본 레이블링"></ListItemText>
+                        </ListItem>
                     </Link>
+                    // <Link to="/step2" className={classes.link}>
+                    //     <Collapse in={open2} timeout="auto" unmountOnExit>
+                    //         <List component="div" disablePadding>
+                    //             <ListItem type="button" className={classes.nested}>
+                    //                 <ListItemIcon>
+                    //                     <FormatListBulletedIcon />
+                    //                 </ListItemIcon>
+                    //                 <ListItemText primary="기본 레이블링" />
+                    //             </ListItem>
+                    //         </List>
+                    //     </Collapse>
+                    // </Link>
                 ):''}
 
                 {loginUser.authorityNo === 3 &&  loginUser.groupAdmin !== 1 ? (
-                <Link to="/step3" className={classes.link}>
-                    <Collapse in={open2} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem type="button" className={classes.nested}>
-                                <ListItemIcon>
-                                    <PlaylistAddCheckIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="전문 레이블링" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
+                    <Link to="/step3" className={classes.link}>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="전문 레이블링"></ListItemText>
+                        </ListItem>
+                    </Link>
+                // <Link to="/step3" className={classes.link}>
+                //     <Collapse in={open2} timeout="auto" unmountOnExit>
+                //         <List component="div" disablePadding>
+                //             <ListItem type="button" className={classes.nested}>
+                //                 <ListItemIcon>
+                //                     <PlaylistAddCheckIcon />
+                //                 </ListItemIcon>
+                //                 <ListItemText primary="전문 레이블링" />
+                //             </ListItem>
+                //         </List>
+                //     </Collapse>
+                // </Link>
                 ):''}
                 {loginUser.isAdmin === 'Y'? (
-                <Link to="/step3" className={classes.link}>
-                    <Collapse in={open2} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem type="button" className={classes.nested}>
-                                <ListItemIcon>
-                                    <PlaylistAddCheckIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="전문 레이블링" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
+                    <Link to="/step3" className={classes.link}>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="전문 레이블링"></ListItemText>
+                        </ListItem>
+                    </Link>
+                // <Link to="/step3" className={classes.link}>
+                //     <Collapse in={open2} timeout="auto" unmountOnExit>
+                //         <List component="div" disablePadding>
+                //             <ListItem type="button" className={classes.nested}>
+                //                 <ListItemIcon>
+                //                     <PlaylistAddCheckIcon />
+                //                 </ListItemIcon>
+                //                 <ListItemText primary="전문 레이블링" />
+                //             </ListItem>
+                //         </List>
+                //     </Collapse>
+                // </Link>
                 ):''}
                 {loginUser.isAdmin === 'Y' ? (
-                <Link to="/Step2/FinalCheckList" className={classes.link}>
-                    <Collapse in={open2} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem type="button" className={classes.nested}>
-                                <ListItemIcon>
-                                    <PlaylistAddCheckIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="검수" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </Link>
+                    <Link to="/Step2/FinalCheckList" className={classes.link}>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="검수"></ListItemText>
+                        </ListItem>
+                    </Link>
+                // <Link to="/Step2/FinalCheckList" className={classes.link}>
+                //     <Collapse in={open2} timeout="auto" unmountOnExit>
+                //         <List component="div" disablePadding>
+                //             <ListItem type="button" className={classes.nested}>
+                //                 <ListItemIcon>
+                //                     <PlaylistAddCheckIcon />
+                //                 </ListItemIcon>
+                //                 <ListItemText primary="검수" />
+                //             </ListItem>
+                //         </List>
+                //     </Collapse>
+                // </Link>
                     ):''}
                 {loginUser.groupAdmin === 1 &&  loginUser.authorityNo > 1 ? (
                     <div>
-                    <Link to="/SuccessList" className={classes.link}>
+                        <Link to="/SuccessList" className={classes.link}>
+                            <ListItem type="button">
+                                <ListItemText className={classes.menutext} primary="완료된 이미지"></ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link to="/ProfessionalCheckList" className={classes.link}>
+                            <ListItem type="button">
+                                <ListItemText className={classes.menutext} primary="전문가 작업내용"></ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link to="/Step2/HighCheckList" className={classes.link}>
+                            <ListItem type="button">
+                                <ListItemText className={classes.menutext} primary="기본 작업 내용"></ListItemText>
+                            </ListItem>
+                        </Link>
+                    {/* <Link to="/SuccessList" className={classes.link}>
                         <Collapse in={open2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem type="button" className={classes.nested}>
@@ -332,12 +435,22 @@ export default function SideMenu(props) {
                                     </ListItem>
                                 </List>
                             </Collapse>
-                        </Link>
+                        </Link> */}
                     </div>
                 ):''}
                 {loginUser.groupAdmin !== 1 &&  loginUser.authorityNo === 3 ? (
                     <div>
                         <Link to="/Step2/HighCheckList" className={classes.link}>
+                            <ListItem type="button">
+                                <ListItemText className={classes.menutext} primary="기본작업 검수"></ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link to="/Step2/FinalCheckList" className={classes.link}>
+                            <ListItem type="button">
+                                <ListItemText className={classes.menutext} primary="작업내용 체크"></ListItemText>
+                            </ListItem>
+                        </Link>
+                        {/* <Link to="/Step2/HighCheckList" className={classes.link}>
                             <Collapse in={open2} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
                                     <ListItem type="button" className={classes.nested}>
@@ -360,7 +473,7 @@ export default function SideMenu(props) {
                                     </ListItem>
                                 </List>
                             </Collapse>
-                        </Link>
+                        </Link> */}
                         {/*<Link to="/Step2/Test" className={classes.link}>*/}
                         {/*    <Collapse in={open2} timeout="auto" unmountOnExit>*/}
                         {/*        <List component="div" disablePadding>*/}
@@ -435,7 +548,17 @@ export default function SideMenu(props) {
                     </div>):''}
             {loginUser.groupAdmin === 1 && loginUser.authorityNo !== 1 && loginUser.authorityNo !== 4?(
                 <div>
+                    <Link to="/admin/userList" className={classes.link}>
                         <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="작업자 등록"></ListItemText>
+                        </ListItem>
+                    </Link>
+                    <Link to="/admin/userWork" className={classes.link}>
+                        <ListItem type="button">
+                            <ListItemText className={classes.menutext} primary="작업 지정"></ListItemText>
+                        </ListItem>
+                    </Link>
+                        {/* <ListItem type="button">
                             <ListItemIcon><WallpaperIcon /></ListItemIcon>
                             <ListItemText type="button" onClick={handleClickAdmin} primary="관리자 메뉴"></ListItemText>
                             {open1 ? <ExpandLess /> : <ExpandMore />}
@@ -463,7 +586,7 @@ export default function SideMenu(props) {
                                 </ListItem>
                             </List>
                         </Collapse>
-                    </Link>
+                    </Link> */}
                 </div>
             ):''}
         </div>
