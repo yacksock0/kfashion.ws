@@ -119,7 +119,37 @@ const styles = theme => ({   root: {
         height: 800,
         zoom : "80%",
         marginLeft:'auto'
-    }
+    },
+    tabliststyle:{
+        padding:0,
+        "& .react-tabs__tab--selected":{
+            height:59,
+            border:'none',
+            background:'#000',
+            color:'#fff'
+        },
+    },
+    btnstyle:{
+        width: '25%',
+        height:60,
+        textAlign:'center',
+        listStyle: 'none',
+        display: 'inline-block',
+        border: '1px solid #e2e2e2',
+        borderRadius:0,
+        bottom: '-1px',
+        position: 'relative',
+        padding: '6px 12px',
+        cursor:'pointer',
+        background:'#fff',
+    },
+    tabletxt:{
+        width:'50%',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '15px',
+        fontWeight: '500',
+        color:'#7d7d7d',
+    },
 
 });
 
@@ -468,20 +498,20 @@ class HighCheckList extends React.Component {
                                     </TabList>
 
                                     <TabPanel>
-                                    <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab1(tabIndex2)}>
-                                        <TabList >
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                    <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab1(tabIndex2)} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'500px'}}>
+                                        <TabList className={classes.tabliststyle}>
+                                            <Tab className={classes.btnstyle}
                                                   disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 1)))}
-                                            ><h3>아우터</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>아우터</h3></Tab>
+                                            <Tab className={classes.btnstyle}
                                                   disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 2)))}
-                                            ><h3>상의</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>상의</h3></Tab>
+                                            <Tab className={classes.btnstyle}
                                                   disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 3)))}
-                                            ><h3>하의</h3></Tab>
-                                            <Tab  style={{width: '25%', height:60,textAlign:'center'}}
+                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>하의</h3></Tab>
+                                            <Tab className={classes.btnstyle}
                                                   disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 4)))}
-                                            ><h3>원피스</h3></Tab>
+                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
                                         </TabList>
                                         <TabPanel>
                                         <TableContainer >
@@ -489,23 +519,23 @@ class HighCheckList extends React.Component {
                                     <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                         <TableHead>
                                             <TableRow>
-                                                <TableCell align="center">항목</TableCell>
-                                                <TableCell align="center">레이블링</TableCell>
+                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
                                                 <TableRow>
-                                                    <TableCell align="center">색상</TableCell>
-                                                    <TableCell align="center">
+                                                    <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
+                                                    <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
                                                         메인 {outerReviewHighLabel.colorItemName1 ?
-                                                            <Chip style={{marginRight : 10, backgroundColor: outerReviewHighLabel.colorItemMemo1,
+                                                            <Chip style={{margin: '0 8px 0', backgroundColor: outerReviewHighLabel.colorItemMemo1,
                                                                 ...( outerReviewHighLabel.colorItemMemo1 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
                                                                 fontWeight: 'bold'}}
                                                                   variant="outlined"
                                                                   label={outerReviewHighLabel.colorItemName1}
                                                             /> : ''}
                                                         서브 {outerReviewHighLabel.subColorItemName1 ?
-                                                            <Chip style={{marginRight : 10,backgroundColor: outerReviewHighLabel.subColorItemMemo1,
+                                                            <Chip style={{margin: '0 8px 0',backgroundColor: outerReviewHighLabel.subColorItemMemo1,
                                                                 ...( outerReviewHighLabel.subColorItemMemo1 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
                                                                 fontWeight: 'bold'}}
                                                                   variant="outlined"
@@ -514,10 +544,10 @@ class HighCheckList extends React.Component {
                                                     </TableCell>
                                                 </TableRow>
                                             <TableRow>
-                                                <TableCell align="center">소매길이</TableCell>
+                                                <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
                                                 <TableCell align="center">
                                                     {outerReviewHighLabel.sleeveLengthItemName1 ?
-                                                        <Chip style={{marginRight : 10}}
+                                                        <Chip style={{margin: '0 4px 0'}}
                                                               variant="outlined"
                                                               label={outerReviewHighLabel.sleeveLengthItemName1}
                                                     /> : ''}
@@ -534,23 +564,23 @@ class HighCheckList extends React.Component {
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
                                                         <TableRow>
-                                                            <TableCell align="center">항목</TableCell>
-                                                            <TableCell align="center">레이블링</TableCell>
+                                                            <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                            <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                                         </TableRow>
                                                     </TableHead>
                                                     <TableBody>
                                                         <TableRow>
-                                                            <TableCell align="center">색상</TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
+                                                            <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
                                                                 메인 {topReviewHighLabel.colorItemName2 ?
-                                                                <Chip style={{marginRight : 10, backgroundColor: topReviewHighLabel.colorItemMemo2,
+                                                                <Chip style={{margin: '0 8px 0', backgroundColor: topReviewHighLabel.colorItemMemo2,
                                                                     ...( topReviewHighLabel.colorItemMemo2 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
                                                                     fontWeight: 'bold'}}
                                                                       variant="outlined"
                                                                       label={topReviewHighLabel.colorItemName2}
                                                                 /> : ''}
                                                                 서브 {topReviewHighLabel.subColorItemName2 ?
-                                                                <Chip style={{marginRight : 10,backgroundColor: topReviewHighLabel.subColorItemMemo2,
+                                                                <Chip style={{margin: '0 8px 0',backgroundColor: topReviewHighLabel.subColorItemMemo2,
                                                                     ...( topReviewHighLabel.subColorItemMemo2 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
                                                                     fontWeight: 'bold'}}
                                                                       variant="outlined"
@@ -559,10 +589,10 @@ class HighCheckList extends React.Component {
                                                             </TableCell>
                                                         </TableRow>
                                                         <TableRow>
-                                                            <TableCell align="center">소매길이</TableCell>
+                                                            <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
                                                             <TableCell align="center">
                                                                 {topReviewHighLabel.sleeveLengthItemName2 ?
-                                                                    <Chip style={{marginRight : 10}}
+                                                                    <Chip style={{margin: '0 4px 0'}}
                                                                           variant="outlined"
                                                                           label={topReviewHighLabel.sleeveLengthItemName2}
                                                                     /> : ''}
@@ -578,23 +608,23 @@ class HighCheckList extends React.Component {
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
                                                         <TableRow>
-                                                            <TableCell align="center">항목</TableCell>
-                                                            <TableCell align="center">레이블링</TableCell>
+                                                            <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                            <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                                         </TableRow>
                                                     </TableHead>
                                                     <TableBody>
                                                         <TableRow>
-                                                            <TableCell align="center">색상</TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
+                                                            <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
                                                                 메인 {pantsReviewHighLabel.colorItemName3 ?
-                                                                <Chip style={{marginRight : 10, backgroundColor: pantsReviewHighLabel.colorItemMemo3,
+                                                                <Chip style={{margin: '0 8px 0', backgroundColor: pantsReviewHighLabel.colorItemMemo3,
                                                                     ...( pantsReviewHighLabel.colorItemMemo3 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
                                                                     fontWeight: 'bold'}}
                                                                       variant="outlined"
                                                                       label={pantsReviewHighLabel.colorItemName3}
                                                                 /> : ''}
                                                                 서브 {pantsReviewHighLabel.subColorItemName3 ?
-                                                                <Chip style={{marginRight : 10,backgroundColor: pantsReviewHighLabel.subColorItemMemo3,
+                                                                <Chip style={{margin: '0 8px 0',backgroundColor: pantsReviewHighLabel.subColorItemMemo3,
                                                                     ...( pantsReviewHighLabel.subColorItemMemo3 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
                                                                     fontWeight: 'bold'}}
                                                                       variant="outlined"
@@ -613,23 +643,23 @@ class HighCheckList extends React.Component {
                                                 <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                     <TableHead>
                                                         <TableRow>
-                                                            <TableCell align="center">항목</TableCell>
-                                                            <TableCell align="center">레이블링</TableCell>
+                                                            <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                            <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                                         </TableRow>
                                                     </TableHead>
                                                     <TableBody>
                                                         <TableRow>
-                                                            <TableCell align="center">색상</TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
+                                                            <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
                                                                 메인 {onePieceReviewHighLabel.colorItemName4 ?
-                                                                <Chip style={{marginRight : 10, backgroundColor: onePieceReviewHighLabel.colorItemMemo4,
+                                                                <Chip style={{margin: '0 8px 0', backgroundColor: onePieceReviewHighLabel.colorItemMemo4,
                                                                     ...( onePieceReviewHighLabel.colorItemMemo4 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
                                                                     fontWeight: 'bold'}}
                                                                       variant="outlined"
                                                                       label={onePieceReviewHighLabel.colorItemName4}
                                                                 /> : ''}
                                                                 서브 {onePieceReviewHighLabel.subColorItemName4 ?
-                                                                <Chip style={{marginRight : 10,backgroundColor: onePieceReviewHighLabel.subColorItemMemo4,
+                                                                <Chip style={{margin: '0 8px 0',backgroundColor: onePieceReviewHighLabel.subColorItemMemo4,
                                                                     ...( onePieceReviewHighLabel.subColorItemMemo4 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
                                                                     fontWeight: 'bold'}}
                                                                       variant="outlined"
@@ -638,7 +668,7 @@ class HighCheckList extends React.Component {
                                                             </TableCell>
                                                         </TableRow>
                                                         <TableRow>
-                                                            <TableCell align="center">소매길이</TableCell>
+                                                            <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
                                                             <TableCell align="center">{onePieceReviewHighLabel.sleeveLengthItemName4}</TableCell>
                                                         </TableRow>
                                                     </TableBody>
@@ -677,7 +707,7 @@ class HighCheckList extends React.Component {
                                             createdDatetime:  <Moment format="MM-DD">{item.createdDatetime}</Moment>,
                                         }
                                     }) : []}
-                                title="이미지 리스트"
+                                title=""
                                 options={{
                                     sorting: false,
                                     search: true,
@@ -730,9 +760,9 @@ class HighCheckList extends React.Component {
                         </Grid>
                     </Grid>
                 </div>
-                <hr></hr>
-                <ReturnMsg onClick={()=> this.handleSubmit()}/><br></br><br></br>
-                {this.props.authStore.loginUser.authorityNo !== 4? (
+                {/* <hr></hr> */}
+                <ReturnMsg onClick={()=> this.handleSubmit()}/>
+                {/* {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 검수할 확인 할 이미지 선택</p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 작업한 폴리곤 좌표 및 레이블링 확인 </p>
@@ -740,7 +770,7 @@ class HighCheckList extends React.Component {
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 반송 시 수정 사항 있는 부분 체크 후 반송 사유 작성 후 확인</p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크 박스 활용하여 일괄적으로 완료 가능 합니다 ( 반송은 체크박스 활용 불가능합니다 )</p>
                 </Typography>
-                    ) : ''}
+                    ) : ''} */}
                 <ImagePopupModal store={this.props.imageStore} />
             </Container>
         );

@@ -60,6 +60,30 @@ const styles = theme => ({   root: {
         float:'right',
 
     },
+    btnstyle:{
+        width: '20%',
+        height:60,
+        textAlign:'center',
+        listStyle: 'none',
+        display: 'inline-block',
+        border: '1px solid #e2e2e2',
+        borderRadius:0,
+        bottom: '-1px',
+        position: 'relative',
+        padding: '6px 12px',
+        cursor:'pointer',
+        background:'#fff',
+    },
+    tabliststyle:{
+        padding:0,
+        "& .react-tabs__tab--selected":{
+            height:59,
+            border:'none',
+            background:'#000',
+            color:'#fff'
+        },
+    },
+    
     toolButton:{
         border:'1px solid black',
         height:50,
@@ -108,7 +132,14 @@ const styles = theme => ({   root: {
         height: 800,
         zoom : "80%",
         marginLeft:'auto'
-    }
+    },
+    tabletxt:{
+        width:'50%',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '15px',
+        fontWeight: '500',
+        color:'#7d7d7d',
+    },
 });
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','workStore', 'polygonStore')
@@ -538,39 +569,39 @@ class FinalCheckList extends React.Component {
                                         <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
                                         <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
                                     </TabList>
-
+                                    
                                     <TabPanel>
-                                <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
-                                    <TabList >
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}><h3>스타일</h3></Tab>
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo1 === 1 ? false : true}><h3>아우터</h3></Tab>
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo2 === 2 ? false : true}><h3>상의</h3></Tab>
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo3 === 3 ? false : true}><h3>하의</h3></Tab>
-                                        <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo4 === 4 ? false : true}><h3>원피스</h3></Tab>
+                                <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'680px'}}>
+                                    <TabList className={classes.tabliststyle}>
+                                        <Tab  className={classes.btnstyle}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>스타일</h3></Tab>
+                                        <Tab  className={classes.btnstyle}
+                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo1 === 1 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>아우터</h3></Tab>
+                                        <Tab  className={classes.btnstyle}
+                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo2 === 2 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>상의</h3></Tab>
+                                        <Tab  className={classes.btnstyle}
+                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo3 === 3 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>하의</h3></Tab>
+                                        <Tab  className={classes.btnstyle}
+                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo4 === 4 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
                                     </TabList>
-                                    <TabPanel>
+                                    <TabPanel >
                                         <TableContainer>
                                             <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                 <TableHead>
                                                     <TableRow>
-                                                        <TableCell align="center">항목</TableCell>
-                                                        <TableCell align="center">레이블링</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
                                                     <TableRow>
-                                                        <TableCell align="center">스타일</TableCell>
-                                                        <TableCell align="center">메인 {styleReviewLabel.styleItemName ?
-                                                            <Chip style={{marginRight : 10}}
+                                                        <TableCell align="center" className={classes.tabletxt}>스타일</TableCell>
+                                                        <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}} >메인 {styleReviewLabel.styleItemName ?
+                                                            <Chip style={{margin: '0 8px 0'}}
                                                             variant="outlined"
                                                             label={styleReviewLabel.styleItemName}
                                                         /> : ''}
                                                         서브  {styleReviewLabel.styleSubItemName ?
-                                                        <Chip style={{marginRight : 10}}
+                                                        <Chip style={{margin: '0 8px 0'}}
                                                             variant="outlined"
                                                             label={styleReviewLabel.styleSubItemName}
                                                         /> : ''}</TableCell>
@@ -584,8 +615,8 @@ class FinalCheckList extends React.Component {
                                             <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                 <TableHead>
                                                     <TableRow>
-                                                        <TableCell align="center">항목</TableCell>
-                                                        <TableCell align="center">레이블링</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -603,18 +634,18 @@ class FinalCheckList extends React.Component {
                                                     {/*            /> : ''}</TableCell>*/}
                                                     {/*</TableRow>*/}
                                                     <TableRow>
-                                                        <TableCell align="center">카테고리</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
                                                         <TableCell align="center">
-                                                            {outerReviewLabel.categoryItemName1 ? <Chip
+                                                            {outerReviewLabel.categoryItemName1 ? <Chip style={{margin: '0 4px 0'}}
                                                             variant="outlined"
                                                             label={outerReviewLabel.categoryItemName1}
                                                         /> : ''}
                                                             </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">디테일</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
                                                         <TableCell align="center"> {outerReviewLabel.detailItemName1 ? outerReviewLabel.detailItemName1.map((detail1) =>
-                                                            (detail1 ? <Chip style={{marginRight : 10}}
+                                                            (detail1 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={detail1}
                                                             /> : '')
@@ -622,9 +653,9 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">프린트</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
                                                         <TableCell align="center">{outerReviewLabel.printItemName1 ? outerReviewLabel.printItemName1.map((print1) =>
-                                                            (print1 ? <Chip style={{marginRight : 10}}
+                                                            (print1 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={print1}
                                                             /> : '')
@@ -632,9 +663,9 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">소재</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
                                                         <TableCell align="center">{outerReviewLabel.textureItemName1 ? outerReviewLabel.textureItemName1.map((texture1)=>
-                                                            (texture1 ? <Chip style={{marginRight : 10}}
+                                                            (texture1 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={texture1}
                                                             /> : '')
@@ -642,36 +673,36 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">기장</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
                                                         <TableCell align="center">
-                                                            {outerReviewLabel.clothLengthItemName1 ? <Chip
+                                                            {outerReviewLabel.clothLengthItemName1 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={outerReviewLabel.clothLengthItemName1}
                                                             /> : ''}
                                                             </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">넥라인</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
                                                         <TableCell align="center">
-                                                            {outerReviewLabel.neckLineItemName1 ? <Chip
+                                                            {outerReviewLabel.neckLineItemName1 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={outerReviewLabel.neckLineItemName1}
                                                             /> : '' }
                                                             </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">칼라(카라)</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
                                                         <TableCell align="center">
-                                                            {outerReviewLabel.karaItemName1 ? <Chip
+                                                            {outerReviewLabel.karaItemName1 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={outerReviewLabel.karaItemName1}
                                                             /> : ''}
                                                             </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">핏</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
                                                         <TableCell align="center">
-                                                            {outerReviewLabel.fitItemName1 ?<Chip
+                                                            {outerReviewLabel.fitItemName1 ?<Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={outerReviewLabel.fitItemName1}
                                                             /> : ''}
@@ -686,8 +717,8 @@ class FinalCheckList extends React.Component {
                                             <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                 <TableHead>
                                                     <TableRow>
-                                                        <TableCell align="center">항목</TableCell>
-                                                        <TableCell align="center">레이블링</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -705,18 +736,18 @@ class FinalCheckList extends React.Component {
                                                     {/*            /> : ''}</TableCell>*/}
                                                     {/*</TableRow>*/}
                                                     <TableRow>
-                                                        <TableCell align="center">카테고리</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
                                                         <TableCell align="center">
-                                                            {topReviewLabel.categoryItemName2 ? <Chip
+                                                            {topReviewLabel.categoryItemName2 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={topReviewLabel.categoryItemName2}
                                                             /> : ''}
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">디테일</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
                                                         <TableCell align="center"> {topReviewLabel.detailItemName2 ? topReviewLabel.detailItemName2.map((detail2) =>
-                                                            (detail2 ? <Chip style={{marginRight : 10}}
+                                                            (detail2 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={detail2}
                                                             /> : '')
@@ -724,9 +755,9 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">프린트</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
                                                         <TableCell align="center">{topReviewLabel.printItemName2 ? topReviewLabel.printItemName2.map((print2) =>
-                                                            (print2 ? <Chip style={{marginRight : 10}}
+                                                            (print2 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={print2}
                                                             /> : '')
@@ -734,9 +765,9 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">소재</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
                                                         <TableCell align="center">{topReviewLabel.textureItemName2 ? topReviewLabel.textureItemName2.map((texture2)=>
-                                                            (texture2 ? <Chip style={{marginRight : 10}}
+                                                            (texture2 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={texture2}
                                                             /> : '')
@@ -744,36 +775,36 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">기장</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
                                                         <TableCell align="center">
-                                                            {topReviewLabel.clothLengthItemName2 ? <Chip
+                                                            {topReviewLabel.clothLengthItemName2 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={topReviewLabel.clothLengthItemName2}
                                                             /> : ''}
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">넥라인</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
                                                         <TableCell align="center">
-                                                            {topReviewLabel.neckLineItemName2 ? <Chip
+                                                            {topReviewLabel.neckLineItemName2 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={topReviewLabel.neckLineItemName2}
                                                             /> : '' }
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">칼라(카라)</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
                                                         <TableCell align="center">
-                                                            {topReviewLabel.karaItemName2 ? <Chip
+                                                            {topReviewLabel.karaItemName2 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={topReviewLabel.karaItemName2}
                                                             /> : ''}
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">핏</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
                                                         <TableCell align="center">
-                                                            {topReviewLabel.fitItemName2 ?<Chip
+                                                            {topReviewLabel.fitItemName2 ?<Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={topReviewLabel.fitItemName2}
                                                             /> : ''}
@@ -788,8 +819,8 @@ class FinalCheckList extends React.Component {
                                             <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                 <TableHead>
                                                     <TableRow>
-                                                        <TableCell align="center">항목</TableCell>
-                                                        <TableCell align="center">레이블링</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -808,18 +839,18 @@ class FinalCheckList extends React.Component {
                                                     {/*    </TableCell>*/}
                                                     {/*</TableRow>*/}
                                                     <TableRow>
-                                                        <TableCell align="center">카테고리</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
                                                         <TableCell align="center">
-                                                            {pantsReviewLabel.categoryItemName3 ? <Chip
+                                                            {pantsReviewLabel.categoryItemName3 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={pantsReviewLabel.categoryItemName3}
                                                             /> : ''}
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">디테일</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
                                                         <TableCell align="center"> {pantsReviewLabel.detailItemName3 ? pantsReviewLabel.detailItemName3.map((detail3) =>
-                                                            (detail3 ? <Chip style={{marginRight : 10}}
+                                                            (detail3 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={detail3}
                                                             /> : '')
@@ -827,9 +858,9 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">프린트</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
                                                         <TableCell align="center">{pantsReviewLabel.printItemName3 ? pantsReviewLabel.printItemName3.map((print3) =>
-                                                            (print3 ? <Chip style={{marginRight : 10}}
+                                                            (print3 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={print3}
                                                             /> : '')
@@ -837,9 +868,9 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">소재</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
                                                         <TableCell align="center">{pantsReviewLabel.textureItemName3 ? pantsReviewLabel.textureItemName3.map((texture3)=>
-                                                            (texture3 ? <Chip style={{marginRight : 10}}
+                                                            (texture3 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={texture3}
                                                             /> : '')
@@ -847,18 +878,18 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">기장</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
                                                         <TableCell align="center">
-                                                            {pantsReviewLabel.clothLengthItemName3 ? <Chip
+                                                            {pantsReviewLabel.clothLengthItemName3 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={pantsReviewLabel.clothLengthItemName3}
                                                             /> : ''}
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">핏</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
                                                         <TableCell align="center">
-                                                            {pantsReviewLabel.fitItemName3 ?<Chip
+                                                            {pantsReviewLabel.fitItemName3 ?<Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={pantsReviewLabel.fitItemName3}
                                                             /> : ''}
@@ -873,8 +904,8 @@ class FinalCheckList extends React.Component {
                                             <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
                                                 <TableHead>
                                                     <TableRow>
-                                                        <TableCell align="center">항목</TableCell>
-                                                        <TableCell align="center">레이블링</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -894,18 +925,19 @@ class FinalCheckList extends React.Component {
                                                     {/*    </TableCell>*/}
                                                     {/*</TableRow>*/}
                                                     <TableRow>
-                                                        <TableCell align="center">카테고리</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
                                                         <TableCell align="center">
-                                                            {onePieceReviewLabel.categoryItemName4 ? <Chip
+                                                            {onePieceReviewLabel.categoryItemName4 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={onePieceReviewLabel.categoryItemName4}
+                                                                
                                                             /> : ''}
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">디테일</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
                                                         <TableCell align="center"> {onePieceReviewLabel.detailItemName4 ? onePieceReviewLabel.detailItemName4.map((detail4) =>
-                                                            (detail4 ? <Chip style={{marginRight : 10}}
+                                                            (detail4 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={detail4}
                                                             /> : '')
@@ -913,9 +945,9 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">프린트</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
                                                         <TableCell align="center">{onePieceReviewLabel.printItemName4 ? onePieceReviewLabel.printItemName4.map((print4) =>
-                                                            (print4 ? <Chip style={{marginRight : 10}}
+                                                            (print4 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={print4}
                                                             /> : '')
@@ -923,9 +955,9 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">소재</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
                                                         <TableCell align="center">{onePieceReviewLabel.textureItemName4 ? onePieceReviewLabel.textureItemName4.map((texture4)=>
-                                                            (texture4 ? <Chip style={{marginRight : 10}}
+                                                            (texture4 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={texture4}
                                                             /> : '')
@@ -933,36 +965,36 @@ class FinalCheckList extends React.Component {
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">기장</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
                                                         <TableCell align="center">
-                                                            {onePieceReviewLabel.clothLengthItemName4 ? <Chip
+                                                            {onePieceReviewLabel.clothLengthItemName4 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={onePieceReviewLabel.clothLengthItemName4}
                                                             /> : ''}
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">넥라인</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
                                                         <TableCell align="center">
-                                                            {onePieceReviewLabel.neckLineItemName4 ? <Chip
+                                                            {onePieceReviewLabel.neckLineItemName4 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={onePieceReviewLabel.neckLineItemName4}
                                                             /> : '' }
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">칼라(카라)</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
                                                         <TableCell align="center">
-                                                            {onePieceReviewLabel.karaItemName4 ? <Chip
+                                                            {onePieceReviewLabel.karaItemName4 ? <Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={onePieceReviewLabel.karaItemName4}
                                                             /> : ''}
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell align="center">핏</TableCell>
+                                                        <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
                                                         <TableCell align="center">
-                                                            {onePieceReviewLabel.fitItemName4 ?<Chip
+                                                            {onePieceReviewLabel.fitItemName4 ?<Chip style={{margin: '0 4px 0'}}
                                                                 variant="outlined"
                                                                 label={onePieceReviewLabel.fitItemName4}
                                                             /> : ''}
@@ -998,7 +1030,7 @@ class FinalCheckList extends React.Component {
                                                         createdId: item.createdId,
                                                     }
                                                 }) : []}
-                                            title="이미지 리스트"
+                                            title=""
                                             options={{
                                                 sorting:false,
                                                 search: true,
@@ -1055,12 +1087,13 @@ class FinalCheckList extends React.Component {
                         </Grid>
                     </Grid>
                 </div>
-                <hr></hr>
-                {this.props.authStore.loginUser.authorityNo !== 4? (
-                <Button variant="outlined" onClick={this.handleJson}>
-                    json가져오기
-                </Button>
-                    ) : ''}
+                <div style={{textAlign:'right',marginTop:15,marginBottom:30}}>
+                    {this.props.authStore.loginUser.authorityNo !== 4? (
+                    <Button variant="outlined" onClick={this.handleJson} style={{width:'135px',height:'46px',border:'1px solid #000',fontFamily:'NotoSansCJKkr',fontSize:'15px',color:'#000' }}>
+                        json가져오기
+                    </Button>
+                        ) : ''}
+                </div>
             </Container>
         );
     }
