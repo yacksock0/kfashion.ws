@@ -219,7 +219,6 @@ class PolygonList extends React.Component {
                 }}
                 actions={[
                     {
-                        title: '선택',
                         icon: 'check',
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo, polyNo, rowData.comment)

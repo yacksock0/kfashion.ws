@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     link: {
         textDecoration: 'none',
         color: 'inherit',
-        marginLeft:'15%'
+        marginLeft:'5%'
     },
     textpoint:{
         color:'#fff',
@@ -82,12 +82,12 @@ const useStyles = makeStyles((theme) => ({
         textTransform:'none',
     },
     helpbox: {
-        width:'370px',
+        width:'400px',
         padding:'0 18px',
         boxSizing:'border-box',
     },
     helptop: {
-        width:'370px',
+        width:'400px',
         height:'65px',
         background:'#000',
         boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',
@@ -196,102 +196,102 @@ export default function TopBar(props) {
     return (
         <div>
             { isLoggedIn ? (
-        <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar style={{display:'flex',justifyContent:'space-between',}}>
-                {/*  */}
-                <Paper elevation={0} className={classes.paper}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        className={classes.menuButton}
-                    >
-                        <MenuIcon style={{color:'#fff'}}/>
-                    </IconButton>
-
-                    {/*  */}
-                    
-                    <Link to='/home' className={classes.link1}>
-                        <div style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></div>  
-                    </Link>
-                </Paper>
-
-                <Paper elevation={0} className={classes.paper}>
-                    
-                    {/* 201022 주석처리
-                    { isLoggedIn ? (
-                    <Stepper currentStep = {props.setStep} />):''} */}
-
-
-                    <h4 className={classes.textpoint}><Kpoint className={classes.iconbox}/> 다각형 지정</h4>
-                    { isLoggedIn ? (
-                        // 201022 주석처리
-                        // <IconButton color="inherit" onClick={doLogout}>
-                        //     <span style={{backgroundImage:'url(/images/exiticon.png)' , width:'28px', height:'28px'}}></span>
-                        //     <ExitToAppIcon />
-                        // </IconButton>
-
-                        <IconButton color="inherit">
-                            <Button
-                            ref={anchorRef}
-                            aria-controls={open ? 'menu-list-grow' : undefined}
-                            aria-haspopup="true"
-                            onClick={handleToggle}
+                <AppBar position="fixed" className={classes.appBar}>
+                    <Toolbar style={{display:'flex',justifyContent:'space-between',}}>
+                        {/*  */}
+                        <Paper elevation={0} className={classes.paper}>
+                            <IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                edge="start"
+                                onClick={handleDrawerToggle}
+                                className={classes.menuButton}
                             >
-                                <UserIcon className={classes.iconbox} />
-                                <span className={classes.userstyle}>{loginUser.id} 님</span>
-                                {open != null ? open ? <ExpandLess style={{color:'#fff'}} /> : <ExpandMore style={{color:'#fff'}}/> : null}
-                            </Button>
-                            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                                {({ TransitionProps, placement }) => (
-                                    <Grow
-                                    {...TransitionProps}
-                                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                                    >
-                                    <Paper>
-                                        <ClickAwayListener onClickAway={handleClose}>
-                                            <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} className={classes.usermenubox} >
-                                                <MenuItem onClick={handleClose} className={classes.usermenu} style={{borderBottom:'1px solid #e2e2e2'}}>기초작업자</MenuItem>
-                                                <MenuItem onClick={handleClose} className={classes.usermenu} style={{color:'#1e8247'}} onClick={doLogout}> 로그아웃</MenuItem>
-                                            </MenuList>
-                                        </ClickAwayListener>
-                                    </Paper>
-                                    </Grow>
-                                )}
-                                </Popper>
+                                <MenuIcon style={{color:'#fff'}}/>
+                            </IconButton>
 
-                            {['right'].map((anchor) => (
-                                <React.Fragment key={anchor}>
-                                    <Button onClick={toggleDrawer(anchor, true)}><Help className={classes.iconbox} /></Button>
-                                    <Drawer
-                                        anchor={anchor}
-                                        open={state[anchor]}
-                                        onClose={toggleDrawer(anchor, false)}
-                                    >
-                                        {list(anchor)}
-                                    </Drawer>
-                                </React.Fragment>
-                            ))}
-
+                            {/*  */}
                             
-                        </IconButton>
+                            <Link to='/home' className={classes.link1}>
+                                <div style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></div>  
+                            </Link>
+                        </Paper>
 
-                    ) : ( <Link to='/home' className={classes.link}>
-                            <div style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></div>
-                        </Link>
-                        // <Link to="/SignUp" className={classes.link}>
-                        //     <IconButton color="inherit">
-                        //         <AccountCircleSharpIcon />
-                        //         <Typography variant="h6" noWrap className={classes.title}>
-                        //             회원가입
-                        //         </Typography>
-                        //     </IconButton>
-                        // </Link>
-                    )}
-                </Paper>
-            </Toolbar>
-        </AppBar>):(
+                        <Paper elevation={0} className={classes.paper}>
+                            
+                            {/* 201022 주석처리
+                            { isLoggedIn ? (
+                            <Stepper currentStep = {props.setStep} />):''} */}
+
+
+                            <h4 className={classes.textpoint}><Kpoint className={classes.iconbox}/> 다각형 지정</h4>
+                            { isLoggedIn ? (
+                                // 201022 주석처리
+                                // <IconButton color="inherit" onClick={doLogout}>
+                                //     <span style={{backgroundImage:'url(/images/exiticon.png)' , width:'28px', height:'28px'}}></span>
+                                //     <ExitToAppIcon />
+                                // </IconButton>
+
+                                <IconButton color="inherit">
+                                    <Button
+                                    ref={anchorRef}
+                                    aria-controls={open ? 'menu-list-grow' : undefined}
+                                    aria-haspopup="true"
+                                    onClick={handleToggle}
+                                    >
+                                        <UserIcon className={classes.iconbox} />
+                                        <span className={classes.userstyle}>{loginUser.id} 님</span>
+                                        {open != null ? open ? <ExpandLess style={{color:'#fff'}} /> : <ExpandMore style={{color:'#fff'}}/> : null}
+                                    </Button>
+                                    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                                        {({ TransitionProps, placement }) => (
+                                            <Grow
+                                            {...TransitionProps}
+                                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                                            >
+                                            <Paper>
+                                                <ClickAwayListener onClickAway={handleClose}>
+                                                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} className={classes.usermenubox} >
+                                                        <MenuItem onClick={handleClose} className={classes.usermenu} style={{borderBottom:'1px solid #e2e2e2'}}>기초작업자</MenuItem>
+                                                        <MenuItem onClick={handleClose} className={classes.usermenu} style={{color:'#1e8247'}} onClick={doLogout}> 로그아웃</MenuItem>
+                                                    </MenuList>
+                                                </ClickAwayListener>
+                                            </Paper>
+                                            </Grow>
+                                        )}
+                                        </Popper>
+
+                                    {['right'].map((anchor) => (
+                                        <React.Fragment key={anchor}>
+                                            <Button onClick={toggleDrawer(anchor, true)}><Help className={classes.iconbox} /></Button>
+                                            <Drawer
+                                                anchor={anchor}
+                                                open={state[anchor]}
+                                                onClose={toggleDrawer(anchor, false)}
+                                            >
+                                                {list(anchor)}
+                                            </Drawer>
+                                        </React.Fragment>
+                                    ))}
+
+                                    
+                                </IconButton>
+
+                            ) : ( <Link to='/home' className={classes.link}>
+                                    <div style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></div>
+                                </Link>
+                                // <Link to="/SignUp" className={classes.link}>
+                                //     <IconButton color="inherit">
+                                //         <AccountCircleSharpIcon />
+                                //         <Typography variant="h6" noWrap className={classes.title}>
+                                //             회원가입
+                                //         </Typography>
+                                //     </IconButton>
+                                // </Link>
+                            )}
+                        </Paper>
+                    </Toolbar>
+                </AppBar>):(
                     <AppBar position="fixed" className={classes.appBar1}>
                         <Toolbar>
                             {/*<IconButton*/}
@@ -318,7 +318,6 @@ export default function TopBar(props) {
 
                                 <Link to='/home' className={classes.link}>
                                     <div style={{backgroundImage:'url(/images/logo.png)' , width:'141px', height:'20px', backgroundRepeat:'no-repeat'}}></div>
-                                    {/* <h1 style={{color:'#5ded9a', display:'inline' , fontFamily:'NotoSans'}}>K</h1><h1 style={{color:'#fff', display:'inline' , fontFamily:'NotoSans'}}>-FASHION</h1> */}
                                 </Link>
                                 // <Link to="/SignUp" className={classes.link}>
                                 //     <IconButton color="inherit">

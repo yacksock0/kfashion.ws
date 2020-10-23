@@ -1096,8 +1096,8 @@ class Polygon extends React.Component {
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTap( tabIndex )} >
                                 <TabList>
                                     
-                                    <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center',borderRadius:0}}><h3>영역지정</h3></Tab>
-                                    <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center',borderRadius:0}}><h3>이미지 리스트 ( <b style={{color:"#1e8247"}}>{this.props.rectStore.complete}</b> / <b>{this.props.rectStore.total}</b> )</h3></Tab>
+                                    <Tab tabIndex={0} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3>영역지정</h3></Tab>
+                                    <Tab tabIndex={1} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3>이미지 리스트 ( <b style={{color:"#1e8247"}}>{this.props.rectStore.complete}</b> / <b>{this.props.rectStore.total}</b> )</h3></Tab>
                                     
                                 </TabList>
 
