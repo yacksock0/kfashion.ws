@@ -558,4 +558,49 @@ public class JsonController {
         return new ResponseEntity<Object>("성공", HttpStatus.OK);
     }
 
+
+
+
+
+
+
+    @GetMapping(value = "test")
+    public ResponseEntity<Object> jsonFileUp() throws IOException {
+
+        Long[] workNo = kfashionWorkService.getImageData();
+        if (workNo.length > 0) {
+//            for (int z = 0; z <workNo.length ; z++) {
+            for (int z = 0; z < 10 ; z++) {
+
+                JSONObject allObject = new JSONObject();
+                JSONObject imageObject = new JSONObject();
+
+                HashMap<String, Object> resultMap = new HashMap<String, Object>();
+                String workName = kfashionWorkService.selectWorkName(workNo[z]);
+                imageObject.put("이미지 식별자", workNo[z]);
+                imageObject.put("이미지 파일명", workName);
+
+                String path = "/Users/youngrackchoi/1234/1234/1234/kfashion_image"; //폴더 경로
+                File Folder = new File(path);
+
+                // 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+                if (!Folder.exists()) {
+                    try {
+                        Folder.mkdirs(); //폴더 생성합니다.
+                    } catch (Exception e) {
+                        e.getStackTrace();
+                    }
+                }
+                Map<String, Object> map = kfashionImageService.getByteImage(workNo[z]);
+                byte[] imageContent = (byte[]) map.get("img_data");
+                File imageFile = new File(path + "/" + workNo[z]+".jpg");
+
+                OutputStream os = new FileOutputStream(imageFile);
+                os.write(imageContent);  // 읽은 byte 갯수 만큼 byte내용을 저장
+                os.close();
+            }
+        }
+        return new ResponseEntity<Object>("성공", HttpStatus.OK);
+    }
+
 }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles  } from '@material-ui/core/styles';
 import { ReactComponent as LogoutIcon } from '../../images/LogoutIcon.svg';
-import { ReactComponent as JoinIcon } from '../../images/JoinIcon.svg';
 import { ReactComponent as AdminIcon } from '../../images/AdminIcon.svg';
-import { ReactComponent as LoginIcon } from '../../images/LoginIcon.svg';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -51,7 +49,7 @@ const style = theme => ({
 class MainTopBarMatch extends Component{
     render() {
         const { classes } = this.props;
-        const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser, goHome} = this.props;
+        const {doLogout, loginUser} = this.props;
 
         return (
             <div className={classes.root}>
@@ -61,7 +59,7 @@ class MainTopBarMatch extends Component{
                             <Paper elevation={0} className={classes.right}>
                                 <Paper elevation={0} className={classes.rightbox}>
                                     <Paper elevation={0} className={classes.adminbox}>
-                                        <AdminIcon /><Typography >admin@admin</Typography>
+                                        <AdminIcon /><Typography >{loginUser.id}</Typography>
                                     </Paper>
                                     {/* <Typography className={classes.iconstyle} ><JoinIcon /></Typography> */}
                                     <Typography className={classes.iconstyle}

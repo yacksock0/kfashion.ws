@@ -181,8 +181,8 @@ class AgreeList extends Component {
     }
 
     render() {
-        const { classes, handleClickToSignUp } = this.props;
-        const {isAllSelected} = this.props.tSignUpStore;
+        const { classes } = this.props;
+        const {isAllSelected, handleAgreeOK} = this.props.tSignUpStore;
         return (
             <div>
                 <Typography className={classes.txtstyle1}>스타일 태깅 서비스 이용약관을 동의해주세요.</Typography>
@@ -198,7 +198,7 @@ class AgreeList extends Component {
                     <Button variant="contained"
                             className={classes.btnjoinstyle}
                             disabled={!isAllSelected}
-                            onClick={handleClickToSignUp}>
+                            onClick={handleAgreeOK}>
                         동의하고 가입하기
                     </Button>
                 </Paper>

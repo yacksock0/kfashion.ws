@@ -76,7 +76,6 @@ class AppKsearching extends React.Component {
 
     render() {
 
-        const { classes } = this.props;
         const { loginState, loginUser} = this.props.sAuthStore;
         return (
             <div className="App">

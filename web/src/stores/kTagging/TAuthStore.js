@@ -46,7 +46,9 @@ export default class AuthStore {
     @action changeLoginPassword = (password) => {
         this.login.password = password;
     };
-
+    @action goHome = (props) => {
+        props.history.push("/tagging");
+    };
     @action changeUserAuthorityNo = (authorityNo) =>{
         this.loginUser.authorityNo = authorityNo;
     };
@@ -129,13 +131,5 @@ export default class AuthStore {
             this.loginUser = Object.assign({}, EmptyUser);
         }
     });
-    setLoginURL = flow(function* setLoginURL(web) {
-        this.loginURL = web;
-    });
-    goHome = flow(function* goHome(props) {
-        props.history.push("/tagging")
-    });
-    // goHome = flow(function* goHome() {
-    //     alert("Asd")
-    // });
+
 }

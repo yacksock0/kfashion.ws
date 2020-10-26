@@ -6,12 +6,9 @@ import {inject, observer} from "mobx-react";
 
 import {
     Button,
-    Checkbox,
     CircularProgress,
     Container,
-    FormControlLabel,
     Grid,
-    Link,
     TextField,
     Typography
 } from "@material-ui/core";
@@ -133,10 +130,6 @@ class SignUpSearch extends React.Component {
         this.props.sSignUpStore.changeNewMemberId(event.target.value);
     }
 
-    handleChangeEmail = (event) => {
-        this.props.sSignUpStore.changeNewMemberEmail(event.target.value);
-    }
-
     handleChangePassword = (event) => {
         this.props.sSignUpStore.changeNewMemberPassword(event.target.value);
     }
@@ -147,22 +140,6 @@ class SignUpSearch extends React.Component {
 
     handleChangeUserName = (event) => {
         this.props.sSignUpStore.changeNewMemberUserName(event.target.value);
-    }
-
-    handleChangePhone = (event) => {
-        this.props.sSignUpStore.changeNewMemberPhone(event.target.value);
-    }
-
-    handleChangeAllAgreements = (event) => {
-        this.props.sSignUpStore.changeAgreementsAll(event.target.checked);
-    }
-
-    handleChangeServiceAgreements = (event) => {
-        this.props.sSignUpStore.changeAgreementsService(event.target.checked);
-    }
-
-    handleChangePrivacyAgreements = (event) => {
-        this.props.sSignUpStore.changeAgreementsPrivacy(event.target.checked);
     }
 
     handleClickOK = () => {
@@ -176,9 +153,8 @@ class SignUpSearch extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { isEmailInputed, isValidId, isValidEmail, isValidPassword, isPasswordConfirmed,
-            isValidUsername, isValidPhone, isPending, isSignUpSuccess, canSignUp, newMember,
-            agreements, serverMode} = this.props.sSignUpStore;
+        const { isValidId, isValidPassword, isPasswordConfirmed,
+            isValidUsername, isPending, canSignUp, newMember} = this.props.sSignUpStore;
 
         return (
             <React.Fragment>
