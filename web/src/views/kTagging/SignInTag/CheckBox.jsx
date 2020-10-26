@@ -1,13 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
     },
     checkedstyle:{
+        fontFamily:'NotoSansCJKkr',
         marginBottom:20,
         cursor: 'pointer',
     },
+
     txtstyle: {
         fontFamily:'NotoSansCJKkr',
         fontSize:'15px',

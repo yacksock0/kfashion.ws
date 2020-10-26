@@ -137,7 +137,6 @@ export default class SignUpStore {
             delete param.passwordConfirm;
             const resp = yield axios.post('/api/v1/kTagging/users/signup', param)
                 .then (res => {
-
                     history.push("/tagging/sign/success")
                 })
         }else{

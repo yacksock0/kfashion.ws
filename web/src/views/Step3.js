@@ -64,6 +64,13 @@ const styles = theme => ({   root: {
         float:'right',
         color:'#00943b',
         border : '1px solid rgba(0,148,59,1)',
+        width:'135px',
+        height:'46px',
+        border:'1px solid #000',
+        fontFamily:'NotoSansCJKkr',
+        fontSize:'15px',
+        color:'#000',
+        marginRight:10,
 
         "&:hover": {
             backgroundColor: 'rgba(69,206,124,0.15)',
@@ -111,7 +118,37 @@ const styles = theme => ({   root: {
         height: 800,
         zoom : "80%",
         marginLeft:'auto'
-    }
+    },
+    tabliststyle:{
+        padding:0,
+        "& .react-tabs__tab--selected":{
+            height:59,
+            border:'none',
+            background:'#000',
+            color:'#fff'
+        },
+    },
+    btnstyle:{
+        width: '20%',
+        height:60,
+        textAlign:'center',
+        listStyle: 'none',
+        display: 'inline-block',
+        border: '1px solid #e2e2e2',
+        borderRadius:0,
+        bottom: '-1px',
+        position: 'relative',
+        padding: '6px 12px',
+        cursor:'pointer',
+        background:'#fff',
+    },
+    tabletxt:{
+        width:'50%',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '15px',
+        fontWeight: '500',
+        color:'#7d7d7d',
+    },
 });
 
 @inject('professionalLabelStore','authStore', 'imageStore', 'currentStepStore','polygonStore','workStore')
@@ -455,44 +492,44 @@ class Step3 extends React.Component {
                                         </TabList>
 
                                         <TabPanel>
-                                            <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
-                                                <TabList >
-                                                    <Tab  style={{width: '20%', height:60,textAlign:'center'}}
-                                                    ><h3>스타일</h3></Tab>
-                                                    <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                            <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'500px'}}>
+                                                <TabList className={classes.tabliststyle}>
+                                                    <Tab className={classes.btnstyle}
+                                                    ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>스타일</h3></Tab>
+                                                    <Tab className={classes.btnstyle}
                                                           disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 1))) && this.state.polyInfo.length > 0}
-                                                    ><h3>아우터</h3></Tab>
-                                                    <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                                    ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>아우터</h3></Tab>
+                                                    <Tab className={classes.btnstyle}
                                                           disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 2))) && this.state.polyInfo.length > 0}
-                                                    ><h3>상의</h3></Tab>
-                                                    <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                                    ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>상의</h3></Tab>
+                                                    <Tab className={classes.btnstyle}
                                                           disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 3))) && this.state.polyInfo.length > 0}
-                                                    ><h3>하의</h3></Tab>
-                                                    <Tab  style={{width: '20%', height:60,textAlign:'center'}}
+                                                    ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>하의</h3></Tab>
+                                                    <Tab className={classes.btnstyle}
                                                           disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 4))) && this.state.polyInfo.length > 0}
-                                                    ><h3>원피스</h3></Tab>
+                                                    ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
                                                 </TabList>
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <Grid items xs={12} lg={12}>
                                                 <Style onClick={this.handleClickStyle} onClickDel={()=>this.onClickDel(1)}workNo={this.state.workNo}/>
                                             </Grid>
                                         </TabPanel>
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <Grid items xs={12} lg={12}>
                                                 <CategoryComponent1 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <Grid items xs={12} lg={12}>
                                                 <CategoryComponent2 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <Grid items xs={12} lg={12}>
                                                 <CategoryComponent3 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
                                         </TabPanel>
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <Grid items xs={12} lg={12}>
                                                 <CategoryComponent4 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
                                             </Grid>
@@ -509,34 +546,38 @@ class Step3 extends React.Component {
                                 </Grid>
                         </Grid>
                     </div>
-                        <div>
+                        {/* <div>
                             <hr></hr>
-                        </div>
-                        <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}>
+                        </div> */}
+                        {/* <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}> */}
+                        <div style={{textAlign:'right',marginTop:15,marginBottom:30}}>
                             <Button
                                     type="button"
                                     className={classes.buttonType2}
                                     disabled={this.state.tabIndex1 === 1 ? true : false}
                                     variant="outlined"
                                     onClick={()=>this.handleSubmit()}
+                                    
                             >
                                 저장
                             </Button>
                             <Button variant="outlined" color="secondary"
                                     className={classes.buttonType2}
                                     disabled={this.state.tabIndex1 === 0 || this.props.professionalLabelStore.selectedItem.length === 0 ? true : false}
-                                    style={{display:'inline', marginRight:5}} onClick={this.handleDeleteImg}>
+                                    // style={{display:'inline', marginRight:5}} 
+                                    onClick={this.handleDeleteImg}>
                                 이미지 삭제
                             </Button>
-                        </Grid>
+                        </div>
+                        {/* </Grid> */}
 
-                    <Typography variant="h6" component="h6" style={{display:'inline'}}>
+                    {/* <Typography variant="h6" component="h6" style={{display:'inline'}}>
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 체크박스 클릭후 대표 이미지 선택하여 작업시 체크한 이미지 전부 동일한 값으로 입력됩니다. </p>
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 </p>
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 이미지에 해당되는 모든 탭의 정보를 입력한 후 저장버튼을 눌러주세요.</p>
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 전체선택 후 페이지이동시 이전 선택은 무효 처리 됩니다.</p>
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크박스는 삭제, 저장 일괄적으로 사용가능</p>
-                    </Typography>
+                    </Typography> */}
                     <ImagePopupModal store={this.props.imageStore} />
                 </Container>
             );

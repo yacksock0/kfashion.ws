@@ -109,11 +109,6 @@ class App extends React.Component {
                                 doLogout={() => this.props.authStore.doLogout()}
                                 setStep={this.props.currentStepStore.currentStep}
                         />
-                        {/*<SideMenu mobileOpen={this.state.mobileOpen}*/}
-                        {/*          setMobileOpen={this.setMobileOpen}*/}
-                        {/*          loginUser={loginUser}*/}
-                        {/*          isLoggedIn={loginState === kStore.State.Authenticated} />*/}
-
                         <SideMenu mobileOpen={this.state.mobileOpen}
                                   setMobileOpen={this.setMobileOpen}
                                   loginUser={loginUser}
@@ -138,6 +133,7 @@ class App extends React.Component {
                                     <Route exact path="/admin/createGroup" component={AdminGroup} />
                                     <Route exact path="/admin/userList" component={UserList} />
                                     <Route exact path="/admin/userWork" component={UserWork} />
+                                    <Route exact path="/" component={Home}/>
 
                                 </Switch>
                             </React.Fragment>

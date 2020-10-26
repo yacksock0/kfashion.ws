@@ -119,7 +119,37 @@ const styles = theme => ({
         height: 800,
         zoom : "80%",
         marginLeft:'auto'
-    }
+    },
+    tabliststyle:{
+        padding:0,
+        "& .react-tabs__tab--selected":{
+            height:59,
+            border:'none',
+            background:'#000',
+            color:'#fff'
+        },
+    },
+    btnstyle:{
+        width: '25%',
+        height:60,
+        textAlign:'center',
+        listStyle: 'none',
+        display: 'inline-block',
+        border: '1px solid #e2e2e2',
+        borderRadius:0,
+        bottom: '-1px',
+        position: 'relative',
+        padding: '6px 12px',
+        cursor:'pointer',
+        background:'#fff',
+    },
+    tabletxt:{
+        width:'50%',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '15px',
+        fontWeight: '500',
+        color:'#7d7d7d',
+    },
 });
 
 @inject('authStore', 'imageStore', 'polygonStore', 'currentStepStore', 'basicCategoryStore', 'checkHighLabelStore')
@@ -606,24 +636,24 @@ class Step2 extends React.Component {
                                 </TabList>
 
                                 <TabPanel>
-                                    <Tabs selectedIndex={this.state.tabIndex2}
+                                    <Tabs selectedIndex={this.state.tabIndex2} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'500px'}}
                                           onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
-                                        <TabList>
-                                            <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
+                                        <TabList className={classes.tabliststyle}>
+                                            <Tab className={classes.btnstyle}
                                                  disabled={"" === String(this.state.tabController.filter((poly => poly === 1)))}
-                                            ><h3>아우터</h3></Tab>
-                                            <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
+                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>아우터</h3></Tab>
+                                            <Tab className={classes.btnstyle}
                                                  disabled={"" === String(this.state.tabController.filter((poly => poly === 2)))}
-                                            ><h3>상의</h3></Tab>
-                                            <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
+                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>상의</h3></Tab>
+                                            <Tab className={classes.btnstyle}
                                                  disabled={"" === String(this.state.tabController.filter((poly => poly === 3)))}
-                                            ><h3>하의</h3></Tab>
-                                            <Tab style={{width: '25%', height: 60, textAlign: 'center'}}
+                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>하의</h3></Tab>
+                                            <Tab className={classes.btnstyle}
                                                  disabled={"" === String(this.state.tabController.filter((poly => poly === 4)))}
-                                            ><h3>원피스</h3></Tab>
+                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
                                         </TabList>
 
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <div className={classes.content} style={{display: 'inline'}}>
                                                 <Typography variant="h5" component="h2" style={{display: 'inline'}}>
                                                     색상
@@ -720,7 +750,7 @@ class Step2 extends React.Component {
                                             </div>
                                         </TabPanel>
 
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <div className={classes.content} style={{display: 'inline'}}>
                                                 <Typography variant="h5" component="h2" style={{display: 'inline'}}>
                                                     색상
@@ -815,7 +845,7 @@ class Step2 extends React.Component {
                                                 }
                                             </div>
                                         </TabPanel>
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <div className={classes.content} style={{display: 'inline'}}>
                                                 <Typography variant="h5" component="h2" style={{display: 'inline'}}>
                                                     색상
@@ -892,7 +922,7 @@ class Step2 extends React.Component {
                                                 }
                                             </div>
                                         </TabPanel>
-                                        <TabPanel>
+                                        <TabPanel style={{padding:'0 30px'}}>
                                             <div className={classes.content} style={{display: 'inline'}}>
                                                 <Typography variant="h5" component="h2" style={{display: 'inline'}}>
                                                     색상
@@ -1034,13 +1064,13 @@ class Step2 extends React.Component {
                         </Grid>
                     ) : ''}
                 </Grid>
-                <Typography variant="h6" component="h4" style={{display: 'inline'}}>
+                {/* <Typography variant="h6" component="h4" style={{display: 'inline'}}>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 </p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 색상 및 소매길이 선택 후 다음 탭으로 이동 </p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭 </p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크박스 클릭후 대표 이미지 선택하여 작업시 체크한 이미지 전부 동일한 값으로 입력됩니다.</p>
                     
-                </Typography>
+                </Typography> */}
                 <ImagePopupModal store={this.props.imageStore} />
             </Container>
         );

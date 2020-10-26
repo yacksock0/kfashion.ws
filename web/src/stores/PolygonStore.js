@@ -108,6 +108,7 @@ export default class PolygonStore {
     doPolygonLocationUp = flow(function* doPolygonLocationUp() {
         this.state = State.Pending;
         try {
+
             const kfashionPolygonList = this.polygonInsertList.map(r => ({
                 workNo :this.NewPolygonLocation.workNo,
                 workStep : this.NewPolygonLocation.workStep,
@@ -121,7 +122,6 @@ export default class PolygonStore {
                 this.state = State.Success;
                 const createdId = this.NewPolygonLocation.createdId;
                 this.LoadPolygonImage(createdId);
-
             } else {
             }
         } catch (e) {

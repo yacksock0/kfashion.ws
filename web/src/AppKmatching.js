@@ -2,16 +2,17 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
-import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as mStore from "./stores/kMatching/MAuthStore";
-import mHome from "./views/kMatching/HomeMatch";
-import mSignUp from "./views/kMatching/SignUpMatch";
-import mVerify from "./views/kMatching/VerifyMatch";
-import mSignIn from "./views/kMatching/SignInMatch";
-import TopBar from "./components/TopBar";
-import SideMenuMatch from "./views/kMatching/SideMenuMatch";
-import test from "./views/kTagging/testTagging";
+import mSignUp from "./views/kMatching/SignInMatch/SignUpMatch";
+import mVerify from "./views/kMatching/SignInMatch/VerifyMatch";
+import TopBarMatch from "./views/kMatching/TopBarMatch";
+import MainTopBar from "./views/kMatching/MainTopBarMatch";
+import Header from "./views/kMatching/HeaderMatch";
+import DailyCody from "./views/kMatching/MainMatch/DailyCody";
+import FooterMatch from "./views/kMatching/FooterMatch";
+import SignInMatch from "./views/kMatching/SignInMatch/SignInMatch";
+import JoinAgreeMatch from "./views/kMatching/SignInMatch/JoinAgreeMatch";
 
 const style = () => ({
     root: {
@@ -78,36 +79,43 @@ class AppKmatching extends React.Component {
         const { classes } = this.props;
         const { loginState, loginUser} = this.props.mAuthStore;
         return (
-            <div className={classes.root}>
+            <div className="App">
                 <Router>
-                    <CssBaseline />
-                    <Route path="/matching" component={mHome}>
-                        <TopBar mobileOpen={this.state.mobileOpen}
-                                setMobileOpen={this.setMobileOpen}
-                                isLoggedIn={loginState === mStore.State.Authenticated}
-                                loginUser={loginUser}
-                                doLogout={() => this.props.mAuthStore.doLogout()}
-                                setStep={this.props.currentStepStore.currentStep}
-                        />
-                        <SideMenuMatch mobileOpen={this.state.mobileOpen}
-                                  setMobileOpen={this.setMobileOpen}
-                                  loginUser={loginUser}
-                                  isLoggedIn={loginState === mStore.State.Authenticated} />
+                    <Route path="/matching" component={DailyCody}>
                         {loginState === mStore.State.Authenticated ? (
                             <React.Fragment>
+                                <MainTopBar mobileOpen={this.state.mobileOpen}
+                                            setMobileOpen={this.setMobileOpen}
+                                            isLoggedIn={loginState === mStore.State.Authenticated}
+                                            loginUser={loginUser}
+                                            doLogout={() => this.props.mAuthStore.doLogout()}
+                                            setStep={this.props.currentStepStore.currentStep}
+                                />
+                                <Header/>
                                 <Switch>
-                                    <Route exact path="/matching/home" component={mHome}/>
-                                    <Route exact path="/matching" component={mHome}/>
-                                    <Route exact path="/matching/test" component={test}/>
+                                    <Route exact path="/matching/home" component={DailyCody}/>
+                                    <Route exact path="/matching" component={DailyCody}/>
                                 </Switch>
                             </React.Fragment>
                         ) : (
+                            <React.Fragment>
+                            <TopBarMatch mobileOpen={this.state.mobileOpen}
+                                         setMobileOpen={this.setMobileOpen}
+                                         isLoggedIn={loginState === mStore.State.Authenticated}
+                                         loginUser={loginUser}
+                                         doLogout={() => this.props.mAuthStore.doLogout()}
+                                         setStep={this.props.currentStepStore.currentStep}
+                            />
                             <Switch>
                                 <Route path="/matching/SignUp" component={mSignUp} />
                                 <Route path="/matching/sign/success" component={mVerify} />
-                                <Route path="/matching" component={mSignIn} />
+                                <Route path="/matching/agree" component={JoinAgreeMatch} />
+                                <Route path="/matching" component={SignInMatch} />
+
                             </Switch>
+                            </React.Fragment>
                         )}
+                        <FooterMatch />
                     </Route>
                 </Router>
             </div>

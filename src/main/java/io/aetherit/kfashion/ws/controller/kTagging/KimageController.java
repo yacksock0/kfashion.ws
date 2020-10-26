@@ -1,6 +1,5 @@
 package io.aetherit.kfashion.ws.controller.kTagging;
 
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -20,8 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 
-
-
+@CrossOrigin(origins = "*", maxAge = 1)
 @RestController
 @RequestMapping("/dnd")
 public class KimageController {
@@ -32,17 +30,17 @@ public class KimageController {
      * @param file
      * @return UploadFileResponse
      * @throws IOException
-     *
      */
 
     @PostMapping("/uploadFile")
     public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println("@@@@@@@@@@@@@");
+        HashMap<String, Object> boundaryList = new HashMap<String, Object>();
+        HashMap<String, Object> exportMap = new HashMap<String, Object>();
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         int pos = file.getOriginalFilename().lastIndexOf(".");
         String fileType = file.getOriginalFilename().substring(pos + 1);
         String fileName = file.getOriginalFilename();
-
+        long fileSize = file.getSize();
         try {
             String mainPosition = "W";
             int newWidth = 800;
@@ -70,11 +68,14 @@ public class KimageController {
             ImageIO.write(newImage, fileType, baos);
             byte[] imageInByte = baos.toByteArray();
 
-            resultMap.put("fileName", fileName);
-            resultMap.put("imgData", imageInByte);
-
-            System.out.println(resultMap);
-
+            //  {fileName=holidayColor-blue.jpg, imgData=[B@6f2121ff, boundaryList=(this Map)}
+            boundaryList.put("fileName", fileName);
+            boundaryList.put("imgData", imageInByte);
+            exportMap.put("fileName", fileName);
+            exportMap.put("fileType", fileType);
+            exportMap.put("fileSize", fileSize);
+            resultMap.put("boundaryList", boundaryList);
+            resultMap.put("exportMap", exportMap);
         } catch (IOException e) {
             e.printStackTrace();
         }

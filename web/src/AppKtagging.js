@@ -7,13 +7,13 @@ import axios from "axios";
 import * as tStore from "./stores/kTagging/TAuthStore";
 import tSignUp from "./views/kTagging/SignInTag/SignUpTag";
 import tVerify from "./views/kTagging/SignInTag/VerifyTag";
-import tSignIn from "./views/kTagging/SignInTag";
+import tSignIn from "./views/kTagging/SignInTag/SignInTag";
 import './App.css';
-import TopBarTest from './views/kTagging/TopBarTag';
+import TopBarTag from './views/kTagging/TopBarTag';
 import FooterTag from './views/kTagging/FooterTag';
 import JoinAgreeTag from "./views/kTagging/SignInTag/JoinAgreeTag";
 
-import MainContents from "./views/kTagging/MainTag/MainContentTag";
+import MainContentTag from "./views/kTagging/MainTag/MainContentTag";
 
 const style = () => ({
     root: {
@@ -82,8 +82,8 @@ class AppKtagging extends React.Component {
         return (
             <div className="App">
                 <Router>
-                    <Route path="/tagging" component={MainContents}>
-                        <TopBarTest mobileOpen={this.state.mobileOpen}
+                    <Route path="/tagging" component={MainContentTag}>
+                        <TopBarTag mobileOpen={this.state.mobileOpen}
                                     setMobileOpen={this.setMobileOpen}
                                     isLoggedIn={loginState === tStore.State.Authenticated}
                                     loginUser={loginUser}
@@ -91,15 +91,11 @@ class AppKtagging extends React.Component {
                                     setStep={this.props.currentStepStore.currentStep}
                                     goHome={this.props.tAuthStore.goHome}
                         />
-                        {/*<SideMenuTag mobileOpen={this.state.mobileOpen}*/}
-                        {/*             setMobileOpen={this.setMobileOpen}*/}
-                        {/*             loginUser={loginUser}*/}
-                        {/*             isLoggedIn={loginState === tStore.State.Authenticated} />*/}
                         {loginState === tStore.State.Authenticated ? (
                             <React.Fragment>
                                 <Switch>
-                                    <Route exact path="/tagging/home" component={MainContents}/>
-                                    <Route exact path="/tagging" component={MainContents}/>
+                                    <Route exact path="/tagging/home" component={MainContentTag}/>
+                                    <Route exact path="/tagging" component={MainContentTag}/>
                                 </Switch>
                             </React.Fragment>
                         ) : (
@@ -108,6 +104,7 @@ class AppKtagging extends React.Component {
                                 <Route path="/tagging/sign/success" component={tVerify} />
                                 <Route path="/tagging/agree" component={JoinAgreeTag} />
                                 <Route path="/tagging" component={tSignIn} />
+
                             </Switch>
                         )}
                         <FooterTag />

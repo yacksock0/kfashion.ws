@@ -66,7 +66,7 @@ class MainContentSearch extends Component{
     }
     render() {
         const { classes } = this.props;
-    
+
         return (
             <div className={classes.root}>
                 <Container minwidth="xl">
@@ -91,7 +91,7 @@ class MainContentSearch extends Component{
             </div>
         )
     }
-  
+
 }
 export default withStyles(style)(MainContentSearch);
 

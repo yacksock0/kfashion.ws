@@ -62,10 +62,13 @@ const styles = theme => ({
         width: 80,
     },
     buttonType2:{
-        width: 150,
+        width: '118px',
+        height:'46px',
         float:'right',
         color:'#00943b',
         border : '1px solid rgba(0,148,59,1)',
+        display:'inline',
+        marginLeft:15,
 
         "&:hover": {
             backgroundColor: 'rgba(69,206,124,0.15)',
@@ -73,8 +76,12 @@ const styles = theme => ({
             }
     },
     buttonType3:{
-        width: 150,
         float:'right',
+        width: '118px',
+        height:'46px',
+        border : '1px solid rgba(0,0,0,1)',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '15px',
     },
     toolButton:{
         border:'1px solid black',
@@ -119,8 +126,10 @@ const styles = theme => ({
         width: 800,
         height: 800,
         zoom : "100%",
-        marginLeft:'auto'
-    }
+        marginLeft:'auto',
+
+    },
+
 });
 
 
@@ -1075,19 +1084,24 @@ class Polygon extends React.Component {
                         {/*        돋보기 끄기*/}
                         {/*    </Button>*/}
                         {/*</div>*/}
-                        <div className={classes.canvas}>
-                            <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
-                        </div>
+                            <div className={classes.canvas}>
+                               
+                                    <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight} filltext="ff"> </canvas>  
+                                    
+                        
+                            </div>
                         </Grid>
 
-                        <Grid item xs={12} lg={this.state.tableSize} xl={this.state.tableSize} style={{marginLeft:"auto", zoom:"100%"}} >
-                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTap( tabIndex )}>
+                        <Grid item xs={12} lg={this.state.tableSize} xl={this.state.tableSize} style={{marginLeft:"auto", zoom:"100%" }} >
+                            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTap( tabIndex )} >
                                 <TabList>
-                                    <Tab tabIndex={0} style={{width: '50%', height:60,textAlign:'center'}}><h3>영역지정</h3></Tab>
-                                    <Tab tabIndex={1} style={{width: '50%', height:60,textAlign:'center'}}><h3>이미지 리스트 ( <b style={{color:"red"}}>{this.props.rectStore.complete}</b> / <b>{this.props.rectStore.total}</b> )</h3></Tab>
+                                    
+                                    <Tab tabIndex={0} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3>영역지정</h3></Tab>
+                                    <Tab tabIndex={1} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3>이미지 리스트 ( <b style={{color:"#1e8247"}}>{this.props.rectStore.complete}</b> / <b>{this.props.rectStore.total}</b> )</h3></Tab>
+                                    
                                 </TabList>
 
-                                <TabPanel value={this.state.value} index={0}>
+                                <TabPanel value={this.state.value} index={0} stylye={{borderRadius:0}}>
                                     <Table >
                                         <TableHead>
                                             <TableRow>
@@ -1497,7 +1511,7 @@ class Polygon extends React.Component {
                 {/*Stepper*/}
 
                 <div>
-                    <hr></hr>
+                    {/* <hr></hr> */}
                     {/*<Button*/}
                     {/*    type="submit"*/}
                     {/*    className={classes.buttonType1}*/}
@@ -1513,30 +1527,33 @@ class Polygon extends React.Component {
                     {/*    Next*/}
                     {/*</Button>*/}
                 </div>
-                <Grid item xs={6} lg={3} style={{marginLeft:'auto'}}>
+                <Grid item xs={6} lg={3} style={{marginLeft:'auto', marginTop:'-50px'}}>
+                     <Button variant="outlined" color="secondary"
+                            className={classes.buttonType2}
+                            onClick={this.handleDelete}
+                            disabled={this.state.tabIndex === 0 || this.props.rectStore.selectedItem.length === 0 ? true : false}>
+                        이미지 삭제
+                    </Button>
                     <Button
                         type="button"
                         className={classes.buttonType3}
                         variant="outlined"
                         onClick={()=>{this.state.listIndex === 0 ? (history.push('/step2')) :alert('리스트에 남은 작업이 있습니다.')} }
                     >
-                        Next Step
+                        다음단계
                     </Button>
-                    <Button variant="outlined" color="secondary"
-                            className={classes.buttonType2}
-                            style={{display:'inline', marginRight:5}}  onClick={this.handleDelete}
-                    disabled={this.state.tabIndex === 0 || this.props.rectStore.selectedItem.length === 0 ? true : false}>
-                        이미지 삭제
-                    </Button>
+                    
                 </Grid>
-                <Typography variant="h6" component="h4" style={{display:'inline'}}>
+                <p style={{width:'100%',height:40}}/>
+                
+                {/* <Typography variant="h6" component="h4" style={{display:'inline'}}>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/>우측 상단에 이미지리스트에서 작업 할 이미지 선택 </p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/>각 영역 별 START버튼을 통해 영역지정 완료 후 FINISH 버튼 클릭 (Start -> Finish -> Save)</p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/>삭제 버튼을 통해 한 점씩, 또는 전부삭제 버튼을 클릭해 삭제가능</p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/>필요한 영역의 작업이 모두 완료되면 작업완료 버튼 클릭</p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/>검수 후 반송 된 이미지는 코멘트가 적용되어 확인후 다시 작업하시면 됩니다.(반송된 이미지는 삭제 불가능)</p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/>체크박스 활용하여 이미지 일괄삭제 가능</p>
-                </Typography>
+                </Typography> */}
                 <ImagePopupModal store={this.props.imageStore} />
             </Container>
         );

@@ -10,7 +10,6 @@ import {STATE} from "../../../common/state";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import TablePagination from "@material-ui/core/TablePagination";
 
-// import imgfile from '../images/test1.png';
 
 
 const style = theme => ({ 

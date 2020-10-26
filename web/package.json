@@ -19,7 +19,7 @@
     "image-resize": "^1.1.5",
     "js-file-download": "^0.4.11",
     "lodash": "^4.17.15",
-    "material-table": "^1.66.0",
+    "material-table": "^1.69.1",
     "material-ui-dropzone": "^3.3.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
@@ -29,12 +29,18 @@
     "randomcolor": "^0.5.4",
     "rc-progress": "^3.0.0",
     "react": "^16.13.0",
+    "react-csv": "^2.0.3",
+    "react-csv-downloader": "^2.1.0",
+    "react-data-export": "^0.6.0",
     "react-dom": "^16.14.0",
     "react-draggable": "^4.4.2",
     "react-dropzone": "^11.0.1",
+    "react-export-excel": "^0.5.3",
     "react-fabric": "^0.4.1",
     "react-ga": "^2.7.0",
+    "react-html-table-to-excel": "^2.0.0",
     "react-image-lightbox": "^5.1.1",
+    "react-json-excel": "^1.1.0",
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.1",
@@ -72,5 +78,5 @@
     "customize-cra": "^0.9.1",
     "react-app-rewired": "^2.1.5"
   },
-  "proxy": "http://localhost:8088"
+  "proxy": "http://localhost:80"
 }
