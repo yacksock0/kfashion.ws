@@ -11,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         textAlign:'center',
@@ -71,28 +72,50 @@ export default function PwFind(){
         <div className={classes.root}>
             <Paper elevation={0} className={classes.paper}>
                 <Paper elevation={0}>
-                    <Typography className={classes.txtstyle1}>로그인에 사용할 아이디를 입력해주세요</Typography>
+                    <Typography className={classes.txtstyle1}>회원가입 필수 입력사항입니다.</Typography>
                     
                     <form noValidate autoComplete="off">
                         <TextField
-                        id="id"
-                        placeholder="아이디"
+                        id="name"
+                        placeholder="이름"
                         variant="outlined"
                         className={classes.namebox}
                         />
                         <Paper elevation={0} style={{display:'flex'}}>
-                            <Typography className={classes.idtext}>영문,숫자포함/8~20자 이내 </Typography>
+                            <Typography className={classes.idtext}>최소2글자 이상 입력 </Typography>
                             <CheckRoundedIcon style={{color:'#c9c9c9',marginTop:-5}}/>
                         </Paper>
 
-                        {/* 아이디중복체크후 가능하면
+                        {/* 이름중복체크후 가능하면
                         <Paper elevation={0} style={{display:'flex'}}>
-                            <Typography className={classes.idtext} style={{color:'#526af2'}}>사용가능한 아이디입니다 </Typography>
+                            <Typography className={classes.idtext} style={{color:'#526af2'}}>최소2글자 이상 입력 </Typography>
                             <CheckRoundedIcon style={{color:'#526af2',marginTop:-5}}/>
                         </Paper> */}
-                        {/* 아이디중복체크후 불가능하면
+                        {/* 이름중복체크후 불가능하면
                         <Paper elevation={0} style={{display:'flex'}}>
-                            <Typography className={classes.idtext} style={{color:'#e82828'}}>이미 가입된 아이디입니다. </Typography>
+                            <Typography className={classes.idtext} style={{color:'#e82828'}}>최소2글자 이상 입력 </Typography>
+                            <CheckRoundedIcon style={{color:'#e82828',marginTop:-5}}/>
+                        </Paper> */}
+
+                        <TextField
+                        id="name1"
+                        placeholder="닉네임"
+                        variant="outlined"
+                        className={classes.namebox}
+                        />
+                        <Paper elevation={0} style={{display:'flex'}}>
+                            <Typography className={classes.idtext}>최소2글자 이상 입력 </Typography>
+                            <CheckRoundedIcon style={{color:'#c9c9c9',marginTop:-5}}/>
+                        </Paper>
+
+                        {/* 이름중복체크후 가능하면
+                        <Paper elevation={0} style={{display:'flex'}}>
+                            <Typography className={classes.idtext} style={{color:'#526af2'}}>최소2글자 이상 입력 </Typography>
+                            <CheckRoundedIcon style={{color:'#526af2',marginTop:-5}}/>
+                        </Paper> */}
+                        {/* 이름중복체크후 불가능하면
+                        <Paper elevation={0} style={{display:'flex'}}>
+                            <Typography className={classes.idtext} style={{color:'#e82828'}}>이미 사용중인 닉네임입니다 </Typography>
                             <CheckRoundedIcon style={{color:'#e82828',marginTop:-5}}/>
                         </Paper> */}
                     </form>

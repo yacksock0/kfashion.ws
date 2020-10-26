@@ -1064,13 +1064,13 @@ class Step2 extends React.Component {
                         </Grid>
                     ) : ''}
                 </Grid>
-                <Typography variant="h6" component="h4" style={{display: 'inline'}}>
+                {/* <Typography variant="h6" component="h4" style={{display: 'inline'}}>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 </p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 색상 및 소매길이 선택 후 다음 탭으로 이동 </p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 영역정보가 존재하는 마지막 탭 입력 후 저장버튼 클릭 </p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 체크박스 클릭후 대표 이미지 선택하여 작업시 체크한 이미지 전부 동일한 값으로 입력됩니다.</p>
                     
-                </Typography>
+                </Typography> */}
                 <ImagePopupModal store={this.props.imageStore} />
             </Container>
         );

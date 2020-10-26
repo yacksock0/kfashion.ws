@@ -38,13 +38,13 @@ const useStyles = makeStyles((theme) => ({
         width:'100%',
         boxShadow:'none',
         marginTop:12,
-        background:'#d94848',
+        background:'#000',
         color:'#fff',
         borderRadius:0,
         padding:'10px 0',
 
         "&:hover": {
-            background:'#d94848',
+            background:'#000',
             color:'#fff',
             borderRadius:0, 
             boxShadow:'none',

@@ -5,7 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { ReactComponent as Check } from './images/Check.svg';
+// import { ReactComponent as Check } from './images/Check.svg';
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -80,16 +81,19 @@ export default function PwFind(){
                         className={classes.namebox}
                         />
                         <Paper elevation={0} style={{display:'flex'}}>
-                            <Typography className={classes.idtext}>영문,숫자포함/8~20자 이내 <Check style={{paddingLeft:10}}/></Typography>
+                            <Typography className={classes.idtext}>영문,숫자포함/8~20자 이내 </Typography>
+                            <CheckRoundedIcon style={{color:'#c9c9c9',marginTop:-5}}/>
                         </Paper>
 
                         {/* 아이디중복체크후 가능하면
                         <Paper elevation={0} style={{display:'flex'}}>
-                            <Typography className={classes.idtext}>사용가능한 아이디입니다 <Check style={{paddingLeft:10}}/></Typography>
+                            <Typography className={classes.idtext} style={{color:'#38a67e'}}>사용가능한 아이디입니다 </Typography>
+                            <CheckRoundedIcon style={{color:'#38a67e',marginTop:-5}}/>
                         </Paper> */}
                         {/* 아이디중복체크후 불가능하면
                         <Paper elevation={0} style={{display:'flex'}}>
-                            <Typography className={classes.idtext} style={{color:'red'}}>이미 가입된 아이디입니다.</Typography>
+                            <Typography className={classes.idtext} style={{color:'#e82828'}}>이미 가입된 아이디입니다. </Typography>
+                            <CheckRoundedIcon style={{color:'#e82828',marginTop:-5}}/>
                         </Paper> */}
                     </form>
                     <Paper elevation={0}>
