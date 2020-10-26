@@ -151,13 +151,9 @@ class PolygonList extends React.Component {
         const polyNo = this.props.polygonStore.tabIndex1-1;
         return (
             <MaterialTable
+            
                 columns={[
-                    {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                      checked={this.props.rectStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
-                        </Checkbox>,
-                        render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo, rowData.comment)}
-                                                      checked={this.props.rectStore.selectedItem.includes(rowData.workNo)}
-                                                      disabled={rowData.comment === null || rowData.comment === ''? false : true} style={{color:'#000000'}}></Checkbox>},
+                    
                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
                     {title: '사진', field: 'fileName',type: 'Image', render : rowData => {
                             return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
@@ -168,6 +164,12 @@ class PolygonList extends React.Component {
                     {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter'},
                     {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                     {title: '등록일 ', field: 'createdDatetime', type: 'date'},
+                    {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                      checked={this.props.rectStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
+                        </Checkbox>,
+                        render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo, rowData.comment)}
+                                                      checked={this.props.rectStore.selectedItem.includes(rowData.workNo)}
+                                                      disabled={rowData.comment === null || rowData.comment === ''? false : true} style={{color:'#000000'}}></Checkbox>},
                 ]}
                 data={!!this.props.rectStore.rectList ?
                     this.props.rectStore.rectList.map((item) => {
@@ -180,11 +182,12 @@ class PolygonList extends React.Component {
                             comment : item.comment,
                         }
                     }) : []}
-                title="이미지 리스트"
+                // title="이미지 리스트"
+                title=""
 
                 options={{
                     sorting:false,
-                    actionsColumnIndex: -1,
+                    // actionsColumnIndex: -1,
                     headerStyle: {
                         backgroundColor: '#000000',
                         color: '#ffffff',

@@ -4,7 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { ReactComponent as Check } from './images/Check.svg';
+// import { ReactComponent as Check } from './images/Check.svg';
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -79,7 +80,8 @@ export default function PwFind(){
                             className={classes.namebox}
                             />
                             <Paper elevation={0} style={{display:'flex'}}>
-                                <Typography className={classes.pwtext}>영문,숫자포함/8~20자 이내 <Check style={{paddingLeft:10}}/></Typography>
+                                <Typography className={classes.idtext}>영문,숫자포함/8~20자 이내 </Typography>
+                                <CheckRoundedIcon style={{color:'#c9c9c9',marginTop:-5}}/>
                             </Paper>
                             <TextField
                             id="password"
@@ -90,7 +92,8 @@ export default function PwFind(){
                             className={classes.namebox}
                             />
                             <Paper elevation={0} style={{display:'flex'}}>
-                                <Typography className={classes.pwtext}>비밀번호 일치 <Check style={{paddingLeft:10}}/></Typography>
+                                <Typography className={classes.idtext} style={{color:'#38a67e'}}>비밀번호 일치 </Typography>
+                                <CheckRoundedIcon style={{color:'#38a67e',marginTop:-5}}/>
                             </Paper>
                         </form>
                     <Paper elevation={0}>

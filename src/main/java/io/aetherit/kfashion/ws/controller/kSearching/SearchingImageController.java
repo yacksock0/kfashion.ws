@@ -71,7 +71,6 @@ public class SearchingImageController {
              resultMap.put("fileName", fileName);
              resultMap.put("fileType", fileType);
              resultMap.put("fileSize", fileSize);
-             System.out.println(resultMap);
          } catch (IOException e) {
              e.printStackTrace();
          }

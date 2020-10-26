@@ -19,6 +19,9 @@ export default class ImageStore {
     @observable progress = 0;
     @observable someImage = '이미지 태깅중...';
     @observable message = '';
+    @observable dataList = [];
+    @observable csvData = [];
+    @observable textData = '';
     //action
     @action countChange = (max) => {
         this.count = max;
@@ -50,6 +53,11 @@ export default class ImageStore {
         this.someImage = `이미지 태깅중...`
         this.message = ''
     }
+    @action resetDownload = () => {
+        this.csvData = [];
+        this.dataList = [];
+        this.textData = [];
+    }
     //드롭시 파일업로드
     fileupload = flow(function* fileupload(fileList, index, max) {
         const formData = new FormData();
@@ -62,17 +70,21 @@ export default class ImageStore {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
                 this.fileupload(fileList, index + 1, max);
-                this.imagesList.push(resp.data);
+                this.imagesList.push(resp.data.boundaryList);
                 this.boundaryList = this.imagesList;
+                this.dataList.push(resp.data.exportMap);
+                this.csvData = this.dataList;
+                console.log(this.csvData)
+                this.textData = JSON.stringify(this.csvData)
                 //카운트 증가위함!
-                this.count = this.count + 1;
+                this.count = this.count+ 1;
                 if (this.count >= max) {
                     this.maxValue=0;
                     this.maxValue += index + 1;
                     this.imagesList=[];
                 }
                 //progress bar && 메세지 && 버튼 등 한번에 활성화(2020.10.20 이지현)
-                if (this.count === max)  setTimeout(() => { 
+                if (this.count === max)  setTimeout(() => {
                     this.setState(STATE.DONE)
                     this.resetProgress()
                     this.maxValueUpdate()

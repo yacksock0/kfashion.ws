@@ -20,13 +20,13 @@ const style = theme => ({
         width:'390px',
         boxShadow:'none',
         marginTop:20,
-        background:'#526af2',
+        background:'#000',
         color:'#fff',
         borderRadius:0,
         padding:'10px 0',
 
         "&:hover": {
-            background:'#526af2',
+            background:'#000',
             color:'#fff',
             borderRadius:0,
             boxShadow:'none',

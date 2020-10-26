@@ -18,12 +18,28 @@ const styles = (theme) => ({
     outlinedSecondary : {
         color:'#00943b',
         border : '1px solid rgba(0,148,59,1)',
+        float:'right',
+        width:118,
+        height:'46px',
+        marginBottom:10,
+        fontFamily:'NotoSansCJKkr',
+        fontSize:'15px',
 
         "&:hover": {
             backgroundColor: 'rgba(69,206,124,0.15)',
             border : '1px solid rgba(0,148,59,1)'
             }
-    }
+    },
+    btnstyle:{
+        width:118,
+        height:'46px',
+        marginBottom:10,
+        fontFamily:'NotoSansCJKkr',
+        fontSize:'15px',
+        border:'1px solid #000',
+        float:'right',
+        marginRight:10,
+    },
 });
 
 
@@ -174,26 +190,28 @@ class ReturnMsg extends React.Component {
         const {polyInfo} = this.props.polygonStore
         const {classes} = this.props;
         return (
-            <div>
+            <div style={{marginTop:-60}}>
                 {this.props.authStore.loginUser.authorityNo !== 4? (
-                <Button variant="outlined" className={classes.outlinedSecondary} color="secondary" onClick={this.handleComplete} style={{float:'right' , width:150, marginBottom:10}} disabled={this.props.checkHighLabelStore.successDisabled === true ? true : false }>
+                <Button variant="outlined" className={classes.outlinedSecondary} color="secondary" onClick={this.handleComplete}  disabled={this.props.checkHighLabelStore.successDisabled === true ? true : false }>
                     완료
                 </Button>
                 ) : ''}
                 {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Button variant="outlined"
                         onClick={this.handleClickOpen}
-                        style={{float:'right' , width:150, marginRight:10, marginBottom:10}}
-                        disabled={this.props.checkHighLabelStore.workNo === 0 ? true : false}>
+                        disabled={this.props.checkHighLabelStore.workNo === 0 ? true : false}
+                        className={classes.btnstyle}
+                        >
                     영역반송
                 </Button>
                     ) : ''}
                 {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Button variant="outlined"
                         onClick={this.handleBasicOpen}
-                        style={{float:'right' , width:150, marginRight:10, marginBottom:10}}
                         disabled={this.props.checkHighLabelStore.workNo === 0
-                        && this.props.checkHighLabelStore.selectedItem.length > 0? false : true}>
+                        && this.props.checkHighLabelStore.selectedItem.length > 0? false : true}
+                        className={classes.btnstyle}
+                        >
                     레이블반송
                 </Button>
                     ) : ''}

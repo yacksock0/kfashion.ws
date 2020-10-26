@@ -47,13 +47,13 @@ const useStyles = makeStyles((theme) => ({
         width:'100%',
         boxShadow:'none',
         marginTop:24,
-        background:'#000',
+        background:'#526af2',
         color:'#fff',
         borderRadius:0,
         padding:'10px 0',
 
         "&:hover": {
-            background:'#000',
+            background:'#526af2',
             color:'#fff',
             borderRadius:0, 
             boxShadow:'none',
@@ -95,6 +95,7 @@ export default function PwFind(){
                                 <Typography className={classes.idtext} style={{color:'#526af2'}}>비밀번호 일치 </Typography>
                                 <CheckRoundedIcon style={{color:'#526af2',marginTop:-5}}/>
                             </Paper>
+                            
                         </form>
                     <Paper elevation={0}>
                         <Button variant="contained" className={classes.btnjoinstyle} disabled>다음</Button>

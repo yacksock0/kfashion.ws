@@ -100,6 +100,7 @@ class UserList extends React.Component {
                 <div className={classes.mainContent} style={{marginBottom: 15}}>
                     <Grid item xs={12} lg={12}>
                         <MaterialTable
+                            style={{backgroundColor:'#fafafa', boxShadow:'none'}}
                             localization={{ body: {
                                 editRow: { deleteText: '정말 삭제 하시겠습니까?'} } ,
                                 }
