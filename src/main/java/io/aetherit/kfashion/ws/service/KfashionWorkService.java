@@ -68,6 +68,9 @@ public class KfashionWorkService {
     public Long[] selectJsonWorkList() {
         return repository.selectJsonWorkList();
     }
+    public Long[] getImageData() {
+        return repository.getImageData();
+    }
 
     public Long selectTotalWork() {
         return repository.selectTotalWork();

@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import {inject, observer} from "mobx-react";
 
 
 const style = theme => ({
@@ -57,11 +58,12 @@ const style = theme => ({
     },
 });
 
-
+@inject('sAuthStore')
+@observer
 class TopBarSearch extends Component{
     render() {
         const { classes } = this.props;
-        const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser, goHome} = this.props;
+        const { isLoggedIn, doLogout, loginUser} = this.props;
         return (
             <div className={classes.root}>
                 <React.Fragment>
@@ -72,10 +74,12 @@ class TopBarSearch extends Component{
                             
                             <Paper elevation={0} className={classes.right}>
                                 <Paper elevation={0} className={classes.rightbox}>
-
+                                    {isLoggedIn &&
                                     <Paper elevation={0} className={classes.adminbox}>
-                                        <AdminIcon /><Typography >admin@admin</Typography>
+                                        <AdminIcon/><Typography>{loginUser.id}</Typography>
                                     </Paper>
+                                    }
+
                                     {/* <Typography className={classes.iconstyle} ><JoinIcon /></Typography> */}
                                     <Typography className={classes.iconstyle}
                                                 onClick={doLogout}><LogoutIcon /></Typography>

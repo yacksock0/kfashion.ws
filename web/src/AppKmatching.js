@@ -5,7 +5,7 @@ import {withStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import * as mStore from "./stores/kMatching/MAuthStore";
 import mSignUp from "./views/kMatching/SignInMatch/SignUpMatch";
-import mVerify from "./views/kMatching/SignInMatch/VerifyMatch";
+import mVerify from "./views/kMatching/VerifyMatch";
 import TopBarMatch from "./views/kMatching/TopBarMatch";
 import MainTopBar from "./views/kMatching/MainTopBarMatch";
 import Header from "./views/kMatching/HeaderMatch";
@@ -76,7 +76,6 @@ class AppKmatching extends React.Component {
 
     render() {
 
-        const { classes } = this.props;
         const { loginState, loginUser} = this.props.mAuthStore;
         return (
             <div className="App">

@@ -2,7 +2,6 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
-import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import * as tStore from "./stores/kTagging/TAuthStore";
 import tSignUp from "./views/kTagging/SignInTag/SignUpTag";
@@ -14,6 +13,12 @@ import FooterTag from './views/kTagging/FooterTag';
 import JoinAgreeTag from "./views/kTagging/SignInTag/JoinAgreeTag";
 
 import MainContentTag from "./views/kTagging/MainTag/MainContentTag";
+import JoinQuestionsTag from "./views/kTagging/SignInTag/NewSign/JoinQuestionsTag";
+import JoinWelcomeTag from "./views/kTagging/SignInTag/NewSign/JoinWelcomeTag";
+import IdFindTag from "./views/kTagging/SignInTag/NewSign/IdFindTag";
+import PwFindTag from "./views/kTagging/SignInTag/NewSign/PwFindTag";
+import IdCompleteTag from "./views/kTagging/SignInTag/NewSign/IdCompleteTag";
+import PwCompleteTag from "./views/kTagging/SignInTag/NewSign/PwCompleteTag";
 
 const style = () => ({
     root: {
@@ -76,7 +81,6 @@ class AppKtagging extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
         const { loginState, loginUser} = this.props.tAuthStore;
 
         return (
@@ -100,10 +104,15 @@ class AppKtagging extends React.Component {
                             </React.Fragment>
                         ) : (
                             <Switch>
-                                <Route path="/tagging/SignUp" component={tSignUp} />
-                                <Route path="/tagging/sign/success" component={tVerify} />
+                                <Route path="/tagging/sign/success" component={JoinWelcomeTag} />
                                 <Route path="/tagging/agree" component={JoinAgreeTag} />
+                                <Route path="/tagging/question" component={JoinQuestionsTag} />
+                                <Route path="/tagging/findId" component={IdFindTag} />
+                                <Route path="/tagging/completeId" component={IdCompleteTag} />
+                                <Route path="/tagging/findPw" component={PwFindTag} />
+                                <Route path="/tagging/completePw" component={PwCompleteTag} />
                                 <Route path="/tagging" component={tSignIn} />
+
 
                             </Switch>
                         )}

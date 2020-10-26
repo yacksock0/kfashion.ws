@@ -1,5 +1,4 @@
-import {action, computed, flow, observable} from "mobx";
-import axios from "axios";
+import {action, observable} from "mobx";
 
 
 export const WebURL = {
@@ -12,7 +11,7 @@ export const WebURL = {
 export default class AppStore {
     @observable loginURL = "";
 
-    setLoginURL = flow(function* setLoginURL(web) {
+    @action setLoginURL = (web) => {
         this.loginURL = web;
-    });
+    };
 }

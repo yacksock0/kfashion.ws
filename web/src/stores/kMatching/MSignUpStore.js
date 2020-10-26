@@ -34,6 +34,7 @@ export default class SignUpStore {
     @observable newMember = {...EmptyNewMember}
     @observable agreements = {...EmptyAgreements}
     @observable serverMode = '';
+    @observable isAllSelected = false;
 
     @action initialize = (email) => {
         this.state = State.Ready;
@@ -120,6 +121,10 @@ export default class SignUpStore {
         return this.state === State.NotAvailableId;
     }
 
+    AllSelected = flow(function* isAllSelected(isAllSelected) {
+        this.isAllSelected = isAllSelected
+    })
+
     doSignUp = flow(function* doSignUp(history) {
         this.state = State.Pending;
         try {
@@ -130,7 +135,7 @@ export default class SignUpStore {
             if(!isNotAvailId) {
                 const param = toJS(this.newMember);
                 delete param.passwordConfirm;
-                const resp = yield axios.post('/api/v1/kMatching/users/signup', param)
+                yield axios.post('/api/v1/kMatching/users/signup', param)
                     .then (res => {
 
                         history.push("/matching/sign/success")

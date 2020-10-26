@@ -1636,9 +1636,9 @@ export default class ProfessionalLabelStore {
                 this.LoadRecentImage(createdId);
                 this.doProfessionalCompleteUp(createdId,authorityNo);
                 this.selectedItemReset();
-                alert("저장 완료되었습니다.");
+                // alert("저장 완료되었습니다.");
             } else {
-                alert("저장 실패하였습니다.")
+                alert("저장 실패하였습니다.");
             }
         }
     });
