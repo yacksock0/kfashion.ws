@@ -1,0 +1,69 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.kSearching.SearchingImageMapper">
+    <resultMap id="SearchingImageResultMap" type="SearchingImage">
+        <id property="workNo"                           column="work_no" />
+        <result property="imgData"                 column="img_data" />
+        <result property="createdDatetime"          column="created_datetime" />
+        <result property="updatedDatetime"          column="updated_datetime" />
+    </resultMap>
+
+
+<!--    <select id="selectImageList" resultMap="SearchingImageResultMap" >-->
+<!--        SELECT *-->
+<!--        FROM kfashion_image-->
+<!--        WHERE work_no IN-->
+<!--        <foreach collection="list" item="item" open="(" close=")" separator=",">-->
+<!--            #{item}-->
+<!--        </foreach>-->
+<!--    </select>-->
+
+    <select id="selectImageList" resultMap="SearchingImageResultMap" >
+        SELECT *
+        FROM kfashion_image
+        WHERE work_no IN
+        (
+            SELECT DISTINCT work_no
+            FROM kfashion_label
+            WHERE no = 1
+--             WHERE label_no IS NOT NULL
+            <if test="style != null and style != 0">
+                AND work_no IN
+                (SELECT work_no FROM kfashion_label
+                    WHERE category_item_no = ${style})
+            </if>
+            <if test="category != null and category != 0 ">
+                AND label_no = ${category}
+            </if>
+            <if test="color != null and color != 0">
+                AND category_item_no = ${color}
+            </if>
+        )
+        LIMIT #{rowsPerPage}
+        OFFSET #{startPage}
+    </select>
+
+    <select id="selectImageListTotalCount" resultType="Long">
+        SELECT count(*)
+        FROM kfashion_image
+        WHERE work_no IN
+        (
+        SELECT DISTINCT work_no
+        FROM kfashion_label
+        WHERE no = 1
+        --             WHERE label_no IS NOT NULL
+        <if test="style != null and style != 0">
+            AND work_no IN
+            (SELECT work_no FROM kfashion_label
+            WHERE category_item_no = ${style})
+        </if>
+        <if test="category != null and category != 0 ">
+            AND label_no = ${category}
+        </if>
+        <if test="color != null and color != 0">
+            AND category_item_no = ${color}
+        </if>
+        )
+    </select>
+
+
+</mapper>

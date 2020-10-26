@@ -16,6 +16,7 @@ import JoinAgreeSearch from "./views/kSearching/SinupSearch/JoinAgreeSearch";
 import JoinId from "./views/Test/SignUpTest/JoinId";
 import JoinPw from "./views/Test/SignUpTest/JoinPw";
 
+import TrendSearchByTextForScroll from "./views/kSearching/MainSearch/TrendSearchByTextForScroll";
 
 const style = () => ({
     root: {
@@ -102,6 +103,7 @@ class AppKsearching extends React.Component {
                                     <Route exact path="/searching" component={MainContents}/>
                                     <Route exact path="/searching/text" component={TrendSearchByText}/>
                                     <Route exact path="/searching/image" component={TrendSearchByImage}/>
+                                    <Route exact path="/searching/scrolltext" component={TrendSearchByTextForScroll} />
 
                                 </Switch>
                             </React.Fragment>

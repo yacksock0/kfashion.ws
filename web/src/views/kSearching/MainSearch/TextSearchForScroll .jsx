@@ -117,7 +117,7 @@ const style = theme => ({
 
 @inject("sTextSearchStore")
 @observer
-class TextSearch  extends Component{
+class TextSearchForScroll  extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -159,7 +159,7 @@ class TextSearch  extends Component{
         const categoryFormats = this.state.categoryFormats;
         const { category, categoryNoList, styleList, colorList, styleRequestState, categoryItemRequestState,
                 colorRequestState, selectedStyle, selectedColor, selectedCategory,
-                handleClickStyleBtn, handleClickColorBtn, handleClickCategoryBtn, handleClickSendBtn } = this.props.sTextSearchStore;
+                handleClickStyleBtn, handleClickColorBtn, handleClickCategoryBtn, handleClickSendBtnForScroll } = this.props.sTextSearchStore;
         console.log("TextSearch styleList : >> ", styleList);
         console.log("TextSearch category : >> ", toJS(category));
         console.log("TextSearch styleName : >> ", styleName);
@@ -319,7 +319,7 @@ class TextSearch  extends Component{
                 <Button
                     variant="contained"
                     className={classes.btnsend}
-                    onClick={handleClickSendBtn}
+                    onClick={handleClickSendBtnForScroll}
                 >
                     적용하기
                 </Button>
@@ -328,7 +328,7 @@ class TextSearch  extends Component{
         )
     }
 }
-export default withStyles(style)(TextSearch );
+export default withStyles(style)(TextSearchForScroll);
 
                     
 

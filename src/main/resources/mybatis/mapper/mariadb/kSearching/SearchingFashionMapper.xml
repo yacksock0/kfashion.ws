@@ -1,0 +1,59 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.kSearching.SearchingFashionMapper">
+    <resultMap id="SearchingStyleResultMap" type="SearchingStyle">
+        <id property="no"                       column="no" />
+        <result property="categoryType"             column="category_type" />
+        <result property="categoryNo"                 column="category_no" />
+        <result property="categoryItemName"              column="category_item_name" />
+        <result property="categoryItemMemo"              column="category_item_memo" />
+        <result property="createdId"      column="created_id" />
+        <result property="updatedId"      column="updated_id" />
+        <result property="createdDatetime"      column="created_datetime" />
+        <result property="updatedDatetime"      column="updated_datetime" />
+    </resultMap>
+
+    <resultMap id="SearchingCategoryResultMap" type="SearchingCategory">
+        <id property="no"                       column="no" />
+        <result property="categoryNo"             column="category_no" />
+        <result property="categoryType"                 column="category_type" />
+        <result property="categoryStep"              column="category_step" />
+        <result property="groupNo"              column="group_no" />
+        <result property="createdId"      column="created_id" />
+        <result property="updatedId"      column="updated_id" />
+        <result property="createdDatetime"      column="created_datetime" />
+        <result property="updatedDatetime"      column="updated_datetime" />
+    </resultMap>
+
+    <select id="selectStyleList" resultMap="SearchingStyleResultMap">
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_type = 0 AND category_no = 38
+    </select>
+
+    <select id="selectColorList" resultMap="SearchingStyleResultMap" >
+        SELECT *
+        FROM kfashion_category_item
+        WHERE category_no = #{categoryNo} AND category_type = #{categoryType}
+    </select>
+
+    <select id="selectCategoryList" resultMap="SearchingCategoryResultMap">
+        SELECT *
+        FROM kfashion_category
+        WHERE category_name = "카테고리"
+    </select>
+
+    <select id="selectCategoryNo" resultType="int">
+        SELECT no
+        FROM kfashion_category
+        WHERE category_type = #{categoryType} AND category_name = "색상"
+    </select>
+
+    <select id="selectLabelList" resultType="Long" parameterType="int">
+        SELECT *
+        FROM kfashion_label
+        <if test="styleType != null and styleType != 0 ">
+            WHERE category_item_no = #{styleType}
+        </if>
+    </select>
+
+</mapper>

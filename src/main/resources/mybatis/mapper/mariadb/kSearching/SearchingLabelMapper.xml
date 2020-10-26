@@ -1,0 +1,54 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.kSearching.SearchingLabelMapper">
+    <resultMap id="SearchingLabelResultMap" type="SearchingLabel">
+        <id property="no"                           column="no" />
+        <result property="workNo"                   column="work_no" />
+        <result property="workStep"                 column="work_step" />
+        <result property="labelNo"                  column="label_no" />
+        <result property="categoryNo"               column="category_no" />
+        <result property="categoryItemNo"           column="category_item_no" />
+        <result property="createdId"                column="created_id" />
+        <result property="createdDatetime"          column="created_datetime" />
+        <result property="updatedDatetime"          column="updated_datetime" />
+    </resultMap>
+
+
+    <select id="selectLabelList" resultMap="SearchingLabelResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM kfashion_label
+        <if test='value != null and value != 0'>
+            WHERE category_item_no = ${value}
+        </if>
+--         LIMIT 100
+    </select>
+
+    <select id="selectLabelListByWorkNo" resultMap="SearchingLabelResultMap">
+        SELECT *
+        FROM kfashion_label
+        <if test='value != null and value != 0'>
+            WHERE work_no IN
+            (SELECT work_no FROM kfashion_label WHERE category_item_no = ${value})
+        </if>
+<!--        <foreach collection="list" item="item" open="(" close=")" separator=",">-->
+<!--            #{item}-->
+<!--        </foreach>-->
+    </select>
+
+    <select id="selectLabelListBySearchInfo" resultType="Long" >
+        SELECT DISTINCT work_no
+        FROM kfashion_label
+        WHERE
+        <if test="style != null and style != 0">
+            work_no IN
+            (SELECT work_no FROM kfashion_label
+            WHERE category_item_no = ${style})
+        </if>
+        <if test="category != null and category != 0 ">
+            AND label_no = ${category}
+        </if>
+        <if test="color != null and color != 0">
+            AND category_item_no = ${color};
+        </if>
+    </select>
+
+</mapper>

@@ -21,6 +21,8 @@ import SSignUpStore from "./kSearching/SSignUpStore";
 import MSignUpStore from "./kMatching/MSignUpStore";
 import TImageStore from "./kTagging/TImageStore";
 
+import STextSearchStore from "./kSearching/STextSearchStore";
+
 
 export const stores = {
     signUpStore: new SignUpStore(),
@@ -47,4 +49,7 @@ export const stores = {
     mSignUpStore: new MSignUpStore(),
 
     tImageStore : new TImageStore(),
+
+    sTextSearchStore : new STextSearchStore(),
+
 };
