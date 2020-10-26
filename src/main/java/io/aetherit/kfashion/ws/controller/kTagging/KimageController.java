@@ -39,7 +39,7 @@ public class KimageController {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         int pos = file.getOriginalFilename().lastIndexOf(".");
         String fileType = file.getOriginalFilename().substring(pos + 1);
-        String fileName = file.getOriginalFilename();
+        String fileName = file.getOriginalFilename().substring(0, pos);
         long fileSize = file.getSize();
         try {
             String mainPosition = "W";
@@ -71,11 +71,15 @@ public class KimageController {
             //  {fileName=holidayColor-blue.jpg, imgData=[B@6f2121ff, boundaryList=(this Map)}
             boundaryList.put("fileName", fileName);
             boundaryList.put("imgData", imageInByte);
+            boundaryList.put("fileType", fileType);
             exportMap.put("fileName", fileName);
             exportMap.put("fileType", fileType);
             exportMap.put("fileSize", fileSize);
             resultMap.put("boundaryList", boundaryList);
             resultMap.put("exportMap", exportMap);
+            System.out.println("!!"+ imageInByte);
+            System.out.println("@@"+ fileName);
+            System.out.println("##"+ fileType);
         } catch (IOException e) {
             e.printStackTrace();
         }

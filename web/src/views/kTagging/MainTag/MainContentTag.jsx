@@ -1,16 +1,16 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Hidden, Grid, Container, Button, Typography, Paper} from '@material-ui/core';
 import DropZone from './DropZone';
 import ImageUpload from './ImageUploadTag'
 import {STATE} from '../../../common/state';
 
-//2020.10.15 inject 이지현 추가
+//2020.10.15 inject 추가 [이지현]
 import {inject, observer} from "mobx-react";
 import {withStyles} from '@material-ui/styles';
 //2020.10.21 CSV파일 다운로드 [이지현]
 import {CSVLink} from 'react-csv';
 import Download from '@axetroy/react-download'
-//2020.10.22 EXCEL 다운로드 추가
+//2020.10.22 EXCEL 다운로드 추가 [이지현]
 import ReactExport from "react-data-export";
 
 const ExcelFile = ReactExport.ExcelFile;
@@ -111,19 +111,9 @@ class MainContentTag extends React.Component {
 
     render() {
         //20.10.20 버튼 비활성화 && progressbar 비활성화일때 메세지가 먼저 바뀌지않도록....
-        const {message, someImage, State, csvData, textData, maxValue} = this.props.tImageStore;
+        const {State, csvData, textData, maxValue} = this.props.tImageStore;
         //csv데이터 추가 20.10.21 [이지현]
         const {classes} = this.props;
-        this.someImage = '태깅';
-        this.message = '된 이미지가 없습니다';
-        if (State === STATE.PENDING) {
-            this.someImage = someImage;
-            this.message = message;
-        }
-        if (State === STATE.DONE) {
-            this.someImage = someImage;
-            this.message = message;
-        }
         return (
             <div className={classes.root}>
                 <React.Fragment>
@@ -143,13 +133,27 @@ class MainContentTag extends React.Component {
 
                                     <div className={classes.imagebox}>
                                         <Paper elevation={0} className={classes.imageboxin}>
+                                            {State === STATE.INITIAL &&
                                             <Typography className={classes.imgtext}>
                                                 <span
-                                                    className={classes.countcolor}>{this.someImage}</span>{this.message}
+                                                    className={classes.countcolor}>태깅</span>된 이미지가 없습니다
                                             </Typography>
+                                            }
+                                            {State === STATE.PENDING &&
+                                            <Typography className={classes.imgtext}>
+                                                <span
+                                                    className={classes.countcolor}>이미지</span> 태깅중 ...
+                                            </Typography>
+                                            }
+                                            {State === STATE.DONE &&
+                                            <Typography className={classes.imgtext}>
+                                                <span
+                                                    className={classes.countcolor}>총{maxValue}건</span>의 이미지 태깅완료
+                                            </Typography>
+                                            }
                                             {/*2020.10.22 업로드 파일이 없거나 진행중이라면 disabled [이지현]*/}
                                             {/*Text 다운로드 버튼*/}
-                                            {maxValue === 0 || State === STATE.PENDING ?
+                                            {State !== STATE.DONE ?
                                                 <Button variant="contained" className={classes.btnstyle}
                                                         disabled={true}>TEXT다운로드</Button> :
                                                 <Download file="StyleTagging.txt"
@@ -159,20 +163,22 @@ class MainContentTag extends React.Component {
                                                             className={classes.btnstyle}>TEXT다운로드</Button></Download>
                                             }
                                             {/*CSV다운로드 버튼*/}
-                                            {maxValue === 0 || State === STATE.PENDING ?
+                                            {State !== STATE.DONE ?
                                                 <Button variant="contained" className={classes.btnstyle}
                                                         disabled={true}>CSV다운로드 </Button> :
-                                                <CSVLink data={csvData} className={classes.datastyle} >
+                                                <CSVLink data={csvData} className={classes.datastyle}
+                                                         filename={'StyleTagging.csv'}>
                                                     <Button variant="contained"
                                                             className={classes.btnstyle}>CSV다운로드</Button></CSVLink>
                                             }
                                             {/*Excel 다운로드 버튼*/}
-                                            {maxValue === 0 || State === STATE.PENDING ?
+                                            {State !== STATE.DONE ?
                                                 <Button variant="contained" className={classes.btnstyle}
                                                         disabled={true}>EXCEL다운로드</Button> :
-                                                <ExcelFile element={<Button variant="contained"
+                                                <ExcelFile filename={'StyleTagging'}
+                                                           element={<Button variant="contained"
                                                                             className={classes.btnstyle}>EXCEL다운로드</Button>}>
-                                                    <ExcelSheet data={csvData} name="Employees">
+                                                    <ExcelSheet data={csvData} name="files">
                                                         <ExcelColumn label="fileName" value="fileName"/>
                                                         <ExcelColumn label="fileType" value="fileType"/>
                                                         <ExcelColumn label="fileSize" value="fileSize"/>
@@ -181,83 +187,96 @@ class MainContentTag extends React.Component {
                                             <br/>
 
                                             {/* 업로드 이미지 들어가는영역 */}
-                                                <Paper elevation={0} className={classes.imgboxin}>
+                                            <Paper elevation={0} className={classes.imgboxin}>
                                                 {/* 2020.10.15 일단 테이블 삽입 이지현 */}
                                                 <ImageUpload/>
-                                                </Paper>
-                                                </Paper>
-                                                </div>
-                                                </Paper>
-                                                </Hidden>
+                                            </Paper>
+                                        </Paper>
+                                    </div>
+                                </Paper>
+                            </Hidden>
 
-                                                <Hidden mdUp>
-                                                <Paper elevation={0} style={{width: '100%'}}>
-                                                <Typography className={classes.titletext}>Tagging Service</Typography>
-                                                <Typography className={classes.textstyle}>패션 이미지 또는 폴더 업로드시 해당 패션 아이템의 분석결과파일을
-                                                제공합니다.</Typography>
-                                                <DropZone/>
+                            <Hidden mdUp>
+                                <Paper elevation={0} style={{width: '100%'}}>
+                                    <Typography className={classes.titletext}>Tagging Service</Typography>
+                                    <Typography className={classes.textstyle}>패션 이미지 또는 폴더 업로드시 해당 패션 아이템의 분석결과파일을
+                                        제공합니다.</Typography>
+                                    <DropZone/>
 
-                                                <Typography className={classes.titletext}>Analysis Result</Typography>
-                                                <Typography className={classes.textstyle}>업로드한 분석결과를 원하는 파일형식으로
-                                                다운로드하세요.</Typography>
+                                    <Typography className={classes.titletext}>Analysis Result</Typography>
+                                    <Typography className={classes.textstyle}>업로드한 분석결과를 원하는 파일형식으로
+                                        다운로드하세요.</Typography>
 
-                                                <div className={classes.imagebox}>
-                                                <Paper elevation={0} className={classes.imageboxin}>
-                                                <Typography className={classes.imgtext}>
+                                    <div className={classes.imagebox}>
+                                        <Paper elevation={0} className={classes.imageboxin}>
+                                            {State === STATE.INITIAL &&
+                                            <Typography className={classes.imgtext}>
                                                 <span
-                                                className={classes.countcolor}>{this.someImage}</span><a>{this.message}</a>
-                                                </Typography>
-
-                                                <Paper elevation={0}>
-                                                    {/*2020.10.22 업로드 파일이 없거나 진행중이라면 disabled [이지현]*/}
-                                                    {/*Text 다운로드 버튼*/}
-                                                    {maxValue === 0 || State === STATE.PENDING ?
-                                                        <Button variant="contained" className={classes.btnstyle}
-                                                                disabled={true}>TEXT다운로드</Button> :
-                                                        <Download file="StyleTagging.txt"
-                                                                  content={'StyleTagging Text Download\n\n' + textData}
-                                                                  className={classes.datastyle}>
-                                                            <Button variant="contained"
-                                                                    className={classes.btnstyle}>TEXT다운로드</Button></Download>
-                                                    }
-                                                    {/*CSV다운로드 버튼*/}
-                                                    {maxValue === 0 || State === STATE.PENDING ?
-                                                        <Button variant="contained" className={classes.btnstyle}
-                                                                disabled={true}>CSV다운로드 </Button> :
-                                                        <CSVLink data={csvData} className={classes.datastyle}>
-                                                            <Button variant="contained"
-                                                                    className={classes.btnstyle}>CSV다운로드</Button></CSVLink>
-                                                    }
-                                                    {/*Excel 다운로드 버튼*/}
-                                                    {maxValue === 0 || State === STATE.PENDING ?
-                                                        <Button variant="contained" className={classes.btnstyle}
-                                                                disabled={true}>EXCEL다운로드</Button> :
-                                                        <ExcelFile element={<Button variant="contained"
-                                                                                    className={classes.btnstyle}>EXCEL다운로드</Button>}>
-                                                            <ExcelSheet data={csvData} name="Employees">
-                                                                <ExcelColumn label="fileName" value="fileName"/>
-                                                                <ExcelColumn label="fileType" value="fileType"/>
-                                                                <ExcelColumn label="fileSize" value="fileSize"/>
-                                                            </ExcelSheet>
-                                                        </ExcelFile>}
-                                                </Paper>
-                                                <br/>
-                                                {/* 업로드 이미지 들어가는영역 */}
-                                                <Paper elevation={0} className={classes.imgboxin}>
+                                                    className={classes.countcolor}>태깅</span>된 이미지가 없습니다
+                                            </Typography>
+                                            }
+                                            {State === STATE.PENDING &&
+                                            <Typography className={classes.imgtext}>
+                                                <span
+                                                    className={classes.countcolor}>이미지</span> 태깅중 ...
+                                            </Typography>
+                                            }
+                                            {State === STATE.DONE &&
+                                            <Typography className={classes.imgtext}>
+                                                <span
+                                                    className={classes.countcolor}>총{maxValue}건</span>의 이미지 태깅완료
+                                            </Typography>
+                                            }
+                                            <Paper elevation={0}>
+                                                {/*2020.10.22 업로드 파일이 없거나 진행중이라면 disabled [이지현]*/}
+                                                {/*Text 다운로드 버튼*/}
+                                                {State !== STATE.DONE ?
+                                                    <Button variant="contained" className={classes.btnstyle}
+                                                            disabled={true}>TEXT다운로드</Button> :
+                                                    <Download file="StyleTagging.txt"
+                                                              content={'StyleTagging Text Download\n\n' + textData}
+                                                              className={classes.datastyle}>
+                                                        <Button variant="contained"
+                                                                className={classes.btnstyle}>TEXT다운로드</Button></Download>
+                                                }
+                                                {/*CSV다운로드 버튼*/}
+                                                {State !== STATE.DONE ?
+                                                    <Button variant="contained" className={classes.btnstyle}
+                                                            disabled={true}>CSV다운로드 </Button> :
+                                                    <CSVLink data={csvData} className={classes.datastyle}>
+                                                        <Button variant="contained"
+                                                                className={classes.btnstyle}>CSV다운로드</Button></CSVLink>
+                                                }
+                                                {/*Excel 다운로드 버튼*/}
+                                                {State !== STATE.DONE ?
+                                                    <Button variant="contained" className={classes.btnstyle}
+                                                            disabled={true}>EXCEL다운로드</Button> :
+                                                    <ExcelFile element={<Button variant="contained"
+                                                                                className={classes.btnstyle}>EXCEL다운로드</Button>}>
+                                                        <ExcelSheet data={csvData} name="Employees">
+                                                            <ExcelColumn label="fileName" value="fileName"/>
+                                                            <ExcelColumn label="fileType" value="fileType"/>
+                                                            <ExcelColumn label="fileSize" value="fileSize"/>
+                                                        </ExcelSheet>
+                                                    </ExcelFile>}
+                                            </Paper>
+                                            <br/>
+                                            {/* 업로드 이미지 들어가는영역 */}
+                                            <Paper elevation={0} className={classes.imgboxin}>
                                                 {/* 2020.10.15 일단 테이블 삽입 이지현 */}
                                                 <ImageUpload/>
-                                                </Paper>
-                                                </Paper>
-                                                </div>
-                                                </Paper>
+                                            </Paper>
+                                        </Paper>
+                                    </div>
+                                </Paper>
 
-                                                </Hidden>
-                                                </Grid>
-                                                </Container>
-                                                </React.Fragment>
-                                                </div>
-                                                );
-                                                }
-                                                }
+                            </Hidden>
+                        </Grid>
+                    </Container>
+                </React.Fragment>
+            </div>
+        );
+    }
+}
 
-                                                export default withStyles(style)(MainContentTag);
+export default withStyles(style)(MainContentTag);

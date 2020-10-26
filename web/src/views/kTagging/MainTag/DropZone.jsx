@@ -46,7 +46,11 @@ class DropFile extends Component {
         if (this.props.tImageStore.progress !== 0) {
             return (alert('이전 요청이 완료되지않았습니다!'));
         }
+        if (files.length >= 11) {
+            return (alert('태깅 가능한 이미지의 갯수는 최대 10개입니다.'))
+        }
         this.setState({
+
             files: files,
         });
         this.props.tImageStore.changeFileTotal(files.length);
@@ -65,7 +69,7 @@ class DropFile extends Component {
                 <DropzoneArea
                     acceptedFiles={['image/jpeg', 'image/png', 'image/bmp', 'image/gif', 'image/vnd.microsoft.icon', 'image/tiff', 'image/webp']}
                     maxFileSize={50000000000}
-                    filesLimit={70000}
+                    filesLimit={5000}
                     onDrop={this.handleChange.bind(this)}
                     dropzoneText='업로드할 이미지 또는 폴더를 드래그해주세요!'
                     showAlerts={false}
