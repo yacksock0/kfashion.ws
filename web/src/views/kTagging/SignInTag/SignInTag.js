@@ -104,6 +104,13 @@ class SignInTag extends React.Component {
     JoinTag = () => {
         this.props.history.push('/tagging/agree');
     }
+
+    handleFindId = () => {
+        this.props.history.push('/tagging/findId');
+    }
+    handleFindPw = () => {
+        this.props.history.push('/tagging/findPw');
+    }
     render() {
         const { classes } = this.props;
         const { loginState, login } = this.props.tAuthStore;
@@ -149,9 +156,14 @@ class SignInTag extends React.Component {
                             </Button>
                         </Paper>
                         <Paper elevation={0} className={classes.findbox}>
-                            {/*<Button className={classes.findbtn}>아이디찾기</Button>*/}
-                            {/*<Typography className={classes.spanfind}>|</Typography>*/}
-                            {/*<Button className={classes.findbtn}>비밀번호찾기</Button>*/}
+                            <Button className={classes.findbtn}
+                                    onClick={this.handleFindId}>
+                                아이디찾기
+                            </Button>
+                            <Typography className={classes.spanfind}>|</Typography>
+                            <Button className={classes.findbtn} onClick={this.handleFindPw}>
+                                비밀번호찾기
+                            </Button>
                         </Paper>
                         <Paper elevation={0}>
                             <Button type="submit"

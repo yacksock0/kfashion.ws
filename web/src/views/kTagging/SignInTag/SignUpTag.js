@@ -146,44 +146,18 @@ class SignUpTag extends React.Component {
     handleChangeId = (event) => {
         this.props.tSignUpStore.changeNewMemberId(event.target.value);
     }
-
-    handleChangeEmail = (event) => {
-        this.props.tSignUpStore.changeNewMemberEmail(event.target.value);
-    }
-
     handleChangePassword = (event) => {
         this.props.tSignUpStore.changeNewMemberPassword(event.target.value);
     }
-
     handleChangePasswordConfirm = (event) => {
         this.props.tSignUpStore.changeNewMemberPasswordConfirm(event.target.value);
     }
-
     handleChangeUserName = (event) => {
         this.props.tSignUpStore.changeNewMemberUserName(event.target.value);
     }
-
-    handleChangePhone = (event) => {
-        this.props.tSignUpStore.changeNewMemberPhone(event.target.value);
-    }
-
-    handleChangeAllAgreements = (event) => {
-        this.props.tSignUpStore.changeAgreementsAll(event.target.checked);
-    }
-
-    handleChangeServiceAgreements = (event) => {
-        this.props.tSignUpStore.changeAgreementsService(event.target.checked);
-    }
-
-    handleChangePrivacyAgreements = (event) => {
-        this.props.tSignUpStore.changeAgreementsPrivacy(event.target.checked);
-    }
-
     handleClickOK = () => {
         this.props.tSignUpStore.doSignUp(this.props.history);
-
     }
-
     handleClickToHome = () => {
         this.props.history.push("/tagging");
     }

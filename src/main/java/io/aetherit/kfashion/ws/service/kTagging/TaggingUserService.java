@@ -112,4 +112,8 @@ public class TaggingUserService {
     public TaggingUser selectUserById(String id) {
         return repository.selectUserById(id);
     }
+    public TaggingUser findTaggingUser(TaggingUser user) {
+        return repository.findTaggingUser(user);
+    }
+
 }
