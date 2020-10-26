@@ -222,6 +222,7 @@ class HighCheckList extends React.Component {
             canvasHeight : 0,
             page: 0,
             pageSize: 5,
+            imgtext: "선택한 이미지가 없습니다."
         }
     }
 
@@ -258,6 +259,7 @@ class HighCheckList extends React.Component {
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
         this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
+        this.setState({imgtext: "",});
     }
 
     handleClickCallback= (polyInfo, workNo)=>{
@@ -311,7 +313,7 @@ class HighCheckList extends React.Component {
         }else {
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
-
+        this.setState({imgtext: "선택한 이미지가 없습니다.",});
     }
     onSelectTab1(tabIndex2){
         let polyNo = tabIndex2+1;
@@ -485,7 +487,8 @@ class HighCheckList extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div className={classes.canvas}>
+                            <div className={classes.canvas} style={{display:"table"}}>
+                            <div style={{width:'800px',height:'650px',background:'#e2e2e2',textAlign:'center',fontSize:'17px',display:'table-cell',verticalAlign:'middle'}}>{this.state.imgtext} </div>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </div>
                         </Grid>
@@ -682,11 +685,7 @@ class HighCheckList extends React.Component {
                         <TabPanel>
                             <MaterialTable
                                 columns={[
-                                    {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                                      checked={this.props.checkHighLabelStore.selectedItem.length ===
-                                                      this.props.messageStore.inspectionHighList.length ? true : false} style={{color:'#ffffff'}}>
-                                        </Checkbox>,
-                                        render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo)} checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
+                                   
                                     {title: '번호', field: 'workNo', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
                                     {title: '사진', field: 'fileName', render : rowData =>{
                                             return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
@@ -697,6 +696,11 @@ class HighCheckList extends React.Component {
                                     {title: '이름', field: 'workName', filterPlaceholder: 'GroupNo filter',},
                                     {title: '등록자', field: 'createdId', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                                     {title: '생성일', field: 'createdDatetime', type: 'date'},
+                                    {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                    checked={this.props.checkHighLabelStore.selectedItem.length ===
+                                    this.props.messageStore.inspectionHighList.length ? true : false} style={{color:'#ffffff'}}>
+                                    </Checkbox>,
+                                    render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo)} checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
                                 ]}
                                 data={totalCount > 0 ?inspectionHighList.map((item) => {
                                         return {
@@ -711,16 +715,23 @@ class HighCheckList extends React.Component {
                                 options={{
                                     sorting: false,
                                     search: true,
-                                    actionsColumnIndex: -1,
+                                    // actionsColumnIndex: -1,
                                     headerStyle: {
                                         backgroundColor: '#000000',
                                         color: '#ffffff',
                                         textAlign:'center',
-                                        padding : 9,
+                                        padding : 5,
+                                        fontFamily: 'NotoSansCJKkr',
+                                        fontSize:'15px',
                                     },
                                     cellStyle: {
                                         textAlign: 'center',
                                         padding : 3,
+                                        fontFamily: 'Roboto',
+                                        fontSize:'13px',
+                                    },
+                                    actionsCellStyle:{
+                                        paddingLeft:18
                                     },
                                     pageSize : this.props.messageStore.pageSize,
                                     pageSizeOptions : [5,10,25,50],
@@ -740,6 +751,7 @@ class HighCheckList extends React.Component {
                                         />
                                     )
                                 }}
+                                localization={{header: { actions: '선택' } }}
                                 actions={[
                                     {
                                         icon: CheckIcon,
@@ -762,6 +774,7 @@ class HighCheckList extends React.Component {
                 </div>
                 {/* <hr></hr> */}
                 <ReturnMsg onClick={()=> this.handleSubmit()}/>
+                <p style={{width:'100%',height:40}}/>
                 {/* {this.props.authStore.loginUser.authorityNo !== 4? (
                 <Typography variant="h6" component="h4" style={{display:'inline'}}>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 검수할 확인 할 이미지 선택</p>

@@ -199,6 +199,7 @@ class FinalCheckList extends React.Component {
             selectedReturn : true,
             checkBoxListLength : -1,
             tableSize : 6,
+            imgtext: "선택한 이미지가 없습니다."
 
         }
         this.handleClickMsgOpen = this.handleClickMsgOpen.bind(this)
@@ -319,6 +320,7 @@ class FinalCheckList extends React.Component {
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
+        this.setState({imgtext: "",});
     }
     handleClickCallback= (polyInfo, workNo)=>{
         this.setState({ polyInfo : polyInfo, workNo : workNo});
@@ -526,6 +528,7 @@ class FinalCheckList extends React.Component {
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
+        this.setState({imgtext: "선택한 이미지가 없습니다.",});
     }
 
     handleDeleteImg = () => {
@@ -579,7 +582,8 @@ class FinalCheckList extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div className={classes.canvas}>
+                            <div className={classes.canvas} style={{display:"table"}}>
+                                <div style={{width:'800px',height:'650px',background:'#e2e2e2',textAlign:'center',fontSize:'17px',display:'table-cell',verticalAlign:'middle'}}>{this.state.imgtext} </div>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </div>
                         </Grid>
@@ -1029,13 +1033,7 @@ class FinalCheckList extends React.Component {
                                     <TabPanel>
                                         <MaterialTable
                                             columns={[
-                                                {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                                                  checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
-                                                        </Checkbox>,
-                                                    render : rowData => <Checkbox key={this.props.professionalLabelStore.inspectionList.workNo}
-                                                                                  onChange={this.handleRowClick.bind(this, rowData.workNo, rowData.createdId)}
-                                                                                    checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
-                                                                                    disabled={this.props.authStore.isUserId === rowData.createdId ? false : true} style={{color:'#000000'}}></Checkbox>},
+                                                
                                                 {title: '번호', field: 'workNo',type: 'number'},
                                                 {title: '사진', field: 'fileName',type: 'string', render : rowData => {
                                                         return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
@@ -1046,6 +1044,13 @@ class FinalCheckList extends React.Component {
                                                 {title: '이름', field: 'workName',type: 'string', filterPlaceholder: 'GroupNo filter',},
                                                 {title: '생성일', field: 'createdDatetime', type: 'date'},
                                                 {title: '생성자', field: 'createdId', type: 'string'},
+                                                {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                                                  checked={this.props.professionalLabelStore.selectedItem.length === this.state.checkBoxListLength ? true : false} style={{color:'#ffffff'}}>
+                                                        </Checkbox>,
+                                                    render : rowData => <Checkbox key={this.props.professionalLabelStore.inspectionList.workNo}
+                                                                                  onChange={this.handleRowClick.bind(this, rowData.workNo, rowData.createdId)}
+                                                                                    checked={this.props.professionalLabelStore.selectedItem.includes(rowData.workNo)}
+                                                                                    disabled={this.props.authStore.isUserId === rowData.createdId ? false : true} style={{color:'#000000'}}></Checkbox>},
                                             ]}
                                             data={!!this.props.professionalLabelStore.inspectionList ?
                                                 this.props.professionalLabelStore.inspectionList.map((item) => {
@@ -1057,20 +1062,24 @@ class FinalCheckList extends React.Component {
                                                         createdId: item.createdId,
                                                     }
                                                 }) : []}
-                                            title="이미지 리스트"
+                                            title=""
                                             options={{
                                                 sorting:false,
                                                 search: true,
-                                                actionsColumnIndex: -1,
+                                                // actionsColumnIndex: -1,
                                                 headerStyle: {
                                                     backgroundColor: '#000000',
                                                     color: '#ffffff',
                                                     textAlign:'center',
-                                                    padding : 9,
+                                                    padding : 5,
+                                                    fontFamily: 'NotoSansCJKkr',
+                                                    fontSize:'15px',
                                                 },
                                                 cellStyle: {
                                                     textAlign: 'center',
                                                     padding : 3,
+                                                    fontFamily: 'Roboto',
+                                                    fontSize:'13px',
                                                 },
                                                 pageSize : this.props.professionalLabelStore.finalCheckListPageSize,
                                                 pageSizeOptions : [5,10,25,50],
@@ -1090,6 +1099,7 @@ class FinalCheckList extends React.Component {
                                                     />
                                                 )
                                             }}
+                                            localization={{header: { actions: '선택' } }}
                                             actions={
                                                 [
                                                     {

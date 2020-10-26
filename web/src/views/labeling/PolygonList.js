@@ -1,4 +1,5 @@
 import React from "react";
+import { withStyles  } from '@material-ui/core/styles';
 import MaterialTable from 'material-table';
 import {inject, observer} from "mobx-react";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -6,8 +7,16 @@ import {toJS} from "mobx";
 import TablePagination from "@material-ui/core/TablePagination";
 import Moment from 'react-moment';
 
+const style = theme => ({   
+    root: {
+    },
+});
+
 @inject('authStore','imageStore','rectStore', 'polygonStore')
+
 @observer
+
+
 class PolygonList extends React.Component {
     constructor(props) {
         super(props);
@@ -148,14 +157,14 @@ class PolygonList extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         const polyNo = this.props.polygonStore.tabIndex1-1;
         return (
-            <MaterialTable
-            
+            <MaterialTable 
+                className={classes.searchicon}
                 columns={[
-                    
                     {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                    {title: '사진', field: 'fileName',type: 'Image', render : rowData => {
+                    {title: '이미지', field: 'fileName',type: 'Image', render : rowData => {
                             return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
                                                                    onDoubleClick={() => this.props.imageStore.onImageDoubleClick({title: '', image: rowData.fileName} )} />
                                 : ''
@@ -169,7 +178,7 @@ class PolygonList extends React.Component {
                         </Checkbox>,
                         render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo, rowData.comment)}
                                                       checked={this.props.rectStore.selectedItem.includes(rowData.workNo)}
-                                                      disabled={rowData.comment === null || rowData.comment === ''? false : true} style={{color:'#000000'}}></Checkbox>},
+                                                      disabled={rowData.comment === null || rowData.comment === ''? false : true} style={{color:'#000'}} ></Checkbox>},
                 ]}
                 data={!!this.props.rectStore.rectList ?
                     this.props.rectStore.rectList.map((item) => {
@@ -184,7 +193,7 @@ class PolygonList extends React.Component {
                     }) : []}
                 // title="이미지 리스트"
                 title=""
-
+                
                 options={{
                     sorting:false,
                     // actionsColumnIndex: -1,
@@ -192,15 +201,23 @@ class PolygonList extends React.Component {
                         backgroundColor: '#000000',
                         color: '#ffffff',
                         textAlign:'center',
-                        padding : 9
+                        padding : 5,
+                        fontFamily: 'NotoSansCJKkr',
+                        fontSize:'15px',
                     },
                     cellStyle: {
                         textAlign: 'center',
                         padding : 3,
+                        fontFamily: 'Roboto',
+                        fontSize:'13px',
                     },
-
+                    actionsCellStyle:{
+                        paddingLeft:18
+                    },
+                    
                     pageSize : this.props.rectStore.pageSize,
                     pageSizeOptions : [5,10,25,50],
+                    
                 }}
                 // onRowClick={this.handleRowClick}
                 onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
@@ -217,11 +234,14 @@ class PolygonList extends React.Component {
                         />
                     )
                 }}
+                localization={{header: { actions: '선택' } }}
+              
                 actions={[
                     {
                         icon: 'check',
                         tooltip: 'Select Image',
                         onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo, polyNo, rowData.comment)
+                        
                     },
                     rowData => ({
                         icon: 'error',
@@ -236,4 +256,4 @@ class PolygonList extends React.Component {
         );
     }
 };
-export default PolygonList;
+export default withStyles(style)(PolygonList);
