@@ -8,23 +8,11 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    ListSubheader,
     Toolbar,
     Typography
 } from "@material-ui/core";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import ComputerIcon from '@material-ui/icons/Computer';
-import WallpaperIcon from '@material-ui/icons/Wallpaper';
-import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import AspectRatioIcon from '@material-ui/icons/AspectRatio';
-import FormatShapesIcon from '@material-ui/icons/FormatShapes';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Collapse from '@material-ui/core/Collapse';
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
-import Button from "@material-ui/core/Button";
-import {toJS} from "mobx";
 
 const logoWidth = 129;
 const logoHeight = 22;

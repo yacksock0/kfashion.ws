@@ -9,6 +9,11 @@ import {
     Paper
 } from "@material-ui/core";
 import AgreeList from "./AgreeList";
+import JoinIdTag from "./NewSign/JoinIdTag";
+import JoinPwTag from "./NewSign/JoinPwTag";
+import JoinQuestionsTag from "./NewSign/JoinQuestionsTag";
+import JoinWelcomeTag from "./NewSign/JoinWelcomeTag";
+import JoinUserInfoTag from "./NewSign/JoinUserInfoTag";
 
 const style = theme => ({
     root: {
@@ -32,22 +37,34 @@ const style = theme => ({
 @inject('tSignUpStore')
 @observer
 class JoinAgreeTag extends React.Component {
+    constructor(props) {
+        super(props);
 
-    handleClickToSignUp = () => {
-        this.props.history.push("/tagging/SignUp");
     }
-
+    handleUserInfoOK = () =>{
+        this.props.tSignUpStore.handleUserInfoOK();
+        this.props.history.push("/tagging/question");
+    }
     render() {
         const { classes } = this.props;
-        const {isAllSelected} = this.props.tSignUpStore;
+        const {agreeOK, idOK, pwOK, userInfoOK,
+            handleAgreeOK, handleIdOK, handlePwOK} = this.props.tSignUpStore;
+        let component;
+        if(agreeOK === false) component = <AgreeList/>;
+        else if(agreeOK === true && idOK === false) component = <JoinIdTag handleIdOK={handleIdOK}/>;
+        else if(idOK === true && pwOK === false)  component = <JoinPwTag />;
+        else if(pwOK === true && userInfoOK === false)  component = <JoinUserInfoTag  handleUserInfoOK={this.handleUserInfoOK}/>;
+
 
         return (
-
         <div className={classes.root}>
             <Paper elevation={0} className={classes.paper}>
                 <Paper elevation={0}>
                     <Typography className={classes.titletext}>가입하기</Typography>
-                    <AgreeList handleClickToSignUp={this.handleClickToSignUp}/>
+                    {component}
+                    {/*<AgreeList handleClickToSignUp={this.handleClickToSignUp}/>*/}
+                    {/*<JoinIdTag/>*/}
+                    {/*<JoinPwTag/>*/}
                 </Paper>
             </Paper>
         </div>

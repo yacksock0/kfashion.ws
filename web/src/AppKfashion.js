@@ -6,7 +6,6 @@ import {CssBaseline} from "@material-ui/core";
 import axios from "axios";
 import TopBar from "./components/TopBar";
 import SideMenu from "./components/SideMenu";
-import SideMenuFashion from "./components/SideMenuFashion";
 import Home from "./views/Home";
 import Step from "./views/Step";
 import Step2 from "./views/Step2";

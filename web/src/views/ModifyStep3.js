@@ -128,12 +128,15 @@ class ModifyStep3 extends React.Component {
             }
             const createdId = this.props.authStore.isUserId;
             this.props.professionalLabelStore.changeNewProfessionalLabelCreatedId(createdId);
+            this.props.professionalLabelStore.changeNewProfessionalLabelWorkNo(this.state.workNo);
             const selected = toJS(this.props.professionalLabelStore.selectedItem);
             if(selected.length > 0 && selected !== null) {
                 this.props.professionalLabelStore.deleteSelectedProfessionalLabel(selected);
+                this.props.professionalLabelStore.doSelectedProfessionalLabelUp(selected);
             }
             else {
                 this.props.professionalLabelStore.deleteProfessionalLabel(this.props.polygonStore.NewPolygonLocation.workNo);
+                this.props.professionalLabelStore.doProfessionalLabelUp(this.props.polygonStore.NewPolygonLocation.workNo);
             }
             this.props.history.push("/Step2/FinalCheckList");
             this.deleteAll();

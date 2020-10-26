@@ -3,8 +3,6 @@ import { withStyles  } from '@material-ui/core/styles';
 import { ReactComponent as LogoDailyCody } from '../../images/LogoDailyCody.svg';
 import { ReactComponent as LogoutIcon } from '../../images/LogoutIcon.svg';
 import { ReactComponent as JoinIcon } from '../../images/JoinIcon.svg';
-import { ReactComponent as AdminIcon } from '../../images/AdminIcon.svg';
-import { ReactComponent as LoginIcon } from '../../images/LoginIcon.svg';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -62,7 +60,7 @@ const style = theme => ({
 class TopBar extends Component{
     render() {
         const { classes } = this.props;
-        const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser, goHome} = this.props;
+        const {doLogout} = this.props;
 
         return (
             <div className={classes.root}>

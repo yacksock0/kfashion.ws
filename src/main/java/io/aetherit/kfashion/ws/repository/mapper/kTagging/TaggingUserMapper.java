@@ -16,6 +16,8 @@ public interface TaggingUserMapper {
 
     TaggingUser selectAdmin(String userId);
 
-    int checkUser(KfashionUserInfo user);
+    int checkUser(TaggingUser user);
+
+    TaggingUser findTaggingUser(TaggingUser user);
 
 }

@@ -39,7 +39,7 @@ public class TaggingUserRepository {
         return mapper.selectAdmin(userId);
     }
 
-    public int checkUser(KfashionUserInfo user) {
+    public int checkUser(TaggingUser user) {
         return mapper.checkUser(user);
     }
 
@@ -48,56 +48,7 @@ public class TaggingUserRepository {
     public TaggingUser selectUserById(String id) {
         return mapper.selectUserById(id);
     }
-
-//    public KfashionUserInfo selectUserByEmail(String email) {
-//        return mapper.selectUserByEmail(email);
-//    }
-//
-//    public void updateAuthUser(String id) {
-//        mapper.updateAuthUser(id);
-//    }
-//
-//    public List<KfashionUserInfo> selectUserList() {
-//        return mapper.selectUserList();
-//    }
-//
-//    public void updateUserGroup(int groupNo, String id) {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("groupNo", groupNo);
-//        map.put("id", id);
-//        mapper.updateUserGroup(map);
-//    }
-//
-//    public List<KfashionUserInfo> selectGroupUserList(Map<String, Object> adminMap) {
-//        return mapper.selectGroupUserList(adminMap);
-//
-//    }
-//
-//    public void createGroupUser(KfashionUserInfo user) {
-//        mapper.createGroupUser(user);
-//    }
-//
-//    public void deleteGroupAdminUser(KfashionUserInfo user) {
-//        mapper.deleteGroupAdminUser(user);
-//    }
-//
-//    public void deleteGroupUser(KfashionUserInfo user) {
-//        mapper.deleteGroupUser(user);
-//    }
-//
-//    public int getGroupUser(String userId) {
-//        return mapper.getGroupUser(userId);
-//    }
-//
-//    public void updateGroupUser(KfashionUserInfo user) {
-//        mapper.updateGroupUser(user);
-//    }
-//
-//    public void updateGroupUserName(KfashionUserInfo user) {
-//        mapper.updateGroupUserName(user);
-//    }
-//
-//    public long selectGroupUserListTotal(Map<String, Object> totalMap) {
-//        return mapper.selectGroupUserListTotal(totalMap);
-//    }
+    public TaggingUser findTaggingUser(TaggingUser user) {
+        return mapper.findTaggingUser(user);
+    }
 }

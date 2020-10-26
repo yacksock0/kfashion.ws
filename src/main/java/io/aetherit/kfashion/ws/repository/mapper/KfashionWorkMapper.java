@@ -32,6 +32,8 @@ public interface KfashionWorkMapper {
 
     Long[] selectJsonWorkList();
 
+    Long[] getImageData();
+
     Long selectTotalWork();
 
     String selectWorkDataTime(Long workNo);

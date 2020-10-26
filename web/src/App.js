@@ -1,5 +1,4 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
 import * as aStore from "./stores/AppStore";
@@ -26,7 +25,6 @@ class App extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
         const { loginURL} = this.props.appStore;
 
         let App;
