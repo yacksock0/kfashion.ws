@@ -5,7 +5,7 @@ import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import {Button, CircularProgress, TextField, Typography, Paper} from "@material-ui/core";
 
-import * as tStore from "../../../stores/kTagging/TAuthStore";
+import * as sStore from "../../../stores/kSearching/SAuthStore";
 
 const style = theme => ({
     root: {
@@ -65,7 +65,7 @@ const style = theme => ({
         fontFamily:'NotoSansCJKkr',
         "&:hover": {
             background:'transparent',
-            color:'#526af2',
+            color:'#38a67e',
             fontWeight:'bold'
         },
     },
@@ -101,6 +101,13 @@ class SignInSearch extends React.Component {
 
     JoinSearch = () => {
         this.props.history.push('/searching/agree');
+    }
+
+    handleFindId = () => {
+        this.props.history.push('/searching/findId');
+    }
+    handleFindPw = () => {
+        this.props.history.push('/searching/findPw');
     }
 
 
@@ -142,22 +149,27 @@ class SignInSearch extends React.Component {
                             <Button type="submit"
                                     className={classes.btnloginstyle}
                                     variant="contained"
-                                    disabled={loginState === tStore.State.Pending}
+                                    disabled={loginState === sStore.State.Pending}
                                     onClick={this.handleSubmitForm}
                             >
-                                {loginState === tStore.State.Pending ? <CircularProgress size={22}/> : '로그인'}
+                                {loginState === sStore.State.Pending ? <CircularProgress size={22}/> : '로그인'}
                             </Button>
                         </Paper>
                         <Paper elevation={0} className={classes.findbox}>
-                            {/*<Button className={classes.findbtn}>아이디찾기</Button>*/}
-                            {/*<Typography className={classes.spanfind}>|</Typography>*/}
-                            {/*<Button className={classes.findbtn}>비밀번호찾기</Button>*/}
+                            <Button className={classes.findbtn}
+                                    onClick={this.handleFindId}>
+                                아이디찾기
+                            </Button>
+                            <Typography className={classes.spanfind}>|</Typography>
+                            <Button className={classes.findbtn} onClick={this.handleFindPw}>
+                                비밀번호찾기
+                            </Button>
                         </Paper>
                         <Paper elevation={0}>
                             <Button type="submit"
                                     className={classes.btnjoinstyle}
                                     variant="outlined"
-                                    disabled={loginState === tStore.State.Pending}
+                                    disabled={loginState === sStore.State.Pending}
                                     onClick={this.JoinSearch}
                             >
                                 간편 회원가입

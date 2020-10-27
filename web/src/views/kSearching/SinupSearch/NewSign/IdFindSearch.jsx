@@ -3,12 +3,22 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Questions from './Questions';
+import QuestionsSearch from './QuestionsSearch';
+
 
 
 const style = theme => ({
     root: {
-        textAlign:'center',     
+        textAlign:'center',
+        
+        "& .MuiOutlinedInput-root":{
+            borderRadius:0,
+            marginTop: theme.spacing(1),
+        },
+        "& .MuiOutlinedInput-input":{
+            padding:10,
+        }, 
+        
     },
     paper: {
         width:'400px',
@@ -29,11 +39,10 @@ const style = theme => ({
         margin:'45px 0 40px 0',
         lineHeight: '1.2',
     },
-
 });
 
 
-class PwFind extends Component{
+class IdFindSearch extends Component{
 
     render() {
         const { classes } = this.props;
@@ -41,19 +50,16 @@ class PwFind extends Component{
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
-                        <Typography className={classes.titletext}>비밀번호 찾기</Typography>
+                        <Typography className={classes.titletext}>아이디 찾기</Typography>
                         <Typography className={classes.txtstyle1}>회원가입 시 설정한 보안 질문을<br /> 선택하여 답변해주세요.</Typography>
-                        <Questions />
-                     
+                        <QuestionsSearch />
                     </Paper>
                 </Paper> 
             </div>
         )
     }
 }
-export default withStyles(style)(PwFind);
-
-
+export default withStyles(style)(IdFindSearch);
 
 
 

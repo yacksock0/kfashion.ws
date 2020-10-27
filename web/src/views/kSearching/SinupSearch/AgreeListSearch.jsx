@@ -98,8 +98,8 @@ class AgreeList extends Component {
     }
 
     render() {
-        const { classes, handleClickToSignUp } = this.props;
-        const {isAllSelected} = this.props.sSignUpStore;
+        const { classes } = this.props;
+        const {isAllSelected, handleAgreeOK} = this.props.sSignUpStore;
         return (
             <div>
                 <Typography className={classes.txtstyle1}>트렌드서치 서비스 이용약관을 동의해주세요.</Typography>
@@ -115,7 +115,7 @@ class AgreeList extends Component {
                     <Button variant="contained"
                             className={classes.btnjoinstyle}
                             disabled={!isAllSelected}
-                            onClick={handleClickToSignUp}>
+                            onClick={handleAgreeOK}>
                         동의하고 가입하기
                     </Button>
                 </Paper>

@@ -4,15 +4,23 @@ import {inject, observer} from "mobx-react";
 import {withStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import * as sStore from "./stores/kSearching/SAuthStore";
-import sSignUp from "./views/kSearching/SinupSearch/SignUpSearch";
-import sVerify from "./views/kSearching/SinupSearch/VerifySearch";
+// import sSignUp from "./views/kSearching/SinupSearch/SignUpSearch";
+// import sVerify from "./views/kSearching/SinupSearch/VerifySearch";
 import sSignIn from "./views/kSearching/SinupSearch/SignInSearch";
-import TopBar from "./views/kSearching/TopBarSearch";
+import './App.css'
+import TopBarSearch from "./views/kSearching/TopBarSearch";
+import FooterSearch from "./views/kSearching/FooterSearch";
+import JoinAgreeSearch from "./views/kSearching/SinupSearch/JoinAgreeSearch";
+
+import MainContentSearch from "./views/kSearching/MainSearch/MainContentSearch";
+import JoinQuestionsSearch from "./views/kSearching/SinupSearch/NewSign/JoinQuestionsSearch";
+import JoinWelcomeSearch from "./views/kSearching/SinupSearch/NewSign/JoinWelcomeSearch";
 import TrendSearchByText from "./views/kSearching/MainSearch/TrendSearchByText";
 import TrendSearchByImage from "./views/kSearching/MainSearch/TrendSearchByImage";
-import FooterSearch from "./views/kSearching/FooterSearch";
-import MainContents from "./views/kSearching/MainSearch/MainContentSearch";
-import JoinAgreeSearch from "./views/kSearching/SinupSearch/JoinAgreeSearch";
+import IdFindSearch from "./views/kSearching/SinupSearch/NewSign/IdFindSearch";
+import IdCompleteSearch from "./views/kSearching/SinupSearch/NewSign/IdCompleteSearch";
+import PwFindSearch from "./views/kSearching/SinupSearch/NewSign/PwFindSearch";
+import PwCompleteSearch from "./views/kSearching/SinupSearch/NewSign/PwCompleteSearch";
 
 
 const style = () => ({
@@ -59,7 +67,6 @@ class AppKsearching extends React.Component {
             if((error.response) && (error.response.status === 403)) {
                 this.props.sAuthStore.invalidateLogin();
             }
-
             return Promise.reject(error);
         };
 
@@ -75,37 +82,40 @@ class AppKsearching extends React.Component {
     }
 
     render() {
-
         const { loginState, loginUser} = this.props.sAuthStore;
+
         return (
             <div className="App">
                 <Router>
-                    <Route path="/searching" component={MainContents}>
-                            <TopBar mobileOpen={this.state.mobileOpen}
+                    <Route path="/searching" component={MainContentSearch}>
+                            <TopBarSearch mobileOpen={this.state.mobileOpen}
                                     setMobileOpen={this.setMobileOpen}
                                     isLoggedIn={loginState === sStore.State.Authenticated}
                                     loginUser={loginUser}
                                     doLogout={() => this.props.sAuthStore.doLogout()}
                                     setStep={this.props.currentStepStore.currentStep}
+                                    gohome={this.props.sAuthStore.goHome}
                             />
                         {loginState === sStore.State.Authenticated ? (
                             <React.Fragment>
                                 <Switch>
-                                    <Route exact path="/searching/home" component={MainContents}/>
-                                    <Route exact path="/searching" component={MainContents}/>
+                                    <Route exact path="/searching/home" component={MainContentSearch}/>
+                                    <Route exact path="/searching" component={MainContentSearch}/>
                                     <Route exact path="/searching/text" component={TrendSearchByText}/>
                                     <Route exact path="/searching/image" component={TrendSearchByImage}/>
-
                                 </Switch>
                             </React.Fragment>
                         ) : (
                             <Switch>
-                                <Route path="/searching/SignUp" component={sSignUp} />
-                                <Route path="/searching/sign/success" component={sVerify} />
+                                <Route path="/searching/sign/success" component={JoinWelcomeSearch} />
                                 <Route path="/searching/agree" component={JoinAgreeSearch} />
-                                {/*<Route path="/searching/SignUp/id" component={JoinId} />*/}
-                                {/*<Route path="/searching/SignUp/pw" component={JoinPw} />*/}
+                                <Route path="/searching/question" component={JoinQuestionsSearch} />
+                                <Route path="/searching/findId" component={IdFindSearch} />
+                                <Route path="/searching/completeId" component={IdCompleteSearch} />
+                                <Route path="/searching/findPw" component={PwFindSearch} />
+                                <Route path="/searching/completePw" component={PwCompleteSearch} />
                                 <Route path="/searching" component={sSignIn} />
+
                             </Switch>
                         )}
                         <FooterSearch />

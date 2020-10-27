@@ -47,7 +47,9 @@ export default class AuthStore {
     @action changeLoginPassword = (password) => {
         this.login.password = password;
     };
-
+    @action goHome = (props) => {
+        props.history.push("/searching");
+    };
     @action changeUserAuthorityNo = (authorityNo) =>{
         this.loginUser.authorityNo = authorityNo;
     };

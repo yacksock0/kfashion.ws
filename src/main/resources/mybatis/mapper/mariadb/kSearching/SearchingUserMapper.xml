@@ -4,8 +4,15 @@
         <id property="id"                       column="id" />
         <result property="password"             column="password" />
         <result property="name"                 column="name" />
-        <result property="userType"              column="user_type" />
-        <result property="isPoll"              column="is_poll" />
+        <result property="nickName"             column="nickname" />
+        <result property="question1"            column="question1" />
+        <result property="answer1"              column="answer1" />
+        <result property="question2"            column="question2" />
+        <result property="answer2"              column="answer2" />
+        <result property="question3"            column="question3" />
+        <result property="answer3"              column="answer3" />
+        <result property="userType"             column="user_type" />
+        <result property="isPoll"               column="is_poll" />
         <result property="createdDatetime"      column="created_datetime" />
         <result property="updatedDatetime"      column="updated_datetime" />
     </resultMap>
@@ -41,12 +48,26 @@
                 id,
                 password,
                 name,
+                nickname,
+                question1,
+                answer1,
+                question2,
+                answer2,
+                question3,
+                answer3,
                 created_datetime,
                 updated_datetime
         ) VALUES (
             #{id},
             #{password},
             #{name},
+            #{nickName},
+            #{question1},
+            #{answer1},
+            #{question2},
+            #{answer2},
+            #{question3},
+            #{answer3},
             NOW(),
             NOW()
         )
@@ -83,8 +104,28 @@
         WHERE id = #{value}
     </select>
 
+    <select id="findSearchingUser" resultMap="SearchingUserResultMap">
+        SELECT *
+        FROM  ksearching_user
+        WHERE   question1 = #{question1}
+        AND     question2 = #{question2}
+        AND     question3 = #{question3}
+        AND     answer1 = #{answer1}
+        AND     answer2 = #{answer2}
+        AND     answer3 = #{answer3}
+
+        <if test='name != null and name != ""'>
+            AND     name = #{name}
+        </if>
+        <if test='nickName != null and nickName != ""'>
+            AND     nickname = #{nickName}
+        </if>
+        <if test='id != null and id != ""'>
+            AND     id = #{id}
+        </if>
 
 
+    </select>
 
 
 </mapper>

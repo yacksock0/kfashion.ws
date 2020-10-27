@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.service.kSearching;
 
 import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
+import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
 import io.aetherit.kfashion.ws.repository.kSearching.SearchingUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +78,9 @@ public class SearchingUserService {
     public String createNewUser(SearchingUser user) throws Exception {
         String msg = "";
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println("@@"+user.getPassword());
         repository.createNewUser(user);
+        System.out.println(user);
         return msg;
     }
 
@@ -106,5 +109,8 @@ public class SearchingUserService {
 
     public SearchingUser selectUserById(String id) {
         return repository.selectUserById(id);
+    }
+    public SearchingUser findSearchingUser(SearchingUser user) {
+        return repository.findSearchingUser(user);
     }
 }

@@ -9,6 +9,13 @@ import {
     Paper
 } from "@material-ui/core";
 import AgreeList from "./AgreeListSearch";
+import JoinIdSearch from "./NewSign/JoinIdSearch";
+import JoinPwSearch from "./NewSign/JoinPwSearch";
+import JoinQuestionsSearch from "./NewSign/JoinQuestionsSearch";
+import JoinWelcomeSearch from "./NewSign/JoinWelcomeSearch";
+import JoinUserInfoSearch from "./NewSign/JoinUserInfoSearch";
+import AgreeListSearch from "./AgreeListSearch";
+
 
 const style = theme => ({
     root: {
@@ -24,31 +31,40 @@ const style = theme => ({
         fontSize:'45px',
         fontWeight:'bold',
         borderBottom: 'solid 4px #38a67e',
-        paddingBottom: 15,
+        paddingBottom: 20,
         margin:'0 auto 25px',
     },
 });
 
 @inject('sSignUpStore')
 @observer
-class JoinAgreeTag extends React.Component {
+class JoinAgreeSearch extends React.Component {
+    constructor(props) {
+        super(props);
 
-    handleClickToSignUp = () => {
-        this.props.history.push("/searching/SignUp");
     }
-
+    handleUserInfoOK = () => {
+        this.props.sSignUpStore.handleUserInfoOK();
+        this.props.history.push("/searching/question");
+    }
     render() {
         const { classes } = this.props;
+        const {agreeOK, idOK, pwOK, userInfoOK,
+            handleAgreeOK, handleIdOK, handlePwOK} = this.props.sSignUpStore;
+        let component;
+        if(agreeOK === false) component = <AgreeListSearch/>;
+        else if(agreeOK === true && idOK === false) component = <JoinIdSearch handleIdOK={handleIdOK}/>;
+        else if(idOK === true && pwOK === false)  component = <JoinPwSearch />;
+        else if(pwOK === true && userInfoOK === false)  component = <JoinUserInfoSearch  handleUserInfoOK={this.handleUserInfoOK}/>;
 
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
                         <Typography className={classes.titletext}>가입하기</Typography>
-
+                        {component}
                         {/* <JoinId /> */}
                         {/* <JoinPw /> */}
-                        <AgreeList handleClickToSignUp={this.handleClickToSignUp}/>
 
                     </Paper>
                 </Paper>
@@ -57,5 +73,5 @@ class JoinAgreeTag extends React.Component {
         );
     }
 };
-export default withSnackbar(withRouter(withStyles(style) (JoinAgreeTag)));
+export default withSnackbar(withRouter(withStyles(style) (JoinAgreeSearch)));
 

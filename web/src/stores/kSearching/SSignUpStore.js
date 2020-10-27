@@ -21,6 +21,13 @@ const EmptyNewMember = {
     password: '',
     passwordConfirm: '',
     name: '',
+    nickName :'',
+    question1 : 0,
+    answer1 : '',
+    question2 : 0,
+    answer2 : '',
+    question3 : 0,
+    answer3 : '',
 }
 
 const EmptyAgreements = {
@@ -32,15 +39,93 @@ const EmptyAgreements = {
 export default class SignUpStore {
     @observable state = State.Ready;
     @observable newMember = {...EmptyNewMember}
+    @observable member = {}
     @observable agreements = {...EmptyAgreements}
     @observable serverMode = '';
     @observable isAllSelected = false;
+
+
+    @observable agreeOK = false;
+    @observable idOK = false;
+    @observable pwOK = false;
+    @observable userInfoOK = false;
+
+    @action  handleAgreeOK = () => {
+        this.agreeOK = true;
+    }
+    @action  handleIdOK2 = () => {
+        this.idOK = true;
+    }
+    @action  handleIdOK = () => {
+        this.checkId();
+    }
+    checkId = flow(function* checkId() {
+        try {
+            const responseId = yield axios.get(`/api/v1/kSearching/users/signupcheck/id?id=${this.newMember.id}`)
+            const isNotAvailId = responseId.data.result;
+
+            if(isNotAvailId) {
+                alert("이미 존재하는 아이디입니다.");
+            }else{
+                this.idOK = true;
+            }
+        } catch (e) {
+            console.log('checkId ERROR!')
+        }finally {
+        }
+    });
+
+    @action  handlePwOK = () => {
+        this.pwOK = true;
+    }
+    @action  handleUserInfoOK = () => {
+        this.userInfoOK = true;
+        console.log(this.newMember.name.length)
+        console.log(this.newMember.nickName.length)
+    }
+    @action  changeNewMemberQuestion1 = (event) => {
+        this.newMember.question1 = event.target.value;
+    }
+    @action  changeNewMemberAnswer1 = (event) => {
+        this.newMember.answer1 = event.target.value;
+    }
+    @action  changeNewMemberQuestion2 = (event) => {
+        this.newMember.question2 = event.target.value;
+    }
+    @action  changeNewMemberAnswer2 = (event) => {
+        this.newMember.answer2 = event.target.value;
+    }
+    @action  changeNewMemberQuestion3 = (event) => {
+        this.newMember.question3 = event.target.value;
+    }
+    @action  changeNewMemberAnswer3 = (event) => {
+        this.newMember.answer3 = event.target.value;
+    }
+    @action findIdMemberSet = (result) => {
+        this.member = result;
+    }
+
+    @computed get isCheckQuestion() {
+        return this.newMember.question1 !== 0
+            && this.newMember.question2 !== 0
+            && this.newMember.question3 !== 0;
+    }
+    @computed get isCheckAnswer() {
+        return this.newMember.answer1 !== ''
+            && this.newMember.answer2 !== ''
+            && this.newMember.answer3 !== '';
+    }
+
 
     @action initialize = (email) => {
         this.state = State.Ready;
         this.newMember = {...EmptyNewMember}
         this.agreements = {...EmptyAgreements}
-
+        this.idOK = false;
+        this.pwOK = false;
+        this.agreeOK = false;
+        this.userInfoOK = false;
+        this.member = {}
         if((email !== undefined) && (email !== null) && (email.length > 0) && validation.validateEmail(email)) {
             this.newMember.email = email;
         }
@@ -55,13 +140,14 @@ export default class SignUpStore {
     @action changeNewMemberPassword = (password) => {
         this.newMember.password = password;
     }
-
     @action changeNewMemberPasswordConfirm = (passwordConfirm) => {
         this.newMember.passwordConfirm = passwordConfirm;
     }
-
-    @action changeNewMemberUserName = (name) => {
-        this.newMember.name = name;
+    @action changeNewMemberUserName = (event) => {
+        this.newMember.name = event.target.value;
+    }
+    @action changeNewMemberNickName = (event) => {
+        this.newMember.nickName = event.target.value;
     }
 
 
@@ -88,7 +174,6 @@ export default class SignUpStore {
     @computed get isValidId() {
         return this.newMember.id.length >= MinUserId;
     }
-
     @computed get isValidPassword() {
         return this.newMember.password.length >= MinPassword;
     }
@@ -97,8 +182,11 @@ export default class SignUpStore {
         return this.newMember.password === this.newMember.passwordConfirm;
     }
 
-    @computed get isValidUsername() {
+    @computed get isValidUserName() {
         return this.newMember.name.length >= MinUserName;
+    }
+    @computed get isValidNickName() {
+        return this.newMember.nickName.length >= MinUserName;
     }
 
     @computed get isPending() {
@@ -120,6 +208,9 @@ export default class SignUpStore {
     @computed get isNotAvailableId() {
         return this.state === State.NotAvailableId;
     }
+
+
+
     AllSelected = flow(function* isAllSelected(isAllSelected) {
         this.isAllSelected = isAllSelected
     })
@@ -136,7 +227,6 @@ export default class SignUpStore {
                 delete param.passwordConfirm;
                 const resp = yield axios.post('/api/v1/kSearching/users/signup', param)
                     .then (res => {
-
                         history.push("/searching/sign/success")
                     })
             }else{
@@ -147,10 +237,40 @@ export default class SignUpStore {
             this.state = State.Fail;
         }finally {
             this.state = State.Success;
-            this.initialize();
         }
-
     });
+
+
+    doFindUser = flow(function * doFirdUser(history, type){
+        this.state = State.Pending;
+        try {
+            const param = toJS(this.newMember);
+            console.log(param)
+            delete param.passwordConfirm;
+            const responsId = yield axios.post(`/api/v1/kSearching/users/find`, param)
+                .then (res => {
+                    if(res.data.result){
+                        let test = res.data.result;
+                        console.log(test)
+
+                        this.findIdMemberSet(test);
+                    }else{
+                        this.findIdMemberSet({});
+                    }
+                })
+        } catch (e) {
+            console.log('SSignUpStore doFindId error');
+            this.state = State.Fail;
+        }finally {
+            this.state = State.Success;
+            if(type === "ID"){
+                history.push("/searching/completeId");
+            }else if(type ==="PW"){
+                history.push("/searching/completePw");
+            }
+
+        }
+    })
 
     getServerMode = flow(function* getServerMode() {
         try {
@@ -162,4 +282,6 @@ export default class SignUpStore {
             console.log("Can't get server mode");
         }
     })
+
+
 }

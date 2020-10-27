@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.repository.mapper.kSearching;
 
 import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
+import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
 
 import java.util.List;
 
@@ -15,5 +16,7 @@ public interface SearchingUserMapper {
     SearchingUser selectAdmin(String userId);
 
     int checkUser(SearchingUser user);
+
+    SearchingUser findSearchingUser(SearchingUser user);
 
 }

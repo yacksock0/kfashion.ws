@@ -2,6 +2,7 @@ package io.aetherit.kfashion.ws.repository.kSearching;
 
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
+import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
 import io.aetherit.kfashion.ws.repository.mapper.kSearching.SearchingUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,6 +27,7 @@ public class SearchingUserRepository {
 
     public void createNewUser(SearchingUser user) {
         mapper.createNewUser(user);
+        System.out.println(user);
     }
 
     public SearchingUser selectUser(String id) {
@@ -44,6 +46,9 @@ public class SearchingUserRepository {
 
     public SearchingUser selectUserById(String id) {
         return mapper.selectUserById(id);
+    }
+    public SearchingUser findSearchingUser(SearchingUser user) {
+        return mapper.findSearchingUser(user);
     }
 
 }

@@ -4,6 +4,8 @@ import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import {inject, observer} from "mobx-react";
+
 
 
 
@@ -85,29 +87,58 @@ const style = theme => ({
 });
 
 
-class PwComplete extends Component{
+@inject('sSignUpStore')
+@observer
+class PwCompleteSearch extends Component{
+    componentWillUnmount() {
+        this.props.sSignUpStore.initialize();
+    }
+
+    handleClickHome = () => {
+        this.props.history.push("/searching");
+    }
+
 
     render() {
         const { classes } = this.props;
+        const { member } = this.props.sSignUpStore;
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
                         <Typography className={classes.titletext}>비밀번호 찾기</Typography>
-                        <Typography className={classes.txtstyle1}>회원님의 비밀번호 찾기가 완료되었습니다.</Typography>
-                        
-                        <Paper elevation={0} className={classes.completebox}>
-                            <Typography className={classes.pwtext}>admin1234</Typography>
-                            <Typography className={classes.yeartext}>(2020년 10월 2일)</Typography>
-                        </Paper>
-                        
+                        {member.password ==undefined || member.password == ""  ? (
+                                <Typography className={classes.txtstyle1}>정보를 다시 확인해주세요.</Typography>
+                            ):(
+                            <Typography className={classes.txtstyle1}>회원님의 비밀번호 찾기가 완료되었습니다.</Typography>
+
+                        )}
+                        {member.password ==undefined || member.password == ""  ? (
+                            <Paper elevation={0} className={classes.completebox}>
+                                <Typography className={classes.pwtext}>찾으시는 정보의 비밀번호가 없습니다.</Typography>
+                            </Paper>
+                        ):(
+                            <Paper elevation={0} className={classes.completebox}>
+                                <Typography className={classes.pwtext}>{member.password}</Typography>
+                                <Typography className={classes.yeartext}>({member.createdDatetime})</Typography>
+                            </Paper>
+                            )}
+
                         <Paper elevation={0}>
-                            <Button variant="contained" className={classes.btnjoinstyle}>로그인</Button>
-                        </Paper> 
+                            {member.password ==undefined || member.password == ""  ? (
+                                <Button variant="contained"
+                                    className={classes.btnjoinstyle}
+                                    onClick={this.handleClickHome}>돌아가기</Button>
+                                ):(
+                                <Button variant="contained"
+                                        className={classes.btnjoinstyle}
+                                        onClick={this.handleClickHome}>로그인</Button>
+                            )}
+                        </Paper>
                     </Paper>
                 </Paper> 
             </div>
         )
     }
 }
-export default withStyles(style)(PwComplete);
+export default withStyles(style)(PwCompleteSearch);

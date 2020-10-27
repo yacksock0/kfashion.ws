@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.controller.kSearching;
 
 import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
+import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
 import io.aetherit.kfashion.ws.service.kSearching.SearchingUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class SearchingUserController {
      * @throws Exception
      */
     @PostMapping(value = "/signup")
-    public ResponseEntity<String> signUpTagging(HttpServletRequest httpServletRequest, @RequestBody SearchingUser user)
+    public ResponseEntity<String> signUpSearching(HttpServletRequest httpServletRequest, @RequestBody SearchingUser user)
             throws Exception {
         String str = searchingUserService.createNewUser(user);
         return new ResponseEntity<String>( HttpStatus.OK);
@@ -56,5 +57,17 @@ public class SearchingUserController {
 //        System.out.println("1111111");
 //        return null;
     }
+
+    @PostMapping(value = "/find")
+    public ResponseEntity<Object> findIdSearching(HttpServletRequest httpRequest, @RequestBody SearchingUser user) throws Exception {
+
+        SearchingUser result = searchingUserService.findSearchingUser(user);
+        System.out.println("@@@@@@@@@@" +result);
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+
 
 }

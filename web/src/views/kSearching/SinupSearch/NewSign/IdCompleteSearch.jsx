@@ -85,7 +85,7 @@ const style = theme => ({
 });
 
 
-class IdComplete extends Component{
+class IdCompleteSearch extends Component{
 
     render() {
         const { classes } = this.props;
@@ -110,4 +110,4 @@ class IdComplete extends Component{
         )
     }
 }
-export default withStyles(style)(IdComplete);
+export default withStyles(style)(IdCompleteSearch);
