@@ -95,6 +95,13 @@ export default function SideHelp() {
             <hr className={classes.linestyle} />
             <Typography className={classes.textstyle}>1. 그룹 회원 리스트의 작업지정 버튼을 통해 해당 작업자에게 작업분배</Typography> */}
 
+            {/* <Typography className={classes.titletext}>작업내용 수정</Typography>
+            <hr className={classes.linestyle} />
+            <Typography className={classes.textstyle}>1. 스타일 선택 수정 완료후 영역정보가 존재하는 탭&#40;아우터&#44; 상의&#44; 하의&#44; 원피스&#41;에서 세부항목 선택</Typography> 
+            <Typography className={classes.textstyle}>2. 이미지에 해당되는 모든 탭의 정보를 수정 </Typography>
+            <Typography className={classes.textstyle}>3. 수정이 끝나면 수정완료 버튼을 눌러주세요 </Typography>
+            <Typography className={classes.textstyle}>4. 수정할 사항이 없으면 돌아가기 버튼을 눌러주세요 </Typography> */}
+
 
 
                 

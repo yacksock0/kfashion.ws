@@ -178,6 +178,7 @@ class FinalCheckList extends React.Component {
             selectedReturn : true,
             checkBoxListLength : -1,
             tableSize : 6,
+            imgtext: "선택한 이미지가 없습니다."
 
         }
         this.handleClickMsgOpen = this.handleClickMsgOpen.bind(this)
@@ -297,6 +298,7 @@ class FinalCheckList extends React.Component {
         this.props.imageStore.changeWorkNo(workNo);
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
+        this.setState({imgtext: "",});
     }
     handleClickCallback= (polyInfo, workNo)=>{
         this.setState({ polyInfo : polyInfo, workNo : workNo});
@@ -481,6 +483,7 @@ class FinalCheckList extends React.Component {
         this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
         this.props.polygonStore.LoadPolygonLocation(workNo);
         this.props.history.push("/Step2/ModifyStep3");
+        
     }
 
     onSelectTab1(tabIndex) {
@@ -504,6 +507,7 @@ class FinalCheckList extends React.Component {
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
+        this.setState({imgtext: "선택한 이미지가 없습니다.",});
     }
 
     handleDeleteImg = () => {
@@ -558,7 +562,8 @@ class FinalCheckList extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div className={classes.canvas}>
+                            <div className={classes.canvas} style={{display:"table"}}>
+                                <div style={{width:'800px',height:'650px',background:'#e2e2e2',textAlign:'center',fontSize:'17px',display:'table-cell',verticalAlign:'middle'}}>{this.state.imgtext} </div>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                             </div>
                         </Grid>
@@ -1034,16 +1039,20 @@ class FinalCheckList extends React.Component {
                                             options={{
                                                 sorting:false,
                                                 search: true,
-                                                actionsColumnIndex: -1,
+                                                // actionsColumnIndex: -1,
                                                 headerStyle: {
                                                     backgroundColor: '#000000',
                                                     color: '#ffffff',
                                                     textAlign:'center',
-                                                    padding : 9,
+                                                    padding : 5,
+                                                    fontFamily: 'NotoSansCJKkr',
+                                                    fontSize:'15px',
                                                 },
                                                 cellStyle: {
                                                     textAlign: 'center',
                                                     padding : 3,
+                                                    fontFamily: 'Roboto',
+                                                    fontSize:'13px',
                                                 },
                                                 pageSize : this.props.professionalLabelStore.professionalCheckListPageSize,
                                                 pageSizeOptions : [5,10,25,50],
@@ -1065,6 +1074,7 @@ class FinalCheckList extends React.Component {
                                                     />
                                                 )
                                             }}
+                                            localization={{header: { actions: '선택' } }}
                                             actions={
                                                 [
                                                     {

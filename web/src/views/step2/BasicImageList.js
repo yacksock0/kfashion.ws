@@ -110,14 +110,8 @@ class BasicImageList extends React.Component {
         return (
             <MaterialTable
                 columns={[
-                {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                  checked={this.props.checkHighLabelStore.selectedItem.length ===
-                                  this.props.checkHighLabelStore.polygonList.length ? true : false} style={{color:'#ffffff'}}>
-                        </Checkbox>,
-                    render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo)}
-                                                  checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
                 {title: '번호', field: 'workNo',type: 'button', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                {title: '사진', field: 'fileName',type: 'Image', render : rowData => {
+                {title: '이미지', field: 'fileName',type: 'Image', render : rowData => {
                         return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
                                                                onDoubleClick={() => this.props.onImageDoubleClick({title: '', image: rowData.fileName} )} />
                             : ''
@@ -126,6 +120,12 @@ class BasicImageList extends React.Component {
                 {title: '이름', field: 'workName',type: 'button', filterPlaceholder: 'GroupNo filter',},
                 {title: '등록자', field: 'createdId', type: 'text', initialEditValue: 'test', tooltip: 'This is tooltip text'},
                 {title: '생성일', field: 'createdDatetime', type: 'date'},
+                {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                  checked={this.props.checkHighLabelStore.selectedItem.length ===
+                                  this.props.checkHighLabelStore.polygonList.length ? true : false} style={{color:'#ffffff'}}>
+                        </Checkbox>,
+                    render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo)}
+                                                  checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
                     ]}
                 data={!!this.props.checkHighLabelStore.polygonList ?
                     this.props.checkHighLabelStore.polygonList.map((item) => {
@@ -138,19 +138,26 @@ class BasicImageList extends React.Component {
                             comment: item.comment
                         }
                     }) : []}
-                title="이미지 리스트"
+                title=""
                 options={{
                     sorting:false,
-                    actionsColumnIndex: -1,
+                    // actionsColumnIndex: -1,
                     headerStyle: {
                         backgroundColor: '#000000',
                         color: '#ffffff',
                         textAlign:'center',
-                        padding : 9
+                        padding : 5,
+                        fontFamily: 'NotoSansCJKkr',
+                        fontSize:'15px',
                     },
                     cellStyle: {
                         textAlign: 'center',
                         padding : 3,
+                        fontFamily: 'Roboto',
+                        fontSize:'13px',
+                    },
+                    actionsCellStyle:{
+                        // paddingLeft:18
                     },
                     pageSize : this.props.checkHighLabelStore.pageSize,
                     pageSizeOptions : [5,10,25,50],
@@ -170,7 +177,7 @@ class BasicImageList extends React.Component {
                         />
                     )
                 }}
-
+                localization={{header: { actions: '선택' } }}
                 actions={[
                     {
                         icon: 'check',
