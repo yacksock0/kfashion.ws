@@ -13,6 +13,7 @@
     <select id="selectAllImageData" resultMap="kfashionImageResultMap">
         SELECT DISTINCT *
         FROM kfashion_image
+        LIMIT 50
     </select>
 
     <select id="selectImageWorkName" parameterType="Long" resultType="String">

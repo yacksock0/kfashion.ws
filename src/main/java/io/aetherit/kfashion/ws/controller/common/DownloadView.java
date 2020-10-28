@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.List;
@@ -34,7 +36,12 @@ public class DownloadView {
             String workName = imageDataService.getImageWorkName(data.getWorkNo());
             logger.debug( " workName {} ", workName);
             File imageFile = new File(workName);
-            
+            OutputStream os = new FileOutputStream(imageFile);
+            os.write(imageContent);
+            os.close();
+
+            BufferedImage image = ImageIO.read(imageFile);
+
             logger.debug( " imageFile.exists() {} ", imageFile.exists());
             logger.debug( " imageFile.isFile() {} ", imageFile.isFile());
             if(imageFile.exists() && imageFile.isFile()) {
@@ -42,7 +49,7 @@ public class DownloadView {
                 response.setContentLength((int) imageFile.length());
                 String browser = getBrowser(request);
                 logger.debug(" getBrowser {} ", browser);
-                String disposition = getDisposition(data.getWorkNo(), browser);
+                String disposition = getDisposition(workName, browser);
                 logger.debug(" getDisposition {} ", disposition);
                 response.setHeader("Content-Disposition", disposition);
                 response.setHeader("Content-Transfer-Encoding", "binary");
@@ -82,20 +89,19 @@ public class DownloadView {
         }
     }
 
-    private String getDisposition(Long filename, String browser) throws UnsupportedEncodingException {
+    private String getDisposition(String filename, String browser) throws UnsupportedEncodingException {
         String dispositionPrefix = "attachment;filename=";
-        String file = String.valueOf(filename);
         String encodedFilename = null;
         if(browser.equals("MSIE")) {
-            encodedFilename = URLEncoder.encode(file, "UTF-8".replaceAll("\\+", "%20"));
+            encodedFilename = URLEncoder.encode(filename, "UTF-8".replaceAll("\\+", "%20"));
         } else if (browser.equals("Firefox")) {
-            encodedFilename = "\"" + new String(file.getBytes("UTF-8"), "8859_1") + "\"";
+            encodedFilename = "\"" + new String(filename.getBytes("UTF-8"), "8859_1") + "\"";
         } else if (browser.equals("Opera")) {
-            encodedFilename = "\"" + new String(file.getBytes("UTF-8"), "8859_1") + "\"";
+            encodedFilename = "\"" + new String(filename.getBytes("UTF-8"), "8859_1") + "\"";
         } else if(browser.equals("Chrome")) {
             StringBuffer sb = new StringBuffer();
-            for(int i = 0; i < file.length(); i++ ) {
-                char c = file.charAt(i);
+            for(int i = 0; i < filename.length(); i++ ) {
+                char c = filename.charAt(i);
                 if (c > '~') {
                     sb.append(URLEncoder.encode("" + c, "UTF-8"));
                 } else {
