@@ -174,6 +174,7 @@ class Step3 extends React.Component {
             canvasHeight : 0,
             total : 0,
             complete : 0,
+            imgtext: "선택한 이미지가 없습니다."
         }
     }
 
@@ -249,6 +250,7 @@ class Step3 extends React.Component {
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.onImgLoad(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`);
             this.props.polygonStore.LoadPolygonLocation(workNo, this.handleClickCallback);
+            this.setState({imgtext: "",});
         }
     }
     handleClickCallback= (polyInfo, workNo)=>{
@@ -317,7 +319,7 @@ class Step3 extends React.Component {
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
-
+        this.setState({imgtext: "선택한 이미지가 없습니다.",});
     }
     onSelectTab2(tabIndex2) {
         let polyNo = tabIndex2;
@@ -480,7 +482,8 @@ class Step3 extends React.Component {
                             </Grid>
                         <Grid container >
                             <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                                <div className={classes.canvas}>
+                                <div className={classes.canvas} style={{display:"table"}}>
+                                <div style={{width:'800px',height:'650px',background:'#e2e2e2',textAlign:'center',fontSize:'17px',display:'table-cell',verticalAlign:'middle'}}>{this.state.imgtext} </div>
                                     <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}>  </canvas>
                                 </div>
                             </Grid>
@@ -570,7 +573,7 @@ class Step3 extends React.Component {
                             </Button>
                         </div>
                         {/* </Grid> */}
-
+                        <p style={{width:'100%',height:40}}/>
                     {/* <Typography variant="h6" component="h6" style={{display:'inline'}}>
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 / 체크박스 클릭후 대표 이미지 선택하여 작업시 체크한 이미지 전부 동일한 값으로 입력됩니다. </p>
                         <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 스타일 선택 완료 후 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 세부항목 선택 </p>

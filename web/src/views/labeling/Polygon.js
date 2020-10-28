@@ -129,7 +129,6 @@ const styles = theme => ({
         marginLeft:'auto',
 
     },
-
 });
 
 
@@ -162,6 +161,7 @@ class Polygon extends React.Component {
         eventKey2 : true,
         eventKey3 : true,
         eventKey4 : true,
+        imgtext: "선택한 이미지가 없습니다."
     }
     save1 = false;
     save2 = false;
@@ -948,6 +948,7 @@ class Polygon extends React.Component {
             this.props.polygonStore.changeNewPolygonLocationWorkNo(workNo);
             this.props.polygonStore.LoadPolygonLocation(workNo);
         }
+        this.setState({imgtext: "",});
     }
 
 
@@ -1043,6 +1044,7 @@ class Polygon extends React.Component {
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
+        this.setState({imgtext: "선택한 이미지가 없습니다.",});
     }
 
     handleDelete =()=>{
@@ -1065,7 +1067,7 @@ class Polygon extends React.Component {
         // const {workTypeList} = this.props.rectStore;
         return (
             <Container component="main" className={classes.mainContainer}>
-                <div className={classes.appBarSpacer}/>
+                <div className={classes.appBarSpacer} />
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={6} xl={6} style={{marginTop:10}}>
@@ -1084,8 +1086,8 @@ class Polygon extends React.Component {
                         {/*        돋보기 끄기*/}
                         {/*    </Button>*/}
                         {/*</div>*/}
-                            <div className={classes.canvas}>
-                               
+                            <div className={classes.canvas} style={{display:"table"}}>
+                                    <div style={{width:'700px',height:'500px',background:'#e2e2e2',textAlign:'center',fontSize:'17px',display:'table-cell',verticalAlign:'middle'}}>{this.state.imgtext} </div>
                                     <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight} filltext="ff"> </canvas>  
                                     
                         
@@ -1164,7 +1166,7 @@ class Polygon extends React.Component {
                                                 <TableCell style={{textAlign:"center"}}>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(1)} disabled={this.state.buttonDis1}>
-                                                            save <SaveIcon />
+                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -1219,7 +1221,7 @@ class Polygon extends React.Component {
                                                 <TableCell style={{textAlign:"center"}}>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(2)} disabled={this.state.buttonDis2}>
-                                                            save <SaveIcon />
+                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -1272,7 +1274,7 @@ class Polygon extends React.Component {
                                                 <TableCell style={{textAlign:"center"}}>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(3)} disabled={this.state.buttonDis3}>
-                                                            save <SaveIcon />
+                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -1325,7 +1327,7 @@ class Polygon extends React.Component {
                                                 <TableCell style={{textAlign:"center"}}>
                                                     <Tooltip title="Save">
                                                         <IconButton aria-label="save" onClick={() => this.doSave(4)} disabled={this.state.buttonDis4}>
-                                                            save <SaveIcon />
+                                                            <SaveIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
@@ -1498,8 +1500,8 @@ class Polygon extends React.Component {
                                         </div>
                                     </div>
                                 </TabPanel>
-                                <TabPanel value={this.state.value} index={1}>
-                                    <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image) }/>
+                                <TabPanel value={this.state.value} index={1} >
+                                    <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image)}/>
                                 </TabPanel>
                             </Tabs>
                         </Grid>
@@ -1527,7 +1529,7 @@ class Polygon extends React.Component {
                     {/*    Next*/}
                     {/*</Button>*/}
                 </div>
-                <Grid item xs={6} lg={3} style={{marginLeft:'auto', marginTop:'-50px'}}>
+                <Grid item xs={6} lg={3} style={{marginLeft:'auto', marginTop:'-100px'}}>
                      <Button variant="outlined" color="secondary"
                             className={classes.buttonType2}
                             onClick={this.handleDelete}

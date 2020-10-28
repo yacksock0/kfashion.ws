@@ -168,6 +168,7 @@ class Step2 extends React.Component {
             tabController: [],
             canvasWidth: 0,
             canvasHeight: 0,
+            imgtext: "선택한 이미지가 없습니다."
         }
         this.handleClickSubColor1 = this.handleClickSubColor1.bind(this)
         this.handleDelete1 = this.handleDelete1.bind(this)
@@ -228,6 +229,7 @@ class Step2 extends React.Component {
                 this.props.polygonStore.LoadPolygonLocation(workNo,this.polyListCallback);
                 this.props.polygonStore.LoadLabelNoList(workNo, this.labelNoListCallback);
             }
+            this.setState({imgtext: "",});
     }
     labelNoListCallback = (labelNoList, workNo) => {
         let tabIndex2 = labelNoList[0] - 1;
@@ -595,6 +597,7 @@ class Step2 extends React.Component {
         } else {
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
         }
+        this.setState({imgtext: "선택한 이미지가 없습니다.",});
 
     }
     nextTab = () => {
@@ -623,7 +626,8 @@ class Step2 extends React.Component {
                 <div className={classes.mainContent}>
                     <Grid container>
                         <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
-                            <div className={classes.canvas1}>
+                            <div className={classes.canvas1} style={{display:"table"}}>
+                                <div style={{width:'800px',height:'650px',background:'#e2e2e2',textAlign:'center',fontSize:'17px',display:'table-cell',verticalAlign:'middle'}}>{this.state.imgtext} </div>
                                 <canvas id="c" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
                             </div>
                         </Grid>
@@ -1029,7 +1033,7 @@ class Step2 extends React.Component {
                     </Grid>
                 </div>
 
-                <hr></hr>
+                
                 <Grid container>
                     <Grid item xs={3} lg={1} style={{marginRight: 10}}>
                         {/*<Button*/}

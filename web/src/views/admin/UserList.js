@@ -100,9 +100,10 @@ class UserList extends React.Component {
                 <div className={classes.mainContent} style={{marginBottom: 15}}>
                     <Grid item xs={12} lg={12}>
                         <MaterialTable
-                            style={{backgroundColor:'#fafafa', boxShadow:'none'}}
+                            style={{backgroundColor:'#fafafa'}}
                             localization={{ body: {
                                 editRow: { deleteText: '정말 삭제 하시겠습니까?'} } ,
+                                header: {actions:'수정'}
                                 }
                             }
                             columns={[
@@ -128,7 +129,7 @@ class UserList extends React.Component {
                                         createdDatetime: item.createdDatetime,
                                     }
                                 }) : []}
-                            title="작업자 리스트"
+                            title={<p style={{fontFamily: 'NotoSansCJKkr',fontSize: '23px',fontWeight: '600'}}>작업자 리스트</p>}
                             editable={{
                                 isEditHidden: rowData => rowData.name === "createdDatetime",
                                 onRowAdd:rowData =>
@@ -192,14 +193,18 @@ class UserList extends React.Component {
                                 minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
-                                    backgroundColor: '#000000',
-                                    color: '#ffffff',
+                                    backgroundColor: '#e5e5e5',
+                                    color: '#000',
                                     textAlign:'center',
+                                    fontFamily: 'NotoSansCJKkr',
+                                    fontSize: '17px'
                                 },
                                 cellStyle: {
                                     textAlign: 'center',
                                     padding : 12 ,
                                     margin : 10,
+                                    fontFamily: 'Roboto',
+                                    fontSize: '15px'
                                 },
                                 actionsCellStyle: {
                                     textAlign: 'center'
@@ -223,10 +228,10 @@ class UserList extends React.Component {
                         />
                     </Grid>
                 </div>
-                <ErrorIcon style={{display: 'inline-block', verticalAlign: 'middle', marginBottom: 3, marginRight: 5}}/>
+                {/* <ErrorIcon style={{display: 'inline-block', verticalAlign: 'middle', marginBottom: 3, marginRight: 5}}/>
                 <Typography variant="h6" component="h4" style={{display:'inline' , fontSize:'15px'}}>
                     우측상단 + 버튼을 통해 작업자 추가 / 작업 리스트의 액션버튼을 통해 작업자 이름/비밀번호 수정
-                </Typography>
+                </Typography> */}
             </Container>
         );
     }

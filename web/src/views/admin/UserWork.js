@@ -136,14 +136,15 @@ class UserWork extends React.Component {
                             columns={[
                                 {title: '아이디',field: 'id',cellStyle: {minWidth: 150,textAlign: 'center'}},
                                 {title: '이름', field: 'name', type: 'text', cellStyle: {minWidth:100,textAlign: 'center'}},
-                                {title: '작업진도', field: 'progress', cellStyle: {minWidth:500,textAlign: 'left', paddingLeft:20},
+                                {title: '작업진도', field: 'progress', cellStyle: {minWidth:500,textAlign: 'center', paddingLeft:20},
                                     render: rowData => <ProgressBar rowDataId={rowData.id}/>,},
                                 {title: '작업지정', field: 'workDetail',cellStyle: {minWidth:100,textAlign: 'center'},
                                     render: rowData => <WorkDetail rowDataId={rowData.id}/>},
                             ]}
-                            title={<h3>그룹 회원 리스트 ( 총 등록된 이미지 수량 : <b style={{color:"blue"}}>{this.props.userListStore.totalWork}</b>,
-                                    저장 수량 : <b style={{color:"blue"}}>{this.props.userListStore.completeWork}</b>,
-                                    완료 수량 : <b style={{color:"blue"}}>{this.props.userListStore.successWork}</b>)</h3>}
+                            
+                            title={<h3><span style={{fontFamily: 'NotoSansCJKkr',fontSize: '23px',fontWeight: '600'}}>그룹 회원 리스트</span> <span style={{background:'#f5f5f5',borderRadius:'19px',fontFamily: 'NotoSansCJKkr',fontSize: '14px',padding:'5px 15px'}}>전체 이미지 : <b style={{color:"#0000ff"}}>{this.props.userListStore.totalWork}</b>ea&nbsp;&nbsp;
+                                    저장 이미지 : <b style={{color:"#0000ff"}}>{this.props.userListStore.completeWork}</b>ea&nbsp;&nbsp;
+                                    완료 이미지 : <b style={{color:"#0000ff"}}>{this.props.userListStore.successWork}</b>)</span></h3>}
                             data={
                                 // query =>
                                 //     new Promise((resolve, reject) => {
@@ -195,14 +196,18 @@ class UserWork extends React.Component {
                                 minBodyHeight: '100%',
                                 actionsColumnIndex: -1,
                                 headerStyle: {
-                                    backgroundColor: '#000000',
-                                    color: '#ffffff',
+                                    backgroundColor: '#e5e5e5',
+                                    color: '#000',
                                     textAlign:'center',
+                                    fontFamily: 'NotoSansCJKkr',
+                                    fontSize: '17px'
                                 },
                                 cellStyle: {
                                     textAlign: 'center',
                                     padding : 12 ,
                                     margin : 10,
+                                    fontFamily: 'Roboto',
+                                    fontSize: '15px'
                                 },
                                 actionsCellStyle: {
                                     textAlign: 'center'
@@ -227,10 +232,10 @@ class UserWork extends React.Component {
                         />
                     </Grid>
                 </div>
-                <ErrorIcon style={{display: 'inline-block', verticalAlign: 'middle', marginBottom: 3, marginRight: 5}}/>
+                {/* <ErrorIcon style={{display: 'inline-block', verticalAlign: 'middle', marginBottom: 3, marginRight: 5}}/>
                 <Typography variant="h6" component="h4" style={{display:'inline' , fontSize: '15px'}}>
                    그룹 회원 리스트의 작업지정 버튼을 통해 해당 작업자에게 작업분배
-                </Typography>
+                </Typography> */}
             </Container>
         );
     }
