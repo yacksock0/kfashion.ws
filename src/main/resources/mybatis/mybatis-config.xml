@@ -84,6 +84,11 @@
         <mapper resource="mybatis/mapper/mariadb/kSearching/SearchingImageMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/kMatching/MatchingUserMapper.xml" />
 
+
+        <mapper resource="mybatis/mapper/mariadb/common/ImageDataMapper.xml" />
+
+
+
     </mappers>
 
 </configuration>

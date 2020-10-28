@@ -1,0 +1,24 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.aetherit.kfashion.ws.repository.mapper.common.ImageDataMapper">
+    <resultMap id="kfashionImageResultMap" type="KfashionImage">
+        <id property="workNo"                   column="work_no" />
+        <result property="imgData"              column="img_data" />
+        <result property="workName"             column="work_name" />
+        <result property="fileName"             column="file_name" />
+        <result property="createdId"            column="created_id" />
+        <result property="createdDatetime"      column="created_datetime" />
+        <result property="updatedDatetime"      column="updated_datetime" />
+    </resultMap>
+
+    <select id="selectAllImageData" resultMap="kfashionImageResultMap">
+        SELECT DISTINCT *
+        FROM kfashion_image
+    </select>
+
+    <select id="selectImageWorkName" parameterType="Long" resultType="String">
+        SELECT DISTINCT work_name
+        FROM kfashion_work
+        WHERE no = #{workNo}
+    </select>
+
+</mapper>
