@@ -43,6 +43,12 @@
         <typeAlias type="io.aetherit.kfashion.ws.model.kSearching.SearchingUser" alias="SearchingUser" />
         <typeAlias type="io.aetherit.kfashion.ws.model.kMatching.MatchingUser" alias="MatchingUser" />
 
+        <typeAlias type="io.aetherit.kfashion.ws.model.kSearching.SearchingStyle" alias="SearchingStyle" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.kSearching.SearchingImage" alias="SearchingImage" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.kSearching.SearchingCategory" alias="SearchingCategory" />
+        <typeAlias type="io.aetherit.kfashion.ws.model.kSearching.SearchingLabel" alias="SearchingLabel" />
+
+
     </typeAliases>
 
     <typeHandlers>
@@ -73,7 +79,15 @@
 
         <mapper resource="mybatis/mapper/mariadb/kTagging/TaggingUserMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/kSearching/SearchingUserMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/kSearching/SearchingFashionMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/kSearching/SearchingLabelMapper.xml" />
+        <mapper resource="mybatis/mapper/mariadb/kSearching/SearchingImageMapper.xml" />
         <mapper resource="mybatis/mapper/mariadb/kMatching/MatchingUserMapper.xml" />
+
+
+        <mapper resource="mybatis/mapper/mariadb/common/ImageDataMapper.xml" />
+
+
 
     </mappers>
 

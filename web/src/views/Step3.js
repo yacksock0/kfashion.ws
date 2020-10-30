@@ -161,8 +161,9 @@ class Step3 extends React.Component {
             selectedName:'',
             selectedSubNo:0,
             selectedSubName:'',
-            tabIndex1: 1,
-            tabIndex2:0,
+            // tabIndex1: 1,
+            tabIndex1: 0,
+            tabIndex2: 0,
             createdId: '',
             workNo : 0,
             polyInfo : [],
@@ -218,7 +219,8 @@ class Step3 extends React.Component {
                     this.props.professionalLabelStore.doProfessionalLabelUp(this.changeWorkNo);
                 }
                 this.setState({
-                    tabIndex1 : 1,
+                    // tabIndex1 : 1,
+                    tabIndex1 : 0,
                     workNo : 0,
                 });
                 this.canvas.backgroundImage = 0;
@@ -230,7 +232,8 @@ class Step3 extends React.Component {
         }else{
             alert("작업을 먼저 선택해 주세요.");
             this.setState({
-                tabIndex1: 1,
+                // tabIndex1: 1,
+                tabIndex1: 0,
             });
         }
 
@@ -255,7 +258,8 @@ class Step3 extends React.Component {
     }
     handleClickCallback= (polyInfo, workNo)=>{
         this.setState({ polyInfo : polyInfo, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        // this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        this.setState({tabIndex1 : 1, tabIndex2 : 0});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`
             , this.canvas.renderAll.bind(this.canvas),{
             width: this.canvas.width,
@@ -301,7 +305,8 @@ class Step3 extends React.Component {
     }
     onSelectTab1(tabIndex1) {
         if (this.state.workNo !== 0) {
-            if(tabIndex1 === 1) {
+            // if(tabIndex1 === 1) {
+            if(tabIndex1 === 0) {
                 this.setState({
                     selected : [],
                     workNo : 0,
@@ -445,7 +450,8 @@ class Step3 extends React.Component {
         }else{
             alert("이미지 리스트 탭에서 작업할 이미지를 선택해주세요.");
             this.setState({
-                tabIndex1: 1,
+                // tabIndex1: 1,
+                tabIndex1: 0,
             });
         }
     }
@@ -477,9 +483,9 @@ class Step3 extends React.Component {
                 <Container component="main" className={classes.mainContainer}>
                     <div className={classes.appBarSpacer} />
                     <div className={classes.mainContent}>
-                            <Grid item xs={12} style={{padding:3, textAlign:'center'}}>
-                                <WorkedImg onClick={this.handleLabel} />
-                            </Grid>
+                        <Grid item xs={12} style={{padding:3, textAlign:'center',marginBottom:30}}>
+                            <WorkedImg onClick={this.handleLabel} />
+                        </Grid>
                         <Grid container >
                             <Grid item xs={12} lg={5} xl={5} style={{marginTop:10}}>
                                 <div className={classes.canvas} style={{display:"table"}}>
@@ -490,10 +496,16 @@ class Step3 extends React.Component {
                             <Grid item xs={12} lg={6} xl={6} style={{marginLeft:"auto"}}>
                                     <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                         <TabList >
-                                            <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
-                                            <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트 ( <b style={{color:"red"}}>{this.props.professionalLabelStore.complete}</b> / <b>{this.props.professionalLabelStore.total}</b> )</h3></Tab>
+                                            {/* <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
+                                                <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트( <b style={{color:"red"}}>{this.props.professionalLabelStore.complete}</b> / <b>{this.props.professionalLabelStore.total}</b> )</h3></Tab> */}
+                                            <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>이미지 리스트 ( <b style={{color:"#1e8247"}}>{this.props.professionalLabelStore.complete}</b> / <b>{this.props.professionalLabelStore.total}</b> )</h3></Tab>
+                                            <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>레이블링</h3></Tab>
+                                            
                                         </TabList>
-
+                                        <TabPanel>
+                                            <ProImageList onClick={this.handleClickItem} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image) } />
+                                        </TabPanel>
+                                        
                                         <TabPanel>
                                             <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'500px'}}>
                                                 <TabList className={classes.tabliststyle}>
@@ -512,39 +524,34 @@ class Step3 extends React.Component {
                                                           disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 4))) && this.state.polyInfo.length > 0}
                                                     ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
                                                 </TabList>
-                                        <TabPanel style={{padding:'0 30px'}}>
-                                            <Grid items xs={12} lg={12}>
-                                                <Style onClick={this.handleClickStyle} onClickDel={()=>this.onClickDel(1)}workNo={this.state.workNo}/>
-                                            </Grid>
-                                        </TabPanel>
-                                        <TabPanel style={{padding:'0 30px'}}>
-                                            <Grid items xs={12} lg={12}>
-                                                <CategoryComponent1 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
-                                            </Grid>
-                                        </TabPanel>
-                                        <TabPanel style={{padding:'0 30px'}}>
-                                            <Grid items xs={12} lg={12}>
-                                                <CategoryComponent2 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
-                                            </Grid>
-                                        </TabPanel>
-                                        <TabPanel style={{padding:'0 30px'}}>
-                                            <Grid items xs={12} lg={12}>
-                                                <CategoryComponent3 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
-                                            </Grid>
-                                        </TabPanel>
-                                        <TabPanel style={{padding:'0 30px'}}>
-                                            <Grid items xs={12} lg={12}>
-                                                <CategoryComponent4 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
-                                            </Grid>
-                                        </TabPanel>
+                                                <TabPanel style={{padding:'0 30px'}}>
+                                                    <Grid items xs={12} lg={12}>
+                                                        <Style onClick={this.handleClickStyle} onClickDel={()=>this.onClickDel(1)}workNo={this.state.workNo}/>
+                                                    </Grid>
+                                                </TabPanel>
+                                                <TabPanel style={{padding:'0 30px'}}>
+                                                    <Grid items xs={12} lg={12}>
+                                                        <CategoryComponent1 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
+                                                    </Grid>
+                                                </TabPanel>
+                                                <TabPanel style={{padding:'0 30px'}}>
+                                                    <Grid items xs={12} lg={12}>
+                                                        <CategoryComponent2 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
+                                                    </Grid>
+                                                </TabPanel>
+                                                <TabPanel style={{padding:'0 30px'}}>
+                                                    <Grid items xs={12} lg={12}>
+                                                        <CategoryComponent3 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
+                                                    </Grid>
+                                                </TabPanel>
+                                                <TabPanel style={{padding:'0 30px'}}>
+                                                    <Grid items xs={12} lg={12}>
+                                                        <CategoryComponent4 polyLast={polyLast} tabIndex2={this.state.tabIndex2} onClick={()=>this.handleSubmit()}/>
+                                                    </Grid>
+                                                </TabPanel>
 
-                                    </Tabs>
+                                            </Tabs>
                                         </TabPanel>
-
-                                     <TabPanel>
-
-                                    <ProImageList onClick={this.handleClickItem} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image) } />
-                                    </TabPanel>
                                     </Tabs>
                                 </Grid>
                         </Grid>
@@ -557,7 +564,8 @@ class Step3 extends React.Component {
                             <Button
                                     type="button"
                                     className={classes.buttonType2}
-                                    disabled={this.state.tabIndex1 === 1 ? true : false}
+                                    // disabled={this.state.tabIndex1 === 1 ? true : false}
+                                    disabled={this.state.tabIndex1 === 0 ? true : false}
                                     variant="outlined"
                                     onClick={()=>this.handleSubmit()}
                                     
@@ -566,7 +574,8 @@ class Step3 extends React.Component {
                             </Button>
                             <Button variant="outlined" color="secondary"
                                     className={classes.buttonType2}
-                                    disabled={this.state.tabIndex1 === 0 || this.props.professionalLabelStore.selectedItem.length === 0 ? true : false}
+                                    // disabled={this.state.tabIndex1 === 0 || this.props.professionalLabelStore.selectedItem.length === 0 ? true : false}
+                                    disabled={this.state.tabIndex1 === 1 || this.props.professionalLabelStore.selectedItem.length === 0 ? true : false}
                                     // style={{display:'inline', marginRight:5}} 
                                     onClick={this.handleDeleteImg}>
                                 이미지 삭제

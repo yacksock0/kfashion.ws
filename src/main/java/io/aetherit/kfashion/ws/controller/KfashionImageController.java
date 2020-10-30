@@ -249,6 +249,7 @@ public class KfashionImageController {
      */
     @RequestMapping(value = "/getByteImage")
     public ResponseEntity<byte[]> getByteImage(@RequestParam(value = "workNo") Long workNo) {
+        logger.trace("getByteImage {} ", workNo);
         Map<String, Object> map = kfashionImageService.getByteImage(workNo);
         byte[] imageContent = (byte[]) map.get("img_data");
 

@@ -163,7 +163,8 @@ class Step2 extends React.Component {
             workNo: 0,
             imageData: '',
             polyNo: '',
-            tabIndex1: 1,
+            // tabIndex1: 1,
+            tabIndex1: 0,
             tabIndex2: 0,
             tabController: [],
             canvasWidth: 0,
@@ -235,7 +236,8 @@ class Step2 extends React.Component {
         let tabIndex2 = labelNoList[0] - 1;
         this.onSelectTab2(tabIndex2)
         this.setState({tabController: labelNoList, workNo: workNo});
-        this.setState({tabIndex1: 0, tabIndex2: tabIndex2});
+        // this.setState({tabIndex1: 0, tabIndex2: tabIndex2});
+        this.setState({tabIndex1: 1, tabIndex2: tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: this.canvas.width,
             height: this.canvas.height,
@@ -248,7 +250,8 @@ class Step2 extends React.Component {
         let tabIndex2 = polyInfo[0] - 1;
         this.onSelectTab2(tabIndex2);
         this.setState({tabController: polyInfo, workNo: workNo});
-        this.setState({tabIndex1: 0, tabIndex2: tabIndex2});
+        // this.setState({tabIndex1: 0, tabIndex2: tabIndex2});
+        this.setState({tabIndex1: 1, tabIndex2: tabIndex2});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: this.canvas.width,
             height: this.canvas.height,
@@ -530,7 +533,8 @@ class Step2 extends React.Component {
                         this.props.checkHighLabelStore.DoBasicLabelUp();
                     }
                     this.setState({
-                        tabIndex1: 1,
+                        // tabIndex1: 1,
+                        tabIndex1: 0,
                         workNo : 0,
                     });
                     this.canvas.backgroundImage = 0;
@@ -542,7 +546,8 @@ class Step2 extends React.Component {
             } else {
                 alert("작업을 먼저 선택해 주세요.");
                 this.setState({
-                    tabIndex1: 1,
+                    // tabIndex1: 1,
+                    tabIndex1: 0,
                 });
             }
         }
@@ -565,7 +570,8 @@ class Step2 extends React.Component {
             this.deleteAll();
             this.setState({
                 workNo : 0,
-                tabIndex1: 1,
+                // tabIndex1: 1,
+                tabIndex1: 0,
             });
         }
     }
@@ -581,7 +587,8 @@ class Step2 extends React.Component {
     }
     onSelectTab1 = (tabIndex1) => {
         if (this.state.workNo !== 0) {
-            if(tabIndex1 === 1) {
+            // if(tabIndex1 === 1) {
+            if(tabIndex1 === 0) {
                 this.setState({
                     selected : [],
                     workNo : 0,
@@ -635,10 +642,15 @@ class Step2 extends React.Component {
                             <Tabs selectedIndex={this.state.tabIndex1}
                                   onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                 <TabList>
-                                    <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>기본 레이블링</h3></Tab>
-                                    <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>이미지 리스트 ( <b style={{color:"red"}}>{this.props.checkHighLabelStore.complete}</b> / <b>{this.props.checkHighLabelStore.total}</b> )</h3></Tab>
+                                    {/* <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>기본 레이블링</h3></Tab>
+                                    <Tab style={{width: '50%', height: 60, textAlign: 'center'}}><h3>이미지 리스트 ( <b style={{color:"red"}}>{this.props.checkHighLabelStore.complete}</b> / <b>{this.props.checkHighLabelStore.total}</b> )</h3></Tab> */}
+                                    <Tab style={{width: '50%', height: 60, textAlign: 'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>이미지 리스트 ( <b style={{color:"#1e8247"}}>{this.props.checkHighLabelStore.complete}</b> / <b>{this.props.checkHighLabelStore.total}</b> )</h3></Tab>
+                                    <Tab style={{width: '50%', height: 60, textAlign: 'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>기본 레이블링</h3></Tab>
+                                    
                                 </TabList>
-
+                                <TabPanel>
+                                    <BasicImageList onClick={this.handleClickItem} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image) }/>
+                                </TabPanel>    
                                 <TabPanel>
                                     <Tabs selectedIndex={this.state.tabIndex2} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'500px'}}
                                           onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)}>
@@ -1025,9 +1037,7 @@ class Step2 extends React.Component {
 
                                     </Tabs>
                                 </TabPanel>
-                                <TabPanel>
-                                    <BasicImageList onClick={this.handleClickItem} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image) }/>
-                                </TabPanel>
+                                
                             </Tabs>
                         </Grid>
                     </Grid>
@@ -1068,6 +1078,7 @@ class Step2 extends React.Component {
                         </Grid>
                     ) : ''}
                 </Grid>
+                <p style={{width:'100%',height:40}}/>
                 {/* <Typography variant="h6" component="h4" style={{display: 'inline'}}>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 우측 상단에 이미지리스트에서 작업 할 이미지 선택 </p>
                     <p style={{fontSize:'15px'}}><ErrorIcon className={classes.ErrorIcon}/> 영역정보가 존재하는 탭(아우터, 상의, 하의, 원피스)에서 색상 및 소매길이 선택 후 다음 탭으로 이동 </p>

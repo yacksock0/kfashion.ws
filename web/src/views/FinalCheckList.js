@@ -183,7 +183,8 @@ class FinalCheckList extends React.Component {
             neckLineItemName : '',
             karaItemName : '',
             fitItemName : '',
-            tabIndex1:1,
+            // tabIndex1:1,
+            tabIndex1:0,
             tabIndex2: 0,
             createdId: '',
             successCheckId : '',
@@ -324,7 +325,8 @@ class FinalCheckList extends React.Component {
     }
     handleClickCallback= (polyInfo, workNo)=>{
         this.setState({ polyInfo : polyInfo, workNo : workNo});
-        this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        // this.setState({tabIndex1 : 0, tabIndex2 : 0});
+        this.setState({tabIndex1 : 1, tabIndex2 : 0});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`
             , this.canvas.renderAll.bind(this.canvas),{
                 width: this.canvas.width,
@@ -364,7 +366,8 @@ class FinalCheckList extends React.Component {
             }
             this.setState({
                 open: false,
-                tabIndex1 : 1,
+                // tabIndex1 : 1,
+                tabIndex1 : 0,
                 checkBoxListLength: -1,
                 selectedId : '',
             });
@@ -392,7 +395,8 @@ class FinalCheckList extends React.Component {
             this.props.professionalLabelStore.JsonCompleteUp(workNo);
             this.setState({
                 open: false,
-                tabIndex1 : 1,
+                // tabIndex1 : 1,
+                tabIndex1 : 0,
             });
             this.canvas.backgroundImage = 0;
             this.canvas.setWidth(0);
@@ -509,7 +513,8 @@ class FinalCheckList extends React.Component {
 
     onSelectTab1(tabIndex) {
         if (this.state.workNo !== 0) {
-            if(tabIndex === 1) {
+            // if(tabIndex === 1) {
+            if(tabIndex === 0) {
                 this.setState({
                     selected : [],
                     workNo : 0,
@@ -591,445 +596,13 @@ class FinalCheckList extends React.Component {
                             <div component={Paper}>
                                 <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab1(tabIndex1)}>
                                     <TabList >
-                                        <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
-                                        <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
-                                    </TabList>
+                                        {/* <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
+                                        <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab> */}
 
-                                    <TabPanel>
-                                <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'680px'}}>
-                                    <TabList className={classes.tabliststyle}>
-                                        <Tab className={classes.btnstyle}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>스타일</h3></Tab>
-                                        <Tab className={classes.btnstyle}
-                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo1 === 1 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>아우터</h3></Tab>
-                                        <Tab className={classes.btnstyle}
-                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo2 === 2 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>상의</h3></Tab>
-                                        <Tab className={classes.btnstyle}
-                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo3 === 3 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>하의</h3></Tab>
-                                        <Tab className={classes.btnstyle}
-                                              disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo4 === 4 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
+                                        <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>이미지 리스트</h3></Tab>
+                                        <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>레이블링</h3></Tab>
+                                        
                                     </TabList>
-                                    <TabPanel>
-                                        <TableContainer>
-                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>스타일</TableCell>
-                                                        <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>메인 {styleReviewLabel.styleItemName ?
-                                                            <Chip style={{margin: '0 8px 0'}}
-                                                            variant="outlined"
-                                                            label={styleReviewLabel.styleItemName}
-                                                        /> : ''}
-                                                        서브  {styleReviewLabel.styleSubItemName ?
-                                                        <Chip style={{margin: '0 8px 0'}}
-                                                            variant="outlined"
-                                                            label={styleReviewLabel.styleSubItemName}
-                                                        /> : ''}</TableCell>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        <TableContainer>
-                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {/*<TableRow>*/}
-                                                    {/*    <TableCell align="center">스타일</TableCell>*/}
-                                                    {/*    <TableCell align="center">메인 {styleReviewLabel.styleItemName ?*/}
-                                                    {/*        <Chip style={{marginRight : 10}}*/}
-                                                    {/*        variant="outlined"*/}
-                                                    {/*        label={styleReviewLabel.styleItemName}*/}
-                                                    {/*    /> : ''}*/}
-                                                    {/*        서브  {styleReviewLabel.styleSubItemName ?*/}
-                                                    {/*            <Chip style={{marginRight : 10}}*/}
-                                                    {/*                variant="outlined"*/}
-                                                    {/*                label={styleReviewLabel.styleSubItemName}*/}
-                                                    {/*            /> : ''}</TableCell>*/}
-                                                    {/*</TableRow>*/}
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
-                                                        <TableCell align="center">
-                                                            {outerReviewLabel.categoryItemName1 ? <Chip style={{margin: '0 4px 0'}}
-                                                            variant="outlined"
-                                                            label={outerReviewLabel.categoryItemName1}
-                                                        /> : ''}
-                                                            </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
-                                                        <TableCell align="center"> {outerReviewLabel.detailItemName1 ? outerReviewLabel.detailItemName1.map((detail1) =>
-                                                            (detail1 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={detail1}
-                                                            /> : '')
-                                                            ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
-                                                        <TableCell align="center">{outerReviewLabel.printItemName1 ? outerReviewLabel.printItemName1.map((print1) =>
-                                                            (print1 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={print1}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
-                                                        <TableCell align="center">{outerReviewLabel.textureItemName1 ? outerReviewLabel.textureItemName1.map((texture1)=>
-                                                            (texture1 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={texture1}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
-                                                        <TableCell align="center">
-                                                            {outerReviewLabel.clothLengthItemName1 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={outerReviewLabel.clothLengthItemName1}
-                                                            /> : ''}
-                                                            </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
-                                                        <TableCell align="center">
-                                                            {outerReviewLabel.neckLineItemName1 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={outerReviewLabel.neckLineItemName1}
-                                                            /> : '' }
-                                                            </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
-                                                        <TableCell align="center">
-                                                            {outerReviewLabel.karaItemName1 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={outerReviewLabel.karaItemName1}
-                                                            /> : ''}
-                                                            </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
-                                                        <TableCell align="center">
-                                                            {outerReviewLabel.fitItemName1 ?<Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={outerReviewLabel.fitItemName1}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        <TableContainer >
-                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {/*<TableRow>*/}
-                                                    {/*    <TableCell align="center">스타일</TableCell>*/}
-                                                    {/*    <TableCell align="center">메인 {styleReviewLabel.styleItemName ?*/}
-                                                    {/*        <Chip style={{marginRight : 10}}*/}
-                                                    {/*        variant="outlined"*/}
-                                                    {/*        label={styleReviewLabel.styleItemName}*/}
-                                                    {/*    /> : ''}*/}
-                                                    {/*        서브  {styleReviewLabel.styleSubItemName ?*/}
-                                                    {/*            <Chip style={{marginRight : 10}}*/}
-                                                    {/*                variant="outlined"*/}
-                                                    {/*                label={styleReviewLabel.styleSubItemName}*/}
-                                                    {/*            /> : ''}</TableCell>*/}
-                                                    {/*</TableRow>*/}
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
-                                                        <TableCell align="center">
-                                                            {topReviewLabel.categoryItemName2 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={topReviewLabel.categoryItemName2}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
-                                                        <TableCell align="center"> {topReviewLabel.detailItemName2 ? topReviewLabel.detailItemName2.map((detail2) =>
-                                                            (detail2 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={detail2}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
-                                                        <TableCell align="center">{topReviewLabel.printItemName2 ? topReviewLabel.printItemName2.map((print2) =>
-                                                            (print2 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={print2}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
-                                                        <TableCell align="center">{topReviewLabel.textureItemName2 ? topReviewLabel.textureItemName2.map((texture2)=>
-                                                            (texture2 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={texture2}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
-                                                        <TableCell align="center">
-                                                            {topReviewLabel.clothLengthItemName2 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={topReviewLabel.clothLengthItemName2}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
-                                                        <TableCell align="center">
-                                                            {topReviewLabel.neckLineItemName2 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={topReviewLabel.neckLineItemName2}
-                                                            /> : '' }
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
-                                                        <TableCell align="center">
-                                                            {topReviewLabel.karaItemName2 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={topReviewLabel.karaItemName2}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
-                                                        <TableCell align="center">
-                                                            {topReviewLabel.fitItemName2 ?<Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={topReviewLabel.fitItemName2}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        <TableContainer>
-                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {/*<TableRow>*/}
-                                                    {/*    <TableCell align="center">스타일</TableCell>*/}
-                                                    {/*    <TableCell align="center">메인 {styleReviewLabel.styleItemName ?*/}
-                                                    {/*        <Chip style={{marginRight : 10}}*/}
-                                                    {/*        variant="outlined"*/}
-                                                    {/*        label={styleReviewLabel.styleItemName}*/}
-                                                    {/*    /> : ''}*/}
-                                                    {/*        서브 {styleReviewLabel.styleSubItemName ?*/}
-                                                    {/*            <Chip style={{marginRight : 10}}*/}
-                                                    {/*                variant="outlined"*/}
-                                                    {/*                label={styleReviewLabel.styleSubItemName}*/}
-                                                    {/*            /> : ''}*/}
-                                                    {/*    </TableCell>*/}
-                                                    {/*</TableRow>*/}
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
-                                                        <TableCell align="center">
-                                                            {pantsReviewLabel.categoryItemName3 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={pantsReviewLabel.categoryItemName3}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
-                                                        <TableCell align="center"> {pantsReviewLabel.detailItemName3 ? pantsReviewLabel.detailItemName3.map((detail3) =>
-                                                            (detail3 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={detail3}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
-                                                        <TableCell align="center">{pantsReviewLabel.printItemName3 ? pantsReviewLabel.printItemName3.map((print3) =>
-                                                            (print3 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={print3}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
-                                                        <TableCell align="center">{pantsReviewLabel.textureItemName3 ? pantsReviewLabel.textureItemName3.map((texture3)=>
-                                                            (texture3 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={texture3}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
-                                                        <TableCell align="center">
-                                                            {pantsReviewLabel.clothLengthItemName3 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={pantsReviewLabel.clothLengthItemName3}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
-                                                        <TableCell align="center">
-                                                            {pantsReviewLabel.fitItemName3 ?<Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={pantsReviewLabel.fitItemName3}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        <TableContainer>
-                                            <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                        <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {/*<TableRow>*/}
-                                                    {/*    <TableCell align="center">스타일</TableCell>*/}
-                                                    {/*    <TableCell align="center">*/}
-                                                    {/*        메인 {styleReviewLabel.styleItemName ?*/}
-                                                    {/*        <Chip style={{marginRight : 10}}*/}
-                                                    {/*        variant="outlined"*/}
-                                                    {/*        label={styleReviewLabel.styleItemName}*/}
-                                                    {/*        /> : ''}*/}
-                                                    {/*        서브 {styleReviewLabel.styleSubItemName ?*/}
-                                                    {/*        <Chip style={{marginRight : 10}}*/}
-                                                    {/*                variant="outlined"*/}
-                                                    {/*                label={styleReviewLabel.styleSubItemName}*/}
-                                                    {/*        /> : ''}*/}
-                                                    {/*    </TableCell>*/}
-                                                    {/*</TableRow>*/}
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
-                                                        <TableCell align="center">
-                                                            {onePieceReviewLabel.categoryItemName4 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={onePieceReviewLabel.categoryItemName4}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
-                                                        <TableCell align="center"> {onePieceReviewLabel.detailItemName4 ? onePieceReviewLabel.detailItemName4.map((detail4) =>
-                                                            (detail4 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={detail4}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
-                                                        <TableCell align="center">{onePieceReviewLabel.printItemName4 ? onePieceReviewLabel.printItemName4.map((print4) =>
-                                                            (print4 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={print4}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
-                                                        <TableCell align="center">{onePieceReviewLabel.textureItemName4 ? onePieceReviewLabel.textureItemName4.map((texture4)=>
-                                                            (texture4 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={texture4}
-                                                            /> : '')
-                                                        ) : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
-                                                        <TableCell align="center">
-                                                            {onePieceReviewLabel.clothLengthItemName4 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={onePieceReviewLabel.clothLengthItemName4}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
-                                                        <TableCell align="center">
-                                                            {onePieceReviewLabel.neckLineItemName4 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={onePieceReviewLabel.neckLineItemName4}
-                                                            /> : '' }
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
-                                                        <TableCell align="center">
-                                                            {onePieceReviewLabel.karaItemName4 ? <Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={onePieceReviewLabel.karaItemName4}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
-                                                        <TableCell align="center">
-                                                            {onePieceReviewLabel.fitItemName4 ?<Chip style={{margin: '0 4px 0'}}
-                                                                variant="outlined"
-                                                                label={onePieceReviewLabel.fitItemName4}
-                                                            /> : ''}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </TabPanel>
-                                </Tabs>
-                                    </TabPanel>
                                     <TabPanel>
                                         <MaterialTable
                                             columns={[
@@ -1117,6 +690,443 @@ class FinalCheckList extends React.Component {
                                             }
                                         />
                                     </TabPanel>
+                                    <TabPanel>
+                                        <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab2(tabIndex2)} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'680px'}}>
+                                            <TabList className={classes.tabliststyle}>
+                                                <Tab className={classes.btnstyle}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>스타일</h3></Tab>
+                                                <Tab className={classes.btnstyle}
+                                                    disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo1 === 1 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>아우터</h3></Tab>
+                                                <Tab className={classes.btnstyle}
+                                                    disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo2 === 2 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>상의</h3></Tab>
+                                                <Tab className={classes.btnstyle}
+                                                    disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo3 === 3 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>하의</h3></Tab>
+                                                <Tab className={classes.btnstyle}
+                                                    disabled={this.props.professionalLabelStore.styleReviewLabel.labelNo4 === 4 ? false : true}><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
+                                            </TabList>
+                                            
+                                            <TabPanel>
+                                                <TableContainer>
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>스타일</TableCell>
+                                                                <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>메인 {styleReviewLabel.styleItemName ?
+                                                                    <Chip style={{margin: '0 8px 0'}}
+                                                                    variant="outlined"
+                                                                    label={styleReviewLabel.styleItemName}
+                                                                /> : ''}
+                                                                서브  {styleReviewLabel.styleSubItemName ?
+                                                                <Chip style={{margin: '0 8px 0'}}
+                                                                    variant="outlined"
+                                                                    label={styleReviewLabel.styleSubItemName}
+                                                                /> : ''}</TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <TableContainer>
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            {/*<TableRow>*/}
+                                                            {/*    <TableCell align="center">스타일</TableCell>*/}
+                                                            {/*    <TableCell align="center">메인 {styleReviewLabel.styleItemName ?*/}
+                                                            {/*        <Chip style={{marginRight : 10}}*/}
+                                                            {/*        variant="outlined"*/}
+                                                            {/*        label={styleReviewLabel.styleItemName}*/}
+                                                            {/*    /> : ''}*/}
+                                                            {/*        서브  {styleReviewLabel.styleSubItemName ?*/}
+                                                            {/*            <Chip style={{marginRight : 10}}*/}
+                                                            {/*                variant="outlined"*/}
+                                                            {/*                label={styleReviewLabel.styleSubItemName}*/}
+                                                            {/*            /> : ''}</TableCell>*/}
+                                                            {/*</TableRow>*/}
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
+                                                                <TableCell align="center">
+                                                                    {outerReviewLabel.categoryItemName1 ? <Chip style={{margin: '0 4px 0'}}
+                                                                    variant="outlined"
+                                                                    label={outerReviewLabel.categoryItemName1}
+                                                                /> : ''}
+                                                                    </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
+                                                                <TableCell align="center"> {outerReviewLabel.detailItemName1 ? outerReviewLabel.detailItemName1.map((detail1) =>
+                                                                    (detail1 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={detail1}
+                                                                    /> : '')
+                                                                    ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
+                                                                <TableCell align="center">{outerReviewLabel.printItemName1 ? outerReviewLabel.printItemName1.map((print1) =>
+                                                                    (print1 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={print1}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
+                                                                <TableCell align="center">{outerReviewLabel.textureItemName1 ? outerReviewLabel.textureItemName1.map((texture1)=>
+                                                                    (texture1 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={texture1}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
+                                                                <TableCell align="center">
+                                                                    {outerReviewLabel.clothLengthItemName1 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={outerReviewLabel.clothLengthItemName1}
+                                                                    /> : ''}
+                                                                    </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
+                                                                <TableCell align="center">
+                                                                    {outerReviewLabel.neckLineItemName1 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={outerReviewLabel.neckLineItemName1}
+                                                                    /> : '' }
+                                                                    </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
+                                                                <TableCell align="center">
+                                                                    {outerReviewLabel.karaItemName1 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={outerReviewLabel.karaItemName1}
+                                                                    /> : ''}
+                                                                    </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
+                                                                <TableCell align="center">
+                                                                    {outerReviewLabel.fitItemName1 ?<Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={outerReviewLabel.fitItemName1}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <TableContainer >
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            {/*<TableRow>*/}
+                                                            {/*    <TableCell align="center">스타일</TableCell>*/}
+                                                            {/*    <TableCell align="center">메인 {styleReviewLabel.styleItemName ?*/}
+                                                            {/*        <Chip style={{marginRight : 10}}*/}
+                                                            {/*        variant="outlined"*/}
+                                                            {/*        label={styleReviewLabel.styleItemName}*/}
+                                                            {/*    /> : ''}*/}
+                                                            {/*        서브  {styleReviewLabel.styleSubItemName ?*/}
+                                                            {/*            <Chip style={{marginRight : 10}}*/}
+                                                            {/*                variant="outlined"*/}
+                                                            {/*                label={styleReviewLabel.styleSubItemName}*/}
+                                                            {/*            /> : ''}</TableCell>*/}
+                                                            {/*</TableRow>*/}
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
+                                                                <TableCell align="center">
+                                                                    {topReviewLabel.categoryItemName2 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={topReviewLabel.categoryItemName2}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
+                                                                <TableCell align="center"> {topReviewLabel.detailItemName2 ? topReviewLabel.detailItemName2.map((detail2) =>
+                                                                    (detail2 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={detail2}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
+                                                                <TableCell align="center">{topReviewLabel.printItemName2 ? topReviewLabel.printItemName2.map((print2) =>
+                                                                    (print2 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={print2}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
+                                                                <TableCell align="center">{topReviewLabel.textureItemName2 ? topReviewLabel.textureItemName2.map((texture2)=>
+                                                                    (texture2 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={texture2}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
+                                                                <TableCell align="center">
+                                                                    {topReviewLabel.clothLengthItemName2 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={topReviewLabel.clothLengthItemName2}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
+                                                                <TableCell align="center">
+                                                                    {topReviewLabel.neckLineItemName2 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={topReviewLabel.neckLineItemName2}
+                                                                    /> : '' }
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
+                                                                <TableCell align="center">
+                                                                    {topReviewLabel.karaItemName2 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={topReviewLabel.karaItemName2}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
+                                                                <TableCell align="center">
+                                                                    {topReviewLabel.fitItemName2 ?<Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={topReviewLabel.fitItemName2}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <TableContainer>
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            {/*<TableRow>*/}
+                                                            {/*    <TableCell align="center">스타일</TableCell>*/}
+                                                            {/*    <TableCell align="center">메인 {styleReviewLabel.styleItemName ?*/}
+                                                            {/*        <Chip style={{marginRight : 10}}*/}
+                                                            {/*        variant="outlined"*/}
+                                                            {/*        label={styleReviewLabel.styleItemName}*/}
+                                                            {/*    /> : ''}*/}
+                                                            {/*        서브 {styleReviewLabel.styleSubItemName ?*/}
+                                                            {/*            <Chip style={{marginRight : 10}}*/}
+                                                            {/*                variant="outlined"*/}
+                                                            {/*                label={styleReviewLabel.styleSubItemName}*/}
+                                                            {/*            /> : ''}*/}
+                                                            {/*    </TableCell>*/}
+                                                            {/*</TableRow>*/}
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
+                                                                <TableCell align="center">
+                                                                    {pantsReviewLabel.categoryItemName3 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={pantsReviewLabel.categoryItemName3}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
+                                                                <TableCell align="center"> {pantsReviewLabel.detailItemName3 ? pantsReviewLabel.detailItemName3.map((detail3) =>
+                                                                    (detail3 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={detail3}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
+                                                                <TableCell align="center">{pantsReviewLabel.printItemName3 ? pantsReviewLabel.printItemName3.map((print3) =>
+                                                                    (print3 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={print3}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
+                                                                <TableCell align="center">{pantsReviewLabel.textureItemName3 ? pantsReviewLabel.textureItemName3.map((texture3)=>
+                                                                    (texture3 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={texture3}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
+                                                                <TableCell align="center">
+                                                                    {pantsReviewLabel.clothLengthItemName3 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={pantsReviewLabel.clothLengthItemName3}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
+                                                                <TableCell align="center">
+                                                                    {pantsReviewLabel.fitItemName3 ?<Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={pantsReviewLabel.fitItemName3}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <TableContainer>
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            {/*<TableRow>*/}
+                                                            {/*    <TableCell align="center">스타일</TableCell>*/}
+                                                            {/*    <TableCell align="center">*/}
+                                                            {/*        메인 {styleReviewLabel.styleItemName ?*/}
+                                                            {/*        <Chip style={{marginRight : 10}}*/}
+                                                            {/*        variant="outlined"*/}
+                                                            {/*        label={styleReviewLabel.styleItemName}*/}
+                                                            {/*        /> : ''}*/}
+                                                            {/*        서브 {styleReviewLabel.styleSubItemName ?*/}
+                                                            {/*        <Chip style={{marginRight : 10}}*/}
+                                                            {/*                variant="outlined"*/}
+                                                            {/*                label={styleReviewLabel.styleSubItemName}*/}
+                                                            {/*        /> : ''}*/}
+                                                            {/*    </TableCell>*/}
+                                                            {/*</TableRow>*/}
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>카테고리</TableCell>
+                                                                <TableCell align="center">
+                                                                    {onePieceReviewLabel.categoryItemName4 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={onePieceReviewLabel.categoryItemName4}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>디테일</TableCell>
+                                                                <TableCell align="center"> {onePieceReviewLabel.detailItemName4 ? onePieceReviewLabel.detailItemName4.map((detail4) =>
+                                                                    (detail4 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={detail4}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>프린트</TableCell>
+                                                                <TableCell align="center">{onePieceReviewLabel.printItemName4 ? onePieceReviewLabel.printItemName4.map((print4) =>
+                                                                    (print4 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={print4}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>소재</TableCell>
+                                                                <TableCell align="center">{onePieceReviewLabel.textureItemName4 ? onePieceReviewLabel.textureItemName4.map((texture4)=>
+                                                                    (texture4 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={texture4}
+                                                                    /> : '')
+                                                                ) : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>기장</TableCell>
+                                                                <TableCell align="center">
+                                                                    {onePieceReviewLabel.clothLengthItemName4 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={onePieceReviewLabel.clothLengthItemName4}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>넥라인</TableCell>
+                                                                <TableCell align="center">
+                                                                    {onePieceReviewLabel.neckLineItemName4 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={onePieceReviewLabel.neckLineItemName4}
+                                                                    /> : '' }
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>칼라(카라)</TableCell>
+                                                                <TableCell align="center">
+                                                                    {onePieceReviewLabel.karaItemName4 ? <Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={onePieceReviewLabel.karaItemName4}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>핏</TableCell>
+                                                                <TableCell align="center">
+                                                                    {onePieceReviewLabel.fitItemName4 ?<Chip style={{margin: '0 4px 0'}}
+                                                                        variant="outlined"
+                                                                        label={onePieceReviewLabel.fitItemName4}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                        </Tabs>
+                                    </TabPanel>
+                                    
                                 </Tabs>
                             </div>
                         </Grid>

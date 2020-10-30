@@ -22,6 +22,7 @@ import IdCompleteSearch from "./views/kSearching/SinupSearch/NewSign/IdCompleteS
 import PwFindSearch from "./views/kSearching/SinupSearch/NewSign/PwFindSearch";
 import PwCompleteSearch from "./views/kSearching/SinupSearch/NewSign/PwCompleteSearch";
 
+import TrendSearchByTextForScroll from "./views/kSearching/MainSearch/TrendSearchByTextForScroll";
 
 const style = () => ({
     root: {
@@ -67,6 +68,7 @@ class AppKsearching extends React.Component {
             if((error.response) && (error.response.status === 403)) {
                 this.props.sAuthStore.invalidateLogin();
             }
+
             return Promise.reject(error);
         };
 
@@ -82,8 +84,8 @@ class AppKsearching extends React.Component {
     }
 
     render() {
-        const { loginState, loginUser} = this.props.sAuthStore;
 
+        const { loginState, loginUser} = this.props.sAuthStore;
         return (
             <div className="App">
                 <Router>
@@ -103,6 +105,8 @@ class AppKsearching extends React.Component {
                                     <Route exact path="/searching" component={MainContentSearch}/>
                                     <Route exact path="/searching/text" component={TrendSearchByText}/>
                                     <Route exact path="/searching/image" component={TrendSearchByImage}/>
+                                    <Route exact path="/searching/scrolltext" component={TrendSearchByTextForScroll} />
+
                                 </Switch>
                             </React.Fragment>
                         ) : (

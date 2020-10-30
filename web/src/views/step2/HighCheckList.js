@@ -211,8 +211,8 @@ class HighCheckList extends React.Component {
             labelNo4 : 0,
 
             polyInfo : [],
-
-            tabIndex1: 1,
+            // tabIndex1: 1,
+            tabIndex1: 0,
             tabIndex2:0,
             createdId: '',
             imgData:'',
@@ -266,7 +266,8 @@ class HighCheckList extends React.Component {
         const polyNo = polyInfo[0]-1;
         this.onSelectTab1(polyNo);
         this.setState({ polyInfo : polyInfo, workNo : workNo,
-            tabIndex1 : 0, tabIndex2 : polyNo});
+            // tabIndex1 : 0, tabIndex2 : polyNo});
+            tabIndex1 : 1, tabIndex2 : polyNo});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${this.state.workNo}`, this.canvas.renderAll.bind(this.canvas), {
             width: this.canvas.width,
             height: this.canvas.height,
@@ -296,7 +297,8 @@ class HighCheckList extends React.Component {
     onSelectTab(tabIndex1) {
         if(this.state.workNo !== 0) {
             this.setState({tabIndex1:tabIndex1})
-            if (tabIndex1 === 0) {
+            // if (tabIndex1 === 0) {
+            if (tabIndex1 === 1) {
                 this.props.checkHighLabelStore.changeNewBasicLabelWorkNo(this.state.workNo);
             } else {
                 this.setState({
@@ -424,7 +426,8 @@ class HighCheckList extends React.Component {
         this.canvas.setHeight(0);
         this.props.checkHighLabelStore.selectedItemReset();
         this.setState({
-            tabIndex1:1
+            // tabIndex1:1
+            tabIndex1:0
         })
 
     }
@@ -496,277 +499,275 @@ class HighCheckList extends React.Component {
                             <div component={Paper}>
                                 <Tabs selectedIndex={this.state.tabIndex1} onSelect={tabIndex1 => this.onSelectTab(tabIndex1)}>
                                     <TabList >
-                                        <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center'}}><h3>레이블링</h3></Tab>
-                                        <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center'}}><h3>이미지 리스트</h3></Tab>
+                                        {/* <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center',borderRadius:0}}><h3>레이블링</h3></Tab>
+                                        <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center',borderRadius:0}}><h3>이미지 리스트</h3></Tab> */}
+
+                                        <Tab tabIndex={0} style={{width: '50%', height:50,textAlign:'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>이미지 리스트</h3></Tab>
+                                        <Tab tabIndex={1} style={{width: '50%', height:50,textAlign:'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>레이블링</h3></Tab>
+                                        
                                     </TabList>
-
                                     <TabPanel>
-                                    <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab1(tabIndex2)} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'500px'}}>
-                                        <TabList className={classes.tabliststyle}>
-                                            <Tab className={classes.btnstyle}
-                                                  disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 1)))}
-                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>아우터</h3></Tab>
-                                            <Tab className={classes.btnstyle}
-                                                  disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 2)))}
-                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>상의</h3></Tab>
-                                            <Tab className={classes.btnstyle}
-                                                  disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 3)))}
-                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>하의</h3></Tab>
-                                            <Tab className={classes.btnstyle}
-                                                  disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 4)))}
-                                            ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
-                                        </TabList>
-                                        <TabPanel>
-                                        <TableContainer >
+                                        <MaterialTable
+                                            columns={[
+                                            
+                                                {title: '번호', field: 'workNo', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
+                                                {title: '사진', field: 'fileName', render : rowData =>{
+                                                        return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
+                                                                                            onDoubleClick={() => this.props.imageStore.onImageDoubleClick({title: '', image: rowData.fileName} )} />
+                                                            : ''
+                                                    }},
+                                                        // <img alt={""} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
+                                                {title: '이름', field: 'workName', filterPlaceholder: 'GroupNo filter',},
+                                                {title: '등록자', field: 'createdId', initialEditValue: 'test', tooltip: 'This is tooltip text'},
+                                                {title: '생성일', field: 'createdDatetime', type: 'date'},
+                                                {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
+                                                checked={this.props.checkHighLabelStore.selectedItem.length ===
+                                                this.props.messageStore.inspectionHighList.length ? true : false} style={{color:'#ffffff'}}>
+                                                </Checkbox>,
+                                                render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo)} checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
+                                            ]}
+                                            data={totalCount > 0 ?inspectionHighList.map((item) => {
+                                                    return {
+                                                        workNo: item.workNo,
+                                                        fileName: item.fileName,
+                                                        workName: item.workName,
+                                                        createdId : item.createdId,
+                                                        createdDatetime:  <Moment format="MM-DD">{item.createdDatetime}</Moment>,
+                                                    }
+                                                }) : []}
+                                            title=""
+                                            options={{
+                                                sorting: false,
+                                                search: true,
+                                                // actionsColumnIndex: -1,
+                                                headerStyle: {
+                                                    backgroundColor: '#000000',
+                                                    color: '#ffffff',
+                                                    textAlign:'center',
+                                                    padding : 5,
+                                                    fontFamily: 'NotoSansCJKkr',
+                                                    fontSize:'15px',
+                                                },
+                                                cellStyle: {
+                                                    textAlign: 'center',
+                                                    padding : 3,
+                                                    fontFamily: 'Roboto',
+                                                    fontSize:'13px',
+                                                },
+                                                actionsCellStyle:{
+                                                    paddingLeft:18
+                                                },
+                                                pageSize : this.props.messageStore.pageSize,
+                                                pageSizeOptions : [5,10,25,50],
+                                            }}
+                                            // onRowClick={this.handleRowClick}
+                                            onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
+                                            onSearchChange={this.handleSearchChange}
+                                            components={{
+                                                Pagination: props => (
+                                                    <TablePagination
+                                                        {...props}
+                                                        component="div"
+                                                        count={this.props.messageStore.totalCount}
+                                                        rowsPerPage={this.props.messageStore.pageSize}
+                                                        page={this.props.messageStore.page}
+                                                        onChangePage={this.handleChangePagingPage}
+                                                    />
+                                                )
+                                            }}
+                                            localization={{header: { actions: '선택' } }}
+                                            actions={[
+                                                {
+                                                    icon: CheckIcon,
+                                                    tooltip: 'Select Image',
+                                                    onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
+                                                },
 
-                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                                <TableRow>
-                                                    <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
-                                                    <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
-                                                        메인 {outerReviewHighLabel.colorItemName1 ?
-                                                            <Chip style={{margin: '0 8px 0', backgroundColor: outerReviewHighLabel.colorItemMemo1,
-                                                                ...( outerReviewHighLabel.colorItemMemo1 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
-                                                                fontWeight: 'bold'}}
-                                                                  variant="outlined"
-                                                                  label={outerReviewHighLabel.colorItemName1}
-                                                            /> : ''}
-                                                        서브 {outerReviewHighLabel.subColorItemName1 ?
-                                                            <Chip style={{margin: '0 8px 0',backgroundColor: outerReviewHighLabel.subColorItemMemo1,
-                                                                ...( outerReviewHighLabel.subColorItemMemo1 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
-                                                                fontWeight: 'bold'}}
-                                                                  variant="outlined"
-                                                                  label={outerReviewHighLabel.subColorItemName1}
-                                                            /> : ''}
-                                                    </TableCell>
-                                                </TableRow>
-                                            <TableRow>
-                                                <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
-                                                <TableCell align="center">
-                                                    {outerReviewHighLabel.sleeveLengthItemName1 ?
-                                                        <Chip style={{margin: '0 4px 0'}}
-                                                              variant="outlined"
-                                                              label={outerReviewHighLabel.sleeveLengthItemName1}
-                                                    /> : ''}
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                                    </TabPanel>
-
-                                        <TabPanel>
-                                            <TableContainer >
-
-                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                    <TableHead>
-                                                        <TableRow>
-                                                            <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                            <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                                        </TableRow>
-                                                    </TableHead>
-                                                    <TableBody>
-                                                        <TableRow>
-                                                            <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
-                                                            <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
-                                                                메인 {topReviewHighLabel.colorItemName2 ?
-                                                                <Chip style={{margin: '0 8px 0', backgroundColor: topReviewHighLabel.colorItemMemo2,
-                                                                    ...( topReviewHighLabel.colorItemMemo2 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
-                                                                    fontWeight: 'bold'}}
-                                                                      variant="outlined"
-                                                                      label={topReviewHighLabel.colorItemName2}
-                                                                /> : ''}
-                                                                서브 {topReviewHighLabel.subColorItemName2 ?
-                                                                <Chip style={{margin: '0 8px 0',backgroundColor: topReviewHighLabel.subColorItemMemo2,
-                                                                    ...( topReviewHighLabel.subColorItemMemo2 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
-                                                                    fontWeight: 'bold'}}
-                                                                      variant="outlined"
-                                                                      label={topReviewHighLabel.subColorItemName2}
-                                                                /> : ''}
-                                                            </TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
-                                                            <TableCell align="center">
-                                                                {topReviewHighLabel.sleeveLengthItemName2 ?
-                                                                    <Chip style={{margin: '0 4px 0'}}
-                                                                          variant="outlined"
-                                                                          label={topReviewHighLabel.sleeveLengthItemName2}
-                                                                    /> : ''}
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    </TableBody>
-                                                </Table>
-                                            </TableContainer>
-                                        </TabPanel>
-                                        <TabPanel>
-                                            <TableContainer>
-
-                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                    <TableHead>
-                                                        <TableRow>
-                                                            <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                            <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                                        </TableRow>
-                                                    </TableHead>
-                                                    <TableBody>
-                                                        <TableRow>
-                                                            <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
-                                                            <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
-                                                                메인 {pantsReviewHighLabel.colorItemName3 ?
-                                                                <Chip style={{margin: '0 8px 0', backgroundColor: pantsReviewHighLabel.colorItemMemo3,
-                                                                    ...( pantsReviewHighLabel.colorItemMemo3 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
-                                                                    fontWeight: 'bold'}}
-                                                                      variant="outlined"
-                                                                      label={pantsReviewHighLabel.colorItemName3}
-                                                                /> : ''}
-                                                                서브 {pantsReviewHighLabel.subColorItemName3 ?
-                                                                <Chip style={{margin: '0 8px 0',backgroundColor: pantsReviewHighLabel.subColorItemMemo3,
-                                                                    ...( pantsReviewHighLabel.subColorItemMemo3 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
-                                                                    fontWeight: 'bold'}}
-                                                                      variant="outlined"
-                                                                      label={pantsReviewHighLabel.subColorItemName3}
-                                                                /> : ''}
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    </TableBody>
-                                                </Table>
-                                            </TableContainer>
-
-                                        </TabPanel>
-                                        <TabPanel>
-                                            <TableContainer>
-
-                                                <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
-                                                    <TableHead>
-                                                        <TableRow>
-                                                            <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
-                                                            <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
-                                                        </TableRow>
-                                                    </TableHead>
-                                                    <TableBody>
-                                                        <TableRow>
-                                                            <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
-                                                            <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
-                                                                메인 {onePieceReviewHighLabel.colorItemName4 ?
-                                                                <Chip style={{margin: '0 8px 0', backgroundColor: onePieceReviewHighLabel.colorItemMemo4,
-                                                                    ...( onePieceReviewHighLabel.colorItemMemo4 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
-                                                                    fontWeight: 'bold'}}
-                                                                      variant="outlined"
-                                                                      label={onePieceReviewHighLabel.colorItemName4}
-                                                                /> : ''}
-                                                                서브 {onePieceReviewHighLabel.subColorItemName4 ?
-                                                                <Chip style={{margin: '0 8px 0',backgroundColor: onePieceReviewHighLabel.subColorItemMemo4,
-                                                                    ...( onePieceReviewHighLabel.subColorItemMemo4 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
-                                                                    fontWeight: 'bold'}}
-                                                                      variant="outlined"
-                                                                      label={onePieceReviewHighLabel.subColorItemName4}
-                                                                /> : ''}
-                                                            </TableCell>
-                                                        </TableRow>
-                                                        <TableRow>
-                                                            <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
-                                                            <TableCell align="center">{onePieceReviewHighLabel.sleeveLengthItemName4}</TableCell>
-                                                        </TableRow>
-                                                    </TableBody>
-                                                </Table>
-                                            </TableContainer>
-
-                                        </TabPanel>
-                                    </Tabs>
-                                    </TabPanel>
-
-                        <TabPanel>
-                            <MaterialTable
-                                columns={[
-                                   
-                                    {title: '번호', field: 'workNo', filterPlaceholder: 'GroupNo filter', tooltip: 'workNo로 정렬'},
-                                    {title: '사진', field: 'fileName', render : rowData =>{
-                                            return rowData.fileName !== null? <img alt="" src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}
-                                                                                   onDoubleClick={() => this.props.imageStore.onImageDoubleClick({title: '', image: rowData.fileName} )} />
-                                                : ''
-                                        }},
-                                            // <img alt={""} src={rowData.fileName} style={{width: 80, height:80, borderRadius:10}}/> },
-                                    {title: '이름', field: 'workName', filterPlaceholder: 'GroupNo filter',},
-                                    {title: '등록자', field: 'createdId', initialEditValue: 'test', tooltip: 'This is tooltip text'},
-                                    {title: '생성일', field: 'createdDatetime', type: 'date'},
-                                    {title: <Checkbox onClick={this.allToggle.bind(this)} variant="outlined"
-                                    checked={this.props.checkHighLabelStore.selectedItem.length ===
-                                    this.props.messageStore.inspectionHighList.length ? true : false} style={{color:'#ffffff'}}>
-                                    </Checkbox>,
-                                    render : rowData => <Checkbox onChange={this.handleRowClick.bind(this, rowData.workNo)} checked={this.props.checkHighLabelStore.selectedItem.includes(rowData.workNo)} style={{color:'#000000'}}></Checkbox>},
-                                ]}
-                                data={totalCount > 0 ?inspectionHighList.map((item) => {
-                                        return {
-                                            workNo: item.workNo,
-                                            fileName: item.fileName,
-                                            workName: item.workName,
-                                            createdId : item.createdId,
-                                            createdDatetime:  <Moment format="MM-DD">{item.createdDatetime}</Moment>,
-                                        }
-                                    }) : []}
-                                title=""
-                                options={{
-                                    sorting: false,
-                                    search: true,
-                                    // actionsColumnIndex: -1,
-                                    headerStyle: {
-                                        backgroundColor: '#000000',
-                                        color: '#ffffff',
-                                        textAlign:'center',
-                                        padding : 5,
-                                        fontFamily: 'NotoSansCJKkr',
-                                        fontSize:'15px',
-                                    },
-                                    cellStyle: {
-                                        textAlign: 'center',
-                                        padding : 3,
-                                        fontFamily: 'Roboto',
-                                        fontSize:'13px',
-                                    },
-                                    actionsCellStyle:{
-                                        paddingLeft:18
-                                    },
-                                    pageSize : this.props.messageStore.pageSize,
-                                    pageSizeOptions : [5,10,25,50],
-                                }}
-                                // onRowClick={this.handleRowClick}
-                                onChangeRowsPerPage={this.handleChangePagingRowsPerPage}
-                                onSearchChange={this.handleSearchChange}
-                                components={{
-                                    Pagination: props => (
-                                        <TablePagination
-                                            {...props}
-                                            component="div"
-                                            count={this.props.messageStore.totalCount}
-                                            rowsPerPage={this.props.messageStore.pageSize}
-                                            page={this.props.messageStore.page}
-                                            onChangePage={this.handleChangePagingPage}
+                                                // {
+                                                //     icon: Clear,
+                                                //     tooltip: 'return',
+                                                //     onClick: (event, rowData) => this.props.checkHighLabelStore.msgDialogOpen(true)
+                                                // }
+                                            ]}
                                         />
-                                    )
-                                }}
-                                localization={{header: { actions: '선택' } }}
-                                actions={[
-                                    {
-                                        icon: CheckIcon,
-                                        tooltip: 'Select Image',
-                                        onClick: (event, rowData) => this.handleClick(rowData.workNo, "/api/v1/kfashion/img/getByteImage?workNo="+rowData.workNo)
-                                    },
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <Tabs selectedIndex={this.state.tabIndex2} onSelect={tabIndex2 => this.onSelectTab1(tabIndex2)} style={{boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.45)',background:'#fff',height:'500px'}}>
+                                            <TabList className={classes.tabliststyle}>
+                                                <Tab className={classes.btnstyle}
+                                                    disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 1)))}
+                                                ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>아우터</h3></Tab>
+                                                <Tab className={classes.btnstyle}
+                                                    disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 2)))}
+                                                ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>상의</h3></Tab>
+                                                <Tab className={classes.btnstyle}
+                                                    disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 3)))}
+                                                ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>하의</h3></Tab>
+                                                <Tab className={classes.btnstyle}
+                                                    disabled={"" === String(this.state.polyInfo.filter((poly=> poly === 4)))}
+                                                ><h3 style={{fontFamily: 'NotoSansCJKkr',fontSize: '15px',fontWeight: '500'}}>원피스</h3></Tab>
+                                            </TabList>
+                                            <TabPanel>
+                                                <TableContainer >
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                                <TableRow>
+                                                                    <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
+                                                                    <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
+                                                                        메인 {outerReviewHighLabel.colorItemName1 ?
+                                                                            <Chip style={{margin: '0 8px 0', backgroundColor: outerReviewHighLabel.colorItemMemo1,
+                                                                                ...( outerReviewHighLabel.colorItemMemo1 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
+                                                                                fontWeight: 'bold'}}
+                                                                                variant="outlined"
+                                                                                label={outerReviewHighLabel.colorItemName1}
+                                                                            /> : ''}
+                                                                        서브 {outerReviewHighLabel.subColorItemName1 ?
+                                                                            <Chip style={{margin: '0 8px 0',backgroundColor: outerReviewHighLabel.subColorItemMemo1,
+                                                                                ...( outerReviewHighLabel.subColorItemMemo1 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
+                                                                                fontWeight: 'bold'}}
+                                                                                variant="outlined"
+                                                                                label={outerReviewHighLabel.subColorItemName1}
+                                                                            /> : ''}
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
+                                                                <TableCell align="center">
+                                                                    {outerReviewHighLabel.sleeveLengthItemName1 ?
+                                                                        <Chip style={{margin: '0 4px 0'}}
+                                                                            variant="outlined"
+                                                                            label={outerReviewHighLabel.sleeveLengthItemName1}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <TableContainer >
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
+                                                                <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
+                                                                    메인 {topReviewHighLabel.colorItemName2 ?
+                                                                    <Chip style={{margin: '0 8px 0', backgroundColor: topReviewHighLabel.colorItemMemo2,
+                                                                        ...( topReviewHighLabel.colorItemMemo2 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
+                                                                        fontWeight: 'bold'}}
+                                                                        variant="outlined"
+                                                                        label={topReviewHighLabel.colorItemName2}
+                                                                    /> : ''}
+                                                                    서브 {topReviewHighLabel.subColorItemName2 ?
+                                                                    <Chip style={{margin: '0 8px 0',backgroundColor: topReviewHighLabel.subColorItemMemo2,
+                                                                        ...( topReviewHighLabel.subColorItemMemo2 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
+                                                                        fontWeight: 'bold'}}
+                                                                        variant="outlined"
+                                                                        label={topReviewHighLabel.subColorItemName2}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
+                                                                <TableCell align="center">
+                                                                    {topReviewHighLabel.sleeveLengthItemName2 ?
+                                                                        <Chip style={{margin: '0 4px 0'}}
+                                                                            variant="outlined"
+                                                                            label={topReviewHighLabel.sleeveLengthItemName2}
+                                                                        /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <TableContainer>
 
-                                    // {
-                                    //     icon: Clear,
-                                    //     tooltip: 'return',
-                                    //     onClick: (event, rowData) => this.props.checkHighLabelStore.msgDialogOpen(true)
-                                    // }
-                                ]}
-                            />
-                        </TabPanel>
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
+                                                                <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
+                                                                    메인 {pantsReviewHighLabel.colorItemName3 ?
+                                                                    <Chip style={{margin: '0 8px 0', backgroundColor: pantsReviewHighLabel.colorItemMemo3,
+                                                                        ...( pantsReviewHighLabel.colorItemMemo3 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
+                                                                        fontWeight: 'bold'}}
+                                                                        variant="outlined"
+                                                                        label={pantsReviewHighLabel.colorItemName3}
+                                                                    /> : ''}
+                                                                    서브 {pantsReviewHighLabel.subColorItemName3 ?
+                                                                    <Chip style={{margin: '0 8px 0',backgroundColor: pantsReviewHighLabel.subColorItemMemo3,
+                                                                        ...( pantsReviewHighLabel.subColorItemMemo3 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
+                                                                        fontWeight: 'bold'}}
+                                                                        variant="outlined"
+                                                                        label={pantsReviewHighLabel.subColorItemName3}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <TableContainer>
+                                                    <Table className={classes.table} aria-label="simple table" tabIndex={this.state.tabIndex}>
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>항목</TableCell>
+                                                                <TableCell align="center" className={classes.tabletxt} style={{color:'#000'}}>레이블링</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>색상</TableCell>
+                                                                <TableCell align="center" style={{color:'#000',fontFamily: 'NotoSansCJKkr',fontSize:'15px'}}>
+                                                                    메인 {onePieceReviewHighLabel.colorItemName4 ?
+                                                                    <Chip style={{margin: '0 8px 0', backgroundColor: onePieceReviewHighLabel.colorItemMemo4,
+                                                                        ...( onePieceReviewHighLabel.colorItemMemo4 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
+                                                                        fontWeight: 'bold'}}
+                                                                        variant="outlined"
+                                                                        label={onePieceReviewHighLabel.colorItemName4}
+                                                                    /> : ''}
+                                                                    서브 {onePieceReviewHighLabel.subColorItemName4 ?
+                                                                    <Chip style={{margin: '0 8px 0',backgroundColor: onePieceReviewHighLabel.subColorItemMemo4,
+                                                                        ...( onePieceReviewHighLabel.subColorItemMemo4 === '#FFFFFF' ? {color:'#000000'} : {color: '#FFFFFF'}),
+                                                                        fontWeight: 'bold'}}
+                                                                        variant="outlined"
+                                                                        label={onePieceReviewHighLabel.subColorItemName4}
+                                                                    /> : ''}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell align="center" className={classes.tabletxt}>소매길이</TableCell>
+                                                                <TableCell align="center">{onePieceReviewHighLabel.sleeveLengthItemName4}</TableCell>
+                                                            </TableRow>
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </TabPanel>
+                                        </Tabs>
+                                    </TabPanel>
+
+                        
                                 </Tabs>
                             </div>
                         </Grid>

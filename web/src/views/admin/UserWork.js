@@ -136,7 +136,7 @@ class UserWork extends React.Component {
                             columns={[
                                 {title: '아이디',field: 'id',cellStyle: {minWidth: 150,textAlign: 'center'}},
                                 {title: '이름', field: 'name', type: 'text', cellStyle: {minWidth:100,textAlign: 'center'}},
-                                {title: '작업진도', field: 'progress', cellStyle: {minWidth:500,textAlign: 'center', paddingLeft:20},
+                                {title: '작업진도', field: 'progress', cellStyle: {minWidth:500,textAlign: 'left', paddingLeft:20},
                                     render: rowData => <ProgressBar rowDataId={rowData.id}/>,},
                                 {title: '작업지정', field: 'workDetail',cellStyle: {minWidth:100,textAlign: 'center'},
                                     render: rowData => <WorkDetail rowDataId={rowData.id}/>},

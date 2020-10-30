@@ -5,11 +5,16 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextSearch  from './TextSearch ';
+import ImageSearch  from './ImageSearch';
 import SearchImage from './ImageListSearch';
 import ScrollToTop from "react-scroll-to-top";
 
+import TextSearchForScroll from "./TextSearchForScroll ";
+import SearchImageListForScroll from './_ImageListSearch';
+
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
 import SaveAltRoundedIcon from '@material-ui/icons/SaveAltRounded';
+import {inject, observer} from "mobx-react";
 
 const style = theme => ({
     root: {
@@ -78,10 +83,13 @@ const style = theme => ({
     },   
 });
 
-class TrendSearchByText extends Component{
+@inject("sTextSearchStore")
+@observer
+class TrendSearchByTextForScroll extends Component{
       
     render() {
         const { classes } = this.props;
+        const {imageTotalCount} = this.props.sTextSearchStore;
 
         return (
             <div className={classes.root}>
@@ -89,17 +97,18 @@ class TrendSearchByText extends Component{
                 <Container minwidth="xl">
                     
                     <Paper elevation={0} component="form">
-                        <TextSearch  />
+                        <TextSearchForScroll  />
                         {/* <ImageSearch /> */}
                         <Paper elevation={0} className={classes.txtresultbox}>
                         <hr className={classes.txtline} />
-                        <Typography className={classes.txtresult}>검색 결과</Typography>
+                        <Typography className={classes.txtresult}>검색 결과 스크롤</Typography>
                         <hr className={classes.txtline} /> 
                         </Paper>
-                        {/*<Paper elevation={0} className={classes.btnmorebox}>*/}
-                        {/*    <Button variant="outlined" className={classes.btnmore}>이미지 더보기 <ArrowForwardRoundedIcon /></Button>  */}
-                        {/*</Paper>*/}
-                        <SearchImage />
+                        <Paper elevation={0} className={classes.btnmorebox}>
+                            {/*<Button variant="outlined" className={classes.btnmore}>이미지 더보기 <ArrowForwardRoundedIcon /></Button>  */}
+                            <Typography>Total : {imageTotalCount}</Typography>
+                        </Paper>
+                        <SearchImageListForScroll />
                         <Button variant="contained" startIcon={<SaveAltRoundedIcon />} className={classes.btnsend}> 검색된 이미지 저장</Button>
                     </Paper>
                 </Container>
@@ -109,4 +118,4 @@ class TrendSearchByText extends Component{
   
 }
 
-export default withStyles(style)(TrendSearchByText);
+export default withStyles(style)(TrendSearchByTextForScroll);

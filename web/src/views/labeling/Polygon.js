@@ -151,7 +151,8 @@ class Polygon extends React.Component {
         buttonDis5 : true,
         buttonDis6 : true,
         buttonDis7 : true,
-        tabIndex: 1,
+        // tabIndex: 1,
+        tabIndex: 0,
         listIndex:0,
         canvasWidth:0,
         canvasHeight : 0,
@@ -258,7 +259,8 @@ class Polygon extends React.Component {
         // this.canvas = canvas;
 
         document.addEventListener('keyup', eventKey => {
-            if(this.state.workNo === 0 || this.state.tabIndex === 1){
+            // if(this.state.workNo === 0 || this.state.tabIndex === 1){
+            if(this.state.workNo === 0 || this.state.tabIndex === 0){
                 eventKey.preventDefault();
             }else {
                 if (this.state.eventKey1 === false || this.state.eventKey2 === false || this.state.eventKey3 === false || this.state.eventKey4 === false) {
@@ -850,7 +852,8 @@ class Polygon extends React.Component {
                     this.buttonState();
                     // -- Tap Menu List로 전환
                     this.setState({
-                        tabIndex: 1,
+                        // tabIndex: 1,
+                        tabIndex: 0,
                         workNo: 0,
                         tableSize : 6
                     });
@@ -983,7 +986,8 @@ class Polygon extends React.Component {
             this.save4 = false;
         }
         this.buttonState();
-        this.setState({tabIndex: 0, workNo: workNo});
+        // this.setState({tabIndex: 0, workNo: workNo});
+        this.setState({tabIndex: 1, workNo: workNo});
         this.canvas.setBackgroundImage(`/api/v1/kfashion/img/getByteImage?workNo=${workNo}`, this.canvas.renderAll.bind(this.canvas), {
             top: 0,
             left: 0,
@@ -1026,7 +1030,8 @@ class Polygon extends React.Component {
 
     onSelectTap = (tabIndex) => {
         if(this.state.workNo !== 0 ){
-            if(tabIndex === 1) {
+            // if(tabIndex === 1) {
+            if(tabIndex === 0) {
                 this.setState({
                     selected : [],
                     workNo : 0,
@@ -1054,6 +1059,7 @@ class Polygon extends React.Component {
             const selected =toJS(this.props.rectStore.selectedItem);
                     this.props.rectStore.deleteImg(selected,createdId);
             this.setState({
+                // tabIndex : 1,
                 tabIndex : 1,
             })
         }
@@ -1097,13 +1103,18 @@ class Polygon extends React.Component {
                         <Grid item xs={12} lg={this.state.tableSize} xl={this.state.tableSize} style={{marginLeft:"auto", zoom:"100%" }} >
                             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.onSelectTap( tabIndex )} >
                                 <TabList>
-                                    
-                                    <Tab tabIndex={0} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3>영역지정</h3></Tab>
-                                    <Tab tabIndex={1} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3>이미지 리스트 ( <b style={{color:"#1e8247"}}>{this.props.rectStore.complete}</b> / <b>{this.props.rectStore.total}</b> )</h3></Tab>
-                                    
-                                </TabList>
+                                    {/* <Tab tabIndex={0} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3>영역지정</h3></Tab>
+                                    <Tab tabIndex={1} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3>이미지 리스트 ( <b style={{color:"#1e8247"}}>{this.props.rectStore.complete}</b> / <b>{this.props.rectStore.total}</b> )</h3></Tab> */}
 
-                                <TabPanel value={this.state.value} index={0} stylye={{borderRadius:0}}>
+                                    <Tab tabIndex={0} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>이미지 리스트 ( <b style={{color:"#1e8247"}}>{this.props.rectStore.complete}</b> / <b>{this.props.rectStore.total}</b> )</h3></Tab>
+                                    <Tab tabIndex={1} style={{width: '50%', height:55,textAlign:'center',borderRadius:0}}><h3 style={{fontFamily:'NotoSansCJKkr',fontSize:'19px',marginTop:7}}>영역지정</h3></Tab>
+                                </TabList>
+                                {/* <TabPanel value={this.state.value} index={1} > */}
+                                <TabPanel value={this.state.value} index={0} >
+                                    <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image)}/>
+                                </TabPanel>  
+                                {/* <TabPanel value={this.state.value} index={0} stylye={{borderRadius:0}}> */}
+                                <TabPanel value={this.state.value} index={1} stylye={{borderRadius:0}}>
                                     <Table >
                                         <TableHead>
                                             <TableRow>
@@ -1500,9 +1511,7 @@ class Polygon extends React.Component {
                                         </div>
                                     </div>
                                 </TabPanel>
-                                <TabPanel value={this.state.value} index={1} >
-                                    <PolygonList onClick={this.handleClickItem} onChange={this.handleListChange} onImageDoubleClick={image => this.props.imageStore.onImageDoubleClick(image)}/>
-                                </TabPanel>
+                                
                             </Tabs>
                         </Grid>
 
