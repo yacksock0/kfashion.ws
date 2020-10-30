@@ -1,113 +1,129 @@
-
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
-
+import {inject, observer} from "mobx-react";
 
 
 const style = theme => ({
     root: {
-        textAlign:'center',
-        
-        "& .MuiOutlinedInput-root":{
-            borderRadius:0,
+        textAlign: 'center',
+
+        "& .MuiOutlinedInput-root": {
+            borderRadius: 0,
             marginTop: theme.spacing(1),
         },
-        "& .MuiOutlinedInput-input":{
-            padding:10,
-        }, 
-        
+        "& .MuiOutlinedInput-input": {
+            padding: 10,
+        },
+
     },
     paper: {
-        width:'400px',
-        margin:'0 auto',
+        width: '400px',
+        margin: '0 auto',
     },
     titletext: {
-        fontFamily:'NotoSansCJKkr',
-        fontSize:'40px',
-        fontWeight:'bold',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '40px',
+        fontWeight: 'bold',
         borderBottom: 'solid 4px #38a67e',
         paddingBottom: 10,
-        margin:'0 auto 15px',
+        margin: '0 auto 15px',
     },
     txtstyle1: {
-        fontFamily:'NotoSansCJKkr',
-        fontSize:'17px',
-        fontWeight:'bold',
-        margin:'24px 0 20px 0',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '17px',
+        fontWeight: 'bold',
+        margin: '24px 0 20px 0',
         lineHeight: '1.2',
     },
     completebox: {
-        width:'100%',
-        height:'78px',
-        background:'#f2f2f2',
-        display:'flex',
-        flexWrap:'wrap',
-        justifyContent:'center',
-        paddingTop:25,
-        boxSizing:'border-box',
-        
+        width: '100%',
+        height: '78px',
+        background: '#f2f2f2',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        paddingTop: 25,
+        boxSizing: 'border-box',
+
     },
-    idtext:{
-        fontFamily:'NotoSansCJKkr',
-        fontSize:'15px',
-        fontWeight:'700',
+    idtext: {
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '15px',
+        fontWeight: '700',
     },
     yeartext: {
-        fontFamily:'NotoSansCJKkr',
-        fontSize:'12px',
-        fontWeight:'600',
-        color:'#38a67e',
-        paddingTop:3,
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '12px',
+        fontWeight: '600',
+        color: '#38a67e',
+        paddingTop: 3,
     },
     btnjoinstyle: {
-        fontFamily:'NotoSansCJKkr',
-        fontSize:'17px',
-        fontWeight:'500',
-        width:'100%',
-        boxShadow:'none',
-        marginTop:27,
-        background:'#38a67e',
-        color:'#fff',
-        borderRadius:0,
-        padding:'10px 0',
+        fontFamily: 'NotoSansCJKkr',
+        fontSize: '17px',
+        fontWeight: '500',
+        width: '100%',
+        boxShadow: 'none',
+        marginTop: 27,
+        background: '#38a67e',
+        color: '#fff',
+        borderRadius: 0,
+        padding: '10px 0',
 
         "&:hover": {
-            background:'#38a67e',
-            color:'#fff',
-            borderRadius:0, 
-            boxShadow:'none',
+            background: '#38a67e',
+            color: '#fff',
+            borderRadius: 0,
+            boxShadow: 'none',
         },
     },
 });
 
+@inject('sSignUpStore')
+@observer
+class IdCompleteSearch extends Component {
 
-class IdCompleteSearch extends Component{
+    componentWillUnmount() {
+        this.props.sSignUpStore.initialize();
+    }
+
+    handleClickHome = () => {
+        this.props.history.push("/searching");
+    }
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
+        const {member} = this.props.sSignUpStore;
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
                         <Typography className={classes.titletext}>아이디 찾기</Typography>
                         <Typography className={classes.txtstyle1}>회원님의 아이디 찾기가 완료되었습니다.</Typography>
-                        
-                        <Paper elevation={0} className={classes.completebox}>
-                            <Typography className={classes.idtext}>admin1234</Typography>
-                            <Typography className={classes.yeartext}>(2020년 10월 2일)</Typography>
-                        </Paper>
-                        
+
+                        {member.id === undefined || member.id === "" ? (
+                            <Paper elevation={0} className={classes.completebox}>
+                                <Typography className={classes.idtext}>찾으시는 정보의 아이디가 없습니다.</Typography>
+                            </Paper>
+                        ) : (
+                            <Paper elevation={0} className={classes.completebox}>
+                                <Typography className={classes.idtext}>{member.id}</Typography>
+                                <Typography className={classes.yeartext}>({member.createdDatetime})</Typography>
+                            </Paper>
+                        )}
                         <Paper elevation={0}>
-                            <Button variant="contained" className={classes.btnjoinstyle}>로그인</Button>
-                        </Paper> 
+                            <Button variant="contained"
+                                    className={classes.btnjoinstyle}
+                                    onClick={this.handleClickHome}>로그인</Button>
+                        </Paper>
                     </Paper>
-                </Paper> 
+                </Paper>
             </div>
         )
     }
 }
+
 export default withStyles(style)(IdCompleteSearch);

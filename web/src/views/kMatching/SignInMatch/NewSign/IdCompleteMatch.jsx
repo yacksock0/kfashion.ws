@@ -1,10 +1,9 @@
-
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
+import {inject, observer} from "mobx-react";
 
 
 
@@ -84,30 +83,49 @@ const style = theme => ({
     },
 });
 
+@inject('mSignUpStore')
+@observer
+class IdCompleteMatch extends Component{
 
-class IdComplete extends Component{
+    componentWillUnmount() {
+        this.props.mSignUpStore.initialize();
+        console.log(this.props.mSignUpStore.member)
+    }
+    handleClickHome = () => {
+        this.props.history.push("/matching");
+        this.props.mSignUpStore.initialize();
+    }
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
+        const {member} = this.props.mSignUpStore;
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
                         <Typography className={classes.titletext}>아이디 찾기</Typography>
                         <Typography className={classes.txtstyle1}>회원님의 아이디 찾기가 완료되었습니다.</Typography>
-                        
-                        <Paper elevation={0} className={classes.completebox}>
-                            <Typography className={classes.idtext}>admin1234</Typography>
-                            <Typography className={classes.yeartext}>(2020년 10월 2일)</Typography>
-                        </Paper>
-                        
+
+                        {member.id === undefined || member.id === "" ? (
+                            <Paper elevation={0} className={classes.completebox}>
+                                <Typography className={classes.idtext}>찾으시는 정보의 아이디가 없습니다.</Typography>
+                            </Paper>
+                        ) : (
+                            <Paper elevation={0} className={classes.completebox}>
+                                <Typography className={classes.idtext}>{member.id}</Typography>
+                                <Typography className={classes.yeartext}>({member.createdDatetime})</Typography>
+                            </Paper>
+                        )}
                         <Paper elevation={0}>
-                            <Button variant="contained" className={classes.btnjoinstyle}>로그인</Button>
-                        </Paper> 
+                            <Button variant="contained"
+                                    className={classes.btnjoinstyle}
+                                    onClick={this.handleClickHome}>로그인</Button>
+                        </Paper>
                     </Paper>
-                </Paper> 
+                </Paper>
             </div>
         )
     }
 }
-export default withStyles(style)(IdComplete);
+
+export default withStyles(style)(IdCompleteMatch);

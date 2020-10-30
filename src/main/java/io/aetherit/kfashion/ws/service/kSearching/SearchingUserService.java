@@ -84,6 +84,15 @@ public class SearchingUserService {
         return msg;
     }
 
+    public String changePassword(SearchingUser user) throws Exception {
+        String msg = "";
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println("@@"+user.getPassword());
+        repository.changePassword(user);
+        System.out.println(user);
+        return msg;
+    }
+
     public List<SearchingUser> getUsers(String userType) {
         return repository.selectUsers(userType);
     }
@@ -113,4 +122,10 @@ public class SearchingUserService {
     public SearchingUser findSearchingUser(SearchingUser user) {
         return repository.findSearchingUser(user);
     }
+
+    public SearchingUser nameCkSearchingUser(SearchingUser user) {
+        return repository.nameCkSearchingUser(user);
+    }
+
+
 }

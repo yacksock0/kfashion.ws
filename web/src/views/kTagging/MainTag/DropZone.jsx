@@ -3,6 +3,9 @@ import {DropzoneArea} from 'material-ui-dropzone'
 import {inject, observer} from "mobx-react";
 import {withStyles} from '@material-ui/core/styles';
 import {STATE} from '../../../common/state';
+import {Snackbar, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import ErrorIcon from '@material-ui/icons/Error';
 
 const style = theme => ({
     root: {
@@ -28,7 +31,17 @@ const style = theme => ({
             marginLeft: -20,
             color: '#A8B4F5',
         },
+        "& .MuiSnackbarContent-root": {
+            backgroundColor: '#526af2',
+            fontFamily: 'NotoSansCJKkr',
+            paddingLeft: '20px',
+            fontWeight: "bold",
+            minWidth : "500px",
+        },
     },
+    close : {
+        color: '#fff',
+    }
 });
 
 @inject('tImageStore')
@@ -41,13 +54,28 @@ class DropFile extends Component {
             fileTotal: 0,
         };
     }
+    state = {
+        open: false,
+    };
+
+    handleClick = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ open: false });
+    };
 
     handleChange(files) {
         if (this.props.tImageStore.progress !== 0) {
             return (alert('이전 요청이 완료되지않았습니다!'));
         }
         if (files.length >= 11) {
-            return (alert('태깅 가능한 이미지의 갯수는 최대 10개입니다.'))
+            return this.handleClick();
         }
         this.setState({
 
@@ -63,6 +91,7 @@ class DropFile extends Component {
     render() {
         const {classes} = this.props;
         const {State} = this.props.tImageStore;
+        const snackMessage = <div><ErrorIcon style={{ fontSize: 30, marginTop:'5px' }}/><span style={{ fontSize: '17px', position: 'absolute',left: '60px',top : '22px' }} >태깅 서비스는 최대 10장의 이미지까지 첨부 가능합니다.</span></div>
 
         return (
             <div className={classes.root}>
@@ -78,7 +107,29 @@ class DropFile extends Component {
                         disabled: State === STATE.PENDING,
                     }}
                 />
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.open}
+                    autoHideDuration={6000}
+                    onClose={this.handleClose}
+                    message={snackMessage}
+                    severity={'info'}
+                    action={[
+                        <IconButton
+                            key="close"
+                            aria-label="Close"
+                            className={classes.close}
+                            onClick={this.handleClose}
+                        >
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
             </div>
+
         );
     }
 }

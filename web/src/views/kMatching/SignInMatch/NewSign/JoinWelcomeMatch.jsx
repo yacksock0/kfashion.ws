@@ -1,12 +1,14 @@
-
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import React, { Component } from 'react';
+import { withStyles  } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import {withSnackbar} from "notistack";
+import {withRouter} from "react-router-dom";
+import {inject, observer} from "mobx-react";
 
 
-const useStyles = makeStyles((theme) => ({
+const style = (theme) => ({
     root: {
         textAlign:'center',
     },
@@ -56,32 +58,40 @@ const useStyles = makeStyles((theme) => ({
             boxShadow:'none',
         },
     },
-}));
+});
 
-
-export default function Join(){
-    const classes = useStyles();
-
+@inject('mSignUpStore')
+@observer
+class JoinWelcomeMatch extends React.Component {
+    handleClickToHome = () => {
+        this.props.mSignUpStore.initialize()
+        this.props.history.push("/matching");
+    }
+    render() {
+        const {classes} = this.props;
+        const { newMember } = this.props.mSignUpStore;
     return (
         <div className={classes.root}>
             <Paper elevation={0} className={classes.paper}>
                 <Paper elevation={0}>
                     <Typography className={classes.titletext}>환영합니다!</Typography>
                     <Typography className={classes.txtstyle1}>
-                        <span className={classes.pointcolor}>홍길동</span>님, 회원가입을 축하합니다.<br />가입하신 아이디는 <span className={classes.pointcolor}>admin1234</span> 입니다.
+                        <span className={classes.pointcolor}>{newMember.name}</span>님, 회원가입을 축하합니다.<br />가입하신 아이디는 <span className={classes.pointcolor}>{newMember.id}</span> 입니다.
                     </Typography>
 
                     <Typography className={classes.txtstyle2}>
                        다양한 패션 아이템정보와 서비스를<br />제공받으실 수 있습니다.
                     </Typography>
-                    <Button variant="contained" className={classes.btnjoinstyle}>시작하기</Button>
-                    
-                    
-                    
+                    <Button variant="contained"
+                            className={classes.btnjoinstyle}
+                            onClick={this.handleClickToHome}
+                    >
+                        시작하기
+                    </Button>
                 </Paper>
             </Paper> 
         </div>
-    )
+    )}
   
 }
-
+export default withSnackbar(withRouter(withStyles(style) (JoinWelcomeMatch)));

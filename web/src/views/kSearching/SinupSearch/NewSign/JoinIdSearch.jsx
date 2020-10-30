@@ -39,6 +39,10 @@ const style = (theme) => ({
     namebox: {
         width:'100%',
         marginBottom:10,
+        //2020.10.28 텍스트필드 BorderColor 변경 [이지현]
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#38a67e"
+        },
     },
     idtext: {
         fontFamily:'NotoSansCJKkr',
@@ -64,6 +68,9 @@ const style = (theme) => ({
             boxShadow:'none',
         },
     },
+    inputnone : {
+        display : 'none',
+    }
 });
 
 @inject('sSignUpStore')
@@ -72,6 +79,11 @@ class JoinIdSearch extends React.Component {
 
     handleChangeId = (event) => {
         this.props.sSignUpStore.changeNewMemberId(event.target.value);
+    }
+    handleKeyUpId = (event) => {
+        if( this.props.sSignUpStore.isValidId && event.keyCode===13){
+            this.props.handleIdOK();
+        }
     }
 
     render() {
@@ -86,6 +98,7 @@ class JoinIdSearch extends React.Component {
                         <Typography className={classes.txtstyle1}>로그인에 사용할 아이디를 입력해주세요</Typography>
 
                         <form noValidate autoComplete="off">
+                            <input type="text" className={classes.inputnone}/>
                             <TextField
                                 id="id"
                                 placeholder="아이디"
@@ -93,6 +106,7 @@ class JoinIdSearch extends React.Component {
                                 className={classes.namebox}
                                 value={newMember.id}
                                 onChange={this.handleChangeId}
+                                onKeyUp={this.handleKeyUpId}
 
                             />
                             {isValidId ?

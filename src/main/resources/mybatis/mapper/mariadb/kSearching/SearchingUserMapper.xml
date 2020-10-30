@@ -73,6 +73,10 @@
         )
     </insert>
 
+    <update id="changePassword" parameterType="SearchingUser">
+        UPDATE ksearching_user SET password = #{password} WHERE id = #{id}
+    </update>
+
     <select id="checkUser" resultType="int" parameterType="SearchingUser">
       select count(id) from ksearching_user
       where id=#{id}
@@ -125,6 +129,13 @@
         </if>
 
 
+    </select>
+
+    <select id="nameCkSearchingUser" resultMap="SearchingUserResultMap">
+        SELECT *
+        FROM  ksearching_user
+        WHERE   name = #{name}
+        AND     nickname = #{nickName}
     </select>
 
 

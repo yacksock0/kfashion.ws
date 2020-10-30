@@ -8,7 +8,6 @@ import {ReactComponent as Check} from '../../../../images/Check.svg';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
-import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 
 
 const style = (theme) => ({
@@ -38,7 +37,7 @@ const style = (theme) => ({
         marginBottom: 10,
         //2020.10.28 텍스트필드 BorderColor 변경 [이지현]
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#38a67e"
+            borderColor: "#d94848"
         },
     },
     idtext: {
@@ -53,13 +52,13 @@ const style = (theme) => ({
         width: '100%',
         boxShadow: 'none',
         marginTop: 7,
-        background: '#38a67e',
+        background: '#000',
         color: '#fff',
         borderRadius: 0,
         padding: '10px 0',
 
         "&:hover": {
-            background: '#38a67e',
+            background: '#000',
             color: '#fff',
             borderRadius: 0,
             boxShadow: 'none',
@@ -67,27 +66,18 @@ const style = (theme) => ({
     },
 });
 
-@inject('sSignUpStore')
+@inject('mSignUpStore')
 @observer
-class JoinIdSearch extends React.Component {
-    handleKeyUpInfo = (event) => {
-        if( this.props.sSignUpStore.isValidUserName && this.props.sSignUpStore.isValidNickName && event.keyCode===13){
-            this.props.handleUserInfoOK();
-        }
-    }
-
+class JoinUserInfoMatch extends React.Component {
 
     render() {
         const {classes, handleUserInfoOK} = this.props;
-        const {
-            isPending,
+        const {isPending,
             newMember,
             changeNewMemberUserName,
             changeNewMemberNickName,
             isValidUserName,
-            isValidNickName,
-        } = this.props.sSignUpStore;
-
+            isValidNickName } = this.props.mSignUpStore;
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
@@ -103,16 +93,10 @@ class JoinIdSearch extends React.Component {
                                 value={newMember.name}
                                 onChange={changeNewMemberUserName}
                             />
-                            {isValidUserName ?
-                                <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext} style={{color: '#38a67e'}}>최소 2글자 이상 입력 </Typography>
-                                    <CheckRoundedIcon style={{color: '#38a67e', marginTop: -5}}/>
-                                </Paper>:
-                                <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>최소 2글자 이상 입력 </Typography>
-                                    <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
-                                </Paper>
-                            }
+                            <Paper elevation={0} style={{display: 'flex'}}>
+                                <Typography className={classes.idtext}>최소 2글자 이상 입력 <Check
+                                    style={{paddingLeft: 10}}/></Typography>
+                            </Paper>
                             <TextField
                                 id="nickname"
                                 placeholder="닉네임"
@@ -120,18 +104,11 @@ class JoinIdSearch extends React.Component {
                                 className={classes.namebox}
                                 value={newMember.nickName}
                                 onChange={changeNewMemberNickName}
-                                onKeyUp={this.handleKeyUpInfo}
                             />
-                            {isValidNickName ?
-                                <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext} style={{color: '#38a67e'}}>최소 2글자 이상 입력 </Typography>
-                                    <CheckRoundedIcon style={{color: '#38a67e', marginTop: -5}}/>
-                                </Paper>:
-                                <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>최소 2글자 이상 입력 </Typography>
-                                    <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
-                                </Paper>
-                            }
+                            <Paper elevation={0} style={{display: 'flex'}}>
+                                <Typography className={classes.idtext}>최소 2글자 이상 입력 <Check
+                                    style={{paddingLeft: 10}}/></Typography>
+                            </Paper>
                         </form>
                         <Paper elevation={0}>
                             <Button variant="contained" className={classes.btnjoinstyle}
@@ -144,4 +121,4 @@ class JoinIdSearch extends React.Component {
         )
     }
 };
-export default withSnackbar(withRouter(withStyles(style)(JoinIdSearch)));
+export default withSnackbar(withRouter(withStyles(style)(JoinUserInfoMatch)));

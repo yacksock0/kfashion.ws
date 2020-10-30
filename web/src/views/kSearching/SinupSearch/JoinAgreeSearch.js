@@ -6,7 +6,7 @@ import {inject, observer} from "mobx-react";
 
 import {
     Typography,
-    Paper
+    Paper, Snackbar, IconButton
 } from "@material-ui/core";
 import AgreeList from "./AgreeListSearch";
 import JoinIdSearch from "./NewSign/JoinIdSearch";
@@ -15,11 +15,23 @@ import JoinQuestionsSearch from "./NewSign/JoinQuestionsSearch";
 import JoinWelcomeSearch from "./NewSign/JoinWelcomeSearch";
 import JoinUserInfoSearch from "./NewSign/JoinUserInfoSearch";
 import AgreeListSearch from "./AgreeListSearch";
+import CloseIcon from "@material-ui/icons/Close";
+import ErrorIcon from "@material-ui/icons/Error";
 
 
 const style = theme => ({
     root: {
         textAlign:'center',
+        "& .MuiSnackbarContent-root": {
+            backgroundColor: '#38a67e',
+            fontFamily: 'NotoSansCJKkr',
+            paddingLeft: '20px',
+            fontWeight: "bold",
+            minWidth: "300px",
+        },
+    },
+    close: {
+        color: '#fff',
     },
     paper: {
         width:'400px',
@@ -41,20 +53,25 @@ const style = theme => ({
 class JoinAgreeSearch extends React.Component {
     constructor(props) {
         super(props);
-
     }
     handleUserInfoOK = () => {
         this.props.sSignUpStore.handleUserInfoOK();
         this.props.history.push("/searching/question");
+        console.log("로그인 nickName/Idck")
+    }
+    handleClose = () => {
+        this.props.sSignUpStore.handleSnackIdClose();
     }
     render() {
         const { classes } = this.props;
         const {agreeOK, idOK, pwOK, userInfoOK,
-            handleAgreeOK, handleIdOK, handlePwOK} = this.props.sSignUpStore;
+            idSnack, handleIdOK, handlePwOK} = this.props.sSignUpStore;
+        const snackMessage = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
+            style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>아이디가 중복되었습니다.</span></div>
         let component;
         if(agreeOK === false) component = <AgreeListSearch/>;
         else if(agreeOK === true && idOK === false) component = <JoinIdSearch handleIdOK={handleIdOK}/>;
-        else if(idOK === true && pwOK === false)  component = <JoinPwSearch />;
+        else if(idOK === true && pwOK === false)  component = <JoinPwSearch handlePwOK={handlePwOK}/>;
         else if(pwOK === true && userInfoOK === false)  component = <JoinUserInfoSearch  handleUserInfoOK={this.handleUserInfoOK}/>;
 
         return (
@@ -65,7 +82,19 @@ class JoinAgreeSearch extends React.Component {
                         {component}
                         {/* <JoinId /> */}
                         {/* <JoinPw /> */}
-
+                        <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+                                  open={idSnack}
+                                  autoHideDuration={3000}
+                                  onClose={this.handleClose}
+                                  message={snackMessage}
+                                  severity={'info'}
+                                  action={[
+                                      <IconButton key="close" aria-label="Close" className={classes.close}
+                                                  onClick={this.handleClose}>
+                                          <CloseIcon/>
+                                      </IconButton>,
+                                  ]}
+                        />
                     </Paper>
                 </Paper>
             </div>

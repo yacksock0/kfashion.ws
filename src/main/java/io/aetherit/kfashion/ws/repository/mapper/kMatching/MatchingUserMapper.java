@@ -17,4 +17,6 @@ public interface MatchingUserMapper {
 
     int checkUser(MatchingUser user);
 
+    MatchingUser findMatchingUser(MatchingUser user);
+
 }

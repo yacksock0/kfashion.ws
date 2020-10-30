@@ -58,4 +58,14 @@ public class MatchingUserController {
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
+    @PostMapping(value = "/find")
+    public ResponseEntity<Object> findIdMatching(HttpServletRequest httpRequest, @RequestBody MatchingUser user) throws Exception {
+        MatchingUser result = matchingUserService.findMatchingUser(user);
+        System.out.println("@@@@@@@@@@" +result);
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        System.out.println(resultMap);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
 }

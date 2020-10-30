@@ -36,7 +36,7 @@ const style = theme => ({
 
 @inject('mSignUpStore')
 @observer
-class AgreeList extends Component {
+class AgreeListMatch extends Component {
     constructor(props) {
         super(props);
 
@@ -97,8 +97,8 @@ class AgreeList extends Component {
     }
 
     render() {
-        const { classes, handleClickToSignUp } = this.props;
-        const {isAllSelected} = this.props.mSignUpStore;
+        const { classes } = this.props;
+        const {isAllSelected, handleAgreeOK} = this.props.mSignUpStore;
         return (
             <div>
                 <Typography className={classes.txtstyle1}>데일리코디 서비스 이용약관을 동의해주세요.</Typography>
@@ -114,7 +114,7 @@ class AgreeList extends Component {
                     <Button variant="contained"
                             className={classes.btnjoinstyle}
                             disabled={!isAllSelected}
-                            onClick={handleClickToSignUp}>
+                            onClick={handleAgreeOK}>
                         동의하고 가입하기
                     </Button>
                 </Paper>
@@ -123,4 +123,4 @@ class AgreeList extends Component {
     }
 }
 
-export default withStyles(style)(AgreeList);
+export default withStyles(style)(AgreeListMatch);

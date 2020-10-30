@@ -20,7 +20,11 @@ const style = (theme) => ({
         },
         "& .MuiOutlinedInput-input":{
             padding:10,
-        },  
+        },
+        //2020.10.28 텍스트필드 BorderColor 변경 [이지현]
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#38a67e"
+        },
     },
     paper: {
         width:'400px',
@@ -54,6 +58,9 @@ const style = (theme) => ({
             boxShadow:'none',
         },
     },
+    inputnone : {
+        display : 'none',
+    }
 });
 
 @inject('sSignUpStore')
@@ -87,6 +94,11 @@ class QuestionsSearch extends Component {
             url : ""
         };
     }
+    handleKeyUpId = (event) => {
+        if( this.props.sSignUpStore.isCheckQuestion && this.props.sSignUpStore.isCheckAnswer && event.keyCode===13){
+            this.props.handleClickOK();
+        }
+    }
     render() {
         const {classes, handleClickOK} = this.props;
         const {
@@ -114,12 +126,14 @@ class QuestionsSearch extends Component {
                         >
                             <option value=''>보안질문1</option>
                             {this.state.questionsList.map( (e, i) =>{
-                                return <option value={i+1}>{e}</option>
+                                return <option key={i} value={i+1}>{e}</option>
                             })}
                         </Select>
                     </FormControl>
                     <form noValidate autoComplete="off">
                         <Paper elevation={0}>
+                            {/*엔터클릭시 새로고침 방지용 input태그 */}
+                            <input type="text" className={classes.inputnone}/>
                             <TextField placeholder="답변"
                                        variant="outlined"
                                        className={classes.formControl}
@@ -138,12 +152,13 @@ class QuestionsSearch extends Component {
                         >
                             <option value={0}>보안질문2</option>
                             {this.state.questionsList.map( (e, i) =>{
-                                return <option value={i+1}>{e}</option>
+                                return <option key={i} value={i+1}>{e}</option>
                             })}
                         </Select>
                     </FormControl>
                     <form noValidate autoComplete="off">
                         <Paper elevation={0}>
+                            <input type="text" className={classes.inputnone}/>
                             <TextField placeholder="답변"
                                        variant="outlined"
                                        className={classes.formControl}
@@ -163,17 +178,19 @@ class QuestionsSearch extends Component {
                         >
                             <option value={0}>보안질문3</option>
                             {this.state.questionsList.map( (e, i) =>{
-                                return <option value={i+1}>{e}</option>
+                                return <option key={i} value={i+1}>{e}</option>
                             })}
                         </Select>
                     </FormControl>
                     <form noValidate autoComplete="off">
                         <Paper elevation={0}>
+                            <input type="text" className={classes.inputnone}/>
                             <TextField placeholder="답변"
                                        variant="outlined"
                                        className={classes.formControl}
                                        value={newMember.answer3}
                                        onChange={changeNewMemberAnswer3}
+                                       onKeyUp={this.handleKeyUpId}
                             />
                         </Paper>
                     </form>

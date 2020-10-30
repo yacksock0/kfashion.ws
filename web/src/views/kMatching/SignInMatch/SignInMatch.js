@@ -5,11 +5,12 @@ import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import {Button, CircularProgress, TextField, Typography, Paper} from "@material-ui/core";
 
-import * as tStore from "../../../stores/kTagging/TAuthStore";
+import * as tStore from "../../../stores/kMatching/MAuthStore";
 
 const style = theme => ({
     root: {
         textAlign:'center',
+
     },
     paper: {
         width:'400px',
@@ -30,6 +31,13 @@ const style = theme => ({
         marginBottom:30,
         "& .MuiOutlinedInput-root": {
             borderRadius:0,
+        },
+        //2020.10.28 텍스트필드 BorderColor 변경 [이지현]
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#d94848"
+        },
+        "& .MuiInputLabel-outlined.Mui-focused": {
+            color: "#d94848"
         }
     },
     btnloginstyle: {
@@ -65,7 +73,7 @@ const style = theme => ({
         fontFamily:'NotoSansCJKkr',
         "&:hover": {
             background:'transparent',
-            color:'#526af2',
+            color:'#d94848',
             fontWeight:'bold'
         },
     },
@@ -101,6 +109,13 @@ class SignInSearch extends React.Component {
 
     JoinMatch = () => {
         this.props.history.push('/matching/agree');
+    }
+
+    handleFindId = () =>{
+        this.props.history.push('/matching/findId');
+    }
+    handleFindPw = () =>{
+        this.props.history.push('/matching/findPw');
     }
 
 
@@ -149,9 +164,15 @@ class SignInSearch extends React.Component {
                             </Button>
                         </Paper>
                         <Paper elevation={0} className={classes.findbox}>
-                            {/*<Button className={classes.findbtn}>아이디찾기</Button>*/}
-                            {/*<Typography className={classes.spanfind>|</Typography>*/}
-                            {/*<Button className={classes.findbtn}>비밀번호찾기</Button>*/}
+                            <Button className={classes.findbtn}
+                                    onClick={this.handleFindId}>
+                                아이디찾기
+                            </Button>
+                            <Typography className={classes.spanfind}>|</Typography>
+                            <Button className={classes.findbtn}
+                                    onClick={this.handleFindPw}>
+                                비밀번호찾기
+                            </Button>
                         </Paper>
                         <Paper elevation={0}>
                             <Button type="submit"

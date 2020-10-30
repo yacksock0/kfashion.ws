@@ -30,6 +30,13 @@ const style = theme => ({
         marginBottom:30,
         "& .MuiOutlinedInput-root": {
             borderRadius:0,
+        },
+        //2020.10.28 텍스트필드 BorderColor 변경 [이지현]
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#38a67e"
+        },
+        "& .MuiInputLabel-outlined.Mui-focused": {
+            color: "#38a67e"
         }
     },
     btnloginstyle: {

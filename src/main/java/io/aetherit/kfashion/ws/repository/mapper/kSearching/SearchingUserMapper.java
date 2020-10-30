@@ -11,6 +11,8 @@ public interface SearchingUserMapper {
 
     void createNewUser(SearchingUser user);
 
+    void changePassword(SearchingUser user);
+
     SearchingUser selectUser(String id);
 
     SearchingUser selectAdmin(String userId);
@@ -18,5 +20,7 @@ public interface SearchingUserMapper {
     int checkUser(SearchingUser user);
 
     SearchingUser findSearchingUser(SearchingUser user);
+
+    SearchingUser nameCkSearchingUser(SearchingUser user);
 
 }

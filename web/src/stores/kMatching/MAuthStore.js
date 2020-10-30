@@ -49,6 +49,9 @@ export default class AuthStore {
     @action changeUserAuthorityNo = (authorityNo) =>{
         this.loginUser.authorityNo = authorityNo;
     };
+    @action goHome = (props) => {
+        props.history.push("/searching");
+    };
     @action logOut = pathname => {
         if(pathname.startsWith("/broadcast/")) {
             if (window.confirm("로그아웃 하시겠습니까?")) {

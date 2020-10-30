@@ -1,95 +1,91 @@
 import React, {Component} from 'react'
 import {withStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import {Typography,Button, TextField,Paper} from '@material-ui/core';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
+import {joiner} from "react-csv/src/core";
 
 
-const style = (theme) => ({
+const styles = (theme) => ({
     root: {
-        textAlign: 'center',
-        "& .MuiOutlinedInput-root": {
-            padding: '0 5px',
-            borderRadius: 0,
-            height: '39px',
+        textAlign:'center',
+        "& .MuiOutlinedInput-root":{
+            padding:'0 5px',
+            borderRadius:0,
+            height:'39px',
         },
-        "& .MuiOutlinedInput-input": {
-            padding: '0',
+        "& .MuiOutlinedInput-input":{
+            padding:'0',
         },
     },
     paper: {
-        width: '400px',
-        margin: '0 auto',
+        width:'400px',
+        margin:'0 auto',
     },
     txtstyle1: {
-        fontFamily: 'NotoSansCJKkr',
-        fontSize: '17px',
-        fontWeight: 'bold',
-        marginBottom: 40,
+        fontFamily:'NotoSansCJKkr',
+        fontSize:'17px',
+        fontWeight:'bold',
+        marginBottom:40,
         lineHeight: '1.2',
     },
     namebox: {
-        width: '100%',
-        marginBottom: 10,
+        width:'100%',
+        marginBottom:10,
         //2020.10.28 텍스트필드 BorderColor 변경 [이지현]
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#38a67e"
+            borderColor: "#d94848"
         },
     },
     pwtext: {
-        fontFamily: 'NotoSansCJKkr',
-        fontSize: '14px',
-        color: '#c9c9c9',
-        marginBottom: 20,
+        fontFamily:'NotoSansCJKkr',
+        fontSize:'14px',
+        color:'#c9c9c9',
+        marginBottom:20,
     },
     btnjoinstyle: {
-        fontFamily: 'NotoSansCJKkr',
-        fontSize: '17px',
-        width: '100%',
-        boxShadow: 'none',
-        marginTop: 24,
-        background: '#38a67e',
-        color: '#fff',
-        borderRadius: 0,
-        padding: '10px 0',
+        fontFamily:'NotoSansCJKkr',
+        fontSize:'17px',
+        width:'100%',
+        boxShadow:'none',
+        marginTop:24,
+        background:'#000',
+        color:'#fff',
+        borderRadius:0,
+        padding:'10px 0',
 
         "&:hover": {
-            background: '#38a67e',
-            color: '#fff',
-            borderRadius: 0,
-            boxShadow: 'none',
+            background:'#000',
+            color:'#fff',
+            borderRadius:0, 
+            boxShadow:'none',
         },
     },
 });
 
-@inject('sSignUpStore')
+
+@inject('mSignUpStore')
 @observer
-class JoinPwSearch extends Component {
+class JoinPwMatch extends Component {
     handleChangePassword = (event) => {
-        this.props.sSignUpStore.changeNewMemberPassword(event.target.value);
+        this.props.mSignUpStore.changeNewMemberPassword(event.target.value);
     }
     handleChangePasswordConfirm = (event) => {
-        this.props.sSignUpStore.changeNewMemberPasswordConfirm(event.target.value);
+        this.props.mSignUpStore.changeNewMemberPasswordConfirm(event.target.value);
     }
-    handleKeyUpPw = (event) => {
-        if(this.props.sSignUpStore.isValidPassword && this.props.sSignUpStore.isPasswordConfirmed && event.keyCode===13){
-            this.props.handlePwOK();
-        }
+    handlePwOK = () => {
+        this.props.mSignUpStore.handlePwOK();
     }
-
 
     render() {
-        const {classes, handlePwOK} = this.props;
+        const {classes} = this.props;
         const {
             isValidPassword, isPasswordConfirmed,
-             newMember,
-        } = this.props.sSignUpStore
-        const {password, passwordConfirm} = this.props.sSignUpStore.newMember
+            isPending, newMember, handlePwOK,
+        } = this.props.mSignUpStore
+        const {password, passwordConfirm} = this.props.mSignUpStore.newMember
 
 
         return (
@@ -112,8 +108,8 @@ class JoinPwSearch extends Component {
                             />
                             {isValidPassword ?
                                 <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.pwtext} style={{color: '#38a67e'}}>영문,숫자포함/8~20자 이내 </Typography>
-                                    <CheckRoundedIcon style={{color: '#38a67e', marginTop: -5}}/>
+                                    <Typography className={classes.pwtext} style={{color: '#000'}}>영문,숫자포함/8~20자 이내 </Typography>
+                                    <CheckRoundedIcon style={{color: '#000', marginTop: -5}}/>
                                 </Paper> :
                                 <Paper elevation={0} style={{display: 'flex'}}>
                                     <Typography className={classes.pwtext} style={{color: '#c9c9c9'}}>영문,숫자포함/8~20자 이내 </Typography>
@@ -130,13 +126,12 @@ class JoinPwSearch extends Component {
                                 autoComplete={"off"}
                                 value={newMember.passwordConfirm}
                                 onChange={this.handleChangePasswordConfirm}
-                                onKeyUp={this.handleKeyUpPw}
                             />
                             {isPasswordConfirmed && (password||passwordConfirm !== '') ?
                                 <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.pwtext} style={{color: '#38a67e'}}>비밀번호
+                                    <Typography className={classes.pwtext} style={{color: '#000'}}>비밀번호
                                         일치 </Typography>
-                                    <CheckRoundedIcon style={{color: '#38a67e', marginTop: -5}}/>
+                                    <CheckRoundedIcon style={{color: '#000', marginTop: -5}}/>
                                 </Paper> :
                                 <Paper elevation={0} style={{display: 'flex'}}>
                                     <Typography className={classes.pwtext} style={{color: '#c9c9c9'}}>비밀번호
@@ -149,7 +144,7 @@ class JoinPwSearch extends Component {
                             <Button variant="contained"
                                     className={classes.btnjoinstyle}
                                     disabled={!isValidPassword || !isPasswordConfirmed}
-                                    onClick={handlePwOK}>다음</Button>
+                                    onClick={this.handlePwOK}>다음</Button>
                         </Paper>
                     </Paper>
                 </Paper>
@@ -158,12 +153,7 @@ class JoinPwSearch extends Component {
     }
 }
 
-export default withSnackbar(withRouter(withStyles(style)(JoinPwSearch)));
-
-
-
-
-
+export default withSnackbar(withRouter(withStyles(styles)(JoinPwMatch)));
 
 
 

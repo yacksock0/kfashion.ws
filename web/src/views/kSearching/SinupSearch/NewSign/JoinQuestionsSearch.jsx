@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import QuestionsSearch from './QuestionsSearch';
 import {inject, observer} from "mobx-react";
-import QuestionsTag from "../../../kTagging/SignInTag/NewSign/QuestionsTag";
 
 
 const style = theme => ({

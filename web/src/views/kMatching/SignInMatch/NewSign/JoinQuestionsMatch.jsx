@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Questions from './Questions';
+import QuestionsMatch from './QuestionsMatch';
+import {inject, observer} from "mobx-react";
+import QuestionsSearch from "../../../kSearching/SinupSearch/NewSign/QuestionsSearch";
 
 
 const style = theme => ({
@@ -32,18 +34,23 @@ const style = theme => ({
 
 });
 
-
-class JoinQuestions extends Component{
-
+@inject('mSignUpStore')
+@observer
+class JoinQuestionsMatch extends Component{
+    handleClickOK= () => {
+        this.props.mSignUpStore.doSignUp(this.props.history);
+    }
     render() {
         const { classes } = this.props;
+        const {agreeOK, idOK, pwOK} = this.props.mSignUpStore;
+        if(agreeOK !==true || idOK!==true || pwOK!==true ) this.props.history.push('/matching/agree');
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
                         <Typography className={classes.titletext}>보안 질문 설정</Typography>
                         <Typography className={classes.txtstyle1}>보안 질문은 아이디 또는 비밀번호를 잊어버린 경우<br />신원을 확인하고 암호를 복구하는데 사용합니다.</Typography>
-                        <Questions />
+                        <QuestionsMatch handleClickOK={this.handleClickOK} />
                      
                     </Paper>
                 </Paper> 
@@ -51,7 +58,7 @@ class JoinQuestions extends Component{
         )
     }
 }
-export default withStyles(style)(JoinQuestions);
+export default withStyles(style)(JoinQuestionsMatch);
 
 
 

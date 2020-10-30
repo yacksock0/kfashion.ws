@@ -30,6 +30,11 @@ public class SearchingUserRepository {
         System.out.println(user);
     }
 
+    public void changePassword(SearchingUser user) {
+        System.out.println("!!"+user);
+        mapper.changePassword(user);
+    }
+
     public SearchingUser selectUser(String id) {
         return mapper.selectUser(id);
     }
@@ -49,6 +54,10 @@ public class SearchingUserRepository {
     }
     public SearchingUser findSearchingUser(SearchingUser user) {
         return mapper.findSearchingUser(user);
+    }
+
+    public SearchingUser nameCkSearchingUser(SearchingUser user) {
+        return mapper.nameCkSearchingUser(user);
     }
 
 }

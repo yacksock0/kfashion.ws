@@ -3,7 +3,10 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Questions from './Questions';
+import QuestionsMatch from './QuestionsMatch';
+import {inject, observer} from "mobx-react";
+import JoinIdSearch from "../../../kSearching/SinupSearch/NewSign/JoinIdSearch";
+import JoinIdMatch from "./JoinIdMatch";
 
 
 const style = theme => ({
@@ -32,26 +35,32 @@ const style = theme => ({
 
 });
 
-
-class PwFind extends Component{
-
+@inject('mSignUpStore')
+@observer
+class PwFindMatch extends Component{
+    handleClickOK = () => {
+        this.props.mSignUpStore.doFindUser(this.props.history, "PW");
+    }
     render() {
         const { classes } = this.props;
+        const {idOK, handleIdOK2} = this.props.mSignUpStore;
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
                         <Typography className={classes.titletext}>비밀번호 찾기</Typography>
-                        <Typography className={classes.txtstyle1}>회원가입 시 설정한 보안 질문을<br /> 선택하여 답변해주세요.</Typography>
-                        <Questions />
-                     
+                        {idOK === false &&  <JoinIdMatch handleIdOK={handleIdOK2}/>}
+                        {idOK === true &&
+                        <Typography className={classes.txtstyle1}>회원가입 시 설정한 보안 질문을<br/> 선택하여 답변해주세요.</Typography> &&
+                        <QuestionsMatch handleClickOK={this.handleClickOK}/>
+                        }
                     </Paper>
-                </Paper> 
+                </Paper>
             </div>
         )
     }
 }
-export default withStyles(style)(PwFind);
+export default withStyles(style)(PwFindMatch);
 
 
 
