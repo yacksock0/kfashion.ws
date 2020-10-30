@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Hidden from '@material-ui/core/Hidden';
 import {observe, toJS} from "mobx";
 import {inject, observer} from "mobx-react";
-import { STATE } from "common/state";
+import { STATE } from "../../../common/state";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 import ToggleButton from "@material-ui/lab/ToggleButton";
