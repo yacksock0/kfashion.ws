@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
-import {makeStyles, withStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import { ReactComponent as Check } from '../../../../images/Check.svg';
+import {withStyles} from '@material-ui/core/styles';
+import {Typography,Button, TextField,Paper} from '@material-ui/core';
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
@@ -36,6 +33,10 @@ const style = (theme) => ({
     namebox: {
         width:'100%',
         marginBottom:10,
+        //2020.10.28 텍스트필드 BorderColor 변경 [이지현]
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#526af2"
+        },
     },
     pwtext: {
         fontFamily:'NotoSansCJKkr',
@@ -63,7 +64,6 @@ const style = (theme) => ({
     },
 });
 
-
 @inject('tSignUpStore')
 @observer
 class JoinPwTag extends Component{
@@ -73,15 +73,21 @@ class JoinPwTag extends Component{
     handleChangePasswordConfirm = (event) => {
         this.props.tSignUpStore.changeNewMemberPasswordConfirm(event.target.value);
     }
-    handlePwOK = () => {
-        this.props.tSignUpStore.handlePwOK();
+    handleKeyUpPw = (event) => {
+        if(this.props.tSignUpStore.isValidPassword && this.props.tSignUpStore.isPasswordConfirmed && event.keyCode===13){
+            this.props.handlePwOK();
+        }
     }
+
+
     render() {
-        const {classes} = this.props;
+        const {classes, handlePwOK} = this.props;
         const {
             isValidPassword, isPasswordConfirmed,
-            isPending, newMember, handlePwOK
+             newMember,
         } = this.props.tSignUpStore;
+        const {password, passwordConfirm} = this.props.tSignUpStore.newMember
+
 
         return (<div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
@@ -100,10 +106,16 @@ class JoinPwTag extends Component{
                                 value={newMember.password}
                                 onChange={this.handleChangePassword}
                             />
-                            <Paper elevation={0} style={{display: 'flex'}}>
-                                <Typography className={classes.pwtext}>영문,숫자포함/8~20자 이내 <Check
-                                    style={{paddingLeft: 10}}/></Typography>
-                            </Paper>
+                            {isValidPassword ?
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.pwtext} style={{color: '#526af2'}}>영문,숫자포함/8~20자 이내 </Typography>
+                                    <CheckRoundedIcon style={{color: '#526af2', marginTop: -5}}/>
+                                </Paper> :
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.pwtext} style={{color: '#c9c9c9'}}>영문,숫자포함/8~20자 이내 </Typography>
+                                    <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
+                                </Paper>
+                            }
                             <TextField
                                 id="password"
                                 placeholder="비밀번호 확인"
@@ -114,11 +126,20 @@ class JoinPwTag extends Component{
                                 autoComplete={"off"}
                                 value={newMember.passwordConfirm}
                                 onChange={this.handleChangePasswordConfirm}
+                                onKeyUp={this.handleKeyUpPw}
                             />
-                            <Paper elevation={0} style={{display: 'flex'}}>
-                                <Typography className={classes.pwtext}>비밀번호 일치 <Check
-                                    style={{paddingLeft: 10}}/></Typography>
-                            </Paper>
+                            {isPasswordConfirmed && (password||passwordConfirm !== '') ?
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.pwtext} style={{color: '#526af2'}}>비밀번호
+                                        일치 </Typography>
+                                    <CheckRoundedIcon style={{color: '#526af2', marginTop: -5}}/>
+                                </Paper> :
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.pwtext} style={{color: '#c9c9c9'}}>비밀번호
+                                        일치 </Typography>
+                                    <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
+                                </Paper>
+                            }
                         </form>
                         <Paper elevation={0}>
                             <Button variant="contained"

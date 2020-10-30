@@ -2,9 +2,7 @@ package io.aetherit.kfashion.ws.controller.kMatching;
 
 import io.aetherit.kfashion.ws.model.kMatching.MatchingUser;
 import io.aetherit.kfashion.ws.model.kMatching.MatchingUserToken;
-import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
 import io.aetherit.kfashion.ws.service.kMatching.MatchingUserService;
-import io.aetherit.kfashion.ws.service.kSearching.SearchingUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,6 +64,24 @@ public class MatchingUserController {
         resultMap.put("result", result);
         System.out.println(resultMap);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/nameck")
+    public ResponseEntity<Object> nameCkMatchingUser(HttpServletRequest httpRequest, @RequestBody MatchingUser user) throws Exception {
+        MatchingUser result = matchingUserService.nameCkMatchingUser(user);
+        System.out.println("@@@@@@@@@@" +result);
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        System.out.println(resultMap);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/changepassword")
+    public ResponseEntity<String> changepassword(HttpServletRequest httpRequest, @RequestBody MatchingUser user) throws Exception {
+        System.out.println("@@"+user);
+        String str = matchingUserService.changePassword(user);
+        return new ResponseEntity<String>( HttpStatus.OK);
     }
 
 }

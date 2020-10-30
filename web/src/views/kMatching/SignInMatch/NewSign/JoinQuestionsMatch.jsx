@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import QuestionsMatch from './QuestionsMatch';
 import {inject, observer} from "mobx-react";
-import QuestionsSearch from "../../../kSearching/SinupSearch/NewSign/QuestionsSearch";
 
 
 const style = theme => ({
@@ -44,6 +43,7 @@ class JoinQuestionsMatch extends Component{
         const { classes } = this.props;
         const {agreeOK, idOK, pwOK} = this.props.mSignUpStore;
         if(agreeOK !==true || idOK!==true || pwOK!==true ) this.props.history.push('/matching/agree');
+
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
@@ -51,7 +51,6 @@ class JoinQuestionsMatch extends Component{
                         <Typography className={classes.titletext}>보안 질문 설정</Typography>
                         <Typography className={classes.txtstyle1}>보안 질문은 아이디 또는 비밀번호를 잊어버린 경우<br />신원을 확인하고 암호를 복구하는데 사용합니다.</Typography>
                         <QuestionsMatch handleClickOK={this.handleClickOK} />
-                     
                     </Paper>
                 </Paper> 
             </div>

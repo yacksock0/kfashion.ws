@@ -1,15 +1,11 @@
 package io.aetherit.kfashion.ws.repository.kTagging;
 
-import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
-import io.aetherit.kfashion.ws.repository.mapper.KfashionUserInfoMapper;
 import io.aetherit.kfashion.ws.repository.mapper.kTagging.TaggingUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class TaggingUserRepository {
@@ -31,6 +27,10 @@ public class TaggingUserRepository {
         mapper.createNewUser(user);
     }
 
+    public void changePassword(TaggingUser user) {
+        mapper.changePassword(user);
+    }
+
     public TaggingUser selectUser(String id) {
         return mapper.selectUser(id);
     }
@@ -50,5 +50,9 @@ public class TaggingUserRepository {
     }
     public TaggingUser findTaggingUser(TaggingUser user) {
         return mapper.findTaggingUser(user);
+    }
+
+    public TaggingUser nameCkTaggingUser(TaggingUser user) {
+        return mapper.nameCkTaggingUser(user);
     }
 }

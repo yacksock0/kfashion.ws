@@ -1,11 +1,8 @@
 package io.aetherit.kfashion.ws.controller.kTagging;
 
-import io.aetherit.kfashion.ws.model.KfashionEmailAuthority;
-import io.aetherit.kfashion.ws.model.KfashionUserInfo;
 import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
 import io.aetherit.kfashion.ws.service.KfashionEmailAuthorityService;
 import io.aetherit.kfashion.ws.service.KfashionUserGroupAdminService;
-import io.aetherit.kfashion.ws.service.KfashionUserInfoService;
 import io.aetherit.kfashion.ws.service.KfashionWorkHistoryService;
 import io.aetherit.kfashion.ws.service.kTagging.TaggingUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/kTagging/users")
@@ -88,6 +81,25 @@ public class TaggingUserController {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("result", result);
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/nameck")
+    public ResponseEntity<Object> nameCkTaggingUser(HttpServletRequest httpRequest, @RequestBody TaggingUser user) throws Exception {
+        TaggingUser result = taggingUserService.nameCkTaggingUser(user);
+        System.out.println("@@@@@@@@@@" +result);
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        System.out.println(resultMap);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/changepassword")
+    public ResponseEntity<String> changepassword(HttpServletRequest httpRequest, @RequestBody TaggingUser user) throws Exception {
+        System.out.println("@@"+user);
+        String str = taggingUserService.changePassword(user);
+        return new ResponseEntity<String>( HttpStatus.OK);
     }
 
 }

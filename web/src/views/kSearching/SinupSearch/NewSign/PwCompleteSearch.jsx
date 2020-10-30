@@ -83,22 +83,17 @@ const style = theme => ({
     },
 });
 
-
 @inject('sSignUpStore')
 @observer
 class PwCompleteSearch extends Component {
     componentWillUnmount() {
         this.props.sSignUpStore.initialize();
+        console.log('값 초기화 완료');
     }
 
     handleClickHome = () => {
         this.props.history.push("/searching");
     }
-    componentDidMount() {
-        console.log(this.props.sSignUpStore.member)
-    }
-
-
     render() {
         const {classes} = this.props;
         const {member, pwCK, handlePwOK2} = this.props.sSignUpStore;
@@ -106,14 +101,17 @@ class PwCompleteSearch extends Component {
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
-
-                        {/*위에 상태글*/}
-                        {member.password !== undefined || member.password !== ""  ?
-                        <Typography className={classes.titletext}>비밀번호 찾기</Typography> :
-                            <Typography className={classes.titletext}>비밀번호 변경</Typography>
-
+                        {/*타이틀*/}
+                        {member.password !== undefined || member.password !== ""  &&
+                        <Typography className={classes.titletext}>비밀번호 찾기</Typography>
                         }
+                        {member.password !== undefined && member.password !== "" && pwCK !== true &&
+                        <Typography className={classes.titletext}>비밀번호 변경</Typography>
+                        }
+                        {pwCK === true && <Typography className={classes.titletext}>비밀번호 변경</Typography>}
 
+
+                        {/*상태글*/}
                         {member.password !== undefined || member.password !== ""  &&
                             <Typography className={classes.txtstyle1}>정보를 다시 확인해주세요.</Typography>
                         }

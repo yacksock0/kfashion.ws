@@ -1,9 +1,7 @@
 package io.aetherit.kfashion.ws.service.kMatching;
 
 import io.aetherit.kfashion.ws.model.kMatching.MatchingUser;
-import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
 import io.aetherit.kfashion.ws.repository.kMatching.MatchingUserRepository;
-import io.aetherit.kfashion.ws.repository.kSearching.SearchingUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +81,13 @@ public class MatchingUserService {
         return msg;
     }
 
+    public String changePassword(MatchingUser user) throws Exception {
+        String msg = "";
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        repository.changePassword(user);
+        return msg;
+    }
+
     public List<MatchingUser> getUsers(String userType) {
         return repository.selectUsers(userType);
     }
@@ -111,6 +116,10 @@ public class MatchingUserService {
     }
     public MatchingUser findMatchingUser (MatchingUser user) {
         return repository.findMatchingUser(user);
+    }
+
+    public MatchingUser nameCkMatchingUser(MatchingUser user) {
+        return repository.nameCkMatchingUser(user);
     }
 
 }

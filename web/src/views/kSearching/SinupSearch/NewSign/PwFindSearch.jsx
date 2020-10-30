@@ -44,7 +44,6 @@ const style = theme => ({
         lineHeight: '1.2',
     },
 
-
 });
 
 @inject('sSignUpStore')

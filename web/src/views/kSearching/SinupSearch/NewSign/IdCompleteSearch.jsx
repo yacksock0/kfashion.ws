@@ -89,7 +89,6 @@ class IdCompleteSearch extends Component {
     componentWillUnmount() {
         this.props.sSignUpStore.initialize();
     }
-
     handleClickHome = () => {
         this.props.history.push("/searching");
     }

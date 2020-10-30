@@ -3,21 +3,28 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
-
-import {
-    Typography,
-    Paper
-} from "@material-ui/core";
-import AgreeList from "./AgreeList";
+import {Typography,Paper, Snackbar, IconButton} from "@material-ui/core";
 import JoinIdTag from "./NewSign/JoinIdTag";
 import JoinPwTag from "./NewSign/JoinPwTag";
-import JoinQuestionsTag from "./NewSign/JoinQuestionsTag";
-import JoinWelcomeTag from "./NewSign/JoinWelcomeTag";
 import JoinUserInfoTag from "./NewSign/JoinUserInfoTag";
+import AgreeList from "./AgreeList";
+import CloseIcon from "@material-ui/icons/Close";
+import ErrorIcon from "@material-ui/icons/Error";
+
 
 const style = theme => ({
     root: {
         textAlign:'center',
+        "& .MuiSnackbarContent-root": {
+            backgroundColor: '#526af2',
+            fontFamily: 'NotoSansCJKkr',
+            paddingLeft: '20px',
+            fontWeight: "bold",
+            minWidth: "300px",
+        },
+    },
+    close: {
+        color: '#fff',
     },
     paper: {
         width:'400px',
@@ -39,22 +46,24 @@ const style = theme => ({
 class JoinAgreeTag extends React.Component {
     constructor(props) {
         super(props);
-
     }
     handleUserInfoOK = () =>{
         this.props.tSignUpStore.handleUserInfoOK();
         this.props.history.push("/tagging/question");
     }
+    handleClose = () => {
+        this.props.tSignUpStore.handleSnackIdClose();
+    }
     render() {
         const { classes } = this.props;
-        const {agreeOK, idOK, pwOK, userInfoOK,
-            handleAgreeOK, handleIdOK, handlePwOK} = this.props.tSignUpStore;
+        const {agreeOK, idOK, pwOK, userInfoOK, idSnack, handleIdOK, handlePwOK} = this.props.tSignUpStore;
+        const snackMessage = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
+            style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>중복된 아이디입니다.</span></div>
         let component;
         if(agreeOK === false) component = <AgreeList/>;
         else if(agreeOK === true && idOK === false) component = <JoinIdTag handleIdOK={handleIdOK}/>;
-        else if(idOK === true && pwOK === false)  component = <JoinPwTag />;
+        else if(idOK === true && pwOK === false)  component = <JoinPwTag handlePwOK={handlePwOK}/>;
         else if(pwOK === true && userInfoOK === false)  component = <JoinUserInfoTag  handleUserInfoOK={this.handleUserInfoOK}/>;
-
 
         return (
         <div className={classes.root}>
@@ -62,9 +71,21 @@ class JoinAgreeTag extends React.Component {
                 <Paper elevation={0}>
                     <Typography className={classes.titletext}>가입하기</Typography>
                     {component}
-                    {/*<AgreeList handleClickToSignUp={this.handleClickToSignUp}/>*/}
                     {/*<JoinIdTag/>*/}
                     {/*<JoinPwTag/>*/}
+                    <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+                              open={idSnack}
+                              autoHideDuration={3000}
+                              onClose={this.handleClose}
+                              message={snackMessage}
+                              severity={'info'}
+                              action={[
+                                  <IconButton key="close" aria-label="Close" className={classes.close}
+                                              onClick={this.handleClose}>
+                                      <CloseIcon/>
+                                  </IconButton>,
+                              ]}
+                    />
                 </Paper>
             </Paper>
         </div>

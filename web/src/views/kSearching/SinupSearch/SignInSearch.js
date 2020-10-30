@@ -82,10 +82,12 @@ const style = theme => ({
 });
 
 @inject('sAuthStore')
+@inject('sSignUpStore')
 @observer
 class SignInSearch extends React.Component {
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
+        this.props.sSignUpStore.initialize()
     }
 
     handleChangeId = (e) => {

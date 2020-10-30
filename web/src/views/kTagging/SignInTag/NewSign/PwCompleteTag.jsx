@@ -1,12 +1,10 @@
-
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {inject, observer} from "mobx-react";
-
-
+import JoinPwTag from "./JoinPwTag"
 
 
 const style = theme => ({
@@ -90,48 +88,63 @@ const style = theme => ({
 class PwCompleteTag extends Component{
     componentWillUnmount() {
         this.props.tSignUpStore.initialize();
+        console.log('값 초기화 완료');
     }
 
     handleClickHome = () => {
         this.props.history.push("/tagging");
     }
-
     render() {
         const { classes } = this.props;
-        const { member } = this.props.tSignUpStore;
+        const { member ,pwCK, handlePwOK2} = this.props.tSignUpStore;
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
+                        {/*타이틀*/}
+                        {member.password !== undefined || member.password !== ""  &&
                         <Typography className={classes.titletext}>비밀번호 찾기</Typography>
-                        <Typography className={classes.txtstyle1}>회원님의 비밀번호 찾기가 완료되었습니다.</Typography>
+                        }
+                        {member.password !== undefined && member.password !== "" && pwCK !== true &&
+                        <Typography className={classes.titletext}>비밀번호 변경</Typography>
+                        }
+                        {pwCK === true && <Typography className={classes.titletext}>비밀번호 변경</Typography>}
 
-                        {member.password ==undefined || member.password == ""  ? (
-                            <Paper elevation={0} className={classes.completebox}>
-                                <Typography className={classes.pwtext}>찾으시는 정보의 비밀번호가 없습니다.</Typography>
-                            </Paper>
-                        ):(
-                            <Paper elevation={0} className={classes.completebox}>
-                                <Typography className={classes.pwtext}>{member.password}</Typography>
-                                <Typography className={classes.yeartext}>({member.createdDatetime})</Typography>
-                            </Paper>
+
+                        {/*상태글*/}
+                        {member.password !== undefined || member.password !== ""  &&
+                        <Typography className={classes.txtstyle1}>정보를 다시 확인해주세요.</Typography>
+                        }
+                        {pwCK === true && <Typography className={classes.txtstyle1}>비밀번호 변경이 완료되었습니다!</Typography>}
+
+                        {/*화면*/}
+                        {member.password !== undefined && member.password !== "" && pwCK !== true  && (
+                            <JoinPwTag handlePwOK={handlePwOK2}/>
                         )}
+                        {pwCK === true &&
+                        <Paper elevation={0} className={classes.completebox}>
+                            <Typography className={classes.pwtext}>변경된 비밀번호로 다시 로그인 해주세요.</Typography>
+                        </Paper>
+                        }
+                        {member.password !==undefined || member.password !== ""  &&
+                        <Paper elevation={0} className={classes.completebox}>
+                            <Typography className={classes.pwtext}>찾으시는 정보의 비밀번호가 없습니다.</Typography>
+                        </Paper>
+                        }
+
+
                         <Paper elevation={0}>
+                            {member.password !== undefined || member.password !== "" &&
+                            <Button variant="contained"
+                                    className={classes.btnjoinstyle}
+                                    onClick={this.handleClickHome}>돌아가기</Button>
+                            }
+                            {pwCK ===true &&
                             <Button variant="contained"
                                     className={classes.btnjoinstyle}
                                     onClick={this.handleClickHome}>로그인</Button>
+                            }
                         </Paper>
-
-
-
-
-
-
-
-
-
-
-
                         {/*<Paper elevation={0} className={classes.completebox}>*/}
                         {/*    <Typography className={classes.pwtext}>member.pw</Typography>*/}
                         {/*    <Typography className={classes.yeartext}>(2020년 10월 2일)</Typography>*/}

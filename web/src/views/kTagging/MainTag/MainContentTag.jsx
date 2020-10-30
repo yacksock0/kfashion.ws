@@ -107,8 +107,11 @@ const style = theme => ({
 class MainContentTag extends React.Component {
     componentWillUnmount() {
         this.props.tImageStore.initStore();
+        console.log(this.props.tImageStore.State);
     }
-
+    componentDidMount() {
+        console.log(this.props.tImageStore.State+"   asdasd");
+    }
     render() {
         //20.10.20 버튼 비활성화 && progressbar 비활성화일때 메세지가 먼저 바뀌지않도록....
         const {State, csvData, textData, maxValue} = this.props.tImageStore;

@@ -1,17 +1,14 @@
-
 import React from 'react'
-import {makeStyles, withStyles} from '@material-ui/core/styles';
+import { withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { ReactComponent as Check } from '../../../../images/Check.svg';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
+import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
+
 
 const style = (theme) => ({
     root: {
@@ -38,6 +35,10 @@ const style = (theme) => ({
     namebox: {
         width:'100%',
         marginBottom:10,
+        //2020.10.28 텍스트필드 BorderColor 변경 [이지현]
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#526af2"
+        },
     },
     idtext: {
         fontFamily:'NotoSansCJKkr',
@@ -69,6 +70,12 @@ const style = (theme) => ({
 @observer
 class JoinIdTag extends React.Component {
 
+    handleKeyUpInfo = (event) => {
+        if( this.props.tSignUpStore.isValidUserName && this.props.tSignUpStore.isValidNickName && event.keyCode===13){
+            this.props.handleUserInfoOK();
+        }
+    }
+
 
     render() {
         const {classes, handleUserInfoOK} = this.props;
@@ -96,10 +103,16 @@ class JoinIdTag extends React.Component {
                                 value={newMember.name}
                                 onChange={changeNewMemberUserName}
                             />
-                            <Paper elevation={0} style={{display:'flex'}}>
-                                <Typography className={classes.idtext}>최소 2글자 이상 입력 <Check style={{paddingLeft:10}}/></Typography>
-                            </Paper>
-
+                            {isValidUserName ?
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.idtext} style={{color: '#526af2'}}>최소 2글자 이상 입력 </Typography>
+                                    <CheckRoundedIcon style={{color: '#526af2', marginTop: -5}}/>
+                                </Paper>:
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>최소 2글자 이상 입력 </Typography>
+                                    <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
+                                </Paper>
+                            }
                             <TextField
                                 id="nickname"
                                 placeholder="닉네임"
@@ -107,10 +120,18 @@ class JoinIdTag extends React.Component {
                                 className={classes.namebox}
                                 value={newMember.nickName}
                                 onChange={changeNewMemberNickName}
+                                onKeyUp={this.handleKeyUpInfo}
                             />
-                            <Paper elevation={0} style={{display:'flex'}}>
-                                <Typography className={classes.idtext}>최소 2글자 이상 입력 <Check style={{paddingLeft:10}}/></Typography>
-                            </Paper>
+                            {isValidNickName ?
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.idtext} style={{color: '#526af2'}}>최소 2글자 이상 입력 </Typography>
+                                    <CheckRoundedIcon style={{color: '#526af2', marginTop: -5}}/>
+                                </Paper>:
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>최소 2글자 이상 입력 </Typography>
+                                    <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
+                                </Paper>
+                            }
                         </form>
                         <Paper elevation={0}>
                             <Button variant="contained" className={classes.btnjoinstyle}

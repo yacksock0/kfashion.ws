@@ -68,6 +68,7 @@ class AgreeList extends Component {
         };
     }
 
+
     onCheckBoxChange(checkName, isChecked) {
         let isAllChecked = (checkName === 'all' && isChecked);
         let isAllUnChecked = (checkName === 'all' && !isChecked);

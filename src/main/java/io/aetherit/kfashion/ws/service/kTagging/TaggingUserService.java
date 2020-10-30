@@ -85,6 +85,15 @@ public class TaggingUserService {
         return msg;
     }
 
+    public String changePassword(TaggingUser user) throws Exception {
+        String msg = "";
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println("@@"+user.getPassword());
+        repository.changePassword(user);
+        System.out.println(user);
+        return msg;
+    }
+
 
     public List<TaggingUser> getUsers(String userType) {
         return repository.selectUsers(userType);
@@ -114,6 +123,10 @@ public class TaggingUserService {
     }
     public TaggingUser findTaggingUser(TaggingUser user) {
         return repository.findTaggingUser(user);
+    }
+
+    public TaggingUser nameCkTaggingUser(TaggingUser user) {
+        return repository.nameCkTaggingUser(user);
     }
 
 }

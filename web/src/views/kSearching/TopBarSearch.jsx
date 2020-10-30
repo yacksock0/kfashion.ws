@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles  } from '@material-ui/core/styles';
+import {withRouter} from "react-router-dom";
 import { ReactComponent as LogoTrandSearch } from '../../images/LogoTrandSearch.svg';
 import { ReactComponent as LogoutIcon } from '../../images/LogoutIcon.svg';
 import { ReactComponent as AdminIcon } from '../../images/AdminIcon.svg';
@@ -61,6 +62,9 @@ const style = theme => ({
 @inject('sAuthStore')
 @observer
 class TopBarSearch extends Component{
+    goHome = () => {
+        this.props.history.push('/searching/home')
+    }
     render() {
         const { classes } = this.props;
         const { isLoggedIn, doLogout, loginUser} = this.props;
@@ -69,9 +73,7 @@ class TopBarSearch extends Component{
                 <React.Fragment>
                     <Container minwidth="xl">
                         <Grid item xs={12} className={classes.gridcontainer}>
-                            
-                            <LogoTrandSearch className={classes.logoimg}/>
-                            
+                            <LogoTrandSearch className={classes.logoimg} onClick={() => this.goHome()} cursor={'pointer'}/>
                             <Paper elevation={0} className={classes.right}>
                                 <Paper elevation={0} className={classes.rightbox}>
                                     {isLoggedIn &&
@@ -94,4 +96,4 @@ class TopBarSearch extends Component{
     }
 }
 
-export default withStyles(style)(TopBarSearch);
+export default withRouter(withStyles(style)(TopBarSearch));

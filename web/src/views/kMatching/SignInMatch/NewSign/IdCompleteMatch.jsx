@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import {inject, observer} from "mobx-react";
 
 
-
 const style = theme => ({
     root: {
         textAlign:'center',
@@ -89,11 +88,9 @@ class IdCompleteMatch extends Component{
 
     componentWillUnmount() {
         this.props.mSignUpStore.initialize();
-        console.log(this.props.mSignUpStore.member)
     }
     handleClickHome = () => {
         this.props.history.push("/matching");
-        this.props.mSignUpStore.initialize();
     }
 
     render() {

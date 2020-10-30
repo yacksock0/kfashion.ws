@@ -4,10 +4,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {ReactComponent as Check} from '../../../../images/Check.svg';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
+import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 
 
 const style = (theme) => ({
@@ -70,14 +70,24 @@ const style = (theme) => ({
 @observer
 class JoinUserInfoMatch extends React.Component {
 
+    handleKeyUpInfo = (event) => {
+        if( this.props.mSignUpStore.isValidUserName && this.props.mSignUpStore.isValidNickName && event.keyCode===13){
+            this.props.handleUserInfoOK();
+        }
+    }
+
+
     render() {
         const {classes, handleUserInfoOK} = this.props;
-        const {isPending,
+        const {
+            isPending,
             newMember,
             changeNewMemberUserName,
             changeNewMemberNickName,
             isValidUserName,
-            isValidNickName } = this.props.mSignUpStore;
+            isValidNickName
+        } = this.props.mSignUpStore;
+
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
@@ -93,10 +103,16 @@ class JoinUserInfoMatch extends React.Component {
                                 value={newMember.name}
                                 onChange={changeNewMemberUserName}
                             />
-                            <Paper elevation={0} style={{display: 'flex'}}>
-                                <Typography className={classes.idtext}>최소 2글자 이상 입력 <Check
-                                    style={{paddingLeft: 10}}/></Typography>
-                            </Paper>
+                            {isValidUserName ?
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.idtext} style={{color: '#000'}}>최소 2글자 이상 입력 </Typography>
+                                    <CheckRoundedIcon style={{color: '#000', marginTop: -5}}/>
+                                </Paper>:
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>최소 2글자 이상 입력 </Typography>
+                                    <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
+                                </Paper>
+                            }
                             <TextField
                                 id="nickname"
                                 placeholder="닉네임"
@@ -104,11 +120,18 @@ class JoinUserInfoMatch extends React.Component {
                                 className={classes.namebox}
                                 value={newMember.nickName}
                                 onChange={changeNewMemberNickName}
+                                onKeyUp={this.handleKeyUpInfo}
                             />
-                            <Paper elevation={0} style={{display: 'flex'}}>
-                                <Typography className={classes.idtext}>최소 2글자 이상 입력 <Check
-                                    style={{paddingLeft: 10}}/></Typography>
-                            </Paper>
+                            {isValidNickName ?
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.idtext} style={{color: '#000'}}>최소 2글자 이상 입력 </Typography>
+                                    <CheckRoundedIcon style={{color: '#000', marginTop: -5}}/>
+                                </Paper>:
+                                <Paper elevation={0} style={{display: 'flex'}}>
+                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>최소 2글자 이상 입력 </Typography>
+                                    <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
+                                </Paper>
+                            }
                         </form>
                         <Paper elevation={0}>
                             <Button variant="contained" className={classes.btnjoinstyle}

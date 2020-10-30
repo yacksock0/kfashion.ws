@@ -1,9 +1,7 @@
 package io.aetherit.kfashion.ws.repository.kMatching;
 
 import io.aetherit.kfashion.ws.model.kMatching.MatchingUser;
-import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
 import io.aetherit.kfashion.ws.repository.mapper.kMatching.MatchingUserMapper;
-import io.aetherit.kfashion.ws.repository.mapper.kSearching.SearchingUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +27,10 @@ public class MatchingUserRepository {
         mapper.createNewUser(user);
     }
 
+    public void changePassword(MatchingUser user) {
+        mapper.changePassword(user);
+    }
+
     public MatchingUser selectUser(String id) {
         return mapper.selectUser(id);
     }
@@ -49,4 +51,9 @@ public class MatchingUserRepository {
     public MatchingUser findMatchingUser(MatchingUser user) {
         return mapper.findMatchingUser(user);
     }
+
+    public MatchingUser nameCkMatchingUser(MatchingUser user) {
+        return mapper.nameCkMatchingUser(user);
+    }
+
 }

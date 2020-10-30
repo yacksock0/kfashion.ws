@@ -5,7 +5,6 @@ import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
-import {joiner} from "react-csv/src/core";
 
 
 const styles = (theme) => ({
@@ -65,7 +64,6 @@ const styles = (theme) => ({
     },
 });
 
-
 @inject('mSignUpStore')
 @observer
 class JoinPwMatch extends Component {
@@ -75,15 +73,18 @@ class JoinPwMatch extends Component {
     handleChangePasswordConfirm = (event) => {
         this.props.mSignUpStore.changeNewMemberPasswordConfirm(event.target.value);
     }
-    handlePwOK = () => {
-        this.props.mSignUpStore.handlePwOK();
+    handleKeyUpPw = (event) => {
+        if(this.props.mSignUpStore.isValidPassword && this.props.mSignUpStore.isPasswordConfirmed && event.keyCode===13){
+            this.props.handlePwOK();
+        }
     }
 
+
     render() {
-        const {classes} = this.props;
+        const {classes, handlePwOK} = this.props;
         const {
             isValidPassword, isPasswordConfirmed,
-            isPending, newMember, handlePwOK,
+             newMember,
         } = this.props.mSignUpStore
         const {password, passwordConfirm} = this.props.mSignUpStore.newMember
 
@@ -126,6 +127,7 @@ class JoinPwMatch extends Component {
                                 autoComplete={"off"}
                                 value={newMember.passwordConfirm}
                                 onChange={this.handleChangePasswordConfirm}
+                                onKeyUp={this.handleKeyUpPw}
                             />
                             {isPasswordConfirmed && (password||passwordConfirm !== '') ?
                                 <Paper elevation={0} style={{display: 'flex'}}>
@@ -144,7 +146,7 @@ class JoinPwMatch extends Component {
                             <Button variant="contained"
                                     className={classes.btnjoinstyle}
                                     disabled={!isValidPassword || !isPasswordConfirmed}
-                                    onClick={this.handlePwOK}>다음</Button>
+                                    onClick={handlePwOK}>다음</Button>
                         </Paper>
                     </Paper>
                 </Paper>

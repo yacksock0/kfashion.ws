@@ -38,7 +38,6 @@ public class SearchingUserController {
     }
 
 
-
     /**
      * 사용자 조회 : 기가입 여부 확인용
      *

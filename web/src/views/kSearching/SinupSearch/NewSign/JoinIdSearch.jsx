@@ -1,19 +1,14 @@
-
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { ReactComponent as Check } from '../../../../images/Check.svg';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
 import { withRouter} from "react-router-dom";
-import AppKsearching from "../../../../AppKsearching";
+
 const style = (theme) => ({
     root: {
         textAlign:'center',
@@ -76,7 +71,6 @@ const style = (theme) => ({
 @inject('sSignUpStore')
 @observer
 class JoinIdSearch extends React.Component {
-
     handleChangeId = (event) => {
         this.props.sSignUpStore.changeNewMemberId(event.target.value);
     }
@@ -88,9 +82,7 @@ class JoinIdSearch extends React.Component {
 
     render() {
         const {classes, handleIdOK} = this.props;
-        const {
-            isValidId, isPending, newMember,
-        } = this.props.sSignUpStore;
+        const {isValidId, isPending, newMember} = this.props.sSignUpStore;
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
@@ -107,18 +99,16 @@ class JoinIdSearch extends React.Component {
                                 value={newMember.id}
                                 onChange={this.handleChangeId}
                                 onKeyUp={this.handleKeyUpId}
-
                             />
                             {isValidId ?
                             <Paper elevation={0} style={{display: 'flex'}}>
-                                <Typography className={classes.idtext} style={{color: '#38a67e'}}>영문,숫자포함/8~20자 이내 </Typography>
+                                <Typography className={classes.idtext} style={{color: '#38a67e'}}>8~20자 이내 </Typography>
                                 <CheckRoundedIcon style={{color: '#38a67e', marginTop: -5}}/>
                             </Paper>:
                                 <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>영문,숫자포함/8~20자 이내 </Typography>
+                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>8~20자 이내 </Typography>
                                     <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
                                 </Paper>
-
                                 }
                             {/* 아이디중복체크후 가능하면
                         <Paper elevation={0} style={{display:'flex'}}>

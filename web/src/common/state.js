@@ -7,5 +7,11 @@ const STATE = {
     Fail: 'Fail',
     Error: 'Error',
     Done: 'Done',
+
+    //
+    INITIAL : 'initial',
+    PENDING : 'pending',
+    DONE : 'done',
+    ERROR : 'error'
  }
  export {STATE}

@@ -9,7 +9,6 @@ import {IconButton, Snackbar} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import ErrorIcon from "@material-ui/icons/Error";
 
-
 const style = theme => ({
     root: {
         textAlign: 'center',
@@ -65,7 +64,6 @@ class IdFindSearch extends Component {
     }
     handleUserInfoOK = () => {
         this.props.sSignUpStore.handleUserInfoOK2(this.props.history);
-        console.log("id찾기 nickName,nameck")
     }
 
     render() {
@@ -99,14 +97,12 @@ class IdFindSearch extends Component {
                                       </IconButton>,
                                   ]}
                         />
-
                     </Paper>
                 </Paper>
             </div>
         )
     }
 }
-
 export default withStyles(style)(IdFindSearch);
 
 

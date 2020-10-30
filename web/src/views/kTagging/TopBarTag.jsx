@@ -1,5 +1,6 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import React, {Component} from 'react'
+import { withStyles } from '@material-ui/core/styles';
+import {withRouter} from "react-router-dom";
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import { ReactComponent as Logout } from '../../images/logout.svg';
 import { ReactComponent as LogoutIcon } from '../../images/LogoutIcon.svg';
@@ -14,7 +15,7 @@ import {IconButton} from "@material-ui/core";
 import { ReactComponent as AdminIcon } from '../../images/AdminIcon.svg';
 
 
-const useStyles = makeStyles((theme) => ({
+const style = theme => ({
     root: {
         [theme.breakpoints.down('xs')]: {
             marginTop:20
@@ -69,47 +70,54 @@ const useStyles = makeStyles((theme) => ({
         marginRight:20,
     },
 
-}));
+});
 
-export default function TopBarTag(props){
-    const classes = useStyles();
-    const { mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser} = props;
-    return (
-        <div className={classes.root}>
-            <React.Fragment>
-                <Container minWidth="xl">
-                    <Grid item xs={12} className={classes.gridcontainer}>
-                        <Paper elevation={0} className={classes.logobox}>
-                            <Logo className={classes.logoimg}
-                                  // onClick={goHome}
-                            />
-                        </Paper>
-                        <Paper elevation={0} className={classes.right}>
-                            
-                            <Paper elevation={0} className={classes.rightbox}>
-
-                                <Paper elevation={0} className={classes.adminbox}>
-                                    <AdminIcon /><Typography >admin@admin</Typography>
-                                </Paper>
-                                {!isLoggedIn &&
-                                    <Typography className={classes.userstyle}> <JoinIcon/></Typography>
-                                    
-                                }
-                                {!isLoggedIn &&
-                                    <Typography className={classes.iconstyle}> <LoginIcon/></Typography>
-                                }
-                                {isLoggedIn &&
-                                    <Typography className={classes.iconstyle}
-                                            onClick={doLogout}> <LogoutIcon/></Typography>
-                                }
+class TopBarTag extends Component{
+    goHome = () => {
+        this.props.history.push('/tagging/home')
+    }
+    render() {
+        const {classes} = this.props;
+        const {mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser} = this.props;
+        return (
+            <div className={classes.root}>
+                <React.Fragment>
+                    <Container minWidth="xl">
+                        <Grid item xs={12} className={classes.gridcontainer}>
+                            <Paper elevation={0} className={classes.logobox}>
+                                <Logo className={classes.logoimg}
+                                      onClick={() => this.goHome()} cursor={'pointer'}
+                                />
                             </Paper>
-                            <hr />
-                        </Paper>
-                        
-                    </Grid>
-                </Container>
-            </React.Fragment>
-        </div>
-    )
+                            <Paper elevation={0} className={classes.right}>
 
+                                <Paper elevation={0} className={classes.rightbox}>
+
+                                    <Paper elevation={0} className={classes.adminbox}>
+                                        <AdminIcon/><Typography>admin@admin</Typography>
+                                    </Paper>
+                                    {!isLoggedIn &&
+                                    <Typography className={classes.userstyle}> <JoinIcon/></Typography>
+
+                                    }
+                                    {!isLoggedIn &&
+                                    <Typography className={classes.iconstyle}> <LoginIcon/></Typography>
+                                    }
+                                    {isLoggedIn &&
+                                    <Typography className={classes.iconstyle}
+                                                onClick={doLogout}> <LogoutIcon/></Typography>
+                                    }
+                                </Paper>
+                                <hr/>
+                            </Paper>
+
+                        </Grid>
+                    </Container>
+                </React.Fragment>
+            </div>
+        )
+    }
 }
+
+export default withRouter(withStyles(style)(TopBarTag));
+

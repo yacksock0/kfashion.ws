@@ -3,15 +3,29 @@ import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
-import {Typography, Paper} from "@material-ui/core";
+import {Typography, Paper , Snackbar, IconButton} from "@material-ui/core";
+
 import JoinIdMatch from "./NewSign/JoinIdMatch";
 import JoinPwMatch from "./NewSign/JoinPwMatch";
 import JoinUserInfoMatch from "./NewSign/JoinUserInfoMatch";
 import AgreeListMatch from "./AgreeListMatch";
+import JoinPwSearch from "../../kSearching/SinupSearch/NewSign/JoinPwSearch";
+import CloseIcon from "@material-ui/icons/Close";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const style = theme => ({
     root: {
         textAlign:'center',
+        "& .MuiSnackbarContent-root": {
+            backgroundColor: '#d94848',
+            fontFamily: 'NotoSansCJKkr',
+            paddingLeft: '20px',
+            fontWeight: "bold",
+            minWidth: "300px",
+        },
+    },
+    close: {
+        color: '#fff',
     },
     paper: {
         width:'400px',
@@ -33,20 +47,24 @@ const style = theme => ({
 class JoinAgreeMatch extends React.Component {
     constructor(props) {
         super(props);
-
     }
 
     handleUserInfoOK = () => {
         this.props.mSignUpStore.handleUserInfoOK();
         this.props.history.push("/matching/question");
     }
+    handleClose = () => {
+        this.props.mSignUpStore.handleSnackIdClose();
+    }
     render() {
         const { classes } = this.props;
-        const {agreeOK, idOK, pwOK, userInfoOK, handleIdOK} = this.props.mSignUpStore;
+        const {agreeOK, idOK, pwOK, idSnack, userInfoOK, handleIdOK, handlePwOK} = this.props.mSignUpStore;
+        const snackMessage = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
+            style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>중복된 아이디입니다.</span></div>
         let component;
         if(agreeOK === false) component = <AgreeListMatch/>;
         else if(agreeOK === true && idOK === false) component = <JoinIdMatch handleIdOK={handleIdOK}/>;
-        else if(idOK === true && pwOK === false)  component = <JoinPwMatch />;
+        else if(idOK === true && pwOK === false)  component = <JoinPwMatch handlePwOK={handlePwOK}/>;
         else if(pwOK === true && userInfoOK === false)  component = <JoinUserInfoMatch  handleUserInfoOK={this.handleUserInfoOK}/>;
 
         return (
@@ -57,7 +75,19 @@ class JoinAgreeMatch extends React.Component {
                         {component}
                         {/* <JoinId /> */}
                         {/* <JoinPw /> */}
-
+                        <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+                                  open={idSnack}
+                                  autoHideDuration={3000}
+                                  onClose={this.handleClose}
+                                  message={snackMessage}
+                                  severity={'info'}
+                                  action={[
+                                      <IconButton key="close" aria-label="Close" className={classes.close}
+                                                  onClick={this.handleClose}>
+                                          <CloseIcon/>
+                                      </IconButton>,
+                                  ]}
+                        />
                     </Paper>
                 </Paper>
             </div>

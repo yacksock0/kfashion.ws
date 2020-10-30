@@ -44,7 +44,6 @@ export default class SignUpStore {
     @observable serverMode = '';
     @observable isAllSelected = false;
 
-
     @observable agreeOK = false;
     @observable idOK = false;
     @observable pwOK = false;
@@ -73,7 +72,6 @@ export default class SignUpStore {
             }else{
                 this.idOK = true;
                 this.handleSnackIdClose();
-
             }
         } catch (e) {
             console.log('checkId ERROR!')
@@ -102,7 +100,6 @@ export default class SignUpStore {
 
     @action  handlePwOK = () => {
         this.pwOK = true;
-        console.log(this.newMember.password)
     }
     @action  handlePwOK2 = () => {
         this.pwCK = true;
@@ -113,7 +110,6 @@ export default class SignUpStore {
     }
     @action  handleUserInfoOK2 = (history) => {
         this.doCheckName(history)
-
     }
     @action  changeNewMemberQuestion1 = (event) => {
         this.newMember.question1 = event.target.value;
@@ -161,7 +157,6 @@ export default class SignUpStore {
             && this.newMember.answer3 !== '';
     }
 
-
     @action initialize = (email) => {
         this.state = State.Ready;
         this.newMember = {...EmptyNewMember}
@@ -185,8 +180,8 @@ export default class SignUpStore {
     }
     @action changeNewMemberPassword = (password) => {
         this.newMember.password = password;
-
     }
+
     @action changeNewMemberPasswordConfirm = (passwordConfirm) => {
         this.newMember.passwordConfirm = passwordConfirm;
     }
@@ -196,7 +191,6 @@ export default class SignUpStore {
     @action changeNewMemberNickName = (event) => {
         this.newMember.nickName = event.target.value;
     }
-
 
 
     @computed get canSignUp() {
@@ -224,7 +218,6 @@ export default class SignUpStore {
     @computed get isValidPassword() {
         return validation.validatePw(this.newMember.password);
     }
-
 
     @computed get isPasswordConfirmed() {
         return this.newMember.password === this.newMember.passwordConfirm;
@@ -269,7 +262,6 @@ export default class SignUpStore {
 
             const responseId = yield axios.get(`/api/v1/kSearching/users/signupcheck/id?id=${this.newMember.id}`)
             const isNotAvailId = responseId.data.result;
-            console.log(isNotAvailId)
 
             if(!isNotAvailId) {
                 const param = toJS(this.newMember);
@@ -294,7 +286,6 @@ export default class SignUpStore {
         try {
                 const param = toJS(this.newMember);
                 delete param.passwordConfirm;
-            console.log(param)
                 const resp = yield axios.post('/api/v1/kSearching/users/changepassword', param)
         } catch (e) {
             console.log(e)
@@ -337,14 +328,11 @@ export default class SignUpStore {
         this.state = State.Pending;
         try {
             const param = toJS(this.newMember);
-            console.log(param)
             delete param.passwordConfirm;
             const responsId = yield axios.post(`/api/v1/kSearching/users/find`, param)
                 .then (res => {
                     if(res.data.result){
                         let test = res.data.result;
-                        console.log(test)
-
                         this.findIdMemberSet(test);
                     }else{
                         this.findIdMemberSet({});
@@ -374,6 +362,4 @@ export default class SignUpStore {
             console.log("Can't get server mode");
         }
     })
-
-
 }

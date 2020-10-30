@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles  } from '@material-ui/core/styles';
+import {withRouter} from "react-router-dom";
 import { ReactComponent as LogoDailyCody } from '../../images/LogoDailyCody.svg';
 import { ReactComponent as LogoutIcon } from '../../images/LogoutIcon.svg';
 import { ReactComponent as JoinIcon } from '../../images/JoinIcon.svg';
@@ -7,6 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import {inject, observer} from "mobx-react";
+import {ReactComponent as LogoTrandSearch} from "../../images/LogoTrandSearch.svg";
 
 
 const style = theme => ({
@@ -14,15 +17,15 @@ const style = theme => ({
         [theme.breakpoints.down('xs')]: {
             marginTop:20
         },
-        margin:'52px auto 20px',   
-        flexGrow: 1, 
-        
+        margin:'52px auto 20px',
+        flexGrow: 1,
+
     },
     gridcontainer:{
         display:'flex',
-        justifyContent:'space-between', 
-        margin:'0 auto', 
-    }, 
+        justifyContent:'space-between',
+        margin:'0 auto',
+    },
     logoimg:{
         marginTop:10,
     },
@@ -57,7 +60,10 @@ const style = theme => ({
 });
 
 
-class TopBar extends Component{
+class TopBarMatch extends Component{
+    goHome = () => {
+        this.props.history.push('/matching/home')
+    }
     render() {
         const { classes } = this.props;
         const {doLogout} = this.props;
@@ -67,7 +73,7 @@ class TopBar extends Component{
                 <React.Fragment>
                     <Container minwidth="xl">
                         <Grid item xs={12} className={classes.gridcontainer}>
-                            <LogoDailyCody className={classes.logoimg}/>
+                            <LogoDailyCody className={classes.logoimg} onClick={() => this.goHome()} cursor={'pointer'}/>
                             <Paper elevation={0} className={classes.right}>
                                 <Paper elevation={0} className={classes.rightbox}>
                                     <Typography className={classes.iconstyle} ><JoinIcon /></Typography>
@@ -84,4 +90,4 @@ class TopBar extends Component{
     }
 }
 
-export default withStyles(style)(TopBar);
+export default withRouter(withStyles(style)(TopBarMatch));

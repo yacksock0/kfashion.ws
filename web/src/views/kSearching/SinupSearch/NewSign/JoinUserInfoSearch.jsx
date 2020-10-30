@@ -4,7 +4,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {ReactComponent as Check} from '../../../../images/Check.svg';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
 import {withRouter} from "react-router-dom";
@@ -70,6 +69,7 @@ const style = (theme) => ({
 @inject('sSignUpStore')
 @observer
 class JoinIdSearch extends React.Component {
+
     handleKeyUpInfo = (event) => {
         if( this.props.sSignUpStore.isValidUserName && this.props.sSignUpStore.isValidNickName && event.keyCode===13){
             this.props.handleUserInfoOK();

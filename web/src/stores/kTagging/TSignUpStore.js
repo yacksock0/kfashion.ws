@@ -44,17 +44,20 @@ export default class SignUpStore {
     @observable serverMode = '';
     @observable isAllSelected = false;
 
-
     @observable agreeOK = false;
     @observable idOK = false;
     @observable pwOK = false;
     @observable userInfoOK = false;
 
+    @observable pwCK = false;
+    @observable pwSnack = false;
+    @observable idSnack = false;
+
     @action  handleAgreeOK = () => {
         this.agreeOK = true;
     }
     @action  handleIdOK2 = () => {
-        this.idOK = true;
+        this.checkId2();
     }
     @action  handleIdOK = () => {
         this.checkId();
@@ -65,9 +68,10 @@ export default class SignUpStore {
             const isNotAvailId = responseId.data.result;
 
             if(isNotAvailId) {
-                alert("이미 존재하는 아이디입니다.");
+                this.handleSnackIdOpen();
             }else{
                 this.idOK = true;
+                this.handleSnackIdClose();
             }
         } catch (e) {
             console.log('에러좀 나지 마라')
@@ -75,11 +79,37 @@ export default class SignUpStore {
         }
     });
 
+    //비밀번호 찾기시 아이디체크 20.10.29[이지현]
+    checkId2 = flow(function* checkId2() {
+        try {
+            const responseId = yield axios.get(`/api/v1/kTagging/users/signupcheck/id?id=${this.newMember.id}`)
+            const isNotAvailId = responseId.data.result;
+
+            if(!isNotAvailId) {
+                this.handleSnackPwOpen();
+                //여기에 스넥바바뀌기
+            }else{
+                this.handleSnackPwClose();
+                this.idOK = true;
+            }
+        } catch (e) {
+            console.log('checkId2 ERROR!')
+        }finally {
+        }
+    });
+
     @action  handlePwOK = () => {
         this.pwOK = true;
     }
+    @action  handlePwOK2 = () => {
+        this.pwCK = true;
+        this.doChangePassword();
+    }
     @action  handleUserInfoOK = () => {
         this.userInfoOK = true;
+    }
+    @action  handleUserInfoOK2 = (history) => {
+        this.doCheckName(history)
     }
     @action  changeNewMemberQuestion1 = (event) => {
         this.newMember.question1 = event.target.value;
@@ -103,6 +133,19 @@ export default class SignUpStore {
         this.member = result;
     }
 
+    @action handleSnackPwOpen = () => {
+        this.pwSnack = true;
+    }
+    @action handleSnackPwClose = () => {
+        this.pwSnack = false;
+    }
+    @action handleSnackIdOpen = () => {
+        this.idSnack = true;
+    }
+    @action handleSnackIdClose = () => {
+        this.idSnack = false;
+    }
+
     @computed get isCheckQuestion() {
         return this.newMember.question1 !== 0
             && this.newMember.question2 !== 0
@@ -114,13 +157,13 @@ export default class SignUpStore {
             && this.newMember.answer3 !== '';
     }
 
-
     @action initialize = (email) => {
         this.state = State.Ready;
         this.newMember = {...EmptyNewMember}
         this.agreements = {...EmptyAgreements}
         this.idOK = false;
         this.pwOK = false;
+        this.pwCK = false;
         this.agreeOK = false;
         this.userInfoOK = false;
         this.member = {}
@@ -170,11 +213,10 @@ export default class SignUpStore {
     }
 
     @computed get isValidId() {
-        return this.newMember.id.length >= MinUserId;
+        return validation.validateId(this.newMember.id);
     }
-
     @computed get isValidPassword() {
-        return this.newMember.password.length >= MinPassword;
+        return validation.validatePw(this.newMember.password);
     }
 
     @computed get isPasswordConfirmed() {
@@ -233,6 +275,48 @@ export default class SignUpStore {
         }
         } catch (e) {
             console.log('TSignUpStore doSignUp error');
+            this.state = State.Fail;
+        }finally {
+            this.state = State.Success;
+        }
+    });
+
+    doChangePassword = flow(function* doChangePassword() {
+        this.state = State.Pending;
+        try {
+            const param = toJS(this.newMember);
+            delete param.passwordConfirm;
+            const resp = yield axios.post('/api/v1/kTagging/users/changepassword', param)
+        } catch (e) {
+            console.log(e)
+            console.log('왜안되지')
+            this.state = State.Fail;
+        }finally {
+            this.state = State.Success;
+        }
+    });
+
+    // 아이디찾기 닉네임, 아이디 체크 20.10.29[이지현]
+    doCheckName = flow(function* doChackName() {
+        this.state = State.Pending;
+        try {
+            const param = toJS(this.newMember);
+            delete param.passwordConfirm;
+            const resp = yield axios.post('/api/v1/kTagging/users/nameck', param)
+                .then (res => {
+                    if(res.data.result){
+                        let test = res.data.result;
+                        console.log(test)
+                        this.findIdMemberSet(test);
+                        this.handleUserInfoOK();
+                        this.handleSnackIdClose();
+                    }else{
+                        this.findIdMemberSet({});
+                        this.handleSnackIdOpen();
+                    }
+                })
+        } catch (e) {
+            console.log(e)
             this.state = State.Fail;
         }finally {
             this.state = State.Success;

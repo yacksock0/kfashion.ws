@@ -63,14 +63,22 @@ const style = (theme) => ({
             boxShadow: 'none',
         },
     },
+    inputnone : {
+        display : 'none',
+    }
 });
-
 
 @inject('mSignUpStore')
 @observer
 class JoinIdMatch extends React.Component {
+
     handleChangeId = (event) => {
         this.props.mSignUpStore.changeNewMemberId(event.target.value);
+    }
+    handleKeyUpId = (event) => {
+        if( this.props.mSignUpStore.isValidId && event.keyCode===13){
+            this.props.handleIdOK();
+        }
     }
 
     render() {
@@ -83,6 +91,7 @@ class JoinIdMatch extends React.Component {
                         <Typography className={classes.txtstyle1}>로그인에 사용할 아이디를 입력해주세요</Typography>
 
                         <form noValidate autoComplete="off">
+                            <input type="text" className={classes.inputnone}/>
                             <TextField
                                 id="id"
                                 placeholder="아이디"
@@ -90,15 +99,16 @@ class JoinIdMatch extends React.Component {
                                 className={classes.namebox}
                                 value={newMember.id}
                                 onChange={this.handleChangeId}
+                                onKeyUp={this.handleKeyUpId}
                             />
                             {isValidId ?
                                 <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext} style={{color: '#000'}}>영문,숫자포함/8~20자
+                                    <Typography className={classes.idtext} style={{color: '#000'}}>8~20자
                                         이내 </Typography>
                                     <CheckRoundedIcon style={{color: '#000', marginTop: -5}}/>
                                 </Paper> :
                                 <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext}>영문,숫자포함/8~20자
+                                    <Typography className={classes.idtext}>8~20자
                                         이내 </Typography>
                                     <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
                                 </Paper>

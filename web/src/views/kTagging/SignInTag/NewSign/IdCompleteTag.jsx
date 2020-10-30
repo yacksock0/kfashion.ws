@@ -1,13 +1,9 @@
-
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {inject, observer} from "mobx-react";
-import {toJS} from "mobx";
-
-
 
 
 const style = theme => ({
@@ -93,7 +89,6 @@ class IdCompleteTag extends Component{
     componentWillUnmount() {
         this.props.tSignUpStore.initialize();
     }
-
     handleClickHome = () => {
         this.props.history.push("/tagging");
     }

@@ -1,6 +1,7 @@
 package io.aetherit.kfashion.ws.repository.mapper.kTagging;
 
 import io.aetherit.kfashion.ws.model.KfashionUserInfo;
+import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
 import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface TaggingUserMapper {
 
     void createNewUser(TaggingUser user);
 
+    void changePassword(TaggingUser user);
+
     TaggingUser selectUser(String id);
 
     TaggingUser selectAdmin(String userId);
@@ -19,5 +22,8 @@ public interface TaggingUserMapper {
     int checkUser(TaggingUser user);
 
     TaggingUser findTaggingUser(TaggingUser user);
+
+    TaggingUser nameCkTaggingUser(TaggingUser user);
+
 
 }

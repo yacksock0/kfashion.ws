@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
 import {withStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import {Typography,Button, TextField,Paper} from '@material-ui/core';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import {inject, observer} from "mobx-react";
 import {withSnackbar} from "notistack";
@@ -97,7 +94,6 @@ class JoinPwSearch extends Component {
                 <Paper elevation={0} className={classes.paper}>
                     <Paper elevation={0}>
                         <Typography className={classes.txtstyle1}>로그인에 사용할 비밀번호를 입력해주세요</Typography>
-
                         <form noValidate autoComplete="off">
                             <TextField
                                 id="password"

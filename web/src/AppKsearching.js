@@ -96,7 +96,6 @@ class AppKsearching extends React.Component {
                                     loginUser={loginUser}
                                     doLogout={() => this.props.sAuthStore.doLogout()}
                                     setStep={this.props.currentStepStore.currentStep}
-                                    gohome={this.props.sAuthStore.goHome}
                             />
                         {loginState === sStore.State.Authenticated ? (
                             <React.Fragment>
