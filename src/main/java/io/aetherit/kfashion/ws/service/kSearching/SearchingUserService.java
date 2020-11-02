@@ -116,11 +116,14 @@ public class SearchingUserService {
     public SearchingUser selectUserById(String id) {
         return repository.selectUserById(id);
     }
+    public SearchingUser selectUserByNickName(String nickName) {
+        return repository.selectUserByNickName(nickName);
+    }
     public SearchingUser findSearchingUser(SearchingUser user) {
         return repository.findSearchingUser(user);
     }
 
-    public SearchingUser nameCkSearchingUser(SearchingUser user) {
+    public int nameCkSearchingUser(SearchingUser user) {
         return repository.nameCkSearchingUser(user);
     }
 

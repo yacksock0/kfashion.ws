@@ -48,11 +48,14 @@ public class SearchingUserRepository {
     public SearchingUser selectUserById(String id) {
         return mapper.selectUserById(id);
     }
+    public SearchingUser selectUserByNickName(String nickName) {
+        return mapper.selectUserByNickName(nickName);
+    }
     public SearchingUser findSearchingUser(SearchingUser user) {
         return mapper.findSearchingUser(user);
     }
 
-    public SearchingUser nameCkSearchingUser(SearchingUser user) {
+    public int nameCkSearchingUser(SearchingUser user) {
         return mapper.nameCkSearchingUser(user);
     }
 

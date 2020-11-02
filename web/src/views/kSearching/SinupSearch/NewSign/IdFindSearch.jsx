@@ -55,15 +55,20 @@ const style = theme => ({
 @observer
 class IdFindSearch extends Component {
     componentWillUnmount() {
+        if(this.props.sSignUpStore.questionCK !==true) {
+            this.props.sSignUpStore.initialize()
+            console.log("asd")
+        }
     }
     handleClose = () => {
         this.props.sSignUpStore.handleSnackIdClose();
     }
     handleClickOK = () => {
+        this.props.sSignUpStore.changeQuestionCk()
         this.props.sSignUpStore.doFindUser(this.props.history, "ID");
     }
     handleUserInfoOK = () => {
-        this.props.sSignUpStore.handleUserInfoOK2(this.props.history);
+        this.props.sSignUpStore.handleUserInfoOK2();
     }
 
     render() {
@@ -80,7 +85,7 @@ class IdFindSearch extends Component {
                         <Typography className={classes.titletext}>아이디 찾기</Typography>
 
                         {userInfoOK === false && <JoinUserInfoSearch handleUserInfoOK={this.handleUserInfoOK}/>}
-                        {userInfoOK === true && member.name !== undefined && member.name !== "" &&
+                        {userInfoOK === true &&
                         <Typography className={classes.txtstyle1}>회원가입 시 설정한 보안 질문을<br/> 선택하여 답변해주세요.</Typography> &&
                         <QuestionsSearch handleClickOK={this.handleClickOK}/>
                         }

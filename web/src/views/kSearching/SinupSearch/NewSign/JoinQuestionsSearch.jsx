@@ -37,12 +37,23 @@ const style = theme => ({
 @observer
 class JoinQuestionsSearch extends Component{
     handleClickOK= () => {
+        this.props.sSignUpStore.changeQuestionCk();
         this.props.sSignUpStore.doSignUp(this.props.history);
     }
+    componentWillUnmount() {
+        if(this.props.sSignUpStore.questionCK !== true){
+            console.log("question initalize")
+            this.props.sSignUpStore.initialize();
+        }
+    }
+
     render() {
         const { classes } = this.props;
         const {agreeOK, idOK, pwOK} = this.props.sSignUpStore;
-        if(agreeOK !==true || idOK!==true || pwOK!==true ) this.props.history.push('/searching/agree');
+        if(agreeOK !==true || idOK!==true || pwOK!==true ) {
+            this.props.history.push('/searching/agree');
+            console.log(agreeOK,idOK,pwOK+"!!asdasdww!!!")
+        }
 
         return (
             <div className={classes.root}>

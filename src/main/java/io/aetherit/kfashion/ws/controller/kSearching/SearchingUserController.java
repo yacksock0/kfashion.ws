@@ -47,7 +47,7 @@ public class SearchingUserController {
      * @throws Exception
      */
     @GetMapping(value = "/signupcheck/id")
-    public ResponseEntity<Object> getIdCheckTagging(HttpServletRequest httpRequest, @RequestParam(value = "id", required = true) String id) throws Exception {
+    public ResponseEntity<Object> getIdCheckSearching(HttpServletRequest httpRequest, @RequestParam(value = "id", required = true) String id) throws Exception {
         SearchingUser user = searchingUserService.selectUserById(id);
         boolean result = false;
         if (user != null) result = true;
@@ -56,6 +56,17 @@ public class SearchingUserController {
         return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
 //        System.out.println("1111111");
 //        return null;
+    }
+    //닉네임중복확인
+    @GetMapping(value = "/signupcheck/nickname")
+    public ResponseEntity<Object> getNickNameCheckSearching(HttpServletRequest httpRequest, @RequestParam(value = "nickName", required = true) String nickName) throws Exception {
+        System.out.println("@@");
+        SearchingUser user = searchingUserService.selectUserByNickName(nickName);
+        boolean result = false;
+        if (user != null) result = true;
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
     }
 
     @PostMapping(value = "/find")
@@ -71,7 +82,8 @@ public class SearchingUserController {
 
     @PostMapping(value = "/nameck")
     public ResponseEntity<Object> nameCkSearchingUser(HttpServletRequest httpRequest, @RequestBody SearchingUser user) throws Exception {
-        SearchingUser result = searchingUserService.nameCkSearchingUser(user);
+        System.out.println("!!");
+        int result = searchingUserService.nameCkSearchingUser(user);
         System.out.println("@@@@@@@@@@" +result);
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("result", result);

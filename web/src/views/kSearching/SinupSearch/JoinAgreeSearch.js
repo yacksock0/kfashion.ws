@@ -44,21 +44,27 @@ const style = theme => ({
 @inject('sSignUpStore')
 @observer
 class JoinAgreeSearch extends React.Component {
-    constructor(props) {
-        super(props);
+    componentWillUnmount() {
+        const {agreeOK, idOK, pwOK, userInfoOK} = this.props.sSignUpStore;
+        if(agreeOK !== true || idOK !== true || pwOK !== true || userInfoOK !== true) {
+        this.props.sSignUpStore.initialize()
+            console.log("initialize")
+        }
     }
     handleUserInfoOK = () => {
-        this.props.sSignUpStore.handleUserInfoOK();
-        this.props.history.push("/searching/question");
+        this.props.sSignUpStore.handleUserInfoCK(this.props.history);
     }
     handleClose = () => {
         this.props.sSignUpStore.handleSnackIdClose();
     }
+
     render() {
         const { classes } = this.props;
         const {agreeOK, idOK, pwOK, userInfoOK, idSnack, handleIdOK, handlePwOK} = this.props.sSignUpStore;
         const snackMessage = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
             style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>중복된 아이디입니다.</span></div>
+        const snackMessage2 = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
+            style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>중복된 닉네임입니다.</span></div>
         let component;
         if(agreeOK === false) component = <AgreeListSearch/>;
         else if(agreeOK === true && idOK === false) component = <JoinIdSearch handleIdOK={handleIdOK}/>;
@@ -77,7 +83,7 @@ class JoinAgreeSearch extends React.Component {
                                   open={idSnack}
                                   autoHideDuration={3000}
                                   onClose={this.handleClose}
-                                  message={snackMessage}
+                                  message={idOK ? snackMessage2 : snackMessage}
                                   severity={'info'}
                                   action={[
                                       <IconButton key="close" aria-label="Close" className={classes.close}

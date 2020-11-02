@@ -8,6 +8,8 @@ public interface SearchingUserMapper {
     List<SearchingUser> selectUsersWhereType(String userType);
     SearchingUser selectUserById(String id);
 
+    SearchingUser selectUserByNickName(String nickName);
+
     void createNewUser(SearchingUser user);
 
     void changePassword(SearchingUser user);
@@ -20,6 +22,6 @@ public interface SearchingUserMapper {
 
     SearchingUser findSearchingUser(SearchingUser user);
 
-    SearchingUser nameCkSearchingUser(SearchingUser user);
+    int nameCkSearchingUser(SearchingUser user);
 
 }
