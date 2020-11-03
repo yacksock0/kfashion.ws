@@ -125,8 +125,12 @@ class QuestionsMatch extends Component {
                                     style={{color:'#818181'}}
                                 >
                                     <option value=''>보안질문1</option>
-                                    {this.state.questionsList.map( (e, i) =>{
-                                        return <option key={i} value={i+1}>{e}</option>
+                                    {this.state.questionsList.map((e, i) => {
+                                        if (i !== newMember.question2 - 1 && i !== newMember.question3 - 1) {
+                                            return <option key={i + 1} value={i + 1}>{e}</option>
+                                        } else {
+                                            return <option disabled={true} key={i + 1} value={i + 1}>{e}</option>
+                                        }
                                     })}
                                 </Select>
                             </FormControl>
@@ -152,7 +156,11 @@ class QuestionsMatch extends Component {
                             >
                                 <option value={0}>보안질문2</option>
                                 {this.state.questionsList.map( (e, i) =>{
-                                    return <option key={i} value={i+1}>{e}</option>
+                                    if (i !== newMember.question1 - 1 && i !== newMember.question3 - 1) {
+                                        return <option key={i + 1} value={i + 1}>{e}</option>
+                                    } else {
+                                        return <option disabled={true} key={i + 1} value={i + 1}>{e}</option>
+                                    }
                                 })}
                             </Select>
                         </FormControl>
@@ -177,8 +185,12 @@ class QuestionsMatch extends Component {
                                 style={{color: '#818181'}}
                             >
                                 <option value={0}>보안질문3</option>
-                                {this.state.questionsList.map( (e, i) =>{
-                                    return <option key={i} value={i+1}>{e}</option>
+                                {this.state.questionsList.map((e, i) => {
+                                    if (i !== newMember.question2 - 1 && i !== newMember.question1 - 1) {
+                                        return <option key={i + 1} value={i + 1}>{e}</option>
+                                    } else {
+                                        return <option disabled={true} key={i + 1} value={i + 1}>{e}</option>
+                                    }
                                 })}
                             </Select>
                         </FormControl>
