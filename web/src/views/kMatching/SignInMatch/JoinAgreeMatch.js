@@ -4,12 +4,10 @@ import {withRouter} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {inject, observer} from "mobx-react";
 import {Typography, Paper , Snackbar, IconButton} from "@material-ui/core";
-
 import JoinIdMatch from "./NewSign/JoinIdMatch";
 import JoinPwMatch from "./NewSign/JoinPwMatch";
 import JoinUserInfoMatch from "./NewSign/JoinUserInfoMatch";
 import AgreeListMatch from "./AgreeListMatch";
-import JoinPwSearch from "../../kSearching/SinupSearch/NewSign/JoinPwSearch";
 import CloseIcon from "@material-ui/icons/Close";
 import ErrorIcon from "@material-ui/icons/Error";
 
@@ -45,22 +43,28 @@ const style = theme => ({
 @inject('mSignUpStore')
 @observer
 class JoinAgreeMatch extends React.Component {
-    constructor(props) {
-        super(props);
+    componentWillUnmount() {
+        const {agreeOK, idOK, pwOK, userInfoOK} = this.props.mSignUpStore;
+        if(agreeOK !== true || idOK !== true || pwOK !== true || userInfoOK !== true) {
+            this.props.mSignUpStore.initialize()
+            console.log("initialize")
+        }
     }
-
     handleUserInfoOK = () => {
-        this.props.mSignUpStore.handleUserInfoOK();
-        this.props.history.push("/matching/question");
+        this.props.mSignUpStore.handleUserInfoCK(this.props.history);
     }
     handleClose = () => {
         this.props.mSignUpStore.handleSnackIdClose();
     }
+
+
     render() {
         const { classes } = this.props;
         const {agreeOK, idOK, pwOK, idSnack, userInfoOK, handleIdOK, handlePwOK} = this.props.mSignUpStore;
         const snackMessage = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
             style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>중복된 아이디입니다.</span></div>
+        const snackMessage2 = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
+            style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>중복된 닉네임입니다.</span></div>
         let component;
         if(agreeOK === false) component = <AgreeListMatch/>;
         else if(agreeOK === true && idOK === false) component = <JoinIdMatch handleIdOK={handleIdOK}/>;
@@ -79,7 +83,7 @@ class JoinAgreeMatch extends React.Component {
                                   open={idSnack}
                                   autoHideDuration={3000}
                                   onClose={this.handleClose}
-                                  message={snackMessage}
+                                  message={idOK ? snackMessage2 : snackMessage}
                                   severity={'info'}
                                   action={[
                                       <IconButton key="close" aria-label="Close" className={classes.close}

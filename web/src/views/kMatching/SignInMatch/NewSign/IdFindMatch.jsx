@@ -55,15 +55,20 @@ const style = theme => ({
 @observer
 class IdFindMatch extends Component {
     componentWillUnmount() {
+        if(this.props.mSignUpStore.questionCK !==true) {
+            this.props.mSignUpStore.initialize()
+            console.log("initialize")
+        }
     }
     handleClose = () => {
         this.props.mSignUpStore.handleSnackIdClose();
     }
     handleClickOK = () => {
+        this.props.mSignUpStore.changeQuestionCk()
         this.props.mSignUpStore.doFindUser(this.props.history, "ID");
     }
     handleUserInfoOK = () => {
-        this.props.mSignUpStore.handleUserInfoOK2(this.props.history);
+        this.props.mSignUpStore.handleUserInfoOK2();
     }
 
     render() {
@@ -97,14 +102,12 @@ class IdFindMatch extends Component {
                                       </IconButton>,
                                   ]}
                         />
-
                     </Paper>
                 </Paper>
             </div>
         )
     }
 }
-
 export default withStyles(style)(IdFindMatch);
 
 

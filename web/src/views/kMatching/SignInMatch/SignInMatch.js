@@ -88,7 +88,9 @@ class SignInSearch extends React.Component {
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
     }
-
+    componentWillUnmount() {
+        this.props.mAuthStore.initialize();
+    }
     handleChangeId = (e) => {
         this.props.mAuthStore.changeLoginId(e.target.value);
     }

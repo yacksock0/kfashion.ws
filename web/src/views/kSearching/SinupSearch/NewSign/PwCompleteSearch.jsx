@@ -88,7 +88,7 @@ const style = theme => ({
 class PwCompleteSearch extends Component {
     componentWillUnmount() {
         this.props.sSignUpStore.initialize();
-        console.log('값 초기화 완료');
+        console.log('initialize');
     }
 
     handleClickHome = () => {
@@ -151,5 +151,4 @@ class PwCompleteSearch extends Component {
         )
     }
 }
-
 export default withStyles(style)(PwCompleteSearch);

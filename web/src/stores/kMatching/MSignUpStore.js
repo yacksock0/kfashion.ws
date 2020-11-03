@@ -6,7 +6,6 @@ const MinUserId = 4;
 const MinUserName = 2;
 const MinPassword = 4;
 const MinPhone = 13;
-
 const State = {
     Ready: 'Ready',
     Pending: 'Pending',
@@ -15,7 +14,6 @@ const State = {
     Success: 'Success',
     Fail: 'Fail',
 }
-
 const EmptyNewMember = {
     id: '',
     password: '',
@@ -29,7 +27,6 @@ const EmptyNewMember = {
     question3 : 0,
     answer3 : '',
 }
-
 const EmptyAgreements = {
     all: false,
     service: false,
@@ -43,13 +40,12 @@ export default class SignUpStore {
     @observable agreements = {...EmptyAgreements}
     @observable serverMode = '';
     @observable isAllSelected = false;
-
     @observable agreeOK = false;
     @observable idOK = false;
     @observable pwOK = false;
     @observable userInfoOK = false;
-
     @observable pwCK = false;
+    @observable questionCK = false;
     @observable pwSnack = false;
     @observable idSnack = false;
 
@@ -62,6 +58,28 @@ export default class SignUpStore {
     @action  handleIdOK = () => {
         this.checkId();
     }
+    @action  handleUserInfoCK = (history) => {
+        this.checkNickName(history);
+    }
+    @action  handleUserInfoOK = () => {
+        this.userInfoOK = true;
+    }
+
+    checkNickName = flow(function* checkNickName(history) {
+        try {
+            const responseNick = yield axios.get(`/api/v1/kMatching/users/signupcheck/nickname?nickName=${this.newMember.nickName}`)
+            if (responseNick.data.result) {
+                this.handleSnackIdOpen();
+            } else {
+                this.handleUserInfoOK();
+                this.handleSnackIdClose();
+                history.push("/matching/question");
+            }
+        } catch (e) {
+            console.log('checkNickName ERROR!')
+        } finally {
+        }
+    });
     checkId = flow(function* checkId() {
         try {
             const responseId = yield axios.get(`/api/v1/kMatching/users/signupcheck/id?id=${this.newMember.id}`)
@@ -78,8 +96,6 @@ export default class SignUpStore {
         }finally {
         }
     });
-
-
     //비밀번호 찾기시 아이디체크 20.10.29[이지현]
     checkId2 = flow(function* checkId2() {
         try {
@@ -105,9 +121,6 @@ export default class SignUpStore {
     @action  handlePwOK2 = () => {
         this.pwCK = true;
         this.doChangePassword();
-    }
-    @action  handleUserInfoOK = () => {
-        this.userInfoOK = true;
     }
     @action  handleUserInfoOK2 = (history) => {
         this.doCheckName(history)
@@ -152,6 +165,7 @@ export default class SignUpStore {
             && this.newMember.question2 !== 0
             && this.newMember.question3 !== 0;
     }
+
     @computed get isCheckAnswer() {
         return this.newMember.answer1 !== ''
             && this.newMember.answer2 !== ''
@@ -166,6 +180,9 @@ export default class SignUpStore {
         this.pwOK = false;
         this.pwCK = false;
         this.agreeOK = false;
+        this.questionCK = false;
+        this.idSnack = false;
+        this.pwSnack = false;
         this.userInfoOK = false;
         this.member = {}
         if((email !== undefined) && (email !== null) && (email.length > 0) && validation.validateEmail(email)) {
@@ -192,6 +209,9 @@ export default class SignUpStore {
     @action changeNewMemberNickName = (event) => {
         this.newMember.nickName = event.target.value;
     }
+    @action changeQuestionCk = () => {
+        this.questionCK = true;
+    }
 
 
     @computed get canSignUp() {
@@ -212,25 +232,21 @@ export default class SignUpStore {
 
         return id && emailVerification && passwordConfirm && password && userName && phone;
     }
-
     @computed get isValidId() {
         return validation.validateId(this.newMember.id);
     }
     @computed get isValidPassword() {
         return validation.validatePw(this.newMember.password);
     }
-
     @computed get isPasswordConfirmed() {
         return this.newMember.password === this.newMember.passwordConfirm;
     }
-
     @computed get isValidUserName() {
-        return this.newMember.name.length >= MinUserName;
+        return validation.validateName(this.newMember.name);
     }
     @computed get isValidNickName() {
-        return this.newMember.nickName.length >= MinUserName;
+        return validation.validateNickName(this.newMember.nickName);
     }
-
     @computed get isPending() {
         return this.state === State.Pending;
     }
@@ -250,7 +266,6 @@ export default class SignUpStore {
     @computed get isNotAvailableId() {
         return this.state === State.NotAvailableId;
     }
-
 
 
     AllSelected = flow(function* isAllSelected(isAllSelected) {
@@ -281,6 +296,7 @@ export default class SignUpStore {
             this.state = State.Success;
         }
     });
+
 
     doChangePassword = flow(function* doChangePassword() {
         this.state = State.Pending;

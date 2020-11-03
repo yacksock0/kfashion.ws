@@ -1,5 +1,6 @@
 package io.aetherit.kfashion.ws.controller.kTagging;
 
+import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
 import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
 import io.aetherit.kfashion.ws.service.KfashionEmailAuthorityService;
 import io.aetherit.kfashion.ws.service.KfashionUserGroupAdminService;
@@ -63,6 +64,17 @@ public class TaggingUserController {
     @GetMapping(value = "/signupcheck/id")
     public ResponseEntity<Object> getIdCheckTagging(HttpServletRequest httpRequest, @RequestParam(value = "id", required = true) String id) throws Exception {
         TaggingUser user = taggingUserService.selectUserById(id);
+        boolean result = false;
+        if (user != null) result = true;
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+    //닉네임 중복확
+    @GetMapping(value = "/signupcheck/nickname")
+    public ResponseEntity<Object> getNickNameCheckTagging(HttpServletRequest httpRequest, @RequestParam(value = "nickName", required = true) String nickName) throws Exception {
+        System.out.println("@@");
+        TaggingUser user = taggingUserService.selectUserByNickName(nickName);
         boolean result = false;
         if (user != null) result = true;
         HashMap<String, Object> resultMap = new HashMap<String, Object>();

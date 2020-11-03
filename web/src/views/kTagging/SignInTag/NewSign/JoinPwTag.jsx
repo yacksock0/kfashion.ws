@@ -145,7 +145,7 @@ class JoinPwTag extends Component{
                             <Button variant="contained"
                                     className={classes.btnjoinstyle}
                                     disabled={!isValidPassword || !isPasswordConfirmed}
-                                    onClick={this.handlePwOK}>다음</Button>
+                                    onClick={handlePwOK}>다음</Button>
                         </Paper>
                     </Paper>
                 </Paper>

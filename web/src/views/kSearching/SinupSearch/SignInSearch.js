@@ -82,7 +82,6 @@ const style = theme => ({
 });
 
 @inject('sAuthStore')
-@inject('sSignUpStore')
 @observer
 class SignInSearch extends React.Component {
     componentDidMount() {

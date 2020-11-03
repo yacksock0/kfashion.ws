@@ -2,6 +2,7 @@ package io.aetherit.kfashion.ws.controller.kMatching;
 
 import io.aetherit.kfashion.ws.model.kMatching.MatchingUser;
 import io.aetherit.kfashion.ws.model.kMatching.MatchingUserToken;
+import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
 import io.aetherit.kfashion.ws.service.kMatching.MatchingUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,18 @@ public class MatchingUserController {
     @GetMapping(value = "/signupcheck/id")
     public ResponseEntity<Object> getIdCheckTagging(HttpServletRequest httpRequest, @RequestParam(value = "id", required = true) String id) throws Exception {
         MatchingUser user = matchingUserService.selectUserById(id);
+        boolean result = false;
+        if (user != null) result = true;
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        return new ResponseEntity<Object>(resultMap, HttpStatus.OK);
+    }
+
+    //닉네임중복확인
+    @GetMapping(value = "/signupcheck/nickname")
+    public ResponseEntity<Object> getNickNameCheckMatching(HttpServletRequest httpRequest, @RequestParam(value = "nickName", required = true) String nickName) throws Exception {
+        System.out.println("@@");
+        MatchingUser user = matchingUserService.selectUserByNickName(nickName);
         boolean result = false;
         if (user != null) result = true;
         HashMap<String, Object> resultMap = new HashMap<String, Object>();

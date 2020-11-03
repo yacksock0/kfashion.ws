@@ -11,6 +11,8 @@ public interface TaggingUserMapper {
     List<TaggingUser> selectUsersWhereType(String userType);
     TaggingUser selectUserById(String id);
 
+    TaggingUser selectUserByNickName(String nickName);
+
     void createNewUser(TaggingUser user);
 
     void changePassword(TaggingUser user);

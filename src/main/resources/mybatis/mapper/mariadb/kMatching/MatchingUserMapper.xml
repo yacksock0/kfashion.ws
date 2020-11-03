@@ -29,6 +29,18 @@
         WHERE  id = #{id}
     </select>
 
+    <select id="selectUserByNickName" parameterType="String" resultMap="MatchingUserResultMap">
+          SELECT id,
+                password,
+                name,
+                user_type,
+                is_poll,
+                created_datetime,
+                updated_datetime
+        FROM kmatching_user
+        WHERE  nickname = #{nickName}
+    </select>
+
 
     <select id="selectUsersWhereType" resultMap="MatchingUserResultMap">
         SELECT  id,
@@ -136,7 +148,6 @@
         WHERE   name = #{name}
         AND     nickname = #{nickName}
     </select>
-
 
 
 

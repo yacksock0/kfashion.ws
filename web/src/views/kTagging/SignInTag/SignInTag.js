@@ -82,6 +82,9 @@ class SignInTag extends React.Component {
     componentDidMount() {
         setTimeout(() => document.body.style.zoom = "100%", 100);
     }
+    componentWillUnmount() {
+        this.props.tAuthStore.initialize();
+    }
 
     handleChangeId = (e) => {
         this.props.tAuthStore.changeLoginId(e.target.value);

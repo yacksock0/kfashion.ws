@@ -88,7 +88,7 @@ const style = theme => ({
 class PwCompleteMatch extends Component{
     componentWillUnmount() {
         this.props.mSignUpStore.initialize();
-        console.log('값 초기화 완료');
+        console.log('initialize');
     }
 
     handleClickHome = () => {
@@ -131,6 +131,7 @@ class PwCompleteMatch extends Component{
                             <Typography className={classes.pwtext}>찾으시는 정보의 비밀번호가 없습니다.</Typography>
                         </Paper>
                         }
+
 
                         <Paper elevation={0}>
                             {member.password !== undefined || member.password !== "" &&

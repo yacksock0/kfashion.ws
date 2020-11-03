@@ -46,13 +46,12 @@ class JoinQuestionsSearch extends Component{
             this.props.sSignUpStore.initialize();
         }
     }
-
     render() {
         const { classes } = this.props;
         const {agreeOK, idOK, pwOK} = this.props.sSignUpStore;
         if(agreeOK !==true || idOK!==true || pwOK!==true ) {
             this.props.history.push('/searching/agree');
-            console.log(agreeOK,idOK,pwOK+"!!asdasdww!!!")
+            console.log("!!비정상적 접근!!")
         }
 
         return (

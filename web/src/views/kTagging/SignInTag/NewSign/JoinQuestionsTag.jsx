@@ -36,8 +36,15 @@ const style = theme => ({
 @inject('tSignUpStore')
 @observer
 class JoinQuestionsTag extends Component{
-    handleClickOK = () => {
+    handleClickOK= () => {
+        this.props.tSignUpStore.changeQuestionCk();
         this.props.tSignUpStore.doSignUp(this.props.history);
+    }
+    componentWillUnmount() {
+        if(this.props.tSignUpStore.questionCK !== true){
+            console.log("question initalize")
+            this.props.tSignUpStore.initialize();
+        }
     }
     render() {
         const { classes } = this.props;

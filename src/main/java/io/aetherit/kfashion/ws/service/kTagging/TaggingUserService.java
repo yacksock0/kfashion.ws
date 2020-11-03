@@ -118,9 +118,16 @@ public class TaggingUserService {
         return isNotAcceptable;
     }
 
+
     public TaggingUser selectUserById(String id) {
         return repository.selectUserById(id);
     }
+
+    public TaggingUser selectUserByNickName(String nickName) {
+        return repository.selectUserByNickName(nickName);
+    }
+
+
     public TaggingUser findTaggingUser(TaggingUser user) {
         return repository.findTaggingUser(user);
     }

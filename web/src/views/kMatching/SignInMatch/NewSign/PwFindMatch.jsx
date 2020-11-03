@@ -53,7 +53,14 @@ class PwFindMatch extends Component{
         this.props.mSignUpStore.handleSnackPwClose();
     }
     handleClickOK = () => {
+        this.props.mSignUpStore.changeQuestionCk();
         this.props.mSignUpStore.doFindUser(this.props.history, "PW");
+    }
+    componentWillUnmount() {
+        if(this.props.mSignUpStore.questionCK !== true){
+            this.props.mSignUpStore.initialize()
+            console.log("initialize")
+        }
     }
 
     render() {

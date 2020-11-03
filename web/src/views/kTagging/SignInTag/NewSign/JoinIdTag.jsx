@@ -71,7 +71,6 @@ const style = (theme) => ({
 @inject('tSignUpStore')
 @observer
 class JoinIdTag extends React.Component {
-
     handleChangeId = (event) => {
         this.props.tSignUpStore.changeNewMemberId(event.target.value);
     }
@@ -103,11 +102,11 @@ class JoinIdTag extends React.Component {
                             />
                             {isValidId ?
                                 <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext} style={{color: '#526af2'}}>8~20자 이내 </Typography>
+                                    <Typography className={classes.idtext} style={{color: '#526af2'}}>영문,숫자/8~20자 이내 </Typography>
                                     <CheckRoundedIcon style={{color: '#526af2', marginTop: -5}}/>
                                 </Paper>:
                                 <Paper elevation={0} style={{display: 'flex'}}>
-                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>8~20자 이내 </Typography>
+                                    <Typography className={classes.idtext} style={{color: '#c9c9c9'}}>영문,숫자/8~20자 이내 </Typography>
                                     <CheckRoundedIcon style={{color: '#c9c9c9', marginTop: -5}}/>
                                 </Paper>
                             }

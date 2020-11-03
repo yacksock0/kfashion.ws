@@ -42,7 +42,10 @@ export default class AuthStore {
     @action changeLoginId = (id) => {
         this.login.id = id;
     };
-
+    @action initialize = () =>{
+        this.login.password = '';
+        this.login.id ='';
+    }
     @action changeLoginPassword = (password) => {
         this.login.password = password;
     };

@@ -55,15 +55,20 @@ const style = theme => ({
 @observer
 class IdFindTag extends Component{
     componentWillUnmount() {
+        if(this.props.tSignUpStore.questionCK !==true) {
+            this.props.tSignUpStore.initialize()
+            console.log("initialize")
+        }
     }
     handleClose = () => {
         this.props.tSignUpStore.handleSnackIdClose();
     }
     handleClickOK = () => {
+        this.props.tSignUpStore.changeQuestionCk()
         this.props.tSignUpStore.doFindUser(this.props.history, "ID");
     }
     handleUserInfoOK = () => {
-        this.props.tSignUpStore.handleUserInfoOK2(this.props.history);
+        this.props.tSignUpStore.handleUserInfoOK2();
     }
 
     render() {

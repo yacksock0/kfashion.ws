@@ -1,7 +1,6 @@
 package io.aetherit.kfashion.ws.controller.kSearching;
 
 import io.aetherit.kfashion.ws.model.kSearching.SearchingUser;
-import io.aetherit.kfashion.ws.model.kTagging.TaggingUser;
 import io.aetherit.kfashion.ws.service.kSearching.SearchingUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

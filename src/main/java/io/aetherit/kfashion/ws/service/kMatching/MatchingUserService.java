@@ -114,6 +114,12 @@ public class MatchingUserService {
     public MatchingUser selectUserById(String id) {
         return repository.selectUserById(id);
     }
+
+    public MatchingUser selectUserByNickName(String nickName) {
+        return repository.selectUserByNickName(nickName);
+    }
+
+
     public MatchingUser findMatchingUser (MatchingUser user) {
         return repository.findMatchingUser(user);
     }

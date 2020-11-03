@@ -53,7 +53,14 @@ class PwFindTag extends Component{
         this.props.tSignUpStore.handleSnackPwClose();
     }
     handleClickOK = () => {
+        this.props.tSignUpStore.changeQuestionCk();
         this.props.tSignUpStore.doFindUser(this.props.history, "PW");
+    }
+    componentWillUnmount() {
+        if(this.props.tSignUpStore.questionCK !== true){
+            this.props.tSignUpStore.initialize()
+            console.log("initialize")
+        }
     }
 
     render() {

@@ -57,7 +57,7 @@ class IdFindSearch extends Component {
     componentWillUnmount() {
         if(this.props.sSignUpStore.questionCK !==true) {
             this.props.sSignUpStore.initialize()
-            console.log("asd")
+            console.log("initialize")
         }
     }
     handleClose = () => {

@@ -50,6 +50,7 @@ export default class SignUpStore {
     @observable userInfoOK = false;
 
     @observable pwCK = false;
+    @observable questionCK = false;
     @observable pwSnack = false;
     @observable idSnack = false;
 
@@ -62,6 +63,28 @@ export default class SignUpStore {
     @action  handleIdOK = () => {
         this.checkId();
     }
+    @action  handleUserInfoCK = (history) => {
+        this.checkNickName(history);
+    }
+    @action  handleUserInfoOK = () => {
+        this.userInfoOK = true;
+    }
+
+    checkNickName = flow(function* checkNickName(history) {
+        try {
+            const responseNick = yield axios.get(`/api/v1/kTagging/users/signupcheck/nickname?nickName=${this.newMember.nickName}`)
+            if (responseNick.data.result) {
+                this.handleSnackIdOpen();
+            } else {
+                this.handleUserInfoOK();
+                this.handleSnackIdClose();
+                history.push("/tagging/question");
+            }
+        } catch (e) {
+            console.log('checkNickName ERROR!')
+        } finally {
+        }
+    });
     checkId = flow(function* checkId() {
         try {
             const responseId = yield axios.get(`/api/v1/kTagging/users/signupcheck/id?id=${this.newMember.id}`)
@@ -78,7 +101,6 @@ export default class SignUpStore {
         }finally {
         }
     });
-
     //비밀번호 찾기시 아이디체크 20.10.29[이지현]
     checkId2 = flow(function* checkId2() {
         try {
@@ -104,9 +126,6 @@ export default class SignUpStore {
     @action  handlePwOK2 = () => {
         this.pwCK = true;
         this.doChangePassword();
-    }
-    @action  handleUserInfoOK = () => {
-        this.userInfoOK = true;
     }
     @action  handleUserInfoOK2 = (history) => {
         this.doCheckName(history)
@@ -151,6 +170,7 @@ export default class SignUpStore {
             && this.newMember.question2 !== 0
             && this.newMember.question3 !== 0;
     }
+
     @computed get isCheckAnswer() {
         return this.newMember.answer1 !== ''
             && this.newMember.answer2 !== ''
@@ -166,6 +186,9 @@ export default class SignUpStore {
         this.pwCK = false;
         this.agreeOK = false;
         this.userInfoOK = false;
+        this.questionCK = false;
+        this.idSnack = false;
+        this.pwSnack = false;
         this.member = {}
         if((email !== undefined) && (email !== null) && (email.length > 0) && validation.validateEmail(email)) {
             this.newMember.email = email;
@@ -190,7 +213,9 @@ export default class SignUpStore {
     @action changeNewMemberNickName = (event) => {
         this.newMember.nickName = event.target.value;
     }
-
+    @action changeQuestionCk = () => {
+        this.questionCK = true;
+    }
 
 
     @computed get canSignUp() {
@@ -218,18 +243,15 @@ export default class SignUpStore {
     @computed get isValidPassword() {
         return validation.validatePw(this.newMember.password);
     }
-
     @computed get isPasswordConfirmed() {
         return this.newMember.password === this.newMember.passwordConfirm;
     }
-
     @computed get isValidUserName() {
-        return this.newMember.name.length >= MinUserName;
+        return validation.validateName(this.newMember.name);
     }
     @computed get isValidNickName() {
-        return this.newMember.nickName.length >= MinUserName;
+        return validation.validateNickName(this.newMember.nickName);
     }
-
     @computed get isPending() {
         return this.state === State.Pending;
     }
@@ -249,7 +271,6 @@ export default class SignUpStore {
     @computed get isNotAvailableId() {
         return this.state === State.NotAvailableId;
     }
-
 
 
     AllSelected = flow(function* isAllSelected(isAllSelected) {
@@ -311,7 +332,6 @@ export default class SignUpStore {
                         this.handleUserInfoOK();
                         this.handleSnackIdClose();
                     }else{
-                        this.findIdMemberSet({});
                         this.handleSnackIdOpen();
                     }
                 })

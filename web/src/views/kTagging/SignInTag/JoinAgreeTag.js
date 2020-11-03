@@ -44,21 +44,27 @@ const style = theme => ({
 @inject('tSignUpStore')
 @observer
 class JoinAgreeTag extends React.Component {
-    constructor(props) {
-        super(props);
+    componentWillUnmount() {
+        const {agreeOK, idOK, pwOK, userInfoOK} = this.props.tSignUpStore;
+        if(agreeOK !== true || idOK !== true || pwOK !== true || userInfoOK !== true) {
+            this.props.tSignUpStore.initialize()
+            console.log("initialize")
+        }
     }
     handleUserInfoOK = () =>{
-        this.props.tSignUpStore.handleUserInfoOK();
-        this.props.history.push("/tagging/question");
+        this.props.tSignUpStore.handleUserInfoCK(this.props.history);
     }
     handleClose = () => {
         this.props.tSignUpStore.handleSnackIdClose();
     }
+
     render() {
         const { classes } = this.props;
         const {agreeOK, idOK, pwOK, userInfoOK, idSnack, handleIdOK, handlePwOK} = this.props.tSignUpStore;
         const snackMessage = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
             style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>중복된 아이디입니다.</span></div>
+        const snackMessage2 = <div><ErrorIcon style={{fontSize: 30, marginTop: '5px'}}/><span
+            style={{fontSize: '17px', position: 'absolute', left: '60px', top: '22px'}}>중복된 닉네임입니다.</span></div>
         let component;
         if(agreeOK === false) component = <AgreeList/>;
         else if(agreeOK === true && idOK === false) component = <JoinIdTag handleIdOK={handleIdOK}/>;
@@ -77,7 +83,7 @@ class JoinAgreeTag extends React.Component {
                               open={idSnack}
                               autoHideDuration={3000}
                               onClose={this.handleClose}
-                              message={snackMessage}
+                              message={idOK ? snackMessage2 : snackMessage}
                               severity={'info'}
                               action={[
                                   <IconButton key="close" aria-label="Close" className={classes.close}

@@ -48,6 +48,10 @@ public class TaggingUserRepository {
     public TaggingUser selectUserById(String id) {
         return mapper.selectUserById(id);
     }
+
+    public TaggingUser selectUserByNickName(String nickName) {
+        return mapper.selectUserByNickName(nickName);
+    }
     public TaggingUser findTaggingUser(TaggingUser user) {
         return mapper.findTaggingUser(user);
     }

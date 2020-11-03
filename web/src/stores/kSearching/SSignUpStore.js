@@ -127,9 +127,6 @@ export default class SignUpStore {
         this.pwCK = true;
         this.doChangePassword();
     }
-    // @action  handleUserInfoOK = () => {
-    //     this.userInfoOK = true
-    // }
     @action  handleUserInfoOK2 = () => {
         this.doCheckName()
     }
@@ -207,7 +204,6 @@ export default class SignUpStore {
     @action changeNewMemberPassword = (password) => {
         this.newMember.password = password;
     }
-
     @action changeNewMemberPasswordConfirm = (passwordConfirm) => {
         this.newMember.passwordConfirm = passwordConfirm;
     }
@@ -240,6 +236,7 @@ export default class SignUpStore {
 
         return id && emailVerification && passwordConfirm && password && userName && phone;
     }
+
     @computed get isValidId() {
         return validation.validateId(this.newMember.id);
     }
@@ -252,7 +249,6 @@ export default class SignUpStore {
     @computed get isValidUserName() {
         return validation.validateName(this.newMember.name);
     }
-
     @computed get isValidNickName() {
         return validation.validateNickName(this.newMember.nickName);
     }
@@ -352,7 +348,6 @@ export default class SignUpStore {
         this.state = State.Pending;
         try {
             const param = toJS(this.newMember);
-            console.log(history)
             delete param.passwordConfirm;
             const responsId = yield axios.post(`/api/v1/kSearching/users/find`, param)
                 .then(res => {

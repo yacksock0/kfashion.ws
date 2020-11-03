@@ -38,7 +38,15 @@ const style = theme => ({
 class JoinQuestionsMatch extends Component{
     handleClickOK= () => {
         this.props.mSignUpStore.doSignUp(this.props.history);
+        this.props.mSignUpStore.changeQuestionCk();
     }
+    componentWillUnmount() {
+        if(this.props.mSignUpStore.questionCK !== true){
+            console.log("question initalize")
+            this.props.mSignUpStore.initialize();
+        }
+    }
+
     render() {
         const { classes } = this.props;
         const {agreeOK, idOK, pwOK} = this.props.mSignUpStore;

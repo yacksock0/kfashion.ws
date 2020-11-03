@@ -48,6 +48,11 @@ public class MatchingUserRepository {
     public MatchingUser selectUserById(String id) {
         return mapper.selectUserById(id);
     }
+
+    public MatchingUser selectUserByNickName(String nickName) {
+        return mapper.selectUserByNickName(nickName);
+    }
+
     public MatchingUser findMatchingUser(MatchingUser user) {
         return mapper.findMatchingUser(user);
     }
