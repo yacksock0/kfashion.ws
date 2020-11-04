@@ -185,6 +185,7 @@ export default class SignUpStore {
         this.pwSnack = false;
         this.userInfoOK = false;
         this.member = {}
+        this.isAllSelected = false;
         if((email !== undefined) && (email !== null) && (email.length > 0) && validation.validateEmail(email)) {
             this.newMember.email = email;
         }

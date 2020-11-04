@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {inject, observer} from "mobx-react";
+import {ReactComponent as JoinIcon} from "../../images/JoinIcon.svg";
 
 
 const style = theme => ({
@@ -65,6 +66,9 @@ class TopBarSearch extends Component{
     goHome = () => {
         this.props.history.push('/searching/home')
     }
+    doJoin = () => {
+        this.props.history.push('/searching/agree')
+    }
     render() {
         const { classes } = this.props;
         const { isLoggedIn, doLogout, loginUser} = this.props;
@@ -81,10 +85,12 @@ class TopBarSearch extends Component{
                                         <AdminIcon style={{marginRight:10}}/><Typography>{loginUser.id}</Typography>
                                     </Paper>
                                     }
-
                                     {/* <Typography className={classes.iconstyle} ><JoinIcon /></Typography> */}
+                                    {isLoggedIn ?
                                     <Typography className={classes.iconstyle}
-                                                onClick={doLogout}><LogoutIcon /></Typography>
+                                                onClick={doLogout}><LogoutIcon/></Typography>:
+                                    <Typography className={classes.userstyle} onClick={this.doJoin}> <JoinIcon/></Typography>
+                                    }
                                 </Paper>
                                 <hr />
                             </Paper>

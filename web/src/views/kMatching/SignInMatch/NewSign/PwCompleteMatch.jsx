@@ -97,56 +97,48 @@ class PwCompleteMatch extends Component{
     render() {
         const { classes } = this.props;
         const { member, pwCK, handlePwOK2 } = this.props.mSignUpStore;
+        let component;
+        if (member.password === undefined || member.password === "") {
+            component =
+                <Paper elevation={0}><Typography className={classes.titletext}>비밀번호 찾기</Typography>
+                    <Typography className={classes.txtstyle1}>정보를 다시 확인해주세요.</Typography>
+                    <Paper elevation={0} className={classes.completebox}>
+                        <Typography className={classes.pwtext}>찾으시는 정보의 비밀번호가 없습니다.</Typography>
+                    </Paper>
+                    <Paper elevation={0}>
+                        <Button variant="contained"
+                                className={classes.btnjoinstyle}
+                                onClick={this.handleClickHome}>돌아가기
+                        </Button>
+                    </Paper>
+                </Paper>
+        } else if (member.password !== undefined && member.password !== "" && pwCK !== true) {
+            component =
+                <Paper elevation={0}>
+                    <Typography className={classes.titletext}>비밀번호 변경</Typography>
+                    <JoinPwMatch handlePwOK={handlePwOK2}/>
+                </Paper>
+        } else if (pwCK === true) {
+            component =
+                <Paper elevation={0}>
+                    <Typography className={classes.titletext}>비밀번호 변경</Typography>
+                    <Typography className={classes.txtstyle1}>비밀번호 변경이 완료되었습니다!</Typography>
+                    <Paper elevation={0} className={classes.completebox}>
+                        <Typography className={classes.pwtext}>변경된 비밀번호로 다시 로그인 해주세요.</Typography>
+                    </Paper>
+                    <Paper elevation={0}>
+                        <Button variant="contained"
+                                className={classes.btnjoinstyle}
+                                onClick={this.handleClickHome}>로그인
+                        </Button>
+                    </Paper>
+                </Paper>
+        }
         return (
             <div className={classes.root}>
                 <Paper elevation={0} className={classes.paper}>
-                    <Paper elevation={0}>
-                        {/*타이틀*/}
-                        {member.password !== undefined || member.password !== ""  &&
-                        <Typography className={classes.titletext}>비밀번호 찾기</Typography>
-                        }
-                        {member.password !== undefined && member.password !== "" && pwCK !== true &&
-                        <Typography className={classes.titletext}>비밀번호 변경</Typography>
-                        }
-                        {pwCK === true && <Typography className={classes.titletext}>비밀번호 변경</Typography>}
-
-
-                        {/*상태글*/}
-                        {member.password !== undefined || member.password !== ""  &&
-                        <Typography className={classes.txtstyle1}>정보를 다시 확인해주세요.</Typography>
-                        }
-                        {pwCK === true && <Typography className={classes.txtstyle1}>비밀번호 변경이 완료되었습니다!</Typography>}
-
-                        {/*화면*/}
-                        {member.password !== undefined && member.password !== "" && pwCK !== true  && (
-                            <JoinPwMatch handlePwOK={handlePwOK2}/>
-                        )}
-                        {pwCK === true &&
-                        <Paper elevation={0} className={classes.completebox}>
-                            <Typography className={classes.pwtext}>변경된 비밀번호로 다시 로그인 해주세요.</Typography>
-                        </Paper>
-                        }
-                        {member.password !==undefined || member.password !== ""  &&
-                        <Paper elevation={0} className={classes.completebox}>
-                            <Typography className={classes.pwtext}>찾으시는 정보의 비밀번호가 없습니다.</Typography>
-                        </Paper>
-                        }
-
-
-                        <Paper elevation={0}>
-                            {member.password !== undefined || member.password !== "" &&
-                            <Button variant="contained"
-                                    className={classes.btnjoinstyle}
-                                    onClick={this.handleClickHome}>돌아가기</Button>
-                            }
-                            {pwCK ===true &&
-                            <Button variant="contained"
-                                    className={classes.btnjoinstyle}
-                                    onClick={this.handleClickHome}>로그인</Button>
-                            }
-                        </Paper>
-                    </Paper>
-                </Paper> 
+                    {component}
+                </Paper>
             </div>
         )
     }

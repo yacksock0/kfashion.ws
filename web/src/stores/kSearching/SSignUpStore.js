@@ -190,6 +190,7 @@ export default class SignUpStore {
         this.idSnack = false;
         this.pwSnack = false;
         this.member = {}
+        this.isAllSelected = false;
         if ((email !== undefined) && (email !== null) && (email.length > 0) && validation.validateEmail(email)) {
             this.newMember.email = email;
         }
