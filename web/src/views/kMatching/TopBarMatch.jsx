@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {inject, observer} from "mobx-react";
 import {ReactComponent as LogoTrandSearch} from "../../images/LogoTrandSearch.svg";
+import {ReactComponent as AdminIcon} from "../../images/AdminIcon.svg";
 
 
 const style = theme => ({
@@ -64,10 +65,12 @@ class TopBarMatch extends Component{
     goHome = () => {
         this.props.history.push('/matching/home')
     }
+    doJoin = () => {
+        this.props.history.push('/matching/agree')
+    }
     render() {
         const { classes } = this.props;
-        const {doLogout} = this.props;
-
+        const { isLoggedIn, doLogout, loginUser} = this.props;
         return (
             <div className={classes.root}>
                 <React.Fragment>
@@ -76,9 +79,17 @@ class TopBarMatch extends Component{
                             <LogoDailyCody className={classes.logoimg} onClick={() => this.goHome()} cursor={'pointer'}/>
                             <Paper elevation={0} className={classes.right}>
                                 <Paper elevation={0} className={classes.rightbox}>
-                                    <Typography className={classes.iconstyle} ><JoinIcon /></Typography>
-                                    <Typography className={classes.iconstyle}
-                                                onClick={doLogout}><LogoutIcon /></Typography>
+                                    {isLoggedIn &&
+                                    <Paper elevation={0} className={classes.adminbox}>
+                                        <AdminIcon/><Typography>{loginUser.id}</Typography>
+                                    </Paper>
+                                    }
+                                    {/* <Typography className={classes.iconstyle} ><JoinIcon /></Typography> */}
+                                    {isLoggedIn ?
+                                        <Typography className={classes.iconstyle}
+                                                    onClick={doLogout}><LogoutIcon/></Typography>:
+                                        <Typography className={classes.iconstyle} onClick={this.doJoin}> <JoinIcon/></Typography>
+                                    }
                                 </Paper>
                                 <hr />
                             </Paper>

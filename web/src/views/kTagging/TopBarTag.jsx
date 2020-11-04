@@ -76,6 +76,9 @@ class TopBarTag extends Component{
     goHome = () => {
         this.props.history.push('/tagging/home')
     }
+    doJoin = () => {
+        this.props.history.push('/tagging/agree')
+    }
     render() {
         const {classes} = this.props;
         const {mobileOpen, setMobileOpen, isLoggedIn, doLogout, loginUser} = this.props;
@@ -93,19 +96,15 @@ class TopBarTag extends Component{
 
                                 <Paper elevation={0} className={classes.rightbox}>
 
-                                    <Paper elevation={0} className={classes.adminbox}>
-                                        <AdminIcon/><Typography>admin@admin</Typography>
-                                    </Paper>
-                                    {!isLoggedIn &&
-                                    <Typography className={classes.userstyle}> <JoinIcon/></Typography>
-
-                                    }
-                                    {!isLoggedIn &&
-                                    <Typography className={classes.iconstyle}> <LoginIcon/></Typography>
-                                    }
                                     {isLoggedIn &&
-                                    <Typography className={classes.iconstyle}
-                                                onClick={doLogout}> <LogoutIcon/></Typography>
+                                    <Paper elevation={0} className={classes.adminbox}>
+                                        <AdminIcon/><Typography>{loginUser.id}</Typography>
+                                    </Paper>
+                                    }
+                                    {isLoggedIn ?
+                                        <Typography className={classes.userstyle}
+                                                    onClick={doLogout}><LogoutIcon/></Typography>:
+                                        <Typography className={classes.userstyle} onClick={this.doJoin}> <JoinIcon/></Typography>
                                     }
                                 </Paper>
                                 <hr/>
