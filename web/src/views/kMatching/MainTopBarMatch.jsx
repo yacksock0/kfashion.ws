@@ -59,7 +59,7 @@ class MainTopBarMatch extends Component{
                             <Paper elevation={0} className={classes.right}>
                                 <Paper elevation={0} className={classes.rightbox}>
                                     <Paper elevation={0} className={classes.adminbox}>
-                                        <AdminIcon /><Typography >{loginUser.id}</Typography>
+                                        <AdminIcon style={{marginRight:10}}/><Typography >{loginUser.id}</Typography>
                                     </Paper>
                                     {/* <Typography className={classes.iconstyle} ><JoinIcon /></Typography> */}
                                     <Typography className={classes.iconstyle}

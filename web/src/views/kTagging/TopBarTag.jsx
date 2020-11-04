@@ -94,7 +94,7 @@ class TopBarTag extends Component{
                                 <Paper elevation={0} className={classes.rightbox}>
 
                                     <Paper elevation={0} className={classes.adminbox}>
-                                        <AdminIcon/><Typography>admin@admin</Typography>
+                                        <AdminIcon style={{marginRight:10}}/><Typography>admin@admin</Typography>
                                     </Paper>
                                     {!isLoggedIn &&
                                     <Typography className={classes.userstyle}> <JoinIcon/></Typography>

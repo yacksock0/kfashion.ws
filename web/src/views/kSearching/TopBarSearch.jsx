@@ -78,7 +78,7 @@ class TopBarSearch extends Component{
                                 <Paper elevation={0} className={classes.rightbox}>
                                     {isLoggedIn &&
                                     <Paper elevation={0} className={classes.adminbox}>
-                                        <AdminIcon/><Typography>{loginUser.id}</Typography>
+                                        <AdminIcon style={{marginRight:10}}/><Typography>{loginUser.id}</Typography>
                                     </Paper>
                                     }
 

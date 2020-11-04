@@ -18,7 +18,8 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import {BubbleChart} from "@material-ui/icons";
 import {ButtonGroup} from "@material-ui/core";
-import PanoramaFishEyeIcon from '@material-ui/icons/PanoramaFishEye';
+// import PanoramaFishEyeIcon from '@material-ui/icons/PanoramaFishEye';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 
 const style = theme => ({
@@ -40,6 +41,35 @@ const style = theme => ({
         flex: 1,
         width:'300px',
     },
+    txtresultbox: {
+        display:'flex',
+        marginBottom:30  
+    },
+    txtline: {
+        [theme.breakpoints.down('xs')]: {
+            marginTop:15,
+        },
+        width:'40%',
+        height:'1px',
+        border:0,
+        background:'#707070',
+        marginTop:22,
+    },
+    txtresult: {
+        [theme.breakpoints.down('md')]: {
+            [theme.breakpoints.down('sm')]: {
+                [theme.breakpoints.down('xs')]: {
+                    fontSize:'20px',
+                },
+                fontSize:'25px',
+            },
+            fontSize:'30px',
+        },
+        fontFamily:'NotoSansCJKkr', 
+        width:'20%',
+        fontSize:'34px',
+        fontWeight:'300',
+    },
     iconButton: {
         padding: 5,
         "&:hover": {
@@ -55,21 +85,19 @@ const style = theme => ({
     },
     btnsearchbox: {
         marginBottom:25,
+        "& .MuiGrid-item":{
+            margin:'0 auto'
+        }
     },
     btnsearch:{
-        [theme.breakpoints.down('sm')]: {
-              height:'45px',
-              fontSize:'16px',
-              margin:'0 5px',
-          },
-        fontWeight:'500',
-        width:'110px',
-        height:'54px',
+        fontWeight:'600',
+        width:'160px',
+        height:'50px',
         border:'2px solid #38a67e',
         color:'#38a67e',
         borderRadius:'42px',
-        fontSize:'10px',
-        margin:'0 10px',
+        fontSize:'15px',
+        margin:'0 15px',
         boxShadow:'0 3px 6px 0 rgba(0, 0, 0, 0.2)',
         "&:hover": {
             background:'#38a67e',
@@ -78,23 +106,19 @@ const style = theme => ({
         "&:clicked" : {
             background:'#38a67e',
             color:'#fff',
-        }
+        },
+        
     },
     clickedBtnSearch:{
-        [theme.breakpoints.down('sm')]: {
-            height:'45px',
-            fontSize:'16px',
-            margin:'0 5px',
-        },
-        fontWeight:'500',
-        width:'110px',
-        height:'54px',
+        fontWeight:'600',
+        width:'160px',
+        height:'50px',
         border:'2px solid #38a67e',
         color:'#fff',
         background:'#38a67e',
         borderRadius:'42px',
-        fontSize:'10px',
-        margin:'0 10px',
+        fontSize:'15px',
+        margin:'0 15px',
         boxShadow:'0 3px 6px 0 rgba(0, 0, 0, 0.2)',
         "&:hover": {
             background:'#fff',
@@ -114,6 +138,15 @@ const style = theme => ({
             background:'#26151b',
         },
     },
+    colorBorder:{
+        width:'2em',
+        height:'2em',   
+    },
+    colorText:{
+        position:'relative',
+        left:-8
+        
+    }
 });
 
 @inject("sTextSearchStore")
@@ -188,36 +221,45 @@ class TextSearch  extends Component{
                     </Paper>
                 }
 
-                        <Hidden smDown>
-                            <Typography>Style</Typography>
-                            <hr />
-                            <Paper elevation={0} className={classes.btnsearchbox} >
-                                <Grid container>
-                                    <Grid container item spacing={2} >
-                                        {
-                                            styleList.map((style, index) => {
-                                                return (
-                                                    <Grid item xl key={index} >
-                                                        <Button
-                                                            className={selectedStyle && selectedStyle === style.categoryItemName ? classes.clickedBtnSearch : classes.btnsearch}
-                                                            variant="outlined"
-                                                            disabled={selectedStyle && style.categoryItemName !== selectedStyle}
-                                                            value={style.no}
-                                                            onClick={handleClickStyleBtn}
-                                                        >
-                                                            {style.categoryItemName}
-                                                        </Button>
-                                                    </Grid>
-                                                )
-                                            })
-                                        }
-                                    </Grid>
-                                </Grid>
-                            </Paper>
-                        </Hidden>
-                    <Hidden smDown>
-                        <Typography>Category</Typography>
-                        <hr/>
+                    {/* <Hidden xsDown> */}
+                        <Paper elevation={0} className={classes.txtresultbox}>
+                            <hr className={classes.txtline} />
+                            <Typography className={classes.txtresult}>Style</Typography>
+                            <hr className={classes.txtline} /> 
+                        </Paper>
+                        {/* <Typography>Style</Typography>
+                        <hr style={{marginBottom:25}}/> */}
+                        <Paper elevation={0} className={classes.btnsearchbox} >
+                            <Grid container item spacing={1} >
+                                {
+                                    styleList.map((style, index) => {
+                                        return (
+                                            <Grid item xl key={index} >
+                                                <Button
+                                                    className={selectedStyle && selectedStyle === style.categoryItemName ? classes.clickedBtnSearch : classes.btnsearch}
+                                                    variant="outlined"
+                                                    disabled={selectedStyle && style.categoryItemName !== selectedStyle}
+                                                    value={style.no}
+                                                    onClick={handleClickStyleBtn}
+                                                    style={{marginBottom:10}}
+                                                >
+                                                    {style.categoryItemName}
+                                                </Button>
+                                            </Grid>
+                                        )
+                                    })
+                                }
+                            </Grid>
+                        </Paper>
+                    {/* </Hidden> */}
+                    {/* <Hidden xsDown> */}
+                        <Paper elevation={0} className={classes.txtresultbox}>
+                            <hr className={classes.txtline} />
+                            <Typography className={classes.txtresult}>Category</Typography>
+                            <hr className={classes.txtline} /> 
+                        </Paper>
+                        {/* <Typography>Category</Typography>
+                        <hr style={{marginBottom:25}}/> */}
                         <Paper elevation={0} className={classes.btnsearchbox}>
                             {
                                 categoryNoList.map((data, index) => {
@@ -229,6 +271,7 @@ class TextSearch  extends Component{
                                             disabled={selectedCategory && category[data.categoryType] !== selectedCategory}
                                             value={data.categoryType}
                                             onClick={handleClickCategoryBtn}
+                                            style={{marginBottom:15}}
                                         >
                                             {category[data.categoryType]}
                                         </Button>
@@ -236,6 +279,7 @@ class TextSearch  extends Component{
 
                                 })
                             }
+                            
                             {/*    Object.keys(category).map((obj, index) => {*/}
                             {/*        console.log(" Object.keys(category).map((obj : >> ", obj)*/}
                             {/*        return (*/}
@@ -252,13 +296,19 @@ class TextSearch  extends Component{
                             {/*    })*/}
                             {/*}*/}
                         </Paper>
-                    </Hidden>
+                    {/* </Hidden> */}
+                    
                 {
                     selectedCategory
                     ? (
-                            <Hidden smDown>
-                                <Typography>Color</Typography>
-                                <hr />
+                            // <Hidden xsDown>
+                            <Paper elevation={0}>
+                                <Paper elevation={0} className={classes.txtresultbox}>
+                                    <hr className={classes.txtline} />
+                                    <Typography className={classes.txtresult}>Color</Typography>
+                                    <hr className={classes.txtline} /> 
+                                </Paper>
+                                
                                 <Paper elevation={0} className={classes.btnsearchbox}>
                                     <Grid container>
                                         <Grid container item spacing={2}>
@@ -272,9 +322,10 @@ class TextSearch  extends Component{
                                                                 disabled={selectedColor && color.categoryItemName !== selectedColor}
                                                                 value={color.no}
                                                                 onClick={handleClickColorBtn}
-                                                                startIcon={<PanoramaFishEyeIcon htmlColor={color.categoryItemMemo}/>}
+                                                                startIcon={<FiberManualRecordIcon htmlColor={color.categoryItemMemo} className={classes.colorBorder}/>}
+                                                                style={{marginBottom:10}}
                                                             >
-                                                                {color.categoryItemName}
+                                                                <spna className={classes.colorText}>{color.categoryItemName}</spna>
                                                             </Button>
                                                         </Grid>
                                                     )
@@ -283,11 +334,13 @@ class TextSearch  extends Component{
                                         </Grid>
                                     </Grid>
                                 </Paper>
-                            </Hidden>
+                            </Paper>
+                            // </Hidden>
+                            
                         )
                     : null
                 }
-                    <Hidden mdUp>
+                    {/* <Hidden mdUp>
                         <Paper elevation={0} className={classes.btnsearchbox}>
                             <Button variant="outlined" className={classes.btnsearch}>레트로</Button>
                             <Button variant="outlined" className={classes.btnsearch}>로맨틱</Button>
@@ -316,7 +369,7 @@ class TextSearch  extends Component{
                             <Button variant="outlined" className={classes.btnsearch}>스포츠</Button>
                             </Paper>
                         </Hidden>
-                    </Hidden>
+                    </Hidden> */}
                 <Button
                     variant="contained"
                     className={classes.btnsend}

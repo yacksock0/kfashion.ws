@@ -91,9 +91,9 @@ class TrendSearch extends Component{
                     <Paper elevation={0} component="form">
                          <ImageSearch />
                         <Paper elevation={0} className={classes.txtresultbox}>
-                        <hr className={classes.txtline} />
-                        <Typography className={classes.txtresult}>검색 결과</Typography>
-                        <hr className={classes.txtline} /> 
+                            <hr className={classes.txtline} />
+                            <Typography className={classes.txtresult}>검색 결과</Typography>
+                            <hr className={classes.txtline} /> 
                         </Paper>
                         <Paper elevation={0} className={classes.btnmorebox}>
                             <Button variant="outlined" className={classes.btnmore}>이미지 더보기 <ArrowForwardRoundedIcon /></Button>  
