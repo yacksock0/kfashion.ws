@@ -134,9 +134,6 @@ export default class AuthStore {
             this.loginUser = Object.assign({}, EmptyUser);
         }
     });
-    doJoin = flow(function* doJoin(){
-
-    });
     setLoginURL = flow(function* setLoginURL(web) {
         this.loginURL = web;
     });
